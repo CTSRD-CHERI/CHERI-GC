@@ -1,3 +1,5 @@
+#include "inc/gc_init.h"
+
 #include <stdio.h>
 
 int
