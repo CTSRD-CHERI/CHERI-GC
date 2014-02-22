@@ -29,6 +29,8 @@ GC_PUBLIC_INCLUDE=src/inc/
 GC_PRIV_INCLUDE=src/inc/
 TEST_SOURCES=`ls -m test/*.c | sed s/,//g`
 
+all: everything
+
 objects/%.o : src/%.c
 	$(CC) $(CFLAGS) -c -o $@ $<
 
