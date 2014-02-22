@@ -21,20 +21,31 @@ CLOUD2_FILE_ZFS=/mnt/mbv21zfs/cloud2gc2test
 # everything: clean lib gctest push run
 
 PATH:=$(CHERI):$(PATH)
-CC=$(CHERI)/bin/clang --sysroot $(CHERI) -integrated-as -msoft-float
+CC=PATH=$(PATH) $(CHERI)/bin/clang --sysroot $(CHERI) -integrated-as -msoft-float
+CFLAGS=-I$(GC_PRIV_INCLUDE) -c
 
-GC_SOURCES=`ls -m src/*.c | sed s/,//g`
+GC_SOURCES=objects/gc_init.o objects/gc_malloc.o objects/gc_debug.o
 GC_PUBLIC_INCLUDE=src/inc/
+GC_PRIV_INCLUDE=src/inc/
 TEST_SOURCES=`ls -m test/*.c | sed s/,//g`
+
+objects/%.o : src/%.c
+	$(CC) $(CFLAGS) -c -o $@ $<
 
 clean:
 	rm -rf objects
 
-lib:
-	mkdir -p objects && \
-	PATH=$(PATH) $(CC) -c -o objects/gc.o $(GC_SOURCES) && \
-	ar rcs objects/gc.a objects/gc.o && \
-	rm objects/gc.o
+lib_init:
+	mkdir -p objects
+
+lib_final: $(GC_SOURCES)
+	ar rcs objects/gc.a objects/*.o
+
+lib: lib_init $(GC_SOURCES) lib_final
+#	mkdir -p objects && \
+#	$(CC) $(CFLAGS) -o objects/ $(GC_SOURCES) && \
+#	ar rcs objects/gc.a objects/*.o && \
+#	rm objects/gc.o
 
 gctest:
 	PATH=$(PATH) $(CC) -c -o objects/gctest.o -I$(GC_PUBLIC_INCLUDE) $(TEST_SOURCES) && \
