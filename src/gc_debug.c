@@ -1,5 +1,8 @@
 #include "gc_debug.h"
 
+#include <machine/cheri.h>
+#include <machine/cheric.h>
+
 #include <stdarg.h>
 #include <stdio.h>
 
@@ -33,15 +36,17 @@ GC_debug_print_region_stats(struct GC_region region)
   (
     "Region statistics\n"
     "-----------------\n"
-    "fromspace :     0x%llx\n"
-    "tospace   :     0x%llx\n"
-    "free      :     0x%llx (0x%llx bytes into fromspace)\n"
-    "scan      :     0x%llx (0x%llx bytes into fromspace)\n",
-    (GC_ULL) region.fromspace,
-    (GC_ULL) region.tospace,
-    (GC_ULL) region.free,
-    (GC_ULL) ( ((GC_ULL)region.free) > ((GC_ULL)region.fromspace) ? ((GC_ULL)region.free) - ((GC_ULL)region.fromspace) : 0 ),
-    (GC_ULL) region.scan,
-    (GC_ULL) ( ((GC_ULL)region.scan) > ((GC_ULL)region.fromspace) ? ((GC_ULL)region.scan) - ((GC_ULL)region.fromspace) : 0 )
+    "fromspace :     base=0x%llx, len=0x%llx\n"
+    "tospace   :     base=0x%llx, len=0x%llx\n"
+    "free      :     base=0x%llx, len=0x%llx\n"
+    "scan      :     base=0x%llx, len=0x%llx\n",
+    (GC_ULL) cheri_getbase(region.fromspace),
+    (GC_ULL) cheri_getlen(region.fromspace),
+    (GC_ULL) cheri_getbase(region.tospace),
+    (GC_ULL) cheri_getlen(region.tospace),
+    (GC_ULL) cheri_getbase(region.free),
+    (GC_ULL) cheri_getlen(region.free),
+    (GC_ULL) cheri_getbase(region.scan),
+    (GC_ULL) cheri_getlen(region.scan)
   );
 }

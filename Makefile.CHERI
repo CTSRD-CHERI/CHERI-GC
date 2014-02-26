@@ -24,7 +24,8 @@ PATH:=$(CHERI):$(PATH)
 CC=PATH=$(PATH) $(CHERI)/bin/clang --sysroot $(CHERI) -integrated-as -msoft-float
 CFLAGS=-I$(GC_PRIV_INCLUDE) -c
 
-GC_SOURCES=objects/gc_init.o objects/gc_malloc.o objects/gc_debug.o
+GC_SOURCES=objects/gc_init.o objects/gc_malloc.o objects/gc_debug.o \
+           objects/gc_low.o objects/gc_collect.o
 GC_PUBLIC_INCLUDE=src/inc/
 GC_PRIV_INCLUDE=src/inc/
 TEST_SOURCES=`ls -m test/*.c | sed s/,//g`

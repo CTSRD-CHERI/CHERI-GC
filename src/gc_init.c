@@ -1,5 +1,6 @@
 #include "gc_init.h"
 #include "gc_debug.h"
+#include "gc_low.h"
 
 #include <machine/cheri.h>
 #include <machine/cheric.h>
@@ -33,22 +34,18 @@ GC_is_initialized (void)
 int
 GC_init_region (struct GC_region * region)
 {
-  #define GC_SEMISPACE_SIZE   10000
-  void *p = malloc(GC_SEMISPACE_SIZE);
-  if (!p)
+  #define GC_SEMISPACE_SIZE   0x10000
+  void *p = GC_low_malloc(2*GC_SEMISPACE_SIZE);
+  if (p == NULL)
   {
-    GC_errf("malloc tospace");
+    GC_errf("malloc");
     return 1;
   }
   region->tospace = cheri_ptr(p, GC_SEMISPACE_SIZE);
-  p = malloc(GC_SEMISPACE_SIZE);
-  if (!p)
-  {
-    GC_errf("malloc fromspace");
-    return 1;    
-  }
-  region->fromspace = cheri_ptr(p, GC_SEMISPACE_SIZE);
+  region->fromspace = cheri_ptr(p+GC_SEMISPACE_SIZE, GC_SEMISPACE_SIZE);
   region->free = region->fromspace;
-  region->scan = cheri_zerocap();
+  region->scan = cheri_ptr(0, 0);
+  region->roots = NULL;
+  region->nroots = 0;
   return 0;
 }

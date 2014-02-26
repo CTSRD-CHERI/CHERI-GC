@@ -1,9 +1,19 @@
 #ifndef GC_INIT_H_HEADER
 #define GC_INIT_H_HEADER
 
+#include <stdlib.h>
+
+struct GC_root
+{
+  __capability void * cap;
+};
+
 struct GC_region
 {
   __capability void * tospace, * fromspace, * scan, * free;
+  struct GC_root * roots;
+  size_t nroots; // the actual number of roots stored
+  size_t maxroots; // size of the array
 };
 
 struct GC_state_struct
