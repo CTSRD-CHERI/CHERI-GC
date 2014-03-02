@@ -15,4 +15,7 @@ GC_errf2 (const char * file, int line, const char * format, ...);
 void
 GC_debug_print_region_stats (struct GC_region region);
 
+void
+GC_debug_print_stack_stats (void);
+
 #endif // GC_DEBUG_H_HEADER

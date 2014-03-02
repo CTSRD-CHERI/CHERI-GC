@@ -13,12 +13,6 @@ GC_collect_region (struct GC_region * region);
 // 0 : success
 // 1 : error
 int
-GC_reallocate_roots (struct GC_region * region);
-
-// Return values:
-// 0 : success
-// 1 : error
-int
 GC_get_roots (struct GC_region * region);
 
 #endif // GC_COLLECT_H_HEADER

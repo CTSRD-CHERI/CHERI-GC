@@ -18,6 +18,9 @@ GC_init (void)
     int rc = GC_init_region(&GC_state.thread_local_region);
     if (rc) return rc;
     
+    GC_state.stack_bottom = GC_get_stack_bottom();
+    if (GC_state.stack_bottom == NULL) return 1;
+    
     GC_state.initialized = 1;
     GC_dbgf("initialized");
   }
@@ -45,7 +48,5 @@ GC_init_region (struct GC_region * region)
   region->fromspace = cheri_ptr(p+GC_SEMISPACE_SIZE, GC_SEMISPACE_SIZE);
   region->free = region->fromspace;
   region->scan = cheri_ptr(0, 0);
-  region->roots = NULL;
-  region->nroots = 0;
   return 0;
 }
