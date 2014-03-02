@@ -22,7 +22,7 @@ CLOUD2_FILE_ZFS=/mnt/mbv21zfs/cloud2gc2test
 
 PATH:=$(CHERI):$(PATH)
 CC=PATH=$(PATH) $(CHERI)/bin/clang --sysroot $(CHERI) -integrated-as -msoft-float
-CFLAGS=-I$(GC_PRIV_INCLUDE) -c
+CFLAGS=-I$(GC_PRIV_INCLUDE)
 
 GC_SOURCES=objects/gc_init.o objects/gc_malloc.o objects/gc_debug.o \
            objects/gc_low.o objects/gc_collect.o
@@ -33,7 +33,8 @@ TEST_SOURCES=`ls -m test/*.c | sed s/,//g`
 all: everything
 
 objects/%.o : src/%.c
-	$(CC) $(CFLAGS) -c -o $@ $<
+	$(CC) $(CFLAGS) -c -o $@ $< && \
+	$(CC) $(CFLAGS) -S -o $@.s $<
 
 clean:
 	rm -rf objects
