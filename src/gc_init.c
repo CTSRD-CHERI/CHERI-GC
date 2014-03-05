@@ -2,9 +2,6 @@
 #include "gc_debug.h"
 #include "gc_low.h"
 
-#include <machine/cheri.h>
-#include <machine/cheric.h>
-
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -44,9 +41,9 @@ GC_init_region (struct GC_region * region)
     GC_errf("malloc");
     return 1;
   }
-  region->tospace = cheri_ptr(p, GC_SEMISPACE_SIZE);
-  region->fromspace = cheri_ptr(p+GC_SEMISPACE_SIZE, GC_SEMISPACE_SIZE);
+  region->tospace = GC_cheri_ptr(p, GC_SEMISPACE_SIZE);
+  region->fromspace = GC_cheri_ptr(p+GC_SEMISPACE_SIZE, GC_SEMISPACE_SIZE);
   region->free = region->fromspace;
-  region->scan = cheri_ptr(0, 0);
+  region->scan = GC_cheri_ptr(0, 0);
   return 0;
 }

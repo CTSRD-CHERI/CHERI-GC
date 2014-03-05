@@ -3,6 +3,56 @@
 
 #include <stdlib.h>
 
+#define GC_ULL  unsigned long long
+
+typedef __capability void * GC_cap_ptr;
+
+#include <machine/cheri.h>
+#include <machine/cheric.h>
+
+#define     GC_cheri_getbase  cheri_getbase
+#define     GC_cheri_getlen   cheri_getlen
+#define     GC_cheri_gettag   cheri_gettag
+#define     GC_cheri_setlen   cheri_setlen
+#define     GC_cheri_ptr      cheri_ptr
+
+#define GC_PUSH_CAP_REG(cap_reg,dest_addr) \
+  __asm __volatile \
+  ( \
+    "csc $c" #cap_reg ", %0, 0($c0)" : : "r"(dest_addr) : "memory" \
+  )
+
+#define GC_ALIGN_32(ptr,typ) \
+  do { \
+    (ptr) = \
+      (typ) ( (((uintptr_t) (ptr)) + (uintptr_t) 31) & ~(uintptr_t) 0x1F ); \
+  } while (0)
+
+  
+// The stack looks like this:
+// ----high memory addresses----
+// function arguments
+// $ra
+// $fp
+// preserved registers
+// local variables
+// $gp
+// ----low memory addresses----
+// $sp and $fp point just beneath $gp during the call.
+// i.e., the stack grows down.
+
+#define GC_GET_STACK_PTR(ret) \
+  __asm __volatile \
+  ( \
+    "daddiu %0, $sp, 0" : "=r"(ret) : : \
+  )
+
+#define GC_GET_FRAME_PTR(ret) \
+  __asm __volatile \
+  ( \
+    "daddiu %0, $fp, 0" : "=r"(ret) : : \
+  )
+  
 void *
 GC_low_malloc (size_t sz);
 

@@ -41,5 +41,13 @@ void
 roots_check_test (void)
 {
   allocation_test();
-  GC_get_roots(&GC_state.thread_local_region);
+  GC_collect_region(&GC_state.thread_local_region);
+  const char * buf = "hello!!$thiz2";
+  GC_debug_memdump(buf+1, buf+strlen(buf));
+  printf("\n\n\n");
+  const char * buf2 = "hello!!$thiz";
+  GC_debug_memdump(buf2, buf2+strlen(buf2));
+  printf("\n\n\n");
+  const char * buf3 = "hello!!$thiz234";
+  GC_debug_memdump(buf3, buf3+strlen(buf3));
 }

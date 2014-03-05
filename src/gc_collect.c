@@ -3,9 +3,6 @@
 #include "gc_low.h"
 #include "gc_debug.h"
 
-#include <machine/cheri.h>
-#include <machine/cheric.h>
-
 #include <stdint.h>
 
 void
@@ -18,26 +15,8 @@ GC_collect (void)
 void
 GC_collect_region (struct GC_region * region)
 {
-  GC_get_roots(region);
-}
-
-typedef __capability void * GC_cap_ptr;
-
-int
-GC_get_roots (struct GC_region * region)
-{
   
-  #define GC_PUSH_CAP_REG(cap_reg,dest_addr) \
-    __asm __volatile \
-    ( \
-      "csc $c" #cap_reg ", %0, 0($c0)" : : "r"(dest_addr) : "memory" \
-    )
-  
-  #define GC_ALIGN_32(ptr,typ) \
-    do { \
-      (ptr) = \
-        (typ) ( (((uintptr_t) (ptr)) + (uintptr_t) 31) & ~(uintptr_t) 0x1F ); \
-    } while (0)
+  // Push the roots (currently only the capability registers) to the stack
    
   __capability void * cap_regs_misaligned[sizeof(__capability void *)*26+32];
   GC_cap_ptr * cap_regs = cap_regs_misaligned;
@@ -74,12 +53,27 @@ GC_get_roots (struct GC_region * region)
   for (i=0; i<26; i++)
     GC_dbgf("cap_reg root [%d]: t=%d, b=0x%llx, l=0x%llx\n",
       i,
-      (int) cheri_gettag(cap_regs[i]),
-      (unsigned long long) cheri_getbase(cap_regs[i]),
-      (unsigned long long) cheri_getlen(cap_regs[i])
+      (int) GC_cheri_gettag(cap_regs[i]),
+      (GC_ULL) GC_cheri_getbase(cap_regs[i]),
+      (GC_ULL) GC_cheri_getlen(cap_regs[i])
     );
 
   GC_debug_print_stack_stats();
   
-  return 0;
+  void * stack_top = NULL;
+  GC_GET_STACK_PTR(stack_top);
+  
+  GC_assert(stack_top <= GC_state.stack_bottom);
+  
+  GC_dbgf("looking for roots between 0x%llx and 0x%llx\n",
+      (GC_ULL) stack_top,
+      (GC_ULL) GC_state.stack_bottom);
+  
+  GC_collect_range(region, stack_top, GC_state.stack_bottom);
+}
+
+void
+GC_collect_range (struct GC_region * region, void * start, void * end)
+{
+  
 }

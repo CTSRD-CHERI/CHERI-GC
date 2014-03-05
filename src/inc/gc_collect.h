@@ -9,6 +9,9 @@ GC_collect (void);
 void
 GC_collect_region (struct GC_region * region);
 
+void
+GC_collect_range (struct GC_region * region, void * start, void * end);
+
 // Return values:
 // 0 : success
 // 1 : error
