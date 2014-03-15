@@ -84,6 +84,52 @@ GC_debug_print_stack_stats (void)
 }
 
 void
+GC_debug_capdump (const void * start, const void * end)
+{
+  if ( ((uintptr_t) end) < ((uintptr_t) start) )
+  {
+    const void * tmp = end;
+    end = start;
+    start = tmp;
+  }
+  
+  printf("Capability memory dump from 0x%llx to 0x%llx\n",
+    (GC_ULL) start,
+    (GC_ULL) end);
+  GC_ALIGN_32(start, const void *);
+  GC_ALIGN_32_LOW(end, const void *);  
+  
+  const void * p;
+  for (p = start;
+       ((uintptr_t) p) < ((uintptr_t) end);
+       p = (const void *) ( ((uintptr_t) p) + sizeof(GC_cap_ptr) ))
+  {
+    // Do a CLC to $c1, then get the tag
+    GC_RESTORE_CAP_REG(1, p);
+    unsigned tag = 0;
+    GC_CHERI_CGETTAG(tag, 1);
+    if (tag)
+    {
+      const void * base = NULL;
+      size_t length = 0;
+      GC_CHERI_CGETBASE(base, 1);
+      GC_CHERI_CGETLEN(length, 1);
+      
+      printf("[0x%llx]  t=%u  b=0x%llx  l=0x%llx\n",
+        (GC_ULL) p,
+        tag,
+        (GC_ULL) base,
+        (GC_ULL) length);
+    }
+    else
+    {
+      printf("[0x%llx]  t=0\n",
+        (GC_ULL) p);
+    }
+  }
+}
+
+void
 GC_debug_memdump (const void * start, const void * end)
 {
   const char * p,

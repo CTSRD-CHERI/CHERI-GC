@@ -23,6 +23,9 @@ void
 GC_debug_print_stack_stats (void);
 
 void
+GC_debug_capdump (const void * start, const void * end);
+
+void
 GC_debug_memdump (const void * start, const void * end);
 
 #endif // GC_DEBUG_H_HEADER

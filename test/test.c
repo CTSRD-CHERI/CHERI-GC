@@ -2,23 +2,26 @@
 #include <gc_malloc.h>
 #include <gc_debug.h>
 #include <gc_collect.h>
+#include <gc_low.h>
 
 #include <machine/cheri.h>
 #include <machine/cheric.h>
 
-
 #include <stdio.h>
+#include <string.h>
 
 void
 allocation_test (void);
 void
-roots_check_test (void);
+memdump_test (void);
+void
+capdump_test (void);
 
 int
 main (int argc, char **argv)
 {
   printf("test: compiled %s\n", __TIME__ " " __DATE__);
-  roots_check_test();
+  capdump_test();
   return 0;
 }
 
@@ -30,7 +33,7 @@ allocation_test (void)
   int i;
   for (i=0; i<15; i++)
   {
-    __capability void *ptr = GC_malloc(0x1000);
+    __capability void * ptr = GC_malloc(0x1000);
     printf("ptr base: 0x%llx\n", (unsigned long long) ptr);
   }
   
@@ -38,7 +41,7 @@ allocation_test (void)
 }
 
 void
-roots_check_test (void)
+memdump_test (void)
 {
   allocation_test();
   GC_collect_region(&GC_state.thread_local_region);
@@ -50,4 +53,15 @@ roots_check_test (void)
   printf("\n\n\n");
   const char * buf3 = "hello!!$thiz234";
   GC_debug_memdump(buf3, buf3+strlen(buf3));
+}
+
+void
+capdump_test (void)
+{
+  int a = 0xABCDEF;
+  __capability void * b = GC_cheri_ptr((void*)0x1234, 0x5678);
+  void * stack_top = NULL;
+  GC_init();
+  GC_GET_STACK_PTR(stack_top);
+  GC_debug_capdump(GC_state.stack_bottom, stack_top);
 }
