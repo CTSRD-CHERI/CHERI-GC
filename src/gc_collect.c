@@ -114,6 +114,8 @@ GC_collect_region (struct GC_region * region)
   GC_collect_range(region, GC_state.static_bottom, GC_state.static_top);
 }
 
+extern char edata, end, etext;
+
 void
 GC_collect_range (struct GC_region * region,
                   void * root_start,
@@ -121,19 +123,25 @@ GC_collect_range (struct GC_region * region,
 {
   GC_assert(root_start <= root_end);
   
+  printf("Collecting range 0x%llx to 0x%llx\n",
+    (GC_ULL) root_start,
+    (GC_ULL) root_end);
+  
   region->scan = region->tospace;
   region->free = region->tospace;
   
-  root_start = GC_ALIGN_32(root_start, const void *);
-  root_end = GC_ALIGN_32_LOW(root_end, const void *);  
+  root_start = GC_ALIGN_32(root_start, void *);
+  root_end = GC_ALIGN_32_LOW(root_end, void *);
   
-  const void * p;
+  void * p;
   for (p = root_start;
        ((uintptr_t) p) < ((uintptr_t) root_end);
-       p = (const void *) ( ((uintptr_t) p) + sizeof(GC_cap_ptr) ))
+       p = (void *) ( ((uintptr_t) p) + sizeof(GC_cap_ptr) ))
   {
     // Do a CLC to $c1, then get the tag
+    printf("Doing a CLC...0x%llx [edata=0x%llx, end=0x%llx, etext=0x%llx]\n", (GC_ULL) p, (GC_ULL) &edata, (GC_ULL) &end, (GC_ULL) &etext);
     GC_RESTORE_CAP_REG(1, p);
+    printf("CLC done.\n");
     unsigned tag = 0;
     GC_CHERI_CGETTAG(tag, 1);
     if (tag)
@@ -170,6 +178,10 @@ GC_collect_range (struct GC_region * region,
           printf("The forwarding address 0x%llx is inside the tospace!\n",
               (GC_ULL) base);
         }
+      }
+      else
+      {
+        printf("No tag.\n");
       }
           //if (forwarded(cap)) new_root_cap = forwarding_address(cap);
           //else {new_root_cap=region->free; move(cap, region->free); region->free += size(cap); forwarding_address(cap) = new_root_cap;}

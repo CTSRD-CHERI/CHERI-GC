@@ -26,7 +26,8 @@ main (int argc, char **argv)
 {
   printf("test: compiled %s\n", __TIME__ " " __DATE__);
   arbitrary_cap = GC_cheri_ptr((void*)0x9988, 0x7777);
-  collection_test();
+  GC_init();
+  //collection_test();
   return 0;
 }
 

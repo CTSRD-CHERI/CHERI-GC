@@ -41,12 +41,66 @@ GC_get_stack_bottom (void)
   return p;
 }
 
-extern char end, etext; // defined by FreeBSD
+extern char end; // defined by FreeBSD
+
+// To determine bottom of data section, keep decrementing until we segfault.
+// Technically this is undefined behaviour and non-portable.
+// We break out of infinite segfaulting by using setjmp/longjmp.
+#include <signal.h>
+#include <setjmp.h>
+static jmp_buf GC_tmp_jmp_buf;
+static void (*oldfunc)(int);
+
+static void
+GC_sigsegv_handler (int parameter)
+{
+  longjmp(GC_tmp_jmp_buf, 1);
+}
 
 void *
 GC_get_static_bottom (void)
 {
-  return &etext;
+  if (!GC_is_initialized())
+  {
+    int val;
+    val = setjmp(GC_tmp_jmp_buf);
+    if (val == 0)
+    {
+      GC_state.static_bottom = NULL;
+      void * p = GC_ALIGN_32_LOW(GC_get_static_top(), void *);
+      
+      oldfunc = signal(SIGSEGV, GC_sigsegv_handler);
+      if (oldfunc == SIG_ERR)
+      {
+        GC_errf("could not get static area bottom");
+        return NULL;
+      }
+      
+      while (p)
+      {
+        GC_state.static_bottom = p;
+        p = (void *) ( ((uintptr_t) p) - sizeof(GC_cap_ptr) );
+        __asm __volatile
+        (
+          "daddiu $1, %0, 0" : : "r"(p) : "$1"
+        );
+        __asm __volatile
+        (
+          "ld $1, 0($1)" : : : "$1"
+        );
+      }
+    }
+    
+    printf("Final static bottom: 0x%llx\n", (GC_ULL) GC_state.static_bottom);
+    
+    oldfunc = signal(SIGSEGV, oldfunc);
+    if (oldfunc == SIG_ERR)
+    {
+      GC_errf("could not get static area bottom");
+      return NULL;
+    }
+  }
+  return GC_state.static_bottom;
 }
 
 void *
