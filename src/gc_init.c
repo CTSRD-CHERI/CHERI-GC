@@ -18,6 +18,12 @@ GC_init (void)
     GC_state.stack_bottom = GC_get_stack_bottom();
     if (GC_state.stack_bottom == NULL) return 1;
     
+    GC_state.static_bottom = GC_get_static_bottom();
+    if (GC_state.stack_bottom == NULL) return 1;
+
+    GC_state.static_top = GC_get_static_top();
+    if (GC_state.stack_bottom == NULL) return 1;
+    
     GC_state.initialized = 1;
     GC_dbgf("initialized");
   }

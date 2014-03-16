@@ -84,7 +84,12 @@ collection_test (void)
   GC_cheri_setreg(3, arbitrary_cap);
   GC_PUSH_CAP_REG(3, GC_FORWARDING_ADDRESS((void*) &a));
   GC_collect_range(&GC_state.thread_local_region, stack_top, stack_top+10*32);*/
-  GC_cheri_setreg(16, arbitrary_cap);
-  GC_cheri_setreg(23, arbitrary_cap);
+  GC_init();
+  printf("Static data bottom: 0x%llx\nStatic data top: 0x%llx\n",
+    (GC_ULL) GC_state.static_bottom,
+    (GC_ULL) GC_state.static_top);
+  __capability void * cap1 = GC_malloc(100);
+  GC_cheri_setreg(16, cap1);
+  GC_cheri_setreg(23, cap1);
   GC_collect();
 }

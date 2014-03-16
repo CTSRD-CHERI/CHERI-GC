@@ -40,3 +40,17 @@ GC_get_stack_bottom (void)
   }
   return p;
 }
+
+extern char end, etext; // defined by FreeBSD
+
+void *
+GC_get_static_bottom (void)
+{
+  return &etext;
+}
+
+void *
+GC_get_static_top (void)
+{
+  return &end;
+}

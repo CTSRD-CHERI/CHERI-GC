@@ -111,11 +111,13 @@ GC_collect_region (struct GC_region * region)
       (GC_ULL) GC_state.stack_bottom);
       
   GC_collect_range(region, stack_top, GC_state.stack_bottom);
+  GC_collect_range(region, GC_state.static_bottom, GC_state.static_top);
 }
 
 void
-GC_collect_range (struct GC_region * region, const void * root_start,
-                  const void * root_end)
+GC_collect_range (struct GC_region * region,
+                  void * root_start,
+                  void * root_end)
 {
   GC_assert(root_start <= root_end);
   

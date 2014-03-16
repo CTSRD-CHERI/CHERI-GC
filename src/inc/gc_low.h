@@ -94,4 +94,10 @@ GC_low_realloc (void * ptr, size_t sz);
 void *
 GC_get_stack_bottom (void);
 
+void *
+GC_get_static_bottom (void);
+
+void *
+GC_get_static_top (void);
+
 #endif // GC_LOW_H_HEADER
