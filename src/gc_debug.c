@@ -96,8 +96,8 @@ GC_debug_capdump (const void * start, const void * end)
   printf("Capability memory dump from 0x%llx to 0x%llx\n",
     (GC_ULL) start,
     (GC_ULL) end);
-  GC_ALIGN_32(start, const void *);
-  GC_ALIGN_32_LOW(end, const void *);  
+  start = GC_ALIGN_32(start, const void *);
+  end = GC_ALIGN_32_LOW(end, const void *);  
   
   const void * p;
   for (p = start;

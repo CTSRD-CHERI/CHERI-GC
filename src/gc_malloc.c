@@ -17,8 +17,16 @@ GC_malloc_region (struct GC_region * region, size_t sz)
 {  
   if (sz > (size_t) cheri_getlen(region->free))
   {
-    GC_errf("sz too big: 0x%llx", (unsigned long long) sz);
+    GC_errf("sz too big: 0x%llx", (GC_ULL) sz);
     return GC_cheri_ptr(0, 0);
+  }
+  
+  if (sz < sizeof(GC_cap_ptr))
+  {
+    GC_dbgf("sz 0x%llx to small; allocating at least 0x%llx bytes",
+      (GC_ULL) sz,
+      (GC_ULL) sizeof(GC_cap_ptr));
+    sz = sizeof(GC_cap_ptr);
   }
   
   // TODO: handle csetlen and cincbase exceptions

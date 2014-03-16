@@ -18,6 +18,8 @@ typedef __capability void * GC_cap_ptr;
 #define     GC_CHERI_CGETTAG  CHERI_CGETTAG
 #define     GC_CHERI_CGETBASE CHERI_CGETBASE
 #define     GC_CHERI_CGETLEN  CHERI_CGETLEN
+#define     GC_cheri_getreg   cheri_getreg
+#define     GC_cheri_setreg   cheri_setreg
 
 #define GC_PUSH_CAP_REG(cap_reg,dest_addr) \
   __asm __volatile \
@@ -31,19 +33,19 @@ typedef __capability void * GC_cap_ptr;
     "clc $c" #cap_reg ", %0, 0($c0)" : : "r"(source_addr) \
   )
 
+#define GC_RESTORE_CAP_REG_CAP_INDIRECT(cap_reg,source_cap,source_addr) \
+  __asm __volatile \
+  ( \
+    "clc $c" #cap_reg ", %0, 0($c" #source_cap ")" : : "r"(source_addr) \
+  )
+
 // Goes to a higher memory address to align if need be
 #define GC_ALIGN_32(ptr,typ) \
-  do { \
-    (ptr) = \
-      (typ) ( (((uintptr_t) (ptr)) + (uintptr_t) 31) & ~(uintptr_t) 0x1F ); \
-  } while (0)
+  ( (typ) ( (((uintptr_t) (ptr)) + (uintptr_t) 31) & ~(uintptr_t) 0x1F ) ) \
 
 // Goes to a lower memory address to align
 #define GC_ALIGN_32_LOW(ptr,typ) \
-  do { \
-    (ptr) = \
-      (typ) ( ((uintptr_t) (ptr)) & ~(uintptr_t) 0x1F ); \
-  } while (0)
+  ( (typ) ( ((uintptr_t) (ptr)) & ~(uintptr_t) 0x1F ) )
   
 // The stack looks like this:
 // ----high memory addresses----
@@ -68,7 +70,18 @@ typedef __capability void * GC_cap_ptr;
   ( \
     "daddiu %0, $fp, 0" : "=r"(ret) : : \
   )
+
+#define GC_IN(ptr,cap) \
+  ( \
+    ((uintptr_t) (ptr)) >= ((uintptr_t) GC_cheri_getbase((cap))) \
+    && \
+    ((uintptr_t) (ptr)) < ( ((uintptr_t) GC_cheri_getbase((cap))) \
+                          + (uintptr_t) GC_cheri_getlen((cap)) ) \
+  )
   
+#define GC_FORWARDING_ADDRESS(cap) \
+  ( GC_ALIGN_32(GC_cheri_getbase((cap)), void *) )
+
 void *
 GC_low_malloc (size_t sz);
 

@@ -10,7 +10,8 @@ void
 GC_collect_region (struct GC_region * region);
 
 void
-GC_collect_range (struct GC_region * region, void * start, void * end);
+GC_collect_range (struct GC_region * region, const void * root_start,
+                  const void * root_end);
 
 // Return values:
 // 0 : success
