@@ -26,8 +26,7 @@ main (int argc, char **argv)
 {
   printf("test: compiled %s\n", __TIME__ " " __DATE__);
   arbitrary_cap = GC_cheri_ptr((void*)0x9988, 0x7777);
-  GC_init();
-  //collection_test();
+  collection_test();
   return 0;
 }
 
@@ -90,6 +89,9 @@ collection_test (void)
     (GC_ULL) GC_state.static_bottom,
     (GC_ULL) GC_state.static_top);
   __capability void * cap1 = GC_malloc(100);
+  GC_cheri_setreg(3, arbitrary_cap);
+  GC_PUSH_CAP_REG(3, GC_FORWARDING_ADDRESS_PTR(cap1));
+  GC_PUSH_CAP_REG(3, GC_FORWARDING_ADDRESS_PTR(cap1)+32);
   GC_cheri_setreg(16, cap1);
   GC_cheri_setreg(23, cap1);
   GC_collect();

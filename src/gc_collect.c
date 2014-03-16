@@ -111,10 +111,78 @@ GC_collect_region (struct GC_region * region)
       (GC_ULL) GC_state.stack_bottom);
       
   GC_collect_range(region, stack_top, GC_state.stack_bottom);
-  GC_collect_range(region, GC_state.static_bottom, GC_state.static_top);
+  //GC_collect_range(region, GC_state.static_bottom, GC_state.static_top);
 }
 
-extern char edata, end, etext;
+GC_cap_ptr
+GC_copy_object (struct GC_region * region, GC_cap_ptr cap)
+{
+  GC_assert(GC_cheri_getlen(cap) >= sizeof(GC_cap_ptr));
+
+  // Copy the object pointed to by cap to region->tospace
+  
+  // If the first word of the object points to a place in region->tospace,
+  // then it has already been copied.
+  
+  printf("Okay, the base of this thing is 0x%llx and so the forwarding address field is located at 0x%llx\n",
+    (GC_ULL) GC_cheri_getbase(cap), (GC_ULL) GC_FORWARDING_ADDRESS_PTR(cap));
+  
+  // $c2 = *(cap.base + forwarding_address_offset) = *($c0.base + forwarding_address_field_location);
+  GC_RESTORE_CAP_REG(2, GC_FORWARDING_ADDRESS_PTR(cap));
+  
+  printf("Loaded cap.base+forwarding_offset into $c2.\n");
+  
+  unsigned tag = 0;
+  GC_CHERI_CGETTAG(tag, 2);
+  if (tag)
+  {
+    const void * base;
+    GC_CHERI_CGETBASE(base, 2);
+    printf("The forwarding address field contains a valid capability with base 0x%llx, but is it in the tospace?\n",
+        (GC_ULL) base);
+    if (GC_IN(base, region->tospace))
+    {
+      printf("The forwarding address 0x%llx is inside the tospace!\n",
+          (GC_ULL) base);
+      return GC_cheri_getreg(2);
+    }
+  }
+  
+  // No forwarding address present: do the actual copy and set the forwarding
+  // address.
+  printf("No forwarding address present!\n");
+  GC_cap_ptr tmp = GC_cap_memcpy(region->free, cap);
+  region->free =
+    GC_cheri_ptr(
+      GC_cheri_getbase(region->free)+GC_cheri_getlen(cap),
+      GC_cheri_getlen (region->free)-GC_cheri_getlen(cap));
+  
+  // Set the tag bits on all capabilities stored in the copied object.
+  // We need some way of identifying tag bits better for this part: this is
+  // slow.
+  GC_cap_ptr * old = GC_ALIGN_32(GC_cheri_getbase(cap), GC_cap_ptr *);
+  GC_cap_ptr * new = GC_ALIGN_32(GC_cheri_getbase(tmp), GC_cap_ptr *);
+  size_t i;
+  for (i = 0; i < GC_cheri_getlen(cap) / sizeof(GC_cap_ptr); i++)
+  {
+    printf("[%d] Current tag in OLD: 0x%llx\n", (int)i, (GC_ULL) GC_cheri_gettag(old[i]));
+    printf("[%d] Current tag in NEW: 0x%llx\n", (int)i, (GC_ULL) GC_cheri_gettag(new[i]));
+    if (GC_cheri_gettag(old[i]))
+    {
+      GC_RESTORE_CAP_REG(2, &old[i]);
+      GC_PUSH_CAP_REG(2, &new[i]);
+    }
+    printf("[%d] New     tag in NEW: 0x%llx\n", (int)i, (GC_ULL) GC_cheri_gettag(new[i]));
+  }
+
+  // Set the forwarding address of the old object.
+  GC_cheri_setreg(2, tmp);
+  GC_PUSH_CAP_REG(2, GC_FORWARDING_ADDRESS_PTR(cap));
+  printf("Made a forwarding address! It is 0x%llx (length 0x%llx)\n",
+    (GC_ULL) GC_cheri_getbase(tmp), (GC_ULL) GC_cheri_getlen(tmp));
+  
+  return tmp;
+}
 
 void
 GC_collect_range (struct GC_region * region,
@@ -133,65 +201,38 @@ GC_collect_range (struct GC_region * region,
   root_start = GC_ALIGN_32(root_start, void *);
   root_end = GC_ALIGN_32_LOW(root_end, void *);
   
+  GC_cap_ptr * p;
+  for (p = (GC_cap_ptr *) root_start;
+       ((uintptr_t) p) < ((uintptr_t) root_end);
+       p++)
+  {
+    printf("Addr 0x%llx tag 0x%llx\n", (GC_ULL) p, (GC_ULL) GC_cheri_gettag(*p));
+    if (GC_cheri_gettag(*p))
+    {
+      GC_cap_ptr copied_cap = GC_copy_object(region, *p);
+    }
+  }
+  
+  /*return;
   void * p;
   for (p = root_start;
        ((uintptr_t) p) < ((uintptr_t) root_end);
        p = (void *) ( ((uintptr_t) p) + sizeof(GC_cap_ptr) ))
   {
+    // Only copies if p points to a valid capability.    
     // Do a CLC to $c1, then get the tag
-    printf("Doing a CLC...0x%llx [edata=0x%llx, end=0x%llx, etext=0x%llx]\n", (GC_ULL) p, (GC_ULL) &edata, (GC_ULL) &end, (GC_ULL) &etext);
+    printf("Doing a CLC...0x%llx\n", (GC_ULL) p);
     GC_RESTORE_CAP_REG(1, p);
     printf("CLC done.\n");
     unsigned tag = 0;
     GC_CHERI_CGETTAG(tag, 1);
+    GC_cap_ptr cap;
+    cap = GC_cheri_getreg(1);
     if (tag)
     {
-      GC_cap_ptr cap;
-      cap = GC_cheri_getreg(1);
-      
-      GC_assert(GC_cheri_getlen(cap) >= sizeof(GC_cap_ptr));
-
-      // Copy the object pointed to by cap to region->tospace
-      
-      // If the first word of the object points to a place in region->tospace,
-      // then it has already been copied.
-      
-      void * base1;
-      GC_CHERI_CGETBASE(base1, 1);
-      printf("Okay, the base of this thing is 0x%llx and so the forwarding address is 0x%llx\n", (GC_ULL) base1, (GC_ULL) GC_FORWARDING_ADDRESS(cap));
-      
-      // $c2 = *($c1.base + forwarding_offset) = *($c0.base + forwarding_address);
-      GC_RESTORE_CAP_REG(2, GC_FORWARDING_ADDRESS(cap));
-      
-      printf("Loaded $c1.base+forwarding_offset into $c2.\n");
-      
-      GC_CHERI_CGETTAG(tag, 2);
-      if (tag)
-      {
-        const void * base;
-        GC_CHERI_CGETBASE(base, 2);
-        printf("The forwarding address contains a valid capability with base 0x%llx, but is it in the tospace?\n",
-            (GC_ULL) base);
-        if (GC_IN(base, region->tospace))
-        {
-          //cap = GC_forwarding_address(cap);
-          printf("The forwarding address 0x%llx is inside the tospace!\n",
-              (GC_ULL) base);
-        }
-      }
-      else
-      {
-        printf("No tag.\n");
-      }
-          //if (forwarded(cap)) new_root_cap = forwarding_address(cap);
-          //else {new_root_cap=region->free; move(cap, region->free); region->free += size(cap); forwarding_address(cap) = new_root_cap;}
-      return;
-      printf("[0x%llx]  t=%u  b=0x%llx  l=0x%llx\n",
-        (GC_ULL) p,
-        tag,
-        (GC_ULL) GC_cheri_getbase(cap),
-        (GC_ULL) GC_cheri_getlen(cap));
+      GC_cap_ptr copied_cap = GC_copy_object(region, cap);
     }
-  }
+
+  }*/
   
 }

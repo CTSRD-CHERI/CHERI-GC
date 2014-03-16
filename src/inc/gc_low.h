@@ -79,7 +79,7 @@ typedef __capability void * GC_cap_ptr;
                           + (uintptr_t) GC_cheri_getlen((cap)) ) \
   )
   
-#define GC_FORWARDING_ADDRESS(cap) \
+#define GC_FORWARDING_ADDRESS_PTR(cap) \
   ( GC_ALIGN_32(GC_cheri_getbase((cap)), void *) )
 
 void *
@@ -99,5 +99,8 @@ GC_get_static_bottom (void);
 
 void *
 GC_get_static_top (void);
+
+GC_cap_ptr
+GC_cap_memcpy (GC_cap_ptr dest, GC_cap_ptr src);
 
 #endif // GC_LOW_H_HEADER

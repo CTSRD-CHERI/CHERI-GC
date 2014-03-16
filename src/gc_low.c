@@ -2,6 +2,7 @@
 #include "gc_debug.h"
 
 #include <stdlib.h>
+#include <string.h>
 
 void *
 GC_low_malloc (size_t sz)
@@ -107,4 +108,18 @@ void *
 GC_get_static_top (void)
 {
   return &end;
+}
+
+GC_cap_ptr
+GC_cap_memcpy (GC_cap_ptr dest, GC_cap_ptr src)
+{
+  void * vpdest  = GC_cheri_getbase(dest),
+       * vpsrc   = GC_cheri_getbase(src);
+  size_t destlen = GC_cheri_getlen(dest),
+         srclen  = GC_cheri_getlen(src);
+  GC_assert( destlen >= srclen );
+  GC_assert( NULL != vpdest );
+  GC_assert( NULL != vpsrc );
+  memcpy(vpdest, vpsrc, srclen);
+  return GC_cheri_setlen(dest, srclen);
 }
