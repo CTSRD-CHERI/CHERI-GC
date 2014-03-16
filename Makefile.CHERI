@@ -46,12 +46,9 @@ lib_final: $(GC_SOURCES)
 	ar rcs objects/gc.a objects/*.o
 
 lib: lib_init $(GC_SOURCES) lib_final
-#	mkdir -p objects && \
-#	$(CC) $(CFLAGS) -o objects/ $(GC_SOURCES) && \
-#	ar rcs objects/gc.a objects/*.o && \
-#	rm objects/gc.o
 
 gctest:
+	PATH=$(PATH) $(CC) -S -o objects/gctest.o.s -I$(GC_PUBLIC_INCLUDE) $(TEST_SOURCES) && \
 	PATH=$(PATH) $(CC) -c -o objects/gctest.o -I$(GC_PUBLIC_INCLUDE) $(TEST_SOURCES) && \
 	PATH=$(PATH) $(CC) -o objects/gctest objects/gctest.o objects/gc.a && \
 	rm objects/gctest.o

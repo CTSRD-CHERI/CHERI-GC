@@ -17,42 +17,81 @@ GC_collect_region (struct GC_region * region)
 {
   
   // Push the roots (currently only the capability registers) to the stack
-   
-  __capability void * cap_regs_misaligned[sizeof(__capability void *)*26+32];
+
+  // This information is from version 1.8 of the CHERI spec:
+  // We ignore:
+  //  $c0 because it spans the entire address space
+  //  $c1 - $c2 because they are caller-save
+  //  $c3 - $c10 because they are used to pass arguments
+  //  $c11 - $c16 because they are also caller-save
+  //  $c27 - $c31 because they are for kernel use 
+  // We therefore don't ignore:
+  //  $c17 - $c24 because they are callee-save
+  //  $c25
+  //  $c26 (IDC)
+
+  // This information is from version 1.5 of the CHERI spec:
+  // We ignore:
+  //  $c0 because it spans the entire address space
+  //  $c1 - $c4 because they are used to pass arguments and can be treated as
+  //            clobbered
+  //  $c5 - $c15, $c15 - $c23 because they are caller-save
+  //  $c27 - $c31 because they are for kernel use 
+  // We therefore don't ignore:
+  //  $c16 - $c23 because they are callee-save
+  //  $c24 - $c26 because whether they can be ignored is unknown
+  
+  // So to be conservative we save $c16 - $c26.
+  
+  int num_regs = 11;
+  GC_cap_ptr cap_regs_misaligned[sizeof(GC_cap_ptr)*num_regs+32];
   GC_cap_ptr * cap_regs = cap_regs_misaligned;
   
   // CSC instruction needs 32-byte aligned destination address.
   cap_regs = GC_ALIGN_32(cap_regs, GC_cap_ptr *);
   
-  GC_PUSH_CAP_REG(1, &cap_regs[0]);
-  GC_PUSH_CAP_REG(2, &cap_regs[1]);
-  GC_PUSH_CAP_REG(3, &cap_regs[2]);
-  GC_PUSH_CAP_REG(4, &cap_regs[3]);
-  GC_PUSH_CAP_REG(5, &cap_regs[4]);
-  GC_PUSH_CAP_REG(6, &cap_regs[5]);
-  GC_PUSH_CAP_REG(7, &cap_regs[6]);
-  GC_PUSH_CAP_REG(8, &cap_regs[7]);
-  GC_PUSH_CAP_REG(9, &cap_regs[8]);
-  GC_PUSH_CAP_REG(10, &cap_regs[9]);
-  GC_PUSH_CAP_REG(11, &cap_regs[10]);
-  GC_PUSH_CAP_REG(12, &cap_regs[11]);
-  GC_PUSH_CAP_REG(13, &cap_regs[12]);
-  GC_PUSH_CAP_REG(14, &cap_regs[13]);
-  GC_PUSH_CAP_REG(15, &cap_regs[14]);
-  GC_PUSH_CAP_REG(16, &cap_regs[15]);
-  GC_PUSH_CAP_REG(17, &cap_regs[16]);
-  GC_PUSH_CAP_REG(18, &cap_regs[17]);
-  GC_PUSH_CAP_REG(19, &cap_regs[18]);
-  GC_PUSH_CAP_REG(20, &cap_regs[19]);
-  GC_PUSH_CAP_REG(21, &cap_regs[20]);
-  GC_PUSH_CAP_REG(22, &cap_regs[21]);
-  GC_PUSH_CAP_REG(23, &cap_regs[22]);
-  GC_PUSH_CAP_REG(24, &cap_regs[23]);
-  GC_PUSH_CAP_REG(25, &cap_regs[24]);
-  GC_PUSH_CAP_REG(26, &cap_regs[25]);
+  GC_PUSH_CAP_REG(16, &cap_regs[0]);
+  GC_PUSH_CAP_REG(17, &cap_regs[1]);
+  GC_PUSH_CAP_REG(18, &cap_regs[2]);
+  GC_PUSH_CAP_REG(19, &cap_regs[3]);
+  GC_PUSH_CAP_REG(20, &cap_regs[4]);
+  GC_PUSH_CAP_REG(21, &cap_regs[5]);
+  GC_PUSH_CAP_REG(22, &cap_regs[6]);
+  GC_PUSH_CAP_REG(23, &cap_regs[7]);
+  GC_PUSH_CAP_REG(24, &cap_regs[8]);
+  GC_PUSH_CAP_REG(25, &cap_regs[9]);
+  GC_PUSH_CAP_REG(26, &cap_regs[10]);
+
+// Works, but compiles to an excessively large number of instructions
+  /*cap_regs[1] = GC_cheri_getreg(1);
+  cap_regs[2] = GC_cheri_getreg(2);
+  cap_regs[3] = GC_cheri_getreg(3);
+  cap_regs[4] = GC_cheri_getreg(4);
+  cap_regs[5] = GC_cheri_getreg(5);
+  cap_regs[6] = GC_cheri_getreg(6);
+  cap_regs[7] = GC_cheri_getreg(7);
+  cap_regs[8] = GC_cheri_getreg(8);
+  cap_regs[9] = GC_cheri_getreg(9);
+  cap_regs[10] = GC_cheri_getreg(10);
+  cap_regs[11] = GC_cheri_getreg(11);
+  cap_regs[12] = GC_cheri_getreg(12);
+  cap_regs[13] = GC_cheri_getreg(13);
+  cap_regs[14] = GC_cheri_getreg(14);
+  cap_regs[15] = GC_cheri_getreg(15);
+  cap_regs[16] = GC_cheri_getreg(16);
+  cap_regs[17] = GC_cheri_getreg(17);
+  cap_regs[18] = GC_cheri_getreg(18);
+  cap_regs[19] = GC_cheri_getreg(19);
+  cap_regs[20] = GC_cheri_getreg(20);
+  cap_regs[21] = GC_cheri_getreg(21);
+  cap_regs[22] = GC_cheri_getreg(22);
+  cap_regs[23] = GC_cheri_getreg(23);
+  cap_regs[24] = GC_cheri_getreg(24);
+  cap_regs[25] = GC_cheri_getreg(25);
+  cap_regs[26] = GC_cheri_getreg(26);*/
   
   int i;
-  for (i=0; i<26; i++)
+  for (i=0; i<num_regs; i++)
     GC_dbgf("cap_reg root [%d]: t=%d, b=0x%llx, l=0x%llx\n",
       i,
       (int) GC_cheri_gettag(cap_regs[i]),
@@ -70,7 +109,7 @@ GC_collect_region (struct GC_region * region)
   GC_dbgf("looking for roots between 0x%llx and 0x%llx\n",
       (GC_ULL) stack_top,
       (GC_ULL) GC_state.stack_bottom);
-  
+      
   GC_collect_range(region, stack_top, GC_state.stack_bottom);
 }
 

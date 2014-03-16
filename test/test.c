@@ -74,7 +74,7 @@ capdump_test (void)
 void
 collection_test (void)
 {
-  int a[50];
+  /*int a[50];
   memset(a, 0, 32*sizeof (int));
   a[0] = 0x00ABCDEF;
   __capability void * b = GC_cheri_ptr(&a, 0x5678);
@@ -83,5 +83,8 @@ collection_test (void)
   GC_GET_STACK_PTR(stack_top);
   GC_cheri_setreg(3, arbitrary_cap);
   GC_PUSH_CAP_REG(3, GC_FORWARDING_ADDRESS((void*) &a));
-  GC_collect_range(&GC_state.thread_local_region, stack_top, stack_top+10*32);
+  GC_collect_range(&GC_state.thread_local_region, stack_top, stack_top+10*32);*/
+  GC_cheri_setreg(16, arbitrary_cap);
+  GC_cheri_setreg(23, arbitrary_cap);
+  GC_collect();
 }
