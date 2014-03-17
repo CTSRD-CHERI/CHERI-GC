@@ -9,121 +9,97 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <time.h>
 
-void
-allocation_test (void);
-void
-memdump_test (void);
-void
-capdump_test (void);
 void
 collection_test (void);
-
-__capability void * arbitrary_cap;
 
 int
 main (int argc, char **argv)
 {
   printf("test: compiled %s\n", __TIME__ " " __DATE__);
-  arbitrary_cap = GC_cheri_ptr((void*)0x9988, 0x7777);
   collection_test();
   return 0;
 }
 
 void
-allocation_test (void)
-{
-  GC_init();
-  
-  int i;
-  for (i=0; i<15; i++)
-  {
-    __capability void * ptr = GC_malloc(0x1000);
-    printf("ptr base: 0x%llx\n", (unsigned long long) ptr);
-  }
-  
-  GC_debug_print_region_stats(GC_state.thread_local_region);
-}
-
-void
-memdump_test (void)
-{
-  allocation_test();
-  GC_collect_region(&GC_state.thread_local_region);
-  const char * buf = "hello!!$thiz2";
-  GC_debug_memdump(buf+1, buf+strlen(buf));
-  printf("\n\n\n");
-  const char * buf2 = "hello!!$thiz";
-  GC_debug_memdump(buf2, buf2+strlen(buf2));
-  printf("\n\n\n");
-  const char * buf3 = "hello!!$thiz234";
-  GC_debug_memdump(buf3, buf3+strlen(buf3));
-}
-
-void
-capdump_test (void)
-{
-  int a = 0xABCDEF;
-  __capability void * b = GC_cheri_ptr((void*)0x1234, 0x5678);
-  void * stack_top = NULL;
-  GC_init();
-  GC_GET_STACK_PTR(stack_top);
-  GC_debug_capdump(GC_state.stack_bottom, stack_top);
-}
-
-struct test_struct
-{
-  char arr[100];
-  __capability int * pointer;
-};
-
-__capability struct test_struct * global_cap1;
-
-void
 collection_test (void)
 {
-  /*int a[50];
-  memset(a, 0, 32*sizeof (int));
-  a[0] = 0x00ABCDEF;
-  __capability void * b = GC_cheri_ptr(&a, 0x5678);
-  void * stack_top = NULL;
-  GC_init();
-  GC_GET_STACK_PTR(stack_top);
-  GC_cheri_setreg(3, arbitrary_cap);
-  GC_PUSH_CAP_REG(3, GC_FORWARDING_ADDRESS((void*) &a));
-  GC_collect_range(&GC_state.thread_local_region, stack_top, stack_top+10*32);*/
-  GC_init();
-  printf("Static data bottom: 0x%llx\nStatic data top: 0x%llx\n",
-    (GC_ULL) GC_state.static_bottom,
-    (GC_ULL) GC_state.static_top);
-  __capability struct test_struct * cap1 = GC_malloc(0x100);
-  __capability int * cap2 = GC_malloc(0x100);
-  cap1->pointer = cap2;
+  GC_ULL num_alloc = 0x800000,
+      sz_alloc = 0x600,
+      narray = 0x1;
+  
+  #define MEM_PRETTY(x) \
+  ( \
+    (x) < 1000 ? (x) : \
+    (x) < 1000000 ? (x) / 1000 : \
+    (x) < 1000000000 ? (x) / 1000000 : \
+    (x) / 1000000000 \
+  )
+  #define MEM_PRETTY_UNIT(x) \
+  ( \
+    (x) < 1000 ? "b" : \
+    (x) < 1000000 ? "kB" : \
+    (x) < 1000000000 ? "MB" : \
+    "GB" \
+  )
+  #define NUM_PRETTY MEM_PRETTY
+  #define NUM_PRETTY_UNIT(x) \
+  ( \
+    (x) < 1000 ? "" : \
+    (x) < 1000000 ? "k" : \
+    (x) < 1000000000 ? "M" : \
+    "G" \
+  )
+  
+  printf("Semi-space size         : 0x%llx (%llu) byte (~%llu%s)\n"
+         "Number of allocations   : 0x%llx (%llu)      (~%llu%s)\n"
+         "Size of each allocation : 0x%llx (%llu) byte (~%llu%s)\n"
+         "Total allocation        : 0x%llx (%llu) byte (~%llu%s)\n"
+         "Array entries           : 0x%llx (%llu)      (~%llu%s)\n"
+         "Retained contents       : 0x%llx (%llu) byte (~%llu%s)\n",
+         (GC_ULL) GC_THREAD_LOCAL_SEMISPACE_SIZE,
+         (GC_ULL) GC_THREAD_LOCAL_SEMISPACE_SIZE,
+         (GC_ULL) MEM_PRETTY(GC_THREAD_LOCAL_SEMISPACE_SIZE),
+         MEM_PRETTY_UNIT(GC_THREAD_LOCAL_SEMISPACE_SIZE),
+         (GC_ULL) num_alloc,
+         (GC_ULL) num_alloc,
+         (GC_ULL) NUM_PRETTY(num_alloc),
+         NUM_PRETTY_UNIT(num_alloc),
+         (GC_ULL) sz_alloc,
+         (GC_ULL) sz_alloc,
+         (GC_ULL) MEM_PRETTY(sz_alloc),
+         MEM_PRETTY_UNIT(sz_alloc),
+         (GC_ULL) (num_alloc * sz_alloc),
+         (GC_ULL) (num_alloc * sz_alloc),
+         (GC_ULL) MEM_PRETTY(num_alloc * sz_alloc),
+         MEM_PRETTY_UNIT(num_alloc * sz_alloc),
+         (GC_ULL) narray,
+         (GC_ULL) narray,
+         (GC_ULL) NUM_PRETTY(narray),
+         NUM_PRETTY_UNIT(narray),
+         (GC_ULL) (narray * sz_alloc),
+         (GC_ULL) (narray * sz_alloc),
+         (GC_ULL) MEM_PRETTY(narray * sz_alloc),
+         MEM_PRETTY_UNIT(narray * sz_alloc)
+        );
+
   int i;
-  for (i=0; i<100; i++)
-    cap2 = GC_malloc(0x100);
-  cap2 = GC_malloc(sizeof(int));
-  *cap2 = 0x55003322;
-  cap1->pointer = cap2;
-  //GC_cheri_setreg(3, arbitrary_cap);
-  //GC_PUSH_CAP_REG(3, GC_FORWARDING_ADDRESS_PTR(cap1));
-  //GC_PUSH_CAP_REG(3, GC_FORWARDING_ADDRESS_PTR(cap1)+32);
-  //GC_cheri_setreg(16, cap1);
-  //GC_cheri_setreg(23, cap1);
-  //printf("Internal layout of cap1:\n");
-  //GC_debug_memdump((void*)cap1, ((char*)cap1)+sizeof(struct test_struct));
-  global_cap1 = GC_malloc(0x100);
-  global_cap1->pointer = cap1;
-  void *oldbase = GC_cheri_getbase(global_cap1),
-       *oldptrbase = GC_cheri_getbase(global_cap1->pointer);
-  GC_collect();
-  printf("old global_cap1: 0x%llx, global_cap1->pointer: 0x%llx\n", (GC_ULL) oldbase, (GC_ULL) oldptrbase);
-  printf("new global_cap1: 0x%llx, global_cap1->pointer: 0x%llx\n", (GC_ULL) GC_cheri_getbase(global_cap1), (GC_ULL) GC_cheri_getbase(global_cap1->pointer));
-  printf("cap1: 0x%llx, cap1->pointer: 0x%llx\n", (GC_ULL) cap1, (GC_ULL) cap1->pointer);
-  printf("fromspace: 0x%llx (everything should be in here)\n tospace: 0x%llx (nothing should be in here)\n",
-    (GC_ULL) GC_state.thread_local_region.fromspace,
-    (GC_ULL) GC_state.thread_local_region.tospace);
-    
-  //printf("Internal layout of cap1:\n");
-  //GC_debug_memdump((void*)cap1, ((char*)cap1)+sizeof(struct test_struct));
+  GC_cap_ptr a[narray];
+  time_t before, after;
+  before = time(NULL);
+  for (i=0; i<num_alloc; i++)
+  {
+    a[i % narray] = GC_malloc(sz_alloc);
+    if (a[i % narray] == NULL)
+    {
+      printf("Out of memory! i=%d\n", i);
+      break;
+    }
+  }
+  after = time(NULL);
+  printf("Time taken: %llu sec\n"
+         "Num collections: %llu\n",
+         (GC_ULL) (after - before),
+         (GC_ULL) GC_state.num_collections);
 }

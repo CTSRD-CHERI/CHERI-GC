@@ -2,13 +2,20 @@
 #define GC_DEBUG_H_HEADER
 
 #include "gc_init.h"
+#include "gc_config.h"
 
+#ifdef GC_DEBUG
 #define GC_dbgf(...)  GC_dbgf2(__FILE__, __LINE__, __VA_ARGS__)
 #define GC_errf(...)  GC_errf2(__FILE__, __LINE__, __VA_ARGS__)
 #define GC_assert(cond) \
   do { \
     if (!(cond)) GC_errf("assertion failed: `%s'", #cond); \
   } while (0)
+#else
+#define GC_dbgf(...)
+#define GC_errf(...)
+#define GC_assert(cond)
+#endif
 
 void
 GC_dbgf2 (const char * file, int line, const char * format, ...);

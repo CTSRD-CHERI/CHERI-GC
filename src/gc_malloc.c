@@ -18,7 +18,7 @@ GC_malloc (size_t sz)
 
 __capability void *
 GC_malloc_region (struct GC_region * region, size_t sz, int collect_on_failure)
-{    
+{
   if (sz < sizeof(GC_cap_ptr))
   {
     GC_dbgf("sz 0x%llx to small; allocating at least 0x%llx bytes",
@@ -29,7 +29,7 @@ GC_malloc_region (struct GC_region * region, size_t sz, int collect_on_failure)
 
   if (sz > (size_t) cheri_getlen(region->free))
   {
-    GC_errf("sz too big: 0x%llx", (GC_ULL) sz);
+    GC_dbgf("sz too big: 0x%llx", (GC_ULL) sz);
     if (collect_on_failure)
     {
       GC_collect_region(region);
@@ -37,6 +37,7 @@ GC_malloc_region (struct GC_region * region, size_t sz, int collect_on_failure)
     }
     else
     {
+      GC_errf("out of memory");
       return GC_cheri_ptr(0, 0);
     }
   }

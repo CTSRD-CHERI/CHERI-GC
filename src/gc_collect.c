@@ -15,6 +15,7 @@ GC_collect (void)
 void
 GC_collect_region (struct GC_region * region)
 {
+  GC_state.num_collections++; // debugging/stats
   
   // Push the roots (currently only the capability registers) to the stack
 
@@ -192,13 +193,6 @@ GC_copy_roots (struct GC_region * region,
   
   GC_assert(root_start <= root_end);
   
-  GC_dbgf("collecting region 0x%llx of size 0x%llx "
-          "with roots in range 0x%llx to 0x%llx",
-    (GC_ULL) GC_cheri_getbase(region->fromspace),
-    (GC_ULL) GC_cheri_getlen(region->fromspace),
-    (GC_ULL) root_start,
-    (GC_ULL) root_end);
-  
   root_start = GC_ALIGN_32(root_start, void *);
   root_end = GC_ALIGN_32_LOW(root_end, void *);
   
@@ -209,13 +203,10 @@ GC_copy_roots (struct GC_region * region,
   {
     if (GC_IN(p, GC_state_cap))
     {
-      printf("Skipping 0x%llx...\n", (GC_ULL) p);
       continue;
     }
     if (GC_cheri_gettag(*p) && GC_IN(GC_cheri_getbase(*p), region->fromspace))
     {
-      printf("Address 0x%llx contains the capability b=0x%llx l=0x%llx!\n",
-        (GC_ULL) p, (GC_ULL) GC_cheri_getbase(*p), (GC_ULL) GC_cheri_getlen(*p));
       *p = GC_copy_object(region, *p);
     }
   }
