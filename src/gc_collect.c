@@ -64,26 +64,63 @@ GC_collect_region (struct GC_region * region)
 
   int i;
   for (i=0; i<num_regs; i++)
-    GC_dbgf("cap_reg root [%d]: t=%d, b=0x%llx, l=0x%llx\n",
-      i,
-      (int) GC_cheri_gettag(cap_regs[i]),
-      (GC_ULL) GC_cheri_getbase(cap_regs[i]),
-      (GC_ULL) GC_cheri_getlen(cap_regs[i])
+    if (GC_cheri_gettag(cap_regs[i]))
+      GC_dbgf("cap_reg root [%d]: t=%d, b=0x%llx, l=0x%llx\n",
+        i,
+        (int) GC_cheri_gettag(cap_regs[i]),
+        (GC_ULL) GC_cheri_getbase(cap_regs[i]),
+        (GC_ULL) GC_cheri_getlen(cap_regs[i])
     );
-
-  GC_debug_print_stack_stats();
   
   void * stack_top = NULL;
   GC_GET_STACK_PTR(stack_top);
   
   GC_assert(stack_top <= GC_state.stack_bottom);
+
   
-  GC_dbgf("looking for roots between 0x%llx and 0x%llx\n",
-      (GC_ULL) stack_top,
-      (GC_ULL) GC_state.stack_bottom);
-      
-  GC_collect_range(region, stack_top, GC_state.stack_bottom);
-  //GC_collect_range(region, GC_state.static_bottom, GC_state.static_top);
+  size_t old_size =
+    GC_cheri_getbase(region->free) - GC_cheri_getbase(region->fromspace);
+  
+  region->free = region->tospace;
+    
+  GC_copy_roots(region, stack_top, GC_state.stack_bottom);
+  GC_copy_roots(region, GC_state.static_bottom, GC_state.static_top);
+  GC_copy_children(region);
+  
+  GC_RESTORE_CAP_REG(16, &cap_regs[0]);
+  GC_RESTORE_CAP_REG(17, &cap_regs[1]);
+  GC_RESTORE_CAP_REG(18, &cap_regs[2]);
+  GC_RESTORE_CAP_REG(19, &cap_regs[3]);
+  GC_RESTORE_CAP_REG(20, &cap_regs[4]);
+  GC_RESTORE_CAP_REG(21, &cap_regs[5]);
+  GC_RESTORE_CAP_REG(22, &cap_regs[6]);
+  GC_RESTORE_CAP_REG(23, &cap_regs[7]);
+  GC_RESTORE_CAP_REG(24, &cap_regs[8]);
+  GC_RESTORE_CAP_REG(25, &cap_regs[9]);
+  GC_RESTORE_CAP_REG(26, &cap_regs[10]);
+
+  for (i=0; i<num_regs; i++)
+    if (GC_cheri_gettag(cap_regs[i]))
+      GC_dbgf("cap_reg root [%d]: t=%d, b=0x%llx, l=0x%llx\n",
+        i,
+        (int) GC_cheri_gettag(cap_regs[i]),
+        (GC_ULL) GC_cheri_getbase(cap_regs[i]),
+        (GC_ULL) GC_cheri_getlen(cap_regs[i])
+    );
+ 
+  
+  size_t new_size =
+    GC_cheri_getbase(region->free) - GC_cheri_getbase(region->tospace);
+  
+  GC_dbgf("old_size=%d  new_size=%d  freed=%d",
+      (int) old_size,
+      (int) new_size,
+      (int) (old_size - new_size));
+    
+  GC_cap_ptr tmp = region->fromspace;
+  region->fromspace = region->tospace;
+  region->tospace = tmp;
+
 }
 
 GC_cap_ptr
@@ -144,46 +181,57 @@ GC_copy_object (struct GC_region * region,
 }
 
 void
-GC_collect_range (struct GC_region * region,
-                  void * root_start,
-                  void * root_end)
+GC_copy_roots (struct GC_region * region,
+               void * root_start,
+               void * root_end)
 {
+  // TODO: ignore roots in the GC's static areas, and any roots in the GC's
+  // call stack. There shouldn't be any (unintended) roots in the GC's call
+  // stack unless a capability argument is passed in any calls up to this call
+  // or local capability variables are declared.
+  
   GC_assert(root_start <= root_end);
   
-  printf("Collecting range 0x%llx to 0x%llx\n",
+  GC_dbgf("collecting region 0x%llx of size 0x%llx "
+          "with roots in range 0x%llx to 0x%llx",
+    (GC_ULL) GC_cheri_getbase(region->fromspace),
+    (GC_ULL) GC_cheri_getlen(region->fromspace),
     (GC_ULL) root_start,
     (GC_ULL) root_end);
-  
-  region->scan = region->tospace;
-  region->free = region->tospace;
   
   root_start = GC_ALIGN_32(root_start, void *);
   root_end = GC_ALIGN_32_LOW(root_end, void *);
   
-  // Copy the roots
   GC_cap_ptr * p;
   for (p = (GC_cap_ptr *) root_start;
        ((uintptr_t) p) < ((uintptr_t) root_end);
        p++)
   {
-    if (GC_cheri_gettag(*p))
+    if (GC_IN(p, GC_state_cap))
     {
-      printf("Addr 0x%llx tag set. Points to 0x%llx\n", (GC_ULL) p, (GC_ULL) GC_cheri_getbase(*p));
+      printf("Skipping 0x%llx...\n", (GC_ULL) p);
+      continue;
+    }
+    if (GC_cheri_gettag(*p) && GC_IN(GC_cheri_getbase(*p), region->fromspace))
+    {
+      printf("Address 0x%llx contains the capability b=0x%llx l=0x%llx!\n",
+        (GC_ULL) p, (GC_ULL) GC_cheri_getbase(*p), (GC_ULL) GC_cheri_getlen(*p));
       *p = GC_copy_object(region, *p);
-      printf("Addr 0x%llx copied.  Points to 0x%llx\n", (GC_ULL) p, (GC_ULL) GC_cheri_getbase(*p));
     }
   }
-  
-  // Copy the children
+}
+
+void
+GC_copy_children (struct GC_region * region)
+{
+  GC_cap_ptr * p;
   for (p = (GC_cap_ptr *) GC_cheri_getbase(region->tospace);
        ((uintptr_t) p) < ((uintptr_t) GC_cheri_getbase(region->free));
        p++)
   {
     if (GC_cheri_gettag(*p) && GC_IN(GC_cheri_getbase(*p), region->fromspace))
     {
-      printf("Addr 0x%llx (child) tag set. Points to 0x%llx\n", (GC_ULL) p, (GC_ULL) GC_cheri_getbase(*p));
       *p = GC_copy_object(region, *p);
-      printf("Addr 0x%llx (child) copied.  Points to 0x%llx\n", (GC_ULL) p, (GC_ULL) GC_cheri_getbase(*p));
     }
   }
 }

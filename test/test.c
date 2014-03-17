@@ -74,8 +74,10 @@ capdump_test (void)
 struct test_struct
 {
   char arr[100];
-  __capability void * pointer;
+  __capability int * pointer;
 };
+
+__capability struct test_struct * global_cap1;
 
 void
 collection_test (void)
@@ -95,17 +97,33 @@ collection_test (void)
     (GC_ULL) GC_state.static_bottom,
     (GC_ULL) GC_state.static_top);
   __capability struct test_struct * cap1 = GC_malloc(0x100);
-  __capability void * cap2 = GC_malloc(0x100);
+  __capability int * cap2 = GC_malloc(0x100);
   cap1->pointer = cap2;
-  cap2 = GC_malloc(0x100);
-  GC_cheri_setreg(3, arbitrary_cap);
-  GC_PUSH_CAP_REG(3, GC_FORWARDING_ADDRESS_PTR(cap1));
-  GC_PUSH_CAP_REG(3, GC_FORWARDING_ADDRESS_PTR(cap1)+32);
-  GC_cheri_setreg(16, cap1);
-  GC_cheri_setreg(23, cap1);
-  printf("Internal layout of cap1:\n");
-  GC_debug_memdump((void*)cap1, ((char*)cap1)+sizeof(struct test_struct));
+  int i;
+  for (i=0; i<100; i++)
+    cap2 = GC_malloc(0x100);
+  cap2 = GC_malloc(sizeof(int));
+  *cap2 = 0x55003322;
+  cap1->pointer = cap2;
+  //GC_cheri_setreg(3, arbitrary_cap);
+  //GC_PUSH_CAP_REG(3, GC_FORWARDING_ADDRESS_PTR(cap1));
+  //GC_PUSH_CAP_REG(3, GC_FORWARDING_ADDRESS_PTR(cap1)+32);
+  //GC_cheri_setreg(16, cap1);
+  //GC_cheri_setreg(23, cap1);
+  //printf("Internal layout of cap1:\n");
+  //GC_debug_memdump((void*)cap1, ((char*)cap1)+sizeof(struct test_struct));
+  global_cap1 = GC_malloc(0x100);
+  global_cap1->pointer = cap1;
+  void *oldbase = GC_cheri_getbase(global_cap1),
+       *oldptrbase = GC_cheri_getbase(global_cap1->pointer);
   GC_collect();
-  printf("Internal layout of cap1:\n");
-  GC_debug_memdump((void*)cap1, ((char*)cap1)+sizeof(struct test_struct));
+  printf("old global_cap1: 0x%llx, global_cap1->pointer: 0x%llx\n", (GC_ULL) oldbase, (GC_ULL) oldptrbase);
+  printf("new global_cap1: 0x%llx, global_cap1->pointer: 0x%llx\n", (GC_ULL) GC_cheri_getbase(global_cap1), (GC_ULL) GC_cheri_getbase(global_cap1->pointer));
+  printf("cap1: 0x%llx, cap1->pointer: 0x%llx\n", (GC_ULL) cap1, (GC_ULL) cap1->pointer);
+  printf("fromspace: 0x%llx (everything should be in here)\n tospace: 0x%llx (nothing should be in here)\n",
+    (GC_ULL) GC_state.thread_local_region.fromspace,
+    (GC_ULL) GC_state.thread_local_region.tospace);
+    
+  //printf("Internal layout of cap1:\n");
+  //GC_debug_memdump((void*)cap1, ((char*)cap1)+sizeof(struct test_struct));
 }

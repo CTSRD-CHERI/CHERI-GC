@@ -103,4 +103,7 @@ GC_get_static_top (void);
 GC_cap_ptr
 GC_cap_memcpy (GC_cap_ptr dest, GC_cap_ptr src);
 
+GC_cap_ptr
+GC_cap_memset (GC_cap_ptr dest, int value);
+
 #endif // GC_LOW_H_HEADER

@@ -92,7 +92,8 @@ GC_get_static_bottom (void)
       }
     }
     
-    printf("Final static bottom: 0x%llx\n", (GC_ULL) GC_state.static_bottom);
+    GC_dbgf("found static bottom: 0x%llx",
+      (GC_ULL) GC_state.static_bottom);
     
     oldfunc = signal(SIGSEGV, oldfunc);
     if (oldfunc == SIG_ERR)
@@ -122,4 +123,12 @@ GC_cap_memcpy (GC_cap_ptr dest, GC_cap_ptr src)
   GC_assert( NULL != vpsrc );
   memcpy(vpdest, vpsrc, srclen);
   return GC_cheri_setlen(dest, srclen);
+}
+
+GC_cap_ptr
+GC_cap_memset (GC_cap_ptr dest, int value)
+{
+  GC_assert( NULL != GC_cheri_getbase(dest) );
+  memset(GC_cheri_getbase(dest), value, GC_cheri_getlen(dest));
+  return dest;
 }

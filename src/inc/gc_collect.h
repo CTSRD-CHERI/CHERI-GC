@@ -15,8 +15,11 @@ GC_copy_object (struct GC_region * region,
                 GC_cap_ptr cap);
 
 void
-GC_collect_range (struct GC_region * region,
-                  void * root_start,
-                  void * root_end);
+GC_copy_roots (struct GC_region * region,
+               void * root_start,
+               void * root_end);
+
+void
+GC_copy_children (struct GC_region * region);
 
 #endif // GC_COLLECT_H_HEADER

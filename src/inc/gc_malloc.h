@@ -9,7 +9,7 @@ __capability void *
 GC_malloc (size_t sz);
 
 __capability void *
-GC_malloc_region (struct GC_region * region, size_t sz);
+GC_malloc_region (struct GC_region * region, size_t sz, int collect_on_failure);
 
 
 #endif // GC_MALLOC_H_HEADER

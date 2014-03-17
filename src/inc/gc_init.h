@@ -5,7 +5,7 @@
 
 struct GC_region
 {
-  __capability void * tospace, * fromspace, * scan, * free;
+  __capability void * tospace, * fromspace, * free;
 };
 
 struct GC_state_struct
@@ -16,6 +16,9 @@ struct GC_state_struct
 };
 
 extern struct GC_state_struct GC_state;
+
+// For convenience. Contains the data segment area used internally for GC state.
+extern __capability struct GC_state_struct * GC_state_cap;
 
 // Return values:
 // 0 : success
@@ -33,6 +36,6 @@ GC_is_initialized (void);
 // 0 : success
 // 1 : error
 int
-GC_init_region (struct GC_region * region);
+GC_init_region (struct GC_region * region, size_t semispace_size);
 
 #endif // GC_INIT_H_HEADER

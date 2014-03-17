@@ -35,16 +35,13 @@ GC_debug_print_region_stats(struct GC_region region)
     "-----------------\n"
     "fromspace :     base=0x%llx, len=0x%llx\n"
     "tospace   :     base=0x%llx, len=0x%llx\n"
-    "free      :     base=0x%llx, len=0x%llx\n"
-    "scan      :     base=0x%llx, len=0x%llx\n",
+    "free      :     base=0x%llx, len=0x%llx\n",
     (GC_ULL) GC_cheri_getbase(region.fromspace),
     (GC_ULL) GC_cheri_getlen(region.fromspace),
     (GC_ULL) GC_cheri_getbase(region.tospace),
     (GC_ULL) GC_cheri_getlen(region.tospace),
     (GC_ULL) GC_cheri_getbase(region.free),
-    (GC_ULL) GC_cheri_getlen(region.free),
-    (GC_ULL) GC_cheri_getbase(region.scan),
-    (GC_ULL) GC_cheri_getlen(region.scan)
+    (GC_ULL) GC_cheri_getlen(region.free)
   );
 }
 
