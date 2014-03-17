@@ -77,13 +77,12 @@ GC_collect_region (struct GC_region * region)
   GC_GET_STACK_PTR(stack_top);
   
   GC_assert(stack_top <= GC_state.stack_bottom);
-
-  
+ 
   size_t old_size =
     GC_cheri_getbase(region->free) - GC_cheri_getbase(region->fromspace);
   
   region->free = region->tospace;
-    
+   
   GC_copy_roots(region, stack_top, GC_state.stack_bottom);
   GC_copy_roots(region, GC_state.static_bottom, GC_state.static_top);
   GC_copy_children(region);

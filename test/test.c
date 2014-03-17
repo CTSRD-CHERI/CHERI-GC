@@ -25,16 +25,16 @@ main (int argc, char **argv)
 void
 collection_test (void)
 {
-  GC_ULL num_alloc = 0x800000,
-      sz_alloc = 0x600,
-      narray = 0x1;
+  GC_ULL num_alloc = 1800000,
+      sz_alloc = 250,
+      narray = 5;
   
   #define MEM_PRETTY(x) \
   ( \
     (x) < 1000 ? (x) : \
-    (x) < 1000000 ? (x) / 1000 : \
-    (x) < 1000000000 ? (x) / 1000000 : \
-    (x) / 1000000000 \
+    (x) < 1000000 ? ((x)+1000/2) / 1000 : \
+    (x) < 1000000000 ? ((x)+1000000/2) / 1000000 : \
+    ((x)+1000000000/2) / 1000000000 \
   )
   #define MEM_PRETTY_UNIT(x) \
   ( \
@@ -52,16 +52,18 @@ collection_test (void)
     "G" \
   )
   
+  GC_init();
+  
   printf("Semi-space size         : 0x%llx (%llu) byte (~%llu%s)\n"
          "Number of allocations   : 0x%llx (%llu)      (~%llu%s)\n"
          "Size of each allocation : 0x%llx (%llu) byte (~%llu%s)\n"
          "Total allocation        : 0x%llx (%llu) byte (~%llu%s)\n"
          "Array entries           : 0x%llx (%llu)      (~%llu%s)\n"
          "Retained contents       : 0x%llx (%llu) byte (~%llu%s)\n",
-         (GC_ULL) GC_THREAD_LOCAL_SEMISPACE_SIZE,
-         (GC_ULL) GC_THREAD_LOCAL_SEMISPACE_SIZE,
-         (GC_ULL) MEM_PRETTY(GC_THREAD_LOCAL_SEMISPACE_SIZE),
-         MEM_PRETTY_UNIT(GC_THREAD_LOCAL_SEMISPACE_SIZE),
+         (GC_ULL) GC_cheri_getlen(GC_state.thread_local_region.tospace),
+         (GC_ULL) GC_cheri_getlen(GC_state.thread_local_region.tospace),
+         (GC_ULL) MEM_PRETTY(GC_cheri_getlen(GC_state.thread_local_region.tospace)),
+         MEM_PRETTY_UNIT(GC_cheri_getlen(GC_state.thread_local_region.tospace)),
          (GC_ULL) num_alloc,
          (GC_ULL) num_alloc,
          (GC_ULL) NUM_PRETTY(num_alloc),
@@ -85,7 +87,9 @@ collection_test (void)
         );
 
   int i;
-  GC_cap_ptr a[narray];
+  GC_cap_ptr a_misaligned[narray];
+  GC_cap_ptr * a = a_misaligned;
+  a = GC_ALIGN_32(a, GC_cap_ptr *);
   time_t before, after;
   before = time(NULL);
   for (i=0; i<num_alloc; i++)
