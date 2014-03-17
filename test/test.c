@@ -71,6 +71,12 @@ capdump_test (void)
   GC_debug_capdump(GC_state.stack_bottom, stack_top);
 }
 
+struct test_struct
+{
+  char arr[100];
+  __capability void * pointer;
+};
+
 void
 collection_test (void)
 {
@@ -88,11 +94,18 @@ collection_test (void)
   printf("Static data bottom: 0x%llx\nStatic data top: 0x%llx\n",
     (GC_ULL) GC_state.static_bottom,
     (GC_ULL) GC_state.static_top);
-  __capability void * cap1 = GC_malloc(100);
+  __capability struct test_struct * cap1 = GC_malloc(0x100);
+  __capability void * cap2 = GC_malloc(0x100);
+  cap1->pointer = cap2;
+  cap2 = GC_malloc(0x100);
   GC_cheri_setreg(3, arbitrary_cap);
   GC_PUSH_CAP_REG(3, GC_FORWARDING_ADDRESS_PTR(cap1));
   GC_PUSH_CAP_REG(3, GC_FORWARDING_ADDRESS_PTR(cap1)+32);
   GC_cheri_setreg(16, cap1);
   GC_cheri_setreg(23, cap1);
+  printf("Internal layout of cap1:\n");
+  GC_debug_memdump((void*)cap1, ((char*)cap1)+sizeof(struct test_struct));
   GC_collect();
+  printf("Internal layout of cap1:\n");
+  GC_debug_memdump((void*)cap1, ((char*)cap1)+sizeof(struct test_struct));
 }
