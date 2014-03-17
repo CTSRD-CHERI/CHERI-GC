@@ -48,8 +48,8 @@ lib_final: $(GC_SOURCES)
 lib: lib_init $(GC_SOURCES) lib_final
 
 gctest:
-	PATH=$(PATH) $(CC) -S -o objects/gctest.o.s -I$(GC_PUBLIC_INCLUDE) $(TEST_SOURCES) && \
-	PATH=$(PATH) $(CC) -c -o objects/gctest.o -I$(GC_PUBLIC_INCLUDE) $(TEST_SOURCES) && \
+	PATH=$(PATH) $(CC) -DGC_CHERI -S -o objects/gctest.o.s -I$(GC_PUBLIC_INCLUDE) $(TEST_SOURCES) && \
+	PATH=$(PATH) $(CC) -DGC_CHERI -c -o objects/gctest.o -I$(GC_PUBLIC_INCLUDE) $(TEST_SOURCES) && \
 	PATH=$(PATH) $(CC) -o objects/gctest objects/gctest.o objects/gc.a && \
 	rm objects/gctest.o
 
