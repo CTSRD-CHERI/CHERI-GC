@@ -15,12 +15,16 @@ GC_init (void)
   if (!GC_state.initialized)
   {
     GC_state_cap = GC_cheri_ptr(&GC_state, sizeof GC_state);
-    
-    GC_state.num_collections = 0;
 
-    int rc = GC_init_region(
+    int rc = GC_init_old_region(
+      &GC_state.old_generation,
+      GC_OLD_GENERATION_SEMISPACE_SIZE);
+    if (rc) return rc;
+    
+    rc = GC_init_young_region(
       &GC_state.thread_local_region,
-      GC_THREAD_LOCAL_SEMISPACE_SIZE);
+      &GC_state.old_generation,
+      GC_THREAD_LOCAL_HEAP_SIZE);
     if (rc) return rc;
     
     GC_state.stack_bottom = GC_get_stack_bottom();
@@ -45,7 +49,13 @@ GC_is_initialized (void)
 }
 
 int
-GC_init_region (struct GC_region * region, size_t semispace_size)
+GC_is_young (struct GC_region * region)
+{
+  return (GC_cheri_getbase(region->older_region) != NULL);
+}
+
+int
+GC_init_old_region (struct GC_region * region, size_t semispace_size)
 {
   // round up size to the next 32-bit boundary
   semispace_size = GC_ALIGN_32(semispace_size, size_t);
@@ -57,6 +67,28 @@ GC_init_region (struct GC_region * region, size_t semispace_size)
   }
   region->tospace = GC_cheri_ptr(p, semispace_size);
   region->fromspace = GC_cheri_ptr(p+semispace_size, semispace_size);
-  region->free = region->fromspace;
+  region->free = region->tospace;
+  region->older_region = NULL;
+  region->num_collections = 0;
+  return 0;
+}
+
+int
+GC_init_young_region (struct GC_region * region,
+                      struct GC_region * older_region,                      
+                      size_t sz)
+{
+  sz = GC_ALIGN_32(sz, size_t);
+  void * p = GC_low_malloc(sz);
+  if (p == NULL)
+  {
+    GC_errf("malloc");
+    return 1;
+  }
+  region->tospace = GC_cheri_ptr(p, sz);
+  region->fromspace = GC_cheri_ptr(NULL, 0);
+  region->free = region->tospace;
+  region->older_region = older_region;
+  region->num_collections = 0;
   return 0;
 }

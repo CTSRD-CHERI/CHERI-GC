@@ -15,10 +15,40 @@ GC_collect (void)
 void
 GC_collect_region (struct GC_region * region)
 {
-  GC_state.num_collections++; // debugging/stats
-  
-  // Push the roots (currently only the capability registers) to the stack
+  region->num_collections++; // debugging/stats
 
+  if (GC_is_young(region))
+  {
+    GC_dbgf("region is young, promoting objects...\n");
+    GC_gen_promote(region);
+  }
+  else
+  {
+    GC_dbgf("region is old, collecting proper...\n");
+    size_t old_size =
+      GC_cheri_getbase(region->free) - GC_cheri_getbase(region->tospace);
+    
+    GC_cap_ptr tmp = region->fromspace;
+    region->fromspace = region->tospace;
+    region->tospace = tmp;
+    
+    region->free = region->tospace;
+    
+    GC_copy_region(region);
+
+    size_t new_size =
+      GC_cheri_getbase(region->free) - GC_cheri_getbase(region->tospace);
+    
+    GC_dbgf("old_size=%d  new_size=%d  freed=%d",
+        (int) old_size,
+        (int) new_size,
+        (int) (old_size - new_size));
+  }
+}
+
+void
+GC_copy_region (struct GC_region * region)
+{ 
   // This information is from version 1.8 of the CHERI spec:
   // We ignore:
   //  $c0 because it spans the entire address space
@@ -78,11 +108,6 @@ GC_collect_region (struct GC_region * region)
   
   GC_assert(stack_top <= GC_state.stack_bottom);
  
-  size_t old_size =
-    GC_cheri_getbase(region->free) - GC_cheri_getbase(region->fromspace);
-  
-  region->free = region->tospace;
-   
   GC_copy_roots(region, stack_top, GC_state.stack_bottom);
   GC_copy_roots(region, GC_state.static_bottom, GC_state.static_top);
   GC_copy_children(region);
@@ -107,20 +132,6 @@ GC_collect_region (struct GC_region * region)
         (GC_ULL) GC_cheri_getbase(cap_regs[i]),
         (GC_ULL) GC_cheri_getlen(cap_regs[i])
     );
- 
-  
-  size_t new_size =
-    GC_cheri_getbase(region->free) - GC_cheri_getbase(region->tospace);
-  
-  GC_dbgf("old_size=%d  new_size=%d  freed=%d",
-      (int) old_size,
-      (int) new_size,
-      (int) (old_size - new_size));
-    
-  GC_cap_ptr tmp = region->fromspace;
-  region->fromspace = region->tospace;
-  region->tospace = tmp;
-
 }
 
 GC_cap_ptr
@@ -185,10 +196,10 @@ GC_copy_roots (struct GC_region * region,
                void * root_start,
                void * root_end)
 {
-  // TODO: ignore roots in the GC's static areas, and any roots in the GC's
-  // call stack. There shouldn't be any (unintended) roots in the GC's call
-  // stack unless a capability argument is passed in any calls up to this call
-  // or local capability variables are declared.
+  // TODO: ignore roots in the GC's call stack. There shouldn't be any
+  // (unintended) roots in the GC's call stack unless a capability argument is
+  // passed in any calls up to this call or local capability variables are
+  // declared.
   
   GC_assert(root_start <= root_end);
   
@@ -224,4 +235,30 @@ GC_copy_children (struct GC_region * region)
       *p = GC_copy_object(region, *p);
     }
   }
+}
+
+void
+GC_gen_promote (struct GC_region * region)
+{
+  // Conservative estimate. Usually requires the old generation to have at least
+  // as much space as the entire young generation (because GC_gen_promote is
+  // usually called when the young generation is almost full).
+  if (GC_cheri_getlen(region->older_region->free)
+      < (GC_cheri_getbase(region->free) - GC_cheri_getbase(region->tospace)))
+  {
+    GC_collect_region(region->older_region);
+  }
+  if (GC_cheri_getlen(region->older_region->free)
+      < (GC_cheri_getbase(region->free) - GC_cheri_getbase(region->tospace)))
+  {
+    // TODO: grow old generation
+    GC_errf("out of memory");
+    return;
+  }
+  
+  GC_cap_ptr old_from_space = region->older_region->fromspace;
+  region->older_region->fromspace = region->tospace;
+  GC_copy_region(region->older_region);
+  region->older_region->fromspace = old_from_space;
+  region->free = region->tospace;
 }

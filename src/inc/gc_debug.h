@@ -17,6 +17,30 @@
 #define GC_assert(cond)
 #endif
 
+#define GC_MEM_PRETTY(x) \
+( \
+  (x) < 1000 ? (x) : \
+  (x) < 1000000 ? ((x)+1000/2) / 1000 : \
+  (x) < 1000000000 ? ((x)+1000000/2) / 1000000 : \
+  ((x)+1000000000/2) / 1000000000 \
+)
+#define GC_MEM_PRETTY_UNIT(x) \
+( \
+  (x) < 1000 ? "b" : \
+  (x) < 1000000 ? "kB" : \
+  (x) < 1000000000 ? "MB" : \
+  "GB" \
+)
+#define GC_NUM_PRETTY GC_MEM_PRETTY
+#define GC_NUM_PRETTY_UNIT(x) \
+( \
+  (x) < 1000 ? "" : \
+  (x) < 1000000 ? "k" : \
+  (x) < 1000000000 ? "M" : \
+  "G" \
+)
+
+
 void
 GC_dbgf2 (const char * file, int line, const char * format, ...);
 

@@ -1,3 +1,5 @@
+#ifdef GC_CHERI
+
 #include <gc_init.h>
 #include <gc_malloc.h>
 #include <gc_debug.h>
@@ -7,61 +9,43 @@
 #include <machine/cheri.h>
 #include <machine/cheric.h>
 
+#else // GC_CHERI
+
+// Boehm
+
+#define GC_ULL  unsigned long long
+typedef void * GC_cap_ptr;
+#define __capability
+#define GC_ALIGN_32(x,typ)  ((typ)(x))
+void __LOCK_MALLOC ()
+{
+}
+void __UNLOCK_MALLOC ()
+{
+}
+
+#endif // GC_CHERI
+
 #include <stdio.h>
 #include <string.h>
 #include <time.h>
 
 void
 collection_test (void);
-void
-collection_test2 (void);
 
 int
 main (int argc, char **argv)
 {
-  printf("test: compiled %s\n",
-         __TIME__ " " __DATE__);
-  collection_test2();
+  printf("test: compiled %s using %s\n",
+         __TIME__ " " __DATE__,
+#ifdef GC_CHERI
+         "GC2/CHERI"
+#else // GC_CHERI
+         "Boehm"
+#endif // GC_CHERI
+         );
+  collection_test();
   return 0;
-}
-
-struct struct1
-{
-  __capability void * ptr;
-};
-void
-collection_test2 (void)
-{
-  GC_init();
-  int i;
-  __capability struct struct1 * cap;
-  int max = 0x49A1;
-  double last_percentage = 0;
-  time_t before, after;
-  before = time(NULL);
-  for (i=0; i<max; i++)
-  {
-    cap = GC_malloc(0x100);
-    //printf("old generation free: 0x%llx\n", (GC_ULL) GC_cheri_getlen(GC_state.old_generation.free));
-    cap->ptr = GC_cheri_ptr(0x43216789, 0x55881122);
-    double percentage = 100.0 * ((double) i) / ((double) max);
-    if (percentage > 10+last_percentage)
-    {
-      printf("%.2f%%\n", percentage);
-      last_percentage = percentage;
-    }
-  }
-  after = time(NULL);
-  printf("%u sec\n", (unsigned) (after-before));
-  /*printf("cap: 0x%llx\n", (GC_ULL) cap);
-  printf("cap->ptr: 0x%llx\n", (GC_ULL) cap->ptr);
-  GC_debug_memdump((void*)cap, ((char*)cap)+sizeof(struct struct1));
-  GC_collect();
-  printf("cap: 0x%llx\n", (GC_ULL) cap);
-  printf("cap->ptr: 0x%llx\n", (GC_ULL) cap->ptr);*/
-  GC_debug_memdump((void*)cap, ((char*)cap)+sizeof(struct struct1));
-  GC_debug_print_region_stats(GC_state.thread_local_region);
-  GC_debug_print_region_stats(GC_state.old_generation);
 }
 
 void
@@ -94,8 +78,12 @@ collection_test (void)
     "G" \
   )
   
+#ifdef GC_CHERI
   GC_init();
   GC_ULL semispace_size = GC_cheri_getlen(GC_state.thread_local_region.tospace);
+#else // GC_CHERI
+  GC_ULL semispace_size = GC_get_heap_size();
+#endif // GC_CHERI
  
   printf("Semi-space size         : 0x%llx (%llu) byte (~%llu%s)\n"
          "Number of allocations   : 0x%llx (%llu)      (~%llu%s)\n"
@@ -146,10 +134,22 @@ collection_test (void)
   }
   after = time(NULL);
   
-  int num_collections = GC_state.thread_local_region.num_collections;
-
+#ifdef GC_CHERI
+  int num_collections = GC_state.num_collections;
+#else // GC_CHERI
+  int num_collections = 0;
+#endif // GC_CHERI
+  
   printf("Time taken: %llu sec\n"
          "Num collections: %llu\n",
          (GC_ULL) (after - before),
          (GC_ULL) num_collections);
+
+#ifdef GC_CHERI
+#else // GC_CHERI
+  // Boehm
+  printf("Boehm heap size now: 0x%llx bytes\n",
+    (GC_ULL) GC_get_heap_size());
+#endif // GC_CHERI
+  
 }

@@ -29,19 +29,37 @@ GC_errf2 (const char * file, int line, const char * format, ...)
 void
 GC_debug_print_region_stats(struct GC_region region)
 {
+  GC_ULL     from  = (GC_ULL) GC_cheri_getbase(region.fromspace),
+             to    = (GC_ULL) GC_cheri_getbase(region.tospace),
+             free  = (GC_ULL) GC_cheri_getbase(region.free),
+             old   = (GC_ULL) region.older_region,
+             lfrom = (GC_ULL) GC_cheri_getlen(region.fromspace),
+             lto   = (GC_ULL) GC_cheri_getlen(region.tospace),
+             lfree = (GC_ULL) GC_cheri_getlen(region.free),
+             ncoll = (GC_ULL) region.num_collections;
   printf
   (
     "Region statistics\n"
     "-----------------\n"
-    "fromspace :     base=0x%llx, len=0x%llx\n"
-    "tospace   :     base=0x%llx, len=0x%llx\n"
-    "free      :     base=0x%llx, len=0x%llx\n",
-    (GC_ULL) GC_cheri_getbase(region.fromspace),
-    (GC_ULL) GC_cheri_getlen(region.fromspace),
-    (GC_ULL) GC_cheri_getbase(region.tospace),
-    (GC_ULL) GC_cheri_getlen(region.tospace),
-    (GC_ULL) GC_cheri_getbase(region.free),
-    (GC_ULL) GC_cheri_getlen(region.free)
+    "fromspace   : b=0x%-16llx  l=0x%-16llx\n"
+    "tospace     : b=0x%-16llx  l=0x%-16llx\n"
+    "free        : b=0x%-16llx  l=0x%-16llx\n"
+    "old         :   0x%-16llx\n"
+    "\n"
+    "used size   : 0x%-16llx bytes (%llu%s)\n"
+    "free size   : 0x%-16llx bytes (%llu%s)\n"
+    "heap size   : 0x%-16llx bytes (%llu%s)\n"
+    "collections : %llu (%llu%s)\n"
+    "This region stores %s objects.\n",
+    from, lfrom,
+    to, lto,
+    free, lfree,
+    old,
+    free - to, GC_MEM_PRETTY(free - to), GC_MEM_PRETTY_UNIT(free - to),
+    lfree, GC_MEM_PRETTY(lfree), GC_MEM_PRETTY_UNIT(lfree),
+    lto, GC_MEM_PRETTY(lto), GC_MEM_PRETTY_UNIT(lto),
+    ncoll, GC_NUM_PRETTY(ncoll), GC_NUM_PRETTY_UNIT(ncoll),
+    old ? "YOUNG" : "OLD"
   );
 }
 
