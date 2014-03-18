@@ -19,12 +19,12 @@ GC_collect_region (struct GC_region * region)
 
   if (GC_is_young(region))
   {
-    GC_dbgf("region is young, promoting objects...\n");
+    GC_dbgf("region is young, promoting objects...");
     GC_gen_promote(region);
   }
   else
   {
-    GC_dbgf("region is old, collecting proper...\n");
+    GC_dbgf("region is old, collecting proper...");
     size_t old_size =
       GC_cheri_getbase(region->free) - GC_cheri_getbase(region->tospace);
     
@@ -96,7 +96,7 @@ GC_copy_region (struct GC_region * region)
   int i;
   for (i=0; i<num_regs; i++)
     if (GC_cheri_gettag(cap_regs[i]))
-      GC_dbgf("cap_reg root [%d]: t=%d, b=0x%llx, l=0x%llx\n",
+      GC_dbgf("cap_reg root [%d]: t=%d, b=0x%llx, l=0x%llx",
         i,
         (int) GC_cheri_gettag(cap_regs[i]),
         (GC_ULL) GC_cheri_getbase(cap_regs[i]),
@@ -126,7 +126,7 @@ GC_copy_region (struct GC_region * region)
 
   for (i=0; i<num_regs; i++)
     if (GC_cheri_gettag(cap_regs[i]))
-      GC_dbgf("cap_reg root [%d]: t=%d, b=0x%llx, l=0x%llx\n",
+      GC_dbgf("cap_reg root [%d]: t=%d, b=0x%llx, l=0x%llx",
         i,
         (int) GC_cheri_gettag(cap_regs[i]),
         (GC_ULL) GC_cheri_getbase(cap_regs[i]),
@@ -217,7 +217,11 @@ GC_copy_roots (struct GC_region * region,
     }
     if (GC_cheri_gettag(*p) && GC_IN(GC_cheri_getbase(*p), region->fromspace))
     {
+    if (GC_cheri_gettag(*p)) printf("For root 0x%llx, the address is 0x%llx\n", 
+      (GC_ULL) p, (GC_ULL) *p);
       *p = GC_copy_object(region, *p);
+    printf("Its data has been copied now:\n");
+    GC_debug_memdump((void*)*p, GC_cheri_getbase(*p)+GC_cheri_getlen(*p));
     }
   }
 }
@@ -246,6 +250,7 @@ GC_gen_promote (struct GC_region * region)
   if (GC_cheri_getlen(region->older_region->free)
       < (GC_cheri_getbase(region->free) - GC_cheri_getbase(region->tospace)))
   {
+    GC_dbgf("old generation too small, triggering major collection");
     GC_collect_region(region->older_region);
   }
   if (GC_cheri_getlen(region->older_region->free)

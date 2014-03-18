@@ -4,6 +4,6 @@
 #define GC_THREAD_LOCAL_HEAP_SIZE             0x1000
 #define GC_OLD_GENERATION_SEMISPACE_SIZE      0x30000
 #define GC_COLLECT_ON_ALLOCATION_FAILURE      1
-//#define GC_DEBUG
+#define GC_DEBUG
 
 #endif // GC_CONFIG_H_HEADER

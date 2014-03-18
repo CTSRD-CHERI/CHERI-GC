@@ -35,10 +35,11 @@ collection_test2 (void)
   GC_init();
   int i;
   __capability struct struct1 * cap;
-  int max = 0x49A1;
+  int max = 0x12; // ENSURE THAT THIS FORCES OLD_GENERATION_CAP INTO OLD GENERATION
   double last_percentage = 0;
   time_t before, after;
   before = time(NULL);
+  __capability struct struct1 * old_generation_cap = GC_malloc(0x100);
   for (i=0; i<max; i++)
   {
     cap = GC_malloc(0x100);
@@ -53,13 +54,24 @@ collection_test2 (void)
   }
   after = time(NULL);
   printf("%u sec\n", (unsigned) (after-before));
-  /*printf("cap: 0x%llx\n", (GC_ULL) cap);
+
+  // Now old_generation_cap should be in the old generation.
+  printf("old_generation_cap (0x%llx) is in old generation?: %d\n",
+    (GC_ULL) old_generation_cap,
+    GC_IN(old_generation_cap, GC_state.old_generation.tospace));
+
+  // create a young-to-old pointer
+  cap->ptr = old_generation_cap;
+  // DOESN'T WORK. collector confuses it with forwarding pointer.
+
+  printf("cap: 0x%llx\n", (GC_ULL) cap);
   printf("cap->ptr: 0x%llx\n", (GC_ULL) cap->ptr);
   GC_debug_memdump((void*)cap, ((char*)cap)+sizeof(struct struct1));
-  GC_collect();
+  GC_collect(); // do a young generation collection. ENSURE THIS DOESN'T COLLECT THE OLD GENERATION.
   printf("cap: 0x%llx\n", (GC_ULL) cap);
-  printf("cap->ptr: 0x%llx\n", (GC_ULL) cap->ptr);*/
+  printf("cap->ptr: 0x%llx\n", (GC_ULL) cap->ptr);
   GC_debug_memdump((void*)cap, ((char*)cap)+sizeof(struct struct1));
+  
   GC_debug_print_region_stats(GC_state.thread_local_region);
   GC_debug_print_region_stats(GC_state.old_generation);
 }
