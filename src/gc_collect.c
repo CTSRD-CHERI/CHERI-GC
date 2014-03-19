@@ -146,17 +146,17 @@ GC_copy_object (struct GC_region * region,
   // then it has already been copied.
   
   // $c2 = *(cap.base + forwarding_address_offset) = *($c0.base + forwarding_address_field_location);
-  GC_RESTORE_CAP_REG(2, GC_FORWARDING_ADDRESS_PTR(cap));
+  GC_cap_ptr forwarding_address = GC_FORWARDING_CAP(cap);
   
-  unsigned tag = 0;
-  GC_CHERI_CGETTAG(tag, 2);
+  unsigned tag = GC_cheri_gettag(forwarding_address); //0;
   if (tag)
   {
-    const void * base;
-    GC_CHERI_CGETBASE(base, 2);
-    if (GC_IN(base, region->tospace))
+    #define GC_IS_FORWARDING_ADDRESS(x) \
+      GC_IN(GC_cheri_getbase(x), region->tospace)
+    if (GC_IS_FORWARDING_ADDRESS(forwarding_address))
     {
-      return GC_cheri_getreg(2);
+      GC_assert(GC_IN(GC_cheri_getbase(forwarding_address), region->tospace));
+      return forwarding_address;
     }
   }
   
@@ -167,26 +167,9 @@ GC_copy_object (struct GC_region * region,
     GC_cheri_ptr(
       GC_cheri_getbase(region->free)+GC_cheri_getlen(cap),
       GC_cheri_getlen (region->free)-GC_cheri_getlen(cap));
-  
-  // TODO: consider moving this into GC_cap_memcpy.
-  // Set the tag bits on all capabilities stored in the copied object.
-  // We need some way of identifying tag bits better for this part: this is
-  // slow.
-  GC_cap_ptr * old = GC_ALIGN_32(GC_cheri_getbase(cap), GC_cap_ptr *);
-  GC_cap_ptr * new = GC_ALIGN_32(GC_cheri_getbase(tmp), GC_cap_ptr *);
-  size_t i;
-  for (i = 0; i < GC_cheri_getlen(cap) / sizeof(GC_cap_ptr); i++)
-  {
-    if (GC_cheri_gettag(old[i]))
-    {
-      GC_RESTORE_CAP_REG(2, &old[i]);
-      GC_PUSH_CAP_REG(2, &new[i]);
-    }
-  }
 
   // Set the forwarding address of the old object.
-  GC_cheri_setreg(2, tmp);
-  GC_PUSH_CAP_REG(2, GC_FORWARDING_ADDRESS_PTR(cap));
+  GC_FORWARDING_CAP(cap) = tmp;
   
   return tmp;
 }

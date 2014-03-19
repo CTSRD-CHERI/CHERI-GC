@@ -81,6 +81,8 @@ typedef __capability void * GC_cap_ptr;
   
 #define GC_FORWARDING_ADDRESS_PTR(cap) \
   ( GC_ALIGN_32(GC_cheri_getbase((cap)), void *) )
+#define GC_FORWARDING_CAP(cap) \
+  ( * (GC_cap_ptr *) GC_FORWARDING_ADDRESS_PTR((cap)) )
 
 void *
 GC_low_malloc (size_t sz);

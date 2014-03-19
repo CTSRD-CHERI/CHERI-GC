@@ -15,13 +15,15 @@ void
 collection_test (void);
 void
 collection_test2 (void);
+void
+collection_test3 (void);
 
 int
 main (int argc, char **argv)
 {
   printf("test: compiled %s\n",
          __TIME__ " " __DATE__);
-  collection_test2();
+  collection_test3();
   return 0;
 }
 
@@ -29,6 +31,41 @@ struct struct1
 {
   __capability void * ptr;
 };
+
+typedef struct node_tag
+{
+  int value;
+  __capability struct node_tag * next;
+} node;
+
+void
+collection_test3 (void)
+{
+  __capability node * a, * b;
+  GC_init();
+  a = GC_malloc(sizeof(node));
+  b = GC_malloc(sizeof(node));
+  a->value = 0x11223344;
+  b->value = 0x55667788;
+  a->next = b;
+  b->next = a;
+  printf("b: 0x%llx\n", (GC_ULL) b);
+  printf("a: 0x%llx\n", (GC_ULL) a);
+  printf("a->value: 0x%llx\n", (GC_ULL) ((node*)a)->value);
+  printf("a->next: 0x%llx\n", (GC_ULL) ((node*)a)->next);
+  printf("a->next->value: 0x%llx\n", (GC_ULL) ((node*) (((node*)a)->next)) -> value);
+  printf("a->next->next: 0x%llx\n", (GC_ULL) ((node*) (((node*)a)->next)) -> next );
+  GC_collect();
+  a->value = 0xDEADCAFE;
+  b->value = 0xBEEFF00D;
+  printf("b: 0x%llx\n", (GC_ULL) b);
+  printf("a: 0x%llx\n", (GC_ULL) a);
+  printf("a->value: 0x%llx\n", (GC_ULL) ((node*)a)->value);
+  printf("a->next: 0x%llx\n", (GC_ULL) ((node*)a)->next);
+  printf("a->next->value: 0x%llx\n", (GC_ULL) ((node*) (((node*)a)->next)) -> value);
+  printf("a->next->next: 0x%llx\n", (GC_ULL) ((node*) (((node*)a)->next)) -> next );
+}
+
 void
 collection_test2 (void)
 {

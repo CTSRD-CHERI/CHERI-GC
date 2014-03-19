@@ -118,10 +118,27 @@ GC_cap_memcpy (GC_cap_ptr dest, GC_cap_ptr src)
        * vpsrc   = GC_cheri_getbase(src);
   size_t destlen = GC_cheri_getlen(dest),
          srclen  = GC_cheri_getlen(src);
+  
   GC_assert( destlen >= srclen );
   GC_assert( NULL != vpdest );
   GC_assert( NULL != vpsrc );
+  
   memcpy(vpdest, vpsrc, srclen);
+
+  // Set the tag bits on all capabilities stored in the copied object.
+  // We need some way of identifying tag bits better for this part: this is
+  // slow.
+  GC_cap_ptr * src_child  = GC_ALIGN_32(vpsrc, GC_cap_ptr *);
+  GC_cap_ptr * dest_child = GC_ALIGN_32(vpdest, GC_cap_ptr *);
+  size_t i;
+  for (i = 0; i < srclen / sizeof(GC_cap_ptr); i++)
+  {
+    if (GC_cheri_gettag(src_child[i]))
+    {
+      dest_child[i] = src_child[i];
+    }
+  }
+
   return GC_cheri_setlen(dest, srclen);
 }
 
