@@ -13,6 +13,8 @@ typedef __capability void * GC_cap_ptr;
 #define     GC_cheri_getbase  cheri_getbase
 #define     GC_cheri_getlen   cheri_getlen
 #define     GC_cheri_gettag   cheri_gettag
+#define     GC_cheri_getperm  cheri_getperm
+#define     GC_cheri_andperm  cheri_andperm
 #define     GC_cheri_setlen   cheri_setlen
 #define     GC_cheri_ptr      cheri_ptr
 #define     GC_CHERI_CGETTAG  CHERI_CGETTAG
@@ -81,8 +83,22 @@ typedef __capability void * GC_cap_ptr;
   
 #define GC_FORWARDING_ADDRESS_PTR(cap) \
   ( GC_ALIGN_32(GC_cheri_getbase((cap)), void *) )
+
 #define GC_FORWARDING_CAP(cap) \
   ( * (GC_cap_ptr *) GC_FORWARDING_ADDRESS_PTR((cap)) )
+
+#define GC_IS_FORWARDING_ADDRESS(cap) \
+  ( ! (((GC_ULL) GC_cheri_getperm((cap))) & GC_PERM_FORWARDING)  )
+  
+#define GC_MAKE_FORWARDING_ADDRESS(cap) \
+  ( GC_cheri_andperm((cap), ~GC_PERM_FORWARDING) )
+
+#define GC_STRIP_FORWARDING(cap) \
+  ( GC_cheri_ptr(GC_cheri_getbase((cap)), GC_cheri_getlen((cap))) )
+
+// TODO: use a *custom* perm and ensure it's *always* set for non-forwarding
+// addresses (even when we pass caps around and make new ones...)
+#define GC_PERM_FORWARDING    (1 << 7)
 
 void *
 GC_low_malloc (size_t sz);

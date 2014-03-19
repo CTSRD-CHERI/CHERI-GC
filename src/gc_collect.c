@@ -150,13 +150,11 @@ GC_copy_object (struct GC_region * region,
   
   unsigned tag = GC_cheri_gettag(forwarding_address); //0;
   if (tag)
-  {
-    #define GC_IS_FORWARDING_ADDRESS(x) \
-      GC_IN(GC_cheri_getbase(x), region->tospace)
+  {      
     if (GC_IS_FORWARDING_ADDRESS(forwarding_address))
     {
       GC_assert(GC_IN(GC_cheri_getbase(forwarding_address), region->tospace));
-      return forwarding_address;
+      return GC_STRIP_FORWARDING(forwarding_address);
     }
   }
   
@@ -169,7 +167,7 @@ GC_copy_object (struct GC_region * region,
       GC_cheri_getlen (region->free)-GC_cheri_getlen(cap));
 
   // Set the forwarding address of the old object.
-  GC_FORWARDING_CAP(cap) = tmp;
+  GC_FORWARDING_CAP(cap) = GC_MAKE_FORWARDING_ADDRESS(tmp);
   
   return tmp;
 }

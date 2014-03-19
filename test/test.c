@@ -48,7 +48,7 @@ collection_test3 (void)
   a->value = 0x11223344;
   b->value = 0x55667788;
   a->next = b;
-  b->next = a;
+  b->next = a; 
   printf("b: 0x%llx\n", (GC_ULL) b);
   printf("a: 0x%llx\n", (GC_ULL) a);
   printf("a->value: 0x%llx\n", (GC_ULL) ((node*)a)->value);
@@ -98,8 +98,8 @@ collection_test2 (void)
     GC_IN(old_generation_cap, GC_state.old_generation.tospace));
 
   // create a young-to-old pointer
+  // WORKS now that we identify forwarding pointers separately.
   cap->ptr = old_generation_cap;
-  // DOESN'T WORK. collector confuses it with forwarding pointer.
 
   printf("cap: 0x%llx\n", (GC_ULL) cap);
   printf("cap->ptr: 0x%llx\n", (GC_ULL) cap->ptr);
