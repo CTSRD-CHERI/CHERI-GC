@@ -68,6 +68,7 @@ GC_init_old_region (struct GC_region * region, size_t semispace_size)
   region->tospace = GC_cheri_ptr(p, semispace_size);
   region->fromspace = GC_cheri_ptr(p+semispace_size, semispace_size);
   region->free = region->tospace;
+  region->scan = NULL;
   region->older_region = NULL;
   region->num_collections = 0;
   return 0;
@@ -88,6 +89,7 @@ GC_init_young_region (struct GC_region * region,
   region->tospace = GC_cheri_ptr(p, sz);
   region->fromspace = GC_cheri_ptr(NULL, 0);
   region->free = region->tospace;
+  region->scan = NULL;
   region->older_region = older_region;
   region->num_collections = 0;
   return 0;

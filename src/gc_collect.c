@@ -33,6 +33,7 @@ GC_collect_region (struct GC_region * region)
     region->tospace = tmp;
     
     region->free = region->tospace;
+    region->scan = (GC_cap_ptr *) GC_cheri_getbase(region->tospace);
     
     GC_copy_region(region);
 
@@ -198,11 +199,12 @@ GC_copy_roots (struct GC_region * region,
     }
     if (GC_cheri_gettag(*p) && GC_IN(GC_cheri_getbase(*p), region->fromspace))
     {
-    if (GC_cheri_gettag(*p)) printf("For root 0x%llx, the address is 0x%llx\n", 
-      (GC_ULL) p, (GC_ULL) *p);
+      GC_dbgf("[root] location=0x%llx (%s?), b=0x%llx, l=0x%llx\n",
+        (GC_ULL) p,
+        ((GC_ULL) p) & 0x7F00000000 ? "stack/reg" : ".data",
+        (GC_ULL) *p, 
+        (GC_ULL) GC_cheri_getlen(*p));
       *p = GC_copy_object(region, *p);
-    printf("Its data has been copied now:\n");
-    GC_debug_memdump((void*)*p, GC_cheri_getbase(*p)+GC_cheri_getlen(*p));
     }
   }
 }
@@ -210,14 +212,20 @@ GC_copy_roots (struct GC_region * region,
 void
 GC_copy_children (struct GC_region * region)
 {
-  GC_cap_ptr * p;
-  for (p = (GC_cap_ptr *) GC_cheri_getbase(region->tospace);
-       ((uintptr_t) p) < ((uintptr_t) GC_cheri_getbase(region->free));
-       p++)
+  for (;
+       ((uintptr_t) region->scan)
+         < ((uintptr_t) GC_cheri_getbase(region->free));
+       region->scan++)
   {
-    if (GC_cheri_gettag(*p) && GC_IN(GC_cheri_getbase(*p), region->fromspace))
+    if (GC_cheri_gettag(*region->scan)
+        && GC_IN(GC_cheri_getbase(*region->scan), region->fromspace))
     {
-      *p = GC_copy_object(region, *p);
+      GC_dbgf("[child] location=0x%llx (%s?), b=0x%llx, l=0x%llx\n",
+        (GC_ULL) region->scan,
+        ((GC_ULL) region->scan) & 0x7F00000000 ? "stack/reg" : ".data",
+        (GC_ULL) *region->scan, 
+        (GC_ULL) GC_cheri_getlen(*region->scan));
+      *region->scan = GC_copy_object(region, *region->scan);
     }
   }
 }
@@ -244,7 +252,12 @@ GC_gen_promote (struct GC_region * region)
   
   GC_cap_ptr old_from_space = region->older_region->fromspace;
   region->older_region->fromspace = region->tospace;
+  
+  // ensure we only scan the young region's children when copying
+  region->older_region->scan = (GC_cap_ptr *) region->older_region->free;
+  
   GC_copy_region(region->older_region);
+  
   region->older_region->fromspace = old_from_space;
   region->free = region->tospace;
 }

@@ -5,7 +5,7 @@
 
 struct GC_region
 {
-  __capability void * tospace, * fromspace, * free;
+  __capability void * tospace, * fromspace, * free, ** scan;
   struct GC_region * older_region; // only used if this one is young
   int num_collections; // debugging/stats
 };

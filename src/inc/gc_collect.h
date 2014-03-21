@@ -11,7 +11,8 @@ void
 GC_collect_region (struct GC_region * region);
 
 // Using capability registers, the stack and the data segment as roots, this
-// copies objects from region->fromspace to region->tospace.
+// copies objects from region->fromspace to region->tospace. Assumes
+// region->scan and region->free are set accordingly, and modifies them.
 void
 GC_copy_region (struct GC_region * region);
 

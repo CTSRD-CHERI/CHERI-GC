@@ -17,13 +17,17 @@ void
 collection_test2 (void);
 void
 collection_test3 (void);
+void
+collection_test4 (void);
+void
+collection_test5 (void);
 
 int
 main (int argc, char **argv)
 {
   printf("test: compiled %s\n",
          __TIME__ " " __DATE__);
-  collection_test3();
+  collection_test5();
   return 0;
 }
 
@@ -37,6 +41,76 @@ typedef struct node_tag
   int value;
   __capability struct node_tag * next;
 } node;
+
+
+void
+collection_test5 (void)
+{
+  int i;
+  __capability struct struct1 * old_object = GC_malloc(sizeof(struct struct1));
+  
+  // force old_object into the old generation
+  __capability void * dummy;
+  for (i=0; i<10+GC_OLD_GENERATION_SEMISPACE_SIZE/sizeof(struct struct1); i++)
+    dummy = GC_malloc(sizeof(struct struct1));
+  dummy = GC_cheri_ptr(NULL, 0);
+  
+  // young_object should get allocated in the young generation
+  __capability struct struct1 * young_object = GC_malloc(sizeof(struct struct1));
+  
+  young_object->ptr = old_object;
+  
+  // use this as a root to point to the old object, then make sure that the old
+  // object isn't cached in a register or the stack.
+  //__capability struct struct1 * young_root = GC_malloc(sizeof(struct struct1));
+  //young_root->ptr = old_object;
+  
+  
+  GC_assert( GC_IN(old_object, GC_state.old_generation.tospace) );
+  GC_assert( GC_IN(young_object, GC_state.thread_local_region.tospace) );
+  //GC_assert( GC_IN(young_root, GC_state.thread_local_region.tospace) );
+  
+  //GC_debug_print_region_stats(GC_state.thread_local_region);
+  //GC_debug_print_region_stats(GC_state.old_generation);
+  
+  
+  // create an old-to-young pointer
+  old_object->ptr = young_object;
+  printf("old_object: 0x%llx\nyoung object: 0x%llx\nold_object->ptr: 0x%llx\nyoung_object->ptr: 0x%llx\n",
+    (GC_ULL) old_object, (GC_ULL) young_object, (GC_ULL) old_object->ptr, (GC_ULL) young_object->ptr);
+  
+  // (try to) ensure the old object isn't cached in a register or the stack
+  void * old_object_saved = GC_cheri_getbase(old_object);
+  old_object = GC_cheri_ptr(NULL, 0);
+  
+  GC_collect();
+  
+  // observe if old_object->ptr has been changed
+  old_object = GC_cheri_ptr(old_object_saved, sizeof(struct struct1));
+  printf("old_object: 0x%llx\nyoung object: 0x%llx\nold_object->ptr: 0x%llx\nyoung_object->ptr: 0x%llx\n",
+    (GC_ULL) old_object, (GC_ULL) young_object, (GC_ULL) old_object->ptr, (GC_ULL) young_object->ptr);
+}
+
+
+#include <signal.h>
+void sigsegv_handler (int p)
+{
+  printf("Getting cause.\n");
+  GC_ULL cause = cheri_getcause();
+  printf("Done!\n");
+  exit(0);
+}
+void
+collection_test4 (void)
+{
+  //signal(SIGSEGV, sigsegv_handler);
+  signal(SIGPROT, sigsegv_handler);
+  int val = 12345;
+  __capability int * cap = GC_cheri_ptr(&val, sizeof (int));
+  cap = GC_cheri_andperm(cap, ~CHERI_PERM_LOAD);
+  printf("Dereferencing capability (t=%d).\n", (int) GC_cheri_gettag(cap));
+  printf("Value: %d\n", *cap);
+}
 
 void
 collection_test3 (void)
@@ -81,7 +155,7 @@ collection_test2 (void)
   {
     cap = GC_malloc(0x100);
     //printf("old generation free: 0x%llx\n", (GC_ULL) GC_cheri_getlen(GC_state.old_generation.free));
-    cap->ptr = GC_cheri_ptr(0x43216789, 0x55881122);
+    cap->ptr = GC_cheri_ptr((void*)0x43216789, 0x55881122);
     double percentage = 100.0 * ((double) i) / ((double) max);
     if (percentage > 10+last_percentage)
     {

@@ -32,6 +32,7 @@ GC_debug_print_region_stats(struct GC_region region)
   GC_ULL     from  = (GC_ULL) GC_cheri_getbase(region.fromspace),
              to    = (GC_ULL) GC_cheri_getbase(region.tospace),
              free  = (GC_ULL) GC_cheri_getbase(region.free),
+             scan  = (GC_ULL) region.scan,
              old   = (GC_ULL) region.older_region,
              lfrom = (GC_ULL) GC_cheri_getlen(region.fromspace),
              lto   = (GC_ULL) GC_cheri_getlen(region.tospace),
@@ -44,6 +45,7 @@ GC_debug_print_region_stats(struct GC_region region)
     "fromspace   : b=0x%-16llx  l=0x%-16llx\n"
     "tospace     : b=0x%-16llx  l=0x%-16llx\n"
     "free        : b=0x%-16llx  l=0x%-16llx\n"
+    "scan        :   0x%-16llx\n"
     "old         :   0x%-16llx\n"
     "\n"
     "used size   : 0x%-16llx bytes (%llu%s)\n"
@@ -54,6 +56,7 @@ GC_debug_print_region_stats(struct GC_region region)
     from, lfrom,
     to, lto,
     free, lfree,
+    scan,
     old,
     free - to, GC_MEM_PRETTY(free - to), GC_MEM_PRETTY_UNIT(free - to),
     lfree, GC_MEM_PRETTY(lfree), GC_MEM_PRETTY_UNIT(lfree),

@@ -67,3 +67,4 @@ run:
 	expect -f cloud4_push_helper.expect && \
 	rm -f cloud4_push_helper.expect
 everything: clean lib gctest push run
+almost_everything: clean lib gctest push
