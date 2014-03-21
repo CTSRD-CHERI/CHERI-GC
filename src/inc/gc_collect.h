@@ -14,7 +14,8 @@ GC_collect_region (struct GC_region * region);
 // copies objects from region->fromspace to region->tospace. Assumes
 // region->scan and region->free are set accordingly, and modifies them.
 void
-GC_copy_region (struct GC_region * region);
+GC_copy_region (struct GC_region * region,
+                int is_generational);
 
 GC_cap_ptr
 GC_copy_object (struct GC_region * region,
@@ -23,10 +24,12 @@ GC_copy_object (struct GC_region * region,
 void
 GC_copy_roots (struct GC_region * region,
                void * root_start,
-               void * root_end);
+               void * root_end,
+               int is_generational);
 
 void
-GC_copy_children (struct GC_region * region);
+GC_copy_children (struct GC_region * region,
+                  int is_generational);
 
 // Promotes all objects from region->tospace to region->older_region->tospace.
 // We conservatively estimate whether the older generation has enough space to

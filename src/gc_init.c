@@ -35,6 +35,8 @@ GC_init (void)
 
     GC_state.static_top = GC_get_static_top();
     if (GC_state.stack_bottom == NULL) return 1;    
+    
+    GC_state.oy_technique = GC_OY_DEFAULT;
    
     GC_state.initialized = 1;
     GC_dbgf("initialized");
@@ -92,5 +94,17 @@ GC_init_young_region (struct GC_region * region,
   region->scan = NULL;
   region->older_region = older_region;
   region->num_collections = 0;
+  return 0;
+}
+
+int
+GC_set_oy_technique (int oy_technique)
+{
+  if (!GC_is_initialized)
+  {
+    int rc = GC_init();
+    if (rc) return rc;
+  }
+  GC_state.oy_technique = oy_technique;
   return 0;
 }

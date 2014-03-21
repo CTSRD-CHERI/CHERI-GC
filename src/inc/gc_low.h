@@ -23,6 +23,91 @@ typedef __capability void * GC_cap_ptr;
 #define     GC_cheri_getreg   cheri_getreg
 #define     GC_cheri_setreg   cheri_setreg
 
+// also declared in gc.h
+// the void* cast of GC_INVALID_PTR must be NULL
+#define     GC_INVALID_PTR    cheri_zerocap()
+
+// also declared in gc.h
+// used for old-to-young pointer handling when the technique is GC_OY_MANUAL
+// (see gc_init.h)
+// usage: use GC_STORE_CAP(x,y) where you would normally use x = y, where x
+// and y are capabilities. x and y may be evaluated more than once, so ensure
+// that they are side-effect free.
+//
+// semantics:
+//    typedef struct
+//    { 
+//      __capability int * ptr;
+//    } OBJ;
+//
+//    __capability OBJ * a;
+//
+//    GC_STORE_CAP(a->ptr, something):
+//
+//    suppose a has been allocated in an old region
+//    then (perm(a) & is_old) is true
+//    but perm(a->ptr) & is_old could be anything
+//
+//    have another perm: contained_in_old
+//    then perm(a) & contained_in_old could be anything
+//    but perm(a->ptr) & contained_in_old is definitely TRUE (maintain this invariant!).
+//
+//    now:
+//
+//    if ( perm(a->ptr) & contained_in_old )
+//      if (!(perm(something) & is_old))
+//        {STORE A YOUNG POINTER IN AN OLD POINTER}
+//        (make sure its contained_in_old perm remains set).
+//      else
+//        a->ptr = set_perm(something, contained_in_old)
+//    else
+//      a->ptr = unset_perm(something, contained_in_old)
+//
+//    How to maintain the `is_old' invariant:
+//    - on promotion, set the is_old perm.
+//
+//    How to maintain the contained_in_old invariant:
+//    - on store, set the contained_in_old perm as appropriate.
+//    - on promotion, set the contained_in_old perm for all children.
+#define GC_STORE_CAP(x,y) \
+  ( \
+    GC_IS_CONTAINED_IN_OLD((x)) ? \
+    !GC_IS_OLD((y)) ? *GC_do_oy_store((GC_cap_ptr*)&(x), (y)) :  \
+    ((x) = GC_SET_CONTAINED_IN_OLD((y))) : \
+    ((x) = GC_UNSET_CONTAINED_IN_OLD((y))) \
+  )
+
+GC_cap_ptr *
+GC_do_oy_store (GC_cap_ptr * x, GC_cap_ptr y);
+
+GC_cap_ptr
+GC_orperm (GC_cap_ptr cap, GC_ULL perm);
+
+// actually uses permit_store_ephemeral_capability for now
+#define GC_PERM_OLD (1 << 5)
+// actually uses permit_seal for now
+#define GC_PERM_CONTAINED_IN_OLD (1 << 6)
+
+#define GC_IS_CONTAINED_IN_OLD(cap) \
+  ( ! (((GC_ULL) GC_cheri_getperm((cap))) & GC_PERM_CONTAINED_IN_OLD)  )
+  
+#define GC_SET_CONTAINED_IN_OLD(cap) \
+  ( GC_cheri_andperm((cap), ~GC_PERM_CONTAINED_IN_OLD) )
+
+#define GC_UNSET_CONTAINED_IN_OLD(cap) \
+  ( GC_orperm((cap), GC_PERM_CONTAINED_IN_OLD) )
+
+#define GC_IS_OLD(cap) \
+  ( ! (((GC_ULL) GC_cheri_getperm((cap))) & GC_PERM_OLD)  )
+  
+#define GC_SET_OLD(cap) \
+  ( GC_cheri_andperm((cap), ~GC_PERM_OLD) )
+
+#define GC_UNSET_OLD(cap) \
+  ( GC_orperm((cap), GC_PERM_OLD) )
+
+
+  
 #define GC_PUSH_CAP_REG(cap_reg,dest_addr) \
   __asm __volatile \
   ( \

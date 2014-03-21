@@ -39,7 +39,7 @@ GC_malloc_region (struct GC_region * region, size_t sz, int collect_on_failure)
     {
       // TODO: try to grow the heap.
       GC_errf("out of memory");
-      return GC_cheri_ptr(0, 0);
+      return GC_INVALID_PTR;
     }
   }
   

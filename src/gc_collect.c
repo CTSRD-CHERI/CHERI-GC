@@ -35,7 +35,7 @@ GC_collect_region (struct GC_region * region)
     region->free = region->tospace;
     region->scan = (GC_cap_ptr *) GC_cheri_getbase(region->tospace);
     
-    GC_copy_region(region);
+    GC_copy_region(region, 0);
 
     size_t new_size =
       GC_cheri_getbase(region->free) - GC_cheri_getbase(region->tospace);
@@ -48,7 +48,8 @@ GC_collect_region (struct GC_region * region)
 }
 
 void
-GC_copy_region (struct GC_region * region)
+GC_copy_region (struct GC_region * region,
+                int is_generational)
 { 
   // This information is from version 1.8 of the CHERI spec:
   // We ignore:
@@ -109,9 +110,11 @@ GC_copy_region (struct GC_region * region)
   
   GC_assert(stack_top <= GC_state.stack_bottom);
  
-  GC_copy_roots(region, stack_top, GC_state.stack_bottom);
-  GC_copy_roots(region, GC_state.static_bottom, GC_state.static_top);
-  GC_copy_children(region);
+  GC_copy_roots(
+    region, stack_top, GC_state.stack_bottom, is_generational);
+  GC_copy_roots(
+    region, GC_state.static_bottom, GC_state.static_top, is_generational);
+  GC_copy_children(region, is_generational);
   
   GC_RESTORE_CAP_REG(16, &cap_regs[0]);
   GC_RESTORE_CAP_REG(17, &cap_regs[1]);
@@ -176,7 +179,8 @@ GC_copy_object (struct GC_region * region,
 void
 GC_copy_roots (struct GC_region * region,
                void * root_start,
-               void * root_end)
+               void * root_end,
+               int is_generational)
 {
   // TODO: ignore roots in the GC's call stack. There shouldn't be any
   // (unintended) roots in the GC's call stack unless a capability argument is
@@ -205,12 +209,14 @@ GC_copy_roots (struct GC_region * region,
         (GC_ULL) *p, 
         (GC_ULL) GC_cheri_getlen(*p));
       *p = GC_copy_object(region, *p);
+      if (is_generational)
+        *p = GC_SET_OLD(*p);
     }
   }
 }
 
 void
-GC_copy_children (struct GC_region * region)
+GC_copy_children (struct GC_region * region, int is_generational)
 {
   for (;
        ((uintptr_t) region->scan)
@@ -226,6 +232,8 @@ GC_copy_children (struct GC_region * region)
         (GC_ULL) *region->scan, 
         (GC_ULL) GC_cheri_getlen(*region->scan));
       *region->scan = GC_copy_object(region, *region->scan);
+      if (is_generational)
+        *region->scan = GC_SET_CONTAINED_IN_OLD(*region->scan);
     }
   }
 }
@@ -256,7 +264,7 @@ GC_gen_promote (struct GC_region * region)
   // ensure we only scan the young region's children when copying
   region->older_region->scan = (GC_cap_ptr *) region->older_region->free;
   
-  GC_copy_region(region->older_region);
+  GC_copy_region(region->older_region, 1);
   
   region->older_region->fromspace = old_from_space;
   region->free = region->tospace;

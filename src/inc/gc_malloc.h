@@ -5,6 +5,9 @@
 
 #include <stdlib.h>
 
+// also declared in gc.h
+// returns GC_INVALID_PTR on failure, whose void* cast is guaranteed to be equal
+// to NULL
 __capability void *
 GC_malloc (size_t sz);
 
