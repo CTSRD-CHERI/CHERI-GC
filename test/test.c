@@ -57,11 +57,12 @@ collection_test5 (void)
   
   // young_object should get allocated in the young generation
   __capability struct struct1 * young_object = GC_malloc(sizeof(struct struct1));
-  
+
+  printf("young object is young? %d\n", (int) GC_IS_YOUNG(young_object));
   GC_STORE_CAP(young_object->ptr, young_object);
-  printf("old object is old? %d young_object->ptr is old? %d\n", (int) GC_IS_OLD(old_object), (int) GC_IS_OLD(young_object->ptr));
+  printf("old object is young? %d young_object->ptr is young? %d\n", (int) GC_IS_YOUNG(old_object), (int) GC_IS_YOUNG(young_object->ptr));
   GC_STORE_CAP(young_object->ptr, old_object);
-  printf("old object is old? %d young_object->ptr is old? %d\n", (int) GC_IS_OLD(old_object), (int) GC_IS_OLD(young_object->ptr));
+  printf("old object is young? %d young_object->ptr is young? %d\n", (int) GC_IS_YOUNG(old_object), (int) GC_IS_YOUNG(young_object->ptr));
   //young_object->ptr = old_object;
   
   // use this as a root to point to the old object, then make sure that the old
@@ -80,11 +81,11 @@ collection_test5 (void)
   
   // create an old-to-young pointer
   //old_object->ptr = young_object;
-  printf("old_object->ptr. tag? %d. old? %d. contained_in_old? %d  0x%llx.\n",
-    (int) GC_cheri_gettag(old_object->ptr), (int) GC_IS_OLD(old_object->ptr), (int) GC_IS_CONTAINED_IN_OLD(old_object->ptr), (GC_ULL) (GC_cheri_getperm(old_object->ptr)));
+  printf("old_object->ptr. tag? %d. young? %d. contained_in_old? %d  0x%llx.\n",
+    (int) GC_cheri_gettag(old_object->ptr), (int) GC_IS_YOUNG(old_object->ptr), (int) GC_IS_CONTAINED_IN_OLD(old_object->ptr), (GC_ULL) (GC_cheri_getperm(old_object->ptr)));
   GC_STORE_CAP(old_object->ptr, young_object);
-  printf("old_object->ptr. tag? %d. old? %d. contained_in_old? %d  0x%llx.\n",
-    (int) GC_cheri_gettag(old_object->ptr), (int) GC_IS_OLD(old_object->ptr), (int) GC_IS_CONTAINED_IN_OLD(old_object->ptr), (GC_ULL) (GC_cheri_getperm(old_object->ptr)));
+  printf("old_object->ptr. tag? %d. young? %d. contained_in_old? %d  0x%llx.\n",
+    (int) GC_cheri_gettag(old_object->ptr), (int) GC_IS_YOUNG(old_object->ptr), (int) GC_IS_CONTAINED_IN_OLD(old_object->ptr), (GC_ULL) (GC_cheri_getperm(old_object->ptr)));
   printf("old_object: 0x%llx\nyoung object: 0x%llx\nold_object->ptr: 0x%llx\nyoung_object->ptr: 0x%llx\n",
     (GC_ULL) old_object, (GC_ULL) young_object, (GC_ULL) old_object->ptr, (GC_ULL) young_object->ptr);
   

@@ -88,7 +88,7 @@ GC_init_young_region (struct GC_region * region,
     GC_errf("malloc");
     return 1;
   }
-  region->tospace = GC_cheri_ptr(p, sz);
+  region->tospace = GC_SET_YOUNG(GC_cheri_ptr(p, sz));
   region->fromspace = GC_cheri_ptr(NULL, 0);
   region->free = region->tospace;
   region->scan = NULL;

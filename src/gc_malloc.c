@@ -47,9 +47,10 @@ GC_malloc_region (struct GC_region * region, size_t sz, int collect_on_failure)
   
   __capability void * ret = GC_cheri_setlen(region->free, sz);
   
-  region->free = GC_cheri_ptr(
+  // TODO: use cincbase here to preserve permissions.
+  region->free = GC_SET_YOUNG(GC_cheri_ptr(
     GC_cheri_getbase(region->free)+sz,
-    GC_cheri_getlen (region->free)-sz);
+    GC_cheri_getlen (region->free)-sz));
   
   return ret;
   

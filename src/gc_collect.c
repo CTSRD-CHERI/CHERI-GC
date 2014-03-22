@@ -210,7 +210,7 @@ GC_copy_roots (struct GC_region * region,
         (GC_ULL) GC_cheri_getlen(*p));
       *p = GC_copy_object(region, *p);
       if (is_generational)
-        *p = GC_SET_OLD(*p);
+        *p = GC_UNSET_YOUNG(*p);
     }
   }
 }

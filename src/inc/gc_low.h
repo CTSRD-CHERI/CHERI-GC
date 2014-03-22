@@ -34,6 +34,7 @@ typedef __capability void * GC_cap_ptr;
 // and y are capabilities. x and y may be evaluated more than once, so ensure
 // that they are side-effect free.
 //
+
 // semantics:
 //    typedef struct
 //    { 
@@ -69,13 +70,30 @@ typedef __capability void * GC_cap_ptr;
 //    How to maintain the contained_in_old invariant:
 //    - on store, set the contained_in_old perm as appropriate.
 //    - on promotion, set the contained_in_old perm for all children.
-#define GC_STORE_CAP(x,y) \
+/*#define GC_STORE_CAP(x,y) \
   ( \
     GC_IS_CONTAINED_IN_OLD((x)) ? \
     !GC_IS_OLD((y)) ? *GC_do_oy_store((GC_cap_ptr*)&(x), (y)) :  \
     ((x) = GC_SET_CONTAINED_IN_OLD((y))) : \
     ((x) = GC_UNSET_CONTAINED_IN_OLD((y))) \
-  )
+  )*/
+#define GC_STORE_CAP(x,y) \
+  do { \
+    if (GC_cheri_gettag((y))) \
+    { \
+      int tmp = GC_cheri_gettag((x)) ?  \
+                GC_IS_CONTAINED_IN_OLD((x)) : \
+                GC_IN(&(x), GC_state.old_generation.tospace); \
+      (x) = tmp ? GC_SET_CONTAINED_IN_OLD((y)) \
+                : GC_UNSET_CONTAINED_IN_OLD((y)); \
+      if (tmp && GC_IS_YOUNG((y))) \
+        GC_do_oy_store((GC_cap_ptr *)&(x), (y)); \
+    } \
+    else \
+    { \
+      (x) = GC_INVALID_PTR; \
+    } \
+  } while (0)
 
 GC_cap_ptr *
 GC_do_oy_store (GC_cap_ptr * x, GC_cap_ptr y);
@@ -84,7 +102,7 @@ GC_cap_ptr
 GC_orperm (GC_cap_ptr cap, GC_ULL perm);
 
 // actually uses permit_store_ephemeral_capability for now
-#define GC_PERM_OLD (1 << 5)
+#define GC_PERM_YOUNG (1 << 5)
 // actually uses permit_seal for now
 #define GC_PERM_CONTAINED_IN_OLD (1 << 6)
 
@@ -97,14 +115,14 @@ GC_orperm (GC_cap_ptr cap, GC_ULL perm);
 #define GC_UNSET_CONTAINED_IN_OLD(cap) \
   ( GC_orperm((cap), GC_PERM_CONTAINED_IN_OLD) )
 
-#define GC_IS_OLD(cap) \
-  ( ! (((GC_ULL) GC_cheri_getperm((cap))) & GC_PERM_OLD)  )
+#define GC_IS_YOUNG(cap) \
+  ( ! (((GC_ULL) GC_cheri_getperm((cap))) & GC_PERM_YOUNG)  )
   
-#define GC_SET_OLD(cap) \
-  ( GC_cheri_andperm((cap), ~GC_PERM_OLD) )
+#define GC_SET_YOUNG(cap) \
+  ( GC_cheri_andperm((cap), ~GC_PERM_YOUNG) )
 
-#define GC_UNSET_OLD(cap) \
-  ( GC_orperm((cap), GC_PERM_OLD) )
+#define GC_UNSET_YOUNG(cap) \
+  ( GC_orperm((cap), GC_PERM_YOUNG) )
 
 
   
