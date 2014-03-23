@@ -151,9 +151,9 @@ GC_cap_memset (GC_cap_ptr dest, int value)
 }
 
 GC_cap_ptr *
-GC_do_oy_store (GC_cap_ptr * x, GC_cap_ptr y)
+GC_handle_oy_store (GC_cap_ptr * x, GC_cap_ptr y)
 {
-  printf("old-young store : *(0x%llx) := 0x%llx (note: currently *x = 0x%llx)\n",
+  printf("old-young store : *(0x%llx) := 0x%llx\n",
     (GC_ULL) x, (GC_ULL) y, (GC_ULL) *x);
   *x = GC_SET_CONTAINED_IN_OLD(y);
   return x;

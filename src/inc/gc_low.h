@@ -27,56 +27,78 @@ typedef __capability void * GC_cap_ptr;
 // the void* cast of GC_INVALID_PTR must be NULL
 #define     GC_INVALID_PTR    cheri_zerocap()
 
-// also declared in gc.h
+// TODO: also define this in gc.h
 // used for old-to-young pointer handling when the technique is GC_OY_MANUAL
 // (see gc_init.h)
 // usage: use GC_STORE_CAP(x,y) where you would normally use x = y, where x
 // and y are capabilities. x and y may be evaluated more than once, so ensure
 // that they are side-effect free.
 //
-
-// semantics:
-//    typedef struct
-//    { 
-//      __capability int * ptr;
-//    } OBJ;
+// How this works:
 //
-//    __capability OBJ * a;
+// We use two custom permission bits:
+// YOUNG: the object **pointed to by** the capability is young.
+// cOLD:  the **address of** the capability is contained in the old region.
 //
-//    GC_STORE_CAP(a->ptr, something):
+// Why do we use "YOUNG" instead of "OLD"? Because NOT OLD doesn't imply YOUNG.
+// A NOT OLD object could be allocated on the stack or elsewhere, but we need a
+// sure-fire way of precisely identifying young objects. Basically, we can
+// safely treat NOT YOUNG objects as OLD.
 //
-//    suppose a has been allocated in an old region
-//    then (perm(a) & is_old) is true
-//    but perm(a->ptr) & is_old could be anything
+// Suppose A is the address of an object in a region (old or young).
+// Suppose sz A is the size of this object.
+// Suppose B is the address of an object in a region (old or young).
+// Suppose sz B is the size of this object.
 //
-//    have another perm: contained_in_old
-//    then perm(a) & contained_in_old could be anything
-//    but perm(a->ptr) & contained_in_old is definitely TRUE (maintain this invariant!).
+// Now a capability is a tuple of the form (tag?, base, length, OLD?, cOLD?).
+// So suppose we have:
+// z = (1, A, sz A, ?, ?)
+// y = (1, B, sz B, ?, ?) or y = (0, ...)
 //
-//    now:
+// Then we wish to process:
+// *(z+offset) = y;
+// This is supplied to us as:
+// GC_STORE_CAP(*(z+offset), y).
+// That is, in the following, "x" is "*(z+offset)".
 //
-//    if ( perm(a->ptr) & contained_in_old )
-//      if (!(perm(something) & is_old))
-//        {STORE A YOUNG POINTER IN AN OLD POINTER}
-//        (make sure its contained_in_old perm remains set).
-//      else
-//        a->ptr = set_perm(something, contained_in_old)
-//    else
-//      a->ptr = unset_perm(something, contained_in_old)
+// So now we consider each case in turn:
 //
-//    How to maintain the `is_old' invariant:
-//    - on promotion, set the is_old perm.
+// (1) y = (0, ...)
+// If:
+//      *(z+offset) = (0, ...), do nothing.
+//      *(z+offset) = (1, ...), invalidate *(z+offset).
 //
-//    How to maintain the contained_in_old invariant:
-//    - on store, set the contained_in_old perm as appropriate.
-//    - on promotion, set the contained_in_old perm for all children.
-/*#define GC_STORE_CAP(x,y) \
-  ( \
-    GC_IS_CONTAINED_IN_OLD((x)) ? \
-    !GC_IS_OLD((y)) ? *GC_do_oy_store((GC_cap_ptr*)&(x), (y)) :  \
-    ((x) = GC_SET_CONTAINED_IN_OLD((y))) : \
-    ((x) = GC_UNSET_CONTAINED_IN_OLD((y))) \
-  )*/
+// (2) y = (1, B, sz B, NOT YOUNG, ?)
+// If:
+//      *(z+offset) = (0, ...) then:                (OLD->OLD or YOUNG->OLD)
+//          set *(z+offset) = y, and
+//          cOLD[*(z+offset)] = GC_IN(z+offset, old_region).
+//          (That is, do a time-consuming check to see if z+offset is contained
+//           in the old region.)
+//      *(z+offset) = (1, ?, ?, ?, NOT cOLD) then:  (YOUNG->OLD)
+//          set *(z+offset) = y, and
+//          cOLD[*(z+offset)] = false.
+//      *(z+offset) = (1, ?, ?, ?, cOLD) then:      (OLD->OLD)
+//          set *(z+offset) = y, and
+//          cOLD[*(z+offset)] = true.
+//
+// (3) y = (1, B, sz B, YOUNG, ?)
+// If:
+//      *(z+offset) = (0, ...) then:                (OLD->YOUNG or YOUNG->YOUNG)
+//          set *(z+offset) = y, and
+//          cOLD[*(z+offset)] = GC_IN(z+offset, old_region), and
+//          if cOLD[*(z+offset)] is now set then process the old-young pointer.
+//      *(z+offset) = (1, ?, ?, ?, NOT cOLD) then:  (YOUNG->YOUNG)
+//          set *(z+offset) = y, and
+//          cOLD[*(z+offset)] = false.
+//      *(z+offset) = (1, ?, ?, ?, cOLD) then:      (OLD->YOUNG)
+//          set *(z+offset) = y, and
+//          cOLD[*(z+offset)] = true, and
+//          process the old-young pointer.
+//
+// The only way the time-consuming GC_IN check can happen is if a store
+// invalidates *(z+offset), or if it's never been initialized. If it has been
+// initialized, the generational copy will ensure that the cOLD flag is set.
 #define GC_STORE_CAP(x,y) \
   do { \
     if (GC_cheri_gettag((y))) \
@@ -87,7 +109,7 @@ typedef __capability void * GC_cap_ptr;
       (x) = tmp ? GC_SET_CONTAINED_IN_OLD((y)) \
                 : GC_UNSET_CONTAINED_IN_OLD((y)); \
       if (tmp && GC_IS_YOUNG((y))) \
-        GC_do_oy_store((GC_cap_ptr *)&(x), (y)); \
+        GC_handle_oy_store((GC_cap_ptr *)&(x), (y)); \
     } \
     else \
     { \
@@ -96,7 +118,7 @@ typedef __capability void * GC_cap_ptr;
   } while (0)
 
 GC_cap_ptr *
-GC_do_oy_store (GC_cap_ptr * x, GC_cap_ptr y);
+GC_handle_oy_store (GC_cap_ptr * x, GC_cap_ptr y);
 
 GC_cap_ptr
 GC_orperm (GC_cap_ptr cap, GC_ULL perm);
