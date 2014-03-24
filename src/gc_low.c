@@ -150,14 +150,18 @@ GC_cap_memset (GC_cap_ptr dest, int value)
   return dest;
 }
 
+#ifdef GC_GENERATIONAL
 GC_cap_ptr *
 GC_handle_oy_store (GC_cap_ptr * x, GC_cap_ptr y)
 {
-  printf("old-young store : *(0x%llx) := 0x%llx\n",
-    (GC_ULL) x, (GC_ULL) y, (GC_ULL) *x);
-  *x = GC_SET_CONTAINED_IN_OLD(y);
+  GC_dbgf("old-young store : *(0x%llx) := 0x%llx\n", (GC_ULL) x, (GC_ULL) y);
+  GC_CHOOSE_OY(
+    *x = GC_SET_CONTAINED_IN_OLD(y),    // GC_OY_MANUAL
+    GC_NOOP                             // GC_OY_EPHEMERAL
+  );
   return x;
 }
+#endif // GC_GENERATIONAL
 
 GC_cap_ptr
 GC_orperm (GC_cap_ptr cap, GC_ULL perm)

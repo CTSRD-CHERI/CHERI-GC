@@ -2,24 +2,34 @@
 #define GC_INIT_H_HEADER
 
 #include <stdlib.h>
+#include "gc_config.h"
 
 struct GC_region
 {
   __capability void * tospace, * fromspace, * free, ** scan;
-  struct GC_region * older_region; // only used if this one is young
   int num_collections; // debugging/stats
+#ifdef GC_GENERATIONAL
+  struct GC_region * older_region; // only used if this one is young
+#endif // GC_GENERATIONAL
 };
 
 struct GC_state_struct
 {
   int initialized;
-  int oy_technique;
   struct GC_region thread_local_region;
   struct GC_region old_generation;
   void * stack_bottom, * static_bottom, * static_top;
+#ifdef GC_OY_RUNTIME
+  int oy_technique;
+#endif // GC_OY_RUNTIME
 };
 
+extern struct GC_state_struct GC_state;
 
+// For convenience. Contains the data segment area used internally for GC state.
+extern __capability struct GC_state_struct * GC_state_cap;
+
+#ifdef GC_GENERATIONAL
 // GC_state.oy_technique determines how we deal with old-to-young pointers.
 
 // GC_OY_MANUAL:
@@ -47,10 +57,26 @@ struct GC_state_struct
 // whenever any capability is stored in an old object.
 #define GC_OY_NOSTORE      3
 
-extern struct GC_state_struct GC_state;
+#ifdef GC_OY_RUNTIME
+#define GC_CHOOSE_OY(manual_statement,ephemeral_statement) \
+  do { \
+    if (GC_state.oy_technique == GC_OY_MANUAL) \
+      {manual_statement;} \
+    else if (GC_state.oy_technique == GC_OY_EPHEMERAL) \
+      {ephemeral_statement;} \
+  } while (0)
 
-// For convenience. Contains the data segment area used internally for GC state.
-extern __capability struct GC_state_struct * GC_state_cap;
+#elif GC_OY_DEFAULT == GC_OY_MANUAL \
+#define GC_CHOOSE_OY(manual_statement,ephemeral_statement) \
+  do {manual_statement;} while (0)
+
+#elif GC_OY_DEFAULT == GC_OY_EPHEMERAL \
+#define GC_CHOOSE_OY(manual_statement,ephemeral_statement) \
+  do {ephemeral_statement;} while (0)
+
+#endif // GC_OY_RUNTIME stuff  
+  
+#endif // GC_GENERATIONAL
 
 // also declared in gc.h
 // Return values:
@@ -68,6 +94,7 @@ GC_is_initialized (void);
 // Return values:
 // 0 : not young
 // 1 : young
+#ifdef GC_GENERATIONAL
 int
 GC_is_young (struct GC_region * region);
 
@@ -89,7 +116,19 @@ GC_init_young_region (struct GC_region * region,
 // Return values:
 // 0 : success
 // 1 : error
+#ifdef GC_OY_RUNTIME
 int
 GC_set_oy_technique (int oy_technique);
+#else // GC_OY_RUNTIME
+#define GC_set_oy_technique(oy_technique) 0
+#endif // GC_OY_RUNTIME
+
+#else // GC_GENERATIONAL
+// Return values:
+// 0 : success
+// 1 : error
+int
+GC_init_region (struct GC_region * region, size_t semispace_size);
+#endif // GC_GENERATIONAL
 
 #endif // GC_INIT_H_HEADER

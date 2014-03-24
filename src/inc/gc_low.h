@@ -1,6 +1,8 @@
 #ifndef GC_LOW_H_HEADER
 #define GC_LOW_H_HEADER
 
+#include "gc_config.h"
+
 #include <stdlib.h>
 
 #define GC_ULL  unsigned long long
@@ -26,6 +28,28 @@ typedef __capability void * GC_cap_ptr;
 // also declared in gc.h
 // the void* cast of GC_INVALID_PTR must be NULL
 #define     GC_INVALID_PTR    cheri_zerocap()
+
+#define GC_NOOP do{}while(0)
+
+#define GC_FORWARDING_ADDRESS_PTR(cap) \
+  ( GC_ALIGN_32(GC_cheri_getbase((cap)), void *) )
+
+#define GC_FORWARDING_CAP(cap) \
+  ( * (GC_cap_ptr *) GC_FORWARDING_ADDRESS_PTR((cap)) )
+
+#define GC_IS_FORWARDING_ADDRESS(cap) \
+  ( ! (((GC_ULL) GC_cheri_getperm((cap))) & GC_PERM_FORWARDING)  )
+  
+#define GC_MAKE_FORWARDING_ADDRESS(cap) \
+  ( GC_cheri_andperm((cap), ~GC_PERM_FORWARDING) )
+
+#define GC_STRIP_FORWARDING(cap) \
+  ( GC_cheri_ptr(GC_cheri_getbase((cap)), GC_cheri_getlen((cap))) )
+
+// TODO: use a *custom* perm and ensure it's *always* set for non-forwarding
+// addresses (even when we pass caps around and make new ones...)
+// At the moment we're using the Set_Type permission
+#define GC_PERM_FORWARDING    (1 << 7)
 
 // TODO: also define this in gc.h
 // used for old-to-young pointer handling when the technique is GC_OY_MANUAL
@@ -99,6 +123,9 @@ typedef __capability void * GC_cap_ptr;
 // The only way the time-consuming GC_IN check can happen is if a store
 // invalidates *(z+offset), or if it's never been initialized. If it has been
 // initialized, the generational copy will ensure that the cOLD flag is set.
+// The cOLD bit essentially acts as a cache indicating whether z+offset is in
+// the old region.
+#ifdef GC_GENERATIONAL
 #define GC_STORE_CAP(x,y) \
   do { \
     if (GC_cheri_gettag((y))) \
@@ -119,9 +146,6 @@ typedef __capability void * GC_cap_ptr;
 
 GC_cap_ptr *
 GC_handle_oy_store (GC_cap_ptr * x, GC_cap_ptr y);
-
-GC_cap_ptr
-GC_orperm (GC_cap_ptr cap, GC_ULL perm);
 
 // actually uses permit_store_ephemeral_capability for now
 #define GC_PERM_YOUNG (1 << 5)
@@ -146,8 +170,22 @@ GC_orperm (GC_cap_ptr cap, GC_ULL perm);
 #define GC_UNSET_YOUNG(cap) \
   ( GC_orperm((cap), GC_PERM_YOUNG) )
 
+#define GC_PERM_NON_EPHEMERAL (1 << 0)
 
+#define GC_IS_EPHEMERAL(cap) \
+  ( ! (((GC_ULL) GC_cheri_getperm((cap))) & GC_PERM_NON_EPHEMERAL)  )
   
+#define GC_SET_EPHEMERAL(cap) \
+  ( GC_cheri_andperm((cap), ~GC_PERM_NON_EPHEMERAL) )
+
+#define GC_UNSET_EPEHMERAL(cap) \
+  ( GC_orperm((cap), GC_PERM_NON_EPHEMERAL) )
+
+#endif // GC_GENERATIONAL
+
+GC_cap_ptr
+GC_orperm (GC_cap_ptr cap, GC_ULL perm);
+
 #define GC_PUSH_CAP_REG(cap_reg,dest_addr) \
   __asm __volatile \
   ( \
@@ -205,25 +243,6 @@ GC_orperm (GC_cap_ptr cap, GC_ULL perm);
     ((uintptr_t) (ptr)) < ( ((uintptr_t) GC_cheri_getbase((cap))) \
                           + (uintptr_t) GC_cheri_getlen((cap)) ) \
   )
-  
-#define GC_FORWARDING_ADDRESS_PTR(cap) \
-  ( GC_ALIGN_32(GC_cheri_getbase((cap)), void *) )
-
-#define GC_FORWARDING_CAP(cap) \
-  ( * (GC_cap_ptr *) GC_FORWARDING_ADDRESS_PTR((cap)) )
-
-#define GC_IS_FORWARDING_ADDRESS(cap) \
-  ( ! (((GC_ULL) GC_cheri_getperm((cap))) & GC_PERM_FORWARDING)  )
-  
-#define GC_MAKE_FORWARDING_ADDRESS(cap) \
-  ( GC_cheri_andperm((cap), ~GC_PERM_FORWARDING) )
-
-#define GC_STRIP_FORWARDING(cap) \
-  ( GC_cheri_ptr(GC_cheri_getbase((cap)), GC_cheri_getlen((cap))) )
-
-// TODO: use a *custom* perm and ensure it's *always* set for non-forwarding
-// addresses (even when we pass caps around and make new ones...)
-#define GC_PERM_FORWARDING    (1 << 7)
 
 void *
 GC_low_malloc (size_t sz);

@@ -4,6 +4,8 @@
 #include <stdarg.h>
 #include <stdio.h>
 
+// see gc_debug.h
+/*
 void
 GC_dbgf2 (const char * file, int line, const char * format, ...)
 {
@@ -25,6 +27,35 @@ GC_errf2 (const char * file, int line, const char * format, ...)
   va_end(vl);
   putchar('\n');
 }
+*/
+
+void GC_debug_print_cap (const char * name, GC_cap_ptr cap)
+{
+  if (GC_cheri_gettag(cap) == 0)
+  {
+    GC_dbgf("%s: t=0\n", name);
+  }
+  else
+  {
+    GC_dbgf(
+      "%s: t=1, b=0x%llx, l=0x%llx"
+#ifdef GC_GENERATIONAL
+      ", young=%d, cOLD=%d, eph=%d, region=%s"
+#endif // GC_GENERATIONAL
+      "\n",
+      name, (GC_ULL) GC_cheri_getbase(cap), (GC_ULL) GC_cheri_getlen(cap)
+#ifdef GC_GENERATIONAL
+      , (int) GC_IS_YOUNG(cap), (int) GC_IS_CONTAINED_IN_OLD(cap),
+        (int) GC_IS_EPHEMERAL(cap),
+        GC_is_initialized() ?
+            GC_IN(cap, GC_state.thread_local_region.tospace) ? "young"
+          : GC_IN(cap, GC_state.old_generation.tospace) ? "old"
+          : "unknown" \
+        : "(GC uninitialized)"
+#endif // GC_GENERATIONAL
+    );
+  }
+}
 
 void
 GC_debug_print_region_stats(struct GC_region region)
@@ -33,7 +64,9 @@ GC_debug_print_region_stats(struct GC_region region)
              to    = (GC_ULL) GC_cheri_getbase(region.tospace),
              free  = (GC_ULL) GC_cheri_getbase(region.free),
              scan  = (GC_ULL) region.scan,
+#ifdef GC_GENERATIONAL
              old   = (GC_ULL) region.older_region,
+#endif // GC_GENERATIONAL
              lfrom = (GC_ULL) GC_cheri_getlen(region.fromspace),
              lto   = (GC_ULL) GC_cheri_getlen(region.tospace),
              lfree = (GC_ULL) GC_cheri_getlen(region.free),
@@ -46,23 +79,32 @@ GC_debug_print_region_stats(struct GC_region region)
     "tospace     : b=0x%-16llx  l=0x%-16llx\n"
     "free        : b=0x%-16llx  l=0x%-16llx\n"
     "scan        :   0x%-16llx\n"
+#ifdef GC_GENERATIONAL
     "old         :   0x%-16llx\n"
+#endif // GC_GENERATIONAL
     "\n"
     "used size   : 0x%-16llx bytes (%llu%s)\n"
     "free size   : 0x%-16llx bytes (%llu%s)\n"
     "heap size   : 0x%-16llx bytes (%llu%s)\n"
     "collections : %llu (%llu%s)\n"
-    "This region stores %s objects.\n",
+#ifdef GC_GENERATIONAL
+    "This region stores %s objects.\n"
+#endif // GC_GENERATIONAL
+    ,
     from, lfrom,
     to, lto,
     free, lfree,
     scan,
+#ifdef GC_GENERATIONAL
     old,
+#endif // GC_GENERATIONAL
     free - to, GC_MEM_PRETTY(free - to), GC_MEM_PRETTY_UNIT(free - to),
     lfree, GC_MEM_PRETTY(lfree), GC_MEM_PRETTY_UNIT(lfree),
     lto, GC_MEM_PRETTY(lto), GC_MEM_PRETTY_UNIT(lto),
-    ncoll, GC_NUM_PRETTY(ncoll), GC_NUM_PRETTY_UNIT(ncoll),
-    old ? "YOUNG" : "OLD"
+    ncoll, GC_NUM_PRETTY(ncoll), GC_NUM_PRETTY_UNIT(ncoll)
+#ifdef GC_GENERATIONAL
+    , old ? "YOUNG" : "OLD"
+#endif // GC_GENERATIONAL
   );
 }
 

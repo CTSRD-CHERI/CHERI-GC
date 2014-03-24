@@ -2,6 +2,7 @@
 #include "gc_init.h"
 #include "gc_low.h"
 #include "gc_debug.h"
+#include "gc_config.h"
 
 #include <stdint.h>
 
@@ -17,14 +18,16 @@ GC_collect_region (struct GC_region * region)
 {
   region->num_collections++; // debugging/stats
 
+#ifdef GC_GENERATIONAL
   if (GC_is_young(region))
   {
-    GC_dbgf("region is young, promoting objects...");
+    GC_vdbgf("region is young, promoting objects...");
     GC_gen_promote(region);
   }
   else
+#endif // GC_GENERATIONAL
   {
-    GC_dbgf("region is old, collecting proper...");
+    GC_vdbgf("region is old, collecting proper...");
     size_t old_size =
       GC_cheri_getbase(region->free) - GC_cheri_getbase(region->tospace);
     
@@ -203,14 +206,21 @@ GC_copy_roots (struct GC_region * region,
     }
     if (GC_cheri_gettag(*p) && GC_IN(GC_cheri_getbase(*p), region->fromspace))
     {
-      GC_dbgf("[root] location=0x%llx (%s?), b=0x%llx, l=0x%llx\n",
+      GC_vdbgf("[root] location=0x%llx (%s?), b=0x%llx, l=0x%llx\n",
         (GC_ULL) p,
         ((GC_ULL) p) & 0x7F00000000 ? "stack/reg" : ".data",
         (GC_ULL) *p, 
         (GC_ULL) GC_cheri_getlen(*p));
       *p = GC_copy_object(region, *p);
+#ifdef GENERATIONAL_GC
       if (is_generational)
-        *p = GC_UNSET_YOUNG(*p);
+      {
+        GC_CHOOSE_OY(
+          *p = GC_UNSET_YOUNG(*p),      // GC_OY_MANUAL
+          *p = GC_UNSET_EPHEMERAL(*p)   // GC_OY_EPHEMERAL
+        );
+      }
+#endif // GENERATIONAL_GC
     }
   }
 }
@@ -226,18 +236,29 @@ GC_copy_children (struct GC_region * region, int is_generational)
     if (GC_cheri_gettag(*region->scan)
         && GC_IN(GC_cheri_getbase(*region->scan), region->fromspace))
     {
-      GC_dbgf("[child] location=0x%llx (%s?), b=0x%llx, l=0x%llx\n",
+      GC_vdbgf("[child] location=0x%llx (%s?), b=0x%llx, l=0x%llx\n",
         (GC_ULL) region->scan,
         ((GC_ULL) region->scan) & 0x7F00000000 ? "stack/reg" : ".data",
         (GC_ULL) *region->scan, 
         (GC_ULL) GC_cheri_getlen(*region->scan));
       *region->scan = GC_copy_object(region, *region->scan);
+#ifdef GENERATIONAL_GC
       if (is_generational)
-        *region->scan = GC_SET_CONTAINED_IN_OLD(*region->scan);
+      {
+        GC_CHOOSE_OY(
+          *region->scan =
+            GC_UNSET_YOUNG(
+            GC_SET_CONTAINED_IN_OLD(*region->scan)), // GC_OY_MANUAL
+          *region->scan =
+            GC_UNSET_EPHEMERAL(*region->scan)       // GC_OY_EPHEMERAL
+        );
+      }
+#endif // GENERATIONAL_GC
     }
   }
 }
 
+#ifdef GC_GENERATIONAL
 void
 GC_gen_promote (struct GC_region * region)
 {
@@ -269,3 +290,4 @@ GC_gen_promote (struct GC_region * region)
   region->older_region->fromspace = old_from_space;
   region->free = region->tospace;
 }
+#endif // GC_GENERATIONAL

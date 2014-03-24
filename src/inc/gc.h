@@ -12,11 +12,15 @@
 int
 GC_init (void);
 
+#ifdef GC_GENERATIONAL
 // Return values:
 // 0 : success
 // 1 : error
 int
 GC_set_oy_technique (int oy_technique);
+#else // GC_GENERATIONAL
+#define GC_set_oy_technique(oy_technique) 0
+#endif // GC_GENERATIONAL
 
 // returns GC_INVALID_PTR on failure, whose void* cast is guaranteed to be equal
 // to NULL

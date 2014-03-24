@@ -21,7 +21,7 @@ GC_malloc_region (struct GC_region * region, size_t sz, int collect_on_failure)
 {
   if (sz < sizeof(GC_cap_ptr))
   {
-    GC_dbgf("sz 0x%llx to small; allocating at least 0x%llx bytes",
+    GC_vdbgf("sz 0x%llx to small; allocating at least 0x%llx bytes",
       (GC_ULL) sz,
       (GC_ULL) sizeof(GC_cap_ptr));
     sz = sizeof(GC_cap_ptr);
@@ -29,7 +29,7 @@ GC_malloc_region (struct GC_region * region, size_t sz, int collect_on_failure)
 
   if (sz > (size_t) cheri_getlen(region->free))
   {
-    GC_dbgf("sz too big: 0x%llx", (GC_ULL) sz);
+    GC_vdbgf("sz too big: 0x%llx", (GC_ULL) sz);
     if (collect_on_failure)
     {
       GC_collect_region(region);
@@ -47,11 +47,24 @@ GC_malloc_region (struct GC_region * region, size_t sz, int collect_on_failure)
   
   __capability void * ret = GC_cheri_setlen(region->free, sz);
   
-  // TODO: use cincbase here to preserve permissions.
-  region->free = GC_SET_YOUNG(GC_cheri_ptr(
+  // TODO: use cincbase here to preserve permissions, and remove the stuff
+  // below.
+  region->free = GC_cheri_ptr(
     GC_cheri_getbase(region->free)+sz,
-    GC_cheri_getlen (region->free)-sz));
-  
+    GC_cheri_getlen (region->free)-sz);
+
+#ifdef GC_GENERATIONAL
+#ifdef GC_OY_RUNTIME
+  if (GC_state.oy_technique == GC_OY_MANUAL)
+    region->free = GC_SET_YOUNG(region->free);
+  else if (GC_state.oy_technique == GC_OY_EPHEMERAL)
+    region->free = GC_SET_EPHEMERAL(region->free);
+#elif GC_OY_DEFAULT == GC_OY_MANUAL
+  region->free = GC_SET_YOUNG(region->free);
+#elif GC_OY_DEFAULT == GC_OY_EPHEMERAL
+  region->free = GC_SET_EPHEMERAL(region->free);
+#endif
+#endif // GC_GENERATIONAL
   return ret;
   
 }

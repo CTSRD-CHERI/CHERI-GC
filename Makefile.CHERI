@@ -47,6 +47,9 @@ lib_final: $(GC_SOURCES)
 
 lib: lib_init $(GC_SOURCES) lib_final
 
+loc:
+	cat src/*.c src/inc/*.h | wc -l
+
 gctest:
 	PATH=$(PATH) $(CC) -DGC_CHERI -S -o objects/gctest.o.s -I$(GC_PUBLIC_INCLUDE) $(TEST_SOURCES) && \
 	PATH=$(PATH) $(CC) -DGC_CHERI -c -o objects/gctest.o -I$(GC_PUBLIC_INCLUDE) $(TEST_SOURCES) && \
@@ -66,5 +69,5 @@ run:
 	echo -e "set timeout 60\nspawn $(CMD2)\nexpect \": \"\nsend \"$(PASSWORD)\\\\n\"\nexpect \":\"\nsend \"$(CLOUD2_PASSWORD)\\\\n\"\ninteract\n" > cloud4_push_helper.expect && \
 	expect -f cloud4_push_helper.expect && \
 	rm -f cloud4_push_helper.expect
-everything: clean lib gctest push run
-almost_everything: clean lib gctest push
+everything: clean lib gctest push run loc
+almost_everything: clean lib gctest push loc
