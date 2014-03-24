@@ -10,10 +10,12 @@ struct GC_state_struct GC_state = {.initialized = 0};
 __capability struct GC_state_struct * GC_state_cap;
 
 int
-GC_init (void)
+GC_init2 (const char * file, int line)
 {
   if (!GC_state.initialized)
   {
+    GC_dbgf("GC_init called from %s:%d", file, line);
+    
     GC_state_cap = GC_cheri_ptr(&GC_state, sizeof GC_state);
 
     int rc;
@@ -109,7 +111,7 @@ GC_init_young_region (struct GC_region * region,
 
   GC_CHOOSE_OY(
     region->tospace = GC_SET_YOUNG(region->tospace),      // GC_OY_MANUAL
-    region->tospace = GC_SET_EPHEMERAL(region->tospace)  // GC_OY_EPHEMERAL
+    region->tospace = GC_SET_EPHEMERAL(region->tospace)   // GC_OY_EPHEMERAL
   );
   
   region->fromspace = GC_cheri_ptr(NULL, 0);

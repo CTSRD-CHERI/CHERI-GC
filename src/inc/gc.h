@@ -9,8 +9,9 @@
 // Return values:
 // 0 : success
 // 1 : error
+#define GC_init()   GC_init2(__FILE__, __LINE__)
 int
-GC_init (void);
+GC_init2 (const char * file, int line);
 
 #ifdef GC_GENERATIONAL
 // Return values:

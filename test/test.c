@@ -13,13 +13,16 @@
 
 void
 collection_test (void);
+void
+debug_alloc_test (void);
 
 int
 main (int argc, char **argv)
 {
   printf("test: compiled %s\n",
          __TIME__ " " __DATE__);
-  collection_test();
+  debug_alloc_test();
+  //collection_test();
   return 0;
 }
 
@@ -35,22 +38,62 @@ typedef struct node_tag
 } node;
 
 void
+debug_alloc_test (void)
+{
+  GC_init();
+  GC_cap_ptr x = GC_cheri_ptr((void*)0x1234, 0x5678);
+  GC_cap_ptr y = GC_cheri_ptr((void*)0x1235, 0x567A);
+  printf("allocated? %d\n", GC_debug_is_allocated(x));
+  GC_debug_just_allocated(x);
+  GC_debug_just_allocated(y);
+  printf("allocated? %d\n", GC_debug_is_allocated(x));
+  //GC_debug_just_deallocated(x);
+  printf("allocated? %d\n", GC_debug_is_allocated(x));
+  GC_debug_print_allocated_stats();
+}
+
+void
 collection_test (void)
 {
   int i;
+  GC_init();
+  
+  GC_CHOOSE_OY(
+    printf("The OY technique is GC_OY_MANUAL\n"),
+    printf("The OY technique is GC_OY_EPHEMERAL\n")
+  );
+  
   __capability struct struct1 * old_object = GC_malloc(sizeof(struct struct1));
-  
-  // force old_object into the old generation
+   
+  // fill up the young generation right to the top
   __capability void * dummy;
-  for (i=0; i<10+GC_OLD_GENERATION_SEMISPACE_SIZE/sizeof(struct struct1); i++)
+  for (i=0; i<(GC_THREAD_LOCAL_HEAP_SIZE/sizeof(struct struct1))-1; i++)
     dummy = GC_malloc(sizeof(struct struct1));
-  dummy = GC_cheri_ptr(NULL, 0);
   
-  // young_object should get allocated in the young generation
-  __capability struct struct1 * young_object = GC_malloc(sizeof(struct struct1));
+  // you should confirm that the young generation is filled up
+  GC_debug_print_region_stats(GC_state.thread_local_region);
+  GC_debug_print_region_stats(GC_state.old_generation);
   
-  old_object->ptr = GC_cheri_ptr((void*)0x1234,0x5678);
+  // a young->young pointer
+  GC_CHOOSE_OY(
+    {GC_STORE_CAP(old_object->ptr, dummy);},  // GC_OY_MANUAL
+    {old_object->ptr = dummy;}                // GC_OY_EPHEMERAL
+  );
   GC_PRINT_CAP(old_object);
-  GC_PRINT_CAP(young_object);
+  GC_PRINT_CAP(old_object->ptr);
+   
+  // force old_object into the old generation
+  dummy = GC_malloc(sizeof(struct struct1));
+  
+  // you should confirm that the object moved
+  GC_debug_print_region_stats(GC_state.thread_local_region);
+  GC_debug_print_region_stats(GC_state.old_generation);
+
+  // a old->young pointer
+  GC_CHOOSE_OY(
+    {GC_STORE_CAP(old_object->ptr, dummy);},  // GC_OY_MANUAL
+    {old_object->ptr = dummy;}                // GC_OY_EPHEMERAL
+  );
+  GC_PRINT_CAP(old_object);
   GC_PRINT_CAP(old_object->ptr);
 }

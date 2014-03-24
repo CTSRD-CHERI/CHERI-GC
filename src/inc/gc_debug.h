@@ -87,4 +87,20 @@ GC_debug_capdump (const void * start, const void * end);
 void
 GC_debug_memdump (const void * start, const void * end);
 
+
+// To assist in checking whether owned objects are valid things on the heap
+// (i.e. leak/corruption detection):
+
+int
+GC_debug_is_allocated (GC_cap_ptr cap);
+
+void
+GC_debug_just_allocated (GC_cap_ptr cap);
+
+void
+GC_debug_just_deallocated (GC_cap_ptr cap);
+
+void
+GC_debug_print_allocated_stats (void);
+
 #endif // GC_DEBUG_H_HEADER

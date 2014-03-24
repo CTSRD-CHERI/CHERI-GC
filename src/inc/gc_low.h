@@ -126,6 +126,7 @@ typedef __capability void * GC_cap_ptr;
 // The cOLD bit essentially acts as a cache indicating whether z+offset is in
 // the old region.
 #ifdef GC_GENERATIONAL
+// WARNING: assumes GC_init() has already been called.
 #define GC_STORE_CAP(x,y) \
   do { \
     if (GC_cheri_gettag((y))) \
@@ -178,7 +179,7 @@ GC_handle_oy_store (GC_cap_ptr * x, GC_cap_ptr y);
 #define GC_SET_EPHEMERAL(cap) \
   ( GC_cheri_andperm((cap), ~GC_PERM_NON_EPHEMERAL) )
 
-#define GC_UNSET_EPEHMERAL(cap) \
+#define GC_UNSET_EPHEMERAL(cap) \
   ( GC_orperm((cap), GC_PERM_NON_EPHEMERAL) )
 
 #endif // GC_GENERATIONAL

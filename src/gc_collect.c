@@ -212,15 +212,15 @@ GC_copy_roots (struct GC_region * region,
         (GC_ULL) *p, 
         (GC_ULL) GC_cheri_getlen(*p));
       *p = GC_copy_object(region, *p);
-#ifdef GENERATIONAL_GC
+#ifdef GC_GENERATIONAL
       if (is_generational)
       {
         GC_CHOOSE_OY(
-          *p = GC_UNSET_YOUNG(*p),      // GC_OY_MANUAL
-          *p = GC_UNSET_EPHEMERAL(*p)   // GC_OY_EPHEMERAL
+          {*p = GC_UNSET_YOUNG(*p);},      // GC_OY_MANUAL
+          {*p = GC_UNSET_EPHEMERAL(*p);}   // GC_OY_EPHEMERAL
         );
       }
-#endif // GENERATIONAL_GC
+#endif // GC_GENERATIONAL
     }
   }
 }
@@ -242,18 +242,18 @@ GC_copy_children (struct GC_region * region, int is_generational)
         (GC_ULL) *region->scan, 
         (GC_ULL) GC_cheri_getlen(*region->scan));
       *region->scan = GC_copy_object(region, *region->scan);
-#ifdef GENERATIONAL_GC
+#ifdef GC_GENERATIONAL
       if (is_generational)
       {
         GC_CHOOSE_OY(
-          *region->scan =
+          {*region->scan =
             GC_UNSET_YOUNG(
-            GC_SET_CONTAINED_IN_OLD(*region->scan)), // GC_OY_MANUAL
-          *region->scan =
-            GC_UNSET_EPHEMERAL(*region->scan)       // GC_OY_EPHEMERAL
+            GC_SET_CONTAINED_IN_OLD(*region->scan));}, // GC_OY_MANUAL
+          {*region->scan =
+            GC_UNSET_EPHEMERAL(*region->scan);}         // GC_OY_EPHEMERAL
         );
       }
-#endif // GENERATIONAL_GC
+#endif // GC_GENERATIONAL
     }
   }
 }
