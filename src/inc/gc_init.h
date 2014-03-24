@@ -11,17 +11,22 @@ struct GC_region
 #ifdef GC_GENERATIONAL
   struct GC_region * older_region; // only used if this one is young
 #endif // GC_GENERATIONAL
+#ifdef GC_GROW_HEAP
+  size_t max_size;
+#endif // GC_GROW_HEAP
 };
 
 struct GC_state_struct
 {
   int initialized;
   struct GC_region thread_local_region;
-  struct GC_region old_generation;
   void * stack_bottom, * static_bottom, * static_top;
+#ifdef GC_GENERATIONAL
+  struct GC_region old_generation;
 #ifdef GC_OY_RUNTIME
   int oy_technique;
 #endif // GC_OY_RUNTIME
+#endif // GC_GENERATIONAL
 };
 
 extern struct GC_state_struct GC_state;
@@ -104,7 +109,9 @@ GC_is_young (struct GC_region * region);
 // 0 : success
 // 1 : error
 int
-GC_init_old_region (struct GC_region * region, size_t semispace_size);
+GC_init_old_region (struct GC_region * region,
+                    size_t semispace_size,
+                    size_t max_size);
 
 // Return values:
 // 0 : success
@@ -112,7 +119,8 @@ GC_init_old_region (struct GC_region * region, size_t semispace_size);
 int
 GC_init_young_region (struct GC_region * region,
                       struct GC_region * older_region,
-                      size_t sz);
+                      size_t sz,
+                      size_t max_size);
 
 // also declared in gc.h
 // Return values:
@@ -130,7 +138,9 @@ GC_set_oy_technique (int oy_technique);
 // 0 : success
 // 1 : error
 int
-GC_init_region (struct GC_region * region, size_t semispace_size);
+GC_init_region (struct GC_region * region,
+                size_t semispace_size,
+                size_t max_size);
 #endif // GC_GENERATIONAL
 
 #endif // GC_INIT_H_HEADER

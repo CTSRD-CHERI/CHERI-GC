@@ -13,16 +13,13 @@
 
 void
 collection_test (void);
-void
-debug_alloc_test (void);
 
 int
 main (int argc, char **argv)
 {
   printf("test: compiled %s\n",
          __TIME__ " " __DATE__);
-  debug_alloc_test();
-  //collection_test();
+  collection_test();
   return 0;
 }
 
@@ -38,21 +35,24 @@ typedef struct node_tag
 } node;
 
 void
-debug_alloc_test (void)
+collection_test (void)
 {
+  #define NALLOC    0x1000
+  #define NSTORE    0x100
+  #define NBYTES    0x100
+  int i;
+  GC_cap_ptr arr[NSTORE];
   GC_init();
-  GC_cap_ptr x = GC_cheri_ptr((void*)0x1234, 0x5678);
-  GC_cap_ptr y = GC_cheri_ptr((void*)0x1235, 0x567A);
-  printf("allocated? %d\n", GC_debug_is_allocated(x));
-  GC_debug_just_allocated(x);
-  GC_debug_just_allocated(y);
-  printf("allocated? %d\n", GC_debug_is_allocated(x));
-  //GC_debug_just_deallocated(x);
-  printf("allocated? %d\n", GC_debug_is_allocated(x));
-  GC_debug_print_allocated_stats();
+  for (i=0; i<NALLOC; i++)
+  {
+    arr[i%NSTORE] = GC_malloc(NBYTES);
+    if (!(void*)arr[i%NSTORE])
+      {printf("ERROR: oom %d\n", i);break;}
+  }
+  GC_debug_print_region_stats(GC_state.thread_local_region);
 }
 
-void
+/*void
 collection_test (void)
 {
   int i;
@@ -96,4 +96,5 @@ collection_test (void)
   );
   GC_PRINT_CAP(old_object);
   GC_PRINT_CAP(old_object->ptr);
-}
+  
+}*/

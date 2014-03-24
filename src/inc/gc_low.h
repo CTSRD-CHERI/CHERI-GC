@@ -269,4 +269,15 @@ GC_cap_memcpy (GC_cap_ptr dest, GC_cap_ptr src);
 GC_cap_ptr
 GC_cap_memset (GC_cap_ptr dest, int value);
 
+#define GC_MIN(x,y)   ((x)<(y)?(x):(y))
+#define GC_MAX(x,y)   ((x)>(y)?(x):(y))
+
+#ifdef GC_GROW_HEAP
+#include "gc_init.h"
+// Tries to grow the heap by at least `hint' bytes. If successful, returns
+// non-zero, otherwise returns zero.
+int
+GC_grow (struct GC_region * region, size_t hint);
+#endif // GC_GROW_HEAP
+
 #endif // GC_LOW_H_HEADER

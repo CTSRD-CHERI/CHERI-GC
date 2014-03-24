@@ -216,6 +216,8 @@ GC_debug_memdump (const void * start, const void * end)
   }
 }
 
+#ifdef GC_DEBUG_TRACK_ALLOCATIONS
+
 // To store the addresses of allocated objects, we use a hash table.
 #define GC_DEBUG_TBL_SZ     997 /* prime, to avoid synchronisation */
 #define GC_DEBUG_ALLOC      malloc
@@ -388,7 +390,7 @@ GC_debug_print_allocated_stats (void)
   printf(
     "Hash table stats\n"
     "----------------\n"
-    "Total allocated                    :     %llu B (%llu%s)\n"
+    "Total allocated (incl aliasing)    :     %llu B (%llu%s)\n"
     "Total valid entries                :     %llu (%llu%s)\n"
     "Total invalid entries              :     %llu (%llu%s)\n"
     "Total used slots (incl invalid)    :     %llu (%llu%s)\n"
@@ -401,3 +403,4 @@ GC_debug_print_allocated_stats (void)
   );
   
 }
+#endif // GC_DEBUG_TRACK_ALLOCATIONS

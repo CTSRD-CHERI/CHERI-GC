@@ -27,17 +27,28 @@ GC_malloc_region (struct GC_region * region, size_t sz, int collect_on_failure)
     sz = sizeof(GC_cap_ptr);
   }
 
+GC_retry_malloc:
+  
   if (sz > (size_t) cheri_getlen(region->free))
   {
     GC_vdbgf("sz too big: 0x%llx", (GC_ULL) sz);
+#ifdef GC_GROW_HEAP_ON_ALLOCATION_FAILURE
+    GC_vdbgf("trying to grow the heap before collection"
+             " (GC_GROW_HEAP_ON_ALLOCATION_FAILURE)");
+    if (GC_grow(region, sz))
+    {
+      // If we grew enough, retry
+      goto GC_retry_malloc;
+    }
+#endif // GC_GROW_HEAP_ON_ALLOCATION_FAILURE
     if (collect_on_failure)
     {
       GC_collect_region(region);
-      return GC_malloc_region(region, sz, 0);
+      collect_on_failure = 0;
+      goto GC_retry_malloc;
     }
     else
     {
-      // TODO: try to grow the heap.
       GC_errf("out of memory");
       return GC_INVALID_PTR;
     }

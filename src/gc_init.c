@@ -22,13 +22,15 @@ GC_init2 (const char * file, int line)
 #ifdef GC_GENERATIONAL
     rc = GC_init_old_region(
       &GC_state.old_generation,
-      GC_OLD_GENERATION_SEMISPACE_SIZE);
+      GC_OLD_GENERATION_SEMISPACE_SIZE,
+      GC_OLD_GENERATION_SEMISPACE_MAX_SIZE);
     if (rc) return rc;
     
     rc = GC_init_young_region(
       &GC_state.thread_local_region,
       &GC_state.old_generation,
-      GC_THREAD_LOCAL_HEAP_SIZE);
+      GC_THREAD_LOCAL_HEAP_SIZE,
+      GC_THREAD_LOCAL_HEAP_MAX_SIZE);
     if (rc) return rc;
 #ifdef GC_OY_RUNTIME
     GC_state.oy_technique = GC_OY_DEFAULT;
@@ -36,7 +38,8 @@ GC_init2 (const char * file, int line)
 #else // GC_GENERATIONAL
     rc = GC_init_region(
       &GC_state.thread_local_region,
-      GC_THREAD_LOCAL_HEAP_SIZE);
+      GC_THREAD_LOCAL_HEAP_SIZE,
+      GC_THREAD_LOCAL_HEAP_MAX_SIZE);
     if (rc) return rc;
 #endif // GC_GENERATIONAL
     
@@ -67,10 +70,12 @@ GC_init_old_region
 #else // GC_GENERATIONAL
 GC_init_region
 #endif // GC_GENERATIONAL
-(struct GC_region * region, size_t semispace_size)
+(struct GC_region * region, size_t semispace_size, size_t max_size)
 {
   // round up size to the next 32-bit boundary
   semispace_size = GC_ALIGN_32(semispace_size, size_t);
+  // WARNING: if you change how this is allocated, you must change how GC_grow
+  // works.
   void * p = GC_low_malloc(2*semispace_size);
   if (p == NULL)
   {
@@ -85,6 +90,9 @@ GC_init_region
   region->older_region = NULL;
 #endif // GC_GENERATIONAL
   region->num_collections = 0;
+#ifdef GC_GROW_HEAP
+  region->max_size = max_size;
+#endif // GC_GROW_HEAP
   return 0;
 }
 
@@ -98,9 +106,11 @@ GC_is_young (struct GC_region * region)
 int
 GC_init_young_region (struct GC_region * region,
                       struct GC_region * older_region,                      
-                      size_t sz)
+                      size_t sz, size_t max_size)
 {
   sz = GC_ALIGN_32(sz, size_t);
+  // WARNING: if you change how this is allocated, you must change how GC_grow
+  // works.
   void * p = GC_low_malloc(sz);
   if (p == NULL)
   {
@@ -119,6 +129,9 @@ GC_init_young_region (struct GC_region * region,
   region->scan = NULL;
   region->older_region = older_region;
   region->num_collections = 0;
+#ifdef GC_GROW_HEAP
+  region->max_size = max_size;
+#endif // GC_GROW_HEAP
   return 0;
 }
 
