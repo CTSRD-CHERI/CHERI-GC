@@ -2,7 +2,7 @@
 #define GC_CONFIG_H_HEADER
 
 #define GC_DEBUG
-//#define GC_VERBOSE_DEBUG
+#define GC_VERBOSE_DEBUG
 //#define GC_DEBUG_TRACK_ALLOCATIONS
 #define GC_THREAD_LOCAL_HEAP_SIZE             4096    // 4K
 #define GC_OLD_GENERATION_SEMISPACE_SIZE      200000  // 200K
@@ -10,15 +10,17 @@
 // Set to 0 to disable. Must always be defined, however.
 #define GC_COLLECT_ON_ALLOCATION_FAILURE      1
 
-// Grow the heap if collection/allocation fails.
-// NOTE: current policy is to double the current heap size, saturating at
-// relevant max.
-#define GC_GROW_HEAP_ON_COLLECTION_FAILURE
-#define GC_GROW_HEAP_ON_ALLOCATION_FAILURE
+// Grow the (young) heap if allocation/collection fails.
+#define GC_GROW_YOUNG_HEAP
+// Grow the old heap if copying collection would otherwise fail.
+#define GC_GROW_OLD_HEAP
+// NOTE: current policy for both is to double the current heap size, saturating
+// at relevant max.
+// NOTE: when GC_GENERATIONAL is undefined, only GC_GROW_YOUNG_HEAP is relevant.
 
 // Do not edit
-#if defined(GC_GROW_HEAP_ON_COLLECTION_FAILURE) \
-    || defined(GC_GROW_HEAP_ON_ALLOCATION_FAILURE)
+#if defined(GC_GROW_YOUNG_HEAP) \
+    || defined(GC_GROW_OLD_HEAP)
 #define GC_GROW_HEAP
 #endif
 

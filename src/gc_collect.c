@@ -230,17 +230,30 @@ GC_gen_promote (struct GC_region * region)
   // Conservative estimate. Usually requires the old generation to have at least
   // as much space as the entire young generation (because GC_gen_promote is
   // usually called when the young generation is almost full).
-  if (GC_cheri_getlen(region->older_region->free)
-      < (GC_cheri_getbase(region->free) - GC_cheri_getbase(region->tospace)))
+  int too_small =
+    GC_cheri_getlen(region->older_region->free)
+      < (GC_cheri_getbase(region->free) - GC_cheri_getbase(region->tospace));
+#ifdef GC_GROW_OLD_HEAP
+  if (too_small)
+  {
+    GC_dbgf("old generation too small, trying to grow");
+    too_small =
+      !GC_grow(region->older_region,
+          (GC_cheri_getbase(region->free) - GC_cheri_getbase(region->tospace)));
+  }
+#endif // GC_GROW_OLD_HEAP
+  if (too_small)
   {
     GC_dbgf("old generation too small, triggering major collection");
     GC_collect_region(region->older_region);
+    too_small =
+      GC_cheri_getlen(region->older_region->free)
+        < (GC_cheri_getbase(region->free) - GC_cheri_getbase(region->tospace));
   }
-  if (GC_cheri_getlen(region->older_region->free)
-      < (GC_cheri_getbase(region->free) - GC_cheri_getbase(region->tospace)))
+  
+  if (too_small)
   {
-    // TODO: grow old generation
-    GC_errf("out of memory");
+    GC_errf("old generation out of memory");
     return;
   }
   
@@ -260,6 +273,12 @@ GC_gen_promote (struct GC_region * region)
 void
 GC_region_rebase (struct GC_region * region, void * old_base, size_t old_size)
 {
+  // NOTE: could use the relevant permission bit for checking whether a capability
+  // is within the previous YOUNG REGION or the previous OLD REGION or whatever.
+  // Pass the permission bit as a hint to this function...
+  
+  // Don't forget to rebase region->free.
+  
   printf("rebase quitting\n");
   exit(0);
 }

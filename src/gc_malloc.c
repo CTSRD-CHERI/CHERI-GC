@@ -27,34 +27,34 @@ GC_malloc_region (struct GC_region * region, size_t sz, int collect_on_failure)
     sz = sizeof(GC_cap_ptr);
   }
 
-GC_retry_malloc:
-  
-  if (sz > (size_t) cheri_getlen(region->free))
+  int too_small = sz > (size_t) cheri_getlen(region->free);
+
+#ifdef GC_GROW_YOUNG_HEAP
+  if (too_small)
   {
-    GC_vdbgf("sz too big: 0x%llx", (GC_ULL) sz);
-#ifdef GC_GROW_HEAP_ON_ALLOCATION_FAILURE
-    GC_vdbgf("trying to grow the heap before collection"
-             " (GC_GROW_HEAP_ON_ALLOCATION_FAILURE)");
-    if (GC_grow(region, sz))
-    {
-      // If we grew enough, retry
-      goto GC_retry_malloc;
-    }
-#endif // GC_GROW_HEAP_ON_ALLOCATION_FAILURE
-    if (collect_on_failure)
-    {
-      GC_collect_region(region);
-      collect_on_failure = 0;
-      goto GC_retry_malloc;
-    }
-    else
-    {
-      GC_errf("out of memory");
-      return GC_INVALID_PTR;
-    }
+    GC_vdbgf("GC_malloc_region(): growing (young) heap (sz=0x%llx)",
+      (GC_ULL) sz);
+    too_small = !GC_grow(region, sz);
+  }
+#endif // GC_GROW_YOUNG_HEAP
+  
+  if (too_small && collect_on_failure)
+  {
+    GC_vdbgf("GC_malloc_region(): collecting (young) heap (sz=0x%llx)",
+      (GC_ULL) sz);
+    GC_collect_region(region);
+    too_small = sz > (size_t) cheri_getlen(region->free);
+  }
+  
+  if (too_small)
+  {
+    GC_errf("GC_malloc_region(): out of memory (sz=0x%llx)", (GC_ULL) sz);
+    return GC_INVALID_PTR;
   }
   
   // TODO: handle csetlen and cincbase exceptions
+  printf("too_small? %d actual too small? %d\n", 
+    too_small, sz > (size_t) cheri_getlen(region->free));
   
   __capability void * ret = GC_cheri_setlen(region->free, sz);
   

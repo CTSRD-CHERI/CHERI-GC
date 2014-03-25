@@ -188,7 +188,7 @@ GC_grow (struct GC_region * region, size_t hint)
   size_t new_size = GC_ALIGN_32(
     GC_MIN(GC_MAX(2*cur_size, (cur_size+hint)), region->max_size), size_t);
 
-  GC_dbgf("GC_grow(): hint=%llu%s, current=%llu%s, trying=%llu%s, max=%llu%s\n",
+  GC_dbgf("GC_grow(): hint=%llu%s, current=%llu%s, trying=%llu%s, max=%llu%s",
     GC_MEM_PRETTY((GC_ULL) hint), GC_MEM_PRETTY_UNIT((GC_ULL) hint),
     GC_MEM_PRETTY((GC_ULL) cur_size), GC_MEM_PRETTY_UNIT((GC_ULL) cur_size),
     GC_MEM_PRETTY((GC_ULL) new_size), GC_MEM_PRETTY_UNIT((GC_ULL) new_size),
@@ -244,8 +244,12 @@ GC_grow (struct GC_region * region, size_t hint)
     return 0;
   }
   region->tospace = GC_setbaselen(region->tospace, tmp, new_size);
-
-  GC_dbgf("GC_grow(): actually grew to %llu%s (from %llu%s)\n",
+  region->free = GC_setbaselen(
+    region->free,
+    GC_cheri_getbase(region->free),
+    new_size - cur_size + GC_cheri_getlen(region->free));
+  
+  GC_dbgf("GC_grow(): actually grew to %llu%s (from %llu%s)",
     GC_MEM_PRETTY((GC_ULL) new_size), GC_MEM_PRETTY_UNIT((GC_ULL) new_size),
     GC_MEM_PRETTY((GC_ULL) cur_size), GC_MEM_PRETTY_UNIT((GC_ULL) cur_size));
   
@@ -255,6 +259,7 @@ GC_grow (struct GC_region * region, size_t hint)
     // If we're about to collect anyway, we could do this on-the-fly in the
     // collection routines, but for code simplicity and flexibility we don't
     // bother with that and just do the scan now.
+    GC_vdbgf("GC_grow(): region needs rebasing");
     GC_region_rebase(region, tospace_base, cur_size);
   }
   
