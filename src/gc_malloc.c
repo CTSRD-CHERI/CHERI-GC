@@ -48,14 +48,12 @@ GC_malloc_region (struct GC_region * region, size_t sz, int collect_on_failure)
   
   if (too_small)
   {
+    // TODO: try to allocate directly in old generation if out of options.
     GC_errf("GC_malloc_region(): out of memory (sz=0x%llx)", (GC_ULL) sz);
     return GC_INVALID_PTR;
   }
   
   // TODO: handle csetlen and cincbase exceptions
-  printf("too_small? %d actual too small? %d\n", 
-    too_small, sz > (size_t) cheri_getlen(region->free));
-  
   __capability void * ret = GC_cheri_setlen(region->free, sz);
   
   // TODO: use cincbase here to preserve permissions, and remove the stuff
@@ -76,6 +74,9 @@ GC_malloc_region (struct GC_region * region, size_t sz, int collect_on_failure)
   region->free = GC_SET_EPHEMERAL(region->free);
 #endif
 #endif // GC_GENERATIONAL
+  
+  region->num_allocations++;
+  
   return ret;
   
 }

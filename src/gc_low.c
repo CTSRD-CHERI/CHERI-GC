@@ -94,8 +94,7 @@ GC_get_static_bottom (void)
       }
     }
     
-    GC_dbgf("found static bottom: 0x%llx",
-      (GC_ULL) GC_state.static_bottom);
+    GC_vdbgf("found static bottom: 0x%llx", (GC_ULL) GC_state.static_bottom);
     
     oldfunc = signal(SIGSEGV, oldfunc);
     if (oldfunc == SIG_ERR)
@@ -182,9 +181,12 @@ GC_grow (struct GC_region * region, size_t hint)
   // We want min(max(double, hint), region->max_size).
   // WARNING: we always round *up* to the nearest multiple of 32 bits to avoid
   // alignment issues.
+   
+  size_t cur_size = GC_cheri_getlen(region->tospace);
+  
+  if (cur_size == region->max_size) return 0;
   
   void * tospace_base = GC_cheri_getbase(region->tospace);
-  size_t cur_size = GC_cheri_getlen(region->tospace);
   size_t new_size = GC_ALIGN_32(
     GC_MIN(GC_MAX(2*cur_size, (cur_size+hint)), region->max_size), size_t);
 

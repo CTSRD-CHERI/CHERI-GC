@@ -69,8 +69,12 @@ GC_debug_print_region_stats(struct GC_region region)
 #endif // GC_GENERATIONAL
              lfrom = (GC_ULL) GC_cheri_getlen(region.fromspace),
              lto   = (GC_ULL) GC_cheri_getlen(region.tospace),
-             lfree = (GC_ULL) GC_cheri_getlen(region.free),
-             ncoll = (GC_ULL) region.num_collections;
+             lfree = (GC_ULL) GC_cheri_getlen(region.free)
+#ifdef GC_COLLECT_STATS
+             , nalloc = (GC_ULL) region.num_allocations,
+             ncoll = (GC_ULL) region.num_collections
+#endif // GC_COLLECT_STATS
+             ;
   printf
   (
     "Region statistics\n"
@@ -86,7 +90,12 @@ GC_debug_print_region_stats(struct GC_region region)
     "used size   : 0x%-16llx bytes (%llu%s)\n"
     "free size   : 0x%-16llx bytes (%llu%s)\n"
     "heap size   : 0x%-16llx bytes (%llu%s)\n"
+    "\n"
+#ifdef GC_COLLECT_STATS
+    "stats:\n"
+    "allocations : %llu (%llu%s)\n"
     "collections : %llu (%llu%s)\n"
+#endif // GC_COLLECT_STATS
 #ifdef GC_GENERATIONAL
     "This region stores %s objects.\n"
 #endif // GC_GENERATIONAL
@@ -100,8 +109,11 @@ GC_debug_print_region_stats(struct GC_region region)
 #endif // GC_GENERATIONAL
     free - to, GC_MEM_PRETTY(free - to), GC_MEM_PRETTY_UNIT(free - to),
     lfree, GC_MEM_PRETTY(lfree), GC_MEM_PRETTY_UNIT(lfree),
-    lto, GC_MEM_PRETTY(lto), GC_MEM_PRETTY_UNIT(lto),
+    lto, GC_MEM_PRETTY(lto), GC_MEM_PRETTY_UNIT(lto)
+#ifdef GC_COLLECT_STATS
+    , nalloc, GC_NUM_PRETTY(nalloc), GC_NUM_PRETTY_UNIT(nalloc),
     ncoll, GC_NUM_PRETTY(ncoll), GC_NUM_PRETTY_UNIT(ncoll)
+#endif // GC_COLLECT_STATS
 #ifdef GC_GENERATIONAL
     , old ? "YOUNG" : "OLD"
 #endif // GC_GENERATIONAL

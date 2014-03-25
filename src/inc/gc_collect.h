@@ -50,4 +50,14 @@ GC_gen_promote (struct GC_region * region);
 void
 GC_region_rebase (struct GC_region * region, void * old_base, size_t old_size);
 
+// Replaces all capabilities in the interval [start, end] that have a base B
+// in the interval [old_base, old_base+old_size] with a new capability whose
+// base is B-old_base+new_base.
+void
+GC_rebase (void * start,
+           void * end,
+           void * old_base,
+           size_t old_size,
+           void * new_base);
+
 #endif // GC_COLLECT_H_HEADER

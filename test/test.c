@@ -13,13 +13,19 @@
 
 void
 collection_test (void);
+void
+rebase_test (void);
+void
+grow_test (void);
 
 int
 main (int argc, char **argv)
 {
   printf("test: compiled %s\n",
          __TIME__ " " __DATE__);
+  //rebase_test();
   collection_test();
+  //grow_test();
   return 0;
 }
 
@@ -35,11 +41,44 @@ typedef struct node_tag
 } node;
 
 void
+grow_test (void)
+{
+  GC_init();
+  GC_debug_print_region_stats(GC_state.thread_local_region);
+  GC_grow(&GC_state.thread_local_region, 0x3000);
+  GC_debug_print_region_stats(GC_state.thread_local_region);
+}
+
+void
+rebase_test (void)
+{
+  GC_cap_ptr cap = GC_cheri_ptr((void*)0x1234, 0x5678);
+  GC_PRINT_CAP(cap);
+  GC_cap_ptr cap2[100];
+  int i;
+  for (i=0; i<100; i++)
+    cap2[i] = cap;
+  
+  void * old_base = (void*) 0x1000;
+  size_t old_size = 0xABC;
+  void * new_base = (void*) 0x9001;
+  
+  GC_init();
+  void * stack_top = NULL;
+  GC_GET_STACK_PTR(stack_top);
+  GC_assert(stack_top <= GC_state.stack_bottom);
+  GC_rebase(stack_top, GC_state.stack_bottom,
+            old_base, old_size, new_base);
+  
+  GC_PRINT_CAP(cap);
+}
+
+void
 collection_test (void)
 {
   #define NALLOC    0x1000
   #define NSTORE    0x100
-  #define NBYTES    0x100
+  #define NBYTES    4999
   int i;
   GC_cap_ptr arr[NSTORE];
   GC_init();

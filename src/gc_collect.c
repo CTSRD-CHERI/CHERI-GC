@@ -28,7 +28,7 @@ GC_collect_region (struct GC_region * region)
 #endif // GC_GENERATIONAL
   {
     GC_vdbgf("region is old, collecting proper...");
-    size_t old_size =
+    size_t old_used =
       GC_cheri_getbase(region->free) - GC_cheri_getbase(region->tospace);
     
     GC_cap_ptr tmp = region->fromspace;
@@ -40,13 +40,16 @@ GC_collect_region (struct GC_region * region)
     
     GC_copy_region(region, 0);
 
-    size_t new_size =
+    size_t new_used =
       GC_cheri_getbase(region->free) - GC_cheri_getbase(region->tospace);
     
-    GC_dbgf("old_size=%d  new_size=%d  freed=%d",
-        (int) old_size,
-        (int) new_size,
-        (int) (old_size - new_size));
+    size_t freed = old_used - new_used;
+    
+    GC_dbgf(
+      "(old) generation  old_used=%llu%s  new_used=%llu%s  freed=%llu%s",
+      GC_MEM_PRETTY((GC_ULL) old_used), GC_MEM_PRETTY_UNIT((GC_ULL) old_used),
+      GC_MEM_PRETTY((GC_ULL) new_used), GC_MEM_PRETTY_UNIT((GC_ULL) new_used),
+      GC_MEM_PRETTY((GC_ULL) freed), GC_MEM_PRETTY_UNIT((GC_ULL) freed));
   }
 }
 
@@ -54,11 +57,6 @@ void
 GC_copy_region (struct GC_region * region,
                 int is_generational)
 { 
-  GC_cap_ptr cap_regs_misaligned[sizeof(GC_cap_ptr)*GC_NUM_CAP_REGS+32];
-  GC_cap_ptr * cap_regs = cap_regs_misaligned;
-  
-  // CSC instruction needs 32-byte aligned destination address.
-  cap_regs = GC_ALIGN_32(cap_regs, GC_cap_ptr *);  
   GC_PUSH_CAP_REGS(cap_regs);
 
   int i;
@@ -276,9 +274,93 @@ GC_region_rebase (struct GC_region * region, void * old_base, size_t old_size)
   // NOTE: could use the relevant permission bit for checking whether a capability
   // is within the previous YOUNG REGION or the previous OLD REGION or whatever.
   // Pass the permission bit as a hint to this function...
+  // TODO: make it deal with roots when we do old/young stuff (either that, or
+  // never grow a young region)
   
-  // Don't forget to rebase region->free.
+  void * new_base = GC_cheri_getbase(region->tospace);
+  size_t new_size = GC_cheri_getlen(region->tospace);
   
-  printf("rebase quitting\n");
-  exit(0);
+  GC_vdbgf(
+    "rebasing region\n"
+    "old_base = 0x%llx\n"
+    "old_size = %llu%s\n"
+    "old_end  = 0x%llx\n"
+    "new_base = 0x%llx\n"
+    "new_size = %llu%s\n"
+    "new_end  = 0x%llx\n",
+    (GC_ULL) old_base,
+    GC_MEM_PRETTY((GC_ULL) old_size), GC_MEM_PRETTY_UNIT((GC_ULL) old_size),
+    (GC_ULL) (old_base+old_size),
+    (GC_ULL) new_base,
+    GC_MEM_PRETTY((GC_ULL) new_size), GC_MEM_PRETTY_UNIT((GC_ULL) new_size),
+    (GC_ULL) (new_base+new_size)
+  );
+  
+  GC_PUSH_CAP_REGS(cap_regs);
+  
+  // TODO: make sure this stays on the stack!
+  GC_cap_ptr free_ptr_on_the_stack = region->free;
+  
+  void * stack_top = NULL;
+  GC_GET_STACK_PTR(stack_top);
+  
+  GC_assert(stack_top <= GC_state.stack_bottom);
+ 
+  GC_rebase(stack_top, GC_state.stack_bottom,
+            old_base, old_size, new_base);
+  GC_rebase(GC_state.static_bottom, GC_state.static_top,
+            old_base, old_size, new_base);
+  GC_rebase(new_base, new_base+new_size,
+            old_base, old_size, new_base);
+  
+  region->free = free_ptr_on_the_stack;
+  // fails due to aliasing?
+  /*
+  region->free =
+    GC_setbase(
+      region->free,
+      GC_cheri_getbase(region->free) - old_base + new_base);
+  */
+  
+  GC_RESTORE_CAP_REGS(cap_regs);
+}
+
+void
+GC_rebase (void * start,
+           void * end,
+           void * old_base,
+           size_t old_size,
+           void * new_base)
+{
+  GC_assert(start <= end);
+  
+  start = GC_ALIGN_32(start, void *);
+  end = GC_ALIGN_32_LOW(end, void *);
+  
+  // Rebasing is complicated by the fact that the interval [old_base, old_size]
+  // might overlap with the interval [new_base, new_size]. Due to aliasing, we
+  // need to make sure that we don't change the base twice.
+  // To ensure this, we set the forwarding address marker on each capability
+  // after we change the base the first time, and then we unset all of them.
+  
+  GC_cap_ptr * p;
+  for (p = (GC_cap_ptr *) start; ((uintptr_t) p) < ((uintptr_t) end); p++)
+  {
+    if (GC_cheri_gettag(*p) && !GC_IS_FORWARDING_ADDRESS(*p))
+    {
+      void * base = GC_cheri_getbase(*p);
+      if ((base >= old_base) && (base < (old_base+old_size)))
+      {
+        *p = GC_setbase(*p, base-old_base+new_base);
+        *p = GC_MAKE_FORWARDING_ADDRESS(*p);
+      }
+    }
+  }
+  for (p = (GC_cap_ptr *) start; ((uintptr_t) p) < ((uintptr_t) end); p++)
+  {    
+    if (GC_cheri_gettag(*p) && GC_IS_FORWARDING_ADDRESS(*p))
+    {
+      *p = GC_STRIP_FORWARDING(*p);
+    }
+  }
 }

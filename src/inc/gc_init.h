@@ -8,7 +8,7 @@ struct GC_region
 {
   // Note: gc_collect assumes tospace and fromspace are 32-bit aligned.
   __capability void * tospace, * fromspace, * free, ** scan;
-  int num_collections; // debugging/stats
+  int num_collections, num_allocations; // debugging/stats
 #ifdef GC_GENERATIONAL
   struct GC_region * older_region; // only used if this one is young
 #endif // GC_GENERATIONAL
