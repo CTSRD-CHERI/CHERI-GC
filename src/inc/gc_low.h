@@ -25,6 +25,12 @@ typedef __capability void * GC_cap_ptr;
 #define     GC_cheri_getreg   cheri_getreg
 #define     GC_cheri_setreg   cheri_setreg
 
+
+// Sets the base and length of a capability while preserving its permissions
+// TODO: preserve other things
+#define     GC_setbaselen(cap,new_base,new_len) \
+  GC_cheri_andperm(GC_cheri_ptr((new_base),(new_len)), GC_cheri_getperm((cap)))
+
 // also declared in gc.h
 // the void* cast of GC_INVALID_PTR must be NULL
 #define     GC_INVALID_PTR    cheri_zerocap()
@@ -44,7 +50,7 @@ typedef __capability void * GC_cap_ptr;
   ( GC_cheri_andperm((cap), ~GC_PERM_FORWARDING) )
 
 #define GC_STRIP_FORWARDING(cap) \
-  ( GC_cheri_ptr(GC_cheri_getbase((cap)), GC_cheri_getlen((cap))) )
+  ( GC_orperm((cap), GC_PERM_FORWARDING) )
 
 // TODO: use a *custom* perm and ensure it's *always* set for non-forwarding
 // addresses (even when we pass caps around and make new ones...)

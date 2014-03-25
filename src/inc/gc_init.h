@@ -6,6 +6,7 @@
 
 struct GC_region
 {
+  // Note: gc_collect assumes tospace and fromspace are 32-bit aligned.
   __capability void * tospace, * fromspace, * free, ** scan;
   int num_collections; // debugging/stats
 #ifdef GC_GENERATIONAL

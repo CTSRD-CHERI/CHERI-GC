@@ -182,49 +182,78 @@ GC_grow (struct GC_region * region, size_t hint)
   // WARNING: we always round *up* to the nearest multiple of 32 bits to avoid
   // alignment issues.
   
-#ifdef GC_GENERATIONAL
-  // only allocate 2x as much if we need the fromspace.
-  size_t GC_mult = GC_is_young(region) ? 1 : 2;
-#else // GC_GENERATIONAL
-#define GC_mult 2
-#endif // GC_GENERATIONAL
-
+  void * tospace_base = GC_cheri_getbase(region->tospace);
   size_t cur_size = GC_cheri_getlen(region->tospace);
   size_t new_size = GC_ALIGN_32(
-    GC_MIN(GC_MAX(2*GC_mult*cur_size, GC_mult*(cur_size+hint)),
-           GC_mult*region->max_size), size_t);
+    GC_MIN(GC_MAX(2*cur_size, (cur_size+hint)), region->max_size), size_t);
 
-  GC_dbgf("GC_grow(): hint=%llu, current=%llu, trying=%llu, max=%llu\n",
-    (GC_ULL) hint, (GC_ULL) cur_size, (GC_ULL) new_size,
-    (GC_ULL) region->max_size);
+  GC_dbgf("GC_grow(): hint=%llu%s, current=%llu%s, trying=%llu%s, max=%llu%s\n",
+    GC_MEM_PRETTY((GC_ULL) hint), GC_MEM_PRETTY_UNIT((GC_ULL) hint),
+    GC_MEM_PRETTY((GC_ULL) cur_size), GC_MEM_PRETTY_UNIT((GC_ULL) cur_size),
+    GC_MEM_PRETTY((GC_ULL) new_size), GC_MEM_PRETTY_UNIT((GC_ULL) new_size),
+    GC_MEM_PRETTY((GC_ULL) region->max_size),
+    GC_MEM_PRETTY_UNIT((GC_ULL) region->max_size));
   
-  void * tmp = GC_low_realloc(GC_cheri_getbase(region->tospace), new_size);
+  // This is now non-trivial.
+  // The reallocation could move the chunk of memory allocated to the tospace,
+  // making anything pointing to things inside it invalid.
+  
+  int fromspace_exists = GC_cheri_gettag(region->fromspace);
+  void * tmp;
+  if (fromspace_exists)
+  {
+    void * fromspace_base = GC_cheri_getbase(region->fromspace);
+    tmp = GC_low_realloc(fromspace_base, new_size);
+    if (!tmp && (new_size > (cur_size+hint)))
+    {
+      // doubling failed, try just allocating the size requested.
+      new_size = (cur_size+hint);
+      tmp = GC_low_realloc(fromspace_base, new_size);
+    }
+    if (!tmp) return 0;
+    region->fromspace = GC_setbaselen(region->fromspace, tmp, new_size);
+  }
+  
+  tmp = GC_low_realloc(tospace_base, new_size);
+  if (!tmp && (new_size > (cur_size+hint)))
+  {
+    // doubling failed, try just allocating the requested size.
+    new_size = (cur_size+hint);
+    // shorten the fromspace, if it was allocated above.
+    if (fromspace_exists)
+    {
+      tmp = GC_low_realloc(GC_cheri_getbase(region->fromspace), new_size);
+      if (!tmp)
+      {
+        // undo our changes
+        region->fromspace = GC_cheri_setlen(region->fromspace, cur_size);
+        return 0;
+      }
+      region->fromspace = GC_cheri_setlen(region->fromspace, new_size);
+    }
+    tmp = GC_low_realloc(tospace_base, new_size);
+  }
   if (!tmp)
   {
-    if (new_size > GC_mult*(cur_size+hint))
+    if (fromspace_exists)
     {
-      // doubling failed, try just allocating the size requested
-      new_size = GC_mult*(cur_size+hint);
-      tmp = GC_low_realloc(GC_cheri_getbase(region->tospace), new_size);
+      // undo our changes
+      region->fromspace = GC_cheri_setlen(region->fromspace, cur_size);
     }
+    return 0;
   }
-  if (!tmp) return 0;
-  
-  // NO! This is now non-trivial. We need to do a `self-copy' or `re-base' (for
-  // the tospace), where we examine the roots etc and do a copy. Better is to
-  // ask the OS for an immediately adjacent page so that we can keep the whole
-  // thing contiguous.
-  printf("GC_grow(): Warning, there's a bug here. Exiting.\n");
-  exit(0);
+  region->tospace = GC_setbaselen(region->tospace, tmp, new_size);
 
-  //region->tospace = tmp;
-#ifdef GC_GENERATIONAL
-  if (GC_mult == 2)
-#endif // GC_GENERATIONAL
+  GC_dbgf("GC_grow(): actually grew to %llu%s\n",
+    GC_MEM_PRETTY((GC_ULL) new_size), GC_MEM_PRETTY_UNIT((GC_ULL) new_size));
+  
+  if (GC_cheri_getbase(region->tospace) != tospace_base)
   {
-    //region->fromspace = tmp + new_size;
+    // Do the re-addressing.
+    printf("TO DO: `rebase' %llu%s %llu%s\n", GC_MEM_PRETTY((GC_ULL) cur_size), GC_MEM_PRETTY_UNIT((GC_ULL) cur_size), GC_MEM_PRETTY((GC_ULL) new_size), GC_MEM_PRETTY_UNIT((GC_ULL) new_size));
+    exit(0);
   }
   
-  return new_size >= hint;
+  return new_size >= (cur_size+hint);
 }
 #endif // GC_GROW_HEAP

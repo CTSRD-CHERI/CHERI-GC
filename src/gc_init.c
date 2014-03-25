@@ -72,18 +72,27 @@ GC_init_region
 #endif // GC_GENERATIONAL
 (struct GC_region * region, size_t semispace_size, size_t max_size)
 {
-  // round up size to the next 32-bit boundary
-  semispace_size = GC_ALIGN_32(semispace_size, size_t);
   // WARNING: if you change how this is allocated, you must change how GC_grow
   // works.
-  void * p = GC_low_malloc(2*semispace_size);
+  void * p = GC_low_malloc(semispace_size+32);
   if (p == NULL)
   {
-    GC_errf("malloc");
+    GC_errf("GC_low_malloc(%llu) (tospace)", (GC_ULL) (semispace_size+32));
     return 1;
   }
+  p = GC_ALIGN_32(p, void *);
   region->tospace = GC_cheri_ptr(p, semispace_size);
-  region->fromspace = GC_cheri_ptr(p+semispace_size, semispace_size);
+  
+  // GC_grow assumes this is a separate region of memory.
+  p = GC_low_malloc(semispace_size+32);
+  if (p == NULL)
+  {
+    GC_errf("GC_low_malloc(%llu) (fromspace)", (GC_ULL) (semispace_size+32));
+    return 1;
+  }
+  p = GC_ALIGN_32(p, void *);
+  region->fromspace = GC_cheri_ptr(p, semispace_size);
+  
   region->free = region->tospace;
   region->scan = NULL;
 #ifdef GC_GENERATIONAL
@@ -108,15 +117,13 @@ GC_init_young_region (struct GC_region * region,
                       struct GC_region * older_region,                      
                       size_t sz, size_t max_size)
 {
-  sz = GC_ALIGN_32(sz, size_t);
-  // WARNING: if you change how this is allocated, you must change how GC_grow
-  // works.
-  void * p = GC_low_malloc(sz);
+  void * p = GC_low_malloc(sz+32);
   if (p == NULL)
   {
-    GC_errf("malloc");
+    GC_errf("GC_low_malloc");
     return 1;
   }
+  p = GC_ALIGN_32(p, void *);
   region->tospace = GC_SET_YOUNG(GC_cheri_ptr(p, sz));
 
   GC_CHOOSE_OY(
@@ -124,7 +131,7 @@ GC_init_young_region (struct GC_region * region,
     region->tospace = GC_SET_EPHEMERAL(region->tospace)   // GC_OY_EPHEMERAL
   );
   
-  region->fromspace = GC_cheri_ptr(NULL, 0);
+  region->fromspace = GC_INVALID_PTR;
   region->free = region->tospace;
   region->scan = NULL;
   region->older_region = older_region;
