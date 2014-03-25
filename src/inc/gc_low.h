@@ -250,6 +250,62 @@ GC_orperm (GC_cap_ptr cap, GC_ULL perm);
     ((uintptr_t) (ptr)) < ( ((uintptr_t) GC_cheri_getbase((cap))) \
                           + (uintptr_t) GC_cheri_getlen((cap)) ) \
   )
+  
+// This information is from version 1.8 of the CHERI spec:
+// We ignore:
+//  $c0 because it spans the entire address space
+//  $c1 - $c2 because they are caller-save
+//  $c3 - $c10 because they are used to pass arguments
+//  $c11 - $c16 because they are also caller-save
+//  $c27 - $c31 because they are for kernel use 
+// We therefore don't ignore:
+//  $c17 - $c24 because they are callee-save
+//  $c25
+//  $c26 (IDC)
+
+// This information is from version 1.5 of the CHERI spec:
+// We ignore:
+//  $c0 because it spans the entire address space
+//  $c1 - $c4 because they are used to pass arguments and can be treated as
+//            clobbered
+//  $c5 - $c15, $c15 - $c23 because they are caller-save
+//  $c27 - $c31 because they are for kernel use 
+// We therefore don't ignore:
+//  $c16 - $c23 because they are callee-save
+//  $c24 - $c26 because whether they can be ignored is unknown
+
+// So to be conservative we save $c16 - $c26.
+#define GC_NUM_CAP_REGS   11
+// Make sure buf is 32-bit aligned
+#define GC_PUSH_CAP_REGS(buf) \
+  do { \
+    GC_PUSH_CAP_REG(16, &buf[0]); \
+    GC_PUSH_CAP_REG(17, &buf[1]); \
+    GC_PUSH_CAP_REG(18, &buf[2]); \
+    GC_PUSH_CAP_REG(19, &buf[3]); \
+    GC_PUSH_CAP_REG(20, &buf[4]); \
+    GC_PUSH_CAP_REG(21, &buf[5]); \
+    GC_PUSH_CAP_REG(22, &buf[6]); \
+    GC_PUSH_CAP_REG(23, &buf[7]); \
+    GC_PUSH_CAP_REG(24, &buf[8]); \
+    GC_PUSH_CAP_REG(25, &buf[9]); \
+    GC_PUSH_CAP_REG(26, &buf[10]); \
+  } while (0)
+
+#define GC_RESTORE_CAP_REGS(buf) \
+  do { \
+    GC_RESTORE_CAP_REG(16, &buf[0]); \
+    GC_RESTORE_CAP_REG(17, &buf[1]); \
+    GC_RESTORE_CAP_REG(18, &buf[2]); \
+    GC_RESTORE_CAP_REG(19, &buf[3]); \
+    GC_RESTORE_CAP_REG(20, &buf[4]); \
+    GC_RESTORE_CAP_REG(21, &buf[5]); \
+    GC_RESTORE_CAP_REG(22, &buf[6]); \
+    GC_RESTORE_CAP_REG(23, &buf[7]); \
+    GC_RESTORE_CAP_REG(24, &buf[8]); \
+    GC_RESTORE_CAP_REG(25, &buf[9]); \
+    GC_RESTORE_CAP_REG(26, &buf[10]); \
+  } while (0)
 
 void *
 GC_low_malloc (size_t sz);

@@ -1,6 +1,7 @@
 #include "gc_low.h"
 #include "gc_debug.h"
 #include "gc_init.h"
+#include "gc_collect.h"
 
 #include <stdlib.h>
 #include <string.h>
@@ -244,14 +245,17 @@ GC_grow (struct GC_region * region, size_t hint)
   }
   region->tospace = GC_setbaselen(region->tospace, tmp, new_size);
 
-  GC_dbgf("GC_grow(): actually grew to %llu%s\n",
-    GC_MEM_PRETTY((GC_ULL) new_size), GC_MEM_PRETTY_UNIT((GC_ULL) new_size));
+  GC_dbgf("GC_grow(): actually grew to %llu%s (from %llu%s)\n",
+    GC_MEM_PRETTY((GC_ULL) new_size), GC_MEM_PRETTY_UNIT((GC_ULL) new_size),
+    GC_MEM_PRETTY((GC_ULL) cur_size), GC_MEM_PRETTY_UNIT((GC_ULL) cur_size));
   
   if (GC_cheri_getbase(region->tospace) != tospace_base)
   {
     // Do the re-addressing.
-    printf("TO DO: `rebase' %llu%s %llu%s\n", GC_MEM_PRETTY((GC_ULL) cur_size), GC_MEM_PRETTY_UNIT((GC_ULL) cur_size), GC_MEM_PRETTY((GC_ULL) new_size), GC_MEM_PRETTY_UNIT((GC_ULL) new_size));
-    exit(0);
+    // If we're about to collect anyway, we could do this on-the-fly in the
+    // collection routines, but for code simplicity and flexibility we don't
+    // bother with that and just do the scan now.
+    GC_region_rebase(region, tospace_base, cur_size);
   }
   
   return new_size >= (cur_size+hint);

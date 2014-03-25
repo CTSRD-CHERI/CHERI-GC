@@ -54,59 +54,25 @@ void
 GC_copy_region (struct GC_region * region,
                 int is_generational)
 { 
-  // This information is from version 1.8 of the CHERI spec:
-  // We ignore:
-  //  $c0 because it spans the entire address space
-  //  $c1 - $c2 because they are caller-save
-  //  $c3 - $c10 because they are used to pass arguments
-  //  $c11 - $c16 because they are also caller-save
-  //  $c27 - $c31 because they are for kernel use 
-  // We therefore don't ignore:
-  //  $c17 - $c24 because they are callee-save
-  //  $c25
-  //  $c26 (IDC)
-
-  // This information is from version 1.5 of the CHERI spec:
-  // We ignore:
-  //  $c0 because it spans the entire address space
-  //  $c1 - $c4 because they are used to pass arguments and can be treated as
-  //            clobbered
-  //  $c5 - $c15, $c15 - $c23 because they are caller-save
-  //  $c27 - $c31 because they are for kernel use 
-  // We therefore don't ignore:
-  //  $c16 - $c23 because they are callee-save
-  //  $c24 - $c26 because whether they can be ignored is unknown
-  
-  // So to be conservative we save $c16 - $c26.
-  
-  int num_regs = 11;
-  GC_cap_ptr cap_regs_misaligned[sizeof(GC_cap_ptr)*num_regs+32];
+  GC_cap_ptr cap_regs_misaligned[sizeof(GC_cap_ptr)*GC_NUM_CAP_REGS+32];
   GC_cap_ptr * cap_regs = cap_regs_misaligned;
   
   // CSC instruction needs 32-byte aligned destination address.
-  cap_regs = GC_ALIGN_32(cap_regs, GC_cap_ptr *);
-  
-  GC_PUSH_CAP_REG(16, &cap_regs[0]);
-  GC_PUSH_CAP_REG(17, &cap_regs[1]);
-  GC_PUSH_CAP_REG(18, &cap_regs[2]);
-  GC_PUSH_CAP_REG(19, &cap_regs[3]);
-  GC_PUSH_CAP_REG(20, &cap_regs[4]);
-  GC_PUSH_CAP_REG(21, &cap_regs[5]);
-  GC_PUSH_CAP_REG(22, &cap_regs[6]);
-  GC_PUSH_CAP_REG(23, &cap_regs[7]);
-  GC_PUSH_CAP_REG(24, &cap_regs[8]);
-  GC_PUSH_CAP_REG(25, &cap_regs[9]);
-  GC_PUSH_CAP_REG(26, &cap_regs[10]);
+  cap_regs = GC_ALIGN_32(cap_regs, GC_cap_ptr *);  
+  GC_PUSH_CAP_REGS(cap_regs);
 
   int i;
-  for (i=0; i<num_regs; i++)
+  for (i=0; i<GC_NUM_CAP_REGS; i++)
+  {
     if (GC_cheri_gettag(cap_regs[i]))
-      GC_dbgf("cap_reg root [%d]: t=%d, b=0x%llx, l=0x%llx",
+    {
+      GC_vdbgf("cap_reg root [%d]: t=1, b=0x%llx, l=0x%llx",
         i,
-        (int) GC_cheri_gettag(cap_regs[i]),
         (GC_ULL) GC_cheri_getbase(cap_regs[i]),
         (GC_ULL) GC_cheri_getlen(cap_regs[i])
-    );
+      );
+    }
+  }
   
   void * stack_top = NULL;
   GC_GET_STACK_PTR(stack_top);
@@ -119,26 +85,20 @@ GC_copy_region (struct GC_region * region,
     region, GC_state.static_bottom, GC_state.static_top, is_generational);
   GC_copy_children(region, is_generational);
   
-  GC_RESTORE_CAP_REG(16, &cap_regs[0]);
-  GC_RESTORE_CAP_REG(17, &cap_regs[1]);
-  GC_RESTORE_CAP_REG(18, &cap_regs[2]);
-  GC_RESTORE_CAP_REG(19, &cap_regs[3]);
-  GC_RESTORE_CAP_REG(20, &cap_regs[4]);
-  GC_RESTORE_CAP_REG(21, &cap_regs[5]);
-  GC_RESTORE_CAP_REG(22, &cap_regs[6]);
-  GC_RESTORE_CAP_REG(23, &cap_regs[7]);
-  GC_RESTORE_CAP_REG(24, &cap_regs[8]);
-  GC_RESTORE_CAP_REG(25, &cap_regs[9]);
-  GC_RESTORE_CAP_REG(26, &cap_regs[10]);
+  GC_RESTORE_CAP_REGS(cap_regs);
 
-  for (i=0; i<num_regs; i++)
+  for (i=0; i<GC_NUM_CAP_REGS; i++)
+  {
     if (GC_cheri_gettag(cap_regs[i]))
-      GC_dbgf("cap_reg root [%d]: t=%d, b=0x%llx, l=0x%llx",
+    {
+      GC_vdbgf("cap_reg restored root [%d]: t=1, b=0x%llx, l=0x%llx",
         i,
-        (int) GC_cheri_gettag(cap_regs[i]),
         (GC_ULL) GC_cheri_getbase(cap_regs[i]),
         (GC_ULL) GC_cheri_getlen(cap_regs[i])
-    );
+      );
+    }
+  }
+  
 }
 
 GC_cap_ptr
@@ -230,7 +190,8 @@ GC_copy_roots (struct GC_region * region,
 }
 
 void
-GC_copy_children (struct GC_region * region, int is_generational)
+GC_copy_children (struct GC_region * region,
+                  int is_generational)
 {
   for (;
        ((uintptr_t) region->scan)
@@ -295,3 +256,10 @@ GC_gen_promote (struct GC_region * region)
   region->free = region->tospace;
 }
 #endif // GC_GENERATIONAL
+
+void
+GC_region_rebase (struct GC_region * region, void * old_base, size_t old_size)
+{
+  printf("rebase quitting\n");
+  exit(0);
+}

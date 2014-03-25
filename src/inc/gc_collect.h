@@ -41,4 +41,13 @@ void
 GC_gen_promote (struct GC_region * region);
 #endif // GC_GENERATIONAL
 
+// Replaces all capabilities in region->tospace, on the stack, in global areas
+// and in registers that have a base B in the interval
+// [old_base, old_base+old_size] with a new capability whose base is
+// B-old_base+region->tospace.
+// TODO: make it deal with roots when we do old/young stuff (either that, or
+// never grow a young region)
+void
+GC_region_rebase (struct GC_region * region, void * old_base, size_t old_size);
+
 #endif // GC_COLLECT_H_HEADER
