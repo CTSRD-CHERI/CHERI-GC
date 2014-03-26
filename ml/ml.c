@@ -22,7 +22,8 @@ int main ()
   t = lex();
   while (t.type != TKEOF)
   {
-    printf("[%d] %s\n", t.type, t.str);
+    printf("[%d] %s\n", t.type, (char*) t.str);
+    t = lex();
   }
   
   return 0;

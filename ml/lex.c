@@ -66,7 +66,6 @@ lex (void)
   
 #define LEX_APPEND_STR(c) \
   do { \
-    printf("character: %c\n", c); \
     t.len++; \
     GC_CAP char * tmp = GC_malloc(t.len); \
     if (!(char *) tmp) \
@@ -76,13 +75,11 @@ lex (void)
     } \
     memcpy((char *) tmp, (char *) t.str, t.len-1); \
     t.str = tmp; \
-    printf("STR: %.*s\n", (int)(t.len-1), t.str); \
     ((char*)t.str)[t.len-1] = (c); \
   } while (0)
 
 #define LEX_INIT_STR(c) \
   do { \
-    printf("init character: %c\n", c); \
     t.len = 1; \
     t.str = GC_malloc(1); \
     if (!(char *) t.str) \
@@ -91,7 +88,6 @@ lex (void)
       exit(1); \
     } \
     ((char*)t.str)[0] = (c); \
-    printf("initSTR: %.*s\n", (int)(t.len), t.str); \
   } while (0)
 
   int state = 0;
@@ -102,10 +98,32 @@ lex (void)
     {
       case 0:
       {
-        if (LEX_IS_SYM(c)) {t.type = TKSYM; LEX_INIT_STR(c); state = 1;}
-        else if (LEX_IS_LETTER(c)) {t.type = TKWORD; LEX_INIT_STR(c); state = 2;}
-        else if (LEX_IS_DIGIT(c)) {t.type = TKINT; LEX_INIT_STR(c); state = 3;}
-        else if (!LEX_IS_WSPC(c))
+        if (LEX_IS_SYM(c))
+        {
+          t.type = TKSYM;
+          LEX_INIT_STR(c);
+          lex_state.index++;
+          state = 1;
+        }
+        else if (LEX_IS_LETTER(c))
+        {
+          t.type = TKWORD;
+          LEX_INIT_STR(c);
+          lex_state.index++;
+          state = 2;
+        }
+        else if (LEX_IS_DIGIT(c))
+        {
+          t.type = TKINT;
+          LEX_INIT_STR(c);
+          lex_state.index++;
+          state = 3;
+        }
+        else if (LEX_IS_WSPC(c))
+        {
+          lex_state.index++;
+        }
+        else
         {
           fprintf(stderr, "lex error: unrecognized symbol: %c\n", c);
           exit(1);
@@ -117,28 +135,32 @@ lex (void)
         if (c == '>' || c == ':')
         {
           LEX_APPEND_STR(c);
+          lex_state.index++;
         }
         else state = 5;
+        break;
       }
       case 2:
       {
         if (LEX_IS_LETTER(c))
         {
           LEX_APPEND_STR(c);
+          lex_state.index++;
         }
         else state = 5;
+        break;
       }
       case 3:
       {
         if (LEX_IS_DIGIT(c))
         {
-          c += '0';
           LEX_APPEND_STR(c);
+          lex_state.index++;
         }
         else state = 5;
+        break;
       }
     }
-    lex_state.index++;
     if (state == 5) break;
   }
   
