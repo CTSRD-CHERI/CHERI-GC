@@ -25,7 +25,6 @@ typedef __capability void * GC_cap_ptr;
 #define     GC_cheri_getreg   cheri_getreg
 #define     GC_cheri_setreg   cheri_setreg
 
-
 // Sets the base and length of a capability while preserving its permissions
 // TODO: preserve other things
 #define     GC_setbaselen(cap,new_base,new_len) \
@@ -53,7 +52,9 @@ typedef __capability void * GC_cap_ptr;
   ( ! (((GC_ULL) GC_cheri_getperm((cap))) & GC_PERM_FORWARDING)  )
   
 #define GC_MAKE_FORWARDING_ADDRESS(cap) \
-  ( GC_cheri_andperm((cap), ~GC_PERM_FORWARDING) )
+  ( dbg((cap),#cap,__FILE__,__LINE__),GC_cheri_andperm((cap), ~GC_PERM_FORWARDING) )
+
+int dbg(GC_cap_ptr c,char*name,char*file,int line);
 
 #define GC_STRIP_FORWARDING(cap) \
   ( GC_orperm((cap), GC_PERM_FORWARDING) )

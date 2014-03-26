@@ -58,21 +58,24 @@ void GC_debug_print_cap (const char * name, GC_cap_ptr cap)
 }
 
 void
-GC_debug_print_region_stats(struct GC_region region)
+GC_debug_print_region_stats(struct GC_region * region)
 {
-  GC_ULL     from  = (GC_ULL) GC_cheri_getbase(region.fromspace),
-             to    = (GC_ULL) GC_cheri_getbase(region.tospace),
-             free  = (GC_ULL) GC_cheri_getbase(region.free),
-             scan  = (GC_ULL) region.scan,
+  int fromspace_exists = GC_cheri_gettag(region->fromspace);
+  GC_ULL     from  = (fromspace_exists ? 
+              (GC_ULL) GC_cheri_getbase(region->fromspace) : 0),
+             to    = (GC_ULL) GC_cheri_getbase(region->tospace),
+             free  = (GC_ULL) GC_cheri_getbase(region->free),
+             scan  = (GC_ULL) region->scan,
 #ifdef GC_GENERATIONAL
-             old   = (GC_ULL) region.older_region,
+             old   = (GC_ULL) region->older_region,
 #endif // GC_GENERATIONAL
-             lfrom = (GC_ULL) GC_cheri_getlen(region.fromspace),
-             lto   = (GC_ULL) GC_cheri_getlen(region.tospace),
-             lfree = (GC_ULL) GC_cheri_getlen(region.free)
+             lfrom = (fromspace_exists ?
+              (GC_ULL) GC_cheri_getlen(region->fromspace) : 0),
+             lto   = (GC_ULL) GC_cheri_getlen(region->tospace),
+             lfree = (GC_ULL) GC_cheri_getlen(region->free)
 #ifdef GC_COLLECT_STATS
-             , nalloc = (GC_ULL) region.num_allocations,
-             ncoll = (GC_ULL) region.num_collections
+             , nalloc = (GC_ULL) region->num_allocations,
+             ncoll = (GC_ULL) region->num_collections
 #endif // GC_COLLECT_STATS
              ;
   printf

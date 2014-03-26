@@ -44,9 +44,9 @@ void
 grow_test (void)
 {
   GC_init();
-  GC_debug_print_region_stats(GC_state.thread_local_region);
+  GC_debug_print_region_stats(&GC_state.thread_local_region);
   GC_grow(&GC_state.thread_local_region, 0x3000);
-  GC_debug_print_region_stats(GC_state.thread_local_region);
+  GC_debug_print_region_stats(&GC_state.thread_local_region);
 }
 
 void
@@ -88,7 +88,7 @@ collection_test (void)
     if (!(void*)arr[i%NSTORE])
       {printf("ERROR: oom %d\n", i);break;}
   }
-  GC_debug_print_region_stats(GC_state.thread_local_region);
+  GC_debug_print_region_stats(&GC_state.thread_local_region);
 }
 
 /*void

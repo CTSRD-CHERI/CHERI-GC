@@ -115,11 +115,18 @@ GC_copy_object (struct GC_region * region,
   // $c2 = *(cap.base + forwarding_address_offset) = *($c0.base + forwarding_address_field_location);
   GC_cap_ptr forwarding_address = GC_FORWARDING_CAP(cap);
   
-  unsigned tag = GC_cheri_gettag(forwarding_address); //0;
+  unsigned tag = GC_cheri_gettag(forwarding_address);
   if (tag)
-  {      
+  {
     if (GC_IS_FORWARDING_ADDRESS(forwarding_address))
     {
+      if (!GC_IN(GC_cheri_getbase(forwarding_address), region->tospace)){
+        GC_debug_print_region_stats(&GC_state.thread_local_region);
+        GC_debug_print_region_stats(&GC_state.old_generation);
+        printf("not in the tospace: 0x%llx, tospace: 0x%llx. loc=0x%llx\n",
+          (GC_ULL) GC_cheri_getbase(forwarding_address),
+          (GC_ULL) region->tospace,
+          (GC_ULL) GC_cheri_getbase(cap)); exit(0);}
       GC_assert(GC_IN(GC_cheri_getbase(forwarding_address), region->tospace));
       GC_debug_just_allocated(forwarding_address);
       return GC_STRIP_FORWARDING(forwarding_address);
@@ -255,6 +262,9 @@ GC_gen_promote (struct GC_region * region)
     return;
   }
   
+  GC_vdbgf("old generation ok, copying");
+  GC_debug_print_region_stats(region->older_region);
+  
   GC_cap_ptr old_from_space = region->older_region->fromspace;
   region->older_region->fromspace = region->tospace;
   
@@ -305,14 +315,14 @@ GC_region_rebase (struct GC_region * region, void * old_base, size_t old_size)
   GC_GET_STACK_PTR(stack_top);
   
   GC_assert(stack_top <= GC_state.stack_bottom);
- 
+  
   GC_rebase(stack_top, GC_state.stack_bottom,
             old_base, old_size, new_base);
   GC_rebase(GC_state.static_bottom, GC_state.static_top,
             old_base, old_size, new_base);
   GC_rebase(new_base, new_base+new_size,
-            old_base, old_size, new_base);
-  
+            old_base, old_size, new_base);  
+
   region->free = free_ptr_on_the_stack;
   // fails due to aliasing?
   /*
@@ -348,6 +358,10 @@ GC_rebase (void * start,
   {
     if (GC_cheri_gettag(*p) && !GC_IS_FORWARDING_ADDRESS(*p))
     {
+      if (GC_IN(p, GC_state_cap))
+      {
+        continue;
+      }
       void * base = GC_cheri_getbase(*p);
       if ((base >= old_base) && (base < (old_base+old_size)))
       {
@@ -358,9 +372,15 @@ GC_rebase (void * start,
   }
   for (p = (GC_cap_ptr *) start; ((uintptr_t) p) < ((uintptr_t) end); p++)
   {    
+    if (GC_IN(p, GC_state_cap))
+    {
+      continue;
+    }
     if (GC_cheri_gettag(*p) && GC_IS_FORWARDING_ADDRESS(*p))
     {
       *p = GC_STRIP_FORWARDING(*p);
     }
   }
 }
+
+int dbg(GC_cap_ptr c,char*name,char*file,int line){printf("***made forwarding*** %s 0x%llx %s:%d\n",name,(GC_ULL)c,file,line);return 0;}

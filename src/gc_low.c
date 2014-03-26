@@ -201,7 +201,12 @@ GC_grow (struct GC_region * region, size_t hint)
   // The reallocation could move the chunk of memory allocated to the tospace,
   // making anything pointing to things inside it invalid.
   
-  int fromspace_exists = GC_cheri_gettag(region->fromspace);
+  int fromspace_exists = 
+#ifdef GC_GENERATIONAL
+    !GC_is_young(region) &&
+#endif // GC_GENERATIONAL
+    GC_cheri_gettag(region->fromspace);
+  
   void * tmp;
   if (fromspace_exists)
   {

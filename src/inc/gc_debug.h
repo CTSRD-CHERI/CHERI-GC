@@ -76,7 +76,7 @@ GC_errf2 (const char * file, int line, const char * format, ...);
   } while (0)
 
 void
-GC_debug_print_region_stats (struct GC_region region);
+GC_debug_print_region_stats (struct GC_region * region);
 
 void
 GC_debug_print_stack_stats (void);
