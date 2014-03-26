@@ -2,6 +2,7 @@
 #include "gc_debug.h"
 #include "gc_low.h"
 #include "gc_config.h"
+#include "gc_time.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -103,6 +104,9 @@ GC_init_region
 #ifdef GC_GROW_HEAP
   region->max_size = max_size;
 #endif // GC_GROW_HEAP
+#ifdef GC_TIME
+  region->time_spent_in_collector = 0;
+#endif // GC_TIME
   return 0;
 }
 
@@ -143,6 +147,9 @@ GC_init_young_region (struct GC_region * region,
 #ifdef GC_GROW_HEAP
   region->max_size = max_size;
 #endif // GC_GROW_HEAP
+#ifdef GC_TIME
+  region->time_spent_in_collector = 0;
+#endif // GC_TIME
   return 0;
 }
 

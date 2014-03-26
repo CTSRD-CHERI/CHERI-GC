@@ -192,7 +192,7 @@ GC_grow (struct GC_region * region, size_t hint)
   size_t new_size = GC_ALIGN_32(
     GC_MIN(GC_MAX(2*cur_size, (cur_size+hint)), region->max_size), size_t);
 
-  GC_dbgf("GC_grow(): hint=%llu%s, current=%llu%s, trying=%llu%s, max=%llu%s",
+  GC_vdbgf("GC_grow(): hint=%llu%s, current=%llu%s, trying=%llu%s, max=%llu%s",
     GC_MEM_PRETTY((GC_ULL) hint), GC_MEM_PRETTY_UNIT((GC_ULL) hint),
     GC_MEM_PRETTY((GC_ULL) cur_size), GC_MEM_PRETTY_UNIT((GC_ULL) cur_size),
     GC_MEM_PRETTY((GC_ULL) new_size), GC_MEM_PRETTY_UNIT((GC_ULL) new_size),
@@ -258,7 +258,7 @@ GC_grow (struct GC_region * region, size_t hint)
     GC_cheri_getbase(region->free),
     new_size - cur_size + GC_cheri_getlen(region->free));
   
-  GC_dbgf("GC_grow(): actually grew to %llu%s (from %llu%s)",
+  GC_vdbgf("GC_grow(): actually grew to %llu%s (from %llu%s)",
     GC_MEM_PRETTY((GC_ULL) new_size), GC_MEM_PRETTY_UNIT((GC_ULL) new_size),
     GC_MEM_PRETTY((GC_ULL) cur_size), GC_MEM_PRETTY_UNIT((GC_ULL) cur_size));
   

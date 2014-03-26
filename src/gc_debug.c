@@ -1,5 +1,6 @@
 #include "gc_debug.h"
 #include "gc_low.h"
+#include "gc_time.h"
 
 #include <stdarg.h>
 #include <stdio.h>
@@ -80,6 +81,9 @@ GC_debug_print_region_stats(struct GC_region * region)
              , nalloc = (GC_ULL) region->num_allocations,
              ncoll = (GC_ULL) region->num_collections
 #endif // GC_COLLECT_STATS
+#ifdef GC_TIME
+             , tcoll = (GC_ULL) region->time_spent_in_collector
+#endif // GC_TIME
              ;
   printf
   (
@@ -105,6 +109,9 @@ GC_debug_print_region_stats(struct GC_region * region)
     "allocations : %llu (%llu%s)\n"
     "collections : %llu (%llu%s)\n"
 #endif // GC_COLLECT_STATS
+#ifdef GC_TIME
+    "time spent in collector : %llu%s\n"
+#endif // GC_TIME
 #ifdef GC_GENERATIONAL
     "This region stores %s objects.\n"
 #endif // GC_GENERATIONAL
@@ -126,6 +133,9 @@ GC_debug_print_region_stats(struct GC_region * region)
     , nalloc, GC_NUM_PRETTY(nalloc), GC_NUM_PRETTY_UNIT(nalloc),
     ncoll, GC_NUM_PRETTY(ncoll), GC_NUM_PRETTY_UNIT(ncoll)
 #endif // GC_COLLECT_STATS
+#ifdef GC_TIME
+    , GC_TIME_PRETTY(tcoll), GC_TIME_PRETTY_UNIT(tcoll)
+#endif // GC_TIME
 #ifdef GC_GENERATIONAL
     , old ? "YOUNG" : "OLD"
 #endif // GC_GENERATIONAL

@@ -76,19 +76,23 @@ rebase_test (void)
 void
 collection_test (void)
 {
-  #define NALLOC    100000      // 100,000 5k allocations
+  #define NALLOC    100000      // 100,000 5k allocations = 500,000 k = 500 MB
   #define NSTORE    50          // 50*5k = 250k stored
   #define NBYTES    5000
   int i;
   GC_cap_ptr arr[NSTORE];
   GC_init();
+  time_t start = time(NULL);
   for (i=0; i<NALLOC; i++)
   {
     arr[i%NSTORE] = GC_malloc(NBYTES);
     if (!(void*)arr[i%NSTORE])
       {printf("ERROR: oom %d\n", i);break;}
   }
+  time_t end = time(NULL);
   GC_debug_print_region_stats(&GC_state.thread_local_region);
+  GC_debug_print_region_stats(&GC_state.old_generation);
+  printf("total time: %d sec\n", (int) (end - start));
 }
 
 /*void

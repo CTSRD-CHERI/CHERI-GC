@@ -352,7 +352,7 @@ GC_cap_memset (GC_cap_ptr dest, int value);
 #define GC_MAX(x,y)   ((x)>(y)?(x):(y))
 
 #ifdef GC_GROW_HEAP
-#include "gc_init.h"
+struct GC_region;
 // Tries to grow the heap by at least `hint' bytes. If successful, returns
 // non-zero, otherwise returns zero.
 int

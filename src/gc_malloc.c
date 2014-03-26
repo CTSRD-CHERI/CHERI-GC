@@ -4,6 +4,7 @@
 #include "gc_low.h"
 #include "gc_config.h"
 #include "gc_collect.h"
+#include "gc_time.h"
 
 #include <stdlib.h>
 
@@ -13,12 +14,14 @@ GC_malloc (size_t sz)
   if (!GC_is_initialized()) GC_init();
   return GC_malloc_region(&GC_state.thread_local_region,
                           sz,
-                          GC_COLLECT_ON_ALLOCATION_FAILURE);
+                          GC_COLLECT_ON_ALLOCATION_FAILURE);  
 }
 
 __capability void *
 GC_malloc_region (struct GC_region * region, size_t sz, int collect_on_failure)
 {
+  GC_START_TIMING(GC_malloc_region_time);
+  
   if (sz < sizeof(GC_cap_ptr))
   {
     GC_vdbgf("sz 0x%llx to small; allocating at least 0x%llx bytes",
@@ -42,7 +45,20 @@ GC_malloc_region (struct GC_region * region, size_t sz, int collect_on_failure)
   {
     GC_vdbgf("GC_malloc_region(): collecting (young) heap (sz=0x%llx)",
       (GC_ULL) sz);
+    
+    GC_START_TIMING(GC_malloc_region_collect_time);
+    
     GC_collect_region(region);
+    
+    GC_STOP_TIMING(
+      GC_malloc_region_collect_time,
+      "GC_malloc_region collection");
+#ifdef GC_TIME
+    region->time_spent_in_collector = 
+      GC_time_add(region->time_spent_in_collector,
+                  GC_malloc_region_collect_time);
+#endif // GC_TIME
+    
     too_small = sz > (size_t) cheri_getlen(region->free);
     GC_vdbgf("GC_malloc_region(): collecting complete. Too small? %d",
       too_small);
@@ -79,6 +95,8 @@ GC_malloc_region (struct GC_region * region, size_t sz, int collect_on_failure)
   
   region->num_allocations++;
   
+  //GC_STOP_TIMING(GC_malloc_region_time, "GC_malloc_region(%llu)", (GC_ULL) sz);
+
   return ret;
   
 }

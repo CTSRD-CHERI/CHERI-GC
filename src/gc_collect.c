@@ -3,13 +3,14 @@
 #include "gc_low.h"
 #include "gc_debug.h"
 #include "gc_config.h"
+#include "gc_time.h"
 
 #include <stdint.h>
 #include <stddef.h>
 
 void
 GC_collect (void)
-{
+{  
   if (!GC_is_initialized()) GC_init();
   GC_collect_region(&GC_state.thread_local_region);
 }
@@ -17,13 +18,29 @@ GC_collect (void)
 void
 GC_collect_region (struct GC_region * region)
 {
-  region->num_collections++; // debugging/stats
+  GC_START_TIMING(GC_collect_region_time);
 
+  region->num_collections++; // debugging/stats
+  
+  size_t freed;
+  int promoted = 0;
 #ifdef GC_GENERATIONAL
   if (GC_is_young(region))
   {
     GC_vdbgf("region is young, promoting objects...");
+    size_t old_used =
+      GC_cheri_getbase(region->free) - GC_cheri_getbase(region->tospace);
+    
     GC_gen_promote(region);
+    
+    size_t new_used =
+      GC_cheri_getbase(region->free) - GC_cheri_getbase(region->tospace);
+    
+    // Current policy dictates that GC_gen_promote frees everything.
+    GC_assert( new_used == 0 );
+    
+    freed = old_used - new_used;
+    promoted = 1;
   }
   else
 #endif // GC_GENERATIONAL
@@ -44,14 +61,21 @@ GC_collect_region (struct GC_region * region)
     size_t new_used =
       GC_cheri_getbase(region->free) - GC_cheri_getbase(region->tospace);
     
-    size_t freed = old_used - new_used;
+    freed = old_used - new_used;
     
-    GC_dbgf(
+    GC_vdbgf(
       "(old) generation  old_used=%llu%s  new_used=%llu%s  freed=%llu%s",
       GC_MEM_PRETTY((GC_ULL) old_used), GC_MEM_PRETTY_UNIT((GC_ULL) old_used),
       GC_MEM_PRETTY((GC_ULL) new_used), GC_MEM_PRETTY_UNIT((GC_ULL) new_used),
       GC_MEM_PRETTY((GC_ULL) freed), GC_MEM_PRETTY_UNIT((GC_ULL) freed));
   }
+
+  GC_STOP_TIMING(
+    GC_collect_region_time,
+    "GC_collect_region %s %llu%s,",
+    promoted ? "freed   " : "promoted",
+    GC_MEM_PRETTY((GC_ULL) freed), GC_MEM_PRETTY_UNIT((GC_ULL) freed));
+  
 }
 
 void
@@ -244,6 +268,7 @@ GC_copy_children (struct GC_region * region,
 void
 GC_gen_promote (struct GC_region * region)
 {
+  
   // Conservative estimate. Usually requires the old generation to have at least
   // as much space as the entire young generation (because GC_gen_promote is
   // usually called when the young generation is almost full).
@@ -252,25 +277,13 @@ GC_gen_promote (struct GC_region * region)
   int too_small = GC_cheri_getlen(region->older_region->free) < expected_sz;
   
 #ifdef GC_GROW_OLD_HEAP
+  // Grow the heap if we have to.
   if (too_small)
   {
-    GC_dbgf("old generation too small, trying to grow");
+    GC_vdbgf("old generation too small, trying to grow");
     too_small = !GC_grow(region->older_region, expected_sz);
   }
 #endif // GC_GROW_OLD_HEAP
-  if (too_small)
-  {
-    GC_dbgf("old generation too small, triggering major collection");
-    
-    // CAN'T DO THIS!!! young generation may have roots!
-    // TODO: if copying isn't possible, quit! We can't just collect the older generation!
-    //       Otherwise, collect when the generation hits a certain size (say 75%, or len(oldregion->tospace)-len(youngregion->tospace), because the next collection might fail to copy...i.e. *always* keep at least len(region->tospace) many bytes free...
-    GC_fatalf("// CAN'T DO THIS!!! young generation may have roots!");
-    
-    GC_collect_region(region->older_region);
-    too_small = GC_cheri_getlen(region->older_region->free) < expected_sz;
-  }
-  
   if (too_small)
   {
     GC_errf("old generation out of memory");
@@ -297,11 +310,72 @@ GC_gen_promote (struct GC_region * region)
   region->older_region->fromspace = old_from_space;
   region->free = region->tospace;
   
-  ptrdiff_t sz = GC_cheri_getbase(region->older_region->free) - oldfree;
+  void * newfree = GC_cheri_getbase(region->older_region->free);
+  size_t freelen = GC_cheri_getlen(region->older_region->free);
+  ptrdiff_t szdff = newfree - oldfree;
   
   GC_vdbgf("copied %llu%s (%llu bytes less than expected) into the old generation",
     GC_MEM_PRETTY((GC_ULL) sz), GC_MEM_PRETTY_UNIT((GC_ULL) sz),
     (GC_ULL) (expected_sz - sz));
+  
+  int residency = 
+    (int) (100.0 * (1.0-((double) freelen) /
+      ((double) GC_cheri_getlen(region->older_region->tospace))));
+  
+  GC_vdbgf(
+    "total heap residency after promote: %llu kbytes (%llu%s, %d%%)\n",
+    ((GC_ULL) freelen) / 1000,
+    GC_MEM_PRETTY((GC_ULL) freelen), GC_MEM_PRETTY_UNIT((GC_ULL) freelen),
+    residency
+  );
+    
+  // Collect (and possibly grow) the heap if we've hit the high watermark. This
+  // should usually be set so that if the collection and/or growth succeeds, the
+  // next promotion cannot possibly fail. That is, we should always have at
+  // least enough space to promote the young generation.
+  too_small = GC_cheri_getlen(region->older_region->free) <
+              ((size_t) ((1.0-GC_OLD_GENERATION_HIGH_WATERMARK) *
+                (double)GC_cheri_getlen(region->older_region->tospace)));
+  if (too_small)
+  {
+    GC_vdbgf(
+      "old generation hit high watermark (residency=%d%%, watermark=%d%%),"
+      " triggering major collection",
+      residency,
+      (int) (100.0 * GC_OLD_GENERATION_HIGH_WATERMARK)
+    );
+    GC_collect_region(region->older_region);
+    
+    residency = 
+        (int) (100.0 * (1.0 -
+          ((double) GC_cheri_getlen(region->older_region->free)) /
+          ((double) GC_cheri_getlen(region->older_region->tospace))));
+    GC_vdbgf("after collection heap residency=%d%%", residency);
+
+/*#ifdef GC_GROW_OLD_HEAP
+    // always grow the heap, even if collection succeeded in bringing the size
+    // down, so that it hopefully doesn't happen again.
+    GC_dbgf("trying to grow old generation");
+    too_small = !GC_grow(region->older_region,
+                         GC_cheri_getlen(region->older_region->free));
+    residency = 
+        (int) (100.0 * (1.0 -
+          ((double) GC_cheri_getlen(region->older_region->free)) /
+          ((double) GC_cheri_getlen(region->older_region->tospace))));
+    GC_dbgf("after growth heap residency=%d%%", residency);
+#else // GC_GROW_OLD_HEAP*/
+    too_small = GC_cheri_getlen(region->older_region->free) <
+                ((size_t) ((1.0-GC_OLD_GENERATION_HIGH_WATERMARK) *
+                  (double)GC_cheri_getlen(region->older_region->tospace)));
+//#endif // GC_GROW_OLD_HEAP
+  }
+
+  if (too_small)
+  {
+    GC_dbgf("warning: old generation heap residency above high watermark."
+            " (D)OOM approaches.");
+  }
+
 }
 #endif // GC_GENERATIONAL
 

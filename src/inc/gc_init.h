@@ -3,6 +3,7 @@
 
 #include <stdlib.h>
 #include "gc_config.h"
+#include "gc_time.h"
 
 struct GC_region
 {
@@ -17,6 +18,9 @@ struct GC_region
 #ifdef GC_GROW_HEAP
   size_t max_size;
 #endif // GC_GROW_HEAP
+#ifdef GC_TIME
+  GC_time_t time_spent_in_collector;
+#endif // GC_TIME  
 };
 
 struct GC_state_struct
