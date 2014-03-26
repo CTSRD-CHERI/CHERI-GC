@@ -5,6 +5,7 @@ SSH_PRIV_KEY=/home/munraj/.ssh/mbv21
 WENGER_USER=mbv21
 WENGER_ADDR=wenger
 WENGER_FILE_ZFS=/exports/users/mbv21/cloud2gc2test
+WENGER_FILE_ZFS_MLTEST=/exports/users/mbv21/cloud2mltest
 CLOUD2_USER=mbv21
 CLOUD2_PASSWORD=mbv21
 CLOUD2_ADDR=cloud2
@@ -29,6 +30,7 @@ GC_SOURCES=objects/gc_init.o objects/gc_malloc.o objects/gc_debug.o \
 GC_PUBLIC_INCLUDE=src/inc/
 GC_PRIV_INCLUDE=src/inc/
 TEST_SOURCES=test/test.c #`ls -m test/*.c | sed s/,//g`
+MLTEST_SOURCES=ml/lex.c ml/ml.c
 
 all: everything
 
@@ -56,6 +58,10 @@ gctest:
 	PATH=$(PATH) $(CC) -o objects/gctest objects/gctest.o objects/gc.a && \
 	rm objects/gctest.o
 
+mltest:
+	PATH=$(PATH) $(CC) -DGC_CHERI -o objects/mltest -I$(GC_PUBLIC_INCLUDE) objects/*.o $(MLTEST_SOURCES) && \
+
+
 PASSWORD=`cat $(SSH_PASSWD_FILE)`
 CMD1=scp -i $(SSH_PRIV_KEY) objects/gctest $(WENGER_USER)@$(WENGER_ADDR):$(WENGER_FILE_ZFS)
 CMD2=ssh $(CLOUD2_USER)@$(CLOUD2_ADDR) $(CLOUD2_FILE_ZFS)
@@ -69,5 +75,12 @@ run:
 	echo -e "set timeout 60\nspawn $(CMD2)\nexpect \": \"\nsend \"$(PASSWORD)\\\\n\"\nexpect \":\"\nsend \"$(CLOUD2_PASSWORD)\\\\n\"\ninteract\n" > cloud4_push_helper.expect && \
 	expect -f cloud4_push_helper.expect && \
 	rm -f cloud4_push_helper.expect
+CMD3=scp -i $(SSH_PRIV_KEY) objects/mltest $(WENGER_USER)@$(WENGER_ADDR):$(WENGER_FILE_ZFS_MLTEST)
+pushml:
+	echo "[i] pushing file to wenger ZFS" && \
+	echo -e "set timeout 60\nspawn $(CMD3)\nexpect \": \"\nsend \"$(PASSWORD)\\\\n\"\ninteract\n" > cloud4_push_helper.expect && \
+	expect -f cloud4_push_helper.expect && \
+	rm -f cloud4_push_helper.expect
 everything: clean lib gctest push run loc
 almost_everything: clean lib gctest push loc
+ml: clean lib mltest pushml

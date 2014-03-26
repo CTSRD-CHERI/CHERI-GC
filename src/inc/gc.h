@@ -3,6 +3,10 @@
 
 // The public header for the user.
 
+#define GC_CAP __capability
+
+#define     GC_cheri_ptr      cheri_ptr
+
 #include <machine/cheri.h>
 #include <machine/cheric.h>
 
@@ -25,7 +29,7 @@ GC_set_oy_technique (int oy_technique);
 
 // returns GC_INVALID_PTR on failure, whose void* cast is guaranteed to be equal
 // to NULL
-__capability void *
+GC_CAP void *
 GC_malloc (size_t sz);
 
 // the void* cast of GC_INVALID_PTR is guaranteed to be NULL

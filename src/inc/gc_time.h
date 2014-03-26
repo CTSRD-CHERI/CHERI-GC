@@ -16,8 +16,16 @@
 #define GC_STOP_TIMING(x,...) \
   do { \
     x = GC_time_diff(GC_time(), x); \
-    /*printf(__VA_ARGS__); \
-    printf(" took %llu%s\n", GC_TIME_PRETTY(x), GC_TIME_PRETTY_UNIT(x));*/ \
+    static GC_time_t x##_tot = 0; \
+    static int x##_num = 0; \
+    x##_num++; \
+    x##_tot = GC_time_add(x##_tot, x); \
+    printf("[GC time] "); \
+    printf(__VA_ARGS__); \
+    printf( \
+      " took %llu%s (avg %llu%s)\n", \
+      GC_TIME_PRETTY(x), GC_TIME_PRETTY_UNIT(x), \
+      GC_TIME_PRETTY(x##_tot/x##_num), GC_TIME_PRETTY_UNIT(x##_tot/x##_num)); \
   } while (0)
 #else // GC_TIME
 #define GC_START_TIMING(x)

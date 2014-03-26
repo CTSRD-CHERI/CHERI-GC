@@ -73,7 +73,7 @@ GC_collect_region (struct GC_region * region)
   GC_STOP_TIMING(
     GC_collect_region_time,
     "GC_collect_region %s %llu%s,",
-    promoted ? "freed   " : "promoted",
+    promoted ? "promoted" : "freed   ",
     GC_MEM_PRETTY((GC_ULL) freed), GC_MEM_PRETTY_UNIT((GC_ULL) freed));
   
 }
@@ -280,6 +280,10 @@ GC_gen_promote (struct GC_region * region)
   // Grow the heap if we have to.
   if (too_small)
   {
+    // UNSAFE. It's only safe to grow the heap if all pointers to stuff inside
+    // it are on the stack, in registers, in global areas or in the tospace
+    // itself. This ignores young-old pointers!
+    GC_dbgf("UNSAFE growth here.");
     GC_vdbgf("old generation too small, trying to grow");
     too_small = !GC_grow(region->older_region, expected_sz);
   }
@@ -312,11 +316,11 @@ GC_gen_promote (struct GC_region * region)
   
   void * newfree = GC_cheri_getbase(region->older_region->free);
   size_t freelen = GC_cheri_getlen(region->older_region->free);
-  ptrdiff_t szdff = newfree - oldfree;
+  ptrdiff_t szdiff = newfree - oldfree;
   
   GC_vdbgf("copied %llu%s (%llu bytes less than expected) into the old generation",
-    GC_MEM_PRETTY((GC_ULL) sz), GC_MEM_PRETTY_UNIT((GC_ULL) sz),
-    (GC_ULL) (expected_sz - sz));
+    GC_MEM_PRETTY((GC_ULL) szdiff), GC_MEM_PRETTY_UNIT((GC_ULL) szdiff),
+    (GC_ULL) (expected_sz - szdiff));
   
   int residency = 
     (int) (100.0 * (1.0-((double) freelen) /
@@ -372,8 +376,8 @@ GC_gen_promote (struct GC_region * region)
 
   if (too_small)
   {
-    GC_dbgf("warning: old generation heap residency above high watermark."
-            " (D)OOM approaches.");
+    GC_dbgf("warning: old generation heap residency above high watermark, at"
+            " %d%%. (D)OOM approaches.", residency);
   }
 
 }
@@ -422,9 +426,13 @@ GC_region_rebase (struct GC_region * region, void * old_base, size_t old_size)
   GC_rebase(GC_state.static_bottom, GC_state.static_top,
             old_base, old_size, new_base);
   GC_rebase(new_base, new_base+new_size,
-            old_base, old_size, new_base);  
+            old_base, old_size, new_base);
 
   region->free = free_ptr_on_the_stack;
+  
+  // is this OK?
+  region->scan = ((void*)region->scan)-old_base+new_base;
+  
   // fails due to aliasing?
   /*
   region->free =

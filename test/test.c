@@ -78,11 +78,20 @@ collection_test (void)
 {
   #define NALLOC    100000      // 100,000 5k allocations = 500,000 k = 500 MB
   #define NSTORE    50          // 50*5k = 250k stored
-  #define NBYTES    5000
+  #define NBYTES    5
+  #define LLSTORE   20         // the long-lived store
+  #define LLBYTES   500
   int i;
   GC_cap_ptr arr[NSTORE];
+  GC_cap_ptr arrll[LLSTORE];
   GC_init();
   time_t start = time(NULL);
+  for (i=0; i<LLSTORE; i++)
+  {
+    arrll[i] = GC_malloc(LLBYTES);
+    if (!(void*)arrll[i])
+      {printf("ERROR: LL oom %d\n", i);break;}
+  }
   for (i=0; i<NALLOC; i++)
   {
     arr[i%NSTORE] = GC_malloc(NBYTES);

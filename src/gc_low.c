@@ -182,6 +182,8 @@ GC_grow (struct GC_region * region, size_t hint)
   // WARNING: we always round *up* to the nearest multiple of 32 bits to avoid
   // alignment issues.
   
+  GC_START_TIMING(GC_grow_time);
+  
   hint = GC_ALIGN_32(hint, size_t);
    
   size_t cur_size = GC_cheri_getlen(region->tospace);
@@ -271,6 +273,10 @@ GC_grow (struct GC_region * region, size_t hint)
     GC_vdbgf("GC_grow(): region needs rebasing");
     GC_region_rebase(region, tospace_base, cur_size);
   }
+  
+  GC_STOP_TIMING(GC_grow_time, "GC_grow %llu%s -> %llu%s",
+    GC_MEM_PRETTY((GC_ULL) cur_size), GC_MEM_PRETTY_UNIT((GC_ULL) cur_size),
+    GC_MEM_PRETTY((GC_ULL) new_size), GC_MEM_PRETTY_UNIT((GC_ULL) new_size));
   
   return new_size >= (cur_size+hint);
 }
