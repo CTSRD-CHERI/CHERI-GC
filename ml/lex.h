@@ -12,6 +12,7 @@ typedef struct
 {
   int type;
   GC_CAP char * str;
+  size_t len;
 } token_t;
 
 struct
@@ -23,5 +24,8 @@ struct
 
 void
 lex_read_file (GC_CAP const char * name);
+
+token_t
+lex (void);
 
 #endif // LEX_H_HEADER

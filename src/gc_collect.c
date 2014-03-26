@@ -283,7 +283,7 @@ GC_gen_promote (struct GC_region * region)
     // UNSAFE. It's only safe to grow the heap if all pointers to stuff inside
     // it are on the stack, in registers, in global areas or in the tospace
     // itself. This ignores young-old pointers!
-    GC_dbgf("UNSAFE growth here.");
+    GC_fatalf("UNSAFE growth here.");
     GC_vdbgf("old generation too small, trying to grow");
     too_small = !GC_grow(region->older_region, expected_sz);
   }
@@ -461,6 +461,12 @@ GC_rebase (void * start,
   // need to make sure that we don't change the base twice.
   // To ensure this, we set the forwarding address marker on each capability
   // after we change the base the first time, and then we unset all of them.
+
+  // Pointers to old_base+old_size are *always* re-based. We assume that
+  // previously, any pointer to old_base+old_size was used solely to mark the
+  // end of the region. This should almost always be true. The free pointer
+  // regularly points there. Let's just hope nothing's actually allocated there
+  // of any use.
   
   GC_cap_ptr * p;
   for (p = (GC_cap_ptr *) start; ((uintptr_t) p) < ((uintptr_t) end); p++)
@@ -472,9 +478,11 @@ GC_rebase (void * start,
         continue;
       }
       void * base = GC_cheri_getbase(*p);
-      if ((base >= old_base) && (base < (old_base+old_size)))
+      if ((base >= old_base) && (base <= (old_base+old_size)))
       {
-        *p = GC_setbase(*p, base-old_base+new_base);
+        if (base == (old_base+old_size))
+          GC_vdbgf("Warning: on the old_base+old_size edge case.");
+        *p = GC_setbase(*p, (base-old_base)+new_base);
         *p = GC_MAKE_FORWARDING_ADDRESS(*p);
       }
     }

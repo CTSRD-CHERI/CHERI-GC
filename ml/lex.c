@@ -30,12 +30,121 @@ lex_read_file (GC_CAP const char * name)
       fprintf(stderr, "out of memory reading file %s\n", (const char *) name);
       exit(1);
     }
-    if (lex_state.file)
+    memset((char*) tmp, 0, lex_state.max);
+    if ((char*) lex_state.file)
     {
       memcpy((char *) tmp, (char *) lex_state.file, lex_state.max-1);
     }
-    lex_state.file[lex_state.max-1] = c;
+    lex_state.file = tmp;
+    ((char*)lex_state.file)[lex_state.max-1] = c;
   }
 
   fclose(file);
+}
+
+#define LEX_IS_SYM(c) ( \
+  ((c) == '<') || ((c) == '>') || ((c) == '+') || ((c) == '-') || ((c) == '*') \
+  || ((c) == '/') || ((c) == '(') || ((c) == ')') || ((c) == '=') \
+  || ((c) == ':') || ((c) == '|') || ((c) == ';') \
+)
+
+#define LEX_IS_LETTER(c) ( \
+  ( ((c) >= 'A') && ((c) <= 'Z') ) || ( ((c) >= 'a') && ((c) <= 'z') ) \
+)
+
+#define LEX_IS_DIGIT(c) ( ((c) >= '0') && ((c) <= '9') )
+
+#define LEX_IS_WSPC(c) ( \
+  ((c) == ' ') || ((c) == '\t') || ((c) == '\n') || ((c) == '\r') \
+)
+
+token_t
+lex (void)
+{
+  token_t t;
+  t.type = TKEOF;
+  
+#define LEX_APPEND_STR(c) \
+  do { \
+    printf("character: %c\n", c); \
+    t.len++; \
+    GC_CAP char * tmp = GC_malloc(t.len); \
+    if (!(char *) tmp) \
+    { \
+      fprintf(stderr, "out of memory lexing string\n"); \
+      exit(1); \
+    } \
+    memcpy((char *) tmp, (char *) t.str, t.len-1); \
+    t.str = tmp; \
+    printf("STR: %.*s\n", (int)(t.len-1), t.str); \
+    ((char*)t.str)[t.len-1] = (c); \
+  } while (0)
+
+#define LEX_INIT_STR(c) \
+  do { \
+    printf("init character: %c\n", c); \
+    t.len = 1; \
+    t.str = GC_malloc(1); \
+    if (!(char *) t.str) \
+    { \
+      fprintf(stderr, "out of memory lexing string\n"); \
+      exit(1); \
+    } \
+    ((char*)t.str)[0] = (c); \
+    printf("initSTR: %.*s\n", (int)(t.len), t.str); \
+  } while (0)
+
+  int state = 0;
+  while (lex_state.index < lex_state.max)
+  {
+    char c = ((char*)lex_state.file)[lex_state.index];
+    switch (state)
+    {
+      case 0:
+      {
+        if (LEX_IS_SYM(c)) {t.type = TKSYM; LEX_INIT_STR(c); state = 1;}
+        else if (LEX_IS_LETTER(c)) {t.type = TKWORD; LEX_INIT_STR(c); state = 2;}
+        else if (LEX_IS_DIGIT(c)) {t.type = TKINT; LEX_INIT_STR(c); state = 3;}
+        else if (!LEX_IS_WSPC(c))
+        {
+          fprintf(stderr, "lex error: unrecognized symbol: %c\n", c);
+          exit(1);
+        }
+        break;
+      }
+      case 1:
+      {
+        if (c == '>' || c == ':')
+        {
+          LEX_APPEND_STR(c);
+        }
+        else state = 5;
+      }
+      case 2:
+      {
+        if (LEX_IS_LETTER(c))
+        {
+          LEX_APPEND_STR(c);
+        }
+        else state = 5;
+      }
+      case 3:
+      {
+        if (LEX_IS_DIGIT(c))
+        {
+          c += '0';
+          LEX_APPEND_STR(c);
+        }
+        else state = 5;
+      }
+    }
+    lex_state.index++;
+    if (state == 5) break;
+  }
+  
+  if (t.type != TKEOF)
+  {
+    LEX_APPEND_STR('\0');
+  }
+  return t;
 }

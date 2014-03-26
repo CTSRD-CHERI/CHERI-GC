@@ -183,7 +183,7 @@ GC_grow (struct GC_region * region, size_t hint)
   // alignment issues.
   
   GC_START_TIMING(GC_grow_time);
-  
+    
   hint = GC_ALIGN_32(hint, size_t);
    
   size_t cur_size = GC_cheri_getlen(region->tospace);

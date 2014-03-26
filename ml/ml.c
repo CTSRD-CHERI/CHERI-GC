@@ -18,5 +18,12 @@ int main ()
     putchar(((char*)lex_state.file)[i]);
   }
   
+  token_t t;
+  t = lex();
+  while (t.type != TKEOF)
+  {
+    printf("[%d] %s\n", t.type, t.str);
+  }
+  
   return 0;
 }
