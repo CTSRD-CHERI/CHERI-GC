@@ -74,6 +74,7 @@ GC_init_region
 {
   // WARNING: if you change how this is allocated, you must change how GC_grow
   // works.
+  semispace_size = GC_ALIGN_32(semispace_size, size_t);
   void * p = GC_low_malloc(semispace_size+32);
   if (p == NULL)
   {
@@ -117,6 +118,9 @@ GC_init_young_region (struct GC_region * region,
                       struct GC_region * older_region,                      
                       size_t sz, size_t max_size)
 {
+  // WARNING: if you change how this is allocated, you must change how GC_grow
+  // works.
+  sz = GC_ALIGN_32(sz, size_t);
   void * p = GC_low_malloc(sz+32);
   if (p == NULL)
   {

@@ -181,6 +181,8 @@ GC_grow (struct GC_region * region, size_t hint)
   // We want min(max(double, hint), region->max_size).
   // WARNING: we always round *up* to the nearest multiple of 32 bits to avoid
   // alignment issues.
+  
+  hint = GC_ALIGN_32(hint, size_t);
    
   size_t cur_size = GC_cheri_getlen(region->tospace);
   

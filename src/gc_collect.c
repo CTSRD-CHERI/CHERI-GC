@@ -5,6 +5,7 @@
 #include "gc_config.h"
 
 #include <stdint.h>
+#include <stddef.h>
 
 void
 GC_collect (void)
@@ -97,6 +98,11 @@ GC_copy_region (struct GC_region * region,
     }
   }
   
+  // TODO: ensure no forwarding addresses left in registers.
+  GC_clean_forwarding(
+    GC_cheri_getbase(region->fromspace),
+    GC_cheri_getbase(region->fromspace) + GC_cheri_getlen(region->fromspace));
+  
 }
 
 GC_cap_ptr
@@ -120,13 +126,6 @@ GC_copy_object (struct GC_region * region,
   {
     if (GC_IS_FORWARDING_ADDRESS(forwarding_address))
     {
-      if (!GC_IN(GC_cheri_getbase(forwarding_address), region->tospace)){
-        GC_debug_print_region_stats(&GC_state.thread_local_region);
-        GC_debug_print_region_stats(&GC_state.old_generation);
-        printf("not in the tospace: 0x%llx, tospace: 0x%llx. loc=0x%llx\n",
-          (GC_ULL) GC_cheri_getbase(forwarding_address),
-          (GC_ULL) region->tospace,
-          (GC_ULL) GC_cheri_getbase(cap)); exit(0);}
       GC_assert(GC_IN(GC_cheri_getbase(forwarding_address), region->tospace));
       GC_debug_just_allocated(forwarding_address);
       return GC_STRIP_FORWARDING(forwarding_address);
@@ -164,6 +163,9 @@ GC_copy_roots (struct GC_region * region,
   root_start = GC_ALIGN_32(root_start, void *);
   root_end = GC_ALIGN_32_LOW(root_end, void *);
   
+  GC_vdbgf("copying roots in range 0x%llx to 0x%llx",
+    (GC_ULL) root_start, (GC_ULL) root_end);
+  
   GC_cap_ptr * p;
   for (p = (GC_cap_ptr *) root_start;
        ((uintptr_t) p) < ((uintptr_t) root_end);
@@ -175,7 +177,11 @@ GC_copy_roots (struct GC_region * region,
     }
     if (GC_cheri_gettag(*p) && GC_IN(GC_cheri_getbase(*p), region->fromspace))
     {
-      GC_vdbgf("[root] location=0x%llx (%s?), b=0x%llx, l=0x%llx\n",
+      GC_vdbgf("[root] [%d%%] location=0x%llx (%s?), b=0x%llx, l=0x%llx\n",
+      (int) (
+        100.0*
+          ((double) (((uintptr_t) p)-((uintptr_t) root_start)))/
+          ((double) (((uintptr_t) root_end)-((uintptr_t) root_start)))),
         (GC_ULL) p,
         ((GC_ULL) p) & 0x7F00000000 ? "stack/reg" : ".data",
         (GC_ULL) *p, 
@@ -192,12 +198,18 @@ GC_copy_roots (struct GC_region * region,
 #endif // GC_GENERATIONAL
     }
   }
+  
+  GC_vdbgf("roots copied");
 }
 
 void
 GC_copy_children (struct GC_region * region,
                   int is_generational)
 {
+  GC_vdbgf("copying children");
+  
+  GC_assert( GC_IS_ALIGNED_32(region->scan) );
+  
   for (;
        ((uintptr_t) region->scan)
          < ((uintptr_t) GC_cheri_getbase(region->free));
@@ -235,25 +247,28 @@ GC_gen_promote (struct GC_region * region)
   // Conservative estimate. Usually requires the old generation to have at least
   // as much space as the entire young generation (because GC_gen_promote is
   // usually called when the young generation is almost full).
-  int too_small =
-    GC_cheri_getlen(region->older_region->free)
-      < (GC_cheri_getbase(region->free) - GC_cheri_getbase(region->tospace));
+  ptrdiff_t expected_sz =
+    GC_cheri_getbase(region->free) - GC_cheri_getbase(region->tospace);
+  int too_small = GC_cheri_getlen(region->older_region->free) < expected_sz;
+  
 #ifdef GC_GROW_OLD_HEAP
   if (too_small)
   {
     GC_dbgf("old generation too small, trying to grow");
-    too_small =
-      !GC_grow(region->older_region,
-          (GC_cheri_getbase(region->free) - GC_cheri_getbase(region->tospace)));
+    too_small = !GC_grow(region->older_region, expected_sz);
   }
 #endif // GC_GROW_OLD_HEAP
   if (too_small)
   {
     GC_dbgf("old generation too small, triggering major collection");
+    
+    // CAN'T DO THIS!!! young generation may have roots!
+    // TODO: if copying isn't possible, quit! We can't just collect the older generation!
+    //       Otherwise, collect when the generation hits a certain size (say 75%, or len(oldregion->tospace)-len(youngregion->tospace), because the next collection might fail to copy...i.e. *always* keep at least len(region->tospace) many bytes free...
+    GC_fatalf("// CAN'T DO THIS!!! young generation may have roots!");
+    
     GC_collect_region(region->older_region);
-    too_small =
-      GC_cheri_getlen(region->older_region->free)
-        < (GC_cheri_getbase(region->free) - GC_cheri_getbase(region->tospace));
+    too_small = GC_cheri_getlen(region->older_region->free) < expected_sz;
   }
   
   if (too_small)
@@ -262,19 +277,31 @@ GC_gen_promote (struct GC_region * region)
     return;
   }
   
-  GC_vdbgf("old generation ok, copying");
-  GC_debug_print_region_stats(region->older_region);
+  GC_vdbgf("old generation ok, copying up to %llu%s",
+    GC_MEM_PRETTY((GC_ULL) expected_sz),
+    GC_MEM_PRETTY_UNIT((GC_ULL) expected_sz));
   
   GC_cap_ptr old_from_space = region->older_region->fromspace;
   region->older_region->fromspace = region->tospace;
   
   // ensure we only scan the young region's children when copying
-  region->older_region->scan = (GC_cap_ptr *) region->older_region->free;
+  // NOTE: this alignment is OK to go downwards because we can assume that the
+  // minimum address region->free can have is 32-bit aligned.
+  region->older_region->scan =
+    GC_ALIGN_32_LOW((GC_cap_ptr *) region->older_region->free, GC_cap_ptr *);
+  
+  void * oldfree = GC_cheri_getbase(region->older_region->free);
   
   GC_copy_region(region->older_region, 1);
   
   region->older_region->fromspace = old_from_space;
   region->free = region->tospace;
+  
+  ptrdiff_t sz = GC_cheri_getbase(region->older_region->free) - oldfree;
+  
+  GC_vdbgf("copied %llu%s (%llu bytes less than expected) into the old generation",
+    GC_MEM_PRETTY((GC_ULL) sz), GC_MEM_PRETTY_UNIT((GC_ULL) sz),
+    (GC_ULL) (expected_sz - sz));
 }
 #endif // GC_GENERATIONAL
 
@@ -370,7 +397,18 @@ GC_rebase (void * start,
       }
     }
   }
-  for (p = (GC_cap_ptr *) start; ((uintptr_t) p) < ((uintptr_t) end); p++)
+  
+  GC_clean_forwarding(start, end);
+}
+
+void GC_clean_forwarding (void * start,
+                          void * end)
+{
+  start = GC_ALIGN_32(start, void *);
+  end = GC_ALIGN_32_LOW(end, void *);
+  
+  GC_cap_ptr * p;
+  for (p = (GC_cap_ptr *) start; p < (GC_cap_ptr *) end; p++)
   {    
     if (GC_IN(p, GC_state_cap))
     {
@@ -382,5 +420,3 @@ GC_rebase (void * start,
     }
   }
 }
-
-int dbg(GC_cap_ptr c,char*name,char*file,int line){printf("***made forwarding*** %s 0x%llx %s:%d\n",name,(GC_ULL)c,file,line);return 0;}

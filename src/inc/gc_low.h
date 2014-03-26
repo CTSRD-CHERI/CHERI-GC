@@ -52,9 +52,7 @@ typedef __capability void * GC_cap_ptr;
   ( ! (((GC_ULL) GC_cheri_getperm((cap))) & GC_PERM_FORWARDING)  )
   
 #define GC_MAKE_FORWARDING_ADDRESS(cap) \
-  ( dbg((cap),#cap,__FILE__,__LINE__),GC_cheri_andperm((cap), ~GC_PERM_FORWARDING) )
-
-int dbg(GC_cap_ptr c,char*name,char*file,int line);
+  ( GC_cheri_andperm((cap), ~GC_PERM_FORWARDING) )
 
 #define GC_STRIP_FORWARDING(cap) \
   ( GC_orperm((cap), GC_PERM_FORWARDING) )
@@ -225,6 +223,9 @@ GC_orperm (GC_cap_ptr cap, GC_ULL perm);
 // Goes to a lower memory address to align
 #define GC_ALIGN_32_LOW(ptr,typ) \
   ( (typ) ( ((uintptr_t) (ptr)) & ~(uintptr_t) 0x1F ) )
+  
+#define GC_IS_ALIGNED_32(ptr) \
+  ( (((uintptr_t)(ptr)) & 0x1F) == 0 )
   
 // The stack looks like this:
 // ----high memory addresses----

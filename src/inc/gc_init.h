@@ -6,7 +6,9 @@
 
 struct GC_region
 {
-  // Note: gc_collect assumes tospace and fromspace are 32-bit aligned.
+  // The allocation routines (GC_grow, GC_init_*_region) ensure that the tospace
+  // and fromspace are 32-bit aligned and have a 32-bit aligned length. The
+  // collection routines assume and require this.
   __capability void * tospace, * fromspace, * free, ** scan;
   int num_collections, num_allocations; // debugging/stats
 #ifdef GC_GENERATIONAL

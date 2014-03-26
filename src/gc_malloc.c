@@ -44,6 +44,8 @@ GC_malloc_region (struct GC_region * region, size_t sz, int collect_on_failure)
       (GC_ULL) sz);
     GC_collect_region(region);
     too_small = sz > (size_t) cheri_getlen(region->free);
+    GC_vdbgf("GC_malloc_region(): collecting complete. Too small? %d",
+      too_small);
   }
   
   if (too_small)

@@ -12,17 +12,18 @@
 #define GC_vdbgf(...)
 #endif // GC_VERBOSE_DEBUG
 #define GC_dbgf(...)  GC_dbgf2(__FILE__, __LINE__, __VA_ARGS__)
-#define GC_errf(...)  GC_errf2(__FILE__, __LINE__, __VA_ARGS__)
 #define GC_assert(cond) \
   do { \
-    if (!(cond)) GC_errf("assertion failed: `%s'", #cond); \
+    if (!(cond)) GC_fatalf("assertion failed: `%s'", #cond); \
   } while (0)
 #else // GC_DEBUG
 #define GC_vdbgf(...)
 #define GC_dbgf(...)
-#define GC_errf(...)
 #define GC_assert(cond)
 #endif // GC_DEBUG
+
+#define GC_errf(...)  GC_errf2(__FILE__, __LINE__, __VA_ARGS__)
+#define GC_fatalf(...)  GC_fatalf2(__FILE__, __LINE__, __VA_ARGS__)
 
 #define GC_MEM_PRETTY(x) \
 ( \
@@ -74,7 +75,13 @@ GC_errf2 (const char * file, int line, const char * format, ...);
     printf(__VA_ARGS__); \
     printf("\n"); \
   } while (0)
-
+#define GC_fatalf2(file,line,...) \
+  do { \
+    printf("***GC FATAL %s:%d ", file, line); \
+    printf(__VA_ARGS__); \
+    printf("\n"); \
+    exit(0); \
+  } while (0)
 void
 GC_debug_print_region_stats (struct GC_region * region);
 

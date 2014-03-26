@@ -59,5 +59,10 @@ GC_rebase (void * start,
            void * old_base,
            size_t old_size,
            void * new_base);
+           
+// Removes forwarding addresses in the given region
+void
+GC_clean_forwarding (void * start,
+                     void * end);
 
 #endif // GC_COLLECT_H_HEADER

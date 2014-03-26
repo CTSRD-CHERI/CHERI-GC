@@ -76,9 +76,9 @@ rebase_test (void)
 void
 collection_test (void)
 {
-  #define NALLOC    0x1000
-  #define NSTORE    0x100
-  #define NBYTES    4999
+  #define NALLOC    100000      // 100,000 5k allocations
+  #define NSTORE    50          // 50*5k = 250k stored
+  #define NBYTES    5000
   int i;
   GC_cap_ptr arr[NSTORE];
   GC_init();

@@ -72,7 +72,10 @@ GC_debug_print_region_stats(struct GC_region * region)
              lfrom = (fromspace_exists ?
               (GC_ULL) GC_cheri_getlen(region->fromspace) : 0),
              lto   = (GC_ULL) GC_cheri_getlen(region->tospace),
-             lfree = (GC_ULL) GC_cheri_getlen(region->free)
+             lfree = (GC_ULL) GC_cheri_getlen(region->free),
+             efrom = from+lfrom,
+             eto = to+lto,
+             efree = free+lfree
 #ifdef GC_COLLECT_STATS
              , nalloc = (GC_ULL) region->num_allocations,
              ncoll = (GC_ULL) region->num_collections
@@ -82,10 +85,13 @@ GC_debug_print_region_stats(struct GC_region * region)
   (
     "Region statistics\n"
     "-----------------\n"
-    "fromspace   : b=0x%-16llx  l=0x%-16llx\n"
-    "tospace     : b=0x%-16llx  l=0x%-16llx\n"
-    "free        : b=0x%-16llx  l=0x%-16llx\n"
-    "scan        :   0x%-16llx\n"
+    "fromspace   : b=  0x%-16llx  l=0x%-16llx\n"
+    "              end=0x%-16llx\n"
+    "tospace     : b=  0x%-16llx  l=0x%-16llx\n"
+    "              end=0x%-16llx\n"
+    "free        : b=  0x%-16llx  l=0x%-16llx\n"
+    "              end=0x%-16llx\n"
+    "scan        :     0x%-16llx\n"
 #ifdef GC_GENERATIONAL
     "old         :   0x%-16llx\n"
 #endif // GC_GENERATIONAL
@@ -104,8 +110,11 @@ GC_debug_print_region_stats(struct GC_region * region)
 #endif // GC_GENERATIONAL
     ,
     from, lfrom,
+    efrom,
     to, lto,
+    eto,
     free, lfree,
+    efree,
     scan,
 #ifdef GC_GENERATIONAL
     old,
