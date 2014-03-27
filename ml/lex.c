@@ -63,6 +63,7 @@ lex (void)
 {
   token_t t;
   t.type = TKEOF;
+  t.nearby_character = lex_state.index;
   
 #define LEX_APPEND_STR(c) \
   do { \

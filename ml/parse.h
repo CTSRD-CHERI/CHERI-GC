@@ -33,7 +33,7 @@ typedef struct
 typedef struct
 {
   GC_CAP struct expr_struct * a, * b;
-  GC_CAP char * op;
+  GC_CAP char * op; // op = "" means function application expression
 } op_expr_t;
 
 typedef struct
@@ -42,17 +42,17 @@ typedef struct
   GC_CAP struct expr_struct * body;
 } fn_expr_t;
 
-typedef struct
+/*typedef struct
 {
   GC_CAP struct expr_struct * func, * arg;
-} app_expr_t;
+} app_expr_t;*/
 
 #define EXPR_IF   0
 #define EXPR_NAME 1
 #define EXPR_NUM  2
 #define EXPR_OP   3
 #define EXPR_FN   4
-#define EXPR_APP  5
+//#define EXPR_APP  5
 
 // Warning! GC_CAP pointers inside a struct must be 32-byte aligned!
 typedef struct expr_struct
@@ -64,13 +64,16 @@ typedef struct expr_struct
     GC_CAP num_expr_t * num_expr;
     GC_CAP op_expr_t * op_expr;
     GC_CAP fn_expr_t * fn_expr;
-    GC_CAP app_expr_t * app_expr;
+    //GC_CAP app_expr_t * app_expr;
   };
   int type;
 } expr_t;
 
 GC_CAP char *
 copy_string (GC_CAP const char * str);
+
+int
+parser_is_at_start_of_expression (void);
 
 // Assumes you've called lex_read_file().
 void
@@ -81,7 +84,16 @@ GC_CAP expr_t *
 parse (void);
 
 GC_CAP expr_t *
+parse_app (void);
+
+GC_CAP expr_t *
 parse_cons (void);
+
+GC_CAP expr_t *
+parse_greater_than (void);
+
+GC_CAP expr_t *
+parse_less_than (void);
 
 GC_CAP expr_t *
 parse_add (void);

@@ -19,6 +19,14 @@ copy_string (GC_CAP const char * str)
   return copy;
 }
 
+// used by function application parsing
+int
+parser_is_at_start_of_expression (void)
+{
+  // TODO: this
+  return 0;
+}
+
 void
 parse_init (void)
 {
@@ -28,13 +36,31 @@ parse_init (void)
 GC_CAP expr_t *
 parse (void)
 {
-  return parse_cons();
+  return parse_app();
+}
+
+GC_CAP expr_t *
+parse_app (void)
+{
+  return parse_op(GC_cheri_ptr("", sizeof("")), &parse_cons);
 }
 
 GC_CAP expr_t *
 parse_cons (void)
 {
-  return parse_op(GC_cheri_ptr("::", sizeof("::")), &parse_add);
+  return parse_op(GC_cheri_ptr("::", sizeof("::")), &parse_greater_than);
+}
+
+GC_CAP expr_t *
+parse_greater_than (void)
+{
+  return parse_op(GC_cheri_ptr(">", sizeof(">")), &parse_less_than);
+}
+
+GC_CAP expr_t *
+parse_less_than (void)
+{
+  return parse_op(GC_cheri_ptr("<", sizeof("<")), &parse_sub);
 }
 
 GC_CAP expr_t *
@@ -62,6 +88,7 @@ parse_div (void)
 }
 
 // (left-assoc)
+// if op is "" then we're parsing a function application instead.
 GC_CAP expr_t *
 parse_op (GC_CAP const char * op,
           GC_CAP expr_t * (*lower_precendence_func)(void))
@@ -84,15 +111,35 @@ parse_op (GC_CAP const char * op,
   GC_CAP expr_t * a = lower_precendence_func();
   if (!PTR_VALID(a)) return a;
   
-  if (!parse_tok_eq(TKSYM, op)) return a;
+  if (GC_cheri_getlen(op) > 1)
+  {
+    // op is a normal operator, check if it's present
+    if (!parse_tok_eq(TKSYM, op)) return a;
+  }
+  else
+  {
+    // op is a function application; check if at valid start of another
+    // expression
+    if (!parser_is_at_start_of_expression()) return a;
+  }
   
   ((op_expr_t *) ((expr_t*)expr)->op_expr)->a = a;
   ((op_expr_t *) ((expr_t*)expr)->op_expr)->b = GC_INVALID_PTR;
   ((op_expr_t *) ((expr_t*)expr)->op_expr)->op = copy_string(op);
-  while (parse_tok_eq(TKSYM, op))
+  while (1)
   {
-    parse_get_next_tok();
-    parse_eof_error();
+    if (GC_cheri_getlen(op) > 1)
+    {
+      // normal op
+      if (!parse_tok_eq(TKSYM, op)) break;
+      parse_get_next_tok();
+      parse_eof_error();
+    }
+    else
+    {
+      // function application op
+      if (!parser_is_at_start_of_expression()) break;
+    }
     
     GC_CAP expr_t * b = lower_precendence_func();
     if (!PTR_VALID(b)) return b;
@@ -315,7 +362,9 @@ void
 parse_unexpected (void)
 {
   parse_eof_error(); // because then the string is invalid
-  fprintf(stderr, "unexpected token %s\n", (char*) parse_state.tok.str);
+  fprintf(stderr, "unexpected token %s (near character %d)\n",
+    (char*) parse_state.tok.str,
+    (int) parse_state.tok.nearby_character);
   exit(1);
 }
 
@@ -325,8 +374,10 @@ parse_expect (int type, GC_CAP const char * str)
   parse_eof_error();
   if (!parse_tok_eq(type, str))
   {
-    fprintf(stderr, "expected `%s', not `%s'\n", (const char *) str, 
-            (char*) parse_state.tok.str);
+    fprintf(stderr, "expected `%s', not `%s' (near character %d)\n",
+            (const char *) str, 
+            (char*) parse_state.tok.str,
+            (int) parse_state.tok.nearby_character);
     exit(1);
   }
 }

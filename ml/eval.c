@@ -36,7 +36,15 @@ print_ast (GC_CAP expr_t * expr)
     }
     case EXPR_OP:
     {
-      printf("op(%s,", (char *) (((op_expr_t*) ((expr_t*)expr)->op_expr))->op);
+      if (GC_cheri_getlen((((op_expr_t*) ((expr_t*)expr)->op_expr))->op) > 1)
+      {
+        printf("op(%s,",
+          (char *) (((op_expr_t*) ((expr_t*)expr)->op_expr))->op);
+      }
+      else
+      {
+        printf("app(");
+      }
       print_ast( (((op_expr_t*) ((expr_t*)expr)->op_expr))->a );
       printf(",");
       print_ast( (((op_expr_t*) ((expr_t*)expr)->op_expr))->b );
@@ -47,15 +55,6 @@ print_ast (GC_CAP expr_t * expr)
     {
       printf("fn(%s,", (char*) (((fn_expr_t*) ((expr_t*)expr)->fn_expr))->name);
       print_ast( (((fn_expr_t*) ((expr_t*)expr)->fn_expr))->body );
-      printf(")");
-      break;
-    }
-    case EXPR_APP:
-    {
-      printf("app(");
-      print_ast( (((app_expr_t*) ((expr_t*)expr)->app_expr))->func );
-      printf(",");
-      print_ast( (((app_expr_t*) ((expr_t*)expr)->app_expr))->arg );
       printf(")");
       break;
     }

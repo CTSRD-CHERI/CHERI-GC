@@ -14,6 +14,7 @@ typedef struct
   GC_CAP char * str;
   int type;
   size_t len;
+  size_t nearby_character;
 } token_t;
 
 struct
