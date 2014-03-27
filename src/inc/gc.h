@@ -8,6 +8,7 @@
 #define GC_CAP __capability
 
 #define     GC_cheri_ptr      cheri_ptr
+#define     GC_cheri_getlen(x)   cheri_getlen((GC_CAP void*)(x))
 
 // The preferred way of checking the validity of a pointer
 #define GC_PTR_VALID(x)   ( ((void*)(cheri_getbase(x))) != NULL)

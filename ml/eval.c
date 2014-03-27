@@ -5,6 +5,11 @@
 void
 print_ast (GC_CAP expr_t * expr)
 {
+  if (!PTR_VALID(expr))
+  {
+    printf("print_ast: invalid expression\n");
+    return;
+  }
   switch (((expr_t*)expr)->type)
   {
     case EXPR_IF:
@@ -31,7 +36,7 @@ print_ast (GC_CAP expr_t * expr)
     }
     case EXPR_OP:
     {
-      printf("op(%d,", (((op_expr_t*) ((expr_t*)expr)->op_expr))->op);
+      printf("op(%s,", (char *) (((op_expr_t*) ((expr_t*)expr)->op_expr))->op);
       print_ast( (((op_expr_t*) ((expr_t*)expr)->op_expr))->a );
       printf(",");
       print_ast( (((op_expr_t*) ((expr_t*)expr)->op_expr))->b );

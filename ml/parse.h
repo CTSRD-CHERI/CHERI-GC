@@ -33,7 +33,7 @@ typedef struct
 typedef struct
 {
   GC_CAP struct expr_struct * a, * b;
-  int op;
+  GC_CAP char * op;
 } op_expr_t;
 
 typedef struct
@@ -69,6 +69,9 @@ typedef struct expr_struct
   int type;
 } expr_t;
 
+GC_CAP char *
+copy_string (GC_CAP const char * str);
+
 // Assumes you've called lex_read_file().
 void
 parse_init (void);
@@ -76,6 +79,28 @@ parse_init (void);
 // Assumes you've called parse_init().
 GC_CAP expr_t *
 parse (void);
+
+GC_CAP expr_t *
+parse_cons (void);
+
+GC_CAP expr_t *
+parse_add (void);
+
+GC_CAP expr_t *
+parse_sub (void);
+
+GC_CAP expr_t *
+parse_mul (void);
+
+GC_CAP expr_t *
+parse_div (void);
+
+GC_CAP expr_t *
+parse_op (GC_CAP const char * op,
+          GC_CAP expr_t * (*lower_precendence_func)(void));
+
+GC_CAP expr_t *
+parse_base_expr (void);
 
 GC_CAP if_expr_t *
 parse_if (void);
