@@ -24,8 +24,14 @@ struct
   size_t max;
 } lex_state;
 
+GC_CAP char *
+copy_string (GC_CAP const char * str);
+
 void
 lex_read_file (GC_CAP const char * name);
+
+void
+lex_read_string (GC_CAP const char * str);
 
 token_t
 lex (void);

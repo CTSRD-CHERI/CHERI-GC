@@ -6,6 +6,19 @@
 #include <stdlib.h>
 #include <string.h>
 
+GC_CAP char *
+copy_string (GC_CAP const char * str)
+{
+  GC_CAP char * copy = GC_malloc(GC_cheri_getlen(str));
+  if (!PTR_VALID(copy))
+  {
+    fprintf(stderr, "copy_string(): out of memory\n");
+    exit(1);
+  }
+  memcpy((char*)copy, (const char*)str, GC_cheri_getlen(str));
+  return copy;
+}
+
 void
 lex_read_file (GC_CAP const char * name)
 {
@@ -40,6 +53,19 @@ lex_read_file (GC_CAP const char * name)
   }
 
   fclose(file);
+}
+
+void
+lex_read_string (GC_CAP const char * str)
+{
+  lex_state.file = copy_string(str);
+  if (!PTR_VALID(lex_state.file))
+  {
+    fprintf(stderr, "lex_read_string: out of memory\n");
+    exit(1);
+  }
+  lex_state.index = 0;
+  lex_state.max = GC_cheri_getlen(str)-1;
 }
 
 #define LEX_IS_SYM(c) ( \
@@ -126,7 +152,8 @@ lex (void)
         }
         else
         {
-          fprintf(stderr, "lex error: unrecognized symbol: %c\n", c);
+          fprintf(stderr, "lex error: unrecognized character: `%c' (%d)\n",
+                  c, (int) c);
           exit(1);
         }
         break;

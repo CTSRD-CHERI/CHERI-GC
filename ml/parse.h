@@ -69,9 +69,6 @@ typedef struct expr_struct
   int type;
 } expr_t;
 
-GC_CAP char *
-copy_string (GC_CAP const char * str);
-
 int
 parser_is_at_start_of_expression (void);
 

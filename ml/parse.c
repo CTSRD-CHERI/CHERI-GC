@@ -6,19 +6,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-GC_CAP char *
-copy_string (GC_CAP const char * str)
-{
-  GC_CAP char * copy = GC_malloc(GC_cheri_getlen(str));
-  if (!PTR_VALID(copy))
-  {
-    fprintf(stderr, "copy_string(): out of memory\n");
-    exit(1);
-  }
-  memcpy((char*)copy, (const char*)str, GC_cheri_getlen(str));
-  return copy;
-}
-
 // used by function application parsing
 int
 parser_is_at_start_of_expression (void)
