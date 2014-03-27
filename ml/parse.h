@@ -86,6 +86,9 @@ parse_fn (void);
 GC_CAP num_expr_t *
 parse_num (void);
 
+GC_CAP name_expr_t *
+parse_name (void);
+
 void
 parse_get_next_tok (void);
 

@@ -40,7 +40,7 @@ print_ast (GC_CAP expr_t * expr)
     }
     case EXPR_FN:
     {
-      printf("fn(%s,", (((fn_expr_t*) ((expr_t*)expr)->fn_expr))->name);
+      printf("fn(%s,", (char*) (((fn_expr_t*) ((expr_t*)expr)->fn_expr))->name);
       print_ast( (((fn_expr_t*) ((expr_t*)expr)->fn_expr))->body );
       printf(")");
       break;

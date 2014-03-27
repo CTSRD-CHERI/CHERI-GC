@@ -27,6 +27,12 @@ parse (void)
     ((expr_t *) expr)->if_expr = parse_if();
     if (!PTR_VALID(((expr_t *) expr)->if_expr)) expr = GC_INVALID_PTR;
   }
+  else if (parse_tok_eq(TKWORD, GC_cheri_ptr("fn", sizeof("fn"))))
+  {
+    ((expr_t *) expr)->type = EXPR_FN;
+    ((expr_t *) expr)->fn_expr = parse_fn();
+    if (!PTR_VALID(((expr_t *) expr)->fn_expr)) expr = GC_INVALID_PTR;
+  }
   else if (parse_tok_eq(TKINT, GC_INVALID_PTR))
   {
     ((expr_t *) expr)->type = EXPR_NUM;
@@ -55,25 +61,56 @@ parse_if (void)
   ((if_expr_t *) if_expr)->cond = parse();
   if (!PTR_VALID( ((if_expr_t *) if_expr)->cond))
     return GC_INVALID_PTR;
-  parse_get_next_tok();
+  parse_eof_error();
   
   parse_expect(TKWORD, GC_cheri_ptr("then", sizeof("then")));
   parse_get_next_tok();
+  parse_eof_error();
   
   ((if_expr_t *) if_expr)->true_expr = parse();
   if (!PTR_VALID( ((if_expr_t *) if_expr)->true_expr))
     return GC_INVALID_PTR;
-  parse_get_next_tok();
+  parse_eof_error();
   
   parse_expect(TKWORD, GC_cheri_ptr("else", sizeof("else")));
   parse_get_next_tok();
+  parse_eof_error();
   
   ((if_expr_t *) if_expr)->false_expr = parse();
   if (!PTR_VALID( ((if_expr_t *) if_expr)->false_expr))
-    return GC_INVALID_PTR;
-  parse_get_next_tok();
-  
+    return GC_INVALID_PTR;  
   return if_expr;
+}
+
+GC_CAP fn_expr_t *
+parse_fn (void)
+{
+  GC_CAP fn_expr_t * fn_expr = GC_malloc(sizeof(fn_expr_t));
+  if (!PTR_VALID(fn_expr))
+  {
+    fprintf(stderr, "parse_fn(): out of memory\n");
+    exit(1);
+  }
+  parse_get_next_tok();
+  parse_eof_error();
+  
+  // parse the argument name
+  parse_expect(TKWORD, GC_INVALID_PTR);
+  GC_CAP name_expr_t * name_expr = parse_name();
+  if (!PTR_VALID(name_expr))
+    return GC_INVALID_PTR;
+  ((fn_expr_t *) fn_expr)->name = ((name_expr_t *) name_expr)->name;
+  parse_eof_error();
+
+  parse_expect(TKSYM, GC_cheri_ptr(".", sizeof(".")));
+  parse_get_next_tok();
+  parse_eof_error();
+  
+  
+  ((fn_expr_t *) fn_expr)->body = parse();
+  if (!PTR_VALID( ((fn_expr_t *) fn_expr)->body))
+    return GC_INVALID_PTR;
+  return fn_expr;
 }
 
 GC_CAP num_expr_t *
@@ -93,7 +130,22 @@ parse_num (void)
     ((num_expr_t *) num_expr)->num *= 10;
     ((num_expr_t *) num_expr)->num += ((char*)parse_state.tok.str)[i] - '0';
   }
+  parse_get_next_tok();
   return num_expr;
+}
+
+GC_CAP name_expr_t *
+parse_name (void)
+{
+  GC_CAP name_expr_t * name_expr = GC_malloc(sizeof(name_expr_t));
+  if (!PTR_VALID(name_expr))
+  {
+    fprintf(stderr, "parse_name(): out of memory\n");
+    exit(1);
+  }
+  ((name_expr_t *) name_expr)->name = parse_state.tok.str;
+  parse_get_next_tok();
+  return name_expr;
 }
 
 void
@@ -143,7 +195,7 @@ parse_expect (int type, GC_CAP const char * str)
   parse_eof_error();
   if (!parse_tok_eq(type, str))
   {
-    fprintf(stderr, "expected %s, not %s\n", (const char *) str, 
+    fprintf(stderr, "expected `%s', not `%s'\n", (const char *) str, 
             (char*) parse_state.tok.str);
     exit(1);
   }

@@ -32,7 +32,7 @@ int main ()
   
   GC_CAP expr_t * expr = parse();
   
-  printf("Got expression. Type? %d\n", ((expr_t*)expr)->type);
+  printf("Got expression of type %d\n", ((expr_t*)expr)->type);
   
   print_ast(expr);
   printf("\n");
