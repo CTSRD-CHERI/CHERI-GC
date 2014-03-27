@@ -36,6 +36,11 @@ int main ()
   
   print_ast(expr);
   printf("\n");
+
+  GC_CAP val_t * val = eval(expr, GC_INVALID_PTR);
   
+  print_val(val);
+  printf("\n");
+
   return 0;
 }

@@ -5,12 +5,12 @@
 
 #include <gc.h>
 
+typedef int num_t;
+
 struct
 {
   token_t tok;
 } parse_state;
-
-typedef int num_t;
 
 struct expr_struct;
 

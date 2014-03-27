@@ -23,6 +23,7 @@ GC_malloc_region (struct GC_region * region, size_t sz, int collect_on_failure)
   GC_START_TIMING(GC_malloc_region_time);
   
   // so that internal pointers in structs are properly aligned for the user.
+  size_t orig_sz = sz;
   sz = GC_ALIGN_32(sz, size_t);
 
   /*if (sz < sizeof(GC_cap_ptr))
@@ -76,7 +77,7 @@ GC_malloc_region (struct GC_region * region, size_t sz, int collect_on_failure)
   }
   
   // TODO: handle csetlen and cincbase exceptions
-  __capability void * ret = GC_cheri_setlen(region->free, sz);
+  __capability void * ret = GC_cheri_setlen(region->free, orig_sz);
   
   // TODO: use cincbase here to preserve permissions, and remove the stuff
   // below.

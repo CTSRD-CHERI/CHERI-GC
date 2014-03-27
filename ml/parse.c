@@ -24,7 +24,12 @@ int
 parser_is_at_start_of_expression (void)
 {
   // TODO: this
-  return 0;
+  return
+    (parse_tok_eq(TKWORD, GC_INVALID_PTR)
+      && !parse_tok_eq(TKWORD, GC_cheri_ptr("then", sizeof("then")))
+      && !parse_tok_eq(TKWORD, GC_cheri_ptr("else", sizeof("else"))))
+    || (parse_tok_eq(TKSYM, GC_cheri_ptr("(", sizeof("("))))
+    || (parse_tok_eq(TKINT, GC_INVALID_PTR));
 }
 
 void
@@ -60,7 +65,7 @@ parse_greater_than (void)
 GC_CAP expr_t *
 parse_less_than (void)
 {
-  return parse_op(GC_cheri_ptr("<", sizeof("<")), &parse_sub);
+  return parse_op(GC_cheri_ptr("<", sizeof("<")), &parse_add);
 }
 
 GC_CAP expr_t *
@@ -196,7 +201,7 @@ parse_base_expr (void)
   }
   else if (parse_tok_eq(TKWORD, GC_INVALID_PTR))
   {
-    ((expr_t *) expr)->type = EXPR_NUM;
+    ((expr_t *) expr)->type = EXPR_NAME;
     ((expr_t *) expr)->name_expr = parse_name();
     if (!PTR_VALID(((expr_t *) expr)->name_expr)) expr = GC_INVALID_PTR;
   }
