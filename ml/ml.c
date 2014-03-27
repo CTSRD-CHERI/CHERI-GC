@@ -33,7 +33,14 @@ int main ()
   
   //lex_read_file(filename);
   
-  const char str[] = "(fn x . if 2-4 then (fn y . y+x) 9 else x) 50";
+  //const char str[] = "(fn x . ((fn x . x) 3) + x) 2";
+  //const char str[] = "fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn a . (g g) a)))";
+  
+  //const char str[] =
+    //"((fn f . fn n . if n then n * f (n-1) else 1) (fn n . n)) 5";
+  
+  const char str[] =
+    "((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn a . (g g) a)))) (fn f . fn n . if n then n * f (n-1) else 1)) 5";
   lex_read_string(GC_cheri_ptr((void *) str, sizeof(str)));
   printf("program: %s\n\n", str);
   

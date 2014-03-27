@@ -81,9 +81,6 @@ GC_CAP expr_t *
 parse (void);
 
 GC_CAP expr_t *
-parse_app (void);
-
-GC_CAP expr_t *
 parse_cons (void);
 
 GC_CAP expr_t *
@@ -103,6 +100,9 @@ parse_mul (void);
 
 GC_CAP expr_t *
 parse_div (void);
+
+GC_CAP expr_t *
+parse_app (void);
 
 GC_CAP expr_t *
 parse_op (GC_CAP const char * op,

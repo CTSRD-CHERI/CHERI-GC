@@ -28,13 +28,7 @@ parse_init (void)
 GC_CAP expr_t *
 parse (void)
 {
-  return parse_app();
-}
-
-GC_CAP expr_t *
-parse_app (void)
-{
-  return parse_op(GC_cheri_ptr("", sizeof("")), &parse_cons);
+  return parse_cons();
 }
 
 GC_CAP expr_t *
@@ -76,8 +70,15 @@ parse_mul (void)
 GC_CAP expr_t *
 parse_div (void)
 {
-  return parse_op(GC_cheri_ptr("/", sizeof("/")), &parse_base_expr);
+  return parse_op(GC_cheri_ptr("/", sizeof("/")), &parse_app);
 }
+
+GC_CAP expr_t *
+parse_app (void)
+{
+  return parse_op(GC_cheri_ptr("", sizeof("")), &parse_base_expr);
+}
+
 
 // (left-assoc)
 // if op is "" then we're parsing a function application instead.
