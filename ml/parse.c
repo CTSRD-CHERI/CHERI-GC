@@ -40,8 +40,6 @@ parse (void)
   return expr;
 }
 
-#include <gc_init.h>
-#include <gc_debug.h>
 GC_CAP if_expr_t *
 parse_if (void)
 {

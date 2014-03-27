@@ -1,5 +1,6 @@
 #include "lex.h"
 #include "parse.h"
+#include "eval.h"
 
 #include <gc.h>
 
@@ -32,6 +33,9 @@ int main ()
   GC_CAP expr_t * expr = parse();
   
   printf("Got expression. Type? %d\n", ((expr_t*)expr)->type);
+  
+  print_ast(expr);
+  printf("\n");
   
   return 0;
 }

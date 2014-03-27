@@ -30,7 +30,7 @@ GC_SOURCES=objects/gc_init.o objects/gc_malloc.o objects/gc_debug.o \
 GC_PUBLIC_INCLUDE=src/inc/
 GC_PRIV_INCLUDE=src/inc/
 TEST_SOURCES=test/test.c #`ls -m test/*.c | sed s/,//g`
-MLTEST_SOURCES=ml/lex.c ml/ml.c ml/parse.c
+MLTEST_SOURCES=ml/lex.c ml/ml.c ml/parse.c ml/eval.c
 
 all: everything
 

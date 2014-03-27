@@ -14,6 +14,7 @@ typedef int num_t;
 
 struct expr_struct;
 
+// WARNING! Pointers must all be 32-byte aligned!
 typedef struct
 {
   GC_CAP struct expr_struct * cond, * true_expr, * false_expr;
@@ -53,7 +54,7 @@ typedef struct
 #define EXPR_FN   4
 #define EXPR_APP  5
 
-// warning! GC_CAP pointers inside a struct must be 32-bit aligned!
+// Warning! GC_CAP pointers inside a struct must be 32-byte aligned!
 typedef struct expr_struct
 {
   union
