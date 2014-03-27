@@ -2,6 +2,7 @@
 #define LEX_H_HEADER
 
 #include <gc.h>
+#define PTR_VALID   GC_PTR_VALID
 
 #define TKEOF   0
 #define TKINT   1
@@ -10,8 +11,8 @@
 
 typedef struct
 {
-  int type;
   GC_CAP char * str;
+  int type;
   size_t len;
 } token_t;
 

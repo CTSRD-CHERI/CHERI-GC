@@ -1,4 +1,5 @@
 #include "lex.h"
+#include "parse.h"
 
 #include <gc.h>
 
@@ -12,7 +13,7 @@ int main ()
   
   lex_read_file(filename);
   
-  size_t i;
+  /*size_t i;
   for (i=0; i<lex_state.max; i++)
   {
     putchar(((char*)lex_state.file)[i]);
@@ -24,7 +25,13 @@ int main ()
   {
     printf("[%d] %s\n", t.type, (char*) t.str);
     t = lex();
-  }
+  }*/
+  
+  parse_init();
+  
+  GC_CAP expr_t * expr = parse();
+  
+  printf("Got expression. Type? %d\n", ((expr_t*)expr)->type);
   
   return 0;
 }

@@ -25,13 +25,13 @@ lex_read_file (GC_CAP const char * name)
   {
     lex_state.max++;
     GC_CAP char * tmp = GC_malloc(lex_state.max);
-    if (!(char *) tmp)
+    if (!PTR_VALID(tmp))
     {
       fprintf(stderr, "out of memory reading file %s\n", (const char *) name);
       exit(1);
     }
     memset((char*) tmp, 0, lex_state.max);
-    if ((char*) lex_state.file)
+    if (PTR_VALID(lex_state.file))
     {
       memcpy((char *) tmp, (char *) lex_state.file, lex_state.max-1);
     }
@@ -45,7 +45,7 @@ lex_read_file (GC_CAP const char * name)
 #define LEX_IS_SYM(c) ( \
   ((c) == '<') || ((c) == '>') || ((c) == '+') || ((c) == '-') || ((c) == '*') \
   || ((c) == '/') || ((c) == '(') || ((c) == ')') || ((c) == '=') \
-  || ((c) == ':') || ((c) == '|') || ((c) == ';') \
+  || ((c) == ':') || ((c) == '|') || ((c) == ';') || ((c) == '.') \
 )
 
 #define LEX_IS_LETTER(c) ( \
@@ -68,7 +68,7 @@ lex (void)
   do { \
     t.len++; \
     GC_CAP char * tmp = GC_malloc(t.len); \
-    if (!(char *) tmp) \
+    if (!PTR_VALID(tmp)) \
     { \
       fprintf(stderr, "out of memory lexing string\n"); \
       exit(1); \
@@ -82,7 +82,7 @@ lex (void)
   do { \
     t.len = 1; \
     t.str = GC_malloc(1); \
-    if (!(char *) t.str) \
+    if (!PTR_VALID(t.str)) \
     { \
       fprintf(stderr, "out of memory lexing string\n"); \
       exit(1); \

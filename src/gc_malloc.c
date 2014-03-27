@@ -22,13 +22,17 @@ GC_malloc_region (struct GC_region * region, size_t sz, int collect_on_failure)
 {
   GC_START_TIMING(GC_malloc_region_time);
   
-  if (sz < sizeof(GC_cap_ptr))
+  // so that internal pointers in structs are properly aligned for the user.
+  sz = GC_ALIGN_32(sz, size_t);
+
+  /*if (sz < sizeof(GC_cap_ptr))
   {
     GC_vdbgf("sz 0x%llx to small; allocating at least 0x%llx bytes",
       (GC_ULL) sz,
       (GC_ULL) sizeof(GC_cap_ptr));
     sz = sizeof(GC_cap_ptr);
-  }
+  }*/
+  
 
   int too_small = sz > (size_t) cheri_getlen(region->free);
 

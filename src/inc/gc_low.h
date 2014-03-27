@@ -38,7 +38,11 @@ typedef __capability void * GC_cap_ptr;
 
 // also declared in gc.h
 // the void* cast of GC_INVALID_PTR must be NULL
-#define     GC_INVALID_PTR    cheri_zerocap()
+//#define     GC_INVALID_PTR    cheri_zerocap()
+#define GC_INVALID_PTR GC_cheri_ptr(NULL, 0)
+
+// also declared in gc.h
+//#define     GC_PTR_VALID(x)   (GC_cheri_gettag((x)))
 
 #define GC_NOOP do{}while(0)
 

@@ -179,7 +179,7 @@ GC_grow (struct GC_region * region, size_t hint)
   // We try to double the heap size if we can, but allocate up to hint bytes if
   // we have to, and saturate.
   // We want min(max(double, hint), region->max_size).
-  // WARNING: we always round *up* to the nearest multiple of 32 bits to avoid
+  // WARNING: we always round *up* to the nearest multiple of 32 bytes to avoid
   // alignment issues.
   
   GC_START_TIMING(GC_grow_time);

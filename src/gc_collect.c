@@ -303,7 +303,7 @@ GC_gen_promote (struct GC_region * region)
   
   // ensure we only scan the young region's children when copying
   // NOTE: this alignment is OK to go downwards because we can assume that the
-  // minimum address region->free can have is 32-bit aligned.
+  // minimum address region->free can have is 32-byte aligned.
   region->older_region->scan =
     GC_ALIGN_32_LOW((GC_cap_ptr *) region->older_region->free, GC_cap_ptr *);
   
@@ -481,7 +481,8 @@ GC_rebase (void * start,
       if ((base >= old_base) && (base <= (old_base+old_size)))
       {
         if (base == (old_base+old_size))
-          GC_vdbgf("Warning: on the old_base+old_size edge case.");
+          GC_vdbgf("Warning: on the old_base+old_size edge case 0x%llx.",
+                   (GC_ULL) base);
         *p = GC_setbase(*p, (base-old_base)+new_base);
         *p = GC_MAKE_FORWARDING_ADDRESS(*p);
       }

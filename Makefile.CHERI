@@ -30,7 +30,7 @@ GC_SOURCES=objects/gc_init.o objects/gc_malloc.o objects/gc_debug.o \
 GC_PUBLIC_INCLUDE=src/inc/
 GC_PRIV_INCLUDE=src/inc/
 TEST_SOURCES=test/test.c #`ls -m test/*.c | sed s/,//g`
-MLTEST_SOURCES=ml/lex.c ml/ml.c
+MLTEST_SOURCES=ml/lex.c ml/ml.c ml/parse.c
 
 all: everything
 
@@ -60,6 +60,7 @@ gctest:
 
 mltest:
 	PATH=$(PATH) $(CC) -DGC_CHERI -o objects/mltest -I$(GC_PUBLIC_INCLUDE) objects/*.o $(MLTEST_SOURCES) && \
+	PATH=$(PATH) $(CC) -DGC_CHERI -S -o objects/mltest.parse.s -I$(GC_PUBLIC_INCLUDE) ml/parse.c
 
 
 PASSWORD=`cat $(SSH_PASSWD_FILE)`

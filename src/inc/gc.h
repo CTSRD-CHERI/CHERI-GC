@@ -3,9 +3,18 @@
 
 // The public header for the user.
 
+#include <gc_config.h>
+
 #define GC_CAP __capability
 
 #define     GC_cheri_ptr      cheri_ptr
+
+// The preferred way of checking the validity of a pointer
+#define GC_PTR_VALID(x)   ( ((void*)(cheri_getbase(x))) != NULL)
+// OLD:
+// (Hacky conversion to GC_CAP void * to avoid const issues...)
+//#define     GC_PTR_VALID(x)   ((int) GC_cheri_gettag((GC_CAP void *) (x)))
+//#define GC_cheri_gettag cheri_gettag
 
 #include <machine/cheri.h>
 #include <machine/cheric.h>
@@ -33,6 +42,7 @@ GC_CAP void *
 GC_malloc (size_t sz);
 
 // the void* cast of GC_INVALID_PTR is guaranteed to be NULL
-#define     GC_INVALID_PTR    cheri_zerocap()
+//#define     GC_INVALID_PTR    cheri_zerocap()
+#define GC_INVALID_PTR GC_cheri_ptr(NULL, 0)
 
 #endif // GC_H_HEADER
