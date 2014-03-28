@@ -351,7 +351,7 @@ GC_debug_find_invalid (GC_cap_ptr cap)
   return NULL;
 }
 
-static void
+static GC_debug_value *
 GC_debug_add_to_hash_table (GC_debug_value v)
 {
   GC_debug_arr * entry = &GC_debug_tbl.tbl[GC_debug_hash(v)];
@@ -361,13 +361,14 @@ GC_debug_add_to_hash_table (GC_debug_value v)
     if (!entry->arr[i].valid)
     {
       entry->arr[i] = v;
-      return;
+      return &entry->arr[i];
     }
   }
   entry->sz++;
   entry->arr = GC_DEBUG_REALLOC(entry->arr, sizeof(GC_debug_value)*entry->sz);
   if (!entry->arr) GC_fatalf("GC_DEBUG_REALLOC");
   entry->arr[entry->sz-1] = v;
+  return &entry->arr[i];
 }
 
 void
@@ -407,6 +408,8 @@ GC_debug_track_allocated (GC_cap_ptr cap, const char * tracking_name)
   return 0;
 }
 
+// Be very careful if you modify the structure of the hash table itself if you
+// use this!
 #define GC_DEBUG_HASH_TABLE_FOR_EACH_VALID(v,cmd) \
   do { \
     size_t j; \
@@ -427,6 +430,28 @@ GC_debug_track_allocated (GC_cap_ptr cap, const char * tracking_name)
       } \
     } \
   } while (0)
+  
+static GC_debug_value *
+GC_debug_move_allocation (GC_debug_value * old, void * newbase, int newlen,
+                          const char * reason)
+{
+  if (old->tracking || 1)
+  {
+    printf("[GC track] Object %s moved (reason: %s)\n",
+      old->tracking_name ? old->tracking_name : "(null)", reason);
+    printf("[GC track] old: b=0x%llx, l=0x%llx\n",
+      (GC_ULL) old->base, (GC_ULL) old->len);
+    printf("[GC track] new: b=0x%llx, l=0x%llx\n",
+      (GC_ULL) newbase, (GC_ULL) newlen);
+  }
+  old->marked = 1;
+  GC_debug_value u = *old;
+  u.base = newbase;
+  u.len = newlen;
+  u.marked = 1;
+  old->valid = 0;
+  return GC_debug_add_to_hash_table(u);
+}
 
 void
 GC_debug_just_copied (GC_cap_ptr old_cap, GC_cap_ptr new_cap)
@@ -448,7 +473,7 @@ GC_debug_just_copied (GC_cap_ptr old_cap, GC_cap_ptr new_cap)
       GC_dbgf("The capability was previously allocated, initially at %s:%d.",
         v->file, v->line);
     }
-    GC_dbgf("All known valid objects of the same length:\n");
+    /*GC_dbgf("All known valid objects of the same length:\n");
     GC_DEBUG_HASH_TABLE_FOR_EACH_VALID(v,
     {
       if (v->len == GC_cheri_getlen(old_cap))
@@ -457,28 +482,48 @@ GC_debug_just_copied (GC_cap_ptr old_cap, GC_cap_ptr new_cap)
           (int) GC_debug_hash(*v), v->file, v->line, (GC_ULL) v->base,
           (GC_ULL) v->len, (int) j, (int) i);
       }
-    });
+    });*/
+    GC_dbgf("Here's a memdump of the invalid capability:");
+    GC_debug_memdump(
+      GC_cheri_getbase(old_cap),
+      GC_cheri_getbase(old_cap)+GC_cheri_getlen(old_cap));
+    GC_debug_print_region_stats(&GC_state.thread_local_region);
     GC_fatalf("exiting.");
   }
   else
   {
-    if (v->tracking)
-    {
-      printf("[GC track] Object %s moved\n",
-        v->tracking_name ? v->tracking_name : "(null)");
-      printf("Old capability:\n");
-      GC_PRINT_CAP(old_cap);
-      printf("New capability:\n");
-      GC_PRINT_CAP(new_cap);
-    }
-    v->marked = 1;
-    GC_debug_value u = *v;
-    u.base = GC_cheri_getbase(new_cap);
-    u.len = GC_cheri_getlen(new_cap);
-    u.marked = 1;
-    GC_debug_add_to_hash_table(u);
-    v->valid = 0;
+    GC_debug_move_allocation(
+      v, GC_cheri_getbase(new_cap), GC_cheri_getlen(new_cap), "copy collect");
   }
+}
+
+
+void
+GC_debug_rebase_allocation_entries (void * oldbase,
+                                    size_t oldsize,
+                                    void * newbase)
+{
+  GC_debug_value * v;
+  GC_DEBUG_HASH_TABLE_FOR_EACH_VALID(v,
+  {
+    v->rebased = 0;
+  });
+  // NOTE: it's okay to modify the hash table structure here, as we're only
+  // adding entries we won't want to scan again and not removing any (so we
+  // can't possibly skip over an interesting one).
+  GC_DEBUG_HASH_TABLE_FOR_EACH_VALID(
+    v,
+    {
+      if (!v->rebased && (v->base >= oldbase)
+          && (v->base <= (oldbase+oldsize)))
+      {
+        v->rebased = 1;
+        v = GC_debug_move_allocation(
+          v, v->base-oldbase+newbase, v->len, "rebase");
+        v->rebased = 1;
+      }
+    }
+  );
 }
 
 void
@@ -513,6 +558,7 @@ GC_debug_end_marking (void)
           if (v->tracking_name) GC_DEBUG_DEALLOC(v->tracking_name);
         }
         v->valid = 0;
+        printf("[GC DEALLOCATED] b=0x%llx l=0x%llx\n", (GC_ULL) v->base, (GC_ULL) v->len);
       }
     }
   );

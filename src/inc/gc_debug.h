@@ -106,6 +106,7 @@ typedef struct
   int tracking;
   char * tracking_name;
   int marked;
+  int rebased; // so we don't do double rebasing
   char * file; int line; // user program location where the object was allocated
 } GC_debug_value; // isn't an actual capability to avoid clashes with GC
 typedef struct
@@ -143,6 +144,12 @@ GC_debug_just_allocated (GC_cap_ptr cap, const char * file, int line);
 void
 GC_debug_just_copied (GC_cap_ptr old_cap, GC_cap_ptr new_cap);
 
+// GC_grow calls this whenever a heap is moved.
+void
+GC_debug_rebase_allocation_entries (void * oldbase,
+                                    size_t oldsize,
+                                    void * newbase);
+
 void
 GC_debug_begin_marking (void);
 
@@ -158,6 +165,7 @@ GC_debug_print_allocated_stats (void);
 #define GC_debug_find_invalid(cap)
 #define GC_debug_just_allocated(cap)
 #define GC_debug_just_copied(old_cap,new_cap)
+#define GC_debug_rebase_allocation_entries(oldbase,oldsize,newbase)
 #define GC_debug_begin_marking()
 #define GC_debug_end_marking()
 #define GC_debug_print_allocated_stats()

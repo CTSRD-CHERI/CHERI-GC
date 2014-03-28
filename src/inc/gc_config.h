@@ -2,7 +2,7 @@
 #define GC_CONFIG_H_HEADER
 
 #define GC_DEBUG
-//#define GC_VERBOSE_DEBUG
+#define GC_VERBOSE_DEBUG
 #define GC_THREAD_LOCAL_HEAP_SIZE             5000 // 5k
 #define GC_OLD_GENERATION_SEMISPACE_SIZE      10000 // 10k
 
@@ -41,7 +41,7 @@
 
 // Maximum sizes for when the heap does grow. Set to 0 to allow unlimited
 // growth.
-#define GC_THREAD_LOCAL_HEAP_MAX_SIZE         5000 
+#define GC_THREAD_LOCAL_HEAP_MAX_SIZE         20000
 #define GC_OLD_GENERATION_SEMISPACE_MAX_SIZE  1000
 
 // Determines whether we use generational GC or not. If disabled, only

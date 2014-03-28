@@ -299,6 +299,8 @@ GC_grow (struct GC_region * region, size_t hint)
     // bother with that and just do the scan now.
     GC_vdbgf("GC_grow(): region needs rebasing");
     GC_region_rebase(region, tospace_base, cur_size);
+    GC_debug_rebase_allocation_entries(
+      tospace_base, cur_size, GC_cheri_getbase(region->tospace));
   }
   
   GC_STOP_TIMING(GC_grow_time, "GC_grow %llu%s -> %llu%s",
