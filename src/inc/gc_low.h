@@ -75,8 +75,8 @@ typedef __capability void * GC_cap_ptr;
 // addresses (even when we pass caps around and make new ones...)
 // At the moment we're using the Set_Type permission
 #define GC_PERM_FORWARDING    (1 << 7)
-// actually uses for permit_execute now
-#define GC_PERM_GC_ALLOCATED (1 << 1)
+// actually uses permit_execute for now
+#define GC_PERM_GC_ALLOCATED  (1 << 1)
 
 // Ensures we copy only objects that we've allocated.
 // Not strictly needed if we define pointers into our allocated memory as always
@@ -370,6 +370,10 @@ GC_cap_memcpy (GC_cap_ptr dest, GC_cap_ptr src);
 
 GC_cap_ptr
 GC_cap_memset (GC_cap_ptr dest, int value);
+
+// Remove all tags from the given region while possibly corrupting the region.
+GC_cap_ptr
+GC_cap_memclr (GC_cap_ptr dest);
 
 #define GC_MIN(x,y)   ((x)<(y)?(x):(y))
 #define GC_MAX(x,y)   ((x)>(y)?(x):(y))

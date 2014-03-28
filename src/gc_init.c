@@ -84,6 +84,7 @@ GC_init_region
   }
   p = GC_ALIGN_32(p, void *);
   region->tospace = GC_cheri_ptr(p, semispace_size);
+  region->tospace = GC_SET_GC_ALLOCATED(region->tospace);
   
   // GC_grow assumes this is a separate region of memory.
   p = GC_low_malloc(semispace_size+32);
@@ -94,6 +95,7 @@ GC_init_region
   }
   p = GC_ALIGN_32(p, void *);
   region->fromspace = GC_cheri_ptr(p, semispace_size);
+  region->fromspace = GC_SET_GC_ALLOCATED(region->fromspace);
   
   region->free = region->tospace;
   region->scan = NULL;
@@ -102,7 +104,7 @@ GC_init_region
 #endif // GC_GENERATIONAL
   region->num_collections = 0;
 #ifdef GC_GROW_HEAP
-  region->max_size = max_size;
+  region->max_size = GC_ALIGN_32(max_size, size_t);
 #endif // GC_GROW_HEAP
 #ifdef GC_TIME
   region->time_spent_in_collector = 0;
@@ -132,12 +134,14 @@ GC_init_young_region (struct GC_region * region,
     return 1;
   }
   p = GC_ALIGN_32(p, void *);
-  region->tospace = GC_SET_YOUNG(GC_cheri_ptr(p, sz));
+  region->tospace = GC_cheri_ptr(p, sz);
 
   GC_CHOOSE_OY(
-    region->tospace = GC_SET_YOUNG(region->tospace),      // GC_OY_MANUAL
-    region->tospace = GC_SET_EPHEMERAL(region->tospace)   // GC_OY_EPHEMERAL
+    {region->tospace = GC_SET_YOUNG(region->tospace);},      // GC_OY_MANUAL
+    {region->tospace = GC_SET_EPHEMERAL(region->tospace);}   // GC_OY_EPHEMERAL
   );
+  
+  region->tospace = GC_SET_GC_ALLOCATED(region->tospace);
   
   region->fromspace = GC_INVALID_PTR;
   region->free = region->tospace;
@@ -145,7 +149,7 @@ GC_init_young_region (struct GC_region * region,
   region->older_region = older_region;
   region->num_collections = 0;
 #ifdef GC_GROW_HEAP
-  region->max_size = max_size;
+  region->max_size = GC_ALIGN_32(max_size, size_t);
 #endif // GC_GROW_HEAP
 #ifdef GC_TIME
   region->time_spent_in_collector = 0;

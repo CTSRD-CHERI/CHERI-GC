@@ -106,6 +106,7 @@ typedef struct
   int tracking;
   char * tracking_name;
   int marked;
+  char * file; int line; // user program location where the object was allocated
 } GC_debug_value; // isn't an actual capability to avoid clashes with GC
 typedef struct
 {
@@ -127,8 +128,11 @@ GC_debug_track_allocated (GC_cap_ptr cap, const char * tracking_name);
 GC_debug_value *
 GC_debug_find_allocated (GC_cap_ptr cap);
 
+GC_debug_value *
+GC_debug_find_invalid (GC_cap_ptr cap);
+
 void
-GC_debug_just_allocated (GC_cap_ptr cap);
+GC_debug_just_allocated (GC_cap_ptr cap, const char * file, int line);
 
 // Usual procedure is to do this upon collection:
 // 1. Call GC_debug_begin_marking().
@@ -151,6 +155,7 @@ GC_debug_print_allocated_stats (void);
 
 #define GC_debug_track_allocated(cap,tracking_name)   0
 #define GC_debug_find_allocated(cap)
+#define GC_debug_find_invalid(cap)
 #define GC_debug_just_allocated(cap)
 #define GC_debug_just_copied(old_cap,new_cap)
 #define GC_debug_begin_marking()

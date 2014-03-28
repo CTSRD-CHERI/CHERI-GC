@@ -29,7 +29,7 @@ lex_read_file (GC_CAP const char * name)
     exit(1);
   }
   
-  // A very inefficient way of reading a file, designed to test the collector.
+  // A very inefficient way of reading a file, designed to stress the collector.
   lex_state.max = 0;
   lex_state.file = GC_INVALID_PTR;
   lex_state.index = 0;
@@ -55,6 +55,7 @@ lex_read_file (GC_CAP const char * name)
   fclose(file);
 }
 
+#include <gc_debug.h>
 void
 lex_read_string (GC_CAP const char * str)
 {
@@ -64,6 +65,7 @@ lex_read_string (GC_CAP const char * str)
     fprintf(stderr, "lex_read_string: out of memory\n");
     exit(1);
   }
+  GC_debug_track_allocated(lex_state.file, "lex_state file");
   lex_state.index = 0;
   lex_state.max = GC_cheri_getlen(str)-1;
 }
@@ -152,8 +154,9 @@ lex (void)
         }
         else
         {
-          fprintf(stderr, "lex error: unrecognized character: `%c' (%d)\n",
-                  c, (int) c);
+          fprintf(stderr, "lex error: unrecognized character: "
+            "`%c' (%d, index %d, max %d)\n",
+            c, (int) c, (int) lex_state.index, (int) lex_state.max);
           exit(1);
         }
         break;

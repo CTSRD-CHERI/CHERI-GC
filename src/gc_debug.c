@@ -39,15 +39,16 @@ void GC_debug_print_cap (const char * name, GC_cap_ptr cap)
   else
   {
     GC_dbgf(
-      "%s: t=1, b=0x%llx, l=0x%llx"
+      "%s: t=1, b=0x%llx, l=0x%llx, alloc=%d"
 #ifdef GC_GENERATIONAL
-      ", young=%d, cOLD=%d, eph=%d, alloc=%d, region=%s"
+      ", young=%d, cOLD=%d, eph=%d, region=%s"
 #endif // GC_GENERATIONAL
       "\n",
-      name, (GC_ULL) GC_cheri_getbase(cap), (GC_ULL) GC_cheri_getlen(cap)
+      name, (GC_ULL) GC_cheri_getbase(cap), (GC_ULL) GC_cheri_getlen(cap),
+      (int) GC_IS_GC_ALLOCATED(cap)
 #ifdef GC_GENERATIONAL
       , (int) GC_IS_YOUNG(cap), (int) GC_IS_CONTAINED_IN_OLD(cap),
-        (int) GC_IS_EPHEMERAL(cap), (int) GC_IS_GC_ALLOCATED(cap),
+        (int) GC_IS_EPHEMERAL(cap),
         GC_is_initialized() ?
             GC_IN(cap, GC_state.thread_local_region.tospace) ? "young"
           : GC_IN(cap, GC_state.old_generation.tospace) ? "old"
@@ -328,13 +329,39 @@ GC_debug_find_allocated (GC_cap_ptr cap)
   return NULL;
 }
 
-void
-GC_debug_just_allocated (GC_cap_ptr cap)
+GC_debug_value *
+GC_debug_find_invalid (GC_cap_ptr cap)
 {
   GC_debug_allocated_init();
   GC_debug_value v = GC_debug_value_from_cap(cap);
   GC_debug_arr * entry = &GC_debug_tbl.tbl[GC_debug_hash(v)];
   
+  if (!entry->arr) return NULL;
+  
+  unsigned int i;
+  for (i=0; i<entry->sz; i++)
+  {
+    if (!entry->arr[i].valid && GC_debug_value_compare(entry->arr[i], v))
+    {
+      return &entry->arr[i];
+    }
+  }
+  return NULL;
+}
+
+void
+GC_debug_just_allocated (GC_cap_ptr cap, const char * file, int line)
+{
+  GC_debug_allocated_init();
+  GC_debug_value v = GC_debug_value_from_cap(cap);
+printf("Just allocated 0x%llx in %s:%d\n", (GC_ULL) cap, file, line);
+  size_t len = strlen(file)+1;
+  v.file = GC_DEBUG_ALLOC(len);
+  if (!v.file) GC_fatalf("GC_DEBUG_ALLOC");
+  memcpy(v.file, file, len);
+  v.line = line;
+  
+  GC_debug_arr * entry = &GC_debug_tbl.tbl[GC_debug_hash(v)];
   unsigned int i;
   for (i=0; i<entry->sz; i++)
   {
@@ -344,9 +371,9 @@ GC_debug_just_allocated (GC_cap_ptr cap)
       return;
     }
   }
-  
   entry->sz++;
   entry->arr = GC_DEBUG_REALLOC(entry->arr, sizeof(GC_debug_value)*entry->sz);
+  if (!entry->arr) GC_fatalf("GC_DEBUG_REALLOC");
   entry->arr[entry->sz-1] = v;
 }
 
@@ -386,6 +413,13 @@ GC_debug_just_copied (GC_cap_ptr old_cap, GC_cap_ptr new_cap)
     GC_dbgf(
       "New capability:\n");
     GC_PRINT_CAP(new_cap);
+    v = GC_debug_find_invalid(old_cap);
+    if (v)
+    {
+      GC_dbgf("The capability was previously allocated, initially at %s:%d.",
+        v->file, v->line);
+    }
+    GC_fatalf("exiting.");
   }
   else
   {

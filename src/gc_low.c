@@ -139,7 +139,6 @@ GC_cap_memcpy (GC_cap_ptr dest, GC_cap_ptr src)
       dest_child[i] = src_child[i];
     }
   }
-
   return GC_cheri_setlen(dest, srclen);
 }
 
@@ -148,6 +147,25 @@ GC_cap_memset (GC_cap_ptr dest, int value)
 {
   GC_assert( NULL != GC_cheri_getbase(dest) );
   memset(GC_cheri_getbase(dest), value, GC_cheri_getlen(dest));
+  return dest;
+}
+
+GC_cap_ptr
+GC_cap_memclr (GC_cap_ptr dest)
+{
+  GC_assert( NULL != GC_cheri_getbase(dest) );
+
+  GC_cap_ptr * start =
+    GC_ALIGN_32(GC_cheri_getbase(dest), GC_cap_ptr *);
+  GC_cap_ptr * end =
+    GC_ALIGN_32_LOW(GC_cheri_getbase(dest) + GC_cheri_getlen(dest), GC_cap_ptr *);
+  
+  GC_cap_ptr * p;
+  for (p = start; p < end; p++)
+  {
+    *p = GC_INVALID_PTR;
+  }
+  
   return dest;
 }
 
@@ -195,6 +213,9 @@ GC_grow (struct GC_region * region, size_t hint)
       GC_MEM_PRETTY_UNIT((GC_ULL) region->max_size));
     return 0;
   }
+  
+  printf("cur_size: %d max_size: %d\n", (int)cur_size,(int)region->max_size);
+  GC_assert( cur_size < region->max_size );
   
   void * tospace_base = GC_cheri_getbase(region->tospace);
   size_t new_size = GC_ALIGN_32(

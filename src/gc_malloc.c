@@ -9,16 +9,31 @@
 #include <stdlib.h>
 
 __capability void *
-GC_malloc (size_t sz)
+GC_malloc2 (
+#ifdef GC_DEBUG
+  const char * file, int line,
+#endif // GC_DEBUG
+size_t sz
+)
 {
   if (!GC_is_initialized()) GC_init();
-  return GC_malloc_region(&GC_state.thread_local_region,
-                          sz,
-                          GC_COLLECT_ON_ALLOCATION_FAILURE);  
+  return GC_malloc_region(
+#ifdef GC_DEBUG
+    file, line,
+#endif // GC_DEBUG
+    &GC_state.thread_local_region,
+    sz,
+    GC_COLLECT_ON_ALLOCATION_FAILURE);
 }
 
 __capability void *
-GC_malloc_region (struct GC_region * region, size_t sz, int collect_on_failure)
+GC_malloc_region
+(
+#ifdef GC_DEBUG
+  const char * file, int line,
+#endif // GC_DEBUG
+  struct GC_region * region, size_t sz, int collect_on_failure
+)
 {
   GC_START_TIMING(GC_malloc_region_time);
   
@@ -67,12 +82,14 @@ GC_malloc_region (struct GC_region * region, size_t sz, int collect_on_failure)
     too_small = sz > (size_t) cheri_getlen(region->free);
     GC_vdbgf("GC_malloc_region(): collecting complete. Too small? %d",
       too_small);
+    GC_debug_print_region_stats(region);
   }
   
   if (too_small)
   {
     // TODO: try to allocate directly in old generation if out of options.
     GC_errf("GC_malloc_region(): out of memory (sz=0x%llx)", (GC_ULL) sz);
+    GC_debug_print_region_stats(region);
     return GC_INVALID_PTR;
   }
   
@@ -101,13 +118,15 @@ GC_malloc_region (struct GC_region * region, size_t sz, int collect_on_failure)
     {region->free = GC_SET_EPHEMERAL(region->free);}
   );
 #endif // GC_GENERATIONAL
-    
-  ret = GC_SET_GC_ALLOCATED(ret);
   
   region->num_allocations++;
+
+#ifdef GC_DEBUG
+  GC_debug_just_allocated(ret, file, line);
+#else // GC_DEBUG
+  GC_debug_just_allocated(ret, "(unknown file)", 0);
+#endif // GC_DEBUG
     
-  GC_debug_just_allocated(ret);
-  
   //GC_STOP_TIMING(GC_malloc_region_time, "GC_malloc_region(%llu)", (GC_ULL) sz);
 
   return ret;

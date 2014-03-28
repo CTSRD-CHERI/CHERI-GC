@@ -37,10 +37,22 @@ GC_set_oy_technique (int oy_technique);
 #define GC_set_oy_technique(oy_technique) 0
 #endif // GC_GENERATIONAL
 
+// GC_malloc:
 // returns GC_INVALID_PTR on failure, whose void* cast is guaranteed to be equal
 // to NULL
-GC_CAP void *
-GC_malloc (size_t sz);
+#ifdef GC_DEBUG
+#define GC_malloc(sz) GC_malloc2(__FILE__, __LINE__, (sz))
+#else // GC_DEBUG
+#define GC_malloc GC_malloc2
+#endif // GC_DEBUG
+__capability void *
+GC_malloc2
+(
+#ifdef GC_DEBUG
+  const char * file, int line,
+#endif // GC_DEBUG
+  size_t sz
+);
 
 // the void* cast of GC_INVALID_PTR is guaranteed to be NULL
 //#define     GC_INVALID_PTR    cheri_zerocap()

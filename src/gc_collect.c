@@ -7,6 +7,7 @@
 
 #include <stdint.h>
 #include <stddef.h>
+#include <string.h>
 
 void
 GC_collect (void)
@@ -127,9 +128,10 @@ GC_copy_region (struct GC_region * region,
   }
   
   // TODO: ensure no forwarding addresses left in registers.
-  GC_clean_forwarding(
+  /*GC_clean_forwarding(
     GC_cheri_getbase(region->fromspace),
-    GC_cheri_getbase(region->fromspace) + GC_cheri_getlen(region->fromspace));
+    GC_cheri_getbase(region->fromspace) + GC_cheri_getlen(region->fromspace));*/
+  GC_cap_memclr(region->fromspace);
   
 }
 
@@ -177,8 +179,11 @@ GC_copy_object (struct GC_region * region,
 
   // Set the forwarding address of the old object.
   GC_FORWARDING_CAP(cap) = GC_MAKE_FORWARDING_ADDRESS(tmp);
-  
+ 
   GC_debug_just_copied(orig_cap, tmp);
+
+  GC_assert( GC_IS_GC_ALLOCATED(tmp) );
+
   return tmp;
 }
 
