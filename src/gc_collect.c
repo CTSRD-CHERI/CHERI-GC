@@ -102,6 +102,9 @@ GC_copy_region (struct GC_region * region,
     }
   }
   
+  GC_vdbgf("The registers lie between 0x%llx and 0x%llx",
+    (GC_ULL) &cap_regs[0], (GC_ULL) &cap_regs[GC_NUM_CAP_REGS-1]);
+  
   void * stack_top = NULL;
   GC_GET_STACK_PTR(stack_top);
   

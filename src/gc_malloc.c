@@ -82,7 +82,6 @@ GC_malloc_region
     too_small = sz > (size_t) cheri_getlen(region->free);
     GC_vdbgf("GC_malloc_region(): collecting complete. Too small? %d",
       too_small);
-    GC_debug_print_region_stats(region);
   }
   
   if (too_small)

@@ -111,12 +111,12 @@ typedef struct
 typedef struct
 {
   GC_debug_value * arr;
-  unsigned int sz;
+  size_t sz;
 } GC_debug_arr;
 struct
 {
   GC_debug_arr * tbl;
-  unsigned int sz;
+  size_t sz;
 } GC_debug_tbl;
 
 // For the user. Prints stuff each time an object moves, etc.

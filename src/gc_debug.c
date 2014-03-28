@@ -269,7 +269,7 @@ GC_debug_allocated_init (void)
     GC_debug_tbl.sz = GC_DEBUG_TBL_SZ;
     GC_debug_tbl.tbl = GC_DEBUG_ALLOC(sizeof(GC_debug_arr)*GC_debug_tbl.sz);
     if (!GC_debug_tbl.tbl) GC_fatalf("GC_DEBUG_ALLOC");
-    unsigned int i;
+    size_t i;
     for (i=0; i<GC_debug_tbl.sz; i++)
     {
       GC_debug_tbl.tbl[i].arr = NULL;
@@ -278,7 +278,7 @@ GC_debug_allocated_init (void)
   }
 }
 
-static unsigned int
+static size_t
 GC_debug_hash (GC_debug_value v)
 {
   return 
@@ -306,6 +306,8 @@ GC_debug_value_from_cap (GC_cap_ptr cap)
   v.tracking = 0;
   v.tracking_name = NULL;
   v.marked = 0;
+  v.file = NULL;
+  v.line = 0;
   return v;
 }
 
@@ -318,7 +320,7 @@ GC_debug_find_allocated (GC_cap_ptr cap)
   
   if (!entry->arr) return NULL;
   
-  unsigned int i;
+  size_t i;
   for (i=0; i<entry->sz; i++)
   {
     if (entry->arr[i].valid && GC_debug_value_compare(entry->arr[i], v))
@@ -338,7 +340,7 @@ GC_debug_find_invalid (GC_cap_ptr cap)
   
   if (!entry->arr) return NULL;
   
-  unsigned int i;
+  size_t i;
   for (i=0; i<entry->sz; i++)
   {
     if (!entry->arr[i].valid && GC_debug_value_compare(entry->arr[i], v))
@@ -349,20 +351,11 @@ GC_debug_find_invalid (GC_cap_ptr cap)
   return NULL;
 }
 
-void
-GC_debug_just_allocated (GC_cap_ptr cap, const char * file, int line)
+static void
+GC_debug_add_to_hash_table (GC_debug_value v)
 {
-  GC_debug_allocated_init();
-  GC_debug_value v = GC_debug_value_from_cap(cap);
-printf("Just allocated 0x%llx in %s:%d\n", (GC_ULL) cap, file, line);
-  size_t len = strlen(file)+1;
-  v.file = GC_DEBUG_ALLOC(len);
-  if (!v.file) GC_fatalf("GC_DEBUG_ALLOC");
-  memcpy(v.file, file, len);
-  v.line = line;
-  
   GC_debug_arr * entry = &GC_debug_tbl.tbl[GC_debug_hash(v)];
-  unsigned int i;
+  size_t i;
   for (i=0; i<entry->sz; i++)
   {
     if (!entry->arr[i].valid)
@@ -377,9 +370,23 @@ printf("Just allocated 0x%llx in %s:%d\n", (GC_ULL) cap, file, line);
   entry->arr[entry->sz-1] = v;
 }
 
+void
+GC_debug_just_allocated (GC_cap_ptr cap, const char * file, int line)
+{
+  GC_debug_allocated_init();
+  GC_debug_value v = GC_debug_value_from_cap(cap);
+  size_t len = strlen(file)+1;
+  v.file = GC_DEBUG_ALLOC(len);
+  if (!v.file) GC_fatalf("GC_DEBUG_ALLOC");
+  memcpy(v.file, file, len);
+  v.line = line;
+  GC_debug_add_to_hash_table(v);
+}
+
 int
 GC_debug_track_allocated (GC_cap_ptr cap, const char * tracking_name)
 {
+  GC_debug_allocated_init();
   GC_debug_value * v = GC_debug_find_allocated(cap);
   if (!v) return 1;
   v->tracking = 1;
@@ -400,9 +407,31 @@ GC_debug_track_allocated (GC_cap_ptr cap, const char * tracking_name)
   return 0;
 }
 
+#define GC_DEBUG_HASH_TABLE_FOR_EACH_VALID(v,cmd) \
+  do { \
+    size_t j; \
+    for (j=0; j<GC_debug_tbl.sz; j++) \
+    { \
+      GC_debug_arr * entry = &GC_debug_tbl.tbl[j]; \
+      if (entry->arr) \
+      { \
+        size_t i; \
+        for (i=0; i<entry->sz; i++) \
+        { \
+          if (entry->arr[i].valid) \
+          { \
+            v = &entry->arr[i]; \
+            cmd \
+          } \
+        } \
+      } \
+    } \
+  } while (0)
+
 void
 GC_debug_just_copied (GC_cap_ptr old_cap, GC_cap_ptr new_cap)
 {
+  GC_debug_allocated_init();
   GC_debug_value * v = GC_debug_find_allocated(old_cap);
   if (!v)
   {
@@ -419,6 +448,16 @@ GC_debug_just_copied (GC_cap_ptr old_cap, GC_cap_ptr new_cap)
       GC_dbgf("The capability was previously allocated, initially at %s:%d.",
         v->file, v->line);
     }
+    GC_dbgf("All known valid objects of the same length:\n");
+    GC_DEBUG_HASH_TABLE_FOR_EACH_VALID(v,
+    {
+      if (v->len == GC_cheri_getlen(old_cap))
+      {
+        GC_dbgf("hash=%d  %s:%d  b=0x%llx, l=0x%llx, j=%d, i=%d\n",
+          (int) GC_debug_hash(*v), v->file, v->line, (GC_ULL) v->base,
+          (GC_ULL) v->len, (int) j, (int) i);
+      }
+    });
     GC_fatalf("exiting.");
   }
   else
@@ -432,36 +471,20 @@ GC_debug_just_copied (GC_cap_ptr old_cap, GC_cap_ptr new_cap)
       printf("New capability:\n");
       GC_PRINT_CAP(new_cap);
     }
-    v->base = GC_cheri_getbase(new_cap);
-    v->len = GC_cheri_getlen(new_cap);
     v->marked = 1;
+    GC_debug_value u = *v;
+    u.base = GC_cheri_getbase(new_cap);
+    u.len = GC_cheri_getlen(new_cap);
+    u.marked = 1;
+    GC_debug_add_to_hash_table(u);
+    v->valid = 0;
   }
 }
-
-#define GC_DEBUG_HASH_TABLE_FOR_EACH_VALID(v,cmd) \
-  do { \
-    unsigned int j; \
-    for (j=0; j<GC_debug_tbl.sz; j++) \
-    { \
-      GC_debug_arr * entry = &GC_debug_tbl.tbl[j]; \
-      if (entry->arr) \
-      { \
-        unsigned int i; \
-        for (i=0; i<entry->sz; i++) \
-        { \
-          if (entry->arr[i].valid) \
-          { \
-            v = &entry->arr[i]; \
-            cmd \
-          } \
-        } \
-      } \
-    } \
-  } while (0)
 
 void
 GC_debug_begin_marking (void)
 {
+  GC_debug_allocated_init();
   GC_START_TIMING(GC_debug_begin_marking_time);
   GC_debug_value * v = NULL;
   GC_DEBUG_HASH_TABLE_FOR_EACH_VALID(
@@ -474,6 +497,7 @@ GC_debug_begin_marking (void)
 void
 GC_debug_end_marking (void)
 {
+  GC_debug_allocated_init();
   GC_START_TIMING(GC_debug_end_marking_time);
   GC_debug_value * v = NULL;
   GC_DEBUG_HASH_TABLE_FOR_EACH_VALID(
@@ -505,7 +529,7 @@ GC_debug_print_allocated_stats (void)
          total_slots_used = 0,
          total_slots = GC_debug_tbl.sz;
   
-  unsigned int j;
+  size_t j;
   for (j=0; j<GC_debug_tbl.sz; j++)
   {
     GC_debug_arr * entry = &GC_debug_tbl.tbl[j];
@@ -513,7 +537,7 @@ GC_debug_print_allocated_stats (void)
     if (entry->arr)
     {
       total_slots_used++;
-      unsigned int i;
+      size_t i;
       for (i=0; i<entry->sz; i++)
       {
         if (entry->arr[i].valid)
