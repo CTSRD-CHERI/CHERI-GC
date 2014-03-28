@@ -41,13 +41,13 @@ void GC_debug_print_cap (const char * name, GC_cap_ptr cap)
     GC_dbgf(
       "%s: t=1, b=0x%llx, l=0x%llx"
 #ifdef GC_GENERATIONAL
-      ", young=%d, cOLD=%d, eph=%d, region=%s"
+      ", young=%d, cOLD=%d, eph=%d, alloc=%d, region=%s"
 #endif // GC_GENERATIONAL
       "\n",
       name, (GC_ULL) GC_cheri_getbase(cap), (GC_ULL) GC_cheri_getlen(cap)
 #ifdef GC_GENERATIONAL
       , (int) GC_IS_YOUNG(cap), (int) GC_IS_CONTAINED_IN_OLD(cap),
-        (int) GC_IS_EPHEMERAL(cap),
+        (int) GC_IS_EPHEMERAL(cap), (int) GC_IS_GC_ALLOCATED(cap),
         GC_is_initialized() ?
             GC_IN(cap, GC_state.thread_local_region.tospace) ? "young"
           : GC_IN(cap, GC_state.old_generation.tospace) ? "old"
@@ -256,22 +256,7 @@ GC_debug_memdump (const void * start, const void * end)
 #define GC_DEBUG_TBL_SZ     997 /* prime, to avoid synchronisation */
 #define GC_DEBUG_ALLOC      malloc
 #define GC_DEBUG_REALLOC    realloc
-typedef struct
-{
-  void * base;
-  size_t len;
-  int valid;
-} GC_debug_value; // isn't an actual capability to avoid clashes with GC
-typedef struct
-{
-  GC_debug_value * arr;
-  unsigned int sz;
-} GC_debug_arr;
-struct
-{
-  GC_debug_arr * tbl;
-  unsigned int sz;
-} GC_debug_tbl;
+#define GC_DEBUG_DEALLOC    free
 
 static void
 GC_debug_allocated_init (void)
@@ -282,7 +267,7 @@ GC_debug_allocated_init (void)
     first_time = !first_time;
     GC_debug_tbl.sz = GC_DEBUG_TBL_SZ;
     GC_debug_tbl.tbl = GC_DEBUG_ALLOC(sizeof(GC_debug_arr)*GC_debug_tbl.sz);
-    if (!GC_debug_tbl.tbl) {GC_errf("GC_DEBUG_ALLOC"); exit(0);}
+    if (!GC_debug_tbl.tbl) GC_fatalf("GC_DEBUG_ALLOC");
     unsigned int i;
     for (i=0; i<GC_debug_tbl.sz; i++)
     {
@@ -317,27 +302,30 @@ GC_debug_value_from_cap (GC_cap_ptr cap)
   v.base = GC_cheri_getbase(cap);
   v.len = GC_cheri_getlen(cap);
   v.valid = 1;
+  v.tracking = 0;
+  v.tracking_name = NULL;
+  v.marked = 0;
   return v;
 }
 
-int
-GC_debug_is_allocated (GC_cap_ptr cap)
+GC_debug_value *
+GC_debug_find_allocated (GC_cap_ptr cap)
 {
   GC_debug_allocated_init();
   GC_debug_value v = GC_debug_value_from_cap(cap);
   GC_debug_arr * entry = &GC_debug_tbl.tbl[GC_debug_hash(v)];
   
-  if (!entry->arr) return 0;
+  if (!entry->arr) return NULL;
   
   unsigned int i;
   for (i=0; i<entry->sz; i++)
   {
     if (entry->arr[i].valid && GC_debug_value_compare(entry->arr[i], v))
     {
-      return 1;
+      return &entry->arr[i];
     }
   }
-  return 0;
+  return NULL;
 }
 
 void
@@ -362,29 +350,115 @@ GC_debug_just_allocated (GC_cap_ptr cap)
   entry->arr[entry->sz-1] = v;
 }
 
-void
-GC_debug_just_deallocated (GC_cap_ptr cap)
+int
+GC_debug_track_allocated (GC_cap_ptr cap, const char * tracking_name)
 {
-  GC_debug_allocated_init();
-  GC_debug_value v = GC_debug_value_from_cap(cap);
-  GC_debug_arr * entry = &GC_debug_tbl.tbl[GC_debug_hash(v)];
-  
-  if (entry->arr)
-  {  
-    unsigned int i;
-    for (i=0; i<entry->sz; i++)
+  GC_debug_value * v = GC_debug_find_allocated(cap);
+  if (!v) return 1;
+  v->tracking = 1;
+  if (tracking_name)
+  {
+    size_t len = strlen(tracking_name)+1;
+    v->tracking_name = GC_DEBUG_ALLOC(len);
+    if (!v->tracking_name) GC_fatalf("GC_DEBUG_ALLOC");
+    memcpy(v->tracking_name, tracking_name, len);
+  }
+  else
+  {
+    v->tracking_name = NULL;
+  }
+  printf("[GC track] Began tracking object %s:\n",
+    v->tracking_name ? v->tracking_name : "(null)");
+  GC_PRINT_CAP(cap);
+  return 0;
+}
+
+void
+GC_debug_just_copied (GC_cap_ptr old_cap, GC_cap_ptr new_cap)
+{
+  GC_debug_value * v = GC_debug_find_allocated(old_cap);
+  if (!v)
+  {
+    GC_dbgf(
+      "WARNING: invalid capability just copied.\n"
+      "Old capability:\n");
+    GC_PRINT_CAP(old_cap);
+    GC_dbgf(
+      "New capability:\n");
+    GC_PRINT_CAP(new_cap);
+  }
+  else
+  {
+    if (v->tracking)
     {
-      if (entry->arr[i].valid && GC_debug_value_compare(entry->arr[i], v))
+      printf("[GC track] Object %s moved\n",
+        v->tracking_name ? v->tracking_name : "(null)");
+      printf("Old capability:\n");
+      GC_PRINT_CAP(old_cap);
+      printf("New capability:\n");
+      GC_PRINT_CAP(new_cap);
+    }
+    v->base = GC_cheri_getbase(new_cap);
+    v->len = GC_cheri_getlen(new_cap);
+    v->marked = 1;
+  }
+}
+
+#define GC_DEBUG_HASH_TABLE_FOR_EACH_VALID(v,cmd) \
+  do { \
+    unsigned int j; \
+    for (j=0; j<GC_debug_tbl.sz; j++) \
+    { \
+      GC_debug_arr * entry = &GC_debug_tbl.tbl[j]; \
+      if (entry->arr) \
+      { \
+        unsigned int i; \
+        for (i=0; i<entry->sz; i++) \
+        { \
+          if (entry->arr[i].valid) \
+          { \
+            v = &entry->arr[i]; \
+            cmd \
+          } \
+        } \
+      } \
+    } \
+  } while (0)
+
+void
+GC_debug_begin_marking (void)
+{
+  GC_START_TIMING(GC_debug_begin_marking_time);
+  GC_debug_value * v = NULL;
+  GC_DEBUG_HASH_TABLE_FOR_EACH_VALID(
+    v,
+    {v->marked = 0;}
+  );
+  GC_STOP_TIMING(GC_debug_begin_marking_time, "GC_debug_begin_marking");
+}
+
+void
+GC_debug_end_marking (void)
+{
+  GC_START_TIMING(GC_debug_end_marking_time);
+  GC_debug_value * v = NULL;
+  GC_DEBUG_HASH_TABLE_FOR_EACH_VALID(
+    v,
+    {
+      if (!v->marked)
       {
-        entry->arr[i].valid = 0;
-        return;
+        if (v->tracking)
+        {
+          printf("[GC track] Object %s (b=0x%llx, l=0x%llx) deallocated\n",
+            v->tracking_name ? v->tracking_name : "(null)",
+            (GC_ULL) v->base, (GC_ULL) v->len);
+          if (v->tracking_name) GC_DEBUG_DEALLOC(v->tracking_name);
+        }
+        v->valid = 0;
       }
     }
-  }
-  GC_dbgf("WARNING: GC_debug_just_deallocated() could not find an allocated"
-          " entry for b=0x%llx, l=0x%llx, hash=%u.\n",
-          (GC_ULL) GC_cheri_getbase(cap), (GC_ULL) GC_cheri_getlen(cap),
-          GC_debug_hash(v));
+  );
+  GC_STOP_TIMING(GC_debug_end_marking_time, "GC_debug_end_marking");
 }
 
 void

@@ -22,6 +22,8 @@ GC_collect_region (struct GC_region * region)
 
   region->num_collections++; // debugging/stats
   
+  GC_debug_begin_marking();
+  
   size_t freed;
   int promoted = 0;
 #ifdef GC_GENERATIONAL
@@ -69,6 +71,8 @@ GC_collect_region (struct GC_region * region)
       GC_MEM_PRETTY((GC_ULL) new_used), GC_MEM_PRETTY_UNIT((GC_ULL) new_used),
       GC_MEM_PRETTY((GC_ULL) freed), GC_MEM_PRETTY_UNIT((GC_ULL) freed));
   }
+
+  GC_debug_end_marking();
 
   GC_STOP_TIMING(
     GC_collect_region_time,
@@ -134,10 +138,16 @@ GC_copy_object (struct GC_region * region,
                 GC_cap_ptr cap)
 {
   // Copy the object pointed to by cap to region->tospace
-
-  GC_assert(GC_cheri_getlen(cap) >= sizeof(GC_cap_ptr));
   
-  GC_debug_just_deallocated(cap);
+  GC_assert( GC_IS_GC_ALLOCATED(cap) );
+  
+  // Need enough space for forwarding pointer; GC_malloc ensures that this is
+  // always true, but the capability may present itself as having a smaller
+  // length due to the semantics of GC_malloc.
+  size_t user_length = GC_cheri_getlen(cap);
+  GC_cap_ptr orig_cap = cap;
+  cap = GC_setbaselen(
+    cap, GC_cheri_getbase(cap), GC_ALIGN_32(user_length, size_t));
   
   // If the first word of the object points to a place in region->tospace,
   // then it has already been copied.
@@ -151,7 +161,6 @@ GC_copy_object (struct GC_region * region,
     if (GC_IS_FORWARDING_ADDRESS(forwarding_address))
     {
       GC_assert(GC_IN(GC_cheri_getbase(forwarding_address), region->tospace));
-      GC_debug_just_allocated(forwarding_address);
       return GC_STRIP_FORWARDING(forwarding_address);
     }
   }
@@ -159,15 +168,17 @@ GC_copy_object (struct GC_region * region,
   // No forwarding address present: do the actual copy and set the forwarding
   // address.
   GC_cap_ptr tmp = GC_cap_memcpy(region->free, cap);
+  tmp = GC_cheri_setlen(tmp, user_length);
   region->free =
-    GC_cheri_ptr(
+    GC_setbaselen(
+      region->free,
       GC_cheri_getbase(region->free)+GC_cheri_getlen(cap),
       GC_cheri_getlen (region->free)-GC_cheri_getlen(cap));
 
   // Set the forwarding address of the old object.
   GC_FORWARDING_CAP(cap) = GC_MAKE_FORWARDING_ADDRESS(tmp);
   
-  GC_debug_just_allocated(tmp);
+  GC_debug_just_copied(orig_cap, tmp);
   return tmp;
 }
 
@@ -199,7 +210,9 @@ GC_copy_roots (struct GC_region * region,
     {
       continue;
     }
-    if (GC_cheri_gettag(*p) && GC_IN(GC_cheri_getbase(*p), region->fromspace))
+    if (GC_cheri_gettag(*p)
+        && GC_IS_GC_ALLOCATED(*p)
+        && GC_IN(GC_cheri_getbase(*p), region->fromspace))
     {
       GC_vdbgf("[root] [%d%%] location=0x%llx (%s?), b=0x%llx, l=0x%llx\n",
       (int) (
@@ -240,6 +253,7 @@ GC_copy_children (struct GC_region * region,
        region->scan++)
   {
     if (GC_cheri_gettag(*region->scan)
+        && GC_IS_GC_ALLOCATED(*region->scan)
         && GC_IN(GC_cheri_getbase(*region->scan), region->fromspace))
     {
       GC_vdbgf("[child] location=0x%llx (%s?), b=0x%llx, l=0x%llx\n",
@@ -316,6 +330,7 @@ GC_gen_promote (struct GC_region * region)
   
   void * newfree = GC_cheri_getbase(region->older_region->free);
   size_t freelen = GC_cheri_getlen(region->older_region->free);
+  size_t usedlen = GC_cheri_getlen(region->older_region->tospace) - freelen;
   ptrdiff_t szdiff = newfree - oldfree;
   
   GC_vdbgf("copied %llu%s (%llu bytes less than expected) into the old generation",
@@ -328,8 +343,8 @@ GC_gen_promote (struct GC_region * region)
   
   GC_vdbgf(
     "total heap residency after promote: %llu kbytes (%llu%s, %d%%)\n",
-    ((GC_ULL) freelen) / 1000,
-    GC_MEM_PRETTY((GC_ULL) freelen), GC_MEM_PRETTY_UNIT((GC_ULL) freelen),
+    (GC_ULL) (usedlen / 1000),
+    GC_MEM_PRETTY((GC_ULL) usedlen), GC_MEM_PRETTY_UNIT((GC_ULL) usedlen),
     residency
   );
     

@@ -13,7 +13,10 @@ typedef __capability void * GC_cap_ptr;
 #include <machine/cheric.h>
 
 #define     GC_cheri_getbase  cheri_getbase
-#define     GC_cheri_getlen   cheri_getlen
+//#define     GC_cheri_getlen   cheri_getlen
+#define GC_CAP __capability
+#define     GC_cheri_getlen(x)   cheri_getlen((GC_CAP void*)(x))
+
 #define     GC_cheri_gettag   cheri_gettag
 #define     GC_cheri_getperm  cheri_getperm
 #define     GC_cheri_andperm  cheri_andperm
@@ -60,11 +63,32 @@ typedef __capability void * GC_cap_ptr;
 
 #define GC_STRIP_FORWARDING(cap) \
   ( GC_orperm((cap), GC_PERM_FORWARDING) )
-
+  
+// All custom permissions:
+// NOTE: GC_PERM_YOUNG, GC_PERM_CONTAINED_IN_OLD only used when OY technique is
+//       GC_OY_MANUAL.
+// actually uses permit_store_ephemeral_capability for now.
+#define GC_PERM_YOUNG (1 << 5)
+// actually uses permit_seal for now
+#define GC_PERM_CONTAINED_IN_OLD (1 << 6)
 // TODO: use a *custom* perm and ensure it's *always* set for non-forwarding
 // addresses (even when we pass caps around and make new ones...)
 // At the moment we're using the Set_Type permission
 #define GC_PERM_FORWARDING    (1 << 7)
+// actually uses for permit_execute now
+#define GC_PERM_GC_ALLOCATED (1 << 1)
+
+// Ensures we copy only objects that we've allocated.
+// Not strictly needed if we define pointers into our allocated memory as always
+// being managed by us.
+#define GC_IS_GC_ALLOCATED(cap) \
+  ( ! (((GC_ULL) GC_cheri_getperm((cap))) & GC_PERM_GC_ALLOCATED)  )
+  
+#define GC_SET_GC_ALLOCATED(cap) \
+  ( GC_cheri_andperm((cap), ~GC_PERM_GC_ALLOCATED) )
+
+#define GC_UNSET_GC_ALLOCATED(cap) \
+  ( GC_orperm((cap), GC_PERM_GC_ALLOCATED) )
 
 // TODO: also define this in gc.h
 // used for old-to-young pointer handling when the technique is GC_OY_MANUAL
@@ -162,11 +186,6 @@ typedef __capability void * GC_cap_ptr;
 
 GC_cap_ptr *
 GC_handle_oy_store (GC_cap_ptr * x, GC_cap_ptr y);
-
-// actually uses permit_store_ephemeral_capability for now
-#define GC_PERM_YOUNG (1 << 5)
-// actually uses permit_seal for now
-#define GC_PERM_CONTAINED_IN_OLD (1 << 6)
 
 #define GC_IS_CONTAINED_IN_OLD(cap) \
   ( ! (((GC_ULL) GC_cheri_getperm((cap))) & GC_PERM_CONTAINED_IN_OLD)  )

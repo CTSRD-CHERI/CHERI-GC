@@ -187,8 +187,14 @@ GC_grow (struct GC_region * region, size_t hint)
   hint = GC_ALIGN_32(hint, size_t);
    
   size_t cur_size = GC_cheri_getlen(region->tospace);
-  
-  if (cur_size == region->max_size) return 0;
+    
+  if (cur_size == region->max_size)
+  {
+    GC_vdbgf("GC_grow(): region already max size (%llu%s)",
+      GC_MEM_PRETTY((GC_ULL) region->max_size),
+      GC_MEM_PRETTY_UNIT((GC_ULL) region->max_size));
+    return 0;
+  }
   
   void * tospace_base = GC_cheri_getbase(region->tospace);
   size_t new_size = GC_ALIGN_32(

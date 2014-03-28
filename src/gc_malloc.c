@@ -22,7 +22,8 @@ GC_malloc_region (struct GC_region * region, size_t sz, int collect_on_failure)
 {
   GC_START_TIMING(GC_malloc_region_time);
   
-  // so that internal pointers in structs are properly aligned for the user.
+  // so that internal pointers in structs are properly aligned for the user and
+  // the GC.
   size_t orig_sz = sz;
   sz = GC_ALIGN_32(sz, size_t);
 
@@ -34,7 +35,6 @@ GC_malloc_region (struct GC_region * region, size_t sz, int collect_on_failure)
     sz = sizeof(GC_cap_ptr);
   }*/
   
-
   int too_small = sz > (size_t) cheri_getlen(region->free);
 
 #ifdef GC_GROW_YOUNG_HEAP
@@ -77,28 +77,36 @@ GC_malloc_region (struct GC_region * region, size_t sz, int collect_on_failure)
   }
   
   // TODO: handle csetlen and cincbase exceptions
+  
+  // NOTE: if we return the cap with orig_sz as length, the GC gets confused
+  //       about its *actual* length which, if <32 or not 32-bit aligned, is
+  //       important. GC_collect assumes that we have actually *allocated*
+  //       GC_ALIGN_32(orig_sz) bytes.
   __capability void * ret = GC_cheri_setlen(region->free, orig_sz);
   
   // TODO: use cincbase here to preserve permissions, and remove the stuff
   // below.
-  region->free = GC_cheri_ptr(
+  region->free =
+    GC_setbaselen(
+      region->free,
+      GC_cheri_getbase(region->free)+sz,
+      GC_cheri_getlen (region->free)-sz);
+  /*region->free = GC_cheri_ptr(
     GC_cheri_getbase(region->free)+sz,
-    GC_cheri_getlen (region->free)-sz);
+    GC_cheri_getlen (region->free)-sz);*/
 
 #ifdef GC_GENERATIONAL
-#ifdef GC_OY_RUNTIME
-  if (GC_state.oy_technique == GC_OY_MANUAL)
-    region->free = GC_SET_YOUNG(region->free);
-  else if (GC_state.oy_technique == GC_OY_EPHEMERAL)
-    region->free = GC_SET_EPHEMERAL(region->free);
-#elif GC_OY_DEFAULT == GC_OY_MANUAL
-  region->free = GC_SET_YOUNG(region->free);
-#elif GC_OY_DEFAULT == GC_OY_EPHEMERAL
-  region->free = GC_SET_EPHEMERAL(region->free);
-#endif
+  GC_CHOOSE_OY(
+    {region->free = GC_SET_YOUNG(region->free);},
+    {region->free = GC_SET_EPHEMERAL(region->free);}
+  );
 #endif // GC_GENERATIONAL
+    
+  ret = GC_SET_GC_ALLOCATED(ret);
   
   region->num_allocations++;
+    
+  GC_debug_just_allocated(ret);
   
   //GC_STOP_TIMING(GC_malloc_region_time, "GC_malloc_region(%llu)", (GC_ULL) sz);
 

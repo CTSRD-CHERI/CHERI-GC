@@ -17,14 +17,17 @@ void
 rebase_test (void);
 void
 grow_test (void);
+void
+tracking_test (void);
 
 int
 main (int argc, char **argv)
 {
   printf("test: compiled %s\n",
          __TIME__ " " __DATE__);
+  tracking_test();
   //rebase_test();
-  collection_test();
+  //collection_test();
   //grow_test();
   return 0;
 }
@@ -39,6 +42,18 @@ typedef struct node_tag
   int value;
   __capability struct node_tag * next;
 } node;
+
+void
+tracking_test (void)
+{
+  GC_init();
+  GC_CAP void * obj = GC_malloc(100);
+  if (GC_debug_track_allocated(obj, "test object"))
+  {
+    printf("error: couldn't start tracking object\n");
+  }
+  collection_test();
+}
 
 void
 grow_test (void)
@@ -82,10 +97,16 @@ collection_test (void)
   #define LLSTORE   20         // the long-lived store
   #define LLBYTES   500
   int i;
-  GC_cap_ptr arr[NSTORE];
-  GC_cap_ptr arrll[LLSTORE];
+  GC_cap_ptr arr_unaligned[NSTORE+1];
+  GC_cap_ptr arrll_unaligned[LLSTORE+1];
+  GC_cap_ptr * arr = &arr_unaligned[0];
+  GC_ALIGN_32(arr, GC_cap_ptr *);
+  GC_cap_ptr * arrll = &arrll_unaligned[0];
+  GC_ALIGN_32(arrll, GC_cap_ptr *);
   GC_init();
   time_t start = time(NULL);
+    printf("arrll runs from 0x%llx to 0x%llx\n", (GC_ULL) arrll, (GC_ULL) &arrll[LLSTORE-1]);
+    printf("arr runs from 0x%llx to 0x%llx\n", (GC_ULL) arr, (GC_ULL) &arr[NSTORE-1]);
   for (i=0; i<LLSTORE; i++)
   {
     arrll[i] = GC_malloc(LLBYTES);

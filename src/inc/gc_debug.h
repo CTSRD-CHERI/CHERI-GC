@@ -80,7 +80,7 @@ GC_errf2 (const char * file, int line, const char * format, ...);
     printf("***GC FATAL %s:%d ", file, line); \
     printf(__VA_ARGS__); \
     printf("\n"); \
-    exit(0); \
+    exit(1); \
   } while (0)
 void
 GC_debug_print_region_stats (struct GC_region * region);
@@ -95,24 +95,67 @@ void
 GC_debug_memdump (const void * start, const void * end);
 
 
-// To assist in checking whether owned objects are valid things on the heap
-// (i.e. leak/corruption detection):
 #ifdef GC_DEBUG_TRACK_ALLOCATIONS
+// To assist in tracking objects.
+
+typedef struct
+{
+  void * base;
+  size_t len;
+  int valid;
+  int tracking;
+  char * tracking_name;
+  int marked;
+} GC_debug_value; // isn't an actual capability to avoid clashes with GC
+typedef struct
+{
+  GC_debug_value * arr;
+  unsigned int sz;
+} GC_debug_arr;
+struct
+{
+  GC_debug_arr * tbl;
+  unsigned int sz;
+} GC_debug_tbl;
+
+// For the user. Prints stuff each time an object moves, etc.
+// tracking_name is used to identify the capability on print-outs. Can be NULL.
+// Returns 0 on success, non-zero otherwise.
 int
-GC_debug_is_allocated (GC_cap_ptr cap);
+GC_debug_track_allocated (GC_cap_ptr cap, const char * tracking_name);
+
+GC_debug_value *
+GC_debug_find_allocated (GC_cap_ptr cap);
 
 void
 GC_debug_just_allocated (GC_cap_ptr cap);
 
+// Usual procedure is to do this upon collection:
+// 1. Call GC_debug_begin_marking().
+// 2. Copy-collect, calling GC_debug_just_copied() each time a capability is
+//    moved.
+// 3. Call GC_debug_end_marking().
+// Internally the routines implement a mark-and-sweep of the hash table.
 void
-GC_debug_just_deallocated (GC_cap_ptr cap);
+GC_debug_just_copied (GC_cap_ptr old_cap, GC_cap_ptr new_cap);
+
+void
+GC_debug_begin_marking (void);
+
+void
+GC_debug_end_marking (void);
 
 void
 GC_debug_print_allocated_stats (void);
 #else // GC_DEBUG_TRACK_ALLOCATIONS
 
+#define GC_debug_track_allocated(cap,tracking_name)   0
+#define GC_debug_find_allocated(cap)
 #define GC_debug_just_allocated(cap)
-#define GC_debug_just_deallocated(cap)
+#define GC_debug_just_copied(old_cap,new_cap)
+#define GC_debug_begin_marking()
+#define GC_debug_end_marking()
+#define GC_debug_print_allocated_stats()
 
 #endif // GC_DEBUG_TRACK_ALLOCATIONS
 
