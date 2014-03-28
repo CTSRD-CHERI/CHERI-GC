@@ -121,7 +121,9 @@ collection_test (void)
   }
   time_t end = time(NULL);
   GC_debug_print_region_stats(&GC_state.thread_local_region);
+#ifdef GC_GENERATIONAL
   GC_debug_print_region_stats(&GC_state.old_generation);
+#endif // GC_GENERATIONAL
   printf("total time: %d sec\n", (int) (end - start));
 }
 

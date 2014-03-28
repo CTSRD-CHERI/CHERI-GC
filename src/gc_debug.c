@@ -360,6 +360,7 @@ GC_debug_add_to_hash_table (GC_debug_value v)
   {
     if (!entry->arr[i].valid)
     {
+      v.valid = 1;
       entry->arr[i] = v;
       return &entry->arr[i];
     }
@@ -368,7 +369,7 @@ GC_debug_add_to_hash_table (GC_debug_value v)
   entry->arr = GC_DEBUG_REALLOC(entry->arr, sizeof(GC_debug_value)*entry->sz);
   if (!entry->arr) GC_fatalf("GC_DEBUG_REALLOC");
   entry->arr[entry->sz-1] = v;
-  return &entry->arr[i];
+  return &entry->arr[entry->sz-1];
 }
 
 void
@@ -402,8 +403,8 @@ GC_debug_track_allocated (GC_cap_ptr cap, const char * tracking_name)
   {
     v->tracking_name = NULL;
   }
-  printf("[GC track] Began tracking object %s:\n",
-    v->tracking_name ? v->tracking_name : "(null)");
+  printf("[GC track] Began tracking object %s (allocated in %s:%d):\n",
+    v->tracking_name ? v->tracking_name : "(null)", v->file, v->line);
   GC_PRINT_CAP(cap);
   return 0;
 }
@@ -435,7 +436,7 @@ static GC_debug_value *
 GC_debug_move_allocation (GC_debug_value * old, void * newbase, int newlen,
                           const char * reason)
 {
-  if (old->tracking || 1)
+  if (old->tracking)
   {
     printf("[GC track] Object %s moved (reason: %s)\n",
       old->tracking_name ? old->tracking_name : "(null)", reason);
@@ -464,9 +465,11 @@ GC_debug_just_copied (GC_cap_ptr old_cap, GC_cap_ptr new_cap)
       "WARNING: invalid capability just copied.\n"
       "Old capability:\n");
     GC_PRINT_CAP(old_cap);
-    GC_dbgf(
-      "New capability:\n");
+    size_t oldhash = GC_debug_hash(GC_debug_value_from_cap(old_cap));
+    GC_dbgf("Hash: %d\n", (int) oldhash);
+    GC_dbgf("New capability:\n");
     GC_PRINT_CAP(new_cap);
+    GC_dbgf("Hash: %d\n", (int) GC_debug_hash(GC_debug_value_from_cap(new_cap)));
     v = GC_debug_find_invalid(old_cap);
     if (v)
     {
@@ -481,8 +484,31 @@ GC_debug_just_copied (GC_cap_ptr old_cap, GC_cap_ptr new_cap)
         GC_dbgf("hash=%d  %s:%d  b=0x%llx, l=0x%llx, j=%d, i=%d\n",
           (int) GC_debug_hash(*v), v->file, v->line, (GC_ULL) v->base,
           (GC_ULL) v->len, (int) j, (int) i);
+        if (v->base == GC_cheri_getbase(old_cap)) exit(1);
       }
     });*/
+    /*GC_dbgf("All known valid objects with the same hash:\n");
+    {
+      GC_debug_arr * entry = &GC_debug_tbl.tbl[oldhash];
+      if (entry->arr)
+      {
+        size_t i;
+        for (i=0; i<entry->sz; i++)
+        {
+          if (entry->arr[i].valid &&
+              (GC_debug_hash(entry->arr[i]) == oldhash))
+          {
+            v = &entry->arr[i];
+            GC_dbgf("%s:%d b=0x%llx, l=0x%llx\n",
+              v->file, v->line, (GC_ULL) v->base, (GC_ULL) v->len);
+          }
+        }
+      }
+      else
+      {
+        GC_dbgf("(none)");
+      }
+    }*/
     GC_dbgf("Here's a memdump of the invalid capability:");
     GC_debug_memdump(
       GC_cheri_getbase(old_cap),
@@ -518,6 +544,7 @@ GC_debug_rebase_allocation_entries (void * oldbase,
           && (v->base <= (oldbase+oldsize)))
       {
         v->rebased = 1;
+        if (v->base == (void*)0x16081e3a0) {printf("argh!");exit(1);}
         v = GC_debug_move_allocation(
           v, v->base-oldbase+newbase, v->len, "rebase");
         v->rebased = 1;
@@ -540,7 +567,7 @@ GC_debug_begin_marking (void)
 }
 
 void
-GC_debug_end_marking (void)
+GC_debug_end_marking (void * space_start, void * space_end)
 {
   GC_debug_allocated_init();
   GC_START_TIMING(GC_debug_end_marking_time);
@@ -548,7 +575,7 @@ GC_debug_end_marking (void)
   GC_DEBUG_HASH_TABLE_FOR_EACH_VALID(
     v,
     {
-      if (!v->marked)
+      if (!v->marked && (v->base >= space_start) && (v->base <= space_end))
       {
         if (v->tracking)
         {

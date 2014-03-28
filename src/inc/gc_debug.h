@@ -154,7 +154,7 @@ void
 GC_debug_begin_marking (void);
 
 void
-GC_debug_end_marking (void);
+GC_debug_end_marking (void * space_start, void * space_end);
 
 void
 GC_debug_print_allocated_stats (void);

@@ -23,6 +23,8 @@ GC_collect_region (struct GC_region * region)
 
   region->num_collections++; // debugging/stats
   
+  void * space_start = GC_cheri_getbase(region->tospace);
+  void * space_end = space_start + GC_cheri_getlen(region->tospace);
   GC_debug_begin_marking();
   
   size_t freed;
@@ -73,7 +75,7 @@ GC_collect_region (struct GC_region * region)
       GC_MEM_PRETTY((GC_ULL) freed), GC_MEM_PRETTY_UNIT((GC_ULL) freed));
   }
 
-  GC_debug_end_marking();
+  GC_debug_end_marking(space_start, space_end);
 
   GC_STOP_TIMING(
     GC_collect_region_time,

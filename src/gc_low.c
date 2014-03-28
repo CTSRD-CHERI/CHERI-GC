@@ -215,6 +215,7 @@ GC_grow (struct GC_region * region, size_t hint)
   }
   
   printf("cur_size: %d max_size: %d\n", (int)cur_size,(int)region->max_size);
+  if(cur_size >= region->max_size)return 0;
   GC_assert( cur_size < region->max_size );
   
   void * tospace_base = GC_cheri_getbase(region->tospace);

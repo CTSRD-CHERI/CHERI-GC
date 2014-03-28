@@ -99,7 +99,7 @@ GC_malloc_region
   //       important. GC_collect assumes that we have actually *allocated*
   //       GC_ALIGN_32(orig_sz) bytes.
   __capability void * ret = GC_cheri_setlen(region->free, orig_sz);
-  
+
   // TODO: use cincbase here to preserve permissions, and remove the stuff
   // below.
   region->free =
