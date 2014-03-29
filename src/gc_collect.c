@@ -237,9 +237,9 @@ GC_copy_roots (struct GC_region * region,
 #ifdef GC_GENERATIONAL
       if (is_generational)
       {
-        GC_CHOOSE_OY(
-          {*p = GC_UNSET_YOUNG(*p);},      // GC_OY_MANUAL
-          {*p = GC_UNSET_EPHEMERAL(*p);}   // GC_OY_EPHEMERAL
+        GC_SWITCH_WB_TYPE(
+          {*p = GC_UNSET_YOUNG(*p);},      // GC_WB_MANUAL
+          {*p = GC_UNSET_EPHEMERAL(*p);}   // GC_WB_EPHEMERAL
         );
       }
 #endif // GC_GENERATIONAL
@@ -275,12 +275,12 @@ GC_copy_children (struct GC_region * region,
 #ifdef GC_GENERATIONAL
       if (is_generational)
       {
-        GC_CHOOSE_OY(
+        GC_SWITCH_WB_TYPE(
           {*region->scan =
             GC_UNSET_YOUNG(
-            GC_SET_CONTAINED_IN_OLD(*region->scan));}, // GC_OY_MANUAL
+            GC_SET_CONTAINED_IN_OLD(*region->scan));}, // GC_WB_MANUAL
           {*region->scan =
-            GC_UNSET_EPHEMERAL(*region->scan);}         // GC_OY_EPHEMERAL
+            GC_UNSET_EPHEMERAL(*region->scan);}         // GC_WB_EPHEMERAL
         );
       }
 #endif // GC_GENERATIONAL

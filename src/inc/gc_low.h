@@ -65,8 +65,8 @@ typedef __capability void * GC_cap_ptr;
   ( GC_orperm((cap), GC_PERM_FORWARDING) )
   
 // All custom permissions:
-// NOTE: GC_PERM_YOUNG, GC_PERM_CONTAINED_IN_OLD only used when OY technique is
-//       GC_OY_MANUAL.
+// NOTE: GC_PERM_YOUNG, GC_PERM_CONTAINED_IN_OLD only used when WB technique is
+//       GC_WB_MANUAL.
 // actually uses permit_store_ephemeral_capability for now.
 #define GC_PERM_YOUNG (1 << 6)
 // actually uses permit_seal for now
@@ -91,7 +91,7 @@ typedef __capability void * GC_cap_ptr;
   ( GC_orperm((cap), GC_PERM_GC_ALLOCATED) )
 
 // TODO: also define this in gc.h
-// used for old-to-young pointer handling when the technique is GC_OY_MANUAL
+// used for old-to-young pointer handling when the technique is GC_WB_MANUAL
 // (see gc_init.h)
 // usage: use GC_STORE_CAP(x,y) where you would normally use x = y, where x
 // and y are capabilities, and y has been allocated by the GC. x and y are
@@ -192,7 +192,8 @@ typedef __capability void * GC_cap_ptr;
       printf("[GC_STORE_CAP] & ( %s ) is old.\n", #x); \
       if (GC_IN(tmpy, GC_state.thread_local_region.tospace)) \
       { \
-        GC_fatalf("%s is young.\n", #y); \
+        GC_dbgf("%s is young.\n", #y); \
+        GC_handle_oy_store(tmpx, tmpy); \
       } \
     } \
     else if (GC_IN(tmpx, GC_state.thread_local_region.tospace)) \
@@ -238,8 +239,8 @@ typedef __capability void * GC_cap_ptr;
 
 #ifdef GC_GENERATIONAL
 
-GC_cap_ptr *
-GC_handle_oy_store (GC_cap_ptr * x, GC_cap_ptr y);
+__capability void * __capability *
+GC_handle_oy_store (__capability void * __capability * x, GC_cap_ptr y);
 
 #define GC_IS_CONTAINED_IN_OLD(cap) \
   ( ! (((GC_ULL) GC_cheri_getperm((cap))) & GC_PERM_CONTAINED_IN_OLD)  )

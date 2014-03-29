@@ -112,7 +112,7 @@ GC_malloc_region
     GC_cheri_getlen (region->free)-sz);*/
 
 #ifdef GC_GENERATIONAL
-  GC_CHOOSE_OY(
+  GC_SWITCH_WB_TYPE(
     {region->free = GC_SET_YOUNG(region->free);},
     {region->free = GC_SET_EPHEMERAL(region->free);}
   );

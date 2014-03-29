@@ -49,14 +49,14 @@
 #define GC_GENERATIONAL
 
 #ifdef GC_GENERATIONAL
-// This determines how we deal with old-to-young pointers. See gc_init.h for
-// a list and explanation of techniques. You can change the technique at runtime
-// by using GC_set_oy_technique().
-#define GC_OY_DEFAULT                         GC_OY_MANUAL
+// This determines the write barrier technique we use to deal with old-to-young
+// pointers. See gc_init.h for a list and explanation of techniques. You can
+// change the technique at runtime by using GC_set_wb_type().
+#define GC_WB_DEFAULT                         GC_WB_MANUAL
 
-// If this is defined, you can change the OY technique at runtime. Otherwise,
-// the technique specified by GC_OY_DEFAULT is compiled in.
-#define GC_OY_RUNTIME
+// If this is defined, you can change the write barrier technique at runtime.
+// Otherwise, the technique specified by GC_WB_DEFAULT is compiled in.
+#define GC_WB_RUNTIME
 #endif // GC_GENERATIONAL
 
 #define GC_COLLECT_STATS

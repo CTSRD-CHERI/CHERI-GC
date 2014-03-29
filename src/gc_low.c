@@ -170,14 +170,15 @@ GC_cap_memclr (GC_cap_ptr dest)
 }
 
 #ifdef GC_GENERATIONAL
-GC_cap_ptr *
-GC_handle_oy_store (GC_cap_ptr * x, GC_cap_ptr y)
+__capability void * __capability *
+GC_handle_oy_store (__capability void * __capability * x, GC_cap_ptr y)
 {
-  GC_dbgf("old-young store : *(0x%llx) := 0x%llx\n", (GC_ULL) x, (GC_ULL) y);
-  GC_CHOOSE_OY(
-    *x = GC_SET_CONTAINED_IN_OLD(y),    // GC_OY_MANUAL
-    GC_NOOP                             // GC_OY_EPHEMERAL
-  );
+  GC_dbgf("old-young store : *(0x%llx) := 0x%llx", (GC_ULL) x, (GC_ULL) y);
+  GC_fatalf("unhandled for now, quitting.");
+  /*GC_SWITCH_WB_TYPE(
+    *x = GC_SET_CONTAINED_IN_OLD(y),    // GC_WB_MANUAL
+    GC_NOOP                             // GC_WB_EPHEMERAL
+  );*/
   return x;
 }
 #endif // GC_GENERATIONAL

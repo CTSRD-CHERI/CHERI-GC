@@ -34,9 +34,9 @@ GC_init2 (const char * file, int line)
       GC_THREAD_LOCAL_HEAP_SIZE,
       GC_THREAD_LOCAL_HEAP_MAX_SIZE);
     if (rc) return rc;
-#ifdef GC_OY_RUNTIME
-    GC_state.oy_technique = GC_OY_DEFAULT;
-#endif // GC_OY_RUNTIME
+#ifdef GC_WB_RUNTIME
+    GC_state.wb_type = GC_WB_DEFAULT;
+#endif // GC_WB_RUNTIME
 #else // GC_GENERATIONAL
     rc = GC_init_region(
       &GC_state.thread_local_region,
@@ -137,9 +137,9 @@ GC_init_young_region (struct GC_region * region,
   p = GC_ALIGN_32(p, void *);
   region->tospace = GC_cheri_ptr(p, sz);
 
-  GC_CHOOSE_OY(
-    {region->tospace = GC_SET_YOUNG(region->tospace);},      // GC_OY_MANUAL
-    {region->tospace = GC_SET_EPHEMERAL(region->tospace);}   // GC_OY_EPHEMERAL
+  GC_SWITCH_WB_TYPE(
+    {region->tospace = GC_SET_YOUNG(region->tospace);},      // GC_WB_MANUAL
+    {region->tospace = GC_SET_EPHEMERAL(region->tospace);}   // GC_WB_EPHEMERAL
   );
   
   region->tospace = GC_SET_GC_ALLOCATED(region->tospace);
@@ -159,14 +159,14 @@ GC_init_young_region (struct GC_region * region,
 }
 
 int
-GC_set_oy_technique (int oy_technique)
+GC_set_wb_type (int wb_type)
 {
   if (!GC_is_initialized)
   {
     int rc = GC_init();
     if (rc) return rc;
   }
-  GC_state.oy_technique = oy_technique;
+  GC_state.wb_type = wb_type;
   return 0;
 }
 #endif // GC_GENERATIONAL

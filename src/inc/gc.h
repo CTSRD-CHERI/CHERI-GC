@@ -39,9 +39,9 @@ GC_init2 (const char * file, int line);
 // 0 : success
 // 1 : error
 int
-GC_set_oy_technique (int oy_technique);
+GC_set_wb_type (int wb_type);
 #else // GC_GENERATIONAL
-#define GC_set_oy_technique(oy_technique) 0
+#define GC_set_wb_type(wb_type) 0
 #endif // GC_GENERATIONAL
 
 // GC_malloc:
