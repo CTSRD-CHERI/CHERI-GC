@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include "gc_config.h"
 #include "gc_time.h"
+#include "gc_remset.h"
 
 struct GC_region
 {
@@ -14,6 +15,11 @@ struct GC_region
   int num_collections, num_allocations; // debugging/stats
 #ifdef GC_GENERATIONAL
   struct GC_region * older_region; // only used if this one is young
+
+#if (GC_OY_STORE_DEFAULT == GC_OY_STORE_REMEMBERED_SET)
+  struct GC_remembered_set remset;
+#endif // GC_OY_STORE_DEFAULT
+
 #endif // GC_GENERATIONAL
 #ifdef GC_GROW_HEAP
   size_t max_size;
@@ -42,6 +48,18 @@ extern struct GC_state_struct GC_state;
 extern __capability struct GC_state_struct * GC_state_cap;
 
 #ifdef GC_GENERATIONAL
+
+
+// GC_OY_STORE_DEFAULT determines the technique we use to store old-young
+// pointers.
+
+// GC_OY_STORE_REMEMBERED_SET:
+// We remember the pointer to the young object inside the old object (not the
+// actual old object itself) by making it act as a single-capability-containing
+// root. On copy, we iterate the set and copy everything inside the remembered
+// set, too.
+#define GC_OY_STORE_REMEMBERED_SET    0
+
 // GC_state.wb_type determines the write barrier technique we use to deal with
 // old-to-young pointers.
 

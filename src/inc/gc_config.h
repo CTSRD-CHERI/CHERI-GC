@@ -54,6 +54,10 @@
 // change the technique at runtime by using GC_set_wb_type().
 #define GC_WB_DEFAULT                         GC_WB_MANUAL
 
+// This determines the technique used to deal with old-young pointers. See
+// gc_init.h for a list.
+#define GC_OY_STORE_DEFAULT                   GC_OY_STORE_REMEMBERED_SET
+
 // If this is defined, you can change the write barrier technique at runtime.
 // Otherwise, the technique specified by GC_WB_DEFAULT is compiled in.
 #define GC_WB_RUNTIME

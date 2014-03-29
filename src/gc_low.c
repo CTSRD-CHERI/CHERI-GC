@@ -174,11 +174,16 @@ __capability void * __capability *
 GC_handle_oy_store (__capability void * __capability * x, GC_cap_ptr y)
 {
   GC_dbgf("old-young store : *(0x%llx) := 0x%llx", (GC_ULL) x, (GC_ULL) y);
-  GC_fatalf("unhandled for now, quitting.");
-  /*GC_SWITCH_WB_TYPE(
-    *x = GC_SET_CONTAINED_IN_OLD(y),    // GC_WB_MANUAL
-    GC_NOOP                             // GC_WB_EPHEMERAL
-  );*/
+  
+  // Make a trivial root out of x so that the object it points to gets copied
+  // and its value gets updated.
+  GC_cap_ptr root = GC_cheri_ptr(x, sizeof(GC_cap_ptr));
+  
+  //GC_fatalf("unhandled for now, quitting.");
+  
+#if (GC_OY_STORE_DEFAULT == GC_OY_STORE_REMEMBERED_SET)
+  GC_remembered_set_add(&GC_state.thread_local_region.remset, root);
+#endif // GC_OY_STORE_DEFAULT
   return x;
 }
 #endif // GC_GENERATIONAL
@@ -215,8 +220,6 @@ GC_grow (struct GC_region * region, size_t hint)
     return 0;
   }
   
-  printf("cur_size: %d max_size: %d\n", (int)cur_size,(int)region->max_size);
-  if(cur_size >= region->max_size)return 0;
   GC_assert( cur_size < region->max_size );
   
   void * tospace_base = GC_cheri_getbase(region->tospace);
@@ -240,9 +243,11 @@ GC_grow (struct GC_region * region, size_t hint)
 #endif // GC_GENERATIONAL
     GC_cheri_gettag(region->fromspace);
   
+  GC_fatalf("NO! This can't work because region->fromspcae was not malloc'd! (32-bit align...)");
   void * tmp;
   if (fromspace_exists)
   {
+//#error NO! This can't work because region->fromspcae was not malloc'd! (32-bit align...)
     void * fromspace_base = GC_cheri_getbase(region->fromspace);
     tmp = GC_low_realloc(fromspace_base, new_size);
     if (!tmp && (new_size > (cur_size+hint)))

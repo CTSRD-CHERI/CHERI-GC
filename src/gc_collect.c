@@ -116,6 +116,15 @@ GC_copy_region (struct GC_region * region,
     region, stack_top, GC_state.stack_bottom, is_generational);
   GC_copy_roots(
     region, GC_state.static_bottom, GC_state.static_top, is_generational);
+#ifdef GC_GENERATIONAL
+#if (GC_OY_STORE_DEFAULT == GC_OY_STORE_REMEMBERED_SET)
+  GC_copy_roots(
+    region,
+    GC_remembered_set_bottom(&region->remset),
+    GC_remembered_set_top(&region->remset),
+    is_generational);
+#endif // GC_OY_STORE_DEFAULT
+#endif // GC_GENERATIONAL
   GC_copy_children(region, is_generational);
   
   GC_RESTORE_CAP_REGS(cap_regs);
@@ -230,7 +239,11 @@ GC_copy_roots (struct GC_region * region,
           ((double) (((uintptr_t) p)-((uintptr_t) root_start)))/
           ((double) (((uintptr_t) root_end)-((uintptr_t) root_start)))),
         (GC_ULL) p,
-        ((GC_ULL) p) & 0x7F00000000 ? "stack/reg" : ".data",
+        ((GC_ULL) p) & 0x7F00000000 ? "stack/reg" :
+          (((GC_ULL) region->scan) >= GC_get_remembered_set_bottom(&region->remset))
+          && (((GC_ULL) region->scan) <= GC_get_remembered_set_top(&region->remset))
+          ? "remset"
+          : ".data",
         (GC_ULL) *p, 
         (GC_ULL) GC_cheri_getlen(*p));
       *p = GC_copy_object(region, *p);
@@ -268,7 +281,11 @@ GC_copy_children (struct GC_region * region,
     {
       GC_vdbgf("[child] location=0x%llx (%s?), b=0x%llx, l=0x%llx\n",
         (GC_ULL) region->scan,
-        ((GC_ULL) region->scan) & 0x7F00000000 ? "stack/reg" : ".data",
+        ((GC_ULL) region->scan) & 0x7F00000000 ? "stack/reg" :
+          (((GC_ULL) region->scan) >= GC_get_remembered_set_bottom(&region->remset))
+          && (((GC_ULL) region->scan) <= GC_get_remembered_set_top(&region->remset))
+          ? "remset"
+          : ".data",
         (GC_ULL) *region->scan, 
         (GC_ULL) GC_cheri_getlen(*region->scan));
       *region->scan = GC_copy_object(region, *region->scan);
@@ -334,6 +351,8 @@ GC_gen_promote (struct GC_region * region)
   void * oldfree = GC_cheri_getbase(region->older_region->free);
   
   GC_copy_region(region->older_region, 1);
+  
+  GC_remembered_set_clr(&region->remset);
   
   region->older_region->fromspace = old_from_space;
   region->free = region->tospace;

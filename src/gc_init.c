@@ -3,6 +3,7 @@
 #include "gc_low.h"
 #include "gc_config.h"
 #include "gc_time.h"
+#include "gc_remset.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -102,6 +103,11 @@ GC_init_region
   region->scan = NULL;
 #ifdef GC_GENERATIONAL
   region->older_region = NULL;
+#if (GC_OY_STORE_DEFAULT == GC_OY_STORE_REMEMBERED_SET)
+  // isn't used, but still need to initialize it to zero to make GC_collect
+  // easier to implement
+  GC_remembered_set_init(&region->remset);
+#endif // GC_OY_STORE_DEFAULT
 #endif // GC_GENERATIONAL
   region->num_collections = 0;
 #ifdef GC_GROW_HEAP
@@ -149,6 +155,11 @@ GC_init_young_region (struct GC_region * region,
   region->scan = NULL;
   region->older_region = older_region;
   region->num_collections = 0;
+#ifdef GC_GENERATIONAL
+#if (GC_OY_STORE_DEFAULT == GC_OY_STORE_REMEMBERED_SET)
+  GC_remembered_set_init(&region->remset);
+#endif // GC_OY_STORE_DEFAULT
+#endif // GC_GENERATIONAL
 #ifdef GC_GROW_HEAP
   region->max_size = GC_ALIGN_32(max_size, size_t);
 #endif // GC_GROW_HEAP
