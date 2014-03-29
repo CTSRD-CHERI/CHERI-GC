@@ -90,7 +90,7 @@ parse_op (GC_CAP const char * op,
   GC_STORE_CAP(expr, GC_malloc(sizeof(expr_t)));
   if (!PTR_VALID(expr))
   {
-    fprintf(stderr, "parse_op(): out of memory\n");
+    fprintf(stderr, "parse_op(): out of memory allocating expr_t\n");
     exit(1);
   }
   ((expr_t*)expr)->type = EXPR_OP;
@@ -99,7 +99,7 @@ parse_op (GC_CAP const char * op,
   GC_STORE_CAP(((expr_t*)expr)->op_expr, GC_malloc(sizeof(op_expr_t)));
   if (!PTR_VALID(((expr_t*)expr)->op_expr))
   {
-    fprintf(stderr, "parse_op(): out of memory\n");
+    fprintf(stderr, "parse_op(): out of memory allocating op_expr_t\n");
     exit(1);
   }
   
@@ -154,7 +154,8 @@ parse_op (GC_CAP const char * op,
       GC_STORE_CAP(new_op_expr, GC_malloc(sizeof(op_expr_t)));
       if (!PTR_VALID(new_op_expr))
       {
-        fprintf(stderr, "parse_op(): out of memory\n");
+        fprintf(stderr,
+          "parse_op(): out of memory allocating a new op_expr_t\n");
         exit(1);
       }
       ((op_expr_t *) new_op_expr)->a = GC_INVALID_PTR;
@@ -167,7 +168,7 @@ parse_op (GC_CAP const char * op,
       GC_STORE_CAP(expr, GC_malloc(sizeof(expr_t)));
       if (!PTR_VALID(expr))
       {
-        fprintf(stderr, "parse_op(): out of memory\n");
+        fprintf(stderr, "parse_op(): out of memory allocating a new expr_t\n");
         exit(1);
       }
       ((expr_t*)expr)->type = EXPR_OP;

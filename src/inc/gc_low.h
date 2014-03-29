@@ -68,13 +68,13 @@ typedef __capability void * GC_cap_ptr;
 // NOTE: GC_PERM_YOUNG, GC_PERM_CONTAINED_IN_OLD only used when OY technique is
 //       GC_OY_MANUAL.
 // actually uses permit_store_ephemeral_capability for now.
-#define GC_PERM_YOUNG (1 << 5)
+#define GC_PERM_YOUNG (1 << 6)
 // actually uses permit_seal for now
-#define GC_PERM_CONTAINED_IN_OLD (1 << 6)
+#define GC_PERM_CONTAINED_IN_OLD (1 << 7)
 // TODO: use a *custom* perm and ensure it's *always* set for non-forwarding
 // addresses (even when we pass caps around and make new ones...)
 // At the moment we're using the Set_Type permission
-#define GC_PERM_FORWARDING    (1 << 7)
+#define GC_PERM_FORWARDING    (1 << 8)
 // actually uses permit_execute for now
 #define GC_PERM_GC_ALLOCATED  (1 << 1)
 
@@ -176,10 +176,44 @@ typedef __capability void * GC_cap_ptr;
 #ifdef GC_GENERATIONAL
 // WARNING: assumes GC_init() has already been called.
 // TODO: ensure tmpx and tmpy are cleared when this is done.
+
+// NOTE: we evaluate y first because it could potentially cause &x to move
+// elsewhere, and tmpx will not generally be considered a root (whereas if y
+// moves somewhere afterwards then tmpy should be updated because it is a root).
 #define GC_STORE_CAP(x,y) \
   do { \
-    GC_cap_ptr * tmpx = &(x); \
-    GC_cap_ptr tmpy = (y); \
+    printf("[GC_STORE_CAP] Begin processing %s = %s &x=0x%llx\n", #x, #y, (unsigned long long) &x); \
+    __capability void * tmpy = (y); \
+    printf("evaluated %s to get 0x%llx\n", #y, (GC_ULL) tmpy); \
+    __capability void * __capability * tmpx = (__capability void * __capability *) &(x); \
+    GC_PRINT_CAP(tmpx); \
+    if (GC_IN(tmpx, GC_state.old_generation.tospace)) \
+    { \
+      printf("[GC_STORE_CAP] & ( %s ) is old.\n", #x); \
+      if (GC_IN(tmpy, GC_state.thread_local_region.tospace)) \
+      { \
+        GC_fatalf("%s is young.\n", #y); \
+      } \
+    } \
+    else if (GC_IN(tmpx, GC_state.thread_local_region.tospace)) \
+      printf("[GC_STORE_CAP] & ( %s ) is young.\n", #x); \
+    else \
+      printf("[GC_STORE_CAP] & ( %s ) is neither young nor old!\n", #x); \
+    printf("Trying to do *(0x%llx) = 0x%llx\n", (unsigned long long) tmpx, (unsigned long long) tmpy); \
+    __asm__ ("daddiu $1, $1, 0"); \
+    *tmpx = tmpy; \
+    __asm__ ("daddiu $2, $2, 0"); \
+    printf("[GC_STORE_CAP] &x=0x%llx, tmpx=0x%llx\n", (unsigned long long) &(x), (unsigned long long) tmpx); \
+    GC_assert((uintptr_t)&(x) ==(uintptr_t) tmpx); \
+    tmpx = (__capability void * __capability *) GC_cheri_ptr(NULL, 0); \
+    printf("[GC_STORE_CAP] __DONE__: %s=%s\n", #x, #y); \
+  } while (0)
+  
+  
+#define GC_STORE_CAP_OLD(x,y) \
+  do { \
+    GC_cap_ptr * tmpx = (GC_cap_ptr *) &(x); \
+    GC_cap_ptr tmpy = (GC_cap_ptr) (y); \
     if (GC_cheri_gettag(tmpy)) \
     { \
       int tmp = GC_cheri_gettag(*tmpx) ?  \
@@ -192,6 +226,7 @@ typedef __capability void * GC_cap_ptr;
     } \
     else \
     { \
+      printf("no tag %s=%s\n",#x,#y); \
       *tmpx = GC_INVALID_PTR; \
     } \
     tmpx = NULL; \

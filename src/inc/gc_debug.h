@@ -163,11 +163,11 @@ GC_debug_print_allocated_stats (void);
 #define GC_debug_track_allocated(cap,tracking_name)   0
 #define GC_debug_find_allocated(cap)
 #define GC_debug_find_invalid(cap)
-#define GC_debug_just_allocated(cap)
+#define GC_debug_just_allocated(cap,file,line)
 #define GC_debug_just_copied(old_cap,new_cap)
 #define GC_debug_rebase_allocation_entries(oldbase,oldsize,newbase)
 #define GC_debug_begin_marking()
-#define GC_debug_end_marking()
+#define GC_debug_end_marking(space_start,space_end)
 #define GC_debug_print_allocated_stats()
 
 #endif // GC_DEBUG_TRACK_ALLOCATIONS

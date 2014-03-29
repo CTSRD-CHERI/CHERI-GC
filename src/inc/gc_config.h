@@ -46,7 +46,7 @@
 
 // Determines whether we use generational GC or not. If disabled, only
 // copying collection is implemented.
-//#define GC_GENERATIONAL
+#define GC_GENERATIONAL
 
 #ifdef GC_GENERATIONAL
 // This determines how we deal with old-to-young pointers. See gc_init.h for
@@ -60,7 +60,7 @@
 #endif // GC_GENERATIONAL
 
 #define GC_COLLECT_STATS
-#define GC_DEBUG_TRACK_ALLOCATIONS
+//#define GC_DEBUG_TRACK_ALLOCATIONS
 
 // Enable if you want the GC to time how long things take
 #define GC_TIME

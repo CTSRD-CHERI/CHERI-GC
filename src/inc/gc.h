@@ -5,7 +5,10 @@
 
 #include <gc_config.h>
 
-#include <gc_low.h> // for GC_STORE_CAP. TODO: make this cleaner
+// includes for GC_STORE_CAP. TODO: make this cleaner
+#include <gc_low.h>
+#include <gc_init.h>
+#include <gc_debug.h>
 
 #define GC_CAP __capability
 
