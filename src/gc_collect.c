@@ -116,16 +116,12 @@ GC_copy_region (struct GC_region * region,
     region, stack_top, GC_state.stack_bottom, is_generational);
   GC_copy_roots(
     region, GC_state.static_bottom, GC_state.static_top, is_generational);
+  GC_copy_children(region, is_generational);
 #ifdef GC_GENERATIONAL
 #if (GC_OY_STORE_DEFAULT == GC_OY_STORE_REMEMBERED_SET)
-  GC_copy_roots(
-    region,
-    GC_remembered_set_bottom(&region->remset),
-    GC_remembered_set_top(&region->remset),
-    is_generational);
+  GC_copy_remembered_set(region);
 #endif // GC_OY_STORE_DEFAULT
 #endif // GC_GENERATIONAL
-  GC_copy_children(region, is_generational);
   
   GC_RESTORE_CAP_REGS(cap_regs);
 
@@ -239,12 +235,8 @@ GC_copy_roots (struct GC_region * region,
           ((double) (((uintptr_t) p)-((uintptr_t) root_start)))/
           ((double) (((uintptr_t) root_end)-((uintptr_t) root_start)))),
         (GC_ULL) p,
-        ((GC_ULL) p) & 0x7F00000000 ? "stack/reg" :
-          (((GC_ULL) region->scan) >= GC_get_remembered_set_bottom(&region->remset))
-          && (((GC_ULL) region->scan) <= GC_get_remembered_set_top(&region->remset))
-          ? "remset"
-          : ".data",
-        (GC_ULL) *p, 
+        ((GC_ULL) p) & 0x7F00000000 ? "stack/reg" : ".data",
+        (GC_ULL) *p,
         (GC_ULL) GC_cheri_getlen(*p));
       *p = GC_copy_object(region, *p);
 #ifdef GC_GENERATIONAL
@@ -263,6 +255,37 @@ GC_copy_roots (struct GC_region * region,
 }
 
 void
+GC_copy_child (struct GC_region * region,
+               GC_cap_ptr * child_addr,
+               int is_generational)
+{
+  if (GC_cheri_gettag(*child_addr)
+    && GC_IS_GC_ALLOCATED(*child_addr)
+       // necessary now for remembered set too
+    && GC_IN(GC_cheri_getbase(*child_addr), region->fromspace))
+  {
+    GC_vdbgf("[child] location=0x%llx (%s?), b=0x%llx, l=0x%llx\n",
+      (GC_ULL) child_addr,
+      ((GC_ULL) child_addr) & 0x7F00000000 ? "stack/reg" : ".data",
+      (GC_ULL) *child_addr, 
+      (GC_ULL) GC_cheri_getlen(*child_addr));
+    *child_addr = GC_copy_object(region, *child_addr);
+#ifdef GC_GENERATIONAL
+    if (is_generational)
+    {
+      GC_SWITCH_WB_TYPE(
+        {*child_addr =
+          GC_UNSET_YOUNG(
+          GC_SET_CONTAINED_IN_OLD(*region->scan));}, // GC_WB_MANUAL
+        {*child_addr =
+          GC_UNSET_EPHEMERAL(*region->scan);}         // GC_WB_EPHEMERAL
+      );
+    }
+#endif // GC_GENERATIONAL
+  }
+}
+
+void
 GC_copy_children (struct GC_region * region,
                   int is_generational)
 {
@@ -275,37 +298,27 @@ GC_copy_children (struct GC_region * region,
          < ((uintptr_t) GC_cheri_getbase(region->free));
        region->scan++)
   {
-    if (GC_cheri_gettag(*region->scan)
-        && GC_IS_GC_ALLOCATED(*region->scan)
-        && GC_IN(GC_cheri_getbase(*region->scan), region->fromspace))
-    {
-      GC_vdbgf("[child] location=0x%llx (%s?), b=0x%llx, l=0x%llx\n",
-        (GC_ULL) region->scan,
-        ((GC_ULL) region->scan) & 0x7F00000000 ? "stack/reg" :
-          (((GC_ULL) region->scan) >= GC_get_remembered_set_bottom(&region->remset))
-          && (((GC_ULL) region->scan) <= GC_get_remembered_set_top(&region->remset))
-          ? "remset"
-          : ".data",
-        (GC_ULL) *region->scan, 
-        (GC_ULL) GC_cheri_getlen(*region->scan));
-      *region->scan = GC_copy_object(region, *region->scan);
-#ifdef GC_GENERATIONAL
-      if (is_generational)
-      {
-        GC_SWITCH_WB_TYPE(
-          {*region->scan =
-            GC_UNSET_YOUNG(
-            GC_SET_CONTAINED_IN_OLD(*region->scan));}, // GC_WB_MANUAL
-          {*region->scan =
-            GC_UNSET_EPHEMERAL(*region->scan);}         // GC_WB_EPHEMERAL
-        );
-      }
-#endif // GC_GENERATIONAL
-    }
+    GC_copy_child(region, region->scan, is_generational);
   }
 }
 
 #ifdef GC_GENERATIONAL
+void
+GC_copy_remembered_set (struct GC_region * region)
+{
+  GC_vdbgf("copying %d roots from remset", (int) region->remset.nroots);
+  size_t i;
+  for (i=0; i<region->remset.nroots; i++)
+  {
+    GC_cap_ptr * root = (GC_cap_ptr *) region->remset.roots[i];
+    GC_assert( root );
+    GC_dbgf("[%d] Processing remembered root 0x%llx",
+      (int) i, (GC_ULL) root);
+    GC_copy_child(region, root, 1);
+  }
+  GC_remembered_set_clr(&region->remset);
+}
+
 void
 GC_gen_promote (struct GC_region * region)
 {
@@ -351,8 +364,6 @@ GC_gen_promote (struct GC_region * region)
   void * oldfree = GC_cheri_getbase(region->older_region->free);
   
   GC_copy_region(region->older_region, 1);
-  
-  GC_remembered_set_clr(&region->remset);
   
   region->older_region->fromspace = old_from_space;
   region->free = region->tospace;

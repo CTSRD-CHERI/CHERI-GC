@@ -175,14 +175,10 @@ GC_handle_oy_store (__capability void * __capability * x, GC_cap_ptr y)
 {
   GC_dbgf("old-young store : *(0x%llx) := 0x%llx", (GC_ULL) x, (GC_ULL) y);
   
-  // Make a trivial root out of x so that the object it points to gets copied
-  // and its value gets updated.
-  GC_cap_ptr root = GC_cheri_ptr(x, sizeof(GC_cap_ptr));
-  
   //GC_fatalf("unhandled for now, quitting.");
   
 #if (GC_OY_STORE_DEFAULT == GC_OY_STORE_REMEMBERED_SET)
-  GC_remembered_set_add(&GC_state.thread_local_region.remset, root);
+  GC_remembered_set_add(&GC_state.thread_local_region.remset, (void *) x);
 #endif // GC_OY_STORE_DEFAULT
   return x;
 }

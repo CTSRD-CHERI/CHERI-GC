@@ -17,7 +17,6 @@ GC_remembered_set_add (struct GC_remembered_set * remset,
   GC_dbgf("adding to remembered set: 0x%llx", (GC_ULL) address);
   
   GC_assert( address );
-  GC_assert( GC_cheri_gettag(*address) );
   GC_assert( GC_IS_ALIGNED_32(address) );
   
   size_t i;
@@ -44,12 +43,13 @@ GC_remembered_set_add (struct GC_remembered_set * remset,
     remset->size = new_size;
   }
   remset->nroots++;
-  remset->roots[remset->nroots-1] = obj;
+  remset->roots[remset->nroots-1] = address;
   return 0;
 }
 
 void
 GC_remembered_set_clr (struct GC_remembered_set * remset)
 {
+  GC_dbgf("cleared remembered set");
   remset->nroots = 0;
 }

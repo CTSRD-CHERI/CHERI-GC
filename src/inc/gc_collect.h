@@ -29,10 +29,20 @@ GC_copy_roots (struct GC_region * region,
                int is_generational);
 
 void
+GC_copy_child (struct GC_region * region,
+               GC_cap_ptr * child_addr,
+               int is_generational);
+
+void
 GC_copy_children (struct GC_region * region,
                   int is_generational);
-
+                  
 #ifdef GC_GENERATIONAL
+// Copies the objects from the remembered set and then clears the remembered
+// set.
+void
+GC_copy_remembered_set (struct GC_region * region);
+
 // Promotes all objects from region->tospace to region->older_region->tospace.
 // We conservatively estimate whether the older generation has enough space to
 // store all the objects from the young generation, and we collect the older
