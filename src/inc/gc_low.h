@@ -94,8 +94,17 @@ typedef __capability void * GC_cap_ptr;
 // used for old-to-young pointer handling when the technique is GC_OY_MANUAL
 // (see gc_init.h)
 // usage: use GC_STORE_CAP(x,y) where you would normally use x = y, where x
-// and y are capabilities. x and y may be evaluated more than once, so ensure
-// that they are side-effect free.
+// and y are capabilities, and y has been allocated by the GC. x and y are
+// guaranteed to be evaluated only once.
+//
+// You should initialize x (even with just GC_INVALID_PTR) before the first time
+// you call GC_STORE_CAP. However, it may hinder performance if you invalidate
+// x every time you use GC_STORE_CAP, because the GC uses spare bits inside x to
+// store age information to avoid expensive lookups.
+//
+// Note that even if x is a local or global variable, you still need to use
+// GC_STORE_CAP. This is because the relevant permission bits need to be
+// modified on the stored capability to protect against future stores.
 //
 // How this works:
 //
@@ -166,23 +175,33 @@ typedef __capability void * GC_cap_ptr;
 // the old region.
 #ifdef GC_GENERATIONAL
 // WARNING: assumes GC_init() has already been called.
+// TODO: ensure tmpx and tmpy are cleared when this is done.
 #define GC_STORE_CAP(x,y) \
   do { \
-    if (GC_cheri_gettag((y))) \
+    GC_cap_ptr * tmpx = &(x); \
+    GC_cap_ptr tmpy = (y); \
+    if (GC_cheri_gettag(tmpy)) \
     { \
-      int tmp = GC_cheri_gettag((x)) ?  \
-                GC_IS_CONTAINED_IN_OLD((x)) : \
-                GC_IN(&(x), GC_state.old_generation.tospace); \
-      (x) = tmp ? GC_SET_CONTAINED_IN_OLD((y)) \
-                : GC_UNSET_CONTAINED_IN_OLD((y)); \
-      if (tmp && GC_IS_YOUNG((y))) \
-        GC_handle_oy_store((GC_cap_ptr *)&(x), (y)); \
+      int tmp = GC_cheri_gettag(*tmpx) ?  \
+                GC_IS_CONTAINED_IN_OLD(*tmpx) : \
+                GC_IN(tmpx, GC_state.old_generation.tospace); \
+      *tmpx = tmp ? GC_SET_CONTAINED_IN_OLD(tmpy) \
+                : GC_UNSET_CONTAINED_IN_OLD(tmpy); \
+      if (tmp && GC_IS_YOUNG(tmpy)) \
+        GC_handle_oy_store(tmpx, tmpy); \
     } \
     else \
     { \
-      (x) = GC_INVALID_PTR; \
+      *tmpx = GC_INVALID_PTR; \
     } \
+    tmpx = NULL; \
+    tmpy = GC_INVALID_PTR; \
   } while (0)
+#else // GC_GENERATIONAL
+#define GC_STORE_CAP(x,y) ( (x) = (y) )
+#endif // GC_GENERATIONAL
+
+#ifdef GC_GENERATIONAL
 
 GC_cap_ptr *
 GC_handle_oy_store (GC_cap_ptr * x, GC_cap_ptr y);

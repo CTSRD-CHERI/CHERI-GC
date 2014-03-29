@@ -5,9 +5,13 @@
 
 #include <gc_config.h>
 
+#include <gc_low.h> // for GC_STORE_CAP. TODO: make this cleaner
+
 #define GC_CAP __capability
 
 #define     GC_cheri_ptr      cheri_ptr
+
+// (Hacky conversion to GC_CAP void * to avoid const issues...)
 #define     GC_cheri_getlen(x)   cheri_getlen((GC_CAP void*)(x))
 
 // The preferred way of checking the validity of a pointer

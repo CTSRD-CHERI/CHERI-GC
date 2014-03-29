@@ -9,7 +9,8 @@
 GC_CAP char *
 copy_string (GC_CAP const char * str)
 {
-  GC_CAP char * copy = GC_malloc(GC_cheri_getlen(str));
+  GC_CAP char * copy = GC_INVALID_PTR;
+  GC_STORE_CAP(copy, GC_malloc(GC_cheri_getlen(str)));
   if (!PTR_VALID(copy))
   {
     fprintf(stderr, "copy_string(): out of memory\n");
@@ -37,7 +38,8 @@ lex_read_file (GC_CAP const char * name)
   while (fread(&c, 1, 1, file) == 1)
   {
     lex_state.max++;
-    GC_CAP char * tmp = GC_malloc(lex_state.max);
+    GC_CAP char * tmp = GC_INVALID_PTR;
+    GC_STORE_CAP(tmp, GC_malloc(lex_state.max));
     if (!PTR_VALID(tmp))
     {
       fprintf(stderr, "out of memory reading file %s\n", (const char *) name);
@@ -48,7 +50,7 @@ lex_read_file (GC_CAP const char * name)
     {
       memcpy((char *) tmp, (char *) lex_state.file, lex_state.max-1);
     }
-    lex_state.file = tmp;
+    GC_STORE_CAP(lex_state.file, tmp);
     ((char*)lex_state.file)[lex_state.max-1] = c;
   }
 
@@ -59,7 +61,8 @@ lex_read_file (GC_CAP const char * name)
 void
 lex_read_string (GC_CAP const char * str)
 {
-  lex_state.file = copy_string(str);
+  lex_state.file = GC_INVALID_PTR;
+  GC_STORE_CAP(lex_state.file, copy_string(str));
   if (!PTR_VALID(lex_state.file))
   {
     fprintf(stderr, "lex_read_string: out of memory\n");
@@ -96,21 +99,23 @@ lex (void)
 #define LEX_APPEND_STR(c) \
   do { \
     t.len++; \
-    GC_CAP char * tmp = GC_malloc(t.len); \
+    GC_CAP char * tmp = GC_INVALID_PTR; \
+    GC_STORE_CAP(tmp, GC_malloc(t.len)); \
     if (!PTR_VALID(tmp)) \
     { \
       fprintf(stderr, "out of memory lexing string\n"); \
       exit(1); \
     } \
     memcpy((char *) tmp, (char *) t.str, t.len-1); \
-    t.str = tmp; \
+    GC_STORE_CAP(t.str, tmp); \
     ((char*)t.str)[t.len-1] = (c); \
   } while (0)
 
 #define LEX_INIT_STR(c) \
   do { \
     t.len = 1; \
-    t.str = GC_malloc(1); \
+    t.str = GC_INVALID_PTR; \
+    GC_STORE_CAP(t.str, GC_malloc(1)); \
     if (!PTR_VALID(t.str)) \
     { \
       fprintf(stderr, "out of memory lexing string\n"); \

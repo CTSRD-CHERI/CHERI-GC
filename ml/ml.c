@@ -6,6 +6,18 @@
 
 #include <stdio.h>
 
+
+/* What we require from the GC:
+
+  GC_malloc
+  GC_INVALID_PTR
+  GC_CAP
+  GC_cheri_ptr
+  GC_cheri_getlen
+  GC_STORE_CAP
+*/
+
+
 /*
   ML syntax:
   
@@ -60,13 +72,15 @@ int main ()
   
   parse_init();
   
-  GC_CAP expr_t * expr = parse();
+  GC_CAP expr_t * expr = GC_INVALID_PTR;
+  GC_STORE_CAP(expr, parse());
   
   printf("AST: ");
   print_ast(expr);
   printf("\n\n");
 
-  GC_CAP val_t * val = eval(expr, GC_INVALID_PTR);
+  GC_CAP val_t * val = GC_INVALID_PTR;
+  GC_STORE_CAP(val, eval(expr, GC_INVALID_PTR));
   
   printf("eval: ");
   print_val(val);

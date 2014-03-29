@@ -15,7 +15,8 @@ GC_init2 (const char * file, int line)
 {
   if (!GC_state.initialized)
   {
-    GC_dbgf("GC_init called from %s:%d", file, line);
+    GC_dbgf("GC_init called from %s:%d\nGC compiled %s",
+      file, line, __TIME__ " " __DATE__);
     
     GC_state_cap = GC_cheri_ptr(&GC_state, sizeof GC_state);
 

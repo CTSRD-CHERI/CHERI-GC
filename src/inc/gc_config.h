@@ -2,9 +2,9 @@
 #define GC_CONFIG_H_HEADER
 
 #define GC_DEBUG
-#define GC_VERBOSE_DEBUG
-#define GC_THREAD_LOCAL_HEAP_SIZE             5000 // 5k
-#define GC_OLD_GENERATION_SEMISPACE_SIZE      10000 // 10k
+//#define GC_VERBOSE_DEBUG
+#define GC_THREAD_LOCAL_HEAP_SIZE             20000 // 20k
+#define GC_OLD_GENERATION_SEMISPACE_SIZE      30000 // 30k
 
 // If old heap residency exceeds this, collect, and if that fails, grow.
 #define GC_OLD_GENERATION_HIGH_WATERMARK      0.5
@@ -42,7 +42,7 @@
 // Maximum sizes for when the heap does grow. Set to 0 to allow unlimited
 // growth.
 #define GC_THREAD_LOCAL_HEAP_MAX_SIZE         20000
-#define GC_OLD_GENERATION_SEMISPACE_MAX_SIZE  1000
+#define GC_OLD_GENERATION_SEMISPACE_MAX_SIZE  30000
 
 // Determines whether we use generational GC or not. If disabled, only
 // copying collection is implemented.

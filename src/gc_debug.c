@@ -544,7 +544,6 @@ GC_debug_rebase_allocation_entries (void * oldbase,
           && (v->base <= (oldbase+oldsize)))
       {
         v->rebased = 1;
-        if (v->base == (void*)0x16081e3a0) {printf("argh!");exit(1);}
         v = GC_debug_move_allocation(
           v, v->base-oldbase+newbase, v->len, "rebase");
         v->rebased = 1;
@@ -563,7 +562,7 @@ GC_debug_begin_marking (void)
     v,
     {v->marked = 0;}
   );
-  GC_STOP_TIMING(GC_debug_begin_marking_time, "GC_debug_begin_marking");
+  //GC_STOP_TIMING(GC_debug_begin_marking_time, "GC_debug_begin_marking");
 }
 
 void
@@ -585,11 +584,10 @@ GC_debug_end_marking (void * space_start, void * space_end)
           if (v->tracking_name) GC_DEBUG_DEALLOC(v->tracking_name);
         }
         v->valid = 0;
-        printf("[GC DEALLOCATED] b=0x%llx l=0x%llx\n", (GC_ULL) v->base, (GC_ULL) v->len);
       }
     }
   );
-  GC_STOP_TIMING(GC_debug_end_marking_time, "GC_debug_end_marking");
+  //GC_STOP_TIMING(GC_debug_end_marking_time, "GC_debug_end_marking");
 }
 
 void
