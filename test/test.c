@@ -56,10 +56,10 @@ void
 realloc_preserves_caps_test (void)
 {
   GC_init();
-  struct struct1 * x = malloc(1000);
+  struct struct1 * x = GC_low_malloc(1000);
   x->ptr = GC_cheri_ptr((void*) 0x1234, 0x5678);
   printf("x->ptr tag: %d\n", GC_cheri_gettag(x->ptr));
-  x = realloc(x, 20000);
+  x = GC_low_realloc(x, 20000);
   printf("x->ptr tag: %d\n", GC_cheri_gettag(x->ptr));
 }
 

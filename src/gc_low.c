@@ -11,13 +11,13 @@ struct GC_alloc_entry_t
   void * ptr;
   size_t len;
 };
+#define GC_MAX_ALLOC_ENTRY 500
+struct GC_alloc_entry_t GC_alloc_table[GC_MAX_ALLOC_ENTRY];
+int GC_alloc_index = 0;
 void *
 GC_add_to_alloc_list (void * p, size_t sz, void * old_ptr)
 {
-  #define GC_MAX_ALLOC_ENTRY 500
-  static struct GC_alloc_entry_t a[GC_MAX_ALLOC_ENTRY];
-  static int index = 0;
-  if (index == GC_MAX_ALLOC_ENTRY)
+  if (GC_alloc_index == GC_MAX_ALLOC_ENTRY)
   {
     GC_fatalf("Too many allocation entries!\n");
   }
@@ -27,18 +27,21 @@ GC_add_to_alloc_list (void * p, size_t sz, void * old_ptr)
     printf("[GC alloc]: REALLOC: Finding entry for old_ptr=0x%llx\n",
       (GC_ULL) old_ptr);
     int i;
-    for (i=0; i<index; i++)
+    for (i=0; i<GC_alloc_index; i++)
     {
-      if (a[i].ptr == old_ptr) break;
+      if (GC_alloc_table[i].ptr == old_ptr) break;
     }
-    if (i<index)
+    if (i<GC_alloc_index)
     {
       printf("[GC alloc]: REALLOC: Found. OLD: p=0x%llx sz=%d NEW: p=0x%llx sz=%d\n",
-        (GC_ULL) a[i].ptr, (int) a[i].len, (GC_ULL) p, (int) sz);
-      if (sz > a[i].len)
-        memset(p+a[i].len, 0x42, sz-a[i].len);
-      a[i].ptr = p;
-      a[i].len = sz;
+        (GC_ULL) GC_alloc_table[i].ptr,
+        (int) GC_alloc_table[i].len,
+        (GC_ULL) p,
+        (int) sz);
+      if (sz > GC_alloc_table[i].len)
+        memset(p+GC_alloc_table[i].len, 0x42, sz-GC_alloc_table[i].len);
+      GC_alloc_table[i].ptr = p;
+      GC_alloc_table[i].len = sz;
     }
     else
     {
@@ -60,9 +63,9 @@ GC_add_to_alloc_list (void * p, size_t sz, void * old_ptr)
       printf("[GC alloc]: CALLOC: Just allocated p=0x%llx sz=%d\n",
         (GC_ULL) p, (int) sz);
     }
-    a[index].ptr = p;
-    a[index].len = sz;
-    index++;
+    GC_alloc_table[GC_alloc_index].ptr = p;
+    GC_alloc_table[GC_alloc_index].len = sz;
+    GC_alloc_index++;
   }
   return p;
 }
@@ -84,8 +87,39 @@ GC_low_calloc (size_t num, size_t sz)
 void *
 GC_low_realloc (void * ptr, size_t sz)
 {
-  void * p = realloc(ptr, sz);
-  return GC_add_to_alloc_list(p, sz, ptr);
+  //void * p = realloc(ptr, sz);
+  //return GC_add_to_alloc_list(p, sz, ptr);
+  
+  if (!ptr) return GC_low_malloc(sz);
+  // find size:
+  int i;
+  for (i=0; i<GC_alloc_index; i++)
+  {
+    if (GC_alloc_table[i].ptr == ptr) break;
+  }
+  if (i<GC_alloc_index)
+  {
+    printf("[GC_low_realloc]: REALLOC: Found. OLD: p=0x%llx sz=%d NEW: p=(not known yet) sz=%d\n",
+      (GC_ULL) GC_alloc_table[i].ptr,
+      (int) GC_alloc_table[i].len,
+      (int) sz);
+    void * p = malloc(sz);
+    if (p)
+    {
+      // WARNING: all perms set...
+      GC_cap_ptr new_cap = GC_cheri_ptr(p, sz);
+      GC_cap_ptr old_cap =
+        GC_cheri_ptr(GC_alloc_table[i].ptr, GC_alloc_table[i].len);
+      GC_cap_memcpy(new_cap, old_cap);
+      free(ptr);
+    }
+    return GC_add_to_alloc_list(p, sz, ptr);
+  }
+  else
+  {
+    GC_fatalf("[GC realloc]: REALLOC: Could not find entry!\n");
+  }
+  return NULL;
 }
 
 #include <unistd.h>
