@@ -265,7 +265,7 @@ GC_cap_memclr (GC_cap_ptr dest)
   }
   
   //DEBUG
-  printf("doing a memclr...\n");
+  GC_vdbgf("NOTE: doing a memclr...\n");
   GC_cap_memset(dest, 0x44);
   
   return dest;

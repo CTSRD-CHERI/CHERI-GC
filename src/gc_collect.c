@@ -464,6 +464,8 @@ GC_region_rebase (struct GC_region * region, void * old_base, size_t old_size)
   void * new_base = GC_cheri_getbase(region->tospace);
   size_t new_size = GC_cheri_getlen(region->tospace);
   
+  GC_START_TIMING(GC_region_rebase_time);
+  
   GC_dbgf("rebasing region\n");
   
   GC_vdbgf(
@@ -540,6 +542,8 @@ GC_region_rebase (struct GC_region * region, void * old_base, size_t old_size)
       GC_cheri_getbase(region->free) - old_base + new_base);
   
   GC_RESTORE_CAP_REGS(cap_regs);
+  
+  GC_STOP_TIMING_PRINT(GC_region_rebase_time, "region rebase");
 }
 
 void

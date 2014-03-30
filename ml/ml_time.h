@@ -1,6 +1,8 @@
 #ifndef ML_TIME_H_HEADER
 #define ML_TIME_H_HEADER
 
+#include "common.h"
+
 // For internal use: 1 unit of time is a microsecond.
 
 // For convenience, when timing things:

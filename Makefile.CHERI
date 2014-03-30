@@ -19,6 +19,12 @@ BOEHM_GC_DIR=../gc1/gc-7.2
 BOEHM_GC_LIB_DIR=$(BOEHM_GC_DIR)
 BOEHM_GC_INC_DIR=$(BOEHM_GC_DIR)/include/
 
+# Location of memwatch, for debugging the non-gc ML test
+MEMWATCH_DIR=../memwatch
+# Comment these out to disable memwatch
+MEMWATCH_FLAGS=-DMEMWATCH -I$(MEMWATCH_DIR)
+MEMWATCH_SOURCES=$(MEMWATCH_DIR)/memwatch.c
+
 # Targets:
 # lib: build the GC library from src/* to objects/gc.a
 # gctest: build the test program in test/* to objects/gctest. Assumes existence of objects/gc.a.
@@ -77,7 +83,7 @@ mltest-boehm:
 	PATH=$(PATH) $(CC) -DGC_BOEHM -o objects/mltest-boehm -I$(BOEHM_GC_INC_DIR) $(MLTEST_SOURCES) objects/boehm/*.o
 
 mltest-no-gc:
-	PATH=$(PATH) $(CC) -DGC_NONE -o objects/mltest-no-gc $(MLTEST_SOURCES)
+	PATH=$(PATH) $(CC) -DGC_NONE $(MEMWATCH_FLAGS) -o objects/mltest-no-gc $(MEMWATCH_SOURCES) $(MLTEST_SOURCES)
 
 
 PASSWORD=`cat $(SSH_PASSWD_FILE)`

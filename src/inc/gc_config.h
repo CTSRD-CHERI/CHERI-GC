@@ -1,9 +1,9 @@
 #ifndef GC_CONFIG_H_HEADER
 #define GC_CONFIG_H_HEADER
 
-//#define GC_DEBUG
+#define GC_DEBUG
 //#define GC_VERBOSE_DEBUG
-#define GC_THREAD_LOCAL_HEAP_SIZE             150000 // 20k
+#define GC_THREAD_LOCAL_HEAP_SIZE             20000 // 20k
 #define GC_OLD_GENERATION_SEMISPACE_SIZE      30000 // 30k
 
 // If old heap residency exceeds this, collect, and if that fails, grow.
@@ -41,7 +41,7 @@
 
 // Maximum sizes for when the heap does grow. Set to 0 to allow unlimited
 // growth.
-#define GC_THREAD_LOCAL_HEAP_MAX_SIZE         50000
+#define GC_THREAD_LOCAL_HEAP_MAX_SIZE         20000
 #define GC_OLD_GENERATION_SEMISPACE_MAX_SIZE  30000
 
 // Determines whether we use generational GC or not. If disabled, only
@@ -63,10 +63,10 @@
 #define GC_WB_RUNTIME
 #endif // GC_GENERATIONAL
 
-//#define GC_COLLECT_STATS
-//#define GC_DEBUG_TRACK_ALLOCATIONS
+#define GC_COLLECT_STATS
+#define GC_DEBUG_TRACK_ALLOCATIONS
 
 // Enable if you want the GC to time how long things take
-//#define GC_TIME
+#define GC_TIME
 
 #endif // GC_CONFIG_H_HEADER

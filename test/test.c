@@ -38,6 +38,8 @@ void
 low_realloc_test (void);
 void
 realloc_preserves_caps_test (void);
+void
+fill_test (void);
 
 int
 main (int argc, char **argv)
@@ -48,8 +50,54 @@ main (int argc, char **argv)
   //collection_test();
   //grow_test();
   //low_realloc_test();
-  realloc_preserves_caps_test();
+  //realloc_preserves_caps_test();
+  fill_test();
   return 0;
+}
+
+static void
+fill_test_helper (GC_CAP struct struct1 * x)
+{
+  ((struct struct1*)x)->ptr = GC_malloc(25);
+  memset((void*)((struct struct1*)x)->ptr, 0x33, 25);
+  GC_PRINT_CAP(((struct struct1*)x)->ptr);
+  x = NULL;
+  int i;
+  GC_CAP void * store[20];
+  for (i=0; i<10000; i++)
+  {
+    GC_CAP void * y = GC_malloc(500);
+    store[i % 20] = y;
+    memset((void*)y, 0x22, 500);
+  }
+  struct GC_region * region = &GC_state.thread_local_region;
+  memset(GC_cheri_getbase(region->fromspace), 0x55, GC_cheri_getlen(region->fromspace));
+}
+
+void
+fill_test (void)
+{
+  
+  // from gc_low:
+  // 0x41: just realloc'd
+  // 0x42: just malloc'd
+  // 0x43: just deallocated, set by GC_debug when GC_DEBUG_TRACK_ALLOCATIONS is defined
+  // 0x44: just memclr'd
+  
+  // our codes:
+  // 0x33: our data
+  // 0x22: temporary data
+  
+  GC_init();
+  GC_CAP struct struct1 * x = GC_malloc(600);
+  // check cap is preserved over function call.
+  printf("x: 0x%llx\n", (GC_ULL) GC_cheri_getbase(x));
+  fill_test_helper(x);
+  printf("x: 0x%llx\n", (GC_ULL) GC_cheri_getbase(x));
+  GC_PRINT_CAP(((struct struct1*)x)->ptr);
+  GC_debug_memdump(
+    GC_cheri_getbase(((struct struct1*)x)->ptr),
+    GC_cheri_getbase(((struct struct1*)x)->ptr)+GC_cheri_getlen(((struct struct1*)x)->ptr));  
 }
 
 void

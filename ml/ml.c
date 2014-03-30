@@ -51,6 +51,11 @@ __UNLOCK_MALLOC (void)
 
 int main ()
 {
+#ifdef MEMWATCH
+  mwInit();
+  mwDoFlush(1);
+#endif // MEMWATCH
+  
   ML_START_TIMING(main_time);
   
   GC_init();
@@ -78,9 +83,12 @@ int main ()
     //"((fn f . fn n . if n then n * f (n-1) else 1) (fn n . n)) 5";
   
   // factorial:
+  //const char str[] =
+  //  "((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn a . (g g) a)))) (fn f . fn n . if n then n * f (n-1) else 1)) 6";
+
   const char str[] =
-    "((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn a . (g g) a)))) (fn f . fn n . if n then n * f (n-1) else 1)) 6";
-    
+    "((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn fsoiosifosifsfskcxnvkxfsoiosifosifsfskcxnvkxfsoiosifosifsfskcxnvkxfsoiosifosifsfskcxnvkxfsoiosifosifsfskcxnvkxfsoiosifosifsfskcxnvkxfsoiosifosifsfskcxnvkxfsoiosifosifsfskcxnvkxfsoiosifosifsfskcxnvkxfsoiosifosifsfskcxnvkxfsoiosifosifsfskcxnvkxfsoiosifosifsfskcxnvkxfsoiosifosifsfskcxnvkxfsoiosifosifsfskcxnvkxfsoiosifosifsfskcxnvkxfsoiosifosifsfskcxnvkx . (g g) fsoiosifosifsfskcxnvkxfsoiosifosifsfskcxnvkxfsoiosifosifsfskcxnvkxfsoiosifosifsfskcxnvkxfsoiosifosifsfskcxnvkxfsoiosifosifsfskcxnvkxfsoiosifosifsfskcxnvkxfsoiosifosifsfskcxnvkxfsoiosifosifsfskcxnvkxfsoiosifosifsfskcxnvkxfsoiosifosifsfskcxnvkxfsoiosifosifsfskcxnvkxfsoiosifosifsfskcxnvkxfsoiosifosifsfskcxnvkxfsoiosifosifsfskcxnvkxfsoiosifosifsfskcxnvkx)))) (fn f . fn n . if n then n + f (n-1) else 1)) 60";
+
   lex_read_string(GC_cheri_ptr((void *) str, sizeof(str)));
   printf("program: %s\n\n", str);
   
@@ -124,5 +132,8 @@ int main ()
 
   ML_STOP_TIMING(main_time, "main()");
   
+#ifdef MEMWATCH
+  mwTerm();
+#endif // MEMWATCH
   return 0;
 }

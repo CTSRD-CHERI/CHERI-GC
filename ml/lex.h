@@ -38,4 +38,9 @@ lex_read_string (GC_CAP const char * str);
 GC_CAP token_t *
 lex (void);
 
+// buf must have length at least 11; this is not checked for (we can't rely on
+// GC_cheri_getlen being present when compiling for no gc or Boehm)
+void
+ml_itoa (unsigned num, GC_CAP char * buf);
+
 #endif // LEX_H_HEADER

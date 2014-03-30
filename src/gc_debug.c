@@ -474,6 +474,11 @@ GC_debug_just_copied (GC_cap_ptr old_cap, GC_cap_ptr new_cap, void * parent)
     {
       GC_dbgf("The capability was previously allocated, initially at %s:%d.",
         v->file, v->line);
+      if (v->tracking_name)
+      {
+        GC_dbgf("It had a tracking name: %s. Scroll up and you might find useful info.",
+          v->tracking_name);
+      }
     }
     /*GC_dbgf("All known valid objects of the same length:\n");
     GC_DEBUG_HASH_TABLE_FOR_EACH_VALID(v,
@@ -581,7 +586,7 @@ GC_debug_end_marking (void * space_start, void * space_end)
           printf("[GC track] Object %s (b=0x%llx, l=0x%llx) deallocated\n",
             v->tracking_name ? v->tracking_name : "(null)",
             (GC_ULL) v->base, (GC_ULL) v->len);
-          if (v->tracking_name) GC_DEBUG_DEALLOC(v->tracking_name);
+          //if (v->tracking_name) GC_DEBUG_DEALLOC(v->tracking_name);
         }
         v->valid = 0;
       }

@@ -1,3 +1,10 @@
+// You should include common.h in every file so that memwatch.h is included in
+// every file, as per its README.
+#ifdef MEMWATCH
+#include <string.h>
+#include <memwatch.h>
+#endif // MEMWATCH
+
 #ifndef COMMON_H_HEADER
 #define COMMON_H_HEADER
 

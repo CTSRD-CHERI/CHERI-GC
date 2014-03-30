@@ -208,6 +208,28 @@ lex (void)
   if (((token_t*)t)->type != TKEOF)
   {
     LEX_APPEND_STR('\0');
+    char buf[11];
+    ml_itoa((unsigned) ((token_t*)t)->token_number,
+            GC_cheri_ptr((char*)&buf, sizeof buf));
+    GC_debug_track_allocated(((token_t*)t)->str, buf);
   }
   return t;
+}
+
+void
+ml_itoa (unsigned num, GC_CAP char * buf)
+{
+  int i = 0, j;
+  if (num)
+  {
+    for (j=1000000000; j; j/=10)
+    {
+      if (num / j) ((char*)buf)[i++] = '0' + ((num / j) % 10);
+    }
+  }
+  else
+  {
+    ((char*)buf)[i++] = '0';
+  }
+  ((char*)buf)[i] = '\0';
 }
