@@ -36,6 +36,8 @@ void
 remset_test (void);
 void
 low_realloc_test (void);
+void
+realloc_preserves_caps_test (void);
 
 int
 main (int argc, char **argv)
@@ -45,8 +47,20 @@ main (int argc, char **argv)
   //rebase_test();
   //collection_test();
   //grow_test();
-  low_realloc_test();
+  //low_realloc_test();
+  realloc_preserves_caps_test();
   return 0;
+}
+
+void
+realloc_preserves_caps_test (void)
+{
+  GC_init();
+  struct struct1 * x = malloc(1000);
+  x->ptr = GC_cheri_ptr((void*) 0x1234, 0x5678);
+  printf("x->ptr tag: %d\n", GC_cheri_gettag(x->ptr));
+  x = realloc(x, 20000);
+  printf("x->ptr tag: %d\n", GC_cheri_gettag(x->ptr));
 }
 
 void
@@ -55,9 +69,9 @@ low_realloc_test (void)
   int sz = 10;
   void * ptr = GC_low_malloc(sz);
   memset(ptr, 0x88, sz);
-  GC_debug_memdump(ptr, ptr+sz);
+  GC_debug_memdump(ptr, ptr+sz-1);
   ptr = GC_low_realloc(ptr, sz*2);
-  GC_debug_memdump(ptr, ptr+sz*2);
+  GC_debug_memdump(ptr, ptr+sz*2-1);
 }
 
 void

@@ -400,6 +400,8 @@ GC_grow (struct GC_region * region, size_t hint)
       GC_ALIGN_32(new_tospace_base_misaligned, void *));
   }
   
+  GC_assert( GC_IN(GC_cheri_getbase(region->free), region->tospace) );
+  
   GC_dbgf(
     "GC_grow():\n"
     "old tospace base    :     0x%llx\n"

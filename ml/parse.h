@@ -18,6 +18,7 @@ struct expr_struct;
 typedef struct
 {
   GC_CAP struct expr_struct * cond, * true_expr, * false_expr;
+  GC_CAP void * magic1; // bring the size up to 0x80 for ease of identification when debugging
 } if_expr_t;
 
 typedef struct
@@ -77,8 +78,9 @@ void
 parse_init (void);
 
 // Assumes you've called parse_init().
+#define parse() parse2(__FILE__, __LINE__)
 GC_CAP expr_t *
-parse (void);
+parse2 (const char * file, int line);
 
 GC_CAP expr_t *
 parse_cons (void);
@@ -123,8 +125,9 @@ parse_num (void);
 GC_CAP name_expr_t *
 parse_name (void);
 
+#define parse_get_next_tok() parse_get_next_tok2(__FILE__,__LINE__)
 void
-parse_get_next_tok (void);
+parse_get_next_tok2 (const char * file, int line);
 
 int
 parse_tok_eq (int type, GC_CAP const char * str);

@@ -48,6 +48,10 @@
   "G" \
 )
 
+#define GC_CHECK_ADDRESS(addr) \
+  GC_IN((addr), GC_state.thread_local_region.tospace)
+
+
 #define GC_PRINT_CAP(cap) GC_debug_print_cap(#cap, (cap))
 
 void GC_debug_print_cap (const char * name, GC_cap_ptr cap);
@@ -142,7 +146,7 @@ GC_debug_just_allocated (GC_cap_ptr cap, const char * file, int line);
 // 3. Call GC_debug_end_marking().
 // Internally the routines implement a mark-and-sweep of the hash table.
 void
-GC_debug_just_copied (GC_cap_ptr old_cap, GC_cap_ptr new_cap);
+GC_debug_just_copied (GC_cap_ptr old_cap, GC_cap_ptr new_cap, void * parent);
 
 // GC_grow calls this whenever a heap is moved.
 void
@@ -164,7 +168,7 @@ GC_debug_print_allocated_stats (void);
 #define GC_debug_find_allocated(cap)
 #define GC_debug_find_invalid(cap)
 #define GC_debug_just_allocated(cap,file,line)
-#define GC_debug_just_copied(old_cap,new_cap)
+#define GC_debug_just_copied(old_cap,new_cap,parent)
 #define GC_debug_rebase_allocation_entries(oldbase,oldsize,newbase)
 #define GC_debug_begin_marking()
 #define GC_debug_end_marking(space_start,space_end)

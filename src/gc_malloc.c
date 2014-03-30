@@ -57,7 +57,47 @@ GC_malloc_region
   {
     GC_vdbgf("GC_malloc_region(): growing (young) heap (sz=0x%llx)",
       (GC_ULL) sz);
+
+    int old_num_external = 0, new_num_external = 0;
+    {
+      printf("begin exhaustive check (2)\n");
+      GC_cap_ptr * p;
+      void * start = GC_ALIGN_32(GC_cheri_getbase(region->tospace), void *);
+      void * end = GC_ALIGN_32_LOW(GC_cheri_getbase(region->tospace)+GC_cheri_getlen(region->tospace), void *);
+      for (p = (GC_cap_ptr *) start; ((uintptr_t) p) < ((uintptr_t) end); p++)
+      {
+        if (GC_cheri_gettag(*p))
+        {
+          if (!GC_IN(*p, region->tospace))
+          {
+            printf("external at 0x%llx\n", (GC_ULL) p);
+            GC_PRINT_CAP(*p);
+            old_num_external++;
+          }
+        }
+      }
+      printf("end exhaustive check (1). Found %d external caps.\n", old_num_external);
+    }
+
     too_small = !GC_grow(region, sz);
+    
+    {
+      printf("begin exhaustive check (2)\n");
+      GC_cap_ptr * p;
+      void * start = GC_ALIGN_32(GC_cheri_getbase(region->tospace), void *);
+      void * end = GC_ALIGN_32_LOW(GC_cheri_getbase(region->tospace)+GC_cheri_getlen(region->tospace), void *);
+      for (p = (GC_cap_ptr *) start; ((uintptr_t) p) < ((uintptr_t) end); p++)
+      {
+        if (GC_cheri_gettag(*p))
+        {
+          if (!GC_IN(*p, region->tospace))
+            new_num_external++;
+        }
+      }
+      printf("end exhaustive check (2). Found %d external caps.\n", new_num_external);
+      GC_assert( old_num_external == new_num_external );
+    }
+    
   }
 #endif // GC_GROW_YOUNG_HEAP
   

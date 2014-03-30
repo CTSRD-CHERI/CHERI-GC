@@ -64,7 +64,7 @@
 #endif // GC_GENERATIONAL
 
 #define GC_COLLECT_STATS
-//#define GC_DEBUG_TRACK_ALLOCATIONS
+#define GC_DEBUG_TRACK_ALLOCATIONS
 
 // Enable if you want the GC to time how long things take
 #define GC_TIME

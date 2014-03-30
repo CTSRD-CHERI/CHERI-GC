@@ -455,15 +455,15 @@ GC_debug_move_allocation (GC_debug_value * old, void * newbase, int newlen,
 }
 
 void
-GC_debug_just_copied (GC_cap_ptr old_cap, GC_cap_ptr new_cap)
+GC_debug_just_copied (GC_cap_ptr old_cap, GC_cap_ptr new_cap, void * parent)
 {
   GC_debug_allocated_init();
   GC_debug_value * v = GC_debug_find_allocated(old_cap);
   if (!v)
   {
-    GC_dbgf(
-      "WARNING: invalid capability just copied.\n"
-      "Old capability:\n");
+    GC_dbgf("WARNING: invalid capability just copied at *(0x%llx).\n",
+            (GC_ULL) parent);
+    GC_dbgf("Old capability:\n");
     GC_PRINT_CAP(old_cap);
     size_t oldhash = GC_debug_hash(GC_debug_value_from_cap(old_cap));
     GC_dbgf("Hash: %d\n", (int) oldhash);

@@ -51,8 +51,12 @@ int main ()
   //const char str[] =
     //"((fn f . fn n . if n then n * f (n-1) else 1) (fn n . n)) 5";
   
-  const char str[] =
-    "((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn a . (g g) a)))) (fn f . fn n . if n then n * f (n-1) else 1)) 5";
+  // factorial:
+  //const char str[] =
+    //"((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn a . (g g) a)))) (fn f . fn n . if n then n * f (n-1) else 1)) 5";
+  
+  const char str[] = "(fn g . g) (fn x . x)";
+  
   lex_read_string(GC_cheri_ptr((void *) str, sizeof(str)));
   printf("program: %s\n\n", str);
   
@@ -67,8 +71,10 @@ int main ()
   while (t->type != TKEOF)
   {
     printf("[%d] (tag=%d alloc=%d) %s\n", ((token_t*)t)->type, (int) GC_cheri_gettag(((token_t*)t)->str), (int) GC_IS_GC_ALLOCATED(((token_t*)t)->str), (char*) ((token_t*)t)->str);
+    GC_malloc(5000);
     t = lex();
   }
+  printf("Finished\n");
   return 0;*/
   
   parse_init();
@@ -76,7 +82,7 @@ int main ()
   GC_CAP expr_t * expr = GC_INVALID_PTR;
   GC_STORE_CAP(expr, parse());
   
-  printf("AST: ");
+  printf("AST:\n");
   print_ast(expr);
   printf("\n\n");
 

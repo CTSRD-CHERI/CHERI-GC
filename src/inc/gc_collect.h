@@ -20,7 +20,8 @@ GC_copy_region (struct GC_region * region,
 
 GC_cap_ptr
 GC_copy_object (struct GC_region * region,
-                GC_cap_ptr cap);
+                GC_cap_ptr cap,
+                void * parent); // parent for debugging only
 
 void
 GC_copy_roots (struct GC_region * region,

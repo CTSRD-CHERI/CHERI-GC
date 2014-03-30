@@ -23,6 +23,7 @@ copy_string (GC_CAP const char * str)
 void
 lex_read_file (GC_CAP const char * name)
 {
+  lex_state.num_tokens = 0;
   FILE * file = fopen((const char *) name, "rb");
   if (!file)
   {
@@ -61,6 +62,7 @@ lex_read_file (GC_CAP const char * name)
 void
 lex_read_string (GC_CAP const char * str)
 {
+  lex_state.num_tokens = 0;
   lex_state.file = GC_INVALID_PTR;
   GC_STORE_CAP(lex_state.file, copy_string(str));
   if (!PTR_VALID(lex_state.file))
@@ -72,6 +74,12 @@ lex_read_string (GC_CAP const char * str)
   lex_state.index = 0;
   lex_state.max = GC_cheri_getlen(str)-1;
 }
+
+#define SMALL_NUM_TO_STR(n,buf) ( \
+  (buf)[0] = '0'+(((n)/1000)%10), (buf)[1] = '0'+(((n)/100)%10),\
+  (buf)[2] = '0'+(((n)/10)%10), (buf)[3] = '0'+((n)%10), \
+  (buf)[4] = '\0' \
+)
 
 #define LEX_IS_SYM(c) ( \
   ((c) == '<') || ((c) == '>') || ((c) == '+') || ((c) == '-') || ((c) == '*') \
@@ -96,6 +104,9 @@ lex (void)
   GC_STORE_CAP(t, GC_malloc(sizeof(token_t)));
   ((token_t*)t)->type = TKEOF;
   ((token_t*)t)->nearby_character = lex_state.index;
+  ((token_t*)t)->token_number = lex_state.num_tokens;
+  
+  lex_state.num_tokens++;
   
 #define LEX_APPEND_STR(c) \
   do { \
@@ -122,6 +133,9 @@ lex (void)
       fprintf(stderr, "out of memory lexing string\n"); \
       exit(1); \
     } \
+    char buf[5]; \
+    SMALL_NUM_TO_STR(((token_t*)t)->token_number, buf); \
+    GC_debug_track_allocated(((token_t*)t)->str, buf); \
     ((char*)((token_t*)t)->str)[0] = (c); \
   } while (0)
 

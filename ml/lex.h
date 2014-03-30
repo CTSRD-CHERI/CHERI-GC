@@ -15,6 +15,7 @@ typedef struct
   int type;
   size_t len;
   size_t nearby_character;
+  size_t token_number;
 } token_t;
 
 struct
@@ -22,6 +23,7 @@ struct
   GC_CAP char * file;
   size_t index;
   size_t max;
+  size_t num_tokens;
 } lex_state;
 
 GC_CAP char *

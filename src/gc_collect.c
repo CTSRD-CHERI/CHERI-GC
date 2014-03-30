@@ -147,7 +147,8 @@ GC_copy_region (struct GC_region * region,
 
 GC_cap_ptr
 GC_copy_object (struct GC_region * region,
-                GC_cap_ptr cap)
+                GC_cap_ptr cap,
+                void * parent) // parent for debugging only
 {
   // Copy the object pointed to by cap to region->tospace
   
@@ -198,7 +199,7 @@ GC_copy_object (struct GC_region * region,
   // Set the forwarding address of the old object.
   GC_FORWARDING_CAP(cap) = GC_MAKE_FORWARDING_ADDRESS(tmp);
  
-  GC_debug_just_copied(orig_cap, tmp);
+  GC_debug_just_copied(orig_cap, tmp, parent);
 
   //GC_assert( GC_IS_GC_ALLOCATED(tmp) );
 
@@ -246,7 +247,7 @@ GC_copy_roots (struct GC_region * region,
         ((GC_ULL) p) & 0x7F00000000 ? "stack/reg" : ".data",
         (GC_ULL) *p,
         (GC_ULL) GC_cheri_getlen(*p));
-      *p = GC_copy_object(region, *p);
+      *p = GC_copy_object(region, *p, p);
 #ifdef GC_GENERATIONAL
       if (is_generational)
       {
@@ -277,7 +278,7 @@ GC_copy_child (struct GC_region * region,
       ((GC_ULL) child_addr) & 0x7F00000000 ? "stack/reg" : ".data",
       (GC_ULL) *child_addr, 
       (GC_ULL) GC_cheri_getlen(*child_addr));
-    *child_addr = GC_copy_object(region, *child_addr);
+    *child_addr = GC_copy_object(region, *child_addr, child_addr);
 #ifdef GC_GENERATIONAL
     if (is_generational)
     {
@@ -478,8 +479,10 @@ GC_region_rebase (struct GC_region * region, void * old_base, size_t old_size)
   
   GC_PUSH_CAP_REGS(cap_regs);
   
-  // TODO: make sure this stays on the stack!
-  GC_cap_ptr free_ptr_on_the_stack = region->free;
+  // Now unneeded, because GC_IS_GC_ALLOCATED(region->free) is not true.
+  // TODO: make sure this stays on the stack!  
+  //GC_cap_ptr free_ptr_on_the_stack = region->free;
+  GC_assert( !GC_IS_GC_ALLOCATED(region->free) );
   
   void * stack_top = NULL;
   GC_GET_STACK_PTR(stack_top);
@@ -521,18 +524,16 @@ GC_region_rebase (struct GC_region * region, void * old_base, size_t old_size)
 #endif // GC_OY_STORE_DEFAULT
 #endif // GC_GENERATIONAL
 
-  region->free = free_ptr_on_the_stack;
+  //region->free = free_ptr_on_the_stack;
   
   // is this OK?
   region->scan = ((void*)region->scan)-old_base+new_base;
   
-  // fails due to aliasing?
-  /*
+  // used to fail due to aliasing, but now ok due to GC_IS_GC_ALLOCATED
   region->free =
     GC_setbase(
       region->free,
       GC_cheri_getbase(region->free) - old_base + new_base);
-  */
   
   GC_RESTORE_CAP_REGS(cap_regs);
 }
