@@ -117,6 +117,8 @@ GC_malloc_region
     {region->free = GC_SET_EPHEMERAL(region->free);}
   );
 #endif // GC_GENERATIONAL
+    
+  ret = GC_SET_GC_ALLOCATED(ret);
   
   region->num_allocations++;
 

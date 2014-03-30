@@ -84,9 +84,12 @@ GC_init_region
     GC_errf("GC_low_malloc(%llu) (tospace)", (GC_ULL) (semispace_size+32));
     return 1;
   }
+  region->tospace_misaligned = p;
   p = GC_ALIGN_32(p, void *);
   region->tospace = GC_cheri_ptr(p, semispace_size);
-  region->tospace = GC_SET_GC_ALLOCATED(region->tospace);
+  // If we do this here, we get stray pointers. Must do it on GC_malloc only
+  // (and when we copy an object).
+  //region->tospace = GC_SET_GC_ALLOCATED(region->tospace);
   
   // GC_grow assumes this is a separate region of memory.
   p = GC_low_malloc(semispace_size+32);
@@ -95,9 +98,10 @@ GC_init_region
     GC_errf("GC_low_malloc(%llu) (fromspace)", (GC_ULL) (semispace_size+32));
     return 1;
   }
+  region->fromspace_misaligned = p;
   p = GC_ALIGN_32(p, void *);
   region->fromspace = GC_cheri_ptr(p, semispace_size);
-  region->fromspace = GC_SET_GC_ALLOCATED(region->fromspace);
+  //region->fromspace = GC_SET_GC_ALLOCATED(region->fromspace);
   
   region->free = region->tospace;
   region->scan = NULL;
@@ -140,6 +144,7 @@ GC_init_young_region (struct GC_region * region,
     GC_errf("GC_low_malloc");
     return 1;
   }
+  region->tospace_misaligned = p;
   p = GC_ALIGN_32(p, void *);
   region->tospace = GC_cheri_ptr(p, sz);
 
@@ -148,8 +153,9 @@ GC_init_young_region (struct GC_region * region,
     {region->tospace = GC_SET_EPHEMERAL(region->tospace);}   // GC_WB_EPHEMERAL
   );
   
-  region->tospace = GC_SET_GC_ALLOCATED(region->tospace);
+  //region->tospace = GC_SET_GC_ALLOCATED(region->tospace);
   
+  region->fromspace_misaligned = NULL;
   region->fromspace = GC_INVALID_PTR;
   region->free = region->tospace;
   region->scan = NULL;

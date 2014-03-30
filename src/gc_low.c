@@ -193,11 +193,181 @@ GC_orperm (GC_cap_ptr cap, GC_ULL perm)
 }
 
 #ifdef GC_GROW_HEAP
+
 int
 GC_grow (struct GC_region * region, size_t hint)
 {
-  // We try to double the heap size if we can, but allocate up to hint bytes if
-  // we have to, and saturate.
+  // We double the heap size if we can, allocate up to hint bytes if we have to,
+  // and saturate at the max.
+  // We want min(max(double, hint), region->max_size).
+  // WARNING: we always round *up* to the nearest multiple of 32 bytes to avoid
+  // alignment issues.
+  
+  GC_START_TIMING(GC_grow_time);
+    
+  void * old_tospace_base_misaligned = region->tospace_misaligned,
+       * old_fromspace_base_misaligned = region->fromspace_misaligned,
+       * new_tospace_base_misaligned = NULL,
+       * new_fromspace_base_misaligned = NULL;
+  
+  hint = GC_ALIGN_32(hint, size_t);
+    
+  size_t old_size = GC_cheri_getlen(region->tospace);
+  
+  if (old_size == region->max_size)
+  {
+    GC_dbgf("GC_grow(): region already max size (%llu%s)",
+      GC_MEM_PRETTY((GC_ULL) region->max_size),
+      GC_MEM_PRETTY_UNIT((GC_ULL) region->max_size));
+    return 0;
+  }
+  
+  GC_assert( old_size < region->max_size );
+  
+  /*size_t new_size =
+    GC_ALIGN_32(
+      GC_MIN(GC_MAX(2*old_size, (old_size+hint)), region->max_size),
+      size_t);*/
+  size_t new_size = region->max_size;
+  
+  GC_dbgf("GC_grow(): hint=%llu%s, current=%llu%s, trying=%llu%s, max=%llu%s",
+    GC_MEM_PRETTY((GC_ULL) hint), GC_MEM_PRETTY_UNIT((GC_ULL) hint),
+    GC_MEM_PRETTY((GC_ULL) old_size), GC_MEM_PRETTY_UNIT((GC_ULL) old_size),
+    GC_MEM_PRETTY((GC_ULL) new_size), GC_MEM_PRETTY_UNIT((GC_ULL) new_size),
+    GC_MEM_PRETTY((GC_ULL) region->max_size),
+    GC_MEM_PRETTY_UNIT((GC_ULL) region->max_size));
+  
+  // This is now non-trivial.
+  // The reallocation could move the chunk of memory allocated to the tospace,
+  // making anything pointing to things inside it invalid.
+  
+  int fromspace_exists = 
+#ifdef GC_GENERATIONAL
+    !GC_is_young(region) &&
+#endif // GC_GENERATIONAL
+    GC_cheri_gettag(region->fromspace);
+
+  printf("--------------------BEGIN BEFORE---------------------\n");
+  GC_debug_print_region_stats(region);
+  printf("--------------------END BEFORE---------------------\n");
+    
+  region->fromspace_misaligned = GC_low_realloc(region->fromspace_misaligned, 10*new_size+32);
+  new_fromspace_base_misaligned = region->fromspace_misaligned;
+  region->fromspace = GC_setbaselen(region->fromspace, GC_ALIGN_32(region->fromspace_misaligned, void *), new_size);
+  region->tospace_misaligned = GC_low_realloc(region->tospace_misaligned, 10*new_size+32);
+  new_tospace_base_misaligned = region->tospace_misaligned;
+  region->tospace = GC_setbaselen(region->tospace, GC_ALIGN_32(region->tospace_misaligned, void *), new_size);
+
+/*
+  
+  if (fromspace_exists)
+  {
+    // try doubling first
+    new_fromspace_base_misaligned =
+      GC_low_realloc(old_fromspace_base_misaligned, new_size+32);
+    if (new_fromspace_base_misaligned == NULL)
+    {
+      GC_dbgf("GC_grow(): growing the fromspace (first attempt) failed\n");
+      if (new_size > (old_size+hint))
+      {
+        // doubling failed; try allocating only what is required
+        new_size = old_size+hint;
+        new_fromspace_base_misaligned =
+          GC_low_realloc(old_fromspace_base_misaligned, new_size+32);
+        if (new_fromspace_base_misaligned == NULL)
+        {
+          GC_dbgf("GC_grow(): growing the fromspace (second attempt) failed\n");
+          return 0;
+        }
+      }
+    }
+  }
+  
+  new_tospace_base_misaligned =
+    GC_low_realloc(old_tospace_base_misaligned, new_size+32);
+  if (new_tospace_base_misaligned == NULL)
+  {
+    GC_dbgf("GC_grow(): growing the tospace (first attempt) failed\n");
+    if (new_size > (old_size+hint))
+    {
+      new_size = old_size+hint;
+      // doubling failed; try allocating only what is required, but first shrink
+      // down the fromspace, if possible
+      void * tmp =
+        GC_low_realloc(new_fromspace_base_misaligned, new_size+32);
+      if (tmp == NULL)
+      {
+        GC_dbgf("GC_grow(): warning: shrinking the fromspace failed\n");
+      }
+      else
+      {
+        new_fromspace_base_misaligned = tmp;
+      }
+      new_tospace_base_misaligned = 
+        GC_low_realloc(old_tospace_base_misaligned, new_size+32);
+      if (new_tospace_base_misaligned == NULL)
+      {
+        GC_dbgf("GC_grow(): growing the tospace (second attempt) failed\n");
+        return 0;
+      }
+    }
+  }
+  
+  region->fromspace_misaligned = new_fromspace_base_misaligned;
+  region->fromspace = GC_setbaselen(
+    region->fromspace,
+    GC_ALIGN_32(new_fromspace_base_misaligned, void *),
+    new_size);
+  region->tospace_misaligned = new_tospace_base_misaligned;
+  region->tospace = GC_setbaselen(
+    region->tospace,
+    GC_ALIGN_32(new_tospace_base_misaligned, void *),
+    new_size);
+*/
+  region->free = GC_setbaselen(
+    region->free,
+    GC_cheri_getbase(region->free),
+    GC_cheri_getlen(region->free) + new_size - old_size);
+
+  GC_vdbgf("GC_grow(): actually grew to %llu%s (from %llu%s)",
+    GC_MEM_PRETTY((GC_ULL) new_size), GC_MEM_PRETTY_UNIT((GC_ULL) new_size),
+    GC_MEM_PRETTY((GC_ULL) old_size), GC_MEM_PRETTY_UNIT((GC_ULL) old_size));
+  
+  if (new_tospace_base_misaligned != old_tospace_base_misaligned)
+  {
+    // Do the re-addressing.
+    // If we're about to collect anyway, we could do this on-the-fly in the
+    // collection routines, but for code simplicity and flexibility we don't
+    // bother with that and just do the scan now.
+    GC_vdbgf("GC_grow(): region needs rebasing");
+    GC_region_rebase(
+      region,
+      GC_ALIGN_32(old_tospace_base_misaligned, void *),
+      old_size);
+    GC_debug_rebase_allocation_entries(
+      GC_ALIGN_32(old_tospace_base_misaligned, void *),
+      old_size,
+      GC_ALIGN_32(new_tospace_base_misaligned, void *));
+  }
+    
+  GC_STOP_TIMING(GC_grow_time, "GC_grow %llu%s -> %llu%s",
+    GC_MEM_PRETTY((GC_ULL) old_size), GC_MEM_PRETTY_UNIT((GC_ULL) old_size),
+    GC_MEM_PRETTY((GC_ULL) new_size), GC_MEM_PRETTY_UNIT((GC_ULL) new_size));
+  
+  printf("--------------------BEGIN AFTER---------------------\n");
+  GC_debug_print_region_stats(region);
+  printf("--------------------END AFTER---------------------\n");
+  
+  return new_size >= (old_size+hint);
+}
+
+
+
+int
+GC_grow_OLD (struct GC_region * region, size_t hint)
+{
+  // We double the heap size if we can, allocate up to hint bytes if we have to,
+  // and saturate at the max.
   // We want min(max(double, hint), region->max_size).
   // WARNING: we always round *up* to the nearest multiple of 32 bytes to avoid
   // alignment issues.
@@ -218,7 +388,8 @@ GC_grow (struct GC_region * region, size_t hint)
   
   GC_assert( cur_size < region->max_size );
   
-  void * tospace_base = GC_cheri_getbase(region->tospace);
+  void * old_tospace_base_misaligned = region->tospace_misaligned;
+  void * old_tospace_base = GC_cheri_getbase(region->tospace);
   size_t new_size = GC_ALIGN_32(
     GC_MIN(GC_MAX(2*cur_size, (cur_size+hint)), region->max_size), size_t);
 
@@ -239,24 +410,27 @@ GC_grow (struct GC_region * region, size_t hint)
 #endif // GC_GENERATIONAL
     GC_cheri_gettag(region->fromspace);
   
-  GC_fatalf("NO! This can't work because region->fromspcae was not malloc'd! (32-bit align...)");
   void * tmp;
   if (fromspace_exists)
   {
-//#error NO! This can't work because region->fromspcae was not malloc'd! (32-bit align...)
-    void * fromspace_base = GC_cheri_getbase(region->fromspace);
-    tmp = GC_low_realloc(fromspace_base, new_size);
+    void * fromspace_base_misaligned = region->fromspace_misaligned;
+    tmp = GC_low_realloc(fromspace_base_misaligned, new_size+32);
+    printf("FROMSPACE ATTEMPT #1: fromspace_base_misaligned=0x%llx, tmp=0x%llx\n", (GC_ULL) fromspace_base_misaligned, (GC_ULL) tmp);
     if (!tmp && (new_size > (cur_size+hint)))
     {
       // doubling failed, try just allocating the size requested.
       new_size = (cur_size+hint);
-      tmp = GC_low_realloc(fromspace_base, new_size);
+      tmp = GC_low_realloc(fromspace_base_misaligned, new_size+32);
+      printf("FROMSPACE ATTEMPT #2: fromspace_base_misaligned=0x%llx, tmp=0x%llx\n", (GC_ULL) fromspace_base_misaligned, (GC_ULL) tmp);
     }
     if (!tmp) return 0;
-    region->fromspace = GC_setbaselen(region->fromspace, tmp, new_size);
+    region->fromspace_misaligned = tmp;
+    region->fromspace = GC_setbaselen(
+      region->fromspace, GC_ALIGN_32(tmp, void *), new_size);
   }
   
-  tmp = GC_low_realloc(tospace_base, new_size);
+  tmp = GC_low_realloc(old_tospace_base_misaligned, new_size+32);
+  printf("TOSPACE ATTEMPT #1: old_tospace_base_misaligned=0x%llx, tmp=0x%llx\n", (GC_ULL) old_tospace_base_misaligned, (GC_ULL) tmp);
   if (!tmp && (new_size > (cur_size+hint)))
   {
     // doubling failed, try just allocating the requested size.
@@ -264,27 +438,33 @@ GC_grow (struct GC_region * region, size_t hint)
     // shorten the fromspace, if it was allocated above.
     if (fromspace_exists)
     {
-      tmp = GC_low_realloc(GC_cheri_getbase(region->fromspace), new_size);
+      tmp = GC_low_realloc(region->fromspace_misaligned, new_size+32);
+      printf("TOSPACE ATTEMPT #1 FAILED, FROMSPACE ATTEMPT AT SHRINKING: old_tospace_base_misaligned=0x%llx, tmp=0x%llx, region->fromspace_misaligned=0x%llx\n", (GC_ULL) old_tospace_base_misaligned, (GC_ULL) tmp, (GC_ULL) region->fromspace_misaligned);
       if (!tmp)
       {
-        // undo our changes
+        // undo our changes: keep the original fromspace size
         region->fromspace = GC_cheri_setlen(region->fromspace, cur_size);
         return 0;
       }
-      region->fromspace = GC_cheri_setlen(region->fromspace, new_size);
+      region->fromspace_misaligned = tmp;
+      region->fromspace = GC_setbaselen(
+        region->fromspace, GC_ALIGN_32(tmp, void *), new_size);
     }
-    tmp = GC_low_realloc(tospace_base, new_size);
+    tmp = GC_low_realloc(old_tospace_base_misaligned, new_size+32);
+    printf("TOSPACE ATTEMPT #2: old_tospace_base_misaligned=0x%llx, tmp=0x%llx\n", (GC_ULL) old_tospace_base_misaligned, (GC_ULL) tmp);
   }
   if (!tmp)
   {
     if (fromspace_exists)
     {
-      // undo our changes
+      // undo our changes: keep the original fromspace size
       region->fromspace = GC_cheri_setlen(region->fromspace, cur_size);
     }
     return 0;
   }
-  region->tospace = GC_setbaselen(region->tospace, tmp, new_size);
+  region->tospace_misaligned = tmp;
+  region->tospace = GC_setbaselen(region->tospace,
+    GC_ALIGN_32(tmp, void *), new_size);
   region->free = GC_setbaselen(
     region->free,
     GC_cheri_getbase(region->free),
@@ -294,16 +474,16 @@ GC_grow (struct GC_region * region, size_t hint)
     GC_MEM_PRETTY((GC_ULL) new_size), GC_MEM_PRETTY_UNIT((GC_ULL) new_size),
     GC_MEM_PRETTY((GC_ULL) cur_size), GC_MEM_PRETTY_UNIT((GC_ULL) cur_size));
   
-  if (GC_cheri_getbase(region->tospace) != tospace_base)
+  if (GC_cheri_getbase(region->tospace) != old_tospace_base)
   {
     // Do the re-addressing.
     // If we're about to collect anyway, we could do this on-the-fly in the
     // collection routines, but for code simplicity and flexibility we don't
     // bother with that and just do the scan now.
     GC_vdbgf("GC_grow(): region needs rebasing");
-    GC_region_rebase(region, tospace_base, cur_size);
+    GC_region_rebase(region, old_tospace_base, cur_size);
     GC_debug_rebase_allocation_entries(
-      tospace_base, cur_size, GC_cheri_getbase(region->tospace));
+      old_tospace_base, cur_size, GC_cheri_getbase(region->tospace));
   }
   
   GC_STOP_TIMING(GC_grow_time, "GC_grow %llu%s -> %llu%s",

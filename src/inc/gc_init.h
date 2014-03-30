@@ -12,6 +12,8 @@ struct GC_region
   // and fromspace are 32-bit aligned and have a 32-bit aligned length. The
   // collection routines assume and require this.
   __capability void * tospace, * fromspace, * free, ** scan;
+  // The not-32-byte-aligned result from GC_low_malloc(), used by GC_grow().
+  void * tospace_misaligned, * fromspace_misaligned;
   int num_collections, num_allocations; // debugging/stats
 #ifdef GC_GENERATIONAL
   struct GC_region * older_region; // only used if this one is young

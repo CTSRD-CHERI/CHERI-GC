@@ -179,6 +179,12 @@ GC_copy_object (struct GC_region * region,
   
   // No forwarding address present: do the actual copy and set the forwarding
   // address.
+  if (GC_cheri_getlen(region->free) < GC_cheri_getlen(cap))
+  {
+    GC_debug_print_region_stats(region);
+    GC_PRINT_CAP(cap);
+  }
+  GC_assert( GC_cheri_getlen(region->free) >= GC_cheri_getlen(cap) );
   GC_cap_ptr tmp = GC_cap_memcpy(region->free, cap);
   tmp = GC_cheri_setlen(tmp, user_length);
   region->free =
@@ -187,12 +193,14 @@ GC_copy_object (struct GC_region * region,
       GC_cheri_getbase(region->free)+GC_cheri_getlen(cap),
       GC_cheri_getlen (region->free)-GC_cheri_getlen(cap));
 
+  tmp = GC_SET_GC_ALLOCATED(tmp);
+  
   // Set the forwarding address of the old object.
   GC_FORWARDING_CAP(cap) = GC_MAKE_FORWARDING_ADDRESS(tmp);
  
   GC_debug_just_copied(orig_cap, tmp);
 
-  GC_assert( GC_IS_GC_ALLOCATED(tmp) );
+  //GC_assert( GC_IS_GC_ALLOCATED(tmp) );
 
   return tmp;
 }
@@ -229,7 +237,7 @@ GC_copy_roots (struct GC_region * region,
         && GC_IS_GC_ALLOCATED(*p)
         && GC_IN(GC_cheri_getbase(*p), region->fromspace))
     {
-      GC_vdbgf("[root] [%d%%] location=0x%llx (%s?), b=0x%llx, l=0x%llx\n",
+      GC_vdbgf("[root] [%d%%] location=0x%llx (%s?), b=0x%llx, l=0x%llx",
       (int) (
         100.0*
           ((double) (((uintptr_t) p)-((uintptr_t) root_start)))/
@@ -264,7 +272,7 @@ GC_copy_child (struct GC_region * region,
        // necessary now for remembered set too
     && GC_IN(GC_cheri_getbase(*child_addr), region->fromspace))
   {
-    GC_vdbgf("[child] location=0x%llx (%s?), b=0x%llx, l=0x%llx\n",
+    GC_vdbgf("[child] location=0x%llx (%s?), b=0x%llx, l=0x%llx",
       (GC_ULL) child_addr,
       ((GC_ULL) child_addr) & 0x7F00000000 ? "stack/reg" : ".data",
       (GC_ULL) *child_addr, 
@@ -276,9 +284,9 @@ GC_copy_child (struct GC_region * region,
       GC_SWITCH_WB_TYPE(
         {*child_addr =
           GC_UNSET_YOUNG(
-          GC_SET_CONTAINED_IN_OLD(*region->scan));}, // GC_WB_MANUAL
+          GC_SET_CONTAINED_IN_OLD(*child_addr));},  // GC_WB_MANUAL
         {*child_addr =
-          GC_UNSET_EPHEMERAL(*region->scan);}         // GC_WB_EPHEMERAL
+          GC_UNSET_EPHEMERAL(*child_addr);}         // GC_WB_EPHEMERAL
       );
     }
 #endif // GC_GENERATIONAL
@@ -303,6 +311,7 @@ GC_copy_children (struct GC_region * region,
 }
 
 #ifdef GC_GENERATIONAL
+#if (GC_OY_STORE_DEFAULT == GC_OY_STORE_REMEMBERED_SET)
 void
 GC_copy_remembered_set (struct GC_region * region)
 {
@@ -318,6 +327,7 @@ GC_copy_remembered_set (struct GC_region * region)
   }
   GC_remembered_set_clr(&region->remset);
 }
+#endif // GC_OY_STORE_DEFAULT
 
 void
 GC_gen_promote (struct GC_region * region)
@@ -450,7 +460,7 @@ GC_region_rebase (struct GC_region * region, void * old_base, size_t old_size)
   void * new_base = GC_cheri_getbase(region->tospace);
   size_t new_size = GC_cheri_getlen(region->tospace);
   
-  GC_vdbgf(
+  GC_dbgf(
     "rebasing region\n"
     "old_base = 0x%llx\n"
     "old_size = %llu%s\n"
@@ -476,12 +486,40 @@ GC_region_rebase (struct GC_region * region, void * old_base, size_t old_size)
   
   GC_assert(stack_top <= GC_state.stack_bottom);
   
+  // These areas must not overlap.
   GC_rebase(stack_top, GC_state.stack_bottom,
             old_base, old_size, new_base);
   GC_rebase(GC_state.static_bottom, GC_state.static_top,
             old_base, old_size, new_base);
   GC_rebase(new_base, new_base+new_size,
             old_base, old_size, new_base);
+  
+  /*
+  GC_clean_forwarding(stack_top, GC_state.stack_bottom);
+  GC_clean_forwarding(GC_state.static_bottom, GC_state.static_top);
+  GC_clean_forwarding(new_base, new_base+new_size);
+  */
+  
+#ifdef GC_GENERATIONAL
+#if (GC_OY_STORE_DEFAULT == GC_OY_STORE_REMEMBERED_SET)
+  size_t i;
+  for (i=0; i<region->remset.nroots; i++)
+  {
+    GC_cap_ptr * root = (GC_cap_ptr *) region->remset.roots[i];
+    GC_assert( root );
+    GC_dbgf("[%d] Rebasing remembered root 0x%llx",
+      (int) i, (GC_ULL) root);
+    if (GC_cheri_gettag(*root))
+    {
+      void * base = GC_cheri_getbase(*root);
+      if ((base >= old_base) && (base <= (old_base+old_size)))
+      {
+        *root = GC_setbase(*root, (base-old_base)+new_base);
+      }
+    }
+  }
+#endif // GC_OY_STORE_DEFAULT
+#endif // GC_GENERATIONAL
 
   region->free = free_ptr_on_the_stack;
   
@@ -526,7 +564,7 @@ GC_rebase (void * start,
   GC_cap_ptr * p;
   for (p = (GC_cap_ptr *) start; ((uintptr_t) p) < ((uintptr_t) end); p++)
   {
-    if (GC_cheri_gettag(*p) && !GC_IS_FORWARDING_ADDRESS(*p))
+    if (GC_cheri_gettag(*p) )//&& !GC_IS_FORWARDING_ADDRESS(*p))
     {
       if (GC_IN(p, GC_state_cap))
       {
@@ -539,12 +577,12 @@ GC_rebase (void * start,
           GC_vdbgf("Warning: on the old_base+old_size edge case 0x%llx.",
                    (GC_ULL) base);
         *p = GC_setbase(*p, (base-old_base)+new_base);
-        *p = GC_MAKE_FORWARDING_ADDRESS(*p);
+        //*p = GC_MAKE_FORWARDING_ADDRESS(*p);
       }
     }
   }
   
-  GC_clean_forwarding(start, end);
+  //GC_clean_forwarding(start, end);
 }
 
 void GC_clean_forwarding (void * start,

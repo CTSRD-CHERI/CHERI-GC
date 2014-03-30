@@ -3,6 +3,7 @@
 #include <gc_debug.h>
 #include <gc_collect.h>
 #include <gc_low.h>
+#include <gc_config.h>
 
 #include <machine/cheri.h>
 #include <machine/cheric.h>
@@ -19,16 +20,17 @@ void
 grow_test (void);
 void
 tracking_test (void);
+void
+remset_test (void);
 
 int
 main (int argc, char **argv)
 {
-  printf("test: compiled %s\n",
-         __TIME__ " " __DATE__);
-  tracking_test();
+  //remset_test();
+  //tracking_test();
   //rebase_test();
   //collection_test();
-  //grow_test();
+  grow_test();
   return 0;
 }
 
@@ -42,6 +44,27 @@ typedef struct node_tag
   int value;
   __capability struct node_tag * next;
 } node;
+
+void
+remset_test (void)
+{
+#ifdef GC_GENERATIONAL
+#if (GC_OY_STORE_DEFAULT == GC_OY_STORE_REMEMBERED_SET)
+  GC_init();
+  GC_remembered_set_add(&GC_state.thread_local_region.remset, (void *) 0x123400);
+  GC_remembered_set_add(&GC_state.thread_local_region.remset, (void *) 0x567800);
+  GC_remembered_set_add(&GC_state.thread_local_region.remset, (void *) 0x999900);
+  GC_remembered_set_add(&GC_state.thread_local_region.remset, (void *) 0x888800);
+  GC_remembered_set_add(&GC_state.thread_local_region.remset, (void *) 0x777700);
+  size_t i;
+  for (i=0; i<GC_state.thread_local_region.remset.nroots; i++)
+  {
+    printf("[%d] 0x%llx\n", (int) i, (GC_ULL) GC_state.thread_local_region.remset.roots[i]);
+  }
+  printf("size: %d\n", (int) GC_state.thread_local_region.remset.size);
+#endif // GC_OY_STORE_DEFAULT
+#endif // GC_GENERATIONAL
+}
 
 void
 tracking_test (void)
@@ -59,15 +82,21 @@ void
 grow_test (void)
 {
   GC_init();
-  GC_debug_print_region_stats(&GC_state.thread_local_region);
-  GC_grow(&GC_state.thread_local_region, 0x3000);
-  GC_debug_print_region_stats(&GC_state.thread_local_region);
+  int i;
+  for (i=0; i<10000; i++)
+  {
+    GC_cap_memset(GC_malloc(13), 0xAA);
+    printf("%d\n", i);
+  }
+  printf("exiting\n");
+  return;
 }
 
 void
 rebase_test (void)
 {
   GC_cap_ptr cap = GC_cheri_ptr((void*)0x1234, 0x5678);
+  GC_cap_ptr cap3 = cap;
   GC_PRINT_CAP(cap);
   GC_cap_ptr cap2[100];
   int i;
