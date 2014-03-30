@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-struct alloc_entry_t
+struct GC_alloc_entry_t
 {
   void * ptr;
   size_t len;
@@ -15,7 +15,7 @@ void *
 GC_add_to_alloc_list (void * p, size_t sz, void * old_ptr)
 {
   #define GC_MAX_ALLOC_ENTRY 500
-  static struct alloc_entry_t a[GC_MAX_ALLOC_ENTRY];
+  static struct GC_alloc_entry_t a[GC_MAX_ALLOC_ENTRY];
   static int index = 0;
   if (index == GC_MAX_ALLOC_ENTRY)
   {

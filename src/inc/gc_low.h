@@ -235,24 +235,6 @@ typedef __capability void * GC_cap_ptr;
   } while (0)
 #else // GC_GENERATIONAL
 #define GC_STORE_CAP(x,y) ( (x) = (y) )
-#define GC_STORE_CAP_IGNORE(x,y) \
-  do { \
-    GC_debug_print_region_stats(&GC_state.thread_local_region); \
-    printf("[GC_STORE_CAP] Begin processing %s = %s &x=0x%llx\n", #x, #y, (unsigned long long) &x); \
-    __capability void * tmpy = (y); \
-    printf("evaluated %s to get 0x%llx; now setting tmpx (note: x is %s).\n", #y, (GC_ULL) tmpy, #x); \
-    printf("Note: &x is 0x%llx\n", (unsigned long long) &(x)); \
-    __capability void ** tmpx = (__capability void **) &(x); \
-    printf("Set tmpx okay.\n"); \
-    printf("Trying to do *(0x%llx) = 0x%llx\n", (unsigned long long) tmpx, (unsigned long long) tmpy); \
-    __asm__ ("daddiu $1, $1, 0"); \
-    *tmpx = tmpy; \
-    __asm__ ("daddiu $2, $2, 0"); \
-    printf("[GC_STORE_CAP] &x=0x%llx, tmpx=0x%llx\n", (unsigned long long) &(x), (unsigned long long) tmpx); \
-    GC_assert((uintptr_t)&(x) ==(uintptr_t) tmpx); \
-    tmpx = (__capability void **) GC_cheri_ptr(NULL, 0); \
-    printf("[GC_STORE_CAP] __DONE__:  %s=%s\n", #x, #y); \
-  } while (0)
 #endif // GC_GENERATIONAL
 
 #ifdef GC_GENERATIONAL

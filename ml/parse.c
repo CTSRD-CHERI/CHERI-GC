@@ -22,6 +22,7 @@ parser_is_at_start_of_expression (void)
 void
 parse_init (void)
 {
+  parse_state.tok = GC_INVALID_PTR;
   parse_get_next_tok();
 }
 
@@ -377,10 +378,11 @@ parse_num (void)
   
   ((num_expr_t *) num_expr)->num = 0;
   size_t i;
-  for (i=0; i<parse_state.tok.len-1; i++)
+  for (i=0; i<((token_t*)parse_state.tok)->len-1; i++)
   {
     ((num_expr_t *) num_expr)->num *= 10;
-    ((num_expr_t *) num_expr)->num += ((char*)parse_state.tok.str)[i] - '0';
+    ((num_expr_t *) num_expr)->num +=
+      ((char*) (((token_t*)parse_state.tok)->str))[i] - '0';
   }
   parse_get_next_tok();
   return num_expr;
@@ -397,7 +399,9 @@ parse_name (void)
     exit(1);
   }
   ((name_expr_t *) name_expr)->name = GC_INVALID_PTR;
-  GC_STORE_CAP(((name_expr_t *) name_expr)->name, parse_state.tok.str);
+  GC_STORE_CAP(
+    ((name_expr_t *) name_expr)->name,
+    ((token_t*)parse_state.tok)->str);
   parse_get_next_tok();
   return name_expr;
 }
@@ -408,7 +412,8 @@ parse_get_next_tok (void)
   // TODO: check if it's valid to pass around structs by value like this.
   // It seemed to fail in gc_debug when we passed a GC_region struct by value.
   // The internal capabilities were invalidated...
-  parse_state.tok = lex();
+  // To the above: looks like it wasn't okay, changed to pointer now....
+  GC_STORE_CAP(parse_state.tok, lex());
 }
 
 // Set str to GC_INVALID_PTR to ignore
@@ -418,13 +423,13 @@ parse_tok_eq (int type, GC_CAP const char * str)
   return
   (
     PTR_VALID(str) &&
-    (type == parse_state.tok.type) &&
-    PTR_VALID(parse_state.tok.str) &&
-    (!strcmp((const char*)str,(char*)parse_state.tok.str))
+    (type == ((token_t*)parse_state.tok)->type) &&
+    PTR_VALID(((token_t*)parse_state.tok)->str) &&
+    (!strcmp((const char*)str,(char*)((token_t*)parse_state.tok)->str))
   ) ||
   (
     !PTR_VALID(str) &&
-    (type == parse_state.tok.type)
+    (type == ((token_t*)parse_state.tok)->type)
   );
 }
 
@@ -443,8 +448,8 @@ parse_unexpected (void)
 {
   parse_eof_error(); // because then the string is invalid
   fprintf(stderr, "unexpected token %s (near character %d)\n",
-    (char*) parse_state.tok.str,
-    (int) parse_state.tok.nearby_character);
+    (char*) ((token_t*)parse_state.tok)->str,
+    (int) ((token_t*)parse_state.tok)->nearby_character);
   exit(1);
 }
 
@@ -456,8 +461,8 @@ parse_expect (int type, GC_CAP const char * str)
   {
     fprintf(stderr, "expected `%s', not `%s' (near character %d)\n",
             (const char *) str, 
-            (char*) parse_state.tok.str,
-            (int) parse_state.tok.nearby_character);
+            (char*) ((token_t*)parse_state.tok)->str,
+            (int) ((token_t*)parse_state.tok)->nearby_character);
     exit(1);
   }
 }

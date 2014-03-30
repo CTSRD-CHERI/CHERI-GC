@@ -33,7 +33,7 @@ lex_read_file (GC_CAP const char * name);
 void
 lex_read_string (GC_CAP const char * str);
 
-token_t
+GC_CAP token_t *
 lex (void);
 
 #endif // LEX_H_HEADER

@@ -9,7 +9,7 @@ typedef int num_t;
 
 struct
 {
-  token_t tok;
+  GC_CAP token_t * tok;
 } parse_state;
 
 struct expr_struct;

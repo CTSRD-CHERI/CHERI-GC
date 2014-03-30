@@ -89,39 +89,40 @@ lex_read_string (GC_CAP const char * str)
   ((c) == ' ') || ((c) == '\t') || ((c) == '\n') || ((c) == '\r') \
 )
 
-token_t
+GC_CAP token_t *
 lex (void)
 {
-  token_t t;
-  t.type = TKEOF;
-  t.nearby_character = lex_state.index;
+  GC_CAP token_t * t = GC_INVALID_PTR;
+  GC_STORE_CAP(t, GC_malloc(sizeof(token_t)));
+  ((token_t*)t)->type = TKEOF;
+  ((token_t*)t)->nearby_character = lex_state.index;
   
 #define LEX_APPEND_STR(c) \
   do { \
-    t.len++; \
+    ((token_t*)t)->len++; \
     GC_CAP char * tmp = GC_INVALID_PTR; \
-    GC_STORE_CAP(tmp, GC_malloc(t.len)); \
+    GC_STORE_CAP(tmp, GC_malloc(((token_t*)t)->len)); \
     if (!PTR_VALID(tmp)) \
     { \
       fprintf(stderr, "out of memory lexing string\n"); \
       exit(1); \
     } \
-    memcpy((char *) tmp, (char *) t.str, t.len-1); \
-    GC_STORE_CAP(t.str, tmp); \
-    ((char*)t.str)[t.len-1] = (c); \
+    memcpy((char *) tmp, (char *) ((token_t*)t)->str, ((token_t*)t)->len-1); \
+    GC_STORE_CAP(((token_t*)t)->str, tmp); \
+    ((char*)((token_t*)t)->str)[((token_t*)t)->len-1] = (c); \
   } while (0)
 
 #define LEX_INIT_STR(c) \
   do { \
-    t.len = 1; \
-    t.str = GC_INVALID_PTR; \
-    GC_STORE_CAP(t.str, GC_malloc(1)); \
-    if (!PTR_VALID(t.str)) \
+    ((token_t*)t)->len = 1; \
+    ((token_t*)t)->str = GC_INVALID_PTR; \
+    GC_STORE_CAP(((token_t*)t)->str, GC_malloc(1)); \
+    if (!PTR_VALID(((token_t*)t)->str)) \
     { \
       fprintf(stderr, "out of memory lexing string\n"); \
       exit(1); \
     } \
-    ((char*)t.str)[0] = (c); \
+    ((char*)((token_t*)t)->str)[0] = (c); \
   } while (0)
 
   int state = 0;
@@ -134,21 +135,21 @@ lex (void)
       {
         if (LEX_IS_SYM(c))
         {
-          t.type = TKSYM;
+          ((token_t*)t)->type = TKSYM;
           LEX_INIT_STR(c);
           lex_state.index++;
           state = 1;
         }
         else if (LEX_IS_LETTER(c))
         {
-          t.type = TKWORD;
+          ((token_t*)t)->type = TKWORD;
           LEX_INIT_STR(c);
           lex_state.index++;
           state = 2;
         }
         else if (LEX_IS_DIGIT(c))
         {
-          t.type = TKINT;
+          ((token_t*)t)->type = TKINT;
           LEX_INIT_STR(c);
           lex_state.index++;
           state = 3;
@@ -200,7 +201,7 @@ lex (void)
     if (state == 5) break;
   }
   
-  if (t.type != TKEOF)
+  if (((token_t*)t)->type != TKEOF)
   {
     LEX_APPEND_STR('\0');
   }

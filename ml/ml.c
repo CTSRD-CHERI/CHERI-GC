@@ -62,13 +62,14 @@ int main ()
     putchar(((char*)lex_state.file)[i]);
   }
   
-  token_t t;
+  GC_CAP token_t * t;
   t = lex();
-  while (t.type != TKEOF)
+  while (t->type != TKEOF)
   {
-    printf("[%d] %s\n", t.type, (char*) t.str);
+    printf("[%d] (tag=%d alloc=%d) %s\n", ((token_t*)t)->type, (int) GC_cheri_gettag(((token_t*)t)->str), (int) GC_IS_GC_ALLOCATED(((token_t*)t)->str), (char*) ((token_t*)t)->str);
     t = lex();
-  }*/
+  }
+  return 0;*/
   
   parse_init();
   
