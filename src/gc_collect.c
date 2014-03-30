@@ -27,6 +27,9 @@ GC_collect_region (struct GC_region * region)
   void * space_end = space_start + GC_cheri_getlen(region->tospace);
   GC_debug_begin_marking();
   
+  GC_assert(
+    GC_IN_OR_ON_BOUNDARY(GC_cheri_getbase(region->free), region->tospace) );
+  
   size_t freed;
   int promoted = 0;
 #ifdef GC_GENERATIONAL
@@ -161,7 +164,7 @@ GC_copy_object (struct GC_region * region,
   GC_cap_ptr orig_cap = cap;
   cap = GC_setbaselen(
     cap, GC_cheri_getbase(cap), GC_ALIGN_32(user_length, size_t));
-  
+
   // If the first word of the object points to a place in region->tospace,
   // then it has already been copied.
   
@@ -461,8 +464,9 @@ GC_region_rebase (struct GC_region * region, void * old_base, size_t old_size)
   void * new_base = GC_cheri_getbase(region->tospace);
   size_t new_size = GC_cheri_getlen(region->tospace);
   
-  GC_dbgf(
-    "rebasing region\n"
+  GC_dbgf("rebasing region\n");
+  
+  GC_vdbgf(
     "old_base = 0x%llx\n"
     "old_size = %llu%s\n"
     "old_end  = 0x%llx\n"

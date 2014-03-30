@@ -45,7 +45,7 @@ print_env (GC_CAP env_t * env)
 }
 
 void
-print_ast2 (GC_CAP expr_t * expr)
+print_ast (GC_CAP expr_t * expr)
 {
   if (!PTR_VALID(expr))
   {

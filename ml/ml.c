@@ -52,11 +52,9 @@ int main ()
     //"((fn f . fn n . if n then n * f (n-1) else 1) (fn n . n)) 5";
   
   // factorial:
-  //const char str[] =
-    //"((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn a . (g g) a)))) (fn f . fn n . if n then n * f (n-1) else 1)) 5";
-  
-  const char str[] = "(fn g . g) (fn x . x)";
-  
+  const char str[] =
+    "((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn a . (g g) a)))) (fn f . fn n . if n then n * f (n-1) else 1)) 20";
+    
   lex_read_string(GC_cheri_ptr((void *) str, sizeof(str)));
   printf("program: %s\n\n", str);
   

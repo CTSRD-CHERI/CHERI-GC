@@ -69,9 +69,9 @@ low_realloc_test (void)
   int sz = 10;
   void * ptr = GC_low_malloc(sz);
   memset(ptr, 0x88, sz);
-  GC_debug_memdump(ptr, ptr+sz-1);
+  GC_debug_memdump(ptr, ptr+sz);
   ptr = GC_low_realloc(ptr, sz*2);
-  GC_debug_memdump(ptr, ptr+sz*2-1);
+  GC_debug_memdump(ptr, ptr+sz*2);
 }
 
 void

@@ -20,6 +20,14 @@
     static int x##_num = 0; \
     x##_num++; \
     x##_tot = GC_time_add(x##_tot, x); \
+  } while (0)
+#define GC_STOP_TIMING_PRINT(x,...) \
+  do { \
+    x = GC_time_diff(GC_time(), x); \
+    static GC_time_t x##_tot = 0; \
+    static int x##_num = 0; \
+    x##_num++; \
+    x##_tot = GC_time_add(x##_tot, x); \
     printf("[GC time] "); \
     printf(__VA_ARGS__); \
     printf( \
@@ -30,6 +38,7 @@
 #else // GC_TIME
 #define GC_START_TIMING(x)
 #define GC_STOP_TIMING(x,...)
+#define GC_STOP_TIMING_PRINT(x,...)
 #endif // GC_TIME
 
 

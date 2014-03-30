@@ -57,67 +57,22 @@ GC_malloc_region
   {
     GC_vdbgf("GC_malloc_region(): growing (young) heap (sz=0x%llx)",
       (GC_ULL) sz);
-
-    int old_num_external = 0, new_num_external = 0;
-    {
-      printf("begin exhaustive check (2)\n");
-      GC_cap_ptr * p;
-      void * start = GC_ALIGN_32(GC_cheri_getbase(region->tospace), void *);
-      void * end = GC_ALIGN_32_LOW(GC_cheri_getbase(region->tospace)+GC_cheri_getlen(region->tospace), void *);
-      for (p = (GC_cap_ptr *) start; ((uintptr_t) p) < ((uintptr_t) end); p++)
-      {
-        if (GC_cheri_gettag(*p))
-        {
-          if (!GC_IN(*p, region->tospace))
-          {
-            printf("external at 0x%llx\n", (GC_ULL) p);
-            GC_PRINT_CAP(*p);
-            old_num_external++;
-          }
-        }
-      }
-      printf("end exhaustive check (1). Found %d external caps.\n", old_num_external);
-    }
-
     too_small = !GC_grow(region, sz);
-    
-    {
-      printf("begin exhaustive check (2)\n");
-      GC_cap_ptr * p;
-      void * start = GC_ALIGN_32(GC_cheri_getbase(region->tospace), void *);
-      void * end = GC_ALIGN_32_LOW(GC_cheri_getbase(region->tospace)+GC_cheri_getlen(region->tospace), void *);
-      for (p = (GC_cap_ptr *) start; ((uintptr_t) p) < ((uintptr_t) end); p++)
-      {
-        if (GC_cheri_gettag(*p))
-        {
-          if (!GC_IN(*p, region->tospace))
-            new_num_external++;
-        }
-      }
-      printf("end exhaustive check (2). Found %d external caps.\n", new_num_external);
-      GC_assert( old_num_external == new_num_external );
-    }
-    
   }
 #endif // GC_GROW_YOUNG_HEAP
+  
+  GC_assert( too_small == (sz > (size_t) cheri_getlen(region->free)) );
   
   if (too_small && collect_on_failure)
   {
     GC_vdbgf("GC_malloc_region(): collecting (young) heap (sz=0x%llx)",
       (GC_ULL) sz);
     
-    GC_START_TIMING(GC_malloc_region_collect_time);
+    //GC_START_TIMING(GC_malloc_region_collect_time);
     
     GC_collect_region(region);
     
-    GC_STOP_TIMING(
-      GC_malloc_region_collect_time,
-      "GC_malloc_region collection");
-#ifdef GC_TIME
-    region->time_spent_in_collector = 
-      GC_time_add(region->time_spent_in_collector,
-                  GC_malloc_region_collect_time);
-#endif // GC_TIME
+    //GC_STOP_TIMING(GC_malloc_region_collect_time, "GC_malloc_region collection");
     
     too_small = sz > (size_t) cheri_getlen(region->free);
     GC_vdbgf("GC_malloc_region(): collecting complete. Too small? %d",
@@ -168,7 +123,12 @@ GC_malloc_region
   GC_debug_just_allocated(ret, "(unknown file)", 0);
 #endif // GC_DEBUG
     
-  //GC_STOP_TIMING(GC_malloc_region_time, "GC_malloc_region(%llu)", (GC_ULL) sz);
+  GC_STOP_TIMING(GC_malloc_region_time, "GC_malloc_region(%llu)", (GC_ULL) sz);
+
+#ifdef GC_TIME
+    region->time_spent_in_collector =
+      GC_time_add(region->time_spent_in_collector, GC_malloc_region_time);
+#endif // GC_TIME
 
   return ret;
   

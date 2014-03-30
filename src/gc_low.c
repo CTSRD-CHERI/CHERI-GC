@@ -24,7 +24,7 @@ GC_add_to_alloc_list (void * p, size_t sz, void * old_ptr)
   if (old_ptr)
   {
     // this is a realloc.
-    printf("[GC alloc]: REALLOC: Finding entry for old_ptr=0x%llx\n",
+    GC_vdbgf("[GC alloc]: REALLOC: Finding entry for old_ptr=0x%llx\n",
       (GC_ULL) old_ptr);
     int i;
     for (i=0; i<GC_alloc_index; i++)
@@ -33,7 +33,7 @@ GC_add_to_alloc_list (void * p, size_t sz, void * old_ptr)
     }
     if (i<GC_alloc_index)
     {
-      printf("[GC alloc]: REALLOC: Found. OLD: p=0x%llx sz=%d NEW: p=0x%llx sz=%d\n",
+      GC_vdbgf("[GC alloc]: REALLOC: Found. OLD: p=0x%llx sz=%d NEW: p=0x%llx sz=%d\n",
         (GC_ULL) GC_alloc_table[i].ptr,
         (int) GC_alloc_table[i].len,
         (GC_ULL) p,
@@ -54,13 +54,13 @@ GC_add_to_alloc_list (void * p, size_t sz, void * old_ptr)
     {
       // this is a malloc.
       memset(p, 0x41, sz);
-      printf("[GC alloc]: MALLOC: Just allocated p=0x%llx sz=%d\n",
+      GC_vdbgf("[GC alloc]: MALLOC: Just allocated p=0x%llx sz=%d\n",
         (GC_ULL) p, (int) sz);
     }
     else
     {
       sz = -sz;
-      printf("[GC alloc]: CALLOC: Just allocated p=0x%llx sz=%d\n",
+      GC_vdbgf("[GC alloc]: CALLOC: Just allocated p=0x%llx sz=%d\n",
         (GC_ULL) p, (int) sz);
     }
     GC_alloc_table[GC_alloc_index].ptr = p;
@@ -99,7 +99,7 @@ GC_low_realloc (void * ptr, size_t sz)
   }
   if (i<GC_alloc_index)
   {
-    printf("[GC_low_realloc]: REALLOC: Found. OLD: p=0x%llx sz=%d NEW: p=(not known yet) sz=%d\n",
+    GC_vdbgf("[GC_low_realloc]: REALLOC: Found. OLD: p=0x%llx sz=%d NEW: p=(not known yet) sz=%d\n",
       (GC_ULL) GC_alloc_table[i].ptr,
       (int) GC_alloc_table[i].len,
       (int) sz);
@@ -263,6 +263,10 @@ GC_cap_memclr (GC_cap_ptr dest)
   {
     *p = GC_INVALID_PTR;
   }
+  
+  //DEBUG
+  printf("doing a memclr...\n");
+  GC_cap_memset(dest, 0x44);
   
   return dest;
 }
@@ -436,7 +440,7 @@ GC_grow (struct GC_region * region, size_t hint)
   
   GC_assert( GC_IN(GC_cheri_getbase(region->free), region->tospace) );
   
-  GC_dbgf(
+  GC_vdbgf(
     "GC_grow():\n"
     "old tospace base    :     0x%llx\n"
     "old tospace end     :     0x%llx\n"

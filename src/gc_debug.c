@@ -242,7 +242,7 @@ GC_debug_memdump (const void * start, const void * end)
   for (p = start8; p < end8; p++)
   {
     i = ((uintptr_t) p) % 8;
-    int out_bounds = (p < (const char *) start || p > (const char *) end);
+    int out_bounds = (p < (const char *) start || p >= (const char *) end);
     buf[i*3+0] = out_bounds ? '?' : "0123456789ABCDEF"[(*p>>4) & 0xF];
     buf[i*3+1] = out_bounds ? '?': "0123456789ABCDEF"[*p & 0xF];
     buf[i+25] =  out_bounds ? '?' : (*p < 32 || *p > 126) ? '.' : *p;
@@ -440,9 +440,8 @@ GC_debug_move_allocation (GC_debug_value * old, void * newbase, int newlen,
   {
     printf("[GC track] Object %s moved (reason: %s)\n",
       old->tracking_name ? old->tracking_name : "(null)", reason);
-    printf("[GC track] old: b=0x%llx, l=0x%llx\n",
-      (GC_ULL) old->base, (GC_ULL) old->len);
-    printf("[GC track] new: b=0x%llx, l=0x%llx\n",
+    printf("[GC track] old: b=0x%llx, l=0x%llx, new: b=0x%llx, l=0x%llx\n",
+      (GC_ULL) old->base, (GC_ULL) old->len,
       (GC_ULL) newbase, (GC_ULL) newlen);
   }
   old->marked = 1;
@@ -576,6 +575,7 @@ GC_debug_end_marking (void * space_start, void * space_end)
     {
       if (!v->marked && (v->base >= space_start) && (v->base <= space_end))
       {
+        GC_cap_memset(GC_cheri_ptr(v->base, v->len), 0x43);
         if (v->tracking)
         {
           printf("[GC track] Object %s (b=0x%llx, l=0x%llx) deallocated\n",

@@ -29,10 +29,10 @@ parse_init (void)
 GC_CAP expr_t *
 parse2 (const char * file, int line)
 {
-  printf("parse(): called from %s:%d\n", file, line);
+  //printf("parse(): called from %s:%d\n", file, line);
   GC_CAP expr_t * result = GC_INVALID_PTR;
   GC_STORE_CAP(result, parse_cons());
-  printf("parse(): finished (called from %s:%d)\n", file, line);
+  //printf("parse(): finished (called from %s:%d)\n", file, line);
   return result;
 }
 
@@ -91,7 +91,6 @@ GC_CAP expr_t *
 parse_op (GC_CAP const char * op,
           GC_CAP expr_t * (*lower_precendence_func)(void))
 {
-  printf("Parsing op %s...\n", (const char*) op);
   GC_CAP expr_t * expr = GC_INVALID_PTR;
   GC_STORE_CAP(expr, GC_malloc(sizeof(expr_t)));
   if (!PTR_VALID(expr))
@@ -114,7 +113,6 @@ parse_op (GC_CAP const char * op,
   if (!PTR_VALID(a))
   {
     fprintf(stderr, "parse_op(): warning: invalid pointer a\n");
-    printf("Parsed op %s (exit point: ptr a invalid)\n", (const char*) op);
     return a;
   }
   
@@ -123,7 +121,6 @@ parse_op (GC_CAP const char * op,
     // op is a normal operator, check if it's present
     if (!parse_tok_eq(TKSYM, op))
     {
-      printf("Parsed op %s (exit point: op not found)\n", (const char*) op);
       return a;
     }
   }
@@ -133,7 +130,6 @@ parse_op (GC_CAP const char * op,
     // expression
     if (!parser_is_at_start_of_expression())
     {
-      printf("Parsed op %s (exit point: end of expr)\n", (const char*) op);
       return a;
     }
   }
@@ -199,7 +195,6 @@ parse_op (GC_CAP const char * op,
       GC_STORE_CAP(((expr_t*)expr)->op_expr, new_op_expr);
     }
   }
-  printf("Parsed op %s (exit point: end of function)\n", (const char*) op);
   return expr;
 }
 
@@ -429,11 +424,11 @@ parse_get_next_tok2 (const char * file, int line)
   // It seemed to fail in gc_debug when we passed a GC_region struct by value.
   // The internal capabilities were invalidated...
   // To the above: looks like it wasn't okay, changed to pointer now....
-  printf("parse_get_next_tok(): getting next token (called from %s:%d)\n",
-         file, line);
+  //printf("parse_get_next_tok(): getting next token (called from %s:%d)\n",
+  //       file, line);
   GC_STORE_CAP(parse_state.tok, lex());
-  printf("parse_get_next_tok(): got next token (called from %s:%d)\n",
-         file, line);
+  //printf("parse_get_next_tok(): got next token (called from %s:%d)\n",
+  //       file, line);
 }
 
 // Set str to GC_INVALID_PTR to ignore

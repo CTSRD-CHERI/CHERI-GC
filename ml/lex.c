@@ -75,12 +75,6 @@ lex_read_string (GC_CAP const char * str)
   lex_state.max = GC_cheri_getlen(str)-1;
 }
 
-#define SMALL_NUM_TO_STR(n,buf) ( \
-  (buf)[0] = '0'+(((n)/1000)%10), (buf)[1] = '0'+(((n)/100)%10),\
-  (buf)[2] = '0'+(((n)/10)%10), (buf)[3] = '0'+((n)%10), \
-  (buf)[4] = '\0' \
-)
-
 #define LEX_IS_SYM(c) ( \
   ((c) == '<') || ((c) == '>') || ((c) == '+') || ((c) == '-') || ((c) == '*') \
   || ((c) == '/') || ((c) == '(') || ((c) == ')') || ((c) == '=') \
@@ -133,9 +127,6 @@ lex (void)
       fprintf(stderr, "out of memory lexing string\n"); \
       exit(1); \
     } \
-    char buf[5]; \
-    SMALL_NUM_TO_STR(((token_t*)t)->token_number, buf); \
-    GC_debug_track_allocated(((token_t*)t)->str, buf); \
     ((char*)((token_t*)t)->str)[0] = (c); \
   } while (0)
 
