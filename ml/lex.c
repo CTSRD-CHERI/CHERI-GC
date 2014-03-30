@@ -1,6 +1,5 @@
 #include "lex.h"
-
-#include <gc.h>
+#include "common.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -9,14 +8,15 @@
 GC_CAP char *
 copy_string (GC_CAP const char * str)
 {
+  size_t len = strlen((const char *) str)+1;
   GC_CAP char * copy = GC_INVALID_PTR;
-  GC_STORE_CAP(copy, GC_malloc(GC_cheri_getlen(str)));
+  GC_STORE_CAP(copy, ml_malloc(len));
   if (!PTR_VALID(copy))
   {
     fprintf(stderr, "copy_string(): out of memory\n");
     exit(1);
   }
-  memcpy((char*)copy, (const char*)str, GC_cheri_getlen(str));
+  memcpy((char*)copy, (const char*)str, len);
   return copy;
 }
 
@@ -40,7 +40,7 @@ lex_read_file (GC_CAP const char * name)
   {
     lex_state.max++;
     GC_CAP char * tmp = GC_INVALID_PTR;
-    GC_STORE_CAP(tmp, GC_malloc(lex_state.max));
+    GC_STORE_CAP(tmp, ml_malloc(lex_state.max));
     if (!PTR_VALID(tmp))
     {
       fprintf(stderr, "out of memory reading file %s\n", (const char *) name);
@@ -58,7 +58,6 @@ lex_read_file (GC_CAP const char * name)
   fclose(file);
 }
 
-#include <gc_debug.h>
 void
 lex_read_string (GC_CAP const char * str)
 {
@@ -72,7 +71,7 @@ lex_read_string (GC_CAP const char * str)
   }
   GC_debug_track_allocated(lex_state.file, "lex_state file");
   lex_state.index = 0;
-  lex_state.max = GC_cheri_getlen(str)-1;
+  lex_state.max = strlen((const char *) str);
 }
 
 #define LEX_IS_SYM(c) ( \
@@ -95,7 +94,7 @@ GC_CAP token_t *
 lex (void)
 {
   GC_CAP token_t * t = GC_INVALID_PTR;
-  GC_STORE_CAP(t, GC_malloc(sizeof(token_t)));
+  GC_STORE_CAP(t, ml_malloc(sizeof(token_t)));
   ((token_t*)t)->type = TKEOF;
   ((token_t*)t)->nearby_character = lex_state.index;
   ((token_t*)t)->token_number = lex_state.num_tokens;
@@ -106,7 +105,7 @@ lex (void)
   do { \
     ((token_t*)t)->len++; \
     GC_CAP char * tmp = GC_INVALID_PTR; \
-    GC_STORE_CAP(tmp, GC_malloc(((token_t*)t)->len)); \
+    GC_STORE_CAP(tmp, ml_malloc(((token_t*)t)->len)); \
     if (!PTR_VALID(tmp)) \
     { \
       fprintf(stderr, "out of memory lexing string\n"); \
@@ -121,7 +120,7 @@ lex (void)
   do { \
     ((token_t*)t)->len = 1; \
     ((token_t*)t)->str = GC_INVALID_PTR; \
-    GC_STORE_CAP(((token_t*)t)->str, GC_malloc(1)); \
+    GC_STORE_CAP(((token_t*)t)->str, ml_malloc(1)); \
     if (!PTR_VALID(((token_t*)t)->str)) \
     { \
       fprintf(stderr, "out of memory lexing string\n"); \

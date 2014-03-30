@@ -1,7 +1,7 @@
 #ifndef LEX_H_HEADER
 #define LEX_H_HEADER
 
-#include <gc.h>
+#include "common.h"
 #define PTR_VALID   GC_PTR_VALID
 
 #define TKEOF   0

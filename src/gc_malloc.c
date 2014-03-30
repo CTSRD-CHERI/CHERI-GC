@@ -51,42 +51,44 @@ GC_malloc_region
   }*/
   
   int too_small = sz > (size_t) cheri_getlen(region->free);
-
-#ifdef GC_GROW_YOUNG_HEAP
+  
   if (too_small)
   {
-    GC_vdbgf("GC_malloc_region(): growing (young) heap (sz=0x%llx)",
-      (GC_ULL) sz);
-    too_small = !GC_grow(region, sz);
-  }
+#ifdef GC_GROW_YOUNG_HEAP
+    if (too_small)
+    {
+      GC_vdbgf("GC_malloc_region(): growing (young) heap (sz=0x%llx)",
+        (GC_ULL) sz);
+      too_small = !GC_grow(region, sz);
+    }
 #endif // GC_GROW_YOUNG_HEAP
   
-  GC_assert( too_small == (sz > (size_t) cheri_getlen(region->free)) );
-  
-  if (too_small && collect_on_failure)
-  {
-    GC_vdbgf("GC_malloc_region(): collecting (young) heap (sz=0x%llx)",
-      (GC_ULL) sz);
+    GC_assert( too_small == (sz > (size_t) cheri_getlen(region->free)) );
     
-    //GC_START_TIMING(GC_malloc_region_collect_time);
+    if (too_small && collect_on_failure)
+    {
+      GC_vdbgf("GC_malloc_region(): collecting (young) heap (sz=0x%llx)",
+        (GC_ULL) sz);
+      
+      //GC_START_TIMING(GC_malloc_region_collect_time);
+      
+      GC_collect_region(region);
+      
+      //GC_STOP_TIMING(GC_malloc_region_collect_time, "GC_malloc_region collection");
+      
+      too_small = sz > (size_t) cheri_getlen(region->free);
+      GC_vdbgf("GC_malloc_region(): collecting complete. Too small? %d",
+        too_small);
+    }
     
-    GC_collect_region(region);
-    
-    //GC_STOP_TIMING(GC_malloc_region_collect_time, "GC_malloc_region collection");
-    
-    too_small = sz > (size_t) cheri_getlen(region->free);
-    GC_vdbgf("GC_malloc_region(): collecting complete. Too small? %d",
-      too_small);
+    if (too_small)
+    {
+      // TODO: try to allocate directly in old generation if out of options.
+      GC_errf("GC_malloc_region(): out of memory (sz=0x%llx)", (GC_ULL) sz);
+      GC_debug_print_region_stats(region);
+      return GC_INVALID_PTR;
+    }
   }
-  
-  if (too_small)
-  {
-    // TODO: try to allocate directly in old generation if out of options.
-    GC_errf("GC_malloc_region(): out of memory (sz=0x%llx)", (GC_ULL) sz);
-    GC_debug_print_region_stats(region);
-    return GC_INVALID_PTR;
-  }
-  
   // TODO: handle csetlen and cincbase exceptions
   
   // NOTE: if we return the cap with orig_sz as length, the GC gets confused

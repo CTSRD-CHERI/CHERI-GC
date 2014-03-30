@@ -78,7 +78,9 @@ print_ast (GC_CAP expr_t * expr)
     }
     case EXPR_OP:
     {
-      if (GC_cheri_getlen((((op_expr_t*) ((expr_t*)expr)->op_expr))->op) > 1)
+      size_t oplen =
+        strlen((const char *) ((((op_expr_t*) ((expr_t*)expr)->op_expr))->op))+1;
+      if (oplen > 1)
       {
         printf("op(%s,",
           (char *) (((op_expr_t*) ((expr_t*)expr)->op_expr))->op);
@@ -163,14 +165,14 @@ eval (GC_CAP expr_t * expr, GC_CAP env_t * env)
     case EXPR_NUM:
     {
       GC_CAP val_t * val = GC_INVALID_PTR;
-      GC_STORE_CAP(val, GC_malloc(sizeof(val_t)));
+      GC_STORE_CAP(val, ml_malloc(sizeof(val_t)));
       if (!PTR_VALID(val))
       {
         fprintf(stderr, "eval: out of memory allocating val_t");
       }
       ((val_t*) val)->type = VAL_NUM;
       ((val_t*) val)->num_val = GC_INVALID_PTR;
-      GC_STORE_CAP(((val_t*) val)->num_val, GC_malloc(sizeof(num_val_t)));
+      GC_STORE_CAP(((val_t*) val)->num_val, ml_malloc(sizeof(num_val_t)));
       if (!PTR_VALID(((val_t*) val)->num_val))
       {
         fprintf(stderr, "eval: out of memory allocating num_val_t");
@@ -192,7 +194,9 @@ eval (GC_CAP expr_t * expr, GC_CAP env_t * env)
       GC_STORE_CAP(b, 
         eval( (((op_expr_t*) ((expr_t*)expr)->op_expr))->b, env ) );
       
-      if (GC_cheri_getlen((((op_expr_t*) ((expr_t*)expr)->op_expr))->op) > 1)
+      size_t oplen =
+        strlen((const char *) ((((op_expr_t*) ((expr_t*)expr)->op_expr))->op))+1;
+      if (oplen > 1)
       {
         if ( ((val_t *) a)->type != VAL_NUM )
         {
@@ -210,14 +214,14 @@ eval (GC_CAP expr_t * expr, GC_CAP env_t * env)
         num_t result = 0;
 
         GC_CAP val_t * val = GC_INVALID_PTR;
-        GC_STORE_CAP(val, GC_malloc(sizeof(val_t)));
+        GC_STORE_CAP(val, ml_malloc(sizeof(val_t)));
         if (!PTR_VALID(val))
         {
           fprintf(stderr, "eval: out of memory allocating val_t");
         }
         ((val_t*) val)->type = VAL_NUM;
         ((val_t*) val)->num_val = GC_INVALID_PTR;
-        GC_STORE_CAP(((val_t*) val)->num_val, GC_malloc(sizeof(num_val_t)));
+        GC_STORE_CAP(((val_t*) val)->num_val, ml_malloc(sizeof(num_val_t)));
         if (!PTR_VALID(((val_t*) val)->num_val))
         {
           fprintf(stderr, "eval: out of memory allocating num_val_t");
@@ -277,7 +281,7 @@ eval (GC_CAP expr_t * expr, GC_CAP env_t * env)
         
         // add new environment entry to the function value's saved environment
         GC_CAP env_t * new_env = GC_INVALID_PTR;
-        GC_STORE_CAP(new_env, GC_malloc(sizeof(env_t)));
+        GC_STORE_CAP(new_env, ml_malloc(sizeof(env_t)));
         if (!PTR_VALID(new_env))
         {
           fprintf(stderr, "eval: out of memory allocating env_t\n");
@@ -298,14 +302,14 @@ eval (GC_CAP expr_t * expr, GC_CAP env_t * env)
     case EXPR_FN:
     {
       GC_CAP val_t * val = GC_INVALID_PTR;
-      GC_STORE_CAP(val, GC_malloc(sizeof(val_t)));
+      GC_STORE_CAP(val, ml_malloc(sizeof(val_t)));
       if (!PTR_VALID(val))
       {
         fprintf(stderr, "eval: out of memory allocating val_t");
       }
       ((val_t*) val)->type = VAL_FN;
       ((val_t*) val)->fn_val = GC_INVALID_PTR;
-      GC_STORE_CAP(((val_t*) val)->fn_val, GC_malloc(sizeof(fn_val_t)));
+      GC_STORE_CAP(((val_t*) val)->fn_val, ml_malloc(sizeof(fn_val_t)));
       if (!PTR_VALID(((val_t*) val)->fn_val))
       {
         fprintf(stderr, "eval: out of memory allocating fn_val_t");

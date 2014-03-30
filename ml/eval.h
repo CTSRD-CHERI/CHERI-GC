@@ -2,10 +2,8 @@
 #define EVAL_H_HEADER
 
 #include "parse.h"
+#include "common.h"
 
-#include <gc.h>
-
-#include <gc_debug.h>
 void
 print_ast (GC_CAP expr_t * expr);
 

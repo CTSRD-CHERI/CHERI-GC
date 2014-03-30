@@ -2,8 +2,7 @@
 #define PARSE_H_HEADER
 
 #include "lex.h"
-
-#include <gc.h>
+#include "common.h"
 
 typedef int num_t;
 

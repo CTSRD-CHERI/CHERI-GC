@@ -1,6 +1,5 @@
 #include "parse.h"
-
-#include <gc.h>
+#include "common.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -91,8 +90,9 @@ GC_CAP expr_t *
 parse_op (GC_CAP const char * op,
           GC_CAP expr_t * (*lower_precendence_func)(void))
 {
+  size_t oplen = strlen((const char *) op)+1;
   GC_CAP expr_t * expr = GC_INVALID_PTR;
-  GC_STORE_CAP(expr, GC_malloc(sizeof(expr_t)));
+  GC_STORE_CAP(expr, ml_malloc(sizeof(expr_t)));
   if (!PTR_VALID(expr))
   {
     fprintf(stderr, "parse_op(): out of memory allocating expr_t\n");
@@ -101,7 +101,7 @@ parse_op (GC_CAP const char * op,
   ((expr_t*)expr)->type = EXPR_OP;
   
   ((expr_t*)expr)->op_expr = GC_INVALID_PTR;
-  GC_STORE_CAP(((expr_t*)expr)->op_expr, GC_malloc(sizeof(op_expr_t)));
+  GC_STORE_CAP(((expr_t*)expr)->op_expr, ml_malloc(sizeof(op_expr_t)));
   if (!PTR_VALID(((expr_t*)expr)->op_expr))
   {
     fprintf(stderr, "parse_op(): out of memory allocating op_expr_t\n");
@@ -116,7 +116,7 @@ parse_op (GC_CAP const char * op,
     return a;
   }
   
-  if (GC_cheri_getlen(op) > 1)
+  if (oplen > 1)
   {
     // op is a normal operator, check if it's present
     if (!parse_tok_eq(TKSYM, op))
@@ -141,7 +141,7 @@ parse_op (GC_CAP const char * op,
   GC_STORE_CAP(((op_expr_t *) ((expr_t*)expr)->op_expr)->op, copy_string(op));
   while (1)
   {
-    if (GC_cheri_getlen(op) > 1)
+    if (oplen > 1)
     {
       // normal op
       if (!parse_tok_eq(TKSYM, op)) break;
@@ -170,7 +170,7 @@ parse_op (GC_CAP const char * op,
     else
     {
       GC_CAP op_expr_t * new_op_expr = GC_INVALID_PTR;
-      GC_STORE_CAP(new_op_expr, GC_malloc(sizeof(op_expr_t)));
+      GC_STORE_CAP(new_op_expr, ml_malloc(sizeof(op_expr_t)));
       if (!PTR_VALID(new_op_expr))
       {
         fprintf(stderr,
@@ -184,7 +184,7 @@ parse_op (GC_CAP const char * op,
       ((op_expr_t *) new_op_expr)->op = GC_INVALID_PTR;
       GC_STORE_CAP(((op_expr_t *) new_op_expr)->op, copy_string(op));
 
-      GC_STORE_CAP(expr, GC_malloc(sizeof(expr_t)));
+      GC_STORE_CAP(expr, ml_malloc(sizeof(expr_t)));
       if (!PTR_VALID(expr))
       {
         fprintf(stderr, "parse_op(): out of memory allocating a new expr_t\n");
@@ -202,7 +202,7 @@ GC_CAP expr_t *
 parse_base_expr (void)
 {
   GC_CAP expr_t * expr = GC_INVALID_PTR;
-  GC_STORE_CAP(expr, GC_malloc(sizeof(expr_t)));
+  GC_STORE_CAP(expr, ml_malloc(sizeof(expr_t)));
   if (!PTR_VALID(expr))
   {
     fprintf(stderr, "parse(): out of memory\n");
@@ -283,7 +283,7 @@ GC_CAP if_expr_t *
 parse_if (void)
 {
   GC_CAP if_expr_t * if_expr = GC_INVALID_PTR;
-  GC_STORE_CAP(if_expr, GC_malloc(sizeof(if_expr_t)));
+  GC_STORE_CAP(if_expr, ml_malloc(sizeof(if_expr_t)));
   if (!PTR_VALID(if_expr))
   {
     fprintf(stderr, "parse_if(): out of memory\n");
@@ -335,7 +335,7 @@ GC_CAP fn_expr_t *
 parse_fn (void)
 {
   GC_CAP fn_expr_t * fn_expr = GC_INVALID_PTR;
-  GC_STORE_CAP(fn_expr, GC_malloc(sizeof(fn_expr_t)));
+  GC_STORE_CAP(fn_expr, ml_malloc(sizeof(fn_expr_t)));
   if (!PTR_VALID(fn_expr))
   {
     fprintf(stderr, "parse_fn(): out of memory\n");
@@ -380,7 +380,7 @@ GC_CAP num_expr_t *
 parse_num (void)
 {
   GC_CAP num_expr_t * num_expr = GC_INVALID_PTR;
-  GC_STORE_CAP(num_expr, GC_malloc(sizeof(num_expr_t)));
+  GC_STORE_CAP(num_expr, ml_malloc(sizeof(num_expr_t)));
   if (!PTR_VALID(num_expr))
   {
     fprintf(stderr, "parse_num(): out of memory\n");
@@ -403,7 +403,7 @@ GC_CAP name_expr_t *
 parse_name (void)
 {
   GC_CAP name_expr_t * name_expr = GC_INVALID_PTR;
-  GC_STORE_CAP(name_expr, GC_malloc(sizeof(name_expr_t)));
+  GC_STORE_CAP(name_expr, ml_malloc(sizeof(name_expr_t)));
   if (!PTR_VALID(name_expr))
   {
     fprintf(stderr, "parse_name(): out of memory\n");

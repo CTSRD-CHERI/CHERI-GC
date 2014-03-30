@@ -1,16 +1,30 @@
 #include "lex.h"
 #include "parse.h"
 #include "eval.h"
+#include "ml_time.h"
 
-#include <gc.h>
+#include "common.h"
 
 #include <stdio.h>
+
+#ifdef GC_BOEHM
+void
+__LOCK_MALLOC (void)
+{
+}
+void
+__UNLOCK_MALLOC (void)
+{
+}
+#endif // GC_BOEHM
 
 
 /* What we require from the GC:
 
+  GC_init
   GC_malloc
   GC_INVALID_PTR
+  GC_PTR_VALID
   GC_CAP
   GC_cheri_ptr
   GC_cheri_getlen
@@ -35,11 +49,23 @@
 
 */
 
-#include <gc_init.h>
-#include <gc_debug.h>
 int main ()
 {
+  ML_START_TIMING(main_time);
+  
   GC_init();
+  
+  printf("Compiled for "
+#if   defined(GC_CHERI)
+  "GC_CHERI"
+#elif defined(GC_BOEHM)
+  "GC_BOEHM"
+#elif defined(GC_NONE)
+  "GC_NONE"
+#else
+#error "Define one of GC_CHERI, GC_BOEHM, GC_NONE."
+#endif // GC_CHERI, GC_BOEHM, GC_NONE
+  " at %s\n", __TIME__  " " __DATE__);
   
   //GC_CAP const char * filename = GC_cheri_ptr("ml-tmp", sizeof("ml-tmp"));
   
@@ -53,7 +79,7 @@ int main ()
   
   // factorial:
   const char str[] =
-    "((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn a . (g g) a)))) (fn f . fn n . if n then n * f (n-1) else 1)) 20";
+    "((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn a . (g g) a)))) (fn f . fn n . if n then n * f (n-1) else 1)) 6";
     
   lex_read_string(GC_cheri_ptr((void *) str, sizeof(str)));
   printf("program: %s\n\n", str);
@@ -91,10 +117,12 @@ int main ()
   print_val(val);
   printf("\n\n");
 
-  GC_debug_print_region_stats(&GC_state.thread_local_region);
+//  GC_debug_print_region_stats(&GC_state.thread_local_region);
 #ifdef GC_GENERATIONAL
-  GC_debug_print_region_stats(&GC_state.old_generation);
+//  GC_debug_print_region_stats(&GC_state.old_generation);
 #endif // GC_GENERATIONAL
 
+  ML_STOP_TIMING(main_time, "main()");
+  
   return 0;
 }
