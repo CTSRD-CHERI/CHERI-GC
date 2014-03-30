@@ -2,7 +2,7 @@
 #define GC_CONFIG_H_HEADER
 
 #define GC_DEBUG
-#define GC_VERBOSE_DEBUG
+//#define GC_VERBOSE_DEBUG
 #define GC_THREAD_LOCAL_HEAP_SIZE             1013 // 20k
 #define GC_OLD_GENERATION_SEMISPACE_SIZE      30000 // 30k
 

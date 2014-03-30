@@ -5,8 +5,17 @@
 
 #include <gc.h>
 
+#include <gc_debug.h>
+#define print_ast(expr) \
+  do { \
+    if (!PTR_VALID((expr))){ \
+      printf("INVALID EXPR: &( %s ) = 0x%llx\n", #expr, (unsigned long long) &(expr)); \
+      GC_debug_print_region_stats(&GC_state.thread_local_region); \
+    } \
+    print_ast2((expr)); \
+  } while(0)
 void
-print_ast (GC_CAP expr_t * expr);
+print_ast2 (GC_CAP expr_t * expr);
 
 struct env_struct;
 

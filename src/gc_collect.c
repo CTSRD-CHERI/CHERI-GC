@@ -564,7 +564,9 @@ GC_rebase (void * start,
   GC_cap_ptr * p;
   for (p = (GC_cap_ptr *) start; ((uintptr_t) p) < ((uintptr_t) end); p++)
   {
-    if (GC_cheri_gettag(*p) )//&& !GC_IS_FORWARDING_ADDRESS(*p))
+    if (GC_cheri_gettag(*p)
+        && GC_IS_GC_ALLOCATED(*p)
+       )//&& !GC_IS_FORWARDING_ADDRESS(*p))
     {
       if (GC_IN(p, GC_state_cap))
       {
@@ -577,6 +579,9 @@ GC_rebase (void * start,
           GC_vdbgf("Warning: on the old_base+old_size edge case 0x%llx.",
                    (GC_ULL) base);
         *p = GC_setbase(*p, (base-old_base)+new_base);
+        
+        GC_assert( GC_IS_GC_ALLOCATED(*p) );
+        
         //*p = GC_MAKE_FORWARDING_ADDRESS(*p);
       }
     }

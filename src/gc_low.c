@@ -6,22 +6,86 @@
 #include <stdlib.h>
 #include <string.h>
 
+struct alloc_entry_t
+{
+  void * ptr;
+  size_t len;
+};
+void *
+GC_add_to_alloc_list (void * p, size_t sz, void * old_ptr)
+{
+  #define GC_MAX_ALLOC_ENTRY 500
+  static struct alloc_entry_t a[GC_MAX_ALLOC_ENTRY];
+  static int index = 0;
+  if (index == GC_MAX_ALLOC_ENTRY)
+  {
+    GC_fatalf("Too many allocation entries!\n");
+  }
+  if (old_ptr)
+  {
+    // this is a realloc.
+    printf("[GC alloc]: REALLOC: Finding entry for old_ptr=0x%llx\n",
+      (GC_ULL) old_ptr);
+    int i;
+    for (i=0; i<index; i++)
+    {
+      if (a[i].ptr == old_ptr) break;
+    }
+    if (i<index)
+    {
+      printf("[GC alloc]: REALLOC: Found. OLD: p=0x%llx sz=%d NEW: p=0x%llx sz=%d\n",
+        (GC_ULL) a[i].ptr, (int) a[i].len, (GC_ULL) p, (int) sz);
+      if (sz > a[i].len)
+        memset(p+a[i].len, 0x42, sz-a[i].len);
+      a[i].ptr = p;
+      a[i].len = sz;
+    }
+    else
+    {
+      GC_fatalf("[GC alloc]: REALLOC: Could not find entry!\n");
+    }
+  }
+  else if (p)
+  {
+    if (sz > 0)
+    {
+      // this is a malloc.
+      memset(p, 0x41, sz);
+      printf("[GC alloc]: MALLOC: Just allocated p=0x%llx sz=%d\n",
+        (GC_ULL) p, (int) sz);
+    }
+    else
+    {
+      sz = -sz;
+      printf("[GC alloc]: CALLOC: Just allocated p=0x%llx sz=%d\n",
+        (GC_ULL) p, (int) sz);
+    }
+    a[index].ptr = p;
+    a[index].len = sz;
+    index++;
+  }
+  return p;
+}
+
 void *
 GC_low_malloc (size_t sz)
 {
-  return malloc(sz);
+  void * p = malloc(sz);
+  return GC_add_to_alloc_list(p, sz, NULL);
 }
 
 void *
 GC_low_calloc (size_t num, size_t sz)
 {
-  return calloc(num, sz);
+  void * p = calloc(num, sz);
+  return GC_add_to_alloc_list(p, -num*sz, NULL);
 }
 
 void *
 GC_low_realloc (void * ptr, size_t sz)
 {
-  return realloc(ptr, sz);
+  void * p = realloc(ptr, sz);
+  return GC_add_to_alloc_list(p, sz, ptr);
 }
 
 #include <unistd.h>
@@ -216,7 +280,7 @@ GC_grow (struct GC_region * region, size_t hint)
   
   if (old_size == region->max_size)
   {
-    GC_dbgf("GC_grow(): region already max size (%llu%s)",
+    GC_vdbgf("GC_grow(): region already max size (%llu%s)",
       GC_MEM_PRETTY((GC_ULL) region->max_size),
       GC_MEM_PRETTY_UNIT((GC_ULL) region->max_size));
     return 0;
@@ -224,11 +288,10 @@ GC_grow (struct GC_region * region, size_t hint)
   
   GC_assert( old_size < region->max_size );
   
-  /*size_t new_size =
+  size_t new_size =
     GC_ALIGN_32(
       GC_MIN(GC_MAX(2*old_size, (old_size+hint)), region->max_size),
-      size_t);*/
-  size_t new_size = region->max_size;
+      size_t);
   
   GC_dbgf("GC_grow(): hint=%llu%s, current=%llu%s, trying=%llu%s, max=%llu%s",
     GC_MEM_PRETTY((GC_ULL) hint), GC_MEM_PRETTY_UNIT((GC_ULL) hint),
@@ -247,19 +310,6 @@ GC_grow (struct GC_region * region, size_t hint)
 #endif // GC_GENERATIONAL
     GC_cheri_gettag(region->fromspace);
 
-  printf("--------------------BEGIN BEFORE---------------------\n");
-  GC_debug_print_region_stats(region);
-  printf("--------------------END BEFORE---------------------\n");
-    
-  region->fromspace_misaligned = GC_low_realloc(region->fromspace_misaligned, 10*new_size+32);
-  new_fromspace_base_misaligned = region->fromspace_misaligned;
-  region->fromspace = GC_setbaselen(region->fromspace, GC_ALIGN_32(region->fromspace_misaligned, void *), new_size);
-  region->tospace_misaligned = GC_low_realloc(region->tospace_misaligned, 10*new_size+32);
-  new_tospace_base_misaligned = region->tospace_misaligned;
-  region->tospace = GC_setbaselen(region->tospace, GC_ALIGN_32(region->tospace_misaligned, void *), new_size);
-
-/*
-  
   if (fromspace_exists)
   {
     // try doubling first
@@ -323,7 +373,7 @@ GC_grow (struct GC_region * region, size_t hint)
     region->tospace,
     GC_ALIGN_32(new_tospace_base_misaligned, void *),
     new_size);
-*/
+
   region->free = GC_setbaselen(
     region->free,
     GC_cheri_getbase(region->free),
@@ -349,14 +399,30 @@ GC_grow (struct GC_region * region, size_t hint)
       old_size,
       GC_ALIGN_32(new_tospace_base_misaligned, void *));
   }
+  
+  GC_dbgf(
+    "GC_grow():\n"
+    "old tospace base    :     0x%llx\n"
+    "old tospace end     :     0x%llx\n"
+    "new tospace base    :     0x%llx\n"
+    "new tospace end     :     0x%llx\n"
+    "old fromspace base  :     0x%llx\n"
+    "old fromspace end   :     0x%llx\n"
+    "new fromspace base  :     0x%llx\n"
+    "new fromspace end   :     0x%llx\n",
+    (GC_ULL) GC_ALIGN_32(old_tospace_base_misaligned, void *),
+    (GC_ULL) (GC_ALIGN_32(old_tospace_base_misaligned, void *) + old_size),
+    (GC_ULL) GC_cheri_getbase(region->tospace),
+    (GC_ULL) (GC_cheri_getbase(region->tospace)+GC_cheri_getlen(region->tospace)),
+    (GC_ULL) GC_ALIGN_32(old_fromspace_base_misaligned, void *),
+    (GC_ULL) (GC_ALIGN_32(old_fromspace_base_misaligned, void *) + old_size),
+    (GC_ULL) GC_cheri_getbase(region->fromspace),
+    (GC_ULL) (GC_cheri_getbase(region->fromspace)+GC_cheri_getlen(region->fromspace)));
+  
     
   GC_STOP_TIMING(GC_grow_time, "GC_grow %llu%s -> %llu%s",
     GC_MEM_PRETTY((GC_ULL) old_size), GC_MEM_PRETTY_UNIT((GC_ULL) old_size),
     GC_MEM_PRETTY((GC_ULL) new_size), GC_MEM_PRETTY_UNIT((GC_ULL) new_size));
-  
-  printf("--------------------BEGIN AFTER---------------------\n");
-  GC_debug_print_region_stats(region);
-  printf("--------------------END AFTER---------------------\n");
   
   return new_size >= (old_size+hint);
 }

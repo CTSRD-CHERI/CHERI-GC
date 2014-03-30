@@ -105,7 +105,11 @@ parse_op (GC_CAP const char * op,
   
   GC_CAP expr_t * a = GC_INVALID_PTR;
   GC_STORE_CAP(a, lower_precendence_func());
-  if (!PTR_VALID(a)) return a;
+  if (!PTR_VALID(a))
+  {
+    fprintf(stderr, "parse_op(): warning: invalid pointer a\n");
+    return a;
+  }
   
   if (GC_cheri_getlen(op) > 1)
   {
@@ -141,7 +145,11 @@ parse_op (GC_CAP const char * op,
     
     GC_CAP expr_t * b = GC_INVALID_PTR;
     GC_STORE_CAP(b, lower_precendence_func());
-    if (!PTR_VALID(b)) return b;
+    if (!PTR_VALID(b))
+    {
+      fprintf(stderr, "parse_op(): warning: invalid pointer b\n");
+      return b;
+    }
     
     if (!PTR_VALID(((op_expr_t *)((expr_t*)expr)->op_expr)->b))
     {
@@ -194,28 +202,48 @@ parse_base_expr (void)
     ((expr_t *) expr)->type = EXPR_IF;
     ((expr_t *) expr)->if_expr = GC_INVALID_PTR;
     GC_STORE_CAP(((expr_t *) expr)->if_expr, parse_if());
-    if (!PTR_VALID(((expr_t *) expr)->if_expr)) expr = GC_INVALID_PTR;
+    if (!PTR_VALID(((expr_t *) expr)->if_expr))
+    {
+      fprintf(stderr,
+        "parse_base_expr(): warning: invalid pointer for if_expr\n");
+      expr = GC_INVALID_PTR;
+    }
   }
   else if (parse_tok_eq(TKWORD, GC_cheri_ptr("fn", sizeof("fn"))))
   {
     ((expr_t *) expr)->type = EXPR_FN;
     ((expr_t *) expr)->fn_expr = GC_INVALID_PTR;
     GC_STORE_CAP(((expr_t *) expr)->fn_expr, parse_fn());
-    if (!PTR_VALID(((expr_t *) expr)->fn_expr)) expr = GC_INVALID_PTR;
+    if (!PTR_VALID(((expr_t *) expr)->fn_expr))
+    {
+      fprintf(stderr,
+        "parse_base_expr(): warning: invalid pointer for fn_expr\n");
+      expr = GC_INVALID_PTR;
+    }
   }
   else if (parse_tok_eq(TKWORD, GC_INVALID_PTR))
   {
     ((expr_t *) expr)->type = EXPR_NAME;
     ((expr_t *) expr)->name_expr = GC_INVALID_PTR;
     GC_STORE_CAP(((expr_t *) expr)->name_expr, parse_name());
-    if (!PTR_VALID(((expr_t *) expr)->name_expr)) expr = GC_INVALID_PTR;
+    if (!PTR_VALID(((expr_t *) expr)->name_expr))
+    {
+      fprintf(stderr,
+        "parse_base_expr(): warning: invalid pointer for name_expr\n");
+      expr = GC_INVALID_PTR;
+    }
   }
   else if (parse_tok_eq(TKINT, GC_INVALID_PTR))
   {
     ((expr_t *) expr)->type = EXPR_NUM;
     ((expr_t *) expr)->num_expr = GC_INVALID_PTR;
     GC_STORE_CAP(((expr_t *) expr)->num_expr, parse_num());
-    if (!PTR_VALID(((expr_t *) expr)->num_expr)) expr = GC_INVALID_PTR;
+    if (!PTR_VALID(((expr_t *) expr)->num_expr))
+    {
+      fprintf(stderr,
+        "parse_base_expr(): warning: invalid pointer for num_expr\n");
+      expr = GC_INVALID_PTR;
+    }
   }
   else if (parse_tok_eq(TKSYM, GC_cheri_ptr("(", sizeof("("))))
   {
@@ -225,6 +253,11 @@ parse_base_expr (void)
     {
       parse_expect(TKSYM, GC_cheri_ptr(")", sizeof(")")));
       parse_get_next_tok();
+    }
+    else
+    {
+      fprintf(stderr,
+        "parse_base_expr(): warning: invalid pointer for group expression\n");
     }
   }
   else
@@ -250,7 +283,11 @@ parse_if (void)
   ((if_expr_t *) if_expr)->cond = GC_INVALID_PTR;
   GC_STORE_CAP(((if_expr_t *) if_expr)->cond, parse());
   if (!PTR_VALID( ((if_expr_t *) if_expr)->cond))
+  {
+    fprintf(stderr,
+      "parse_if(): warning: invalid pointer for cond\n");
     return GC_INVALID_PTR;
+  }
   parse_eof_error();
   
   parse_expect(TKWORD, GC_cheri_ptr("then", sizeof("then")));
@@ -260,7 +297,11 @@ parse_if (void)
   ((if_expr_t *) if_expr)->true_expr = GC_INVALID_PTR;
   GC_STORE_CAP(((if_expr_t *) if_expr)->true_expr, parse());
   if (!PTR_VALID( ((if_expr_t *) if_expr)->true_expr))
+  {
+    fprintf(stderr,
+      "parse_if(): warning: invalid pointer for true_expr\n");
     return GC_INVALID_PTR;
+  }
   parse_eof_error();
   
   parse_expect(TKWORD, GC_cheri_ptr("else", sizeof("else")));
@@ -270,7 +311,11 @@ parse_if (void)
   ((if_expr_t *) if_expr)->false_expr = GC_INVALID_PTR;
   GC_STORE_CAP(((if_expr_t *) if_expr)->false_expr, parse());
   if (!PTR_VALID( ((if_expr_t *) if_expr)->false_expr))
-    return GC_INVALID_PTR;  
+  {
+    fprintf(stderr,
+      "parse_if(): warning: invalid pointer for false_expr\n");
+    return GC_INVALID_PTR;
+  }
   return if_expr;
 }
 
@@ -292,7 +337,11 @@ parse_fn (void)
   GC_CAP name_expr_t * name_expr = GC_INVALID_PTR;
   GC_STORE_CAP(name_expr, parse_name());
   if (!PTR_VALID(name_expr))
+  {
+    fprintf(stderr,
+      "parse_fn(): warning: invalid pointer for name_expr\n");
     return GC_INVALID_PTR;
+  }
   ((fn_expr_t *) fn_expr)->name = GC_INVALID_PTR;
   GC_STORE_CAP(
     ((fn_expr_t *) fn_expr)->name,
@@ -307,7 +356,11 @@ parse_fn (void)
   ((fn_expr_t *) fn_expr)->body = GC_INVALID_PTR;
   GC_STORE_CAP(((fn_expr_t *) fn_expr)->body, parse());
   if (!PTR_VALID( ((fn_expr_t *) fn_expr)->body))
+  {
+    fprintf(stderr,
+      "parse_fn(): warning: invalid pointer for body\n");
     return GC_INVALID_PTR;
+  }
   return fn_expr;
 }
 

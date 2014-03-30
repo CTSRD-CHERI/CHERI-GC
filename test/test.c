@@ -12,28 +12,6 @@
 #include <string.h>
 #include <time.h>
 
-void
-collection_test (void);
-void
-rebase_test (void);
-void
-grow_test (void);
-void
-tracking_test (void);
-void
-remset_test (void);
-
-int
-main (int argc, char **argv)
-{
-  //remset_test();
-  //tracking_test();
-  //rebase_test();
-  //collection_test();
-  grow_test();
-  return 0;
-}
-
 struct struct1
 {
   __capability void * ptr;
@@ -44,6 +22,43 @@ typedef struct node_tag
   int value;
   __capability struct node_tag * next;
 } node;
+
+
+void
+collection_test (void);
+void
+rebase_test (void);
+void
+grow_test (void);
+void
+tracking_test (void);
+void
+remset_test (void);
+void
+low_realloc_test (void);
+
+int
+main (int argc, char **argv)
+{
+  //remset_test();
+  //tracking_test();
+  //rebase_test();
+  //collection_test();
+  //grow_test();
+  low_realloc_test();
+  return 0;
+}
+
+void
+low_realloc_test (void)
+{
+  int sz = 10;
+  void * ptr = GC_low_malloc(sz);
+  memset(ptr, 0x88, sz);
+  GC_debug_memdump(ptr, ptr+sz);
+  ptr = GC_low_realloc(ptr, sz*2);
+  GC_debug_memdump(ptr, ptr+sz*2);
+}
 
 void
 remset_test (void)
