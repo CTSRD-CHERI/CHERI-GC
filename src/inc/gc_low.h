@@ -403,8 +403,8 @@ GC_orperm (GC_cap_ptr cap, GC_ULL perm);
 // So to be conservative we save $c16 - $c26.
 #define GC_NUM_CAP_REGS   11
 #define GC_PUSH_CAP_REGS(buf) \
-  GC_cap_ptr buf##_misaligned[sizeof(GC_cap_ptr)*GC_NUM_CAP_REGS+32]; \
-  GC_cap_ptr * buf = buf##_misaligned; \
+  char buf##_misaligned[sizeof(GC_cap_ptr)*GC_NUM_CAP_REGS+32]; \
+  GC_cap_ptr * buf = (GC_cap_ptr *) buf##_misaligned; \
   /* CSC instruction needs 32-byte aligned destination address. */ \
   buf = GC_ALIGN_32(buf, GC_cap_ptr *);  \
   GC_PUSH_CAP_REG(16, &buf[0]); \
@@ -433,6 +433,29 @@ GC_orperm (GC_cap_ptr cap, GC_ULL perm);
     GC_RESTORE_CAP_REG(25, &buf[9]); \
     GC_RESTORE_CAP_REG(26, &buf[10]); \
   } while (0)
+
+// For debugging. We clobber the registers that should have been saved by the
+// caller.
+#define GC_CLOBBER_CAP_REGS() \
+do \
+{ \
+  GC_cap_ptr invalid = GC_INVALID_PTR; \
+  GC_RESTORE_CAP_REG(1, &invalid); \
+  GC_RESTORE_CAP_REG(2, &invalid); \
+  GC_RESTORE_CAP_REG(3, &invalid); \
+  GC_RESTORE_CAP_REG(4, &invalid); \
+  GC_RESTORE_CAP_REG(5, &invalid); \
+  GC_RESTORE_CAP_REG(6, &invalid); \
+  GC_RESTORE_CAP_REG(7, &invalid); \
+  GC_RESTORE_CAP_REG(8, &invalid); \
+  GC_RESTORE_CAP_REG(9, &invalid); \
+  GC_RESTORE_CAP_REG(10, &invalid); \
+  GC_RESTORE_CAP_REG(11, &invalid); \
+  GC_RESTORE_CAP_REG(12, &invalid); \
+  GC_RESTORE_CAP_REG(13, &invalid); \
+  GC_RESTORE_CAP_REG(14, &invalid); \
+  GC_RESTORE_CAP_REG(15, &invalid); \
+} while (0)
 
 void *
 GC_low_malloc (size_t sz);

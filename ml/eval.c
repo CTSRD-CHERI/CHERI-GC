@@ -169,14 +169,16 @@ eval (GC_CAP expr_t * expr, GC_CAP env_t * env)
       GC_STORE_CAP(val, ml_malloc(sizeof(val_t)));
       if (!PTR_VALID(val))
       {
-        fprintf(stderr, "eval: out of memory allocating val_t");
+        fprintf(stderr, "eval: out of memory allocating val_t\n");
+        exit(1);
       }
       ((val_t*) val)->type = VAL_NUM;
       ((val_t*) val)->num_val = GC_INVALID_PTR;
       GC_STORE_CAP(((val_t*) val)->num_val, ml_malloc(sizeof(num_val_t)));
       if (!PTR_VALID(((val_t*) val)->num_val))
       {
-        fprintf(stderr, "eval: out of memory allocating num_val_t");
+        fprintf(stderr, "eval: out of memory allocating num_val_t\n");
+        exit(1);
       }
       ((num_val_t *) (((val_t*) val)->num_val))->num = 
         (((num_expr_t*) ((expr_t*)expr)->num_expr))->num;
@@ -218,14 +220,16 @@ eval (GC_CAP expr_t * expr, GC_CAP env_t * env)
         GC_STORE_CAP(val, ml_malloc(sizeof(val_t)));
         if (!PTR_VALID(val))
         {
-          fprintf(stderr, "eval: out of memory allocating val_t");
+          fprintf(stderr, "eval: out of memory allocating val_t\n");
+          exit(1);
         }
         ((val_t*) val)->type = VAL_NUM;
         ((val_t*) val)->num_val = GC_INVALID_PTR;
         GC_STORE_CAP(((val_t*) val)->num_val, ml_malloc(sizeof(num_val_t)));
         if (!PTR_VALID(((val_t*) val)->num_val))
         {
-          fprintf(stderr, "eval: out of memory allocating num_val_t");
+          fprintf(stderr, "eval: out of memory allocating num_val_t\n");
+          exit(1);
         }
         
         char op = ((char*) ((((op_expr_t*) ((expr_t*)expr)->op_expr))->op))[0];
@@ -307,6 +311,7 @@ eval (GC_CAP expr_t * expr, GC_CAP env_t * env)
       if (!PTR_VALID(val))
       {
         fprintf(stderr, "eval: out of memory allocating val_t");
+        exit(1);
       }
       ((val_t*) val)->type = VAL_FN;
       ((val_t*) val)->fn_val = GC_INVALID_PTR;
@@ -314,6 +319,7 @@ eval (GC_CAP expr_t * expr, GC_CAP env_t * env)
       if (!PTR_VALID(((val_t*) val)->fn_val))
       {
         fprintf(stderr, "eval: out of memory allocating fn_val_t");
+        exit(1);
       }
       ((fn_val_t *) (((val_t*) val)->fn_val))->name = GC_INVALID_PTR;
       GC_STORE_CAP(((fn_val_t *) (((val_t*) val)->fn_val))->name, 

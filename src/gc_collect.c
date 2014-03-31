@@ -93,6 +93,10 @@ GC_copy_region (struct GC_region * region,
                 int is_generational)
 { 
   GC_PUSH_CAP_REGS(cap_regs);
+  
+  {void * stack_top = NULL;
+  GC_GET_STACK_PTR(stack_top);
+  printf("GC_copy_region: the top of the stack is 0x%llx\n", (GC_ULL) stack_top);}
 
   int i;
   for (i=0; i<GC_NUM_CAP_REGS; i++)
@@ -107,14 +111,14 @@ GC_copy_region (struct GC_region * region,
     }
   }
   
-  GC_vdbgf("The registers lie between 0x%llx and 0x%llx",
+  GC_dbgf("The registers lie between 0x%llx and 0x%llx",
     (GC_ULL) &cap_regs[0], (GC_ULL) &cap_regs[GC_NUM_CAP_REGS-1]);
   
   void * stack_top = NULL;
   GC_GET_STACK_PTR(stack_top);
   
   GC_assert(stack_top <= GC_state.stack_bottom);
- 
+
   GC_copy_roots(
     region, stack_top, GC_state.stack_bottom, is_generational);
   GC_copy_roots(

@@ -17,6 +17,7 @@ size_t sz
 )
 {
   if (!GC_is_initialized()) GC_init();
+  GC_CLOBBER_CAP_REGS();
   return GC_malloc_region(
 #ifdef GC_DEBUG
     file, line,

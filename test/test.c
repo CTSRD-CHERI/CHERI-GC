@@ -56,17 +56,17 @@ main (int argc, char **argv)
 }
 
 static void
-fill_test_helper (GC_CAP struct struct1 * x)
+fill_test_helper (void)
 {
-  ((struct struct1*)x)->ptr = GC_malloc(25);
-  memset((void*)((struct struct1*)x)->ptr, 0x33, 25);
-  GC_PRINT_CAP(((struct struct1*)x)->ptr);
-  x = NULL;
   int i;
   GC_CAP void * store[20];
+  GC_CAP void * y;
+  void * stack_top = NULL;
+  GC_GET_STACK_PTR(stack_top);
+  printf("fill_test_helper(): stack top: 0x%llx\n", (GC_ULL) stack_top);
   for (i=0; i<10000; i++)
   {
-    GC_CAP void * y = GC_malloc(500);
+    y = GC_malloc(500);
     store[i % 20] = y;
     memset((void*)y, 0x22, 500);
   }
@@ -89,15 +89,99 @@ fill_test (void)
   // 0x22: temporary data
   
   GC_init();
-  GC_CAP struct struct1 * x = GC_malloc(600);
-  // check cap is preserved over function call.
-  printf("x: 0x%llx\n", (GC_ULL) GC_cheri_getbase(x));
-  fill_test_helper(x);
-  printf("x: 0x%llx\n", (GC_ULL) GC_cheri_getbase(x));
-  GC_PRINT_CAP(((struct struct1*)x)->ptr);
-  GC_debug_memdump(
-    GC_cheri_getbase(((struct struct1*)x)->ptr),
-    GC_cheri_getbase(((struct struct1*)x)->ptr)+GC_cheri_getlen(((struct struct1*)x)->ptr));  
+__asm__("daddiu $6, $6, 0");
+  GC_CAP struct struct1 * a = GC_malloc(600);
+__asm__("daddiu $7, $7, 0");
+__asm__("daddiu $6, $6, 0");
+  GC_CAP struct struct1 * b = GC_malloc(600);
+__asm__("daddiu $7, $7, 0");
+__asm__("daddiu $6, $6, 0");
+  GC_CAP struct struct1 * c = GC_malloc(600);
+__asm__("daddiu $7, $7, 0");
+__asm__("daddiu $6, $6, 0");
+  GC_CAP struct struct1 * d = GC_malloc(600);
+__asm__("daddiu $7, $7, 0");
+__asm__("daddiu $6, $6, 0");
+  GC_CAP struct struct1 * e = GC_malloc(600);
+__asm__("daddiu $7, $7, 0");
+__asm__("daddiu $6, $6, 0");
+  GC_CAP struct struct1 * f = GC_malloc(600);
+__asm__("daddiu $7, $7, 0");
+__asm__("daddiu $6, $6, 0");
+  GC_CAP struct struct1 * g = GC_malloc(600);
+__asm__("daddiu $7, $7, 0");
+__asm__("daddiu $6, $6, 0");
+  GC_CAP struct struct1 * h = GC_malloc(600);
+__asm__("daddiu $7, $7, 0");
+__asm__("daddiu $6, $6, 0");
+  GC_CAP struct struct1 * i = GC_malloc(600);
+__asm__("daddiu $7, $7, 0");
+__asm__("daddiu $6, $6, 0");
+  GC_CAP struct struct1 * j = GC_malloc(600);
+__asm__("daddiu $7, $7, 0");
+__asm__("daddiu $6, $6, 0");
+  GC_CAP struct struct1 * k = GC_malloc(600);
+__asm__("daddiu $7, $7, 0");
+  printf("a: 0x%llx\n", (GC_ULL) GC_cheri_getbase(a));
+  printf("b: 0x%llx\n", (GC_ULL) GC_cheri_getbase(b));
+  printf("c: 0x%llx\n", (GC_ULL) GC_cheri_getbase(c));
+  printf("d: 0x%llx\n", (GC_ULL) GC_cheri_getbase(d));
+  printf("e: 0x%llx\n", (GC_ULL) GC_cheri_getbase(e));
+  printf("f: 0x%llx\n", (GC_ULL) GC_cheri_getbase(f));
+  printf("g: 0x%llx\n", (GC_ULL) GC_cheri_getbase(g));
+  printf("h: 0x%llx\n", (GC_ULL) GC_cheri_getbase(h));
+  printf("i: 0x%llx\n", (GC_ULL) GC_cheri_getbase(i));
+  printf("j: 0x%llx\n", (GC_ULL) GC_cheri_getbase(j));
+  printf("k: 0x%llx\n", (GC_ULL) GC_cheri_getbase(k));
+  #define GC_FILL(x) \
+  ((struct struct1*)x)->ptr = GC_malloc(25); \
+  printf("stack address &" #x ": 0x%llx\n", (GC_ULL) &x); \
+  if (!strcmp(#x, "a")){ \
+  GC_debug_track_allocated(x, "object " #x); \
+  GC_debug_track_allocated(((struct struct1*)x)->ptr, "object " #x "'s ptr");} \
+  memset((void*)((struct struct1*)x)->ptr, 0x33, 25);
+  GC_FILL(a);
+  GC_FILL(b);
+  GC_FILL(c);
+  GC_FILL(d);
+  GC_FILL(e);
+  GC_FILL(f);
+  GC_FILL(g);
+  GC_FILL(h);
+  GC_FILL(i);
+  GC_FILL(j);
+  GC_FILL(k);
+__asm__("daddiu $8, $8, 0");
+  printf("(1) a->ptr: b=0x%llx\n", (GC_ULL) GC_cheri_getbase(((struct struct1*)a)->ptr));
+__asm__("daddiu $9, $9, 0");
+  GC_collect();
+  printf("(2) a->ptr: b=0x%llx\n", (GC_ULL) GC_cheri_getbase(((struct struct1*)a)->ptr));
+  void * stack_top = NULL;
+  GC_GET_STACK_PTR(stack_top);
+  printf("stack top: 0x%llx\n", (GC_ULL) stack_top);
+  fill_test_helper();
+  printf("fill_test_helper() returned\n");
+  printf("(3) a->ptr: b=0x%llx\n", (GC_ULL) GC_cheri_getbase(((struct struct1*)a)->ptr));
+  GC_collect();
+  printf("(4) a->ptr: b=0x%llx\n", (GC_ULL) GC_cheri_getbase(((struct struct1*)a)->ptr));
+  #define GC_OUTPUT(x) \
+  printf("x: 0x%llx\n", (GC_ULL) GC_cheri_getbase(x)); \
+  GC_assert(GC_IN(x, GC_state.thread_local_region.tospace)); \
+  GC_PRINT_CAP(((struct struct1*)x)->ptr); \
+  GC_debug_memdump( \
+    GC_cheri_getbase(((struct struct1*)x)->ptr), \
+    GC_cheri_getbase(((struct struct1*)x)->ptr)+GC_cheri_getlen(((struct struct1*)x)->ptr));
+  GC_OUTPUT(a)
+  GC_OUTPUT(b)
+  GC_OUTPUT(c)
+  GC_OUTPUT(d)
+  GC_OUTPUT(e)
+  GC_OUTPUT(f)
+  GC_OUTPUT(g)
+  GC_OUTPUT(h)
+  GC_OUTPUT(i)
+  GC_OUTPUT(j)
+  GC_OUTPUT(k)
 }
 
 void
