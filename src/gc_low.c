@@ -283,12 +283,12 @@ GC_cap_memclr (GC_cap_ptr dest)
 __capability void * __capability *
 GC_handle_oy_store (__capability void * __capability * x, GC_cap_ptr y)
 {
-  GC_vdbgf("old-young store : *(0x%llx) := 0x%llx", (GC_ULL) x, (GC_ULL) y);
+  GC_dbgf("old-young store : *(0x%llx) := 0x%llx", (GC_ULL) x, (GC_ULL) y);
   
   //GC_fatalf("unhandled for now, quitting.");
   
 #if (GC_OY_STORE_DEFAULT == GC_OY_STORE_REMEMBERED_SET)
-  GC_remembered_set_add(&GC_state.thread_local_region.remset, (void *) x);
+  GC_remembered_set_add(GC_state.thread_local_region.remset, (void *) x);
 #endif // GC_OY_STORE_DEFAULT
   return x;
 }

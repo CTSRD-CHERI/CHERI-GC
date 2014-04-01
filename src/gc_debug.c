@@ -149,7 +149,6 @@ GC_debug_print_region_stats(struct GC_region * region)
 static void
 GC_debug_print_stack_stats_helper (int arg)
 {
-  
   int local;
   
   void * stack_ptr = NULL;

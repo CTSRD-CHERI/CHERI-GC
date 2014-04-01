@@ -150,7 +150,7 @@ GC_copy_region (struct GC_region * region,
   GC_assert( GC_state.stack_top && GC_state.reg_bottom && GC_state.reg_top );
   
   GC_assert( GC_state.stack_top <= GC_state.stack_bottom );
-    
+   
   GC_copy_roots(
     region, GC_state.stack_top, GC_state.stack_bottom, is_generational, 0);
   GC_copy_roots(
@@ -362,24 +362,27 @@ GC_copy_children (struct GC_region * region,
 void
 GC_copy_remembered_set (struct GC_region * region)
 {
-  GC_vdbgf("copying %d roots from remset", (int) region->remset.nroots);
-  size_t i;
-  for (i=0; i<region->remset.nroots; i++)
+  if (region->remset)
   {
-    GC_cap_ptr * root = (GC_cap_ptr *) region->remset.roots[i];
-    GC_assert( root );
-    GC_dbgf("[%d] Processing remembered root 0x%llx",
-      (int) i, (GC_ULL) root);
-    GC_copy_child(region, root, 1);
+    GC_dbgf("GC_copy_remembered_set: copying %d roots from remset",
+      (int) region->remset->nroots);
+    size_t i;
+    for (i=0; i<region->remset->nroots; i++)
+    {
+      GC_cap_ptr * root = (GC_cap_ptr *) region->remset->roots[i];
+      GC_assert( root );
+      GC_dbgf("[%d] Processing remembered root 0x%llx",
+        (int) i, (GC_ULL) root);
+      GC_copy_child(region, root, 1);
+    }
+    GC_remembered_set_clr(region->remset);
   }
-  GC_remembered_set_clr(&region->remset);
 }
 #endif // GC_OY_STORE_DEFAULT
 
 void
 GC_gen_promote (struct GC_region * region)
 {
-  
   // Conservative estimate. Usually requires the old generation to have at least
   // as much space as the entire young generation (because GC_gen_promote is
   // usually called when the young generation is almost full).
@@ -406,12 +409,15 @@ GC_gen_promote (struct GC_region * region)
     return;
   }
   
-  GC_vdbgf("old generation ok, copying up to %llu%s",
+  GC_dbgf("old generation ok, copying up to %llu%s",
     GC_MEM_PRETTY((GC_ULL) expected_sz),
     GC_MEM_PRETTY_UNIT((GC_ULL) expected_sz));
   
-  GC_cap_ptr old_from_space = region->older_region->fromspace;
+  GC_cap_ptr old_fromspace = region->older_region->fromspace;
   region->older_region->fromspace = region->tospace;
+  
+  struct GC_remembered_set * old_remset = region->older_region->remset;
+  region->older_region->remset = region->remset;
   
   // ensure we only scan the young region's children when copying
   // NOTE: this alignment is OK to go downwards because we can assume that the
@@ -423,7 +429,8 @@ GC_gen_promote (struct GC_region * region)
   
   GC_copy_region(region->older_region, 1);
   
-  region->older_region->fromspace = old_from_space;
+  region->older_region->fromspace = old_fromspace;
+  region->older_region->remset = old_remset;
   region->free = region->tospace;
   
   void * newfree = GC_cheri_getbase(region->older_region->free);
@@ -577,19 +584,22 @@ GC_region_rebase (struct GC_region * region, void * old_base, size_t old_size)
   
 #ifdef GC_GENERATIONAL
 #if (GC_OY_STORE_DEFAULT == GC_OY_STORE_REMEMBERED_SET)
-  size_t i;
-  for (i=0; i<region->remset.nroots; i++)
+  if (region->remset)
   {
-    GC_cap_ptr * root = (GC_cap_ptr *) region->remset.roots[i];
-    GC_assert( root );
-    GC_dbgf("[%d] Rebasing remembered root 0x%llx",
-      (int) i, (GC_ULL) root);
-    if (GC_cheri_gettag(*root))
+    size_t i;
+    for (i=0; i<region->remset->nroots; i++)
     {
-      void * base = GC_cheri_getbase(*root);
-      if ((base >= old_base) && (base <= (old_base+old_size)))
+      GC_cap_ptr * root = (GC_cap_ptr *) region->remset->roots[i];
+      GC_assert( root );
+      GC_dbgf("[%d] Rebasing remembered root 0x%llx",
+        (int) i, (GC_ULL) root);
+      if (GC_cheri_gettag(*root))
       {
-        *root = GC_setbase(*root, (base-old_base)+new_base);
+        void * base = GC_cheri_getbase(*root);
+        if ((base >= old_base) && (base <= (old_base+old_size)))
+        {
+          *root = GC_setbase(*root, (base-old_base)+new_base);
+        }
       }
     }
   }

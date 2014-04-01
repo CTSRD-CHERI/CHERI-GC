@@ -3,8 +3,8 @@
 
 #define GC_DEBUG
 //#define GC_VERBOSE_DEBUG
-#define GC_THREAD_LOCAL_HEAP_SIZE             1013 // 20k
-#define GC_OLD_GENERATION_SEMISPACE_SIZE      40000 // 30k
+#define GC_THREAD_LOCAL_HEAP_SIZE             1013
+#define GC_OLD_GENERATION_SEMISPACE_SIZE      130000
 
 // If old heap residency exceeds this, collect, and if that fails, grow.
 #define GC_OLD_GENERATION_HIGH_WATERMARK      0.5
@@ -58,13 +58,13 @@
 // growth.
 // TODO: the 0 setting
 #define GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION        20000
-#define GC_THREAD_LOCAL_HEAP_MAX_SIZE                          90000
+#define GC_THREAD_LOCAL_HEAP_MAX_SIZE                          30000
 #define GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION 130000
 #define GC_OLD_GENERATION_SEMISPACE_MAX_SIZE                   130000
 
 // Determines whether we use generational GC or not. If disabled, only
 // copying collection is implemented.
-//#define GC_GENERATIONAL
+#define GC_GENERATIONAL
 
 #ifdef GC_GENERATIONAL
 // This determines the write barrier technique we use to deal with old-to-young

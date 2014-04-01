@@ -478,7 +478,7 @@ do { \
   GC_GET_STACK_PTR(stack_ptr); \
   /*GC_state.stack_top = GC_MAX_STACK_TOP;*/ \
   /*GC_assert(GC_state.stack_top == GC_MAX_STACK_TOP);*/ \
-  GC_dbgf("Cleaning the stack from 0x%llx to 0x%llx\n", \
+  GC_dbgf("Cleaning the stack from 0x%llx to 0x%llx", \
     (GC_ULL) GC_MAX_STACK_TOP, (GC_ULL) stack_ptr); \
   GC_assert((stack_ptr-GC_MAX_STACK_TOP) > 0); \
   /* can't use memset because it would clobber its own data while running ;) */ \

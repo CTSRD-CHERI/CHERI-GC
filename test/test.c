@@ -12,6 +12,11 @@
 #include <string.h>
 #include <time.h>
 
+typedef struct
+{
+  GC_CAP void * ptr;
+} PtrContainer;
+
 struct struct1
 {
   __capability void * ptr;
@@ -42,10 +47,13 @@ void
 fill_test (void);
 void
 stack_fill_test (void);
+void
+oy_test (void);
 
 int
 main (int argc, char **argv)
 {
+  GC_init();
   //remset_test();
   //tracking_test();
   //rebase_test();
@@ -54,8 +62,58 @@ main (int argc, char **argv)
   //low_realloc_test();
   //realloc_preserves_caps_test();
   //fill_test();
-  stack_fill_test();
+  //stack_fill_test();
+  //remset_test();
+  oy_test();
   return 0;
+}
+
+void
+oy_test (void)
+{
+#ifdef GC_GENERATIONAL
+#if (GC_OY_STORE_DEFAULT == GC_OY_STORE_REMEMBERED_SET)
+  GC_CAP PtrContainer * P = GC_INVALID_PTR;
+  GC_STORE_CAP(P, GC_malloc(sizeof(PtrContainer)));
+  #define CHILDSIZE 50
+  while (!GC_IN(P, GC_state.old_generation.tospace))
+  {
+    GC_malloc(50);
+  }
+  GC_CAP void * child = GC_malloc(CHILDSIZE);
+  if (!GC_IN(child, GC_state.thread_local_region.tospace))
+  {
+    GC_fatalf("Young pointer not young...\n");
+  }
+  
+  GC_PRINT_CAP(P);
+  GC_PRINT_CAP(((PtrContainer*)P)->ptr);
+  
+  ((PtrContainer*)P)->ptr = GC_INVALID_PTR;
+  GC_STORE_CAP(((PtrContainer*)P)->ptr, child);
+  memset((void*) ((PtrContainer*)P)->ptr, 0x22, CHILDSIZE);
+  GC_debug_memdump((void*) ((PtrContainer*)P)->ptr, ((void*) ((PtrContainer*)P)->ptr ) + CHILDSIZE);
+
+  //void * child_addr = &child;
+  
+  // Forget the root.
+  child = NULL;
+
+  // Collect
+  GC_collect();
+  
+  // Check that it moved
+  if (!GC_IN((void*) ((PtrContainer*)P)->ptr, GC_state.old_generation.tospace))
+  {
+    printf("Warning: young pointer has not been promoted.\n");
+  }
+
+  // Clear the young region
+  memset(GC_cheri_getbase(GC_state.thread_local_region.tospace), 0x36, GC_cheri_getlen(GC_state.thread_local_region.tospace));
+  
+  GC_debug_memdump((void*) ((PtrContainer*)P)->ptr, ((void*) ((PtrContainer*)P)->ptr ) + CHILDSIZE);
+#endif // GC_OY_STORE_DEFAULT
+#endif // GC_GENERATIONAL
 }
 
 void
@@ -69,9 +127,9 @@ stack_fill_test (void)
        p++)
   {
     *p = GC_SET_GC_ALLOCATED(
-      GC_cheri_setbaselen(
-        GC_state.region.tospace,
-        GC_cheri_getbase(GC_state.region.tospace)+0x80,
+      GC_setbaselen(
+        GC_state.thread_local_region.tospace,
+        GC_cheri_getbase(GC_state.thread_local_region.tospace)+0x80,
         0x20));
   }
 }
@@ -109,7 +167,7 @@ fill_test (void)
   // 0x33: our data
   // 0x22: temporary data
   
-  GC_init();
+  //GC_init();
 __asm__("daddiu $6, $6, 0");
   GC_CAP struct struct1 * a = GC_malloc(600);
 __asm__("daddiu $7, $7, 0");
@@ -208,7 +266,7 @@ __asm__("daddiu $9, $9, 0");
 void
 realloc_preserves_caps_test (void)
 {
-  GC_init();
+  //GC_init();
   struct struct1 * x = GC_low_malloc(1000);
   x->ptr = GC_cheri_ptr((void*) 0x1234, 0x5678);
   printf("x->ptr tag: %d\n", GC_cheri_gettag(x->ptr));
@@ -232,18 +290,18 @@ remset_test (void)
 {
 #ifdef GC_GENERATIONAL
 #if (GC_OY_STORE_DEFAULT == GC_OY_STORE_REMEMBERED_SET)
-  GC_init();
-  GC_remembered_set_add(&GC_state.thread_local_region.remset, (void *) 0x123400);
-  GC_remembered_set_add(&GC_state.thread_local_region.remset, (void *) 0x567800);
-  GC_remembered_set_add(&GC_state.thread_local_region.remset, (void *) 0x999900);
-  GC_remembered_set_add(&GC_state.thread_local_region.remset, (void *) 0x888800);
-  GC_remembered_set_add(&GC_state.thread_local_region.remset, (void *) 0x777700);
+  //GC_init();
+  GC_remembered_set_add(GC_state.thread_local_region.remset, (void *) 0x123400);
+  GC_remembered_set_add(GC_state.thread_local_region.remset, (void *) 0x567800);
+  GC_remembered_set_add(GC_state.thread_local_region.remset, (void *) 0x999900);
+  GC_remembered_set_add(GC_state.thread_local_region.remset, (void *) 0x888800);
+  GC_remembered_set_add(GC_state.thread_local_region.remset, (void *) 0x777700);
   size_t i;
-  for (i=0; i<GC_state.thread_local_region.remset.nroots; i++)
+  for (i=0; i<GC_state.thread_local_region.remset->nroots; i++)
   {
-    printf("[%d] 0x%llx\n", (int) i, (GC_ULL) GC_state.thread_local_region.remset.roots[i]);
+    printf("[%d] 0x%llx\n", (int) i, (GC_ULL) GC_state.thread_local_region.remset->roots[i]);
   }
-  printf("size: %d\n", (int) GC_state.thread_local_region.remset.size);
+  printf("size: %d\n", (int) GC_state.thread_local_region.remset->size);
 #endif // GC_OY_STORE_DEFAULT
 #endif // GC_GENERATIONAL
 }
@@ -251,7 +309,7 @@ remset_test (void)
 void
 tracking_test (void)
 {
-  GC_init();
+  //GC_init();
   GC_CAP void * obj = GC_malloc(100);
   if (GC_debug_track_allocated(obj, "test object"))
   {
@@ -263,7 +321,7 @@ tracking_test (void)
 void
 grow_test (void)
 {
-  GC_init();
+  //GC_init();
   int i;
   for (i=0; i<10000; i++)
   {
@@ -289,7 +347,7 @@ rebase_test (void)
   size_t old_size = 0xABC;
   void * new_base = (void*) 0x9001;
   
-  GC_init();
+  //GC_init();
   void * stack_top = NULL;
   GC_GET_STACK_PTR(stack_top);
   GC_assert(stack_top <= GC_state.stack_bottom);
@@ -314,7 +372,7 @@ collection_test (void)
   GC_ALIGN_32(arr, GC_cap_ptr *);
   GC_cap_ptr * arrll = &arrll_unaligned[0];
   GC_ALIGN_32(arrll, GC_cap_ptr *);
-  GC_init();
+  //GC_init();
   time_t start = time(NULL);
     printf("arrll runs from 0x%llx to 0x%llx\n", (GC_ULL) arrll, (GC_ULL) &arrll[LLSTORE-1]);
     printf("arr runs from 0x%llx to 0x%llx\n", (GC_ULL) arr, (GC_ULL) &arr[NSTORE-1]);

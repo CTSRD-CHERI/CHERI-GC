@@ -19,7 +19,7 @@ struct GC_region
   struct GC_region * older_region; // only used if this one is young
 
 #if (GC_OY_STORE_DEFAULT == GC_OY_STORE_REMEMBERED_SET)
-  struct GC_remembered_set remset;
+  struct GC_remembered_set * remset;
 #endif // GC_OY_STORE_DEFAULT
 
 #endif // GC_GENERATIONAL

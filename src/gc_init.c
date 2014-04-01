@@ -120,9 +120,7 @@ GC_init_region
 #ifdef GC_GENERATIONAL
   region->older_region = NULL;
 #if (GC_OY_STORE_DEFAULT == GC_OY_STORE_REMEMBERED_SET)
-  // isn't used, but still need to initialize it to zero to make GC_collect
-  // easier to implement
-  GC_remembered_set_init(&region->remset);
+  region->remset = NULL;
 #endif // GC_OY_STORE_DEFAULT
 #endif // GC_GENERATIONAL
   region->num_collections = 0;
@@ -180,7 +178,14 @@ GC_init_young_region (struct GC_region * region,
   region->num_collections = 0;
 #ifdef GC_GENERATIONAL
 #if (GC_OY_STORE_DEFAULT == GC_OY_STORE_REMEMBERED_SET)
-  GC_remembered_set_init(&region->remset);
+  region->remset = GC_low_malloc(sizeof(struct GC_remembered_set));
+  if (region->remset == NULL)
+  {
+    GC_errf("GC_low_malloc(%llu) (remset)",
+      (GC_ULL) (sizeof(struct GC_remembered_set)));
+    return 1;
+  }
+  GC_remembered_set_init(region->remset);
 #endif // GC_OY_STORE_DEFAULT
 #endif // GC_GENERATIONAL
 #ifdef GC_GROW_HEAP
