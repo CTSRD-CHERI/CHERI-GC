@@ -26,6 +26,7 @@ GC_init2 (void * arg_for_stack_bottom, const char * file, int line)
     rc = GC_init_old_region(
       &GC_state.old_generation,
       GC_OLD_GENERATION_SEMISPACE_SIZE,
+      GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION,
       GC_OLD_GENERATION_SEMISPACE_MAX_SIZE);
     if (rc) return rc;
     
@@ -33,6 +34,7 @@ GC_init2 (void * arg_for_stack_bottom, const char * file, int line)
       &GC_state.thread_local_region,
       &GC_state.old_generation,
       GC_THREAD_LOCAL_HEAP_SIZE,
+      GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION,
       GC_THREAD_LOCAL_HEAP_MAX_SIZE);
     if (rc) return rc;
 #ifdef GC_WB_RUNTIME
@@ -42,6 +44,7 @@ GC_init2 (void * arg_for_stack_bottom, const char * file, int line)
     rc = GC_init_region(
       &GC_state.thread_local_region,
       GC_THREAD_LOCAL_HEAP_SIZE,
+      GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION,
       GC_THREAD_LOCAL_HEAP_MAX_SIZE);
     if (rc) return rc;
 #endif // GC_GENERATIONAL
@@ -79,7 +82,10 @@ GC_init_old_region
 #else // GC_GENERATIONAL
 GC_init_region
 #endif // GC_GENERATIONAL
-(struct GC_region * region, size_t semispace_size, size_t max_size)
+(struct GC_region * region,
+ size_t semispace_size,
+ size_t max_grow_size_before_collection,
+ size_t max_grow_size_after_collection)
 {
   // WARNING: if you change how this is allocated, you must change how GC_grow
   // works.
@@ -121,7 +127,10 @@ GC_init_region
 #endif // GC_GENERATIONAL
   region->num_collections = 0;
 #ifdef GC_GROW_HEAP
-  region->max_size = GC_ALIGN_32(max_size, size_t);
+  region->max_grow_size_before_collection =
+    GC_ALIGN_32(max_grow_size_before_collection, size_t);
+  region->max_grow_size_after_collection =
+    GC_ALIGN_32(max_grow_size_after_collection, size_t);
 #endif // GC_GROW_HEAP
 #ifdef GC_TIME
   region->time_spent_in_collector = 0;
@@ -139,7 +148,9 @@ GC_is_young (struct GC_region * region)
 int
 GC_init_young_region (struct GC_region * region,
                       struct GC_region * older_region,                      
-                      size_t sz, size_t max_size)
+                      size_t sz,
+                      size_t max_grow_size_before_collection,
+                      size_t max_grow_size_after_collection)
 {
   // WARNING: if you change how this is allocated, you must change how GC_grow
   // works.
@@ -173,7 +184,10 @@ GC_init_young_region (struct GC_region * region,
 #endif // GC_OY_STORE_DEFAULT
 #endif // GC_GENERATIONAL
 #ifdef GC_GROW_HEAP
-  region->max_size = GC_ALIGN_32(max_size, size_t);
+  region->max_grow_size_before_collection =
+    GC_ALIGN_32(max_grow_size_before_collection, size_t);
+  region->max_grow_size_after_collection =
+    GC_ALIGN_32(max_grow_size_after_collection, size_t);
 #endif // GC_GROW_HEAP
 #ifdef GC_TIME
   region->time_spent_in_collector = 0;

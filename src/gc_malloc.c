@@ -20,13 +20,19 @@ size_t sz
   //void * stack_ptr = NULL;
   // TODO: check if this is necessary this early
   //GC_SAVE_STACK_PTR
+  
   // Note: GC_SAVE_STACK_PTR will save our locals too, which we don't want
   //GC_state.stack_top = &file; // hack
+  
   //printf("Note: &file=0x%llx\n", &file);
-  GC_state.stack_top = GC_MAX_STACK_TOP;
-  GC_assert( GC_state.stack_top < (void*)&file ); // check we haven't overflowed the stack
+  //GC_state.stack_top = GC_MAX_STACK_TOP;
+  //GC_assert( GC_state.stack_top < (void*)&file ); // check we haven't overflowed the stack
+  
+  // We want to be as close to the top of the caller's stack frame as possible
+  GC_state.stack_top = &sz;
+  GC_assert( GC_MAX_STACK_TOP < (void*)&sz ); // check we haven't overflowed the stack
 
-  GC_CLOBBER_CAP_REGS();
+  //GC_CLOBBER_CAP_REGS();
   GC_SAVE_REG_STATE();
 
   if (!GC_is_initialized())
@@ -86,9 +92,12 @@ GC_malloc_region
 #ifdef GC_GROW_YOUNG_HEAP
     if (too_small)
     {
-      GC_vdbgf("GC_malloc_region(): growing (young) heap (sz=0x%llx)",
+      GC_dbgf("GC_malloc_region(): growing (young) heap before collection (sz=0x%llx)",
         (GC_ULL) sz);
-      too_small = !GC_grow(region, sz);
+      too_small = !GC_grow(region, sz, region->max_grow_size_before_collection);
+      
+      // we need the stack to be cleaned by GC_malloc if the region was rebased
+      *collected = 1;
     }
 #endif // GC_GROW_YOUNG_HEAP
   
@@ -121,7 +130,19 @@ GC_malloc_region
       too_small = sz > (size_t) cheri_getlen(region->free);
       GC_vdbgf("GC_malloc_region(): collecting complete. Too small? %d",
         too_small);
+    
+#ifdef GC_GROW_YOUNG_HEAP
+      if (too_small)
+      {
+        GC_dbgf("GC_malloc_region(): growing (young) heap after collection (sz=0x%llx)",
+          (GC_ULL) sz);
+        too_small = !GC_grow(region, sz, region->max_grow_size_after_collection);
+      }
+#endif // GC_GROW_YOUNG_HEAP
+    
     }
+    
+    GC_assert( too_small == (sz > (size_t) cheri_getlen(region->free)) );
     
     if (too_small)
     {

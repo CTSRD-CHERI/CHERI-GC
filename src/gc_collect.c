@@ -14,13 +14,15 @@ GC_collect (void)
 {
   int local;
   //GC_SAVE_STACK_PTR
-  GC_state.stack_top = GC_MAX_STACK_TOP;
-  GC_assert( GC_state.stack_top < (void*)&file ); // check we haven't overflowed the stack
+  //GC_state.stack_top = GC_MAX_STACK_TOP;
+  //GC_assert( GC_state.stack_top < (void*)&file ); // check we haven't overflowed the stack
+
+  GC_state.stack_top = &local;
   
-  GC_CLOBBER_CAP_REGS();
+  //GC_CLOBBER_CAP_REGS();
   GC_SAVE_REG_STATE();
   
-  GC_CLEAN_STACK();
+  //GC_CLEAN_STACK();
   
   if (!GC_is_initialized())
   {
@@ -37,8 +39,10 @@ void
 GC_collect_region (struct GC_region * region)
 {
   GC_START_TIMING(GC_collect_region_time);
-  
+   
   GC_assert( GC_state.stack_top && GC_state.reg_bottom && GC_state.reg_top );
+
+  GC_assert( GC_state.stack_top > GC_MAX_STACK_TOP );
 
   region->num_collections++; // debugging/stats
   
@@ -501,6 +505,9 @@ GC_region_rebase (struct GC_region * region, void * old_base, size_t old_size)
   size_t new_size = GC_cheri_getlen(region->tospace);
   
   GC_START_TIMING(GC_region_rebase_time);
+  
+  // Make sure to clean the stack after this. Currently GC_malloc does it.
+  // TODO: check if the stack really does need cleaning after this.
   
   GC_dbgf("rebasing region\n");
   

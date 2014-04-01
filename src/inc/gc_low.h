@@ -469,9 +469,16 @@ do { \
     (GC_ULL) GC_state.stack_top, (GC_ULL) stack_ptr); \
   GC_assert((stack_ptr-GC_state.stack_top) > 0); \
   /* can't use memset because it would clobber its own data while running ;) */ \
-  for (stk=GC_state.stack_top; stk<(char*)stack_ptr; stk++) \
+  /*for (stk=GC_state.stack_top; stk<(char*)stack_ptr; stk++) \
   { \
     *stk = GC_MAGIC_JUST_CLEARED_STACK; \
+  }*/ \
+  GC_cap_ptr * p; \
+  for (p=GC_ALIGN_32(GC_state.stack_top, GC_cap_ptr *); \
+       p<GC_ALIGN_32_LOW(stack_ptr, GC_cap_ptr *); \
+       p++) \
+  { \
+    *p = GC_INVALID_PTR; \
   } \
   GC_STOP_TIMING_PRINT(stack_clean_time, "stack clean"); \
 } while (0)
@@ -526,7 +533,7 @@ struct GC_region;
 // Tries to grow the heap by at least `hint' bytes. If successful, returns
 // non-zero, otherwise returns zero.
 int
-GC_grow (struct GC_region * region, size_t hint);
+GC_grow (struct GC_region * region, size_t hint, size_t max_size);
 #endif // GC_GROW_HEAP
 
 #endif // GC_LOW_H_HEADER

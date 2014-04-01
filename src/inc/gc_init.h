@@ -24,7 +24,8 @@ struct GC_region
 
 #endif // GC_GENERATIONAL
 #ifdef GC_GROW_HEAP
-  size_t max_size;
+  size_t max_grow_size_before_collection;
+  size_t max_grow_size_after_collection;
 #endif // GC_GROW_HEAP
 #ifdef GC_TIME
   GC_time_t time_spent_in_collector;
@@ -148,7 +149,8 @@ GC_is_young (struct GC_region * region);
 int
 GC_init_old_region (struct GC_region * region,
                     size_t semispace_size,
-                    size_t max_size);
+                    size_t max_grow_size_before_collection,
+                    size_t max_grow_size_after_collection);
 
 // Return values:
 // 0 : success
@@ -157,7 +159,8 @@ int
 GC_init_young_region (struct GC_region * region,
                       struct GC_region * older_region,
                       size_t sz,
-                      size_t max_size);
+                      size_t max_grow_size_before_collection,
+                      size_t max_grow_size_after_collection);
 
 // also declared in gc.h
 // Return values:
@@ -177,7 +180,8 @@ GC_set_wb_type (int wb_type);
 int
 GC_init_region (struct GC_region * region,
                 size_t semispace_size,
-                size_t max_size);
+                size_t max_grow_size_before_collection,
+                size_t max_grow_size_after_collection);
 #endif // GC_GENERATIONAL
 
 #endif // GC_INIT_H_HEADER

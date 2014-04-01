@@ -305,11 +305,11 @@ GC_orperm (GC_cap_ptr cap, GC_ULL perm)
 #ifdef GC_GROW_HEAP
 
 int
-GC_grow (struct GC_region * region, size_t hint)
+GC_grow (struct GC_region * region, size_t hint, size_t max_size)
 {
   // We double the heap size if we can, allocate up to hint bytes if we have to,
   // and saturate at the max.
-  // We want min(max(double, hint), region->max_size).
+  // We want min(max(double, hint), max_size).
   // WARNING: we always round *up* to the nearest multiple of 32 bytes to avoid
   // alignment issues.
   
@@ -324,27 +324,30 @@ GC_grow (struct GC_region * region, size_t hint)
     
   size_t old_size = GC_cheri_getlen(region->tospace);
   
-  if (old_size == region->max_size)
+  if (old_size == max_size)
   {
     GC_vdbgf("GC_grow(): region already max size (%llu%s)",
-      GC_MEM_PRETTY((GC_ULL) region->max_size),
-      GC_MEM_PRETTY_UNIT((GC_ULL) region->max_size));
+      GC_MEM_PRETTY((GC_ULL) max_size),
+      GC_MEM_PRETTY_UNIT((GC_ULL) max_size));
     return 0;
   }
   
-  GC_assert( old_size < region->max_size );
+  GC_assert( !max_size || (old_size < max_size) );
   
   size_t new_size =
+    max_size ?
     GC_ALIGN_32(
-      GC_MIN(GC_MAX(2*old_size, (old_size+hint)), region->max_size),
-      size_t);
+      GC_MIN(GC_MAX(2*old_size, (old_size+hint)), max_size),
+      size_t) :
+    GC_ALIGN_32(
+      GC_MAX(2*old_size, (old_size+hint)), size_t);
   
   GC_dbgf("GC_grow(): hint=%llu%s, current=%llu%s, trying=%llu%s, max=%llu%s",
     GC_MEM_PRETTY((GC_ULL) hint), GC_MEM_PRETTY_UNIT((GC_ULL) hint),
     GC_MEM_PRETTY((GC_ULL) old_size), GC_MEM_PRETTY_UNIT((GC_ULL) old_size),
     GC_MEM_PRETTY((GC_ULL) new_size), GC_MEM_PRETTY_UNIT((GC_ULL) new_size),
-    GC_MEM_PRETTY((GC_ULL) region->max_size),
-    GC_MEM_PRETTY_UNIT((GC_ULL) region->max_size));
+    GC_MEM_PRETTY((GC_ULL) max_size),
+    GC_MEM_PRETTY_UNIT((GC_ULL) max_size));
   
   // This is now non-trivial.
   // The reallocation could move the chunk of memory allocated to the tospace,
@@ -475,8 +478,7 @@ GC_grow (struct GC_region * region, size_t hint)
   return new_size >= (old_size+hint);
 }
 
-
-
+/*
 int
 GC_grow_OLD (struct GC_region * region, size_t hint)
 {
@@ -605,5 +607,6 @@ GC_grow_OLD (struct GC_region * region, size_t hint)
     GC_MEM_PRETTY((GC_ULL) new_size), GC_MEM_PRETTY_UNIT((GC_ULL) new_size));
   
   return new_size >= (cur_size+hint);
-}
+}*/
+
 #endif // GC_GROW_HEAP
