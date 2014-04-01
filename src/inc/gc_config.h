@@ -57,7 +57,7 @@
 // Maximum sizes for when the heap does grow. Set to 0 to allow unlimited
 // growth.
 // TODO: the 0 setting
-#define GC_THREAD_LOCAL_HEAP_MAX_SIZE         25000
+#define GC_THREAD_LOCAL_HEAP_MAX_SIZE         135000
 #define GC_OLD_GENERATION_SEMISPACE_MAX_SIZE  30000
 
 // Determines whether we use generational GC or not. If disabled, only
@@ -80,12 +80,12 @@
 #endif // GC_GENERATIONAL
 
 #define GC_COLLECT_STATS
-#define GC_DEBUG_TRACK_ALLOCATIONS
+//#define GC_DEBUG_TRACK_ALLOCATIONS
 
 // Enable if you want the GC to time how long things take
 #define GC_TIME
 
 // Kind of temporary
-#define GC_MAX_STACK_TOP    (void*) 0x7ffffd0000
+#define GC_MAX_STACK_TOP    (void*) 0x7ffff00000
 
 #endif // GC_CONFIG_H_HEADER

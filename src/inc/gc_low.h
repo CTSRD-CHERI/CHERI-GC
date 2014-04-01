@@ -459,6 +459,7 @@ GC_orperm (GC_cap_ptr cap, GC_ULL perm);
 
 #define GC_CLEAN_STACK() \
 do { \
+  GC_START_TIMING(stack_clean_time); \
   char * stk; \
   void * stack_ptr = NULL; \
   GC_GET_STACK_PTR(stack_ptr); \
@@ -472,6 +473,7 @@ do { \
   { \
     *stk = GC_MAGIC_JUST_CLEARED_STACK; \
   } \
+  GC_STOP_TIMING_PRINT(stack_clean_time, "stack clean"); \
 } while (0)
 
 
