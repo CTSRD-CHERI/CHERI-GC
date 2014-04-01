@@ -88,7 +88,7 @@ GC_collect_region (struct GC_region * region)
     
     void * tmp_misaligned = region->fromspace_misaligned;
     region->fromspace_misaligned = region->tospace_misaligned;
-    region->tospace_misaligned = tmp;
+    region->tospace_misaligned = tmp_misaligned;
     
     region->free = region->tospace;
     region->scan = (GC_cap_ptr *) GC_cheri_getbase(region->tospace);
