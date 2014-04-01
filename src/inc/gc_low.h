@@ -437,7 +437,7 @@ GC_orperm (GC_cap_ptr cap, GC_ULL perm);
 
 // For debugging or just to clear them. Clobbers the registers that should have
 // been saved by the caller.
-#define GC_CLOBBER_CAP_REGS \
+#define GC_CLOBBER_CAP_REGS() \
 { \
   GC_cap_ptr invalid = GC_INVALID_PTR; \
   GC_RESTORE_CAP_REG(1, &invalid); \
@@ -457,16 +457,34 @@ GC_orperm (GC_cap_ptr cap, GC_ULL perm);
   GC_RESTORE_CAP_REG(15, &invalid); \
 }
 
+#define GC_CLEAN_STACK() \
+do { \
+  char * stk; \
+  void * stack_ptr = NULL; \
+  GC_GET_STACK_PTR(stack_ptr); \
+  GC_state.stack_top = GC_MAX_STACK_TOP; \
+  /*GC_assert(GC_state.stack_top == GC_MAX_STACK_TOP);*/ \
+  GC_dbgf("Cleaning the stack from 0x%llx to 0x%llx\n", \
+    (GC_ULL) GC_state.stack_top, (GC_ULL) stack_ptr); \
+  GC_assert((stack_ptr-GC_state.stack_top) > 0); \
+  /* can't use memset because it would clobber its own data while running ;) */ \
+  for (stk=GC_state.stack_top; stk<(char*)stack_ptr; stk++) \
+  { \
+    *stk = GC_MAGIC_JUST_CLEARED_STACK; \
+  } \
+} while (0)
+
+
 // Called some time before/after GC_collect_region, to save/restore state
 // respectively. Note: always save the stack pointer first, to avoid conflicts
 // with the register buffer.
-#define GC_SAVE_STACK_PTR \
+#define GC_SAVE_STACK_PTR() \
   GC_GET_STACK_PTR(GC_state.stack_top);
-#define GC_SAVE_REG_STATE \
+#define GC_SAVE_REG_STATE() \
   GC_PUSH_CAP_REGS(register_buffer); \
   GC_state.reg_bottom = register_buffer; \
   GC_state.reg_top = register_buffer + GC_NUM_CAP_REGS;
-#define GC_RESTORE_REG_STATE \
+#define GC_RESTORE_REG_STATE() \
   GC_RESTORE_CAP_REGS(register_buffer); \
 
 

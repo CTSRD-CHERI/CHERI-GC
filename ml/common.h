@@ -15,6 +15,7 @@
 #include <gc_debug.h>
 
 #define ml_malloc           GC_malloc
+#define ml_collect          GC_collect
 // --------------------End   GC_CHERI--------------------
 #else // GC_CHERI
 // --------------------Begin NOT GC_CHERI--------------------
@@ -27,6 +28,7 @@
 #define  GC_CHECK_ADDRESS(x)
 #define  GC_assert(x)
 #define  GC_debug_print_region_stats(x)
+#define  ml_collect()
 // --------------------End NOT GC_CHERI--------------------
 #endif // GC_CHERI
 
@@ -46,11 +48,11 @@ __UNLOCK_MALLOC (void);
 #elif defined(GC_NONE)
 // --------------------Begin GC_NONE--------------------
 #define  ml_malloc          malloc
+#define  GC_cheri_ptr(x,y)  (x)
 
 // Blanks
 #define  GC_CAP
 #define  GC_init()
-#define  GC_cheri_ptr(x,y)  (x)
 // --------------------End   GC_NONE-------------------
 #elif defined(GC_CHERI)
 #else

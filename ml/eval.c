@@ -137,7 +137,7 @@ eval (GC_CAP expr_t * expr, GC_CAP env_t * env)
   switch (((expr_t*)expr)->type)
   {
     case EXPR_IF:
-    {      
+    {
       GC_CAP val_t * cond = GC_INVALID_PTR;
       GC_STORE_CAP(
         cond,
@@ -186,7 +186,6 @@ eval (GC_CAP expr_t * expr, GC_CAP env_t * env)
     }
     case EXPR_OP:
     {
-      
       // No short-circuiting for operators and no call-by-name for now.
       // Can emulate call-by-name by passing a function by value instead if need
       // be..

@@ -88,7 +88,7 @@ parse_app (void)
 // if op is "" then we're parsing a function application instead.
 GC_CAP expr_t *
 parse_op (GC_CAP const char * op,
-          GC_CAP expr_t * (*lower_precendence_func)(void))
+          GC_CAP expr_t * (*lower_precedence_func)(void))
 {
   size_t oplen = strlen((const char *) op)+1;
   GC_CAP expr_t * expr = GC_INVALID_PTR;
@@ -109,7 +109,7 @@ parse_op (GC_CAP const char * op,
   }
   
   GC_CAP expr_t * a = GC_INVALID_PTR;
-  GC_STORE_CAP(a, lower_precendence_func());
+  GC_STORE_CAP(a, lower_precedence_func());
   if (!PTR_VALID(a))
   {
     fprintf(stderr, "parse_op(): warning: invalid pointer a\n");
@@ -155,7 +155,7 @@ parse_op (GC_CAP const char * op,
     }
     
     GC_CAP expr_t * b = GC_INVALID_PTR;
-    GC_STORE_CAP(b, lower_precendence_func());
+    GC_STORE_CAP(b, lower_precedence_func());
     if (!PTR_VALID(b))
     {
       fprintf(stderr, "parse_op(): warning: invalid pointer b\n");

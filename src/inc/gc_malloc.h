@@ -31,7 +31,8 @@ GC_malloc_region
 #ifdef GC_DEBUG
   const char * file, int line,
 #endif // GC_DEBUG
-  struct GC_region * region, size_t sz, int collect_on_failure
+  struct GC_region * region, size_t sz, int collect_on_failure,
+  int * collected
 );
 
 #endif // GC_MALLOC_H_HEADER

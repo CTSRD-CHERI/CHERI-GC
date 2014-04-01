@@ -39,13 +39,13 @@ void GC_debug_print_cap (const char * name, GC_cap_ptr cap)
   else
   {
     GC_dbgf(
-      "%s: t=1, b=0x%llx, l=0x%llx, alloc=%d"
+      "%s: t=1, b=0x%llx, l=0x%llx, alloc=%d, fwd=%d"
 #ifdef GC_GENERATIONAL
       ", young=%d, cOLD=%d, eph=%d, region=%s"
 #endif // GC_GENERATIONAL
       "\n",
       name, (GC_ULL) GC_cheri_getbase(cap), (GC_ULL) GC_cheri_getlen(cap),
-      (int) GC_IS_GC_ALLOCATED(cap)
+      (int) GC_IS_GC_ALLOCATED(cap), (int) GC_IS_FORWARDING_ADDRESS(cap)
 #ifdef GC_GENERATIONAL
       , (int) GC_IS_YOUNG(cap), (int) GC_IS_CONTAINED_IN_OLD(cap),
         (int) GC_IS_EPHEMERAL(cap),
@@ -255,20 +255,33 @@ void
 GC_debug_check_tospace (void)
 {
   GC_dbgf("Doing exhaustive check of tospace for invalid pointers.");
-  GC_cap_ptr * start = GC_cheri_getbase(GC_state.thread_local_region.tospace);
-  GC_cap_ptr * end = GC_cheri_getbase(GC_state.thread_local_region.tospace) + GC_cheri_getlen(GC_state.thread_local_region.tospace);
+  GC_debug_check_area(
+    GC_cheri_getbase(GC_state.thread_local_region.tospace),
+    GC_cheri_getbase(GC_state.thread_local_region.tospace) +
+      GC_cheri_getlen(GC_state.thread_local_region.tospace));
+  GC_dbgf("Finished exhaustive check of tospace for invalid pointers.");
+}
+
+void
+GC_debug_check_area (void * start, void * end)
+{
+  start = GC_ALIGN_32(start, void *);
+  end = GC_ALIGN_32_LOW(end, void *);
   GC_cap_ptr * p;
-  for (p=start; p<end; p++)
+  for (p=(GC_cap_ptr*)start; p<(GC_cap_ptr*)end; p++)
   {
     if (GC_cheri_gettag(*p)
         && GC_cheri_getbase(*p))
     {
-      if (!GC_IN(GC_cheri_getbase(*p), GC_state.thread_local_region.tospace))
+      if (GC_IS_GC_ALLOCATED(*p) && !GC_IN(GC_cheri_getbase(*p), GC_state.thread_local_region.tospace))
       {
-        GC_debug_print_region_stats(&GC_state.thread_local_region);
         GC_PRINT_CAP(*p);
+        GC_debug_print_region_stats(&GC_state.thread_local_region);
         GC_fatalf("*(0x%llx) = 0x%llx not in range [0x%llx, 0x%llx)",
-          (GC_ULL) p, (GC_ULL) GC_cheri_getbase(*p), (GC_ULL) start, (GC_ULL) end);
+          (GC_ULL) p, (GC_ULL) GC_cheri_getbase(*p),
+          (GC_ULL) GC_cheri_getbase(GC_state.thread_local_region.tospace),
+          (GC_ULL) GC_cheri_getbase(GC_state.thread_local_region.tospace) +
+                    GC_cheri_getlen(GC_state.thread_local_region.tospace));
       }
       if (GC_IS_FORWARDING_ADDRESS(*p))
       {
@@ -278,8 +291,21 @@ GC_debug_check_tospace (void)
           (GC_ULL) p, (GC_ULL) GC_cheri_getbase(*p));
       }
     }
-  }
-  GC_dbgf("Finished exhaustive check of tospace for invalid pointers.");
+  }  
+}
+
+void
+GC_debug_check_roots (void)
+{
+  GC_dbgf("Doing exhaustive check of roots for invalid pointers.");
+  GC_dbgf("Stack: 0x%llx to 0x%llx. Registers: 0x%llx to 0x%llx. Static data: 0x%llx to 0x%llx\n",
+    (GC_ULL) GC_state.stack_top, (GC_ULL) GC_state.stack_bottom,
+    (GC_ULL) GC_state.reg_bottom, (GC_ULL) GC_state.reg_top,
+    (GC_ULL) GC_state.static_bottom, (GC_ULL) GC_state.static_top);
+  GC_debug_check_area(GC_state.stack_top, GC_state.stack_bottom);
+  GC_debug_check_area(GC_state.reg_bottom, GC_state.reg_top);
+  GC_debug_check_area(GC_state.static_bottom, GC_state.static_top);
+  GC_dbgf("Finished exhaustive check of roots for invalid pointers.");
 }
 
 #ifdef GC_DEBUG_TRACK_ALLOCATIONS

@@ -51,6 +51,9 @@ GC_init2 (void * arg_for_stack_bottom, const char * file, int line)
     if (GC_state.stack_bottom == NULL) return 1;
     GC_dbgf("The stack bottom is probably near 0x%llx\n",
       (GC_ULL) GC_state.stack_bottom);
+      
+    GC_state.stack_top = GC_MAX_STACK_TOP;
+    GC_CLEAN_STACK();
     
     GC_state.static_bottom = GC_get_static_bottom();
     if (GC_state.stack_bottom == NULL) return 1;

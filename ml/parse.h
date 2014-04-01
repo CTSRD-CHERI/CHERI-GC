@@ -106,7 +106,7 @@ parse_app (void);
 
 GC_CAP expr_t *
 parse_op (GC_CAP const char * op,
-          GC_CAP expr_t * (*lower_precendence_func)(void));
+          GC_CAP expr_t * (*lower_precedence_func)(void));
 
 GC_CAP expr_t *
 parse_base_expr (void);

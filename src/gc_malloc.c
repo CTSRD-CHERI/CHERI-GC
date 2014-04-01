@@ -16,22 +16,42 @@ GC_malloc2 (
 size_t sz
 )
 {
+  int collected = 0;
+  //void * stack_ptr = NULL;
   // TODO: check if this is necessary this early
-  GC_SAVE_STACK_PTR
-  
+  //GC_SAVE_STACK_PTR
+  // Note: GC_SAVE_STACK_PTR will save our locals too, which we don't want
+  //GC_state.stack_top = &file; // hack
+  //printf("Note: &file=0x%llx\n", &file);
+  GC_state.stack_top = GC_MAX_STACK_TOP;
+  GC_assert( GC_state.stack_top < (void*)&file ); // check we haven't overflowed the stack
+    
+  GC_SAVE_REG_STATE();
+
   if (!GC_is_initialized())
   {
     //GC_init();
     GC_fatalf("GC not initialized, call GC_init from main.");
   }
   //GC_CLOBBER_CAP_REGS();
-  return GC_malloc_region(
+  GC_cap_ptr p = GC_malloc_region(
 #ifdef GC_DEBUG
     file, line,
 #endif // GC_DEBUG
     &GC_state.thread_local_region,
     sz,
-    GC_COLLECT_ON_ALLOCATION_FAILURE);
+    GC_COLLECT_ON_ALLOCATION_FAILURE,
+    &collected);
+  
+  GC_RESTORE_REG_STATE();
+  GC_CLOBBER_CAP_REGS();
+  
+  if (collected)
+  {
+    GC_CLEAN_STACK();
+  }
+
+  return p;
 }
 
 __capability void *
@@ -40,7 +60,8 @@ GC_malloc_region
 #ifdef GC_DEBUG
   const char * file, int line,
 #endif // GC_DEBUG
-  struct GC_region * region, size_t sz, int collect_on_failure
+  struct GC_region * region, size_t sz, int collect_on_failure,
+  int * collected
 )
 {
   GC_START_TIMING(GC_malloc_region_time);
@@ -79,21 +100,22 @@ GC_malloc_region
         (GC_ULL) sz);
       
       //GC_START_TIMING(GC_malloc_region_collect_time);
-
-      GC_debug_check_tospace();
-
-      GC_dbgf("[malloc2] Note: the stack ptr at %s:%d is 0x%llx\n", file, line, (GC_ULL) GC_state.stack_top);
       
       GC_assert( GC_state.stack_top );
-      GC_SAVE_REG_STATE
-      
+      GC_assert( GC_state.reg_bottom );
+      GC_assert( GC_state.reg_top );
+
       GC_collect_region(region);
+
+      GC_assert( !GC_state.stack_top );
+      GC_assert( !GC_state.reg_bottom );
+      GC_assert( !GC_state.reg_top );
       
-      GC_RESTORE_REG_STATE
-      GC_CLOBBER_CAP_REGS
-            
-      GC_debug_check_tospace();
+      //printf("TODO: clean the stack after collection.\n");
       
+      // GC_malloc() will clean the stack.
+      *collected = 1;
+
       //GC_STOP_TIMING(GC_malloc_region_collect_time, "GC_malloc_region collection");
       
       too_small = sz > (size_t) cheri_getlen(region->free);

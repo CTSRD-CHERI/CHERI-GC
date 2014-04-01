@@ -119,7 +119,26 @@ int main (int argc, char ** argv)
   printf("AST:\n");
   print_ast(expr);
   printf("\n\n");
-
+  
+  printf("collecting loads\n");
+  ml_collect();
+  ml_collect();
+  ml_collect();
+  ml_collect();
+  ml_collect();
+  ml_collect();
+  ml_collect();
+  ml_collect();
+  ml_collect();
+  ml_collect();
+  ml_collect();
+  ml_collect();
+  ml_collect();
+  ml_collect();
+  ml_collect();
+  printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~done collecting loads\n");
+  GC_debug_print_region_stats(&GC_state.thread_local_region);
+  
   GC_CAP val_t * val = GC_INVALID_PTR;
   GC_STORE_CAP(val, eval(expr, GC_INVALID_PTR));
   

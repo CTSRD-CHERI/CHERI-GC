@@ -11,17 +11,18 @@
 
 void
 GC_collect (void)
-{
-  GC_SAVE_STACK_PTR
-  GC_SAVE_REG_STATE
+{printf("WARNING: GC_collect returning...\n");return;
+  //GC_SAVE_STACK_PTR
+  GC_state.stack_top = GC_MAX_STACK_TOP;
+  GC_SAVE_REG_STATE()
   if (!GC_is_initialized())
   {
     //GC_init();
     GC_fatalf("GC not initialized, call GC_init from main.");
   }
   GC_collect_region(&GC_state.thread_local_region);
-  GC_RESTORE_REG_STATE
-  GC_CLOBBER_CAP_REGS
+  GC_RESTORE_REG_STATE()
+  GC_CLOBBER_CAP_REGS()
 }
 
 void
@@ -39,6 +40,8 @@ GC_collect_region (struct GC_region * region)
   
   GC_assert(
     GC_IN_OR_ON_BOUNDARY(GC_cheri_getbase(region->free), region->tospace) );
+  
+  GC_CLEAN_STACK();
   
   size_t freed;
   int promoted = 0;
@@ -93,8 +96,6 @@ GC_collect_region (struct GC_region * region)
   GC_state.reg_top = NULL;
 
   GC_debug_end_marking(space_start, space_end);
-  
-  GC_debug_check_tospace();
 
   GC_STOP_TIMING_PRINT(
     GC_collect_region_time,
@@ -110,10 +111,6 @@ GC_copy_region (struct GC_region * region,
 { 
   //GC_PUSH_CAP_REGS(cap_regs);
   
-  /*{void * stack_top = NULL;
-  GC_GET_STACK_PTR(stack_top);
-  printf("GC_copy_region: the top of the stack is 0x%llx\n", (GC_ULL) stack_top);}*/
-
   /*int i;
   for (i=0; i<GC_NUM_CAP_REGS; i++)
   {
@@ -141,81 +138,13 @@ GC_copy_region (struct GC_region * region,
   GC_assert( GC_state.stack_top && GC_state.reg_bottom && GC_state.reg_top );
   
   GC_assert( GC_state.stack_top <= GC_state.stack_bottom );
-  
-  GC_dbgf("COPY_REGION Doing exhaustive check of tospace for invalid pointers.");
-  GC_cap_ptr * start = GC_cheri_getbase(GC_state.thread_local_region.tospace);
-  GC_cap_ptr * end = GC_cheri_getbase(GC_state.thread_local_region.tospace) + GC_cheri_getlen(GC_state.thread_local_region.tospace);
-  GC_cap_ptr * p;
-  for (p=start; p<end; p++)
-  {
-    if (GC_cheri_gettag(*p))
-    {
-      GC_fatalf("tospace non-empty");
-    }
-  }
-  GC_dbgf("COPY_REGION Finished exhaustive check of tospace for invalid pointers.");
-  
-  {
-  GC_dbgf("COPY_REGION Doing exhaustive check of fromspace for invalid pointers.");
-  GC_cap_ptr * start = GC_cheri_getbase(GC_state.thread_local_region.fromspace);
-  GC_cap_ptr * end = GC_cheri_getbase(GC_state.thread_local_region.fromspace) + GC_cheri_getlen(GC_state.thread_local_region.fromspace);
-  GC_cap_ptr * p;
-  for (p=start; p<end; p++)
-  {
-    if (GC_cheri_gettag(*p))
-    {
-      if (GC_cheri_getbase(*p) && !GC_IN(GC_cheri_getbase(*p), GC_state.thread_local_region.fromspace))
-      {
-        GC_debug_print_region_stats(&GC_state.thread_local_region);
-        GC_PRINT_CAP(*p);
-        GC_fatalf("*(0x%llx) = 0x%llx not in range [0x%llx, 0x%llx)",
-          (GC_ULL) p, (GC_ULL) GC_cheri_getbase(*p), (GC_ULL) start, (GC_ULL) end);
-      }
-      if (GC_IS_FORWARDING_ADDRESS(*p))
-      {
-        GC_debug_print_region_stats(&GC_state.thread_local_region);
-        GC_PRINT_CAP(*p);              
-        GC_fatalf("*(0x%llx) = 0x%llx is a forwarding address.",
-          (GC_ULL) p, (GC_ULL) GC_cheri_getbase(*p));
-      }
-    }
-  }
-  GC_dbgf("COPY_REGION Finished exhaustive check of fromspace for invalid pointers.");
-  }
-  
-  #define DO_CHECK do{\
-  GC_dbgf("#####Doing exhaustive check of tospace for invalid pointers."); \
-  GC_cap_ptr * start = GC_cheri_getbase(GC_state.thread_local_region.tospace); \
-  GC_cap_ptr * end = GC_cheri_getbase(GC_state.thread_local_region.tospace) + GC_cheri_getlen(GC_state.thread_local_region.tospace); \
-  GC_cap_ptr * p; \
-  for (p=start; p<end; p++) \
-  { \
-    if (GC_cheri_gettag(*p)) \
-    { \
-      if (GC_cheri_getbase(*p) && GC_IS_GC_ALLOCATED(*p) && !GC_IN(GC_cheri_getbase(*p), GC_state.thread_local_region.fromspace)) \
-      { \
-        printf("ptr not in fromspace: p=0x%llx\n", (GC_ULL) p); \
-        GC_PRINT_CAP(*p); \
-        GC_fatalf("dying"); \
-      } \
-      if (GC_IS_FORWARDING_ADDRESS(*p)) GC_fatalf("ptr forwarding"); \
-    } \
-  } \
-  GC_dbgf("####Finished exhaustive check of tospace for invalid pointers."); }while(0)
-  
-  printf("before region: 0x%llx region->fromspace: 0x%llx region->tospace: 0x%llx\n",
-    (GC_ULL) region, (GC_ULL) GC_cheri_getbase(region->fromspace), (GC_ULL) GC_cheri_getbase(region->tospace));
+    
   GC_copy_roots(
     region, GC_state.stack_top, GC_state.stack_bottom, is_generational, 0);
-  printf("after region: 0x%llx region->fromspace: 0x%llx region->tospace: 0x%llx\n",
-    (GC_ULL) region, (GC_ULL) GC_cheri_getbase(region->fromspace), (GC_ULL) GC_cheri_getbase(region->tospace));
-  printf("copyroots1\n");DO_CHECK;printf("copyroots1done\n");
   GC_copy_roots(
     region, GC_state.reg_bottom, GC_state.reg_top, is_generational, 0);
-  printf("copyroots2\n");DO_CHECK;printf("copyroots2done\n");
   GC_copy_roots(
     region, GC_state.static_bottom, GC_state.static_top, is_generational, 1);
-  printf("copyroots3\n");DO_CHECK;printf("copyroots3done\n");
   GC_copy_children(region, is_generational);
 #ifdef GC_GENERATIONAL
 #if (GC_OY_STORE_DEFAULT == GC_OY_STORE_REMEMBERED_SET)
@@ -271,61 +200,11 @@ GC_copy_object (struct GC_region * region,
   
   // No forwarding address present: do the actual copy and set the forwarding
   // address.
-  if (GC_cheri_getlen(region->free) < GC_cheri_getlen(cap))
-  {
-    printf("No free space but tried to copy a capability to 0x%llx\n", (GC_ULL) parent);
-    GC_debug_print_region_stats(region);
-    GC_PRINT_CAP(cap);
-    GC_fatalf("FATAL: no free space but tried to copy a capability (should never happen)");
-  }
+
   GC_assert( GC_cheri_getlen(region->free) >= GC_cheri_getlen(cap) );
     
-  {
-    GC_cap_ptr * start = GC_cheri_getbase(cap);
-    GC_assert(GC_IS_ALIGNED_32(start));
-    GC_cap_ptr * end = GC_cheri_getbase(cap) + GC_cheri_getlen(cap);
-    GC_cap_ptr * p;
-    for (p=start;p<end;p++)
-    {
-      if (GC_cheri_gettag(*p) && GC_IS_FORWARDING_ADDRESS(*p))// && GC_cheri_getbase(*p) && GC_IS_GC_ALLOCATED(*p) && !GC_IN(GC_cheri_getbase(*p), GC_state.thread_local_region.fromspace))
-      {
-        printf("before memcpy\n");
-        printf("in gc_copy_object: ptr not in fromspace (*p). Note: p=0x%llx (fromspace=[0x%llx, 0x%llx))\n",
-          (GC_ULL) p, (GC_ULL) GC_cheri_getbase(region->fromspace), (GC_ULL) (GC_cheri_getbase(region->fromspace)+GC_cheri_getlen(region->fromspace)));
-        printf("is forwarding? %d\n", (int) GC_IS_FORWARDING_ADDRESS(*p));
-        GC_PRINT_CAP(region->fromspace);
-        GC_PRINT_CAP(region->tospace);
-        GC_PRINT_CAP(*p);
-        GC_PRINT_CAP(cap);
-        GC_fatalf("dying\n");
-      }
-    }
-  }
-  
   GC_cap_ptr tmp = GC_cap_memcpy(region->free, cap);
 
-  {
-    GC_cap_ptr * start = GC_cheri_getbase(cap);
-    GC_assert(GC_IS_ALIGNED_32(start));
-    GC_cap_ptr * end = GC_cheri_getbase(cap) + GC_cheri_getlen(cap);
-    GC_cap_ptr * p;
-    for (p=start;p<end;p++)
-    {
-      if (GC_cheri_gettag(*p) && GC_IS_FORWARDING_ADDRESS(*p))
-      {
-        printf("after memcpy\n");
-        printf("in gc_copy_object: ptr not in fromspace (*p). Note: p=0x%llx (fromspace=[0x%llx, 0x%llx))\n",
-          (GC_ULL) p, (GC_ULL) GC_cheri_getbase(region->fromspace), (GC_ULL) (GC_cheri_getbase(region->fromspace)+GC_cheri_getlen(region->fromspace)));
-        printf("is forwarding? %d\n", (int) GC_IS_FORWARDING_ADDRESS(*p));
-        GC_PRINT_CAP(region->fromspace);
-        GC_PRINT_CAP(region->tospace);
-        GC_PRINT_CAP(*p);
-        GC_PRINT_CAP(cap);
-        GC_fatalf("dying");
-      }
-    }
-  }
-  
   tmp = GC_cheri_setlen(tmp, user_length);
   region->free =
     GC_setbaselen(
@@ -334,14 +213,6 @@ GC_copy_object (struct GC_region * region,
       GC_cheri_getlen (region->free)-GC_cheri_getlen(cap));
 
   tmp = GC_SET_GC_ALLOCATED(tmp);
-  
-  if (GC_cheri_getperm(tmp) != GC_cheri_getperm(cap))
-  {
-    printf("perms: 0x%llx 0x%llx\n",
-    (GC_ULL) GC_cheri_getperm(tmp), (GC_ULL) GC_cheri_getperm(cap));
-    GC_PRINT_CAP(tmp);
-    GC_PRINT_CAP(cap);
-  }
   
   GC_assert( GC_cheri_getperm(tmp) == GC_cheri_getperm(cap) );
 
@@ -468,14 +339,6 @@ GC_copy_children (struct GC_region * region,
        region->scan++)
   {
     GC_copy_child(region, region->scan, is_generational);
-    if (GC_cheri_gettag(*region->scan)){
-      if (GC_IS_FORWARDING_ADDRESS(*region->scan))
-      {
-        GC_PRINT_CAP(*region->scan);
-        printf("%d = GC_IN(GC_cheri_getbase(*child_addr), region->fromspace)", GC_IN(GC_cheri_getbase(*region->scan), region->fromspace));
-        GC_fatalf("cap at region->scan=0x%llx is a forwarding addr.",
-          (GC_ULL) region->scan);
-      }}
   }
 }
 

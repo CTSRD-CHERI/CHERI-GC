@@ -5,6 +5,7 @@
 #include "gc_low.h"
 #include "gc_config.h"
 
+// also declared in gc.h
 void
 GC_collect (void);
 

@@ -64,6 +64,9 @@ GC_malloc2
   size_t sz
 );
 
+void
+GC_collect (void);
+
 // the void* cast of GC_INVALID_PTR is guaranteed to be NULL
 //#define     GC_INVALID_PTR    cheri_zerocap()
 #define GC_INVALID_PTR GC_cheri_ptr(NULL, 0)

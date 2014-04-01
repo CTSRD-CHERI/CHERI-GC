@@ -3,7 +3,7 @@
 
 #define GC_DEBUG
 //#define GC_VERBOSE_DEBUG
-#define GC_THREAD_LOCAL_HEAP_SIZE             20000 // 20k
+#define GC_THREAD_LOCAL_HEAP_SIZE             1013 // 20k
 #define GC_OLD_GENERATION_SEMISPACE_SIZE      30000 // 30k
 
 // If old heap residency exceeds this, collect, and if that fails, grow.
@@ -23,6 +23,9 @@
 
 // Used to clobber a capability that's just been copied during a collection
 #define GC_MAGIC_JUST_COPIED                  0x45      // 'E'
+
+// Used when cleaning the stack
+#define GC_MAGIC_JUST_CLEARED_STACK           0x46      // 'F'
 
 // ----HEAP GROWING----
 // Current policies with GC_GENERATIONAL turned on:
@@ -54,7 +57,7 @@
 // Maximum sizes for when the heap does grow. Set to 0 to allow unlimited
 // growth.
 // TODO: the 0 setting
-#define GC_THREAD_LOCAL_HEAP_MAX_SIZE         20000
+#define GC_THREAD_LOCAL_HEAP_MAX_SIZE         25000
 #define GC_OLD_GENERATION_SEMISPACE_MAX_SIZE  30000
 
 // Determines whether we use generational GC or not. If disabled, only
@@ -81,5 +84,8 @@
 
 // Enable if you want the GC to time how long things take
 #define GC_TIME
+
+// Kind of temporary
+#define GC_MAX_STACK_TOP    (void*) 0x7ffffd0000
 
 #endif // GC_CONFIG_H_HEADER
