@@ -86,6 +86,10 @@ GC_collect_region (struct GC_region * region)
     region->fromspace = region->tospace;
     region->tospace = tmp;
     
+    void * tmp_misaligned = region->fromspace_misaligned;
+    region->fromspace_misaligned = region->tospace_misaligned;
+    region->tospace_misaligned = tmp;
+    
     region->free = region->tospace;
     region->scan = (GC_cap_ptr *) GC_cheri_getbase(region->tospace);
     
@@ -102,10 +106,6 @@ GC_collect_region (struct GC_region * region)
       GC_MEM_PRETTY((GC_ULL) new_used), GC_MEM_PRETTY_UNIT((GC_ULL) new_used),
       GC_MEM_PRETTY((GC_ULL) freed), GC_MEM_PRETTY_UNIT((GC_ULL) freed));
   }
-  
-  GC_state.stack_top = NULL;
-  GC_state.reg_bottom = NULL;
-  GC_state.reg_top = NULL;
 
   GC_debug_end_marking(space_start, space_end);
 
@@ -226,7 +226,10 @@ GC_copy_object (struct GC_region * region,
 
   tmp = GC_SET_GC_ALLOCATED(tmp);
   
+#ifndef GC_GENERATIONAL
+  // Not true always; consider young-old copy
   GC_assert( GC_cheri_getperm(tmp) == GC_cheri_getperm(cap) );
+#endif // GC_GENERATIONAL
 
 #ifdef GC_DEBUG
   // Clobber the old cap with a magic value, for debugging
@@ -391,9 +394,10 @@ GC_gen_promote (struct GC_region * region)
     // UNSAFE. It's only safe to grow the heap if all pointers to stuff inside
     // it are on the stack, in registers, in global areas or in the tospace
     // itself. This ignores young-old pointers!
-    GC_fatalf("UNSAFE growth here.");
-    GC_vdbgf("old generation too small, trying to grow");
-    too_small = !GC_grow(region->older_region, expected_sz);
+    //GC_fatalf("UNSAFE growth here.");
+    //GC_vdbgf("old generation too small, trying to grow");
+    //too_small = !GC_grow(region->older_region, expected_sz,
+    //                   region->max_grow_size_before_collection);
   }
 #endif // GC_GROW_OLD_HEAP
   if (too_small)
@@ -441,7 +445,7 @@ GC_gen_promote (struct GC_region * region)
     GC_MEM_PRETTY((GC_ULL) usedlen), GC_MEM_PRETTY_UNIT((GC_ULL) usedlen),
     residency
   );
-    
+  
   // Collect (and possibly grow) the heap if we've hit the high watermark. This
   // should usually be set so that if the collection and/or growth succeeds, the
   // next promotion cannot possibly fail. That is, we should always have at
@@ -465,22 +469,26 @@ GC_gen_promote (struct GC_region * region)
           ((double) GC_cheri_getlen(region->older_region->tospace))));
     GC_vdbgf("after collection heap residency=%d%%", residency);
 
-/*#ifdef GC_GROW_OLD_HEAP
-    // always grow the heap, even if collection succeeded in bringing the size
-    // down, so that it hopefully doesn't happen again.
-    GC_dbgf("trying to grow old generation");
-    too_small = !GC_grow(region->older_region,
-                         GC_cheri_getlen(region->older_region->free));
-    residency = 
-        (int) (100.0 * (1.0 -
-          ((double) GC_cheri_getlen(region->older_region->free)) /
-          ((double) GC_cheri_getlen(region->older_region->tospace))));
-    GC_dbgf("after growth heap residency=%d%%", residency);
-#else // GC_GROW_OLD_HEAP*/
     too_small = GC_cheri_getlen(region->older_region->free) <
                 ((size_t) ((1.0-GC_OLD_GENERATION_HIGH_WATERMARK) *
                   (double)GC_cheri_getlen(region->older_region->tospace)));
-//#endif // GC_GROW_OLD_HEAP
+    
+    if (too_small)
+    {
+#ifdef GC_GROW_OLD_HEAP
+      // always grow the heap, even if collection succeeded in bringing the size
+      // down, so that it hopefully doesn't happen again.
+      GC_dbgf("trying to grow old generation");
+      too_small = !GC_grow(region->older_region,
+                           GC_cheri_getlen(region->older_region->free),
+                           region->max_grow_size_after_collection);
+      residency = 
+          (int) (100.0 * (1.0 -
+            ((double) GC_cheri_getlen(region->older_region->free)) /
+            ((double) GC_cheri_getlen(region->older_region->tospace))));
+      GC_dbgf("after growth heap residency=%d%%", residency);
+#endif // GC_GROW_OLD_HEAP
+    }
   }
 
   if (too_small)
@@ -511,7 +519,8 @@ GC_region_rebase (struct GC_region * region, void * old_base, size_t old_size)
   
   GC_dbgf("rebasing region\n");
   
-  GC_vdbgf(
+  GC_dbgf(
+    "\n"
     "old_base = 0x%llx\n"
     "old_size = %llu%s\n"
     "old_end  = 0x%llx\n"
@@ -526,20 +535,37 @@ GC_region_rebase (struct GC_region * region, void * old_base, size_t old_size)
     (GC_ULL) (new_base+new_size)
   );
   
-  GC_PUSH_CAP_REGS(cap_regs);
+  //GC_PUSH_CAP_REGS(cap_regs);
   
   // Now unneeded, because GC_IS_GC_ALLOCATED(region->free) is not true.
   // TODO: make sure this stays on the stack!  
   //GC_cap_ptr free_ptr_on_the_stack = region->free;
   GC_assert( !GC_IS_GC_ALLOCATED(region->free) );
   
-  void * stack_top = NULL;
-  GC_GET_STACK_PTR(stack_top);
+  //void * stack_top = NULL;
+  //GC_GET_STACK_PTR(stack_top);
   
-  GC_assert(stack_top <= GC_state.stack_bottom);
+  GC_dbgf("The registers lie between 0x%llx and 0x%llx",
+    (GC_ULL) GC_state.reg_bottom, (GC_ULL) GC_state.reg_top);
+  GC_dbgf("The stack to scan lies between 0x%llx and 0x%llx",
+    (GC_ULL) GC_state.stack_top, (GC_ULL) GC_state.stack_bottom);
+  
+  GC_assert( GC_state.stack_top && GC_state.reg_bottom && GC_state.reg_top );
+
+  GC_assert( GC_state.stack_top <= GC_state.stack_bottom );
+
+  GC_PRINT_CAP(region->free);
+  GC_PRINT_CAP(region->tospace);
+
+  GC_assert(
+    (GC_cheri_getbase(region->free) >= old_base) &&
+    (GC_cheri_getbase(region->free) <= (old_base+old_size))
+  );
   
   // These areas must not overlap.
-  GC_rebase(stack_top, GC_state.stack_bottom,
+  GC_rebase(GC_state.stack_top, GC_state.stack_bottom,
+            old_base, old_size, new_base);
+  GC_rebase(GC_state.reg_bottom, GC_state.reg_top,
             old_base, old_size, new_base);
   GC_rebase(GC_state.static_bottom, GC_state.static_top,
             old_base, old_size, new_base);
@@ -578,13 +604,21 @@ GC_region_rebase (struct GC_region * region, void * old_base, size_t old_size)
   // is this OK?
   region->scan = ((void*)region->scan)-old_base+new_base;
   
+  GC_assert(
+    (GC_cheri_getbase(region->free) >= old_base) &&
+    (GC_cheri_getbase(region->free) <= (old_base+old_size))
+  );
+  
   // used to fail due to aliasing, but now ok due to GC_IS_GC_ALLOCATED
   region->free =
     GC_setbase(
       region->free,
       GC_cheri_getbase(region->free) - old_base + new_base);
   
-  GC_RESTORE_CAP_REGS(cap_regs);
+  GC_assert(
+    GC_IN_OR_ON_BOUNDARY(GC_cheri_getbase(region->free), region->tospace) );
+  
+  //GC_RESTORE_CAP_REGS(cap_regs);
   
   GC_STOP_TIMING_PRINT(GC_region_rebase_time, "region rebase");
 }
@@ -632,7 +666,7 @@ GC_rebase (void * start,
                    (GC_ULL) base);
         *p = GC_setbase(*p, (base-old_base)+new_base);
         
-        GC_assert( GC_IS_GC_ALLOCATED(*p) );
+        //GC_assert( GC_IS_GC_ALLOCATED(*p) );
         
         //*p = GC_MAKE_FORWARDING_ADDRESS(*p);
       }

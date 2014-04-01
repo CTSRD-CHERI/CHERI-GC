@@ -283,7 +283,7 @@ GC_cap_memclr (GC_cap_ptr dest)
 __capability void * __capability *
 GC_handle_oy_store (__capability void * __capability * x, GC_cap_ptr y)
 {
-  GC_dbgf("old-young store : *(0x%llx) := 0x%llx", (GC_ULL) x, (GC_ULL) y);
+  GC_vdbgf("old-young store : *(0x%llx) := 0x%llx", (GC_ULL) x, (GC_ULL) y);
   
   //GC_fatalf("unhandled for now, quitting.");
   
@@ -324,7 +324,7 @@ GC_grow (struct GC_region * region, size_t hint, size_t max_size)
     
   size_t old_size = GC_cheri_getlen(region->tospace);
   
-  if (old_size == max_size)
+  if (old_size >= max_size)
   {
     GC_vdbgf("GC_grow(): region already max size (%llu%s)",
       GC_MEM_PRETTY((GC_ULL) max_size),
@@ -336,11 +336,8 @@ GC_grow (struct GC_region * region, size_t hint, size_t max_size)
   
   size_t new_size =
     max_size ?
-    GC_ALIGN_32(
-      GC_MIN(GC_MAX(2*old_size, (old_size+hint)), max_size),
-      size_t) :
-    GC_ALIGN_32(
-      GC_MAX(2*old_size, (old_size+hint)), size_t);
+    GC_ALIGN_32(GC_MIN(GC_MAX(2*old_size, (old_size+hint)), max_size), size_t) :
+    GC_ALIGN_32(GC_MAX(2*old_size, (old_size+hint)), size_t);
   
   GC_dbgf("GC_grow(): hint=%llu%s, current=%llu%s, trying=%llu%s, max=%llu%s",
     GC_MEM_PRETTY((GC_ULL) hint), GC_MEM_PRETTY_UNIT((GC_ULL) hint),
@@ -348,6 +345,11 @@ GC_grow (struct GC_region * region, size_t hint, size_t max_size)
     GC_MEM_PRETTY((GC_ULL) new_size), GC_MEM_PRETTY_UNIT((GC_ULL) new_size),
     GC_MEM_PRETTY((GC_ULL) max_size),
     GC_MEM_PRETTY_UNIT((GC_ULL) max_size));
+  
+  GC_PRINT_CAP(region->free);
+  GC_PRINT_CAP(region->tospace);
+  printf("old tospace base misaligned *actual* 0x%llx 0x%llx\n", (GC_ULL) region->tospace_misaligned, (GC_ULL) (GC_ULL) GC_cheri_getbase(region->tospace));
+  printf("old tospace 0x%llx\n", (GC_ULL) old_tospace_base_misaligned);
   
   // This is now non-trivial.
   // The reallocation could move the chunk of memory allocated to the tospace,
@@ -439,6 +441,8 @@ GC_grow (struct GC_region * region, size_t hint, size_t max_size)
     // collection routines, but for code simplicity and flexibility we don't
     // bother with that and just do the scan now.
     GC_vdbgf("GC_grow(): region needs rebasing");
+    
+  printf("old tospace 0x%llx\n", (GC_ULL) old_tospace_base_misaligned);
     GC_region_rebase(
       region,
       GC_ALIGN_32(old_tospace_base_misaligned, void *),
@@ -449,7 +453,14 @@ GC_grow (struct GC_region * region, size_t hint, size_t max_size)
       GC_ALIGN_32(new_tospace_base_misaligned, void *));
   }
   
-  GC_assert( GC_IN(GC_cheri_getbase(region->free), region->tospace) );
+  if (!GC_IN_OR_ON_BOUNDARY(GC_cheri_getbase(region->free), region->tospace))
+  {
+    GC_PRINT_CAP(region->free);
+    GC_PRINT_CAP(region->tospace);
+  }
+
+  GC_assert(
+    GC_IN_OR_ON_BOUNDARY(GC_cheri_getbase(region->free), region->tospace) );
   
   GC_vdbgf(
     "GC_grow():\n"

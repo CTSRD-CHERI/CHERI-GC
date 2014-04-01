@@ -200,8 +200,9 @@ GC_set_wb_type (int wb_type)
 {
   if (!GC_is_initialized)
   {
-    int rc = GC_init();
-    if (rc) return rc;
+    //int rc = GC_init();
+    //if (rc) return rc;
+    GC_fatalf("GC not initialized, call GC_init from main.");
   }
   GC_state.wb_type = wb_type;
   return 0;

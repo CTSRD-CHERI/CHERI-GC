@@ -40,6 +40,8 @@ void
 realloc_preserves_caps_test (void);
 void
 fill_test (void);
+void
+stack_fill_test (void);
 
 int
 main (int argc, char **argv)
@@ -51,8 +53,27 @@ main (int argc, char **argv)
   //grow_test();
   //low_realloc_test();
   //realloc_preserves_caps_test();
-  fill_test();
+  //fill_test();
+  stack_fill_test();
   return 0;
+}
+
+void
+stack_fill_test (void)
+{
+  void * stack_ptr = NULL;
+  GC_GET_STACK_PTR(stack_ptr);
+  GC_cap_ptr * p;
+  for (p=GC_ALIGN_32(GC_MAX_STACK_TOP, GC_cap_ptr *);
+       p<GC_ALIGN_32_LOW(stack_ptr, GC_cap_ptr *);
+       p++)
+  {
+    *p = GC_SET_GC_ALLOCATED(
+      GC_cheri_setbaselen(
+        GC_state.region.tospace,
+        GC_cheri_getbase(GC_state.region.tospace)+0x80,
+        0x20));
+  }
 }
 
 static void

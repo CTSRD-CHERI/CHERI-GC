@@ -48,8 +48,16 @@
   "G" \
 )
 
+#ifdef GC_GENERATIONAL
+#define GC_CHECK_ADDRESS(addr) \
+( \
+  GC_IN((addr), GC_state.thread_local_region.tospace) || \
+  GC_IN((addr), GC_state.old_generation.tospace) \
+)
+#else // GC_GENERATIONAL
 #define GC_CHECK_ADDRESS(addr) \
   GC_IN((addr), GC_state.thread_local_region.tospace)
+#endif // GC_GENERATIONAL
 
 
 #define GC_PRINT_CAP(cap) GC_debug_print_cap(#cap, (cap))

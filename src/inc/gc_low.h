@@ -182,6 +182,20 @@ typedef __capability void * GC_cap_ptr;
 // moves somewhere afterwards then tmpy should be updated because it is a root).
 #define GC_STORE_CAP(x,y) \
   do { \
+    __capability void * tmpy = (y); \
+    __capability void * __capability * tmpx = (__capability void * __capability *) &(x); \
+    if (GC_IN(tmpx, GC_state.old_generation.tospace)) \
+    { \
+      if (GC_IN(tmpy, GC_state.thread_local_region.tospace)) \
+      { \
+        GC_handle_oy_store(tmpx, tmpy); \
+      } \
+    } \
+    *tmpx = tmpy; \
+    tmpx = (__capability void * __capability *) GC_cheri_ptr(NULL, 0); \
+  } while (0)
+//#define GC_STORE_CAP(x,y) \
+  do { \
     printf("[GC_STORE_CAP] Begin processing %s = %s &x=0x%llx\n", #x, #y, (unsigned long long) &x); \
     __capability void * tmpy = (y); \
     printf("evaluated %s to get 0x%llx\n", #y, (GC_ULL) tmpy); \
@@ -209,7 +223,6 @@ typedef __capability void * GC_cap_ptr;
     tmpx = (__capability void * __capability *) GC_cheri_ptr(NULL, 0); \
     printf("[GC_STORE_CAP] __DONE__: %s=%s\n", #x, #y); \
   } while (0)
-  
   
 #define GC_STORE_CAP_OLD(x,y) \
   do { \
@@ -463,22 +476,22 @@ do { \
   char * stk; \
   void * stack_ptr = NULL; \
   GC_GET_STACK_PTR(stack_ptr); \
-  GC_state.stack_top = GC_MAX_STACK_TOP; \
+  /*GC_state.stack_top = GC_MAX_STACK_TOP;*/ \
   /*GC_assert(GC_state.stack_top == GC_MAX_STACK_TOP);*/ \
   GC_dbgf("Cleaning the stack from 0x%llx to 0x%llx\n", \
-    (GC_ULL) GC_state.stack_top, (GC_ULL) stack_ptr); \
-  GC_assert((stack_ptr-GC_state.stack_top) > 0); \
+    (GC_ULL) GC_MAX_STACK_TOP, (GC_ULL) stack_ptr); \
+  GC_assert((stack_ptr-GC_MAX_STACK_TOP) > 0); \
   /* can't use memset because it would clobber its own data while running ;) */ \
   /*for (stk=GC_state.stack_top; stk<(char*)stack_ptr; stk++) \
   { \
     *stk = GC_MAGIC_JUST_CLEARED_STACK; \
   }*/ \
   GC_cap_ptr * p; \
-  for (p=GC_ALIGN_32(GC_state.stack_top, GC_cap_ptr *); \
+  for (p=GC_ALIGN_32(GC_MAX_STACK_TOP, GC_cap_ptr *); \
        p<GC_ALIGN_32_LOW(stack_ptr, GC_cap_ptr *); \
        p++) \
   { \
-    *p = GC_INVALID_PTR; \
+    if (GC_cheri_gettag(*p)) *p = GC_INVALID_PTR; \
   } \
   GC_STOP_TIMING_PRINT(stack_clean_time, "stack clean"); \
 } while (0)
