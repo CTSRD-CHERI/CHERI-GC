@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-GC_CAP char *
+GC_USER_FUNC GC_CAP char *
 copy_string (GC_CAP const char * str)
 {
   size_t len = strlen((const char *) str)+1;
@@ -20,7 +20,7 @@ copy_string (GC_CAP const char * str)
   return copy;
 }
 
-void
+GC_USER_FUNC void
 lex_read_file (GC_CAP const char * name)
 {
   lex_state.num_tokens = 0;
@@ -58,7 +58,7 @@ lex_read_file (GC_CAP const char * name)
   fclose(file);
 }
 
-void
+GC_USER_FUNC void
 lex_read_string (GC_CAP const char * str)
 {
   lex_state.num_tokens = 0;
@@ -90,7 +90,7 @@ lex_read_string (GC_CAP const char * str)
   ((c) == ' ') || ((c) == '\t') || ((c) == '\n') || ((c) == '\r') \
 )
 
-GC_CAP token_t *
+GC_USER_FUNC GC_CAP token_t *
 lex (void)
 {
   GC_CAP token_t * t = GC_INVALID_PTR;
@@ -216,7 +216,7 @@ lex (void)
   return t;
 }
 
-void
+GC_USER_FUNC void
 ml_itoa (unsigned num, GC_CAP char * buf)
 {
   int i = 0, j;

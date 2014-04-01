@@ -1,3 +1,4 @@
+#include "gc_common.h"
 #include "gc_init.h"
 #include "gc_debug.h"
 #include "gc_low.h"
@@ -11,7 +12,7 @@
 struct GC_state_struct GC_state = {.initialized = 0};
 __capability struct GC_state_struct * GC_state_cap;
 
-int
+GC_FUNC int
 GC_init2 (void * arg_for_stack_bottom, const char * file, int line)
 {
   if (!GC_state.initialized)
@@ -55,8 +56,10 @@ GC_init2 (void * arg_for_stack_bottom, const char * file, int line)
     GC_dbgf("The stack bottom is probably near 0x%llx\n",
       (GC_ULL) GC_state.stack_bottom);
       
+#ifdef GC_USE_GC_STACK_CLEAN
     GC_state.stack_top = GC_MAX_STACK_TOP;
     GC_CLEAN_STACK();
+#endif // GC_USE_GC_STACK_CLEAN
     
     GC_state.static_bottom = GC_get_static_bottom();
     if (GC_state.stack_bottom == NULL) return 1;
@@ -70,13 +73,13 @@ GC_init2 (void * arg_for_stack_bottom, const char * file, int line)
   return 0;
 }
 
-int
+GC_FUNC int
 GC_is_initialized (void)
 {
   return GC_state.initialized;
 }
 
-int
+GC_FUNC int
 #ifdef GC_GENERATIONAL
 GC_init_old_region
 #else // GC_GENERATIONAL
@@ -137,13 +140,13 @@ GC_init_region
 }
 
 #ifdef GC_GENERATIONAL
-int
+GC_FUNC int
 GC_is_young (struct GC_region * region)
 {
   return (GC_cheri_getbase(region->older_region) != NULL);
 }
 
-int
+GC_FUNC int
 GC_init_young_region (struct GC_region * region,
                       struct GC_region * older_region,                      
                       size_t sz,
@@ -200,7 +203,7 @@ GC_init_young_region (struct GC_region * region,
   return 0;
 }
 
-int
+GC_FUNC int
 GC_set_wb_type (int wb_type)
 {
   if (!GC_is_initialized)

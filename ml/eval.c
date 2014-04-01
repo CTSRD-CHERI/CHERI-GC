@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-void
+GC_USER_FUNC void
 print_val (GC_CAP val_t * val)
 {
   if (!PTR_VALID(val))
@@ -31,7 +31,7 @@ print_val (GC_CAP val_t * val)
   }
 }
 
-void
+GC_USER_FUNC void
 print_env (GC_CAP env_t * env)
 {
   printf("env[");
@@ -45,7 +45,7 @@ print_env (GC_CAP env_t * env)
   printf("]");
 }
 
-void
+GC_USER_FUNC void
 print_ast (GC_CAP expr_t * expr)
 {
   if (!PTR_VALID(expr))
@@ -110,7 +110,7 @@ print_ast (GC_CAP expr_t * expr)
   }
 }
 
-GC_CAP val_t *
+GC_USER_FUNC GC_CAP val_t *
 lookup (GC_CAP char * name, GC_CAP env_t * env)
 {
   while (PTR_VALID(env))
@@ -126,7 +126,7 @@ lookup (GC_CAP char * name, GC_CAP env_t * env)
   return GC_INVALID_PTR; // should never reach here
 }
 
-GC_CAP val_t *
+GC_USER_FUNC GC_CAP val_t *
 eval (GC_CAP expr_t * expr, GC_CAP env_t * env)
 {
   if (!PTR_VALID(expr))

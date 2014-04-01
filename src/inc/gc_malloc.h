@@ -1,6 +1,7 @@
 #ifndef GC_MALLOC_H_HEADER
 #define GC_MALLOC_H_HEADER
 
+#include "gc_common.h"
 #include "gc_init.h"
 #include "gc_config.h"
 
@@ -16,7 +17,7 @@
 #define GC_malloc GC_malloc2
 #endif // GC_DEBUG
 
-__capability void *
+GC_FUNC __capability void *
 GC_malloc2
 (
 #ifdef GC_DEBUG
@@ -25,14 +26,16 @@ GC_malloc2
   size_t sz
 );
 
-__capability void *
+GC_FUNC __capability void *
 GC_malloc_region
 (
 #ifdef GC_DEBUG
   const char * file, int line,
 #endif // GC_DEBUG
-  struct GC_region * region, size_t sz, int collect_on_failure,
-  int * collected
+  struct GC_region * region, size_t sz, int collect_on_failure
+#ifdef GC_USE_GC_STACK_CLEAN
+  , int * collected
+#endif // GC_USE_GC_STACK_CLEAN
 );
 
 #endif // GC_MALLOC_H_HEADER

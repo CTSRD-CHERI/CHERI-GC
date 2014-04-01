@@ -1,3 +1,4 @@
+#include "gc_common.h"
 #include "gc_collect.h"
 #include "gc_init.h"
 #include "gc_low.h"
@@ -9,7 +10,7 @@
 #include <stddef.h>
 #include <string.h>
 
-void
+GC_FUNC void
 GC_collect (void)
 {
   int local;
@@ -31,11 +32,14 @@ GC_collect (void)
   }
   GC_collect_region(&GC_state.thread_local_region);
   
-  GC_CLEAN_STACK();
   GC_RESTORE_REG_STATE();
+  
+#ifdef GC_USE_GC_STACK_CLEAN
+  GC_CLEAN_STACK();
+#endif // GC_USE_GC_STACK_CLEAN
 }
 
-void
+GC_FUNC void
 GC_collect_region (struct GC_region * region)
 {
   GC_START_TIMING(GC_collect_region_time);
@@ -53,7 +57,7 @@ GC_collect_region (struct GC_region * region)
   GC_assert(
     GC_IN_OR_ON_BOUNDARY(GC_cheri_getbase(region->free), region->tospace) );
   
-  GC_CLEAN_STACK();
+  //GC_CLEAN_STACK();
   
   size_t freed;
   int promoted = 0;
@@ -117,7 +121,7 @@ GC_collect_region (struct GC_region * region)
   
 }
 
-void
+GC_FUNC void
 GC_copy_region (struct GC_region * region,
                 int is_generational)
 { 
@@ -171,7 +175,7 @@ GC_copy_region (struct GC_region * region,
   GC_cap_memclr(region->fromspace);
 }
 
-GC_cap_ptr
+GC_FUNC GC_cap_ptr
 GC_copy_object (struct GC_region * region,
                 GC_cap_ptr cap,
                 void * parent) // parent for debugging only
@@ -248,7 +252,7 @@ GC_copy_object (struct GC_region * region,
   return tmp;
 }
 
-void
+GC_FUNC void
 GC_copy_roots (struct GC_region * region,
                void * root_start,
                void * root_end,
@@ -310,7 +314,7 @@ GC_copy_roots (struct GC_region * region,
   GC_vdbgf("roots copied");
 }
 
-void
+GC_FUNC void
 GC_copy_child (struct GC_region * region,
                GC_cap_ptr * child_addr,
                int is_generational)
@@ -340,7 +344,7 @@ GC_copy_child (struct GC_region * region,
   }
 }
 
-void
+GC_FUNC void
 GC_copy_children (struct GC_region * region,
                   int is_generational)
 {
@@ -359,7 +363,7 @@ GC_copy_children (struct GC_region * region,
 
 #ifdef GC_GENERATIONAL
 #if (GC_OY_STORE_DEFAULT == GC_OY_STORE_REMEMBERED_SET)
-void
+GC_FUNC void
 GC_copy_remembered_set (struct GC_region * region)
 {
   if (region->remset)
@@ -380,7 +384,7 @@ GC_copy_remembered_set (struct GC_region * region)
 }
 #endif // GC_OY_STORE_DEFAULT
 
-void
+GC_FUNC void
 GC_gen_promote (struct GC_region * region)
 {
   // Conservative estimate. Usually requires the old generation to have at least
@@ -507,7 +511,7 @@ GC_gen_promote (struct GC_region * region)
 }
 #endif // GC_GENERATIONAL
 
-void
+GC_FUNC void
 GC_region_rebase (struct GC_region * region, void * old_base, size_t old_size)
 {
   // NOTE: could use the relevant permission bit for checking whether a capability
@@ -630,7 +634,7 @@ GC_region_rebase (struct GC_region * region, void * old_base, size_t old_size)
   GC_STOP_TIMING_PRINT(GC_region_rebase_time, "region rebase");
 }
 
-void
+GC_FUNC void
 GC_rebase (void * start,
            void * end,
            void * old_base,
@@ -683,8 +687,9 @@ GC_rebase (void * start,
   //GC_clean_forwarding(start, end);
 }
 
-void GC_clean_forwarding (void * start,
-                          void * end)
+GC_FUNC void
+GC_clean_forwarding (void * start,
+                     void * end)
 {
   start = GC_ALIGN_32(start, void *);
   end = GC_ALIGN_32_LOW(end, void *);

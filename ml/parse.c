@@ -6,7 +6,7 @@
 #include <string.h>
 
 // used by function application parsing
-int
+GC_USER_FUNC int
 parser_is_at_start_of_expression (void)
 {
   // TODO: this
@@ -18,14 +18,14 @@ parser_is_at_start_of_expression (void)
     || (parse_tok_eq(TKINT, GC_INVALID_PTR));
 }
 
-void
+GC_USER_FUNC void
 parse_init (void)
 {
   parse_state.tok = GC_INVALID_PTR;
   parse_get_next_tok();
 }
 
-GC_CAP expr_t *
+GC_USER_FUNC GC_CAP expr_t *
 parse2 (const char * file, int line)
 {
   //printf("parse(): called from %s:%d\n", file, line);
@@ -35,170 +35,178 @@ parse2 (const char * file, int line)
   return result;
 }
 
-GC_CAP expr_t *
+GC_USER_FUNC GC_CAP expr_t *
 parse_cons (void)
 {
-  return parse_op(GC_cheri_ptr("::", sizeof("::")), &parse_greater_than);
+  return parse_op(GC_cheri_ptr("::", sizeof("::")), parse_greater_than);
 }
 
-GC_CAP expr_t *
+GC_USER_FUNC GC_CAP expr_t *
 parse_greater_than (void)
 {
-  return parse_op(GC_cheri_ptr(">", sizeof(">")), &parse_less_than);
+  return parse_op(GC_cheri_ptr(">", sizeof(">")), parse_less_than);
 }
 
-GC_CAP expr_t *
+GC_USER_FUNC GC_CAP expr_t *
 parse_less_than (void)
 {
-  return parse_op(GC_cheri_ptr("<", sizeof("<")), &parse_add);
+  return parse_op(GC_cheri_ptr("<", sizeof("<")), parse_add);
 }
 
-GC_CAP expr_t *
+GC_USER_FUNC GC_CAP expr_t *
 parse_add (void)
 {
-  return parse_op(GC_cheri_ptr("+", sizeof("+")), &parse_sub);
+  return parse_op(GC_cheri_ptr("+", sizeof("+")), parse_sub);
 }
 
-GC_CAP expr_t *
+GC_USER_FUNC GC_CAP expr_t *
 parse_sub (void)
 {
-  return parse_op(GC_cheri_ptr("-", sizeof("-")), &parse_mul);
+  return parse_op(GC_cheri_ptr("-", sizeof("-")), parse_mul);
 }
 
-GC_CAP expr_t *
+GC_USER_FUNC GC_CAP expr_t *
 parse_mul (void)
 {
-  return parse_op(GC_cheri_ptr("*", sizeof("*")), &parse_div);
+  return parse_op(GC_cheri_ptr("*", sizeof("*")), parse_div);
 }
 
-GC_CAP expr_t *
+GC_USER_FUNC GC_CAP expr_t *
 parse_div (void)
 {
-  return parse_op(GC_cheri_ptr("/", sizeof("/")), &parse_app);
+  return parse_op(GC_cheri_ptr("/", sizeof("/")), parse_app);
 }
 
-GC_CAP expr_t *
+GC_USER_FUNC GC_CAP expr_t *
 parse_app (void)
 {
-  return parse_op(GC_cheri_ptr("", sizeof("")), &parse_base_expr);
+  return parse_op(GC_cheri_ptr("", sizeof("")), parse_base_expr);
 }
 
 
 // (left-assoc)
 // if op is "" then we're parsing a function application instead.
-GC_CAP expr_t *
+/*GC_USER_FUNC GC_CAP expr_t *
 parse_op (GC_CAP const char * op,
-          GC_CAP expr_t * (*lower_precedence_func)(void))
-{
-  size_t oplen = strlen((const char *) op)+1;
-  GC_CAP expr_t * expr = GC_INVALID_PTR;
-  GC_STORE_CAP(expr, ml_malloc(sizeof(expr_t)));
-  if (!PTR_VALID(expr))
-  {
-    fprintf(stderr, "parse_op(): out of memory allocating expr_t\n");
-    exit(1);
-  }
-  ((expr_t*)expr)->type = EXPR_OP;
-  
-  ((expr_t*)expr)->op_expr = GC_INVALID_PTR;
-  GC_STORE_CAP(((expr_t*)expr)->op_expr, ml_malloc(sizeof(op_expr_t)));
-  if (!PTR_VALID(((expr_t*)expr)->op_expr))
-  {
-    fprintf(stderr, "parse_op(): out of memory allocating op_expr_t\n");
-    exit(1);
-  }
-  
-  GC_CAP expr_t * a = GC_INVALID_PTR;
-  GC_STORE_CAP(a, lower_precedence_func());
-  if (!PTR_VALID(a))
-  {
-    fprintf(stderr, "parse_op(): warning: invalid pointer a\n");
-    return a;
-  }
-  
-  if (oplen > 1)
-  {
-    // op is a normal operator, check if it's present
-    if (!parse_tok_eq(TKSYM, op))
-    {
-      return a;
-    }
-  }
-  else
-  {
-    // op is a function application; check if at valid start of another
-    // expression
-    if (!parser_is_at_start_of_expression())
-    {
-      return a;
-    }
-  }
-  
-  ((op_expr_t *) ((expr_t*)expr)->op_expr)->a = GC_INVALID_PTR;
-  GC_STORE_CAP(((op_expr_t *) ((expr_t*)expr)->op_expr)->a, a);
-  ((op_expr_t *) ((expr_t*)expr)->op_expr)->b = GC_INVALID_PTR;
-  ((op_expr_t *) ((expr_t*)expr)->op_expr)->op = GC_INVALID_PTR;
-  GC_STORE_CAP(((op_expr_t *) ((expr_t*)expr)->op_expr)->op, copy_string(op));
-  while (1)
-  {
-    if (oplen > 1)
-    {
-      // normal op
-      if (!parse_tok_eq(TKSYM, op)) break;
-      parse_get_next_tok();
-      parse_eof_error();
-    }
-    else
-    {
-      // function application op
-      if (!parser_is_at_start_of_expression()) break;
-    }
-    
-    GC_CAP expr_t * b = GC_INVALID_PTR;
-    GC_STORE_CAP(b, lower_precedence_func());
-    if (!PTR_VALID(b))
-    {
-      fprintf(stderr, "parse_op(): warning: invalid pointer b\n");
-      return b;
-    }
-    
-    if (!PTR_VALID(((op_expr_t *)((expr_t*)expr)->op_expr)->b))
-    {
-      ((op_expr_t *)((expr_t*)expr)->op_expr)->b = GC_INVALID_PTR;
-      GC_STORE_CAP(((op_expr_t *)((expr_t*)expr)->op_expr)->b, b);
-    }
-    else
-    {
-      GC_CAP op_expr_t * new_op_expr = GC_INVALID_PTR;
-      GC_STORE_CAP(new_op_expr, ml_malloc(sizeof(op_expr_t)));
-      if (!PTR_VALID(new_op_expr))
-      {
-        fprintf(stderr,
-          "parse_op(): out of memory allocating a new op_expr_t\n");
-        exit(1);
-      }
-      ((op_expr_t *) new_op_expr)->a = GC_INVALID_PTR;
-      GC_STORE_CAP(((op_expr_t *) new_op_expr)->a, expr);
-      ((op_expr_t *) new_op_expr)->b = GC_INVALID_PTR;
-      GC_STORE_CAP(((op_expr_t *) new_op_expr)->b, b);
-      ((op_expr_t *) new_op_expr)->op = GC_INVALID_PTR;
-      GC_STORE_CAP(((op_expr_t *) new_op_expr)->op, copy_string(op));
+          void * lower_precedence_func)*/
 
-      GC_STORE_CAP(expr, ml_malloc(sizeof(expr_t)));
-      if (!PTR_VALID(expr))
-      {
-        fprintf(stderr, "parse_op(): out of memory allocating a new expr_t\n");
-        exit(1);
-      }
-      ((expr_t*)expr)->type = EXPR_OP;
-      ((expr_t*)expr)->op_expr = GC_INVALID_PTR;
-      GC_STORE_CAP(((expr_t*)expr)->op_expr, new_op_expr);
-    }
-  }
-  return expr;
+#define PARSE_OP_DEFINE(op,lower_precedence_func) \
+GC_USER_FUNC GC_CAP expr_t * \
+  parse_op__##lower_precedence_func(GC_CAP const char * op) \
+{ \
+  size_t oplen = strlen((const char *) op)+1; \
+  GC_CAP expr_t * expr = GC_INVALID_PTR; \
+  GC_STORE_CAP(expr, ml_malloc(sizeof(expr_t))); \
+  if (!PTR_VALID(expr)) \
+  { \
+    fprintf(stderr, "parse_op(): out of memory allocating expr_t\n"); \
+    exit(1); \
+  } \
+  ((expr_t*)expr)->type = EXPR_OP; \
+  \
+  ((expr_t*)expr)->op_expr = GC_INVALID_PTR; \
+  GC_STORE_CAP(((expr_t*)expr)->op_expr, ml_malloc(sizeof(op_expr_t))); \
+  if (!PTR_VALID(((expr_t*)expr)->op_expr)) \
+  { \
+    fprintf(stderr, "parse_op(): out of memory allocating op_expr_t\n"); \
+    exit(1); \
+  } \
+   \
+  GC_CAP expr_t * a = GC_INVALID_PTR; \
+  GC_STORE_CAP(a, lower_precedence_func()); \
+  if (!PTR_VALID(a)) \
+  { \
+    fprintf(stderr, "parse_op(): warning: invalid pointer a\n"); \
+    return a; \
+  } \
+   \
+  if (oplen > 1) \
+  { \
+    /* op is a normal operator, check if it's present */ \
+    if (!parse_tok_eq(TKSYM, op)) \
+    { \
+      return a; \
+    } \
+  } \
+  else \
+  { \
+    /* op is a function application; check if at valid start of another */ \
+    /* expression */ \
+    if (!parser_is_at_start_of_expression()) \
+    { \
+      return a; \
+    } \
+  } \
+   \
+  ((op_expr_t *) ((expr_t*)expr)->op_expr)->a = GC_INVALID_PTR; \
+  GC_STORE_CAP(((op_expr_t *) ((expr_t*)expr)->op_expr)->a, a); \
+  ((op_expr_t *) ((expr_t*)expr)->op_expr)->b = GC_INVALID_PTR; \
+  ((op_expr_t *) ((expr_t*)expr)->op_expr)->op = GC_INVALID_PTR; \
+  GC_STORE_CAP(((op_expr_t *) ((expr_t*)expr)->op_expr)->op, copy_string(op)); \
+  while (1) \
+  { \
+    if (oplen > 1) \
+    { \
+      /* normal op */ \
+      if (!parse_tok_eq(TKSYM, op)) break; \
+      parse_get_next_tok(); \
+      parse_eof_error(); \
+    } \
+    else \
+    { \
+      /* function application op */ \
+      if (!parser_is_at_start_of_expression()) break; \
+    } \
+     \
+    GC_CAP expr_t * b = GC_INVALID_PTR; \
+    GC_STORE_CAP(b, lower_precedence_func()); \
+    if (!PTR_VALID(b)) \
+    { \
+      fprintf(stderr, "parse_op(): warning: invalid pointer b\n"); \
+      return b; \
+    } \
+    \
+    if (!PTR_VALID(((op_expr_t *)((expr_t*)expr)->op_expr)->b)) \
+    { \
+      ((op_expr_t *)((expr_t*)expr)->op_expr)->b = GC_INVALID_PTR; \
+      GC_STORE_CAP(((op_expr_t *)((expr_t*)expr)->op_expr)->b, b); \
+    } \
+    else \
+    { \
+      GC_CAP op_expr_t * new_op_expr = GC_INVALID_PTR; \
+      GC_STORE_CAP(new_op_expr, ml_malloc(sizeof(op_expr_t))); \
+      if (!PTR_VALID(new_op_expr)) \
+      { \
+        fprintf(stderr, \
+          "parse_op(): out of memory allocating a new op_expr_t\n"); \
+        exit(1); \
+      } \
+      ((op_expr_t *) new_op_expr)->a = GC_INVALID_PTR; \
+      GC_STORE_CAP(((op_expr_t *) new_op_expr)->a, expr); \
+      ((op_expr_t *) new_op_expr)->b = GC_INVALID_PTR; \
+      GC_STORE_CAP(((op_expr_t *) new_op_expr)->b, b); \
+      ((op_expr_t *) new_op_expr)->op = GC_INVALID_PTR; \
+      GC_STORE_CAP(((op_expr_t *) new_op_expr)->op, copy_string(op)); \
+      \
+      GC_STORE_CAP(expr, ml_malloc(sizeof(expr_t))); \
+      if (!PTR_VALID(expr)) \
+      { \
+        fprintf(stderr, "parse_op(): out of memory allocating a new expr_t\n"); \
+        exit(1); \
+      }\
+      ((expr_t*)expr)->type = EXPR_OP; \
+      ((expr_t*)expr)->op_expr = GC_INVALID_PTR; \
+      GC_STORE_CAP(((expr_t*)expr)->op_expr, new_op_expr); \
+    } \
+  } \
+  return expr; \
 }
 
-GC_CAP expr_t *
+#define X_MACRO PARSE_OP_DEFINE
+  X_LIST
+#undef X_MACRO
+
+GC_USER_FUNC GC_CAP expr_t *
 parse_base_expr (void)
 {
   GC_CAP expr_t * expr = GC_INVALID_PTR;
@@ -279,7 +287,7 @@ parse_base_expr (void)
   return expr;
 }
 
-GC_CAP if_expr_t *
+GC_USER_FUNC GC_CAP if_expr_t *
 parse_if (void)
 {
   GC_CAP if_expr_t * if_expr = GC_INVALID_PTR;
@@ -331,7 +339,7 @@ parse_if (void)
   return if_expr;
 }
 
-GC_CAP fn_expr_t *
+GC_USER_FUNC GC_CAP fn_expr_t *
 parse_fn (void)
 {
   GC_CAP fn_expr_t * fn_expr = GC_INVALID_PTR;
@@ -376,7 +384,7 @@ parse_fn (void)
   return fn_expr;
 }
 
-GC_CAP num_expr_t *
+GC_USER_FUNC GC_CAP num_expr_t *
 parse_num (void)
 {
   GC_CAP num_expr_t * num_expr = GC_INVALID_PTR;
@@ -399,7 +407,7 @@ parse_num (void)
   return num_expr;
 }
 
-GC_CAP name_expr_t *
+GC_USER_FUNC GC_CAP name_expr_t *
 parse_name (void)
 {
   GC_CAP name_expr_t * name_expr = GC_INVALID_PTR;
@@ -417,7 +425,7 @@ parse_name (void)
   return name_expr;
 }
 
-void
+GC_USER_FUNC void
 parse_get_next_tok2 (const char * file, int line)
 {
   // TODO: check if it's valid to pass around structs by value like this.
@@ -432,7 +440,7 @@ parse_get_next_tok2 (const char * file, int line)
 }
 
 // Set str to GC_INVALID_PTR to ignore
-int
+GC_USER_FUNC int
 parse_tok_eq (int type, GC_CAP const char * str)
 {
   return
@@ -448,7 +456,7 @@ parse_tok_eq (int type, GC_CAP const char * str)
   );
 }
 
-void
+GC_USER_FUNC void
 parse_eof_error (void)
 {
   if (parse_tok_eq(TKEOF, GC_INVALID_PTR))
@@ -458,7 +466,7 @@ parse_eof_error (void)
   }
 }
 
-void
+GC_USER_FUNC void
 parse_unexpected (void)
 {
   parse_eof_error(); // because then the string is invalid
@@ -468,7 +476,7 @@ parse_unexpected (void)
   exit(1);
 }
 
-void
+GC_USER_FUNC void
 parse_expect (int type, GC_CAP const char * str)
 {
   parse_eof_error();

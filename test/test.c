@@ -49,11 +49,13 @@ void
 stack_fill_test (void);
 void
 oy_test (void);
+__attribute__((sensitive)) void
+stack_test (void);
 
 int
 main (int argc, char **argv)
 {
-  GC_init();
+  //GC_init();
   //remset_test();
   //tracking_test();
   //rebase_test();
@@ -64,8 +66,33 @@ main (int argc, char **argv)
   //fill_test();
   //stack_fill_test();
   //remset_test();
-  oy_test();
+  //oy_test();
+  stack_test();
   return 0;
+}
+
+__attribute__((sensitive)) void
+stack_mess (int tmp, __capability void * arg);
+__attribute__((sensitive)) void
+stack_mess (int tmp, __capability void * arg)
+{
+  if (tmp) stack_mess(tmp-1,arg);
+  __capability void * my_local;
+  my_local = cheri_ptr((void*)tmp, 0x5678);
+  arg = cheri_ptr((void*)0x9988, 0x7766);
+  //*((__capability void **) (((char*)&arg))) = cheri_ptr(0x1111, 0x2222);
+}
+
+__attribute__((sensitive)) void
+stack_test (void)
+{
+  char local;
+  void * max_top = &local-0x1000;
+  GC_assert( max_top > GC_MAX_STACK_TOP );
+  GC_debug_capdump(max_top, &local);
+  stack_mess(10, GC_INVALID_PTR);
+  GC_debug_capdump(max_top, &local);
+  printf("max_top: 0x%llx, &local: 0x%llx\n", (GC_ULL) max_top, (GC_ULL) &local);
 }
 
 void

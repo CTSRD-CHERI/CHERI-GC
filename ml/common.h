@@ -27,6 +27,7 @@
 #define  GC_assert(x)
 #define  GC_debug_print_region_stats(x)
 #define  ml_collect()
+#define  GC_USER_FUNC
 // --------------------End NOT GC_CHERI--------------------
 #endif // GC_CHERI
 

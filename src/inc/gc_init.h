@@ -1,6 +1,7 @@
 #ifndef GC_INIT_H_HEADER
 #define GC_INIT_H_HEADER
 
+#include "gc_common.h"
 #include <stdlib.h>
 #include "gc_config.h"
 #include "gc_time.h"
@@ -127,26 +128,26 @@ extern __capability struct GC_state_struct * GC_state_cap;
 // 1 : error
 #define GC_init()   GC_init2(&argc, __FILE__, __LINE__)
 
-int
+GC_FUNC int
 GC_init2 (void * arg_for_stack_bottom, const char * file, int line);
 
 // Return values:
 // 0 : not initialized
 // 1 : initialized
-int
+GC_FUNC int
 GC_is_initialized (void);
 
 // Return values:
 // 0 : not young
 // 1 : young
 #ifdef GC_GENERATIONAL
-int
+GC_FUNC int
 GC_is_young (struct GC_region * region);
 
 // Return values:
 // 0 : success
 // 1 : error
-int
+GC_FUNC int
 GC_init_old_region (struct GC_region * region,
                     size_t semispace_size,
                     size_t max_grow_size_before_collection,
@@ -155,7 +156,7 @@ GC_init_old_region (struct GC_region * region,
 // Return values:
 // 0 : success
 // 1 : error
-int
+GC_FUNC int
 GC_init_young_region (struct GC_region * region,
                       struct GC_region * older_region,
                       size_t sz,
@@ -167,7 +168,7 @@ GC_init_young_region (struct GC_region * region,
 // 0 : success
 // 1 : error
 #ifdef GC_WB_RUNTIME
-int
+GC_FUNC int
 GC_set_wb_type (int wb_type);
 #else // GC_WB_RUNTIME
 #define GC_set_wb_type(wb_type) 0
@@ -177,7 +178,7 @@ GC_set_wb_type (int wb_type);
 // Return values:
 // 0 : success
 // 1 : error
-int
+GC_FUNC int
 GC_init_region (struct GC_region * region,
                 size_t semispace_size,
                 size_t max_grow_size_before_collection,

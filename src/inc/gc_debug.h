@@ -1,6 +1,7 @@
 #ifndef GC_DEBUG_H_HEADER
 #define GC_DEBUG_H_HEADER
 
+#include "gc_common.h"
 #include "gc_init.h"
 #include "gc_config.h"
 #include "gc_low.h"
@@ -62,7 +63,8 @@
 
 #define GC_PRINT_CAP(cap) GC_debug_print_cap(#cap, (cap))
 
-void GC_debug_print_cap (const char * name, GC_cap_ptr cap);
+GC_FUNC void
+GC_debug_print_cap (const char * name, GC_cap_ptr cap);
 
 // disabling these for now because it seems the compiler is buggy when it comes
 // to varargs. But printf works fine (so far...).
@@ -94,25 +96,25 @@ GC_errf2 (const char * file, int line, const char * format, ...);
     printf("\n"); \
     exit(1); \
   } while (0)
-void
+GC_FUNC void
 GC_debug_print_region_stats (struct GC_region * region);
 
-void
+GC_FUNC void
 GC_debug_print_stack_stats (void);
 
-void
+GC_FUNC void
 GC_debug_capdump (const void * start, const void * end);
 
-void
+GC_FUNC void
 GC_debug_memdump (const void * start, const void * end);
 
-void
+GC_FUNC void
 GC_debug_check_tospace (void);
 
-void
+GC_FUNC void
 GC_debug_check_area (void * start, void * end);
 
-void
+GC_FUNC void
 GC_debug_check_roots (void);
 
 #ifdef GC_DEBUG_TRACK_ALLOCATIONS
@@ -143,16 +145,16 @@ struct
 // For the user. Prints stuff each time an object moves, etc.
 // tracking_name is used to identify the capability on print-outs. Can be NULL.
 // Returns 0 on success, non-zero otherwise.
-int
+GC_FUNC int
 GC_debug_track_allocated (GC_cap_ptr cap, const char * tracking_name);
 
-GC_debug_value *
+GC_FUNC GC_debug_value *
 GC_debug_find_allocated (GC_cap_ptr cap);
 
-GC_debug_value *
+GC_FUNC GC_debug_value *
 GC_debug_find_invalid (GC_cap_ptr cap);
 
-void
+GC_FUNC void
 GC_debug_just_allocated (GC_cap_ptr cap, const char * file, int line);
 
 // Usual procedure is to do this upon collection:
@@ -161,22 +163,22 @@ GC_debug_just_allocated (GC_cap_ptr cap, const char * file, int line);
 //    moved.
 // 3. Call GC_debug_end_marking().
 // Internally the routines implement a mark-and-sweep of the hash table.
-void
+GC_FUNC void
 GC_debug_just_copied (GC_cap_ptr old_cap, GC_cap_ptr new_cap, void * parent);
 
 // GC_grow calls this whenever a heap is moved.
-void
+GC_FUNC void
 GC_debug_rebase_allocation_entries (void * oldbase,
                                     size_t oldsize,
                                     void * newbase);
 
-void
+GC_FUNC void
 GC_debug_begin_marking (void);
 
-void
+GC_FUNC void
 GC_debug_end_marking (void * space_start, void * space_end);
 
-void
+GC_FUNC void
 GC_debug_print_allocated_stats (void);
 #else // GC_DEBUG_TRACK_ALLOCATIONS
 

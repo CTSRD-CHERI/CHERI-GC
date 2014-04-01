@@ -4,7 +4,7 @@
 #include "parse.h"
 #include "common.h"
 
-void
+GC_USER_FUNC void
 print_ast (GC_CAP expr_t * expr);
 
 struct env_struct;
@@ -41,16 +41,16 @@ typedef struct env_struct
   GC_CAP struct env_struct * next;
 } env_t;
 
-GC_CAP val_t *
+GC_USER_FUNC GC_CAP val_t *
 lookup (GC_CAP char * name, GC_CAP env_t * env);
 
-GC_CAP val_t *
+GC_USER_FUNC GC_CAP val_t *
 eval (GC_CAP expr_t * expr, GC_CAP env_t * env);
 
-void
+GC_USER_FUNC void
 print_val (GC_CAP val_t * val);
 
-void
+GC_USER_FUNC void
 print_env (GC_CAP env_t * env);
 
 #endif // EVAL_H_HEADER

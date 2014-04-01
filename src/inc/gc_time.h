@@ -1,6 +1,7 @@
 #ifndef GC_TIME_H_HEADER
 #define GC_TIME_H_HEADER
 
+#include "gc_common.h"
 #include "gc_low.h"
 
 // For the client: GC_time_t is guaranteed to be small enough to be used as an
@@ -59,7 +60,7 @@
   "s" \
 )
 
-GC_time_t
+GC_FUNC GC_time_t
 GC_time (void);
 
 #endif // GC_TIME_H_HEADER

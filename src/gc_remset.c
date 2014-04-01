@@ -1,8 +1,9 @@
+#include "gc_common.h"
 #include "gc_remset.h"
 #include "gc_low.h"
 #include "gc_debug.h"
 
-void
+GC_FUNC void
 GC_remembered_set_init (struct GC_remembered_set * remset)
 {
   remset->roots = NULL;
@@ -10,7 +11,7 @@ GC_remembered_set_init (struct GC_remembered_set * remset)
   remset->nroots = 0;
 }
 
-int
+GC_FUNC int
 GC_remembered_set_add (struct GC_remembered_set * remset,
                        void * address)
 {
@@ -47,7 +48,7 @@ GC_remembered_set_add (struct GC_remembered_set * remset,
   return 0;
 }
 
-void
+GC_FUNC void
 GC_remembered_set_clr (struct GC_remembered_set * remset)
 {
   GC_vdbgf("cleared remembered set");

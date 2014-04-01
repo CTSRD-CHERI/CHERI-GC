@@ -1,7 +1,7 @@
 #ifndef GC_CONFIG_H_HEADER
 #define GC_CONFIG_H_HEADER
 
-#define GC_DEBUG
+//#define GC_DEBUG
 //#define GC_VERBOSE_DEBUG
 #define GC_THREAD_LOCAL_HEAP_SIZE             1013
 #define GC_OLD_GENERATION_SEMISPACE_SIZE      130000
@@ -58,13 +58,13 @@
 // growth.
 // TODO: the 0 setting
 #define GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION        20000
-#define GC_THREAD_LOCAL_HEAP_MAX_SIZE                          30000
+#define GC_THREAD_LOCAL_HEAP_MAX_SIZE                          100000
 #define GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION 130000
 #define GC_OLD_GENERATION_SEMISPACE_MAX_SIZE                   130000
 
 // Determines whether we use generational GC or not. If disabled, only
 // copying collection is implemented.
-#define GC_GENERATIONAL
+//#define GC_GENERATIONAL
 
 #ifdef GC_GENERATIONAL
 // This determines the write barrier technique we use to deal with old-to-young
@@ -89,5 +89,7 @@
 
 // Kind of temporary
 #define GC_MAX_STACK_TOP    (void*) 0x7ffff00000
+
+//#define GC_USE_GC_STACK_CLEAN
 
 #endif // GC_CONFIG_H_HEADER

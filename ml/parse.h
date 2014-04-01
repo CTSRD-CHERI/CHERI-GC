@@ -68,75 +68,99 @@ typedef struct expr_struct
   int type;
 } expr_t;
 
-int
+GC_USER_FUNC int
 parser_is_at_start_of_expression (void);
 
 // Assumes you've called lex_read_file().
-void
+GC_USER_FUNC void
 parse_init (void);
 
 // Assumes you've called parse_init().
 #define parse() parse2(__FILE__, __LINE__)
-GC_CAP expr_t *
+GC_USER_FUNC GC_CAP expr_t *
 parse2 (const char * file, int line);
 
-GC_CAP expr_t *
+GC_USER_FUNC GC_CAP expr_t *
 parse_cons (void);
 
-GC_CAP expr_t *
+GC_USER_FUNC GC_CAP expr_t *
 parse_greater_than (void);
 
-GC_CAP expr_t *
+GC_USER_FUNC GC_CAP expr_t *
 parse_less_than (void);
 
-GC_CAP expr_t *
+GC_USER_FUNC GC_CAP expr_t *
 parse_add (void);
 
-GC_CAP expr_t *
+GC_USER_FUNC GC_CAP expr_t *
 parse_sub (void);
 
-GC_CAP expr_t *
+GC_USER_FUNC GC_CAP expr_t *
 parse_mul (void);
 
-GC_CAP expr_t *
+GC_USER_FUNC GC_CAP expr_t *
 parse_div (void);
 
-GC_CAP expr_t *
+GC_USER_FUNC GC_CAP expr_t *
 parse_app (void);
 
-GC_CAP expr_t *
-parse_op (GC_CAP const char * op,
-          GC_CAP expr_t * (*lower_precedence_func)(void));
+// Clang/LLVM doesn't like function pointers when GC_USER_FUNC is __attribute__((sensitive))
 
-GC_CAP expr_t *
+#define parse_op(op,func) \
+  parse_op__##func(op)
+
+#define PARSE_OP_DECLARE(op,func) \
+  GC_USER_FUNC GC_CAP expr_t * \
+  parse_op__##func(GC_CAP const char * op);
+  
+#define X_LIST \
+  X_MACRO(op, parse_greater_than) \
+  X_MACRO(op, parse_less_than) \
+  X_MACRO(op, parse_add) \
+  X_MACRO(op, parse_sub) \
+  X_MACRO(op, parse_mul) \
+  X_MACRO(op, parse_div) \
+  X_MACRO(op, parse_app) \
+  X_MACRO(op, parse_base_expr) \
+  
+#define X_MACRO PARSE_OP_DECLARE
+  X_LIST
+#undef X_MACRO
+
+
+/*GC_USER_FUNC GC_CAP expr_t *
+parse_op (GC_CAP const char * op,
+          GC_USER_FUNC GC_CAP expr_t * (*lower_precedence_func)(void));*/
+
+GC_USER_FUNC GC_CAP expr_t *
 parse_base_expr (void);
 
-GC_CAP if_expr_t *
+GC_USER_FUNC GC_CAP if_expr_t *
 parse_if (void);
 
-GC_CAP fn_expr_t *
+GC_USER_FUNC GC_CAP fn_expr_t *
 parse_fn (void);
 
-GC_CAP num_expr_t *
+GC_USER_FUNC GC_CAP num_expr_t *
 parse_num (void);
 
-GC_CAP name_expr_t *
+GC_USER_FUNC GC_CAP name_expr_t *
 parse_name (void);
 
 #define parse_get_next_tok() parse_get_next_tok2(__FILE__,__LINE__)
-void
+GC_USER_FUNC void
 parse_get_next_tok2 (const char * file, int line);
 
-int
+GC_USER_FUNC int
 parse_tok_eq (int type, GC_CAP const char * str);
 
-void
+GC_USER_FUNC void
 parse_eof_error (void);
 
-void
+GC_USER_FUNC void
 parse_unexpected (void);
 
-void
+GC_USER_FUNC void
 parse_expect (int type, GC_CAP const char * str);
 
 #endif // PARSE_H_HEADER

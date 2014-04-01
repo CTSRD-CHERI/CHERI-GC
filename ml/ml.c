@@ -20,7 +20,7 @@ __UNLOCK_MALLOC (void)
 
 #ifdef GC_NONE
 #include <stdlib.h>
-GC_CAP void *
+GC_USER_FUNC GC_CAP void *
 ml_no_gc_malloc (size_t sz)
 {
   void * p = malloc(sz+32);
@@ -31,7 +31,7 @@ ml_no_gc_malloc (size_t sz)
 }
 #endif // GC_NONE
 
-void
+GC_USER_FUNC void
 ml_print_gc_stats (void);
 
 /* What we require from the GC:
@@ -64,7 +64,7 @@ ml_print_gc_stats (void);
 
 */
 
-int main (int argc, char ** argv)
+GC_USER_FUNC int main (int argc, char ** argv)
 {
 #ifdef MEMWATCH
   mwInit();
@@ -169,7 +169,7 @@ int main (int argc, char ** argv)
   return 0;
 }
 
-void
+GC_USER_FUNC void
 ml_print_gc_stats (void)
 {
 #if defined(GC_CHERI)

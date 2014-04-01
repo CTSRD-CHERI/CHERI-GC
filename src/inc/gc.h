@@ -3,6 +3,7 @@
 
 // The public header for the user.
 
+#include <gc_common.h>
 #include <gc_config.h>
 
 // includes for GC_STORE_CAP. TODO: make this cleaner
@@ -34,14 +35,14 @@
 // 0 : success
 // 1 : error
 #define GC_init()   GC_init2(&argc, __FILE__, __LINE__)
-int
+GC_FUNC int
 GC_init2 (void * arg_for_stack_bottom, const char * file, int line);
 
 #ifdef GC_GENERATIONAL
 // Return values:
 // 0 : success
 // 1 : error
-int
+GC_FUNC int
 GC_set_wb_type (int wb_type);
 #else // GC_GENERATIONAL
 #define GC_set_wb_type(wb_type) 0
@@ -55,7 +56,7 @@ GC_set_wb_type (int wb_type);
 #else // GC_DEBUG
 #define GC_malloc GC_malloc2
 #endif // GC_DEBUG
-__capability void *
+GC_FUNC __capability void *
 GC_malloc2
 (
 #ifdef GC_DEBUG
@@ -64,7 +65,7 @@ GC_malloc2
   size_t sz
 );
 
-void
+GC_FUNC void
 GC_collect (void);
 
 // the void* cast of GC_INVALID_PTR is guaranteed to be NULL

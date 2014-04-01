@@ -1,3 +1,4 @@
+#include "gc_common.h"
 #include "gc_low.h"
 #include "gc_debug.h"
 #include "gc_init.h"
@@ -14,7 +15,7 @@ struct GC_alloc_entry_t
 #define GC_MAX_ALLOC_ENTRY 500
 struct GC_alloc_entry_t GC_alloc_table[GC_MAX_ALLOC_ENTRY];
 int GC_alloc_index = 0;
-void *
+GC_FUNC void *
 GC_add_to_alloc_list (void * p, size_t sz, void * old_ptr)
 {
   if (GC_alloc_index == GC_MAX_ALLOC_ENTRY)
@@ -76,21 +77,21 @@ GC_add_to_alloc_list (void * p, size_t sz, void * old_ptr)
   return p;
 }
 
-void *
+GC_FUNC void *
 GC_low_malloc (size_t sz)
 {
   void * p = malloc(sz);
   return GC_add_to_alloc_list(p, sz, NULL);
 }
 
-void *
+GC_FUNC void *
 GC_low_calloc (size_t num, size_t sz)
 {
   void * p = calloc(num, sz);
   return GC_add_to_alloc_list(p, -num*sz, NULL);
 }
 
-void *
+GC_FUNC void *
 GC_low_realloc (void * ptr, size_t sz)
 {
   //void * p = realloc(ptr, sz);
@@ -132,7 +133,7 @@ GC_low_realloc (void * ptr, size_t sz)
 #include <sys/types.h>
 #include <sys/sysctl.h>
 
-void *
+GC_FUNC void *
 GC_get_stack_bottom (void)
 {
   // This uses a FreeBSD undocumented sysctl call, but the Boehm collector does
@@ -158,13 +159,13 @@ extern char end; // defined by FreeBSD
 static jmp_buf GC_tmp_jmp_buf;
 static void (*oldfunc)(int);
 
-static void
+GC_FUNC static void
 GC_sigsegv_handler (int parameter)
 {
   longjmp(GC_tmp_jmp_buf, 1);
 }
 
-void *
+GC_FUNC void *
 GC_get_static_bottom (void)
 {
   if (!GC_is_initialized())
@@ -210,13 +211,13 @@ GC_get_static_bottom (void)
   return GC_state.static_bottom;
 }
 
-void *
+GC_FUNC void *
 GC_get_static_top (void)
 {
   return &end;
 }
 
-GC_cap_ptr
+GC_FUNC GC_cap_ptr
 GC_cap_memcpy (GC_cap_ptr dest, GC_cap_ptr src)
 {
   void * vpdest  = GC_cheri_getbase(dest),
@@ -247,7 +248,7 @@ GC_cap_memcpy (GC_cap_ptr dest, GC_cap_ptr src)
   return GC_cheri_setlen(dest, srclen);
 }
 
-GC_cap_ptr
+GC_FUNC GC_cap_ptr
 GC_cap_memset (GC_cap_ptr dest, int value)
 {
   GC_assert( NULL != GC_cheri_getbase(dest) );
@@ -255,7 +256,7 @@ GC_cap_memset (GC_cap_ptr dest, int value)
   return dest;
 }
 
-GC_cap_ptr
+GC_FUNC GC_cap_ptr
 GC_cap_memclr (GC_cap_ptr dest)
 {
   GC_assert( NULL != GC_cheri_getbase(dest) );
@@ -280,7 +281,7 @@ GC_cap_memclr (GC_cap_ptr dest)
 }
 
 #ifdef GC_GENERATIONAL
-__capability void * __capability *
+GC_FUNC __capability void * __capability *
 GC_handle_oy_store (__capability void * __capability * x, GC_cap_ptr y)
 {
   GC_dbgf("old-young store : *(0x%llx) := 0x%llx", (GC_ULL) x, (GC_ULL) y);
@@ -294,7 +295,7 @@ GC_handle_oy_store (__capability void * __capability * x, GC_cap_ptr y)
 }
 #endif // GC_GENERATIONAL
 
-GC_cap_ptr
+GC_FUNC GC_cap_ptr
 GC_orperm (GC_cap_ptr cap, GC_ULL perm)
 {  
   return GC_cheri_andperm(
@@ -304,7 +305,7 @@ GC_orperm (GC_cap_ptr cap, GC_ULL perm)
 
 #ifdef GC_GROW_HEAP
 
-int
+GC_FUNC int
 GC_grow (struct GC_region * region, size_t hint, size_t max_size)
 {
   // We double the heap size if we can, allocate up to hint bytes if we have to,

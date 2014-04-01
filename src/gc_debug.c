@@ -1,3 +1,4 @@
+#include "gc_common.h"
 #include "gc_debug.h"
 #include "gc_low.h"
 #include "gc_time.h"
@@ -30,7 +31,8 @@ GC_errf2 (const char * file, int line, const char * format, ...)
 }
 */
 
-void GC_debug_print_cap (const char * name, GC_cap_ptr cap)
+GC_FUNC void
+GC_debug_print_cap (const char * name, GC_cap_ptr cap)
 {
   if (GC_cheri_gettag(cap) == 0)
   {
@@ -59,7 +61,7 @@ void GC_debug_print_cap (const char * name, GC_cap_ptr cap)
   }
 }
 
-void
+GC_FUNC void
 GC_debug_print_region_stats(struct GC_region * region)
 {
   int fromspace_exists = GC_cheri_gettag(region->fromspace);
@@ -146,7 +148,7 @@ GC_debug_print_region_stats(struct GC_region * region)
 #include <ucontext.h>
 #include <string.h>
 
-static void
+GC_FUNC static void
 GC_debug_print_stack_stats_helper (int arg)
 {
   int local;
@@ -171,13 +173,13 @@ GC_debug_print_stack_stats_helper (int arg)
     (GC_ULL) GC_state.stack_bottom);
 }
 
-void
+GC_FUNC void
 GC_debug_print_stack_stats (void)
 {
   GC_debug_print_stack_stats_helper(0);
 }
 
-void
+GC_FUNC void
 GC_debug_capdump (const void * start, const void * end)
 {
   if ( ((uintptr_t) end) < ((uintptr_t) start) )
@@ -217,13 +219,12 @@ GC_debug_capdump (const void * start, const void * end)
     }
     else
     {
-      printf("[0x%llx]  t=0\n",
-        (GC_ULL) p);
+      //printf("[0x%llx]  t=0\n", (GC_ULL) p);
     }
   }
 }
 
-void
+GC_FUNC void
 GC_debug_memdump (const void * start, const void * end)
 {
   const char * p,
@@ -250,7 +251,7 @@ GC_debug_memdump (const void * start, const void * end)
   }
 }
 
-void
+GC_FUNC void
 GC_debug_check_tospace (void)
 {
   GC_dbgf("Doing exhaustive check of tospace for invalid pointers.");
@@ -261,7 +262,7 @@ GC_debug_check_tospace (void)
   GC_dbgf("Finished exhaustive check of tospace for invalid pointers.");
 }
 
-void
+GC_FUNC void
 GC_debug_check_area (void * start, void * end)
 {
   start = GC_ALIGN_32(start, void *);
@@ -293,7 +294,7 @@ GC_debug_check_area (void * start, void * end)
   }  
 }
 
-void
+GC_FUNC void
 GC_debug_check_roots (void)
 {
   GC_dbgf("Doing exhaustive check of roots for invalid pointers.");
@@ -315,7 +316,7 @@ GC_debug_check_roots (void)
 #define GC_DEBUG_REALLOC    realloc
 #define GC_DEBUG_DEALLOC    free
 
-static void
+GC_FUNC static void
 GC_debug_allocated_init (void)
 {
   static int first_time = 1;
@@ -334,7 +335,7 @@ GC_debug_allocated_init (void)
   }
 }
 
-static size_t
+GC_FUNC static size_t
 GC_debug_hash (GC_debug_value v)
 {
   return 
@@ -346,13 +347,13 @@ GC_debug_hash (GC_debug_value v)
   ) % (GC_debug_tbl.sz);
 }
 
-static int
+GC_FUNC static int
 GC_debug_value_compare(GC_debug_value u, GC_debug_value v)
 {
   return (u.base == v.base) && (u.len == v.len);
 }
 
-static GC_debug_value
+GC_FUNC static GC_debug_value
 GC_debug_value_from_cap (GC_cap_ptr cap)
 {
   GC_debug_value v;
@@ -367,7 +368,7 @@ GC_debug_value_from_cap (GC_cap_ptr cap)
   return v;
 }
 
-GC_debug_value *
+GC_FUNC GC_debug_value *
 GC_debug_find_allocated (GC_cap_ptr cap)
 {
   GC_debug_allocated_init();
@@ -387,7 +388,7 @@ GC_debug_find_allocated (GC_cap_ptr cap)
   return NULL;
 }
 
-GC_debug_value *
+GC_FUNC GC_debug_value *
 GC_debug_find_invalid (GC_cap_ptr cap)
 {
   GC_debug_allocated_init();
@@ -407,7 +408,7 @@ GC_debug_find_invalid (GC_cap_ptr cap)
   return NULL;
 }
 
-static GC_debug_value *
+GC_FUNC static GC_debug_value *
 GC_debug_add_to_hash_table (GC_debug_value v)
 {
   GC_debug_arr * entry = &GC_debug_tbl.tbl[GC_debug_hash(v)];
@@ -452,7 +453,7 @@ GC_debug_add_to_hash_table (GC_debug_value v)
     v = NULL; \
   } while (0)
 
-void
+GC_FUNC void
 GC_debug_just_allocated (GC_cap_ptr cap, const char * file, int line)
 {
   GC_debug_allocated_init();
@@ -496,7 +497,7 @@ GC_debug_just_allocated (GC_cap_ptr cap, const char * file, int line)
   GC_debug_add_to_hash_table(v);
 }
 
-int
+GC_FUNC int
 GC_debug_track_allocated (GC_cap_ptr cap, const char * tracking_name)
 {
   GC_debug_allocated_init();
@@ -520,7 +521,7 @@ GC_debug_track_allocated (GC_cap_ptr cap, const char * tracking_name)
   return 0;
 }
 
-static GC_debug_value *
+GC_FUNC static GC_debug_value *
 GC_debug_move_allocation (GC_debug_value * old, void * newbase, int newlen,
                           const char * reason)
 {
@@ -541,7 +542,7 @@ GC_debug_move_allocation (GC_debug_value * old, void * newbase, int newlen,
   return GC_debug_add_to_hash_table(u);
 }
 
-void
+GC_FUNC void
 GC_debug_just_copied (GC_cap_ptr old_cap, GC_cap_ptr new_cap, void * parent)
 {
   GC_debug_allocated_init();
@@ -616,7 +617,7 @@ GC_debug_just_copied (GC_cap_ptr old_cap, GC_cap_ptr new_cap, void * parent)
 }
 
 
-void
+GC_FUNC void
 GC_debug_rebase_allocation_entries (void * oldbase,
                                     size_t oldsize,
                                     void * newbase)
@@ -644,7 +645,7 @@ GC_debug_rebase_allocation_entries (void * oldbase,
   );
 }
 
-void
+GC_FUNC void
 GC_debug_begin_marking (void)
 {
   GC_debug_allocated_init();
@@ -657,7 +658,7 @@ GC_debug_begin_marking (void)
   //GC_STOP_TIMING(GC_debug_begin_marking_time, "GC_debug_begin_marking");
 }
 
-void
+GC_FUNC void
 GC_debug_end_marking (void * space_start, void * space_end)
 {
   GC_debug_allocated_init();
@@ -685,7 +686,7 @@ GC_debug_end_marking (void * space_start, void * space_end)
   //GC_STOP_TIMING(GC_debug_end_marking_time, "GC_debug_end_marking");
 }
 
-void
+GC_FUNC void
 GC_debug_print_allocated_stats (void)
 {
   GC_debug_allocated_init();

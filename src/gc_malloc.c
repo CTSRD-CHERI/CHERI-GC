@@ -1,3 +1,4 @@
+#include "gc_common.h"
 #include "gc_malloc.h"
 #include "gc_init.h"
 #include "gc_debug.h"
@@ -8,7 +9,7 @@
 
 #include <stdlib.h>
 
-__capability void *
+GC_FUNC __capability void *
 GC_malloc2 (
 #ifdef GC_DEBUG
   const char * file, int line,
@@ -30,12 +31,14 @@ size_t sz
   
   // We want to be as close to the top of the caller's stack frame as possible
   GC_state.stack_top = &sz;
-  GC_assert( GC_MAX_STACK_TOP < (void*)&sz ); // check we haven't overflowed the stack
   
+#ifdef GC_USE_GC_STACK_CLEAN
+  GC_assert( GC_MAX_STACK_TOP < (void*)&sz ); // check we haven't overflowed the stack
   if (GC_MAX_STACK_TOP >= (void*)&sz)
   {
     GC_fatalf("Stack too big.");
   }
+#endif // GC_USE_GC_STACK_CLEAN
 
   //GC_CLOBBER_CAP_REGS();
   GC_SAVE_REG_STATE();
@@ -52,27 +55,34 @@ size_t sz
 #endif // GC_DEBUG
     &GC_state.thread_local_region,
     sz,
-    GC_COLLECT_ON_ALLOCATION_FAILURE,
-    &collected);
+    GC_COLLECT_ON_ALLOCATION_FAILURE
+#ifdef GC_USE_GC_STACK_CLEAN
+    , &collected
+#endif // GC_USE_GC_STACK_CLEAN
+);
   
   GC_RESTORE_REG_STATE();
   
+#ifdef GC_USE_GC_STACK_CLEAN
   if (collected)
   {
     GC_CLEAN_STACK();
   }
-
+#endif // GC_USE_GC_STACK_CLEAN
+  
   return p;
 }
 
-__capability void *
+GC_FUNC __capability void *
 GC_malloc_region
 (
 #ifdef GC_DEBUG
   const char * file, int line,
 #endif // GC_DEBUG
-  struct GC_region * region, size_t sz, int collect_on_failure,
-  int * collected
+  struct GC_region * region, size_t sz, int collect_on_failure
+#ifdef GC_USE_GC_STACK_CLEAN
+  , int * collected
+#endif // GC_USE_GC_STACK_CLEAN
 )
 {
   GC_START_TIMING(GC_malloc_region_time);
@@ -106,8 +116,10 @@ GC_malloc_region
 
       too_small = !GC_grow(region, sz, region->max_grow_size_before_collection);
       
+#ifdef GC_USE_GC_STACK_CLEAN
       // we need the stack to be cleaned by GC_malloc if the region was rebased
       *collected = 1;
+#endif // GC_USE_GC_STACK_CLEAN
     }
 #endif // GC_GROW_YOUNG_HEAP
       
@@ -129,7 +141,9 @@ GC_malloc_region
       //printf("TODO: clean the stack after collection.\n");
       
       // GC_malloc() will clean the stack.
+#ifdef GC_USE_GC_STACK_CLEAN
       *collected = 1;
+#endif // GC_USE_GC_STACK_CLEAN
 
       //GC_STOP_TIMING(GC_malloc_region_collect_time, "GC_malloc_region collection");
       

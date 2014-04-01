@@ -36,7 +36,7 @@
   "s" \
 )
 
-unsigned long long
+GC_USER_FUNC unsigned long long
 ml_time (void);
 
 #endif // ML_TIME_H_HEADER

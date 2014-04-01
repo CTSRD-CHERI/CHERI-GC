@@ -4,7 +4,7 @@
 #include <sys/time.h>
 #include <stdio.h>
 
-unsigned long long
+GC_USER_FUNC unsigned long long
 ml_time (void)
 {
   struct timeval tv;

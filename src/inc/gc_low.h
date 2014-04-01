@@ -1,6 +1,7 @@
 #ifndef GC_LOW_H_HEADER
 #define GC_LOW_H_HEADER
 
+#include "gc_common.h"
 #include "gc_config.h"
 
 #include <stdlib.h>
@@ -276,7 +277,7 @@ typedef __capability void * GC_cap_ptr;
 
 #ifdef GC_GENERATIONAL
 
-__capability void * __capability *
+GC_FUNC __capability void * __capability *
 GC_handle_oy_store (__capability void * __capability * x, GC_cap_ptr y);
 
 #define GC_IS_CONTAINED_IN_OLD(cap) \
@@ -310,7 +311,7 @@ GC_handle_oy_store (__capability void * __capability * x, GC_cap_ptr y);
 
 #endif // GC_GENERATIONAL
 
-GC_cap_ptr
+GC_FUNC GC_cap_ptr
 GC_orperm (GC_cap_ptr cap, GC_ULL perm);
 
 #define GC_PUSH_CAP_REG(cap_reg,dest_addr) \
@@ -446,11 +447,22 @@ do { \
   GC_RESTORE_CAP_REG(24, &buf[8]); \
   GC_RESTORE_CAP_REG(25, &buf[9]); \
   GC_RESTORE_CAP_REG(26, &buf[10]); \
+  GC_CLEAR_CAP_REGS(buf); \
 } while (0)
+
+#ifdef GC_USE_GC_STACK_CLEAN
+#define GC_CLEAR_CAP_REGS(buf) \
+do { \
+  memset(buf##_misaligned, 0, sizeof buf##_misaligned); \
+} while (0)
+#else // GC_USE_GC_STACK_CLEAN
+#define GC_CLEAR_CAP_REGS(buf)
+#endif // GC_USE_GC_STACK_CLEAN
+
 
 // For debugging or just to clear them. Clobbers the registers that should have
 // been saved by the caller.
-#define GC_CLOBBER_CAP_REGS() \
+/*#define GC_CLOBBER_CAP_REGS() \
 do { \
   GC_cap_ptr invalid = GC_INVALID_PTR; \
   GC_RESTORE_CAP_REG(1, &invalid); \
@@ -468,8 +480,25 @@ do { \
   GC_RESTORE_CAP_REG(13, &invalid); \
   GC_RESTORE_CAP_REG(14, &invalid); \
   GC_RESTORE_CAP_REG(15, &invalid); \
-} while(0)
+} while(0)*/
 
+#ifdef GC_USE_GC_STACK_CLEAN
+//#define GC_CLEAN_STACK() \
+do { \
+  char * stk; \
+  void * stack_ptr = NULL; \
+  GC_GET_STACK_PTR(stack_ptr); \
+  /*GC_state.stack_top = GC_MAX_STACK_TOP;*/ \
+  /*GC_assert(GC_state.stack_top == GC_MAX_STACK_TOP);*/ \
+  GC_dbgf("Cleaning the stack from 0x%llx to 0x%llx", \
+    (GC_ULL) GC_MAX_STACK_TOP, (GC_ULL) stack_ptr); \
+  GC_assert((stack_ptr-GC_MAX_STACK_TOP) > 0); \
+  /* can't use memset because it would clobber its own data while running ;) */ \
+  for (stk=GC_MAX_STACK_TOP; stk<(char*)stack_ptr; stk++) \
+  { \
+    *stk = GC_MAGIC_JUST_CLEARED_STACK; \
+  } \
+} while (0)
 #define GC_CLEAN_STACK() \
 do { \
   GC_START_TIMING(stack_clean_time); \
@@ -491,10 +520,14 @@ do { \
        p<GC_ALIGN_32_LOW(stack_ptr, GC_cap_ptr *); \
        p++) \
   { \
-    if (GC_cheri_gettag(*p)) *p = GC_INVALID_PTR; \
+    /*if (GC_cheri_gettag(*p)) *p = GC_INVALID_PTR;*/ \
+    if (GC_cheri_gettag(*p)) *(char*)p = 0; \
   } \
   GC_STOP_TIMING_PRINT(stack_clean_time, "stack clean"); \
 } while (0)
+#else // GC_USE_GC_STACK_CLEAN
+#define GC_CLEAN_STACK()
+#endif // GC_USE_GC_STACK_CLEAN
 
 
 // Called some time before/after GC_collect_region, to save/restore state
@@ -510,32 +543,32 @@ do { \
   GC_RESTORE_CAP_REGS(register_buffer); \
 
 
-void *
+GC_FUNC void *
 GC_low_malloc (size_t sz);
 
-void *
+GC_FUNC void *
 GC_low_calloc (size_t num, size_t sz);
 
-void *
+GC_FUNC void *
 GC_low_realloc (void * ptr, size_t sz);
 
-void *
+GC_FUNC void *
 GC_get_stack_bottom (void);
 
-void *
+GC_FUNC void *
 GC_get_static_bottom (void);
 
-void *
+GC_FUNC void *
 GC_get_static_top (void);
 
-GC_cap_ptr
+GC_FUNC GC_cap_ptr
 GC_cap_memcpy (GC_cap_ptr dest, GC_cap_ptr src);
 
-GC_cap_ptr
+GC_FUNC GC_cap_ptr
 GC_cap_memset (GC_cap_ptr dest, int value);
 
 // Remove all tags from the given region while possibly corrupting the region.
-GC_cap_ptr
+GC_FUNC GC_cap_ptr
 GC_cap_memclr (GC_cap_ptr dest);
 
 #define GC_MIN(x,y)   ((x)<(y)?(x):(y))
@@ -545,7 +578,7 @@ GC_cap_memclr (GC_cap_ptr dest);
 struct GC_region;
 // Tries to grow the heap by at least `hint' bytes. If successful, returns
 // non-zero, otherwise returns zero.
-int
+GC_FUNC int
 GC_grow (struct GC_region * region, size_t hint, size_t max_size);
 #endif // GC_GROW_HEAP
 

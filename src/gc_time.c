@@ -1,9 +1,10 @@
+#include "gc_common.h"
 #include "gc_time.h"
 #include "gc_debug.h"
 
 #include <sys/time.h>
 
-GC_time_t
+GC_FUNC GC_time_t
 GC_time (void)
 {
   struct timeval tv;
