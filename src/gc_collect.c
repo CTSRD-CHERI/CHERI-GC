@@ -11,18 +11,26 @@
 
 void
 GC_collect (void)
-{printf("WARNING: GC_collect returning...\n");return;
+{
+  int local;
   //GC_SAVE_STACK_PTR
   GC_state.stack_top = GC_MAX_STACK_TOP;
-  GC_SAVE_REG_STATE()
+  GC_assert( GC_state.stack_top < (void*)&file ); // check we haven't overflowed the stack
+  
+  GC_CLOBBER_CAP_REGS();
+  GC_SAVE_REG_STATE();
+  
+  GC_CLEAN_STACK();
+  
   if (!GC_is_initialized())
   {
     //GC_init();
     GC_fatalf("GC not initialized, call GC_init from main.");
   }
   GC_collect_region(&GC_state.thread_local_region);
-  GC_RESTORE_REG_STATE()
-  GC_CLOBBER_CAP_REGS()
+  
+  GC_CLEAN_STACK();
+  GC_RESTORE_REG_STATE();
 }
 
 void

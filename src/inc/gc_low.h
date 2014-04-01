@@ -421,24 +421,24 @@ GC_orperm (GC_cap_ptr cap, GC_ULL perm);
   GC_PUSH_CAP_REG(26, &buf[10]);
 
 #define GC_RESTORE_CAP_REGS(buf) \
-  do { \
-    GC_RESTORE_CAP_REG(16, &buf[0]); \
-    GC_RESTORE_CAP_REG(17, &buf[1]); \
-    GC_RESTORE_CAP_REG(18, &buf[2]); \
-    GC_RESTORE_CAP_REG(19, &buf[3]); \
-    GC_RESTORE_CAP_REG(20, &buf[4]); \
-    GC_RESTORE_CAP_REG(21, &buf[5]); \
-    GC_RESTORE_CAP_REG(22, &buf[6]); \
-    GC_RESTORE_CAP_REG(23, &buf[7]); \
-    GC_RESTORE_CAP_REG(24, &buf[8]); \
-    GC_RESTORE_CAP_REG(25, &buf[9]); \
-    GC_RESTORE_CAP_REG(26, &buf[10]); \
-  } while (0)
+do { \
+  GC_RESTORE_CAP_REG(16, &buf[0]); \
+  GC_RESTORE_CAP_REG(17, &buf[1]); \
+  GC_RESTORE_CAP_REG(18, &buf[2]); \
+  GC_RESTORE_CAP_REG(19, &buf[3]); \
+  GC_RESTORE_CAP_REG(20, &buf[4]); \
+  GC_RESTORE_CAP_REG(21, &buf[5]); \
+  GC_RESTORE_CAP_REG(22, &buf[6]); \
+  GC_RESTORE_CAP_REG(23, &buf[7]); \
+  GC_RESTORE_CAP_REG(24, &buf[8]); \
+  GC_RESTORE_CAP_REG(25, &buf[9]); \
+  GC_RESTORE_CAP_REG(26, &buf[10]); \
+} while (0)
 
 // For debugging or just to clear them. Clobbers the registers that should have
 // been saved by the caller.
 #define GC_CLOBBER_CAP_REGS() \
-{ \
+do { \
   GC_cap_ptr invalid = GC_INVALID_PTR; \
   GC_RESTORE_CAP_REG(1, &invalid); \
   GC_RESTORE_CAP_REG(2, &invalid); \
@@ -455,7 +455,7 @@ GC_orperm (GC_cap_ptr cap, GC_ULL perm);
   GC_RESTORE_CAP_REG(13, &invalid); \
   GC_RESTORE_CAP_REG(14, &invalid); \
   GC_RESTORE_CAP_REG(15, &invalid); \
-}
+} while(0)
 
 #define GC_CLEAN_STACK() \
 do { \

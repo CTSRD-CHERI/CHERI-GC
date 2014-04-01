@@ -1,7 +1,7 @@
 #ifndef GC_CONFIG_H_HEADER
 #define GC_CONFIG_H_HEADER
 
-#define GC_DEBUG
+//#define GC_DEBUG
 //#define GC_VERBOSE_DEBUG
 #define GC_THREAD_LOCAL_HEAP_SIZE             1013 // 20k
 #define GC_OLD_GENERATION_SEMISPACE_SIZE      30000 // 30k
@@ -83,7 +83,7 @@
 //#define GC_DEBUG_TRACK_ALLOCATIONS
 
 // Enable if you want the GC to time how long things take
-#define GC_TIME
+//#define GC_TIME
 
 // Kind of temporary
 #define GC_MAX_STACK_TOP    (void*) 0x7ffff00000

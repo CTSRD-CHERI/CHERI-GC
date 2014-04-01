@@ -25,7 +25,8 @@ size_t sz
   //printf("Note: &file=0x%llx\n", &file);
   GC_state.stack_top = GC_MAX_STACK_TOP;
   GC_assert( GC_state.stack_top < (void*)&file ); // check we haven't overflowed the stack
-    
+
+  GC_CLOBBER_CAP_REGS();
   GC_SAVE_REG_STATE();
 
   if (!GC_is_initialized())
@@ -44,7 +45,6 @@ size_t sz
     &collected);
   
   GC_RESTORE_REG_STATE();
-  GC_CLOBBER_CAP_REGS();
   
   if (collected)
   {
