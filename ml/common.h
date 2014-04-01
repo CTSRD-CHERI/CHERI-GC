@@ -19,8 +19,6 @@
 // --------------------End   GC_CHERI--------------------
 #else // GC_CHERI
 // --------------------Begin NOT GC_CHERI--------------------
-#define  GC_INVALID_PTR     NULL
-#define  GC_PTR_VALID(x)    ((x) != NULL)
 #define  GC_STORE_CAP(x,y)  ((x) = (y))
 
 // Blanks
@@ -44,15 +42,30 @@ __LOCK_MALLOC (void);
 void
 __UNLOCK_MALLOC (void);
 #define ml_malloc(x)           cheri_getbase(GC_MALLOC((x)))
+#define  GC_INVALID_PTR     NULL
+#define  GC_PTR_VALID(x)    ((x) != NULL)
 // --------------------End   GC_BOEHM-------------------
 #elif defined(GC_NONE)
 // --------------------Begin GC_NONE--------------------
-#define  ml_malloc          malloc
+/*#define  ml_malloc          malloc
 #define  GC_cheri_ptr(x,y)  (x)
 
 // Blanks
 #define  GC_CAP
+#define  GC_init()*/
+
+#include <machine/cheri.h>
+#include <machine/cheric.h>
+#define  ml_malloc          ml_no_gc_malloc
+#define  GC_cheri_ptr       cheri_ptr
+#define  GC_CAP             __capability
 #define  GC_init()
+#define  GC_PTR_VALID(x)   ( ((void*)(cheri_getbase(x))) != NULL)
+#define  GC_INVALID_PTR     GC_cheri_ptr(NULL, 0)
+GC_CAP void *
+ml_no_gc_malloc (size_t sz);
+#define ML_ALIGN_32(p) \
+  ( (void *) ( (((uintptr_t) (p)) + (uintptr_t) 31) & ~(uintptr_t) 0x1F ) )
 // --------------------End   GC_NONE-------------------
 #elif defined(GC_CHERI)
 #else

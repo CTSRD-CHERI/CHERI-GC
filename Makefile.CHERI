@@ -22,8 +22,8 @@ BOEHM_GC_INC_DIR=$(BOEHM_GC_DIR)/include/
 # Location of memwatch, for debugging the non-gc ML test
 MEMWATCH_DIR=../memwatch
 # Comment these out to disable memwatch
-MEMWATCH_FLAGS=-DMEMWATCH -I$(MEMWATCH_DIR)
-MEMWATCH_SOURCES=$(MEMWATCH_DIR)/memwatch.c
+#MEMWATCH_FLAGS=-DMEMWATCH -I$(MEMWATCH_DIR)
+#MEMWATCH_SOURCES=$(MEMWATCH_DIR)/memwatch.c
 
 # Targets:
 # lib: build the GC library from src/* to objects/gc.a

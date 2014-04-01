@@ -18,6 +18,19 @@ __UNLOCK_MALLOC (void)
 }
 #endif // GC_BOEHM
 
+#ifdef GC_NONE
+#include <stdlib.h>
+GC_CAP void *
+ml_no_gc_malloc (size_t sz)
+{
+  void * p = malloc(sz+32);
+  if (p)
+    return GC_cheri_ptr(ML_ALIGN_32(p), sz);
+  else
+    return GC_INVALID_PTR;
+}
+#endif // GC_NONE
+
 void
 ml_print_gc_stats (void);
 
