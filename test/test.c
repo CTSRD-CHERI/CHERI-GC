@@ -91,6 +91,7 @@ stack_test (void)
   GC_assert( max_top > GC_MAX_STACK_TOP );
   GC_debug_capdump(max_top, &local);
   stack_mess(10, GC_INVALID_PTR);
+  // Should get nothing printed out if __attribute__((sensitive)) works properly
   GC_debug_capdump(max_top, &local);
   printf("max_top: 0x%llx, &local: 0x%llx\n", (GC_ULL) max_top, (GC_ULL) &local);
 }
