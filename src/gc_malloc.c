@@ -16,8 +16,15 @@ GC_malloc2 (
 size_t sz
 )
 {
-  if (!GC_is_initialized()) GC_init();
-  GC_CLOBBER_CAP_REGS();
+  // TODO: check if this is necessary this early
+  GC_SAVE_STACK_PTR
+  
+  if (!GC_is_initialized())
+  {
+    //GC_init();
+    GC_fatalf("GC not initialized, call GC_init from main.");
+  }
+  //GC_CLOBBER_CAP_REGS();
   return GC_malloc_region(
 #ifdef GC_DEBUG
     file, line,
@@ -72,8 +79,20 @@ GC_malloc_region
         (GC_ULL) sz);
       
       //GC_START_TIMING(GC_malloc_region_collect_time);
+
+      GC_debug_check_tospace();
+
+      GC_dbgf("[malloc2] Note: the stack ptr at %s:%d is 0x%llx\n", file, line, (GC_ULL) GC_state.stack_top);
+      
+      GC_assert( GC_state.stack_top );
+      GC_SAVE_REG_STATE
       
       GC_collect_region(region);
+      
+      GC_RESTORE_REG_STATE
+      GC_CLOBBER_CAP_REGS
+            
+      GC_debug_check_tospace();
       
       //GC_STOP_TIMING(GC_malloc_region_collect_time, "GC_malloc_region collection");
       
@@ -115,7 +134,7 @@ GC_malloc_region
     {region->free = GC_SET_EPHEMERAL(region->free);}
   );
 #endif // GC_GENERATIONAL
-    
+  
   ret = GC_SET_GC_ALLOCATED(ret);
   
   region->num_allocations++;

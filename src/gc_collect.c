@@ -11,15 +11,25 @@
 
 void
 GC_collect (void)
-{  
-  if (!GC_is_initialized()) GC_init();
+{
+  GC_SAVE_STACK_PTR
+  GC_SAVE_REG_STATE
+  if (!GC_is_initialized())
+  {
+    //GC_init();
+    GC_fatalf("GC not initialized, call GC_init from main.");
+  }
   GC_collect_region(&GC_state.thread_local_region);
+  GC_RESTORE_REG_STATE
+  GC_CLOBBER_CAP_REGS
 }
 
 void
 GC_collect_region (struct GC_region * region)
 {
   GC_START_TIMING(GC_collect_region_time);
+  
+  GC_assert( GC_state.stack_top && GC_state.reg_bottom && GC_state.reg_top );
 
   region->num_collections++; // debugging/stats
   
@@ -77,10 +87,16 @@ GC_collect_region (struct GC_region * region)
       GC_MEM_PRETTY((GC_ULL) new_used), GC_MEM_PRETTY_UNIT((GC_ULL) new_used),
       GC_MEM_PRETTY((GC_ULL) freed), GC_MEM_PRETTY_UNIT((GC_ULL) freed));
   }
+  
+  GC_state.stack_top = NULL;
+  GC_state.reg_bottom = NULL;
+  GC_state.reg_top = NULL;
 
   GC_debug_end_marking(space_start, space_end);
+  
+  GC_debug_check_tospace();
 
-  GC_STOP_TIMING(
+  GC_STOP_TIMING_PRINT(
     GC_collect_region_time,
     "GC_collect_region %s %llu%s,",
     promoted ? "promoted" : "freed   ",
@@ -92,13 +108,13 @@ void
 GC_copy_region (struct GC_region * region,
                 int is_generational)
 { 
-  GC_PUSH_CAP_REGS(cap_regs);
+  //GC_PUSH_CAP_REGS(cap_regs);
   
-  {void * stack_top = NULL;
+  /*{void * stack_top = NULL;
   GC_GET_STACK_PTR(stack_top);
-  printf("GC_copy_region: the top of the stack is 0x%llx\n", (GC_ULL) stack_top);}
+  printf("GC_copy_region: the top of the stack is 0x%llx\n", (GC_ULL) stack_top);}*/
 
-  int i;
+  /*int i;
   for (i=0; i<GC_NUM_CAP_REGS; i++)
   {
     if (GC_cheri_gettag(cap_regs[i]))
@@ -109,47 +125,109 @@ GC_copy_region (struct GC_region * region,
         (GC_ULL) GC_cheri_getlen(cap_regs[i])
       );
     }
+  }*/
+  
+  //GC_vdbgf("The registers lie between 0x%llx and 0x%llx",
+    //(GC_ULL) &cap_regs[0], (GC_ULL) &cap_regs[GC_NUM_CAP_REGS-1]);
+  
+  //void * stack_top = NULL;
+  //GC_GET_STACK_PTR(stack_top);
+
+  GC_dbgf("The registers lie between 0x%llx and 0x%llx",
+    (GC_ULL) GC_state.reg_bottom, (GC_ULL) GC_state.reg_top);
+  GC_dbgf("The stack to scan lies between 0x%llx and 0x%llx",
+    (GC_ULL) GC_state.stack_top, (GC_ULL) GC_state.stack_bottom);
+  
+  GC_assert( GC_state.stack_top && GC_state.reg_bottom && GC_state.reg_top );
+  
+  GC_assert( GC_state.stack_top <= GC_state.stack_bottom );
+  
+  GC_dbgf("COPY_REGION Doing exhaustive check of tospace for invalid pointers.");
+  GC_cap_ptr * start = GC_cheri_getbase(GC_state.thread_local_region.tospace);
+  GC_cap_ptr * end = GC_cheri_getbase(GC_state.thread_local_region.tospace) + GC_cheri_getlen(GC_state.thread_local_region.tospace);
+  GC_cap_ptr * p;
+  for (p=start; p<end; p++)
+  {
+    if (GC_cheri_gettag(*p))
+    {
+      GC_fatalf("tospace non-empty");
+    }
+  }
+  GC_dbgf("COPY_REGION Finished exhaustive check of tospace for invalid pointers.");
+  
+  {
+  GC_dbgf("COPY_REGION Doing exhaustive check of fromspace for invalid pointers.");
+  GC_cap_ptr * start = GC_cheri_getbase(GC_state.thread_local_region.fromspace);
+  GC_cap_ptr * end = GC_cheri_getbase(GC_state.thread_local_region.fromspace) + GC_cheri_getlen(GC_state.thread_local_region.fromspace);
+  GC_cap_ptr * p;
+  for (p=start; p<end; p++)
+  {
+    if (GC_cheri_gettag(*p))
+    {
+      if (GC_cheri_getbase(*p) && !GC_IN(GC_cheri_getbase(*p), GC_state.thread_local_region.fromspace))
+      {
+        GC_debug_print_region_stats(&GC_state.thread_local_region);
+        GC_PRINT_CAP(*p);
+        GC_fatalf("*(0x%llx) = 0x%llx not in range [0x%llx, 0x%llx)",
+          (GC_ULL) p, (GC_ULL) GC_cheri_getbase(*p), (GC_ULL) start, (GC_ULL) end);
+      }
+      if (GC_IS_FORWARDING_ADDRESS(*p))
+      {
+        GC_debug_print_region_stats(&GC_state.thread_local_region);
+        GC_PRINT_CAP(*p);              
+        GC_fatalf("*(0x%llx) = 0x%llx is a forwarding address.",
+          (GC_ULL) p, (GC_ULL) GC_cheri_getbase(*p));
+      }
+    }
+  }
+  GC_dbgf("COPY_REGION Finished exhaustive check of fromspace for invalid pointers.");
   }
   
-  GC_dbgf("The registers lie between 0x%llx and 0x%llx",
-    (GC_ULL) &cap_regs[0], (GC_ULL) &cap_regs[GC_NUM_CAP_REGS-1]);
+  #define DO_CHECK do{\
+  GC_dbgf("#####Doing exhaustive check of tospace for invalid pointers."); \
+  GC_cap_ptr * start = GC_cheri_getbase(GC_state.thread_local_region.tospace); \
+  GC_cap_ptr * end = GC_cheri_getbase(GC_state.thread_local_region.tospace) + GC_cheri_getlen(GC_state.thread_local_region.tospace); \
+  GC_cap_ptr * p; \
+  for (p=start; p<end; p++) \
+  { \
+    if (GC_cheri_gettag(*p)) \
+    { \
+      if (GC_cheri_getbase(*p) && GC_IS_GC_ALLOCATED(*p) && !GC_IN(GC_cheri_getbase(*p), GC_state.thread_local_region.fromspace)) \
+      { \
+        printf("ptr not in fromspace: p=0x%llx\n", (GC_ULL) p); \
+        GC_PRINT_CAP(*p); \
+        GC_fatalf("dying"); \
+      } \
+      if (GC_IS_FORWARDING_ADDRESS(*p)) GC_fatalf("ptr forwarding"); \
+    } \
+  } \
+  GC_dbgf("####Finished exhaustive check of tospace for invalid pointers."); }while(0)
   
-  void * stack_top = NULL;
-  GC_GET_STACK_PTR(stack_top);
-  
-  GC_assert(stack_top <= GC_state.stack_bottom);
-
+  printf("before region: 0x%llx region->fromspace: 0x%llx region->tospace: 0x%llx\n",
+    (GC_ULL) region, (GC_ULL) GC_cheri_getbase(region->fromspace), (GC_ULL) GC_cheri_getbase(region->tospace));
   GC_copy_roots(
-    region, stack_top, GC_state.stack_bottom, is_generational);
+    region, GC_state.stack_top, GC_state.stack_bottom, is_generational, 0);
+  printf("after region: 0x%llx region->fromspace: 0x%llx region->tospace: 0x%llx\n",
+    (GC_ULL) region, (GC_ULL) GC_cheri_getbase(region->fromspace), (GC_ULL) GC_cheri_getbase(region->tospace));
+  printf("copyroots1\n");DO_CHECK;printf("copyroots1done\n");
   GC_copy_roots(
-    region, GC_state.static_bottom, GC_state.static_top, is_generational);
+    region, GC_state.reg_bottom, GC_state.reg_top, is_generational, 0);
+  printf("copyroots2\n");DO_CHECK;printf("copyroots2done\n");
+  GC_copy_roots(
+    region, GC_state.static_bottom, GC_state.static_top, is_generational, 1);
+  printf("copyroots3\n");DO_CHECK;printf("copyroots3done\n");
   GC_copy_children(region, is_generational);
 #ifdef GC_GENERATIONAL
 #if (GC_OY_STORE_DEFAULT == GC_OY_STORE_REMEMBERED_SET)
   GC_copy_remembered_set(region);
 #endif // GC_OY_STORE_DEFAULT
 #endif // GC_GENERATIONAL
-  
-  GC_RESTORE_CAP_REGS(cap_regs);
 
-  for (i=0; i<GC_NUM_CAP_REGS; i++)
-  {
-    if (GC_cheri_gettag(cap_regs[i]))
-    {
-      GC_vdbgf("cap_reg restored root [%d]: t=1, b=0x%llx, l=0x%llx",
-        i,
-        (GC_ULL) GC_cheri_getbase(cap_regs[i]),
-        (GC_ULL) GC_cheri_getlen(cap_regs[i])
-      );
-    }
-  }
-  
   // TODO: ensure no forwarding addresses left in registers.
   /*GC_clean_forwarding(
     GC_cheri_getbase(region->fromspace),
     GC_cheri_getbase(region->fromspace) + GC_cheri_getlen(region->fromspace));*/
   GC_cap_memclr(region->fromspace);
-  
 }
 
 GC_cap_ptr
@@ -160,6 +238,10 @@ GC_copy_object (struct GC_region * region,
   // Copy the object pointed to by cap to region->tospace
   
   GC_assert( GC_IS_GC_ALLOCATED(cap) );
+  GC_assert( GC_IN(GC_cheri_getbase(cap), region->fromspace) );
+  GC_assert( GC_IS_ALIGNED_32(cap) );
+  GC_assert( GC_cheri_gettag(cap) );
+  GC_assert( !GC_IS_FORWARDING_ADDRESS(cap) );
   
   // Need enough space for forwarding pointer; GC_malloc ensures that this is
   // always true, but the capability may present itself as having a smaller
@@ -181,7 +263,9 @@ GC_copy_object (struct GC_region * region,
     if (GC_IS_FORWARDING_ADDRESS(forwarding_address))
     {
       GC_assert(GC_IN(GC_cheri_getbase(forwarding_address), region->tospace));
-      return GC_STRIP_FORWARDING(forwarding_address);
+      GC_cap_ptr tmp = GC_STRIP_FORWARDING(forwarding_address);
+      GC_assert(!GC_IS_FORWARDING_ADDRESS(tmp));
+      return tmp;
     }
   }
   
@@ -189,11 +273,59 @@ GC_copy_object (struct GC_region * region,
   // address.
   if (GC_cheri_getlen(region->free) < GC_cheri_getlen(cap))
   {
+    printf("No free space but tried to copy a capability to 0x%llx\n", (GC_ULL) parent);
     GC_debug_print_region_stats(region);
     GC_PRINT_CAP(cap);
+    GC_fatalf("FATAL: no free space but tried to copy a capability (should never happen)");
   }
   GC_assert( GC_cheri_getlen(region->free) >= GC_cheri_getlen(cap) );
+    
+  {
+    GC_cap_ptr * start = GC_cheri_getbase(cap);
+    GC_assert(GC_IS_ALIGNED_32(start));
+    GC_cap_ptr * end = GC_cheri_getbase(cap) + GC_cheri_getlen(cap);
+    GC_cap_ptr * p;
+    for (p=start;p<end;p++)
+    {
+      if (GC_cheri_gettag(*p) && GC_IS_FORWARDING_ADDRESS(*p))// && GC_cheri_getbase(*p) && GC_IS_GC_ALLOCATED(*p) && !GC_IN(GC_cheri_getbase(*p), GC_state.thread_local_region.fromspace))
+      {
+        printf("before memcpy\n");
+        printf("in gc_copy_object: ptr not in fromspace (*p). Note: p=0x%llx (fromspace=[0x%llx, 0x%llx))\n",
+          (GC_ULL) p, (GC_ULL) GC_cheri_getbase(region->fromspace), (GC_ULL) (GC_cheri_getbase(region->fromspace)+GC_cheri_getlen(region->fromspace)));
+        printf("is forwarding? %d\n", (int) GC_IS_FORWARDING_ADDRESS(*p));
+        GC_PRINT_CAP(region->fromspace);
+        GC_PRINT_CAP(region->tospace);
+        GC_PRINT_CAP(*p);
+        GC_PRINT_CAP(cap);
+        GC_fatalf("dying\n");
+      }
+    }
+  }
+  
   GC_cap_ptr tmp = GC_cap_memcpy(region->free, cap);
+
+  {
+    GC_cap_ptr * start = GC_cheri_getbase(cap);
+    GC_assert(GC_IS_ALIGNED_32(start));
+    GC_cap_ptr * end = GC_cheri_getbase(cap) + GC_cheri_getlen(cap);
+    GC_cap_ptr * p;
+    for (p=start;p<end;p++)
+    {
+      if (GC_cheri_gettag(*p) && GC_IS_FORWARDING_ADDRESS(*p))
+      {
+        printf("after memcpy\n");
+        printf("in gc_copy_object: ptr not in fromspace (*p). Note: p=0x%llx (fromspace=[0x%llx, 0x%llx))\n",
+          (GC_ULL) p, (GC_ULL) GC_cheri_getbase(region->fromspace), (GC_ULL) (GC_cheri_getbase(region->fromspace)+GC_cheri_getlen(region->fromspace)));
+        printf("is forwarding? %d\n", (int) GC_IS_FORWARDING_ADDRESS(*p));
+        GC_PRINT_CAP(region->fromspace);
+        GC_PRINT_CAP(region->tospace);
+        GC_PRINT_CAP(*p);
+        GC_PRINT_CAP(cap);
+        GC_fatalf("dying");
+      }
+    }
+  }
+  
   tmp = GC_cheri_setlen(tmp, user_length);
   region->free =
     GC_setbaselen(
@@ -203,12 +335,29 @@ GC_copy_object (struct GC_region * region,
 
   tmp = GC_SET_GC_ALLOCATED(tmp);
   
+  if (GC_cheri_getperm(tmp) != GC_cheri_getperm(cap))
+  {
+    printf("perms: 0x%llx 0x%llx\n",
+    (GC_ULL) GC_cheri_getperm(tmp), (GC_ULL) GC_cheri_getperm(cap));
+    GC_PRINT_CAP(tmp);
+    GC_PRINT_CAP(cap);
+  }
+  
+  GC_assert( GC_cheri_getperm(tmp) == GC_cheri_getperm(cap) );
+
+#ifdef GC_DEBUG
+  // Clobber the old cap with a magic value, for debugging
+  GC_cap_memset(cap, GC_MAGIC_JUST_COPIED);
+#endif // GC_DEBUG
+  
   // Set the forwarding address of the old object.
   GC_FORWARDING_CAP(cap) = GC_MAKE_FORWARDING_ADDRESS(tmp);
  
   GC_debug_just_copied(orig_cap, tmp, parent);
-
+  
   //GC_assert( GC_IS_GC_ALLOCATED(tmp) );
+  
+  GC_assert(!GC_IS_FORWARDING_ADDRESS(tmp));
 
   return tmp;
 }
@@ -217,7 +366,8 @@ void
 GC_copy_roots (struct GC_region * region,
                void * root_start,
                void * root_end,
-               int is_generational)
+               int is_generational,
+               int is_data_segment)
 {
   // TODO: ignore roots in the GC's call stack. There shouldn't be any
   // (unintended) roots in the GC's call stack unless a capability argument is
@@ -237,7 +387,7 @@ GC_copy_roots (struct GC_region * region,
        ((uintptr_t) p) < ((uintptr_t) root_end);
        p++)
   {
-    if (GC_IN(p, GC_state_cap))
+    if (is_data_segment && GC_IN(p, GC_state_cap))
     {
       continue;
     }
@@ -251,10 +401,14 @@ GC_copy_roots (struct GC_region * region,
           ((double) (((uintptr_t) p)-((uintptr_t) root_start)))/
           ((double) (((uintptr_t) root_end)-((uintptr_t) root_start)))),
         (GC_ULL) p,
-        ((GC_ULL) p) & 0x7F00000000 ? "stack/reg" : ".data",
+        (((GC_ULL) p) > 0x7F00000000) ? "stack/reg" :
+        is_data_segment ? ".data" : "unk.",
         (GC_ULL) *p,
         (GC_ULL) GC_cheri_getlen(*p));
       *p = GC_copy_object(region, *p, p);
+      
+      GC_assert( GC_IN(GC_cheri_getbase(*p), region->tospace) );
+      
 #ifdef GC_GENERATIONAL
       if (is_generational)
       {
@@ -280,9 +434,8 @@ GC_copy_child (struct GC_region * region,
        // necessary now for remembered set too
     && GC_IN(GC_cheri_getbase(*child_addr), region->fromspace))
   {
-    GC_vdbgf("[child] location=0x%llx (%s?), b=0x%llx, l=0x%llx",
+    GC_vdbgf("[child] location=0x%llx, b=0x%llx, l=0x%llx",
       (GC_ULL) child_addr,
-      ((GC_ULL) child_addr) & 0x7F00000000 ? "stack/reg" : ".data",
       (GC_ULL) *child_addr, 
       (GC_ULL) GC_cheri_getlen(*child_addr));
     *child_addr = GC_copy_object(region, *child_addr, child_addr);
@@ -315,6 +468,14 @@ GC_copy_children (struct GC_region * region,
        region->scan++)
   {
     GC_copy_child(region, region->scan, is_generational);
+    if (GC_cheri_gettag(*region->scan)){
+      if (GC_IS_FORWARDING_ADDRESS(*region->scan))
+      {
+        GC_PRINT_CAP(*region->scan);
+        printf("%d = GC_IN(GC_cheri_getbase(*child_addr), region->fromspace)", GC_IN(GC_cheri_getbase(*region->scan), region->fromspace));
+        GC_fatalf("cap at region->scan=0x%llx is a forwarding addr.",
+          (GC_ULL) region->scan);
+      }}
   }
 }
 

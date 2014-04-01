@@ -251,6 +251,37 @@ GC_debug_memdump (const void * start, const void * end)
   }
 }
 
+void
+GC_debug_check_tospace (void)
+{
+  GC_dbgf("Doing exhaustive check of tospace for invalid pointers.");
+  GC_cap_ptr * start = GC_cheri_getbase(GC_state.thread_local_region.tospace);
+  GC_cap_ptr * end = GC_cheri_getbase(GC_state.thread_local_region.tospace) + GC_cheri_getlen(GC_state.thread_local_region.tospace);
+  GC_cap_ptr * p;
+  for (p=start; p<end; p++)
+  {
+    if (GC_cheri_gettag(*p)
+        && GC_cheri_getbase(*p))
+    {
+      if (!GC_IN(GC_cheri_getbase(*p), GC_state.thread_local_region.tospace))
+      {
+        GC_debug_print_region_stats(&GC_state.thread_local_region);
+        GC_PRINT_CAP(*p);
+        GC_fatalf("*(0x%llx) = 0x%llx not in range [0x%llx, 0x%llx)",
+          (GC_ULL) p, (GC_ULL) GC_cheri_getbase(*p), (GC_ULL) start, (GC_ULL) end);
+      }
+      if (GC_IS_FORWARDING_ADDRESS(*p))
+      {
+        GC_debug_print_region_stats(&GC_state.thread_local_region);
+        GC_PRINT_CAP(*p);              
+        GC_fatalf("*(0x%llx) = 0x%llx is a forwarding address.",
+          (GC_ULL) p, (GC_ULL) GC_cheri_getbase(*p));
+      }
+    }
+  }
+  GC_dbgf("Finished exhaustive check of tospace for invalid pointers.");
+}
+
 #ifdef GC_DEBUG_TRACK_ALLOCATIONS
 
 // To store the addresses of allocated objects, we use a hash table.
@@ -372,6 +403,30 @@ GC_debug_add_to_hash_table (GC_debug_value v)
   return &entry->arr[entry->sz-1];
 }
 
+// Be very careful if you modify the structure of the hash table itself if you
+// use this!
+#define GC_DEBUG_HASH_TABLE_FOR_EACH_VALID(v,cmd) \
+  do { \
+    size_t j; \
+    for (j=0; j<GC_debug_tbl.sz; j++) \
+    { \
+      GC_debug_arr * entry = &GC_debug_tbl.tbl[j]; \
+      if (entry->arr) \
+      { \
+        size_t i; \
+        for (i=0; i<entry->sz; i++) \
+        { \
+          if (entry->arr[i].valid) \
+          { \
+            v = &entry->arr[i]; \
+            cmd \
+          } \
+        } \
+      } \
+    } \
+    v = NULL; \
+  } while (0)
+
 void
 GC_debug_just_allocated (GC_cap_ptr cap, const char * file, int line)
 {
@@ -382,6 +437,37 @@ GC_debug_just_allocated (GC_cap_ptr cap, const char * file, int line)
   if (!v.file) GC_fatalf("GC_DEBUG_ALLOC");
   memcpy(v.file, file, len);
   v.line = line;
+  
+  
+  GC_debug_value * u;
+  GC_DEBUG_HASH_TABLE_FOR_EACH_VALID(u,
+    {
+      if (u->base == v.base) break;
+    });
+  if (u)
+  {
+    if (u->valid)
+    {
+      GC_dbgf("WARNING: address just re-allocated:");
+      GC_PRINT_CAP(cap);
+      if (u->tracking_name)
+      {
+        GC_dbgf("Tracking name exists: %s %s",
+          u->tracking_name, u->tracking ? "" : "(but not actually tracking this)");
+      }
+      GC_fatalf("exiting.");
+    }
+    else if (u->tracking)
+    {
+      printf(
+        "[GC track] Object %s (b=0x%llx, l=0x%llx) "
+        "replaced with new object (b=0x%llx, l=0x%llx)\n",
+        u->tracking_name ? u->tracking_name : "(null)",
+        (GC_ULL) u->base, (GC_ULL) u->len,
+        (GC_ULL) v.base, (GC_ULL) v.len);
+    }
+  }
+
   GC_debug_add_to_hash_table(v);
 }
 
@@ -409,29 +495,6 @@ GC_debug_track_allocated (GC_cap_ptr cap, const char * tracking_name)
   return 0;
 }
 
-// Be very careful if you modify the structure of the hash table itself if you
-// use this!
-#define GC_DEBUG_HASH_TABLE_FOR_EACH_VALID(v,cmd) \
-  do { \
-    size_t j; \
-    for (j=0; j<GC_debug_tbl.sz; j++) \
-    { \
-      GC_debug_arr * entry = &GC_debug_tbl.tbl[j]; \
-      if (entry->arr) \
-      { \
-        size_t i; \
-        for (i=0; i<entry->sz; i++) \
-        { \
-          if (entry->arr[i].valid) \
-          { \
-            v = &entry->arr[i]; \
-            cmd \
-          } \
-        } \
-      } \
-    } \
-  } while (0)
-  
 static GC_debug_value *
 GC_debug_move_allocation (GC_debug_value * old, void * newbase, int newlen,
                           const char * reason)
@@ -460,7 +523,7 @@ GC_debug_just_copied (GC_cap_ptr old_cap, GC_cap_ptr new_cap, void * parent)
   GC_debug_value * v = GC_debug_find_allocated(old_cap);
   if (!v)
   {
-    GC_dbgf("WARNING: invalid capability just copied at *(0x%llx).\n",
+    GC_dbgf("WARNING: invalid capability just copied at *(0x%llx).",
             (GC_ULL) parent);
     GC_dbgf("Old capability:\n");
     GC_PRINT_CAP(old_cap);
@@ -580,7 +643,9 @@ GC_debug_end_marking (void * space_start, void * space_end)
     {
       if (!v->marked && (v->base >= space_start) && (v->base <= space_end))
       {
-        GC_cap_memset(GC_cheri_ptr(v->base, v->len), 0x43);
+        GC_cap_memset(
+          GC_cheri_ptr(v->base, v->len),
+          GC_MAGIC_DEALLOCATION_DETECTED);
         if (v->tracking)
         {
           printf("[GC track] Object %s (b=0x%llx, l=0x%llx) deallocated\n",

@@ -18,6 +18,8 @@ __UNLOCK_MALLOC (void)
 }
 #endif // GC_BOEHM
 
+void
+ml_print_gc_stats (void);
 
 /* What we require from the GC:
 
@@ -49,7 +51,7 @@ __UNLOCK_MALLOC (void)
 
 */
 
-int main ()
+int main (int argc, char ** argv)
 {
 #ifdef MEMWATCH
   mwInit();
@@ -125,15 +127,25 @@ int main ()
   print_val(val);
   printf("\n\n");
 
-//  GC_debug_print_region_stats(&GC_state.thread_local_region);
-#ifdef GC_GENERATIONAL
-//  GC_debug_print_region_stats(&GC_state.old_generation);
-#endif // GC_GENERATIONAL
-
   ML_STOP_TIMING(main_time, "main()");
+  
+  ml_print_gc_stats();
   
 #ifdef MEMWATCH
   mwTerm();
 #endif // MEMWATCH
   return 0;
+}
+
+void
+ml_print_gc_stats (void)
+{
+#if defined(GC_CHERI)
+  GC_debug_print_region_stats(&GC_state.thread_local_region);
+#ifdef GC_GENERATIONAL
+  GC_debug_print_region_stats(&GC_state.old_generation);
+#endif // GC_GENERATIONAL
+#elif defined(GC_BOEHM)
+  printf("Boehm heap size: %llu\n", (unsigned long long) GC_get_heap_size());
+#endif // GC selector
 }

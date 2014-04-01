@@ -35,7 +35,13 @@ struct GC_state_struct
 {
   int initialized;
   struct GC_region thread_local_region;
+  
+  // set once on init
   void * stack_bottom, * static_bottom, * static_top;
+  
+  // set before GC_collect_region() is called and cleared by GC_collect_region()
+  void * stack_top, * reg_bottom, * reg_top;
+  
 #ifdef GC_GENERATIONAL
   struct GC_region old_generation;
 #ifdef GC_WB_RUNTIME
@@ -112,13 +118,16 @@ extern __capability struct GC_state_struct * GC_state_cap;
 #endif // GC_GENERATIONAL
 
 // also defined in gc.h
+// GC_init(): MUST be called from main(), and main must take argc as an
+// argument. Could change this to use GC_get_stack_bottom(), but this is
+// more accurate.
 // Return values:
 // 0 : success
 // 1 : error
-#define GC_init()   GC_init2(__FILE__, __LINE__)
+#define GC_init()   GC_init2(&argc, __FILE__, __LINE__)
 
 int
-GC_init2 (const char * file, int line);
+GC_init2 (void * arg_for_stack_bottom, const char * file, int line);
 
 // Return values:
 // 0 : not initialized

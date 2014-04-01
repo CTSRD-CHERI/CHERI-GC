@@ -68,15 +68,15 @@ typedef __capability void * GC_cap_ptr;
 // NOTE: GC_PERM_YOUNG, GC_PERM_CONTAINED_IN_OLD only used when WB technique is
 //       GC_WB_MANUAL.
 // actually uses permit_store_ephemeral_capability for now.
-#define GC_PERM_YOUNG (1 << 6)
+#define GC_PERM_YOUNG CHERI_PERM_STORE_EPHEM_CAP
 // actually uses permit_seal for now
-#define GC_PERM_CONTAINED_IN_OLD (1 << 7)
+#define GC_PERM_CONTAINED_IN_OLD CHERI_PERM_SEAL
 // TODO: use a *custom* perm and ensure it's *always* set for non-forwarding
 // addresses (even when we pass caps around and make new ones...)
 // At the moment we're using the Set_Type permission
-#define GC_PERM_FORWARDING    (1 << 8)
+#define GC_PERM_FORWARDING    CHERI_PERM_SETTYPE
 // actually uses permit_execute for now
-#define GC_PERM_GC_ALLOCATED  (1 << 1)
+#define GC_PERM_GC_ALLOCATED  CHERI_PERM_EXECUTE
 
 // Ensures we copy only objects that we've allocated.
 // Not strictly needed if we define pointers into our allocated memory as always
@@ -402,6 +402,7 @@ GC_orperm (GC_cap_ptr cap, GC_ULL perm);
 //
 // So to be conservative we save $c16 - $c26.
 #define GC_NUM_CAP_REGS   11
+// NOTE: if you change this, change GC_SAVE_REG_STATE
 #define GC_PUSH_CAP_REGS(buf) \
   char buf##_misaligned[sizeof(GC_cap_ptr)*GC_NUM_CAP_REGS+32]; \
   GC_cap_ptr * buf = (GC_cap_ptr *) buf##_misaligned; \
@@ -434,10 +435,9 @@ GC_orperm (GC_cap_ptr cap, GC_ULL perm);
     GC_RESTORE_CAP_REG(26, &buf[10]); \
   } while (0)
 
-// For debugging. We clobber the registers that should have been saved by the
-// caller.
-#define GC_CLOBBER_CAP_REGS() \
-do \
+// For debugging or just to clear them. Clobbers the registers that should have
+// been saved by the caller.
+#define GC_CLOBBER_CAP_REGS \
 { \
   GC_cap_ptr invalid = GC_INVALID_PTR; \
   GC_RESTORE_CAP_REG(1, &invalid); \
@@ -455,7 +455,20 @@ do \
   GC_RESTORE_CAP_REG(13, &invalid); \
   GC_RESTORE_CAP_REG(14, &invalid); \
   GC_RESTORE_CAP_REG(15, &invalid); \
-} while (0)
+}
+
+// Called some time before/after GC_collect_region, to save/restore state
+// respectively. Note: always save the stack pointer first, to avoid conflicts
+// with the register buffer.
+#define GC_SAVE_STACK_PTR \
+  GC_GET_STACK_PTR(GC_state.stack_top);
+#define GC_SAVE_REG_STATE \
+  GC_PUSH_CAP_REGS(register_buffer); \
+  GC_state.reg_bottom = register_buffer; \
+  GC_state.reg_top = register_buffer + GC_NUM_CAP_REGS;
+#define GC_RESTORE_REG_STATE \
+  GC_RESTORE_CAP_REGS(register_buffer); \
+
 
 void *
 GC_low_malloc (size_t sz);

@@ -12,7 +12,7 @@ struct GC_state_struct GC_state = {.initialized = 0};
 __capability struct GC_state_struct * GC_state_cap;
 
 int
-GC_init2 (const char * file, int line)
+GC_init2 (void * arg_for_stack_bottom, const char * file, int line)
 {
   if (!GC_state.initialized)
   {
@@ -46,8 +46,11 @@ GC_init2 (const char * file, int line)
     if (rc) return rc;
 #endif // GC_GENERATIONAL
     
-    GC_state.stack_bottom = GC_get_stack_bottom();
+    //GC_state.stack_bottom = GC_get_stack_bottom();
+    GC_state.stack_bottom = arg_for_stack_bottom;
     if (GC_state.stack_bottom == NULL) return 1;
+    GC_dbgf("The stack bottom is probably near 0x%llx\n",
+      (GC_ULL) GC_state.stack_bottom);
     
     GC_state.static_bottom = GC_get_static_bottom();
     if (GC_state.stack_bottom == NULL) return 1;

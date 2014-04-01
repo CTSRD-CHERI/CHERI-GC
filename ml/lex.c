@@ -69,7 +69,7 @@ lex_read_string (GC_CAP const char * str)
     fprintf(stderr, "lex_read_string: out of memory\n");
     exit(1);
   }
-  GC_debug_track_allocated(lex_state.file, "lex_state file");
+  //GC_debug_track_allocated(lex_state.file, "lex_state file");
   lex_state.index = 0;
   lex_state.max = strlen((const char *) str);
 }
@@ -211,7 +211,7 @@ lex (void)
     char buf[11];
     ml_itoa((unsigned) ((token_t*)t)->token_number,
             GC_cheri_ptr((char*)&buf, sizeof buf));
-    GC_debug_track_allocated(((token_t*)t)->str, buf);
+    //GC_debug_track_allocated(((token_t*)t)->str, buf);
   }
   return t;
 }

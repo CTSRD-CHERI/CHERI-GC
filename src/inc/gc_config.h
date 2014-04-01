@@ -12,6 +12,18 @@
 // Set to 0 to disable. Must always be defined, however.
 #define GC_COLLECT_ON_ALLOCATION_FAILURE      1
 
+// Magic values for debugging
+#define GC_MAGIC_JUST_ALLOCATED               0x41      // 'A'
+#define GC_MAGIC_JUST_REALLOCATED             0x42      // 'B'
+#define GC_MAGIC_JUST_CLEARED                 0x43      // 'C'
+
+// Used only if GC_DEBUG_TRACK_ALLOCATIONS is defined, when a deallocation is
+// detected
+#define GC_MAGIC_DEALLOCATION_DETECTED        0x44      // 'D'
+
+// Used to clobber a capability that's just been copied during a collection
+#define GC_MAGIC_JUST_COPIED                  0x45      // 'E'
+
 // ----HEAP GROWING----
 // Current policies with GC_GENERATIONAL turned on:
 // GC_GROW_YOUNG_HEAP
@@ -41,6 +53,7 @@
 
 // Maximum sizes for when the heap does grow. Set to 0 to allow unlimited
 // growth.
+// TODO: the 0 setting
 #define GC_THREAD_LOCAL_HEAP_MAX_SIZE         20000
 #define GC_OLD_GENERATION_SEMISPACE_MAX_SIZE  30000
 

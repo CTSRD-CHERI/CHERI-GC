@@ -17,7 +17,6 @@ struct expr_struct;
 typedef struct
 {
   GC_CAP struct expr_struct * cond, * true_expr, * false_expr;
-  GC_CAP void * magic1; // bring the size up to 0x80 for ease of identification when debugging
 } if_expr_t;
 
 typedef struct

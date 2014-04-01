@@ -310,7 +310,7 @@ eval (GC_CAP expr_t * expr, GC_CAP env_t * env)
       GC_STORE_CAP(val, ml_malloc(sizeof(val_t)));
       if (!PTR_VALID(val))
       {
-        fprintf(stderr, "eval: out of memory allocating val_t");
+        fprintf(stderr, "eval: out of memory allocating val_t\n");
         exit(1);
       }
       ((val_t*) val)->type = VAL_FN;
@@ -318,7 +318,7 @@ eval (GC_CAP expr_t * expr, GC_CAP env_t * env)
       GC_STORE_CAP(((val_t*) val)->fn_val, ml_malloc(sizeof(fn_val_t)));
       if (!PTR_VALID(((val_t*) val)->fn_val))
       {
-        fprintf(stderr, "eval: out of memory allocating fn_val_t");
+        fprintf(stderr, "eval: out of memory allocating fn_val_t\n");
         exit(1);
       }
       ((fn_val_t *) (((val_t*) val)->fn_val))->name = GC_INVALID_PTR;

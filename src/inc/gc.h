@@ -28,11 +28,14 @@
 #include <machine/cheric.h>
 
 // Return values:
+// GC_init(): MUST be called from main(), and main must take argc as an
+// argument.
+// Return values:
 // 0 : success
 // 1 : error
-#define GC_init()   GC_init2(__FILE__, __LINE__)
+#define GC_init()   GC_init2(&argc, __FILE__, __LINE__)
 int
-GC_init2 (const char * file, int line);
+GC_init2 (void * arg_for_stack_bottom, const char * file, int line);
 
 #ifdef GC_GENERATIONAL
 // Return values:

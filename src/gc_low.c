@@ -38,8 +38,12 @@ GC_add_to_alloc_list (void * p, size_t sz, void * old_ptr)
         (int) GC_alloc_table[i].len,
         (GC_ULL) p,
         (int) sz);
+#ifdef GC_DEBUG
       if (sz > GC_alloc_table[i].len)
-        memset(p+GC_alloc_table[i].len, 0x42, sz-GC_alloc_table[i].len);
+        memset(p+GC_alloc_table[i].len,
+               GC_MAGIC_JUST_REALLOCATED,
+               sz-GC_alloc_table[i].len);
+#endif // GC_DEBUG
       GC_alloc_table[i].ptr = p;
       GC_alloc_table[i].len = sz;
     }
@@ -53,7 +57,9 @@ GC_add_to_alloc_list (void * p, size_t sz, void * old_ptr)
     if (sz > 0)
     {
       // this is a malloc.
-      memset(p, 0x41, sz);
+#ifdef GC_DEBUG
+      memset(p, GC_MAGIC_JUST_ALLOCATED, sz);
+#endif // GC_DEBUG
       GC_vdbgf("[GC alloc]: MALLOC: Just allocated p=0x%llx sz=%d\n",
         (GC_ULL) p, (int) sz);
     }
@@ -235,6 +241,7 @@ GC_cap_memcpy (GC_cap_ptr dest, GC_cap_ptr src)
     if (GC_cheri_gettag(src_child[i]))
     {
       dest_child[i] = src_child[i];
+      //GC_assert(GC_cheri_getperm(dest_child[i]) == GC_cheri_getperm(src_child[i]));
     }
   }
   return GC_cheri_setlen(dest, srclen);
@@ -264,10 +271,11 @@ GC_cap_memclr (GC_cap_ptr dest)
     *p = GC_INVALID_PTR;
   }
   
-  //DEBUG
   GC_vdbgf("NOTE: doing a memclr...\n");
-  GC_cap_memset(dest, 0x44);
-  
+#ifdef GC_DEBUG
+  GC_cap_memset(dest, GC_MAGIC_JUST_CLEARED);
+#endif // GC_DEBUG
+
   return dest;
 }
 

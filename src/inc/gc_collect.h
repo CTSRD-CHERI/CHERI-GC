@@ -27,7 +27,8 @@ void
 GC_copy_roots (struct GC_region * region,
                void * root_start,
                void * root_end,
-               int is_generational);
+               int is_generational,
+               int is_data_segment);
 
 void
 GC_copy_child (struct GC_region * region,

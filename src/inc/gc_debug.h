@@ -98,6 +98,8 @@ GC_debug_capdump (const void * start, const void * end);
 void
 GC_debug_memdump (const void * start, const void * end);
 
+void
+GC_debug_check_tospace (void);
 
 #ifdef GC_DEBUG_TRACK_ALLOCATIONS
 // To assist in tracking objects.
