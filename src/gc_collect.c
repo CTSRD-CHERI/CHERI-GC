@@ -554,9 +554,6 @@ GC_region_rebase (struct GC_region * region, void * old_base, size_t old_size)
 
   GC_assert( GC_state.stack_top <= GC_state.stack_bottom );
 
-  GC_PRINT_CAP(region->free);
-  GC_PRINT_CAP(region->tospace);
-
   GC_assert(
     (GC_cheri_getbase(region->free) >= old_base) &&
     (GC_cheri_getbase(region->free) <= (old_base+old_size))

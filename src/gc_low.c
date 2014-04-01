@@ -345,12 +345,7 @@ GC_grow (struct GC_region * region, size_t hint, size_t max_size)
     GC_MEM_PRETTY((GC_ULL) new_size), GC_MEM_PRETTY_UNIT((GC_ULL) new_size),
     GC_MEM_PRETTY((GC_ULL) max_size),
     GC_MEM_PRETTY_UNIT((GC_ULL) max_size));
-  
-  GC_PRINT_CAP(region->free);
-  GC_PRINT_CAP(region->tospace);
-  printf("old tospace base misaligned *actual* 0x%llx 0x%llx\n", (GC_ULL) region->tospace_misaligned, (GC_ULL) (GC_ULL) GC_cheri_getbase(region->tospace));
-  printf("old tospace 0x%llx\n", (GC_ULL) old_tospace_base_misaligned);
-  
+    
   // This is now non-trivial.
   // The reallocation could move the chunk of memory allocated to the tospace,
   // making anything pointing to things inside it invalid.
@@ -441,8 +436,7 @@ GC_grow (struct GC_region * region, size_t hint, size_t max_size)
     // collection routines, but for code simplicity and flexibility we don't
     // bother with that and just do the scan now.
     GC_vdbgf("GC_grow(): region needs rebasing");
-    
-  printf("old tospace 0x%llx\n", (GC_ULL) old_tospace_base_misaligned);
+
     GC_region_rebase(
       region,
       GC_ALIGN_32(old_tospace_base_misaligned, void *),
@@ -451,12 +445,6 @@ GC_grow (struct GC_region * region, size_t hint, size_t max_size)
       GC_ALIGN_32(old_tospace_base_misaligned, void *),
       old_size,
       GC_ALIGN_32(new_tospace_base_misaligned, void *));
-  }
-  
-  if (!GC_IN_OR_ON_BOUNDARY(GC_cheri_getbase(region->free), region->tospace))
-  {
-    GC_PRINT_CAP(region->free);
-    GC_PRINT_CAP(region->tospace);
   }
 
   GC_assert(
@@ -481,7 +469,6 @@ GC_grow (struct GC_region * region, size_t hint, size_t max_size)
     (GC_ULL) GC_cheri_getbase(region->fromspace),
     (GC_ULL) (GC_cheri_getbase(region->fromspace)+GC_cheri_getlen(region->fromspace)));
   
-    
   GC_STOP_TIMING(GC_grow_time, "GC_grow %llu%s -> %llu%s",
     GC_MEM_PRETTY((GC_ULL) old_size), GC_MEM_PRETTY_UNIT((GC_ULL) old_size),
     GC_MEM_PRETTY((GC_ULL) new_size), GC_MEM_PRETTY_UNIT((GC_ULL) new_size));

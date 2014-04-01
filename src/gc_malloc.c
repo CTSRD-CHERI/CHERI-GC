@@ -104,25 +104,13 @@ GC_malloc_region
       GC_assert( GC_state.reg_bottom );
       GC_assert( GC_state.reg_top );
 
-      printf("tospace0: 0x%llx free: 0x%llx\n", (GC_ULL) GC_cheri_getbase(region->tospace), (GC_ULL) GC_cheri_getbase(region->free));
-      GC_assert(GC_IN_OR_ON_BOUNDARY(region->free, region->tospace));
-      GC_assert(GC_ALIGN_32(region->tospace_misaligned, void*) == GC_cheri_getbase(region->tospace));
-      
       too_small = !GC_grow(region, sz, region->max_grow_size_before_collection);
-      
-      printf("tospace0.1: 0x%llx free: 0x%llx\n", (GC_ULL) GC_cheri_getbase(region->tospace), (GC_ULL) GC_cheri_getbase(region->free));
-      GC_assert(GC_IN_OR_ON_BOUNDARY(region->free, region->tospace));
-      GC_assert(GC_ALIGN_32(region->tospace_misaligned, void*) == GC_cheri_getbase(region->tospace));
       
       // we need the stack to be cleaned by GC_malloc if the region was rebased
       *collected = 1;
     }
 #endif // GC_GROW_YOUNG_HEAP
       
-    printf("tospace0.2: 0x%llx free: 0x%llx\n", (GC_ULL) GC_cheri_getbase(region->tospace), (GC_ULL) GC_cheri_getbase(region->free));
-    GC_assert(GC_IN_OR_ON_BOUNDARY(region->free, region->tospace));
-    GC_assert(GC_ALIGN_32(region->tospace_misaligned, void*) == GC_cheri_getbase(region->tospace));
-
     GC_assert( too_small == (sz > (size_t) cheri_getlen(region->free)) );
     
     if (too_small && collect_on_failure)
@@ -136,15 +124,8 @@ GC_malloc_region
       GC_assert( GC_state.reg_bottom );
       GC_assert( GC_state.reg_top );
 
-      printf("tospace1: 0x%llx free: 0x%llx\n", (GC_ULL) GC_cheri_getbase(region->tospace), (GC_ULL) GC_cheri_getbase(region->free));
-      GC_assert(GC_IN_OR_ON_BOUNDARY(region->free, region->tospace));
-      GC_assert(GC_ALIGN_32(region->tospace_misaligned, void*) == GC_cheri_getbase(region->tospace));
-
       GC_collect_region(region);
       
-      printf("tospace2: 0x%llx free: 0x%llx\n", (GC_ULL) GC_cheri_getbase(region->tospace), (GC_ULL) GC_cheri_getbase(region->free));
-      GC_assert(GC_IN_OR_ON_BOUNDARY(region->free, region->tospace));
-      GC_assert(GC_ALIGN_32(region->tospace_misaligned, void*) == GC_cheri_getbase(region->tospace));
       //printf("TODO: clean the stack after collection.\n");
       
       // GC_malloc() will clean the stack.
