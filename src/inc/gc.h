@@ -12,8 +12,11 @@
 #include <gc_debug.h>
 
 #define GC_CAP __capability
-
-#define     GC_cheri_ptr      cheri_ptr
+/*
+// this doesn't have __attribute__((sensitive))
+//#define     GC_cheri_ptr      cheri_ptr
+#define GC_cheri_ptr(ptr,len) \
+  ( cheri_setlen( (__capability void *)(void*)(ptr), (len) ) )
 
 // (Hacky conversion to GC_CAP void * to avoid const issues...)
 #define     GC_cheri_getlen(x)   cheri_getlen((GC_CAP void*)(x))
@@ -24,6 +27,10 @@
 // (Hacky conversion to GC_CAP void * to avoid const issues...)
 //#define     GC_PTR_VALID(x)   ((int) GC_cheri_gettag((GC_CAP void *) (x)))
 //#define GC_cheri_gettag cheri_gettag
+*/
+
+// The preferred way of checking the validity of a pointer
+#define GC_PTR_VALID(x)   ( ((void*)(x)) != NULL )
 
 #include <machine/cheri.h>
 #include <machine/cheric.h>
@@ -70,6 +77,7 @@ GC_collect (void);
 
 // the void* cast of GC_INVALID_PTR is guaranteed to be NULL
 //#define     GC_INVALID_PTR    cheri_zerocap()
-#define GC_INVALID_PTR GC_cheri_ptr(NULL, 0)
+//#define GC_INVALID_PTR GC_cheri_ptr(NULL, 0)
+//#define GC_INVALID_PTR ((__capability void *)NULL)
 
 #endif // GC_H_HEADER

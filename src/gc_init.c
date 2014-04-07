@@ -143,7 +143,7 @@ GC_init_region
 GC_FUNC int
 GC_is_young (struct GC_region * region)
 {
-  return (GC_cheri_getbase(region->older_region) != NULL);
+  return (region->older_region != NULL);
 }
 
 GC_FUNC int

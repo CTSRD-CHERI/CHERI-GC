@@ -107,7 +107,7 @@ GC_malloc_region
 #ifdef GC_GROW_YOUNG_HEAP
     if (too_small)
     {
-      GC_dbgf("GC_malloc_region(): growing (young) heap before collection (sz=0x%llx)",
+      GC_vdbgf("GC_malloc_region(): growing (young) heap before collection (sz=0x%llx)",
         (GC_ULL) sz);
 
       GC_assert( GC_state.stack_top );
@@ -203,6 +203,13 @@ GC_malloc_region
 #endif // GC_GENERATIONAL
   
   ret = GC_SET_GC_ALLOCATED(ret);
+  
+  // Remove any latent caps (esp forwarding addresses from the fromspace)
+  GC_cap_memclr(ret);
+
+#ifdef GC_DEBUG
+  GC_cap_memset(ret, GC_JUST_GC_ALLOCATED);
+#endif
   
   region->num_allocations++;
 

@@ -1,9 +1,9 @@
 #ifndef GC_CONFIG_H_HEADER
 #define GC_CONFIG_H_HEADER
 
-//#define GC_DEBUG
+#define GC_DEBUG
 //#define GC_VERBOSE_DEBUG
-#define GC_THREAD_LOCAL_HEAP_SIZE             1013
+#define GC_THREAD_LOCAL_HEAP_SIZE             90000
 #define GC_OLD_GENERATION_SEMISPACE_SIZE      130000
 
 // If old heap residency exceeds this, collect, and if that fails, grow.
@@ -13,6 +13,8 @@
 #define GC_COLLECT_ON_ALLOCATION_FAILURE      1
 
 // Magic values for debugging
+
+// Used by lower-level routines:
 #define GC_MAGIC_JUST_ALLOCATED               0x41      // 'A'
 #define GC_MAGIC_JUST_REALLOCATED             0x42      // 'B'
 #define GC_MAGIC_JUST_CLEARED                 0x43      // 'C'
@@ -26,6 +28,9 @@
 
 // Used when cleaning the stack
 #define GC_MAGIC_JUST_CLEARED_STACK           0x46      // 'F'
+
+// Used by GC_malloc on freshly allocated objects
+#define GC_JUST_GC_ALLOCATED                  0x47      // 'G'
 
 // ----HEAP GROWING----
 // Current policies with GC_GENERATIONAL turned on:
@@ -57,8 +62,8 @@
 // Maximum sizes for when the heap does grow. Set to 0 to allow unlimited
 // growth.
 // TODO: the 0 setting
-#define GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION        20000
-#define GC_THREAD_LOCAL_HEAP_MAX_SIZE                          100000
+#define GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION        90000
+#define GC_THREAD_LOCAL_HEAP_MAX_SIZE                          90000
 #define GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION 130000
 #define GC_OLD_GENERATION_SEMISPACE_MAX_SIZE                   130000
 
@@ -82,7 +87,7 @@
 #endif // GC_GENERATIONAL
 
 #define GC_COLLECT_STATS
-//#define GC_DEBUG_TRACK_ALLOCATIONS
+#define GC_DEBUG_TRACK_ALLOCATIONS
 
 // Enable if you want the GC to time how long things take
 //#define GC_TIME
@@ -90,6 +95,8 @@
 // Kind of temporary
 #define GC_MAX_STACK_TOP    (void*) 0x7ffff00000
 
+// If this is defined, we manually clean the stack. Otherwise, we rely on
+// __attribute__((sensitive)) annotations to do it for us.
 //#define GC_USE_GC_STACK_CLEAN
 
 #endif // GC_CONFIG_H_HEADER

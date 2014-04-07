@@ -57,6 +57,11 @@ print_ast (GC_CAP expr_t * expr)
   {
     case EXPR_IF:
     {
+      if (!PTR_VALID(((expr_t*)expr)->if_expr))
+      {
+        fprintf(stderr, "Invalid if_expr\n");
+        exit(1);
+      }
       printf("if(");
       print_ast( (((if_expr_t*) ((expr_t*)expr)->if_expr))->cond );
       printf(",");
@@ -68,17 +73,42 @@ print_ast (GC_CAP expr_t * expr)
     }
     case EXPR_NAME:
     {
+      if (!PTR_VALID(((expr_t*)expr)->name_expr))
+      {
+        fprintf(stderr, "Invalid name_expr\n");
+        exit(1);
+      }
+      if (!PTR_VALID(((((name_expr_t*) ((expr_t*)expr)->name_expr))->name)))
+      {
+        fprintf(stderr, "Invalid name_expr->name\n");
+        exit(1);
+      }
       printf("name(%s)",
         (char*) (((name_expr_t*) ((expr_t*)expr)->name_expr))->name);
       break;
     }
     case EXPR_NUM:
     {
+      if (!PTR_VALID(((expr_t*)expr)->num_expr))
+      {
+        fprintf(stderr, "Invalid num_expr\n");
+        exit(1);
+      }
       printf("num(%d)", (((num_expr_t*) ((expr_t*)expr)->num_expr))->num);
       break;
     }
     case EXPR_OP:
     {
+      if (!PTR_VALID(((expr_t*)expr)->op_expr))
+      {
+        fprintf(stderr, "Invalid op_expr\n");
+        exit(1);
+      }
+      if (!PTR_VALID(((((op_expr_t*) ((expr_t*)expr)->op_expr))->op)))
+      {
+        fprintf(stderr, "Invalid op_expr->op\n");
+        exit(1);
+      }
       size_t oplen =
         strlen((const char *) ((((op_expr_t*) ((expr_t*)expr)->op_expr))->op))+1;
       if (oplen > 1)
@@ -98,6 +128,11 @@ print_ast (GC_CAP expr_t * expr)
     }
     case EXPR_FN:
     {
+      if (!PTR_VALID(((expr_t*)expr)->fn_expr))
+      {
+        fprintf(stderr, "Invalid fn_expr\n");
+        exit(1);
+      }
       printf("fn(%s,", (char*) (((fn_expr_t*) ((expr_t*)expr)->fn_expr))->name);
       print_ast( (((fn_expr_t*) ((expr_t*)expr)->fn_expr))->body );
       printf(")");
@@ -195,7 +230,7 @@ eval (GC_CAP expr_t * expr, GC_CAP env_t * env)
       GC_CAP val_t * b = GC_INVALID_PTR;
       GC_STORE_CAP(b, 
         eval( (((op_expr_t*) ((expr_t*)expr)->op_expr))->b, env ) );
-      
+
       size_t oplen =
         strlen((const char *) ((((op_expr_t*) ((expr_t*)expr)->op_expr))->op))+1;
       if (oplen > 1)

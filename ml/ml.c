@@ -75,6 +75,8 @@ GC_USER_FUNC int main (int argc, char ** argv)
   
   GC_init();
   
+  ml_print_gc_stats();
+  
   printf("Compiled for "
 #if   defined(GC_CHERI)
   "GC_CHERI"

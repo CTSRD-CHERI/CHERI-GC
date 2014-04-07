@@ -13,16 +13,21 @@ typedef __capability void * GC_cap_ptr;
 #include <machine/cheri.h>
 #include <machine/cheric.h>
 
-#define     GC_cheri_getbase  cheri_getbase
+#define     GC_cheri_getbase(x)  ( (void*) cheri_getbase((x)) )
 //#define     GC_cheri_getlen   cheri_getlen
-#define GC_CAP __capability
+#define     GC_CAP __capability
 #define     GC_cheri_getlen(x)   cheri_getlen((GC_CAP void*)(x))
 
 #define     GC_cheri_gettag   cheri_gettag
 #define     GC_cheri_getperm  cheri_getperm
 #define     GC_cheri_andperm  cheri_andperm
 #define     GC_cheri_setlen   cheri_setlen
-#define     GC_cheri_ptr      cheri_ptr
+
+// this doesn't have __attribute__((sensitive))
+//#define     GC_cheri_ptr      cheri_ptr
+#define GC_cheri_ptr(ptr,len) \
+  ( cheri_setlen( (__capability void *)(void*)(ptr), (len) ) )
+
 #define     GC_CHERI_CGETTAG  CHERI_CGETTAG
 #define     GC_CHERI_CGETBASE CHERI_CGETBASE
 #define     GC_CHERI_CGETLEN  CHERI_CGETLEN
@@ -43,7 +48,9 @@ typedef __capability void * GC_cap_ptr;
 // also declared in gc.h
 // the void* cast of GC_INVALID_PTR must be NULL
 //#define     GC_INVALID_PTR    cheri_zerocap()
-#define GC_INVALID_PTR GC_cheri_ptr(NULL, 0)
+//#define GC_INVALID_PTR GC_cheri_ptr(NULL, 0)
+//#define GC_INVALID_PTR ((__capability void *)NULL)
+#define GC_INVALID_PTR NULL
 
 // also declared in gc.h
 //#define     GC_PTR_VALID(x)   (GC_cheri_gettag((x)))
@@ -248,7 +255,19 @@ typedef __capability void * GC_cap_ptr;
     tmpy = GC_INVALID_PTR; \
   } while (0)
 #else // GC_GENERATIONAL
-#define GC_STORE_CAP(x,y) ( (x) = (y) )
+#define GC_STORE_CAP(x,y) \
+  do { \
+  __asm__ __volatile__ ("daddiu $6, $6, 0"); \
+  __asm__ __volatile__ ("daddiu $7, $7, 0"); \
+    printf("start store " #x " = " #y "\n"); \
+    __capability void ** tmpx = (__capability void **) &(x); \
+    GC_assert(GC_IS_ALIGNED_32(tmpx)); \
+    *tmpx = (y); \
+    printf("done store " #x " = " #y "\n"); \
+  __asm__ __volatile__ ("daddiu $8, $8, 0"); \
+  __asm__ __volatile__ ("daddiu $9, $9, 0"); \
+  } while (0);
+//#define GC_STORE_CAP(x,y) ( (x) = (y) )
 //#define GC_STORE_CAP(x,y) \
   do { \
     printf("[GC_STORE_CAP] Begin processing %s = %s &x=0x%llx\n", #x, #y, (unsigned long long) &x); \
@@ -264,6 +283,7 @@ typedef __capability void * GC_cap_ptr;
     printf("Note: &x is 0x%llx\n", (unsigned long long) &(x)); \
     __capability void ** tmpx = (__capability void **) &(x); \
     printf("Set tmpx okay.\n"); \
+    GC_assert(GC_IS_ALIGNED_32(tmpx)); \
     printf("Trying to do *(0x%llx) = 0x%llx\n", (unsigned long long) tmpx, (unsigned long long) tmpy); \
     __asm__ ("daddiu $1, $1, 0"); \
     *tmpx = tmpy; \
@@ -334,7 +354,7 @@ GC_orperm (GC_cap_ptr cap, GC_ULL perm);
 
 // Goes to a higher memory address to align if need be
 #define GC_ALIGN_32(ptr,typ) \
-  ( (typ) ( (((uintptr_t) (ptr)) + (uintptr_t) 31) & ~(uintptr_t) 0x1F ) ) \
+  ( (typ) ( (((uintptr_t) (ptr)) + (uintptr_t) 31) & ~(uintptr_t) 0x1F ) )
 
 // Goes to a lower memory address to align
 #define GC_ALIGN_32_LOW(ptr,typ) \
@@ -369,18 +389,18 @@ GC_orperm (GC_cap_ptr cap, GC_ULL perm);
 
 #define GC_IN(ptr,cap) \
   ( \
-    ((uintptr_t) (ptr)) >= ((uintptr_t) GC_cheri_getbase((cap))) \
+    ((void*) (ptr)) >= ((void*) GC_cheri_getbase((cap))) \
     && \
-    ((uintptr_t) (ptr)) < ( ((uintptr_t) GC_cheri_getbase((cap))) \
-                          + (uintptr_t) GC_cheri_getlen((cap)) ) \
+    ((void*) (ptr)) < ( ((void*) GC_cheri_getbase((cap))) \
+                          + (size_t) GC_cheri_getlen((cap)) ) \
   )
 
 #define GC_IN_OR_ON_BOUNDARY(ptr,cap) \
   ( \
-    ((uintptr_t) (ptr)) >= ((uintptr_t) GC_cheri_getbase((cap))) \
+    ((void*) (ptr)) >= ((void*) GC_cheri_getbase((cap))) \
     && \
-    ((uintptr_t) (ptr)) <=( ((uintptr_t) GC_cheri_getbase((cap))) \
-                          + (uintptr_t) GC_cheri_getlen((cap)) ) \
+    ((void*) (ptr)) <=( ((void*) GC_cheri_getbase((cap))) \
+                          + (size_t) GC_cheri_getlen((cap)) ) \
   )
 
   
@@ -451,6 +471,7 @@ do { \
 } while (0)
 
 #ifdef GC_USE_GC_STACK_CLEAN
+#include <string.h>
 #define GC_CLEAR_CAP_REGS(buf) \
 do { \
   memset(buf##_misaligned, 0, sizeof buf##_misaligned); \
@@ -509,7 +530,7 @@ do { \
   /*GC_assert(GC_state.stack_top == GC_MAX_STACK_TOP);*/ \
   GC_dbgf("Cleaning the stack from 0x%llx to 0x%llx", \
     (GC_ULL) GC_MAX_STACK_TOP, (GC_ULL) stack_ptr); \
-  GC_assert((stack_ptr-GC_MAX_STACK_TOP) > 0); \
+  GC_assert(GC_MAX_STACK_TOP < stack_ptr); \
   /* can't use memset because it would clobber its own data while running ;) */ \
   /*for (stk=GC_state.stack_top; stk<(char*)stack_ptr; stk++) \
   { \

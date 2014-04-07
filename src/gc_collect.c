@@ -146,9 +146,9 @@ GC_copy_region (struct GC_region * region,
   //void * stack_top = NULL;
   //GC_GET_STACK_PTR(stack_top);
 
-  GC_dbgf("The registers lie between 0x%llx and 0x%llx",
+  GC_vdbgf("The registers lie between 0x%llx and 0x%llx",
     (GC_ULL) GC_state.reg_bottom, (GC_ULL) GC_state.reg_top);
-  GC_dbgf("The stack to scan lies between 0x%llx and 0x%llx",
+  GC_vdbgf("The stack to scan lies between 0x%llx and 0x%llx",
     (GC_ULL) GC_state.stack_top, (GC_ULL) GC_state.stack_bottom);
   
   GC_assert( GC_state.stack_top && GC_state.reg_bottom && GC_state.reg_top );
@@ -164,7 +164,10 @@ GC_copy_region (struct GC_region * region,
   GC_copy_children(region, is_generational);
 #ifdef GC_GENERATIONAL
 #if (GC_OY_STORE_DEFAULT == GC_OY_STORE_REMEMBERED_SET)
-  GC_copy_remembered_set(region);
+  if (is_generational)
+  {
+    GC_copy_remembered_set(region);
+  }
 #endif // GC_OY_STORE_DEFAULT
 #endif // GC_GENERATIONAL
 
@@ -172,7 +175,9 @@ GC_copy_region (struct GC_region * region,
   /*GC_clean_forwarding(
     GC_cheri_getbase(region->fromspace),
     GC_cheri_getbase(region->fromspace) + GC_cheri_getlen(region->fromspace));*/
-  GC_cap_memclr(region->fromspace);
+  
+  //GC_cap_memclr(region->fromspace);
+  //printf("TODO: instead just clear an object of capabilities when allocating...\n");
 }
 
 GC_FUNC GC_cap_ptr
@@ -218,7 +223,8 @@ GC_copy_object (struct GC_region * region,
   // address.
 
   GC_assert( GC_cheri_getlen(region->free) >= GC_cheri_getlen(cap) );
-    
+
+  
   GC_cap_ptr tmp = GC_cap_memcpy(region->free, cap);
 
   tmp = GC_cheri_setlen(tmp, user_length);
@@ -235,6 +241,8 @@ GC_copy_object (struct GC_region * region,
   GC_assert( GC_cheri_getperm(tmp) == GC_cheri_getperm(cap) );
 #endif // GC_GENERATIONAL
 
+  GC_debug_just_copied(orig_cap, tmp, parent);
+
 #ifdef GC_DEBUG
   // Clobber the old cap with a magic value, for debugging
   GC_cap_memset(cap, GC_MAGIC_JUST_COPIED);
@@ -243,8 +251,6 @@ GC_copy_object (struct GC_region * region,
   // Set the forwarding address of the old object.
   GC_FORWARDING_CAP(cap) = GC_MAKE_FORWARDING_ADDRESS(tmp);
  
-  GC_debug_just_copied(orig_cap, tmp, parent);
-  
   //GC_assert( GC_IS_GC_ALLOCATED(tmp) );
   
   GC_assert(!GC_IS_FORWARDING_ADDRESS(tmp));
@@ -353,8 +359,8 @@ GC_copy_children (struct GC_region * region,
   GC_assert( GC_IS_ALIGNED_32(region->scan) );
   
   for (;
-       ((uintptr_t) region->scan)
-         < ((uintptr_t) GC_cheri_getbase(region->free));
+       ((void*) region->scan)
+         < ((void*) GC_cheri_getbase(region->free));
        region->scan++)
   {
     GC_copy_child(region, region->scan, is_generational);
@@ -377,7 +383,11 @@ GC_copy_remembered_set (struct GC_region * region)
       GC_assert( root );
       GC_dbgf("[%d] Processing remembered root 0x%llx",
         (int) i, (GC_ULL) root);
+      printf("Note: currently the capability at the root is:\n");
+      GC_PRINT_CAP(*root);
       GC_copy_child(region, root, 1);
+      printf("Now it is:\n");
+      GC_PRINT_CAP(*root);
     }
     GC_remembered_set_clr(region->remset);
   }
@@ -556,9 +566,9 @@ GC_region_rebase (struct GC_region * region, void * old_base, size_t old_size)
   //void * stack_top = NULL;
   //GC_GET_STACK_PTR(stack_top);
   
-  GC_dbgf("The registers lie between 0x%llx and 0x%llx",
+  GC_vdbgf("The registers lie between 0x%llx and 0x%llx",
     (GC_ULL) GC_state.reg_bottom, (GC_ULL) GC_state.reg_top);
-  GC_dbgf("The stack to scan lies between 0x%llx and 0x%llx",
+  GC_vdbgf("The stack to scan lies between 0x%llx and 0x%llx",
     (GC_ULL) GC_state.stack_top, (GC_ULL) GC_state.stack_bottom);
   
   GC_assert( GC_state.stack_top && GC_state.reg_bottom && GC_state.reg_top );

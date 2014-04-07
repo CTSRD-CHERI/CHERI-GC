@@ -272,7 +272,7 @@ GC_cap_memclr (GC_cap_ptr dest)
     *p = GC_INVALID_PTR;
   }
   
-  GC_vdbgf("NOTE: doing a memclr...\n");
+  //GC_vdbgf("NOTE: doing a memclr...\n");
 #ifdef GC_DEBUG
   GC_cap_memset(dest, GC_MAGIC_JUST_CLEARED);
 #endif // GC_DEBUG

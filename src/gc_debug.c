@@ -193,9 +193,25 @@ GC_debug_capdump (const void * start, const void * end)
     (GC_ULL) start,
     (GC_ULL) end);
   start = GC_ALIGN_32(start, const void *);
-  end = GC_ALIGN_32_LOW(end, const void *);  
+  end = GC_ALIGN_32_LOW(end, const void *);
   
-  const void * p;
+  GC_cap_ptr * p;
+  for (p=(GC_cap_ptr*)start; p<(GC_cap_ptr*)end; p++)
+  {
+    if (GC_cheri_gettag(*p))
+    {
+      printf("[0x%llx]  t=1  b=0x%llx  l=0x%llx\n",
+        (GC_ULL) p,
+        (GC_ULL) GC_cheri_getbase(*p),
+        (GC_ULL) GC_cheri_getlen(*p));
+    }
+    else
+    {
+      //printf("[0x%llx]  t=0\n", (GC_ULL) p);
+    }
+  }
+  
+  /*const void * p;
   for (p = start;
        ((uintptr_t) p) < ((uintptr_t) end);
        p = (const void *) ( ((uintptr_t) p) + sizeof(GC_cap_ptr) ))
@@ -221,7 +237,7 @@ GC_debug_capdump (const void * start, const void * end)
     {
       //printf("[0x%llx]  t=0\n", (GC_ULL) p);
     }
-  }
+  }*/
 }
 
 GC_FUNC void
