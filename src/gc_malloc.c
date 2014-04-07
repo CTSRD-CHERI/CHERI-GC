@@ -172,7 +172,7 @@ GC_malloc_region
     {
       // TODO: try to allocate directly in old generation if out of options.
       GC_errf("GC_malloc_region(): out of memory (sz=0x%llx)", (GC_ULL) sz);
-      GC_debug_print_region_stats(region);
+      //GC_debug_print_region_stats(region);
       return GC_INVALID_PTR;
     }
   }

@@ -3,7 +3,7 @@
 
 #define GC_DEBUG
 //#define GC_VERBOSE_DEBUG
-#define GC_THREAD_LOCAL_HEAP_SIZE             90000
+#define GC_THREAD_LOCAL_HEAP_SIZE             1013
 #define GC_OLD_GENERATION_SEMISPACE_SIZE      130000
 
 // If old heap residency exceeds this, collect, and if that fails, grow.
@@ -31,6 +31,9 @@
 
 // Used by GC_malloc on freshly allocated objects
 #define GC_JUST_GC_ALLOCATED                  0x47      // 'G'
+
+// Used by GC_collect to clear the fromspace
+#define GC_JUST_CLEARED_FROMSPACE             0x48      // 'H'
 
 // ----HEAP GROWING----
 // Current policies with GC_GENERATIONAL turned on:
@@ -62,8 +65,8 @@
 // Maximum sizes for when the heap does grow. Set to 0 to allow unlimited
 // growth.
 // TODO: the 0 setting
-#define GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION        90000
-#define GC_THREAD_LOCAL_HEAP_MAX_SIZE                          90000
+#define GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION        10000
+#define GC_THREAD_LOCAL_HEAP_MAX_SIZE                          20000
 #define GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION 130000
 #define GC_OLD_GENERATION_SEMISPACE_MAX_SIZE                   130000
 

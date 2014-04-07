@@ -176,6 +176,10 @@ GC_copy_region (struct GC_region * region,
     GC_cheri_getbase(region->fromspace),
     GC_cheri_getbase(region->fromspace) + GC_cheri_getlen(region->fromspace));*/
   
+#ifdef GC_DEBUG
+  GC_cap_memset(region->fromspace, GC_JUST_CLEARED_FROMSPACE);
+#endif // GC_DEBUG
+  
   //GC_cap_memclr(region->fromspace);
   //printf("TODO: instead just clear an object of capabilities when allocating...\n");
 }

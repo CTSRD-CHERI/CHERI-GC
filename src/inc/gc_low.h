@@ -255,7 +255,7 @@ typedef __capability void * GC_cap_ptr;
     tmpy = GC_INVALID_PTR; \
   } while (0)
 #else // GC_GENERATIONAL
-#define GC_STORE_CAP(x,y) \
+//#define GC_STORE_CAP(x,y) \
   do { \
   __asm__ __volatile__ ("daddiu $6, $6, 0"); \
   __asm__ __volatile__ ("daddiu $7, $7, 0"); \
@@ -267,7 +267,7 @@ typedef __capability void * GC_cap_ptr;
   __asm__ __volatile__ ("daddiu $8, $8, 0"); \
   __asm__ __volatile__ ("daddiu $9, $9, 0"); \
   } while (0);
-//#define GC_STORE_CAP(x,y) ( (x) = (y) )
+#define GC_STORE_CAP(x,y) ( (x) = (y) )
 //#define GC_STORE_CAP(x,y) \
   do { \
     printf("[GC_STORE_CAP] Begin processing %s = %s &x=0x%llx\n", #x, #y, (unsigned long long) &x); \

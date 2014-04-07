@@ -34,7 +34,8 @@ typedef struct node_tag
 // ----------------------------------------------------------------------------
 
 #define TESTS \
-  X_MACRO(fill_test, "Fill the heap with 128-byte chunks and ensure integrity on collection")
+  X_MACRO(fill_test, "Fill the heap with 512-byte chunks and ensure integrity after collection") \
+  X_MACRO(list_test, "Fill the heap with a list and ensure integrity after collection") \
 
 #define DECLARE_TEST(test,descr) \
 ATTR_SENSITIVE int \
@@ -82,7 +83,8 @@ main (int argc, char **argv)
 
 DEFINE_TEST(fill_test)
 {
-  const int bufsz = 128;
+#define typ int
+  const int bufsz = 128*sizeof(typ);
   const int maxnbufs = 100000;
   GC_CAP char * bufs[maxnbufs/bufsz];
   
@@ -101,13 +103,22 @@ DEFINE_TEST(fill_test)
   size_t i;
   for (i=0; i<nbufs; i++)
   {
-    bufs[i] = GC_malloc(bufsz);
-    GC_assert( (char*)bufs[i] );
+    bufs[i] = GC_INVALID_PTR;
+    GC_STORE_CAP(bufs[i], GC_malloc(bufsz));
+    
+    GC_assert( (typ*)bufs[i] );
     GC_assert( GC_cheri_getlen(bufs[i]) == bufsz );
-    memset((char*)bufs[i], i, bufsz);
+    
+    size_t j;
+    for (j=0; j<bufsz/sizeof(typ); j++)
+    {
+      ((typ*)bufs[i])[j] = i;
+    }
     
     // dummy, should be lost on collection
-    GC_assert( (char*) GC_malloc(bufsz*10) );
+    typ * tmp = (typ*) GC_malloc(bufsz*2);
+    GC_assert( tmp );
+    memset(tmp, 0, bufsz*2);
   }
   
   TESTF("filled %llu buffers\n", (GC_ULL) nbufs);
@@ -118,9 +129,8 @@ DEFINE_TEST(fill_test)
   GC_assert( heapsz/100 );
   for (i=0; i<heapsz/100; i++)
   {
-    GC_assert( (char*) GC_malloc(heapsz/10) );
+    GC_assert( (void*) GC_malloc(heapsz/10) );
   }
-  GC_collect();
   GC_collect();
   GC_collect();
   
@@ -128,21 +138,92 @@ DEFINE_TEST(fill_test)
   
   for (i=0; i<nbufs; i++)
   {
-    GC_assert( (char*)bufs[i] );
+    GC_assert( (typ*)bufs[i] );
     GC_assert( GC_cheri_getlen(bufs[i]) == bufsz );
     size_t j;
-    for (j=0; j<bufsz; j++)
+    for (j=0; j<bufsz/sizeof(typ); j++)
     {
-      size_t val = ((char*)bufs[i])[j];
-      if ( val != i )
+      GC_assert( GC_IN((void*)bufs[i], GC_state.thread_local_region.tospace) );
+      
+      if ( ((typ*)bufs[i])[j] != (typ) i )
       {
         printf("NOTE: i=%d, j=%d\n", (int) i, (int) j);
-        GC_debug_memdump((char*)bufs[i], ((char*)bufs[i])+bufsz);
+        GC_debug_memdump((typ*)bufs[i], ((typ*)bufs[i])+bufsz);
       }
       
-      GC_assert( val == i );
+      GC_assert( ((typ*)bufs[i])[j] == (typ) i );
     }
   }
+  
+  return 0;
+}
+
+DEFINE_TEST(list_test)
+{
+  // Don't allow an unlimited heap
+  GC_assert( GC_state.thread_local_region.max_grow_size_before_collection );
+  GC_assert( GC_state.thread_local_region.max_grow_size_after_collection );
+ 
+  size_t heapsz =
+    GC_state.thread_local_region.max_grow_size_after_collection;
+  GC_assert( heapsz );
+  
+  int i;
+  GC_CAP node * head = GC_INVALID_PTR;
+  for (i=0; ; i++)
+  {
+    if (i > heapsz/sizeof(node))
+    {
+      TESTF("FATAL: too many nodes!\n");
+      GC_debug_print_region_stats(&GC_state.thread_local_region);
+      return 1;
+    }
+    
+    GC_CAP node * p = GC_INVALID_PTR;
+    GC_STORE_CAP(p, GC_malloc(sizeof(node)));
+    if (!(void*)p) break;
+    
+    // dummy, should be lost on collection
+    void * tmp = (void*) GC_malloc(500);
+    if (tmp) memset(tmp, 0, 500);
+    
+    ((node*)p)->value = i;
+    GC_STORE_CAP(((node*)p)->next, head);
+    GC_STORE_CAP(head, p);
+  }
+  
+  i--;
+  
+  TESTF("allocated %d nodes (each of size %llu)\n", i, (GC_ULL) sizeof(node));
+  
+  GC_collect();
+  GC_collect();
+  GC_collect();
+  GC_collect();
+  GC_collect();
+  
+  int j;
+  GC_CAP node * p = GC_INVALID_PTR;
+  GC_STORE_CAP(p, head);
+  for (j=0; j<=i; j++)
+  {
+    GC_assert( GC_IN(p, GC_state.thread_local_region.tospace) );
+    if (!(void*)p)
+    {
+      printf("failed at j=%d\n", j);
+    }
+    GC_assert( (void*)p );
+    if (((node*)p)->value != (i - j))
+    {
+      printf("at j=%d, the value is %d (0x%llx)\n", j, ((node*)p)->value, (GC_ULL) ((node*)p)->value);
+    }
+    GC_assert( ((node*)p)->value == (i - j) );
+    GC_STORE_CAP(p, ((node*)p)->next);
+  }
+ 
+  GC_assert( !(void*)p );
+  
+  TESTF("checked %d nodes\n", i);
   
   return 0;
 }
