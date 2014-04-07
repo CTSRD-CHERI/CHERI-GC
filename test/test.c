@@ -22,9 +22,15 @@ typedef struct
 
 typedef struct node_tag
 {
+  GC_CAP struct node_tag * next;
   int value;
-  __capability struct node_tag * next;
 } node;
+
+typedef struct bintree_tag
+{
+  GC_CAP struct bintree_tag * left, * right;
+  int value;
+} bintree;
 
 // ----------------------------------------------------------------------------
 // ------ To create a new test, just add it to the TESTS list and -------------
@@ -34,8 +40,9 @@ typedef struct node_tag
 // ----------------------------------------------------------------------------
 
 #define TESTS \
-  X_MACRO(fill_test, "Fill the heap with 512-byte chunks and ensure integrity after collection") \
-  X_MACRO(list_test, "Fill the heap with a list and ensure integrity after collection") \
+  /*X_MACRO(fill_test, "Fill the heap with 512-byte chunks and ensure integrity after collection") \
+  X_MACRO(list_test, "Fill the heap with a list and ensure integrity after collection")*/ \
+  X_MACRO(bintree_test, "Create some binary trees and ensure integrity after collection") \
 
 #define DECLARE_TEST(test,descr) \
 ATTR_SENSITIVE int \
@@ -224,6 +231,130 @@ DEFINE_TEST(list_test)
   GC_assert( !(void*)p );
   
   TESTF("checked %d nodes\n", i);
+  
+  return 0;
+}
+
+ATTR_SENSITIVE static int
+bintree_encode_value (int depth, int value)
+{
+  return ((depth&0xFFFF) << 16) | (value&0xFFFF);
+}
+
+ATTR_SENSITIVE static void
+bintree_print (GC_CAP bintree * tree, int depth);
+
+ATTR_SENSITIVE static GC_CAP bintree *
+bintree_create (int depth, int value)
+{
+  GC_CAP bintree * tree = GC_INVALID_PTR;
+  GC_STORE_CAP(tree, GC_malloc(sizeof(bintree)));
+  if (!(void*)tree) return GC_INVALID_PTR;
+  ((bintree*)tree)->value = bintree_encode_value(depth, value);
+  ((bintree*)tree)->left = GC_INVALID_PTR;
+  ((bintree*)tree)->right = GC_INVALID_PTR;
+  
+  GC_malloc(50);
+  if (depth > 1)
+  {
+    GC_malloc(50);
+    GC_STORE_CAP( ((bintree*)tree)->left, bintree_create(depth-1, 2*value) );
+    if (!(void*)((bintree*)tree)->left) return GC_INVALID_PTR;
+    GC_assert( GC_cheri_gettag(((bintree*)tree)->left) );
+    GC_malloc(50);
+    GC_STORE_CAP( ((bintree*)tree)->right, bintree_create(depth-1, 2*value+1) );
+    if (!(void*)((bintree*)tree)->right) return GC_INVALID_PTR;
+    GC_assert( GC_cheri_gettag(((bintree*)tree)->right) );
+    GC_malloc(50);
+  }
+  GC_malloc(50);
+  printf("printing:\n\n");bintree_print(tree, depth);printf("\nprinted.\n");
+  return tree;
+}
+
+ATTR_SENSITIVE static int
+bintree_check (GC_CAP bintree * tree, int depth, int value)
+{
+  if (!(void*)tree ||
+      ((bintree*)tree)->value != bintree_encode_value(depth, value))
+    return 0;
+  if (depth>1)
+    return
+      bintree_check(((bintree*)tree)->left, depth-1, 2*value) &&
+      bintree_check(((bintree*)tree)->right, depth-1, 2*value+1);
+  else
+    return !(void*)((bintree*)tree)->left &&
+           !(void*)((bintree*)tree)->right;
+}
+
+ATTR_SENSITIVE static void
+bintree_print (GC_CAP bintree * tree, int depth)
+{
+  GC_assert((void*)tree);
+  printf("[0x%llx\n", (GC_ULL) ((bintree*)tree)->value);
+  if (depth>1)
+  {
+    GC_assert( (void*)((bintree*)tree)->left );
+    GC_assert( (void*)((bintree*)tree)->right );
+    printf(",L(");
+    bintree_print( ((bintree*)tree)->left, depth-1);
+    printf("),R(");
+    bintree_print( ((bintree*)tree)->right, depth-1);
+    printf(")");
+  }
+  else
+  {
+    GC_assert( !(void*)((bintree*)tree)->left );
+    GC_assert( !(void*)((bintree*)tree)->right );
+  }
+  printf("]");
+}
+
+DEFINE_TEST(bintree_test)
+{
+  // Don't allow an unlimited heap
+  GC_assert( GC_state.thread_local_region.max_grow_size_before_collection );
+  GC_assert( GC_state.thread_local_region.max_grow_size_after_collection );
+ 
+  size_t heapsz =
+    GC_state.thread_local_region.max_grow_size_after_collection;
+  GC_assert( heapsz );
+  
+  const int max_trees = 1;
+  const int tree_depth = 3;
+  
+  GC_CAP bintree * trees[max_trees];
+  
+  int i;
+  GC_CAP node * head = GC_INVALID_PTR;
+  for (i=0; i<max_trees; i++)
+  {
+    TESTF("allocated %d trees so far\n", i);
+    GC_debug_print_region_stats(&GC_state.thread_local_region);
+    trees[i] = bintree_create(tree_depth, i);
+    if (!(void*)trees[i]) break;
+  }
+  bintree_print(trees[0],tree_depth);
+  
+  TESTF("allocated %d trees\n", i);
+  
+  GC_collect();
+  GC_collect();
+  GC_collect();
+  GC_collect();
+  GC_collect();
+  
+  bintree_print(trees[0], tree_depth);
+  
+  int j;
+  GC_CAP node * p = GC_INVALID_PTR;
+  GC_STORE_CAP(p, head);
+  for (j=0; j<i; j++)
+  {
+    GC_assert( bintree_check(trees[i], tree_depth, i) );
+  }
+  
+  TESTF("checked %d trees\n", j);
   
   return 0;
 }
