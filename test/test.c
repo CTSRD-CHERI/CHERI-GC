@@ -249,6 +249,7 @@ bintree_create (int depth, int value)
 {
   GC_CAP bintree * tree = GC_INVALID_PTR;
   GC_STORE_CAP(tree, GC_malloc(sizeof(bintree)));
+  //tree = GC_cheri_ptr(GC_low_malloc(sizeof(bintree)), sizeof(bintree));
   if (!(void*)tree) return GC_INVALID_PTR;
   ((bintree*)tree)->value = bintree_encode_value(depth, value);
   ((bintree*)tree)->left = GC_INVALID_PTR;
@@ -258,17 +259,20 @@ bintree_create (int depth, int value)
   if (depth > 1)
   {
     GC_malloc(50);
+    
     GC_STORE_CAP( ((bintree*)tree)->left, bintree_create(depth-1, 2*value) );
     if (!(void*)((bintree*)tree)->left) return GC_INVALID_PTR;
     GC_assert( GC_cheri_gettag(((bintree*)tree)->left) );
+    
     GC_malloc(50);
+    
     GC_STORE_CAP( ((bintree*)tree)->right, bintree_create(depth-1, 2*value+1) );
     if (!(void*)((bintree*)tree)->right) return GC_INVALID_PTR;
     GC_assert( GC_cheri_gettag(((bintree*)tree)->right) );
+    
     GC_malloc(50);
   }
   GC_malloc(50);
-  printf("printing:\n\n");bintree_print(tree, depth);printf("\nprinted.\n");
   return tree;
 }
 
@@ -296,6 +300,12 @@ bintree_print (GC_CAP bintree * tree, int depth)
   {
     GC_assert( (void*)((bintree*)tree)->left );
     GC_assert( (void*)((bintree*)tree)->right );
+    GC_assert(GC_IN(
+      (void*)((bintree*)tree)->left, GC_state.thread_local_region.tospace 
+    ));
+    GC_assert(GC_IN(
+      (void*)((bintree*)tree)->right, GC_state.thread_local_region.tospace 
+    ));
     printf(",L(");
     bintree_print( ((bintree*)tree)->left, depth-1);
     printf("),R(");
@@ -326,7 +336,6 @@ DEFINE_TEST(bintree_test)
   GC_CAP bintree * trees[max_trees];
   
   int i;
-  GC_CAP node * head = GC_INVALID_PTR;
   for (i=0; i<max_trees; i++)
   {
     TESTF("allocated %d trees so far\n", i);
@@ -343,15 +352,11 @@ DEFINE_TEST(bintree_test)
   GC_collect();
   GC_collect();
   GC_collect();
-  
-  bintree_print(trees[0], tree_depth);
-  
+
   int j;
-  GC_CAP node * p = GC_INVALID_PTR;
-  GC_STORE_CAP(p, head);
   for (j=0; j<i; j++)
   {
-    GC_assert( bintree_check(trees[i], tree_depth, i) );
+    GC_assert( bintree_check(trees[j], tree_depth, j) );
   }
   
   TESTF("checked %d trees\n", j);
