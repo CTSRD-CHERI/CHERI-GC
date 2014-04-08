@@ -243,6 +243,8 @@ bintree_encode_value (int depth, int value)
 
 ATTR_SENSITIVE static void
 bintree_print (GC_CAP bintree * tree, int depth);
+ATTR_SENSITIVE static int
+bintree_check (GC_CAP bintree * tree, int depth, int value);
 
 ATTR_SENSITIVE static GC_CAP bintree *
 bintree_create (int depth, int value)
@@ -255,6 +257,7 @@ bintree_create (int depth, int value)
   ((bintree*)tree)->left = GC_INVALID_PTR;
   ((bintree*)tree)->right = GC_INVALID_PTR;
   
+  printf("The tree root is at 0x%llx\n", (GC_ULL) &tree);
   GC_malloc(50);
   if (depth > 1)
   {
@@ -264,22 +267,35 @@ bintree_create (int depth, int value)
     if (!(void*)((bintree*)tree)->left) return GC_INVALID_PTR;
     GC_assert( GC_cheri_gettag(((bintree*)tree)->left) );
     
+    GC_assert( bintree_check(((bintree*)tree)->left, depth-1, 2*value) );
+    
     GC_malloc(50);
     
     GC_STORE_CAP( ((bintree*)tree)->right, bintree_create(depth-1, 2*value+1) );
     if (!(void*)((bintree*)tree)->right) return GC_INVALID_PTR;
     GC_assert( GC_cheri_gettag(((bintree*)tree)->right) );
+
+    GC_assert( bintree_check(((bintree*)tree)->right, depth-1, 2*value+1) );
     
     GC_malloc(50);
+    GC_assert( bintree_check(((bintree*)tree)->right, depth-1, 2*value+1) );
   }
   GC_malloc(50);
+  if (!bintree_check(tree, depth, value))
+  {
+    printf("At depth %d, value %d, bintree_check failed\n", depth, value);
+  }
+  GC_assert( bintree_check(tree, depth, value) );
   return tree;
 }
 
 ATTR_SENSITIVE static int
 bintree_check (GC_CAP bintree * tree, int depth, int value)
 {
-  if (!(void*)tree ||
+  printf("Bintree checking at depth=%d, value=%d, tree=0x%llx\n", depth, value, (GC_ULL) (void*)tree);
+  if (!GC_cheri_gettag(tree) ||
+      !GC_IN((void*)tree, GC_state.thread_local_region.tospace) ||
+      !(void*)tree ||
       ((bintree*)tree)->value != bintree_encode_value(depth, value))
     return 0;
   if (depth>1)
