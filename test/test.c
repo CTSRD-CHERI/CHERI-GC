@@ -4,6 +4,7 @@
 #include <gc_collect.h>
 #include <gc_low.h>
 #include <gc_config.h>
+#include <gc_bitmap.h>
 
 #include <machine/cheri.h>
 #include <machine/cheric.h>
@@ -43,7 +44,8 @@ typedef struct bintree_tag
   /*X_MACRO(fill_test, "Fill the heap with 512-byte chunks and ensure integrity after collection") \
   X_MACRO(list_test, "Fill the heap with a list and ensure integrity after collection") \
   X_MACRO(bintree_test, "Create some binary trees and ensure integrity after collection") \
-  */X_MACRO(regroots_test, "Check register roots") \
+  X_MACRO(regroots_test, "Check register roots") \
+  */X_MACRO(bitmap_test, "Check bitmap operations") \
 
 #define DECLARE_TEST(test,descr) \
 ATTR_SENSITIVE int \
@@ -390,4 +392,63 @@ DEFINE_TEST(regroots_test)
   printf("after collecting, x.base = 0x%llx\n", (GC_ULL)(void*)x);
   GC_PRINT_CAP(GC_state.thread_local_region.tospace);
   return !GC_IN((void*)x, GC_state.thread_local_region.tospace);
+}
+
+DEFINE_TEST(bitmap_test)
+{
+  struct GC_bitmap bitmap;
+  size_t sz = 811;
+  size_t i;
+  
+  GC_assert( !GC_init_bitmap(&bitmap, sz) );
+  GC_assert( bitmap.size == sz );
+  GC_assert( bitmap.used == 0 );
+  
+  for (i=0; i<bitmap.size; i++)
+  {
+    int bit = GC_BITMAP_GET(&bitmap, i);
+    GC_assert( !bit );
+    printf("%d", bit);
+  }
+  printf("\n");
+  
+  GC_bitmap_allocate(&bitmap, 23);
+  GC_bitmap_allocate(&bitmap, 42);
+  GC_bitmap_allocate(&bitmap, 19);
+  GC_bitmap_allocate(&bitmap, 7);
+
+  for (i=0; i<bitmap.size; i++)
+  {
+    int bit = GC_BITMAP_GET(&bitmap, i);
+    if ((i == 0) || (i == 23) || (i==23+42) || (i==23+42+19))
+      GC_assert( bit );
+    else
+      GC_assert( !bit );
+    printf("%d", bit);
+  }
+  printf("\n");
+  
+  GC_assert( !GC_bitmap_find(&bitmap, 0, 10) );
+  GC_assert( !GC_bitmap_find(&bitmap, 0, 0) );
+  GC_assert( !GC_bitmap_find(&bitmap, 0, 1) );
+  GC_assert( !GC_bitmap_find(&bitmap, 0, 22) );
+  GC_assert( !GC_bitmap_find(&bitmap, 0, 24) );
+  GC_assert( !GC_bitmap_find(&bitmap, 0, 0) );
+  GC_assert( GC_bitmap_find(&bitmap, 0, 23) );
+  GC_assert( !GC_bitmap_find(&bitmap, 23, 23) );
+  GC_assert( !GC_bitmap_find(&bitmap, 23, 0) );
+  GC_assert( !GC_bitmap_find(&bitmap, 23, 41) );
+  GC_assert( !GC_bitmap_find(&bitmap, 23, 1) );
+  GC_assert( !GC_bitmap_find(&bitmap, 23, 43) );
+  GC_assert( GC_bitmap_find(&bitmap, 23, 42) );
+  GC_assert( GC_bitmap_find(&bitmap, 23+42, 19) );
+  GC_assert( !GC_bitmap_find(&bitmap, 23+42+19, 6) );
+  GC_assert( !GC_bitmap_find(&bitmap, 23+42+19, 99) );
+  GC_assert( !GC_bitmap_find(&bitmap, 23+42+19, 8) );
+  GC_assert( !GC_bitmap_find(&bitmap, 23+42+19, 0) );
+  GC_assert( !GC_bitmap_find(&bitmap, 23+42+19, 1) );
+  GC_assert( !GC_bitmap_find(&bitmap, 23, 19999999) );
+  GC_assert( GC_bitmap_find(&bitmap, 23+42+19, 7) );
+  
+  return 0;
 }
