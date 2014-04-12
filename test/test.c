@@ -41,8 +41,9 @@ typedef struct bintree_tag
 
 #define TESTS \
   /*X_MACRO(fill_test, "Fill the heap with 512-byte chunks and ensure integrity after collection") \
-  X_MACRO(list_test, "Fill the heap with a list and ensure integrity after collection")*/ \
+  X_MACRO(list_test, "Fill the heap with a list and ensure integrity after collection") \
   X_MACRO(bintree_test, "Create some binary trees and ensure integrity after collection") \
+  */X_MACRO(regroots_test, "Check register roots") \
 
 #define DECLARE_TEST(test,descr) \
 ATTR_SENSITIVE int \
@@ -378,4 +379,15 @@ DEFINE_TEST(bintree_test)
   TESTF("checked %d trees\n", j);
   
   return 0;
+}
+
+DEFINE_TEST(regroots_test)
+{
+  GC_CAP void * x = GC_malloc(50);
+  printf("before collecting, x.base = 0x%llx\n", (GC_ULL)(void*)x);
+  GC_PRINT_CAP(GC_state.thread_local_region.tospace);
+  GC_collect();
+  printf("after collecting, x.base = 0x%llx\n", (GC_ULL)(void*)x);
+  GC_PRINT_CAP(GC_state.thread_local_region.tospace);
+  return !GC_IN((void*)x, GC_state.thread_local_region.tospace);
 }
