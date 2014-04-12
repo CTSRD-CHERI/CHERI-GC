@@ -2,10 +2,12 @@
 #define GC_INIT_H_HEADER
 
 #include "gc_common.h"
-#include <stdlib.h>
 #include "gc_config.h"
 #include "gc_time.h"
 #include "gc_remset.h"
+#include "gc_bitmap.h"
+
+#include <stdlib.h>
 
 struct GC_region
 {
@@ -16,13 +18,18 @@ struct GC_region
   // The not-32-byte-aligned result from GC_low_malloc(), used by GC_grow().
   void * tospace_misaligned, * fromspace_misaligned;
   int num_collections, num_allocations; // debugging/stats
+
+#ifdef GC_USE_BITMAP
+  struct GC_bitmap tospace_bitmap, fromspace_bitmap;
+#endif // GC_USE_BITMAP
+  
 #ifdef GC_GENERATIONAL
   struct GC_region * older_region; // only used if this one is young
 
 #if (GC_OY_STORE_DEFAULT == GC_OY_STORE_REMEMBERED_SET)
   struct GC_remembered_set * remset;
 #endif // GC_OY_STORE_DEFAULT
-
+  
 #endif // GC_GENERATIONAL
 #ifdef GC_GROW_HEAP
   size_t max_grow_size_before_collection;

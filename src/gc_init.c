@@ -120,6 +120,21 @@ GC_init_region
   
   region->free = region->tospace;
   region->scan = NULL;
+#ifdef GC_USE_BITMAP
+  int rc;
+  rc = GC_init_bitmap(&region->tospace_bitmap, semispace_size/32);
+  if (rc)
+  {
+    GC_errf("GC_init_bitmap failed with error code %d (tospace)", rc);
+    return rc;
+  }
+  rc = GC_init_bitmap(&region->fromspace_bitmap, semispace_size/32);
+  if (rc)
+  {
+    GC_errf("GC_init_bitmap failed with error code %d (fromspace)", rc);
+    return rc;
+  }
+#endif // GC_USE_BITMAP
 #ifdef GC_GENERATIONAL
   region->older_region = NULL;
 #if (GC_OY_STORE_DEFAULT == GC_OY_STORE_REMEMBERED_SET)
@@ -179,6 +194,15 @@ GC_init_young_region (struct GC_region * region,
   region->scan = NULL;
   region->older_region = older_region;
   region->num_collections = 0;
+#ifdef GC_USE_BITMAP
+  int rc;
+  rc = GC_init_bitmap(&region->tospace_bitmap, sz/32);
+  if (rc)
+  {
+    GC_errf("GC_init_bitmap failed with error code %d (tospace)", rc);
+    return rc;
+  }
+#endif // GC_USE_BITMAP
 #ifdef GC_GENERATIONAL
 #if (GC_OY_STORE_DEFAULT == GC_OY_STORE_REMEMBERED_SET)
   region->remset = GC_low_malloc(sizeof(struct GC_remembered_set));

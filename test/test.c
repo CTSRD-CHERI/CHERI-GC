@@ -43,9 +43,9 @@ typedef struct bintree_tag
 #define TESTS \
   /*X_MACRO(fill_test, "Fill the heap with 512-byte chunks and ensure integrity after collection") \
   X_MACRO(list_test, "Fill the heap with a list and ensure integrity after collection") \
-  X_MACRO(bintree_test, "Create some binary trees and ensure integrity after collection") \
+  */X_MACRO(bintree_test, "Create some binary trees and ensure integrity after collection") \
   X_MACRO(regroots_test, "Check register roots") \
-  */X_MACRO(bitmap_test, "Check bitmap operations") \
+  X_MACRO(bitmap_test, "Check bitmap operations") \
 
 #define DECLARE_TEST(test,descr) \
 ATTR_SENSITIVE int \

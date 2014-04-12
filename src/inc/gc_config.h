@@ -12,6 +12,9 @@
 // Set to 0 to disable. Must always be defined, however.
 #define GC_COLLECT_ON_ALLOCATION_FAILURE      1
 
+// Enable this to use a bitmap to track allocated objects.
+#define GC_USE_BITMAP
+
 // Magic values for debugging
 
 // Used by lower-level routines:

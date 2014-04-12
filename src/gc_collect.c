@@ -145,6 +145,10 @@ GC_copy_region (struct GC_region * region,
   
   //void * stack_top = NULL;
   //GC_GET_STACK_PTR(stack_top);
+  
+#ifdef GC_USE_BITMAP
+  GC_bitmap_clr(&region->tospace_bitmap);
+#endif // GC_USE_BITMAP
 
   GC_vdbgf("The registers lie between 0x%llx and 0x%llx",
     (GC_ULL) GC_state.reg_bottom, (GC_ULL) GC_state.reg_top);
@@ -191,6 +195,7 @@ GC_copy_object (struct GC_region * region,
 {
   // Copy the object pointed to by cap to region->tospace
   
+  GC_assert( GC_IS_IN_BITMAP(&region->fromspace_bitmap, cap) );
   GC_assert( GC_IS_GC_ALLOCATED(cap) );
   GC_assert( GC_IN(GC_cheri_getbase(cap), region->fromspace) );
   GC_assert( GC_IS_ALIGNED_32(cap) );
@@ -239,6 +244,7 @@ GC_copy_object (struct GC_region * region,
       GC_cheri_getlen (region->free)-GC_cheri_getlen(cap));
 
   tmp = GC_SET_GC_ALLOCATED(tmp);
+  GC_ADD_TO_BITMAP(&GC_state.thread_local_region.tospace_bitmap, tmp);
   
 #ifndef GC_GENERATIONAL
   // Not true always; consider young-old copy
@@ -292,6 +298,7 @@ GC_copy_roots (struct GC_region * region,
       continue;
     }
     if (GC_cheri_gettag(*p)
+        && GC_IS_IN_BITMAP(&region->fromspace_bitmap, *p)
         && GC_IS_GC_ALLOCATED(*p)
         && GC_IN(GC_cheri_getbase(*p), region->fromspace))
     {
@@ -330,6 +337,7 @@ GC_copy_child (struct GC_region * region,
                int is_generational)
 {
   if (GC_cheri_gettag(*child_addr)
+    && GC_IS_IN_BITMAP(&region->fromspace_bitmap, *child_addr)
     && GC_IS_GC_ALLOCATED(*child_addr)
        // necessary now for remembered set too
     && GC_IN(GC_cheri_getbase(*child_addr), region->fromspace))
@@ -407,6 +415,8 @@ GC_gen_promote (struct GC_region * region)
   ptrdiff_t expected_sz =
     GC_cheri_getbase(region->free) - GC_cheri_getbase(region->tospace);
   int too_small = GC_cheri_getlen(region->older_region->free) < expected_sz;
+  
+  printf("##FATAL## TODO: save+switch the misaligned fromspace/tospace pointer and bitmaps.\n");exit(1);
   
 #ifdef GC_GROW_OLD_HEAP
   // Grow the heap if we have to.
@@ -585,13 +595,13 @@ GC_region_rebase (struct GC_region * region, void * old_base, size_t old_size)
   );
   
   // These areas must not overlap.
-  GC_rebase(GC_state.stack_top, GC_state.stack_bottom,
+  GC_rebase(region, GC_state.stack_top, GC_state.stack_bottom,
             old_base, old_size, new_base);
-  GC_rebase(GC_state.reg_bottom, GC_state.reg_top,
+  GC_rebase(region, GC_state.reg_bottom, GC_state.reg_top,
             old_base, old_size, new_base);
-  GC_rebase(GC_state.static_bottom, GC_state.static_top,
+  GC_rebase(region, GC_state.static_bottom, GC_state.static_top,
             old_base, old_size, new_base);
-  GC_rebase(new_base, new_base+new_size,
+  GC_rebase(region, new_base, new_base+new_size,
             old_base, old_size, new_base);
   
   /*
@@ -649,7 +659,8 @@ GC_region_rebase (struct GC_region * region, void * old_base, size_t old_size)
 }
 
 GC_FUNC void
-GC_rebase (void * start,
+GC_rebase (struct GC_region * region,
+           void * start,
            void * end,
            void * old_base,
            size_t old_size,
@@ -676,6 +687,7 @@ GC_rebase (void * start,
   for (p = (GC_cap_ptr *) start; ((uintptr_t) p) < ((uintptr_t) end); p++)
   {
     if (GC_cheri_gettag(*p)
+        && GC_IS_IN_BITMAP(&region->fromspace_bitmap, *p)
         && GC_IS_GC_ALLOCATED(*p)
        )//&& !GC_IS_FORWARDING_ADDRESS(*p))
     {

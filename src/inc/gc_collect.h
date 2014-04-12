@@ -66,9 +66,11 @@ GC_region_rebase (struct GC_region * region, void * old_base, size_t old_size);
 
 // Replaces all capabilities in the interval [start, end] that have a base B
 // in the interval [old_base, old_base+old_size] with a new capability whose
-// base is B-old_base+new_base.
+// base is B-old_base+new_base. NOTE: the region argument is only used for the
+// bitmap, where appropriate.
 GC_FUNC void
-GC_rebase (void * start,
+GC_rebase (struct GC_region * region,
+           void * start,
            void * end,
            void * old_base,
            size_t old_size,
