@@ -39,7 +39,7 @@ GC_bitmap_find (struct GC_bitmap * bitmap,
   if (pos+len > bitmap->used) return 0;
   if (!len) return 0;
   if (!GC_BITMAP_GET(bitmap, pos)) return 0;
-  if (!GC_BITMAP_GET(bitmap, pos+len)) return 0;
+  if ((pos+len != bitmap->used) && !GC_BITMAP_GET(bitmap, pos+len)) return 0;
   int i;
   for (i=1; i<len; i++)
     if (GC_BITMAP_GET(bitmap, pos+i)) return 0;
