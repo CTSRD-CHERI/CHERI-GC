@@ -362,6 +362,7 @@ GC_grow (struct GC_region * region, size_t hint, size_t max_size)
     // try doubling first
     new_fromspace_base_misaligned =
       GC_low_realloc(old_fromspace_base_misaligned, new_size+32);
+    
     if (new_fromspace_base_misaligned == NULL)
     {
       GC_dbgf("GC_grow(): growing the fromspace (first attempt) failed\n");
@@ -421,6 +422,15 @@ GC_grow (struct GC_region * region, size_t hint, size_t max_size)
     GC_ALIGN_32(new_tospace_base_misaligned, void *),
     new_size);
 
+#ifdef GC_USE_BITMAP
+  if (GC_grow_bitmap(region->tospace_bitmap, new_size/32)
+      || GC_grow_bitmap(region->fromspace_bitmap, new_size/32))
+  {
+    // TODO: handle this better
+    GC_fatalf("GC_resize_bitmap failed\n");
+  }
+#endif // GC_USE_BITMAP
+  
   region->free = GC_setbaselen(
     region->free,
     GC_cheri_getbase(region->free),
@@ -473,7 +483,7 @@ GC_grow (struct GC_region * region, size_t hint, size_t max_size)
   GC_STOP_TIMING(GC_grow_time, "GC_grow %llu%s -> %llu%s",
     GC_MEM_PRETTY((GC_ULL) old_size), GC_MEM_PRETTY_UNIT((GC_ULL) old_size),
     GC_MEM_PRETTY((GC_ULL) new_size), GC_MEM_PRETTY_UNIT((GC_ULL) new_size));
-  
+
   return new_size >= (old_size+hint);
 }
 

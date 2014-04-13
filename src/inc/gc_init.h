@@ -20,7 +20,7 @@ struct GC_region
   int num_collections, num_allocations; // debugging/stats
 
 #ifdef GC_USE_BITMAP
-  struct GC_bitmap tospace_bitmap, fromspace_bitmap;
+  struct GC_bitmap * tospace_bitmap, * fromspace_bitmap;
 #endif // GC_USE_BITMAP
   
 #ifdef GC_GENERATIONAL

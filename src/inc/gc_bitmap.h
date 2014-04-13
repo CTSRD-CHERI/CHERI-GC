@@ -17,6 +17,11 @@ GC_FUNC int
 GC_init_bitmap (struct GC_bitmap * bitmap,
                 size_t size);
 
+// returns 0 on success and non-zero on failure
+GC_FUNC int
+GC_grow_bitmap (struct GC_bitmap * bitmap,
+                size_t new_size);
+
 // can only set in increments (fill up lower addresses first), just like the
 // copying allocator.
 GC_FUNC void
@@ -31,6 +36,8 @@ GC_FUNC int
 GC_bitmap_find (struct GC_bitmap * bitmap,
                 size_t pos,
                 size_t len);
+
+#define GC_BITMAP_BITS_TO_BYTES(size) ( ((size)+7)/8 )
 
 #define GC_BITMAP_BIG_INDEX(index)   ( (index)/8 )
 #define GC_BITMAP_SMALL_INDEX(index) ( (index)%8 )

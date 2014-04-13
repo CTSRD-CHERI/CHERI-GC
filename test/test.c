@@ -43,9 +43,9 @@ typedef struct bintree_tag
 #define TESTS \
   /*X_MACRO(fill_test, "Fill the heap with 512-byte chunks and ensure integrity after collection") \
   X_MACRO(list_test, "Fill the heap with a list and ensure integrity after collection") \
-  */X_MACRO(bintree_test, "Create some binary trees and ensure integrity after collection") \
+  X_MACRO(bintree_test, "Create some binary trees and ensure integrity after collection") \
   X_MACRO(regroots_test, "Check register roots") \
-  X_MACRO(bitmap_test, "Check bitmap operations") \
+  */X_MACRO(bitmap_test, "Check bitmap operations") \
 
 #define DECLARE_TEST(test,descr) \
 ATTR_SENSITIVE int \
@@ -449,6 +449,52 @@ DEFINE_TEST(bitmap_test)
   GC_assert( !GC_bitmap_find(&bitmap, 23+42+19, 1) );
   GC_assert( !GC_bitmap_find(&bitmap, 23, 19999999) );
   GC_assert( GC_bitmap_find(&bitmap, 23+42+19, 7) );
+  
+  
+  // clear
+  GC_bitmap_clr(&bitmap);
+  GC_assert( bitmap.used == 0 );
+  for (i=0; i<bitmap.size; i++)
+  {
+    int bit = GC_BITMAP_GET(&bitmap, i);
+    GC_assert( !bit );
+  }
+  
+  // try to resize the bitmap
+  GC_bitmap_allocate(&bitmap, 800);
+  GC_bitmap_allocate(&bitmap, 5);
+  GC_bitmap_allocate(&bitmap, 5);
+  GC_bitmap_allocate(&bitmap, 1);
+  for (i=0; i<bitmap.size; i++)
+  {
+    int bit = GC_BITMAP_GET(&bitmap, i);
+    printf("%d", bit);
+  }
+  printf("\n");
+  GC_grow_bitmap(&bitmap, 812);
+  
+  GC_assert( GC_bitmap_find(&bitmap, 810, 1) );
+  GC_assert( !GC_bitmap_find(&bitmap, 811, 1) );
+  GC_assert( !GC_bitmap_find(&bitmap, 812, 1) );
+  GC_assert( !GC_bitmap_find(&bitmap, 813, 1) );
+  GC_assert( !GC_bitmap_find(&bitmap, 811, 0) );
+  GC_assert( !GC_bitmap_find(&bitmap, 812, 0) );
+  GC_assert( !GC_bitmap_find(&bitmap, 810, 0) );
+  
+  GC_bitmap_allocate(&bitmap, 1);
+  for (i=0; i<bitmap.size; i++)
+  {
+    int bit = GC_BITMAP_GET(&bitmap, i);
+    printf("%d", bit);
+  }
+  printf("\n");
+  GC_assert( GC_bitmap_find(&bitmap, 810, 1) );
+  GC_assert( GC_bitmap_find(&bitmap, 811, 1) );
+  GC_assert( !GC_bitmap_find(&bitmap, 812, 1) );
+  GC_assert( !GC_bitmap_find(&bitmap, 813, 1) );
+  GC_assert( !GC_bitmap_find(&bitmap, 811, 0) );
+  GC_assert( !GC_bitmap_find(&bitmap, 812, 0) );
+  GC_assert( !GC_bitmap_find(&bitmap, 810, 0) );
   
   return 0;
 }

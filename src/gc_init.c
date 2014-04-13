@@ -122,13 +122,27 @@ GC_init_region
   region->scan = NULL;
 #ifdef GC_USE_BITMAP
   int rc;
-  rc = GC_init_bitmap(&region->tospace_bitmap, semispace_size/32);
+  region->tospace_bitmap = GC_low_malloc(sizeof(struct GC_bitmap));
+  if (region->tospace_bitmap == NULL)
+  {
+    GC_errf("GC_low_malloc(%llu) (tospace bitmap)",
+      (GC_ULL) sizeof(struct GC_bitmap));
+    return 1;
+  }
+  rc = GC_init_bitmap(region->tospace_bitmap, semispace_size/32);
   if (rc)
   {
     GC_errf("GC_init_bitmap failed with error code %d (tospace)", rc);
     return rc;
   }
-  rc = GC_init_bitmap(&region->fromspace_bitmap, semispace_size/32);
+  region->fromspace_bitmap = GC_low_malloc(sizeof(struct GC_bitmap));
+  if (region->fromspace_bitmap == NULL)
+  {
+    GC_errf("GC_low_malloc(%llu) (fromspace bitmap)",
+      (GC_ULL) sizeof(struct GC_bitmap));
+    return 1;
+  }
+  rc = GC_init_bitmap(region->fromspace_bitmap, semispace_size/32);
   if (rc)
   {
     GC_errf("GC_init_bitmap failed with error code %d (fromspace)", rc);
@@ -196,7 +210,14 @@ GC_init_young_region (struct GC_region * region,
   region->num_collections = 0;
 #ifdef GC_USE_BITMAP
   int rc;
-  rc = GC_init_bitmap(&region->tospace_bitmap, sz/32);
+  region->tospace_bitmap = GC_low_malloc(sizeof(struct GC_bitmap));
+  if (region->tospace_bitmap == NULL)
+  {
+    GC_errf("GC_low_malloc(%llu) (tospace bitmap)",
+      (GC_ULL) sizeof(struct GC_bitmap));
+    return 1;
+  }
+  rc = GC_init_bitmap(region->tospace_bitmap, sz/32);
   if (rc)
   {
     GC_errf("GC_init_bitmap failed with error code %d (tospace)", rc);

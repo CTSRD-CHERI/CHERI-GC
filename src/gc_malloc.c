@@ -203,7 +203,7 @@ GC_malloc_region
 #endif // GC_GENERATIONAL
   
   ret = GC_SET_GC_ALLOCATED(ret);
-  GC_ADD_TO_BITMAP(&GC_state.thread_local_region.tospace_bitmap, ret);
+  GC_ADD_TO_BITMAP(GC_state.thread_local_region.tospace_bitmap, ret);
   
   // Remove any latent caps (esp forwarding addresses from the fromspace)
   GC_cap_memclr(ret);

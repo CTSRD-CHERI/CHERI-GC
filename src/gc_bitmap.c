@@ -1,6 +1,7 @@
 #include "gc_common.h"
 #include "gc_bitmap.h"
 #include "gc_debug.h"
+#include "gc_low.h"
 
 #include <string.h>
 
@@ -10,9 +11,24 @@ GC_init_bitmap (struct GC_bitmap * bitmap,
 {
   bitmap->size = size;
   bitmap->used = 0;
-  bitmap->map = GC_low_malloc((size+7)/8);
+  bitmap->map = GC_low_malloc(GC_BITMAP_BITS_TO_BYTES(size));
   if (bitmap->map == NULL) return 1;
   GC_bitmap_clr(bitmap);
+  return 0;
+}
+
+GC_FUNC int
+GC_grow_bitmap (struct GC_bitmap * bitmap, size_t new_size)
+{
+  GC_assert( new_size > bitmap->size );
+  char * tmp = GC_low_realloc(bitmap->map, GC_BITMAP_BITS_TO_BYTES(new_size));
+  if (!tmp) return 1;
+  bitmap->map = tmp;
+  memset(
+    bitmap->map+GC_BITMAP_BITS_TO_BYTES(bitmap->size),
+    0,
+    GC_BITMAP_BITS_TO_BYTES(new_size)-GC_BITMAP_BITS_TO_BYTES(bitmap->size));
+  bitmap->size = new_size;
   return 0;
 }
 
@@ -28,7 +44,8 @@ GC_bitmap_allocate (struct GC_bitmap * bitmap,
 GC_FUNC void
 GC_bitmap_clr (struct GC_bitmap * bitmap)
 {
-  memset(bitmap->map, 0, bitmap->size);
+  memset(bitmap->map, 0, GC_BITMAP_BITS_TO_BYTES(bitmap->size));
+  bitmap->used = 0;
 }
 
 GC_FUNC int
