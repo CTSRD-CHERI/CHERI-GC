@@ -49,7 +49,7 @@ GC_bitmap_clr (struct GC_bitmap * bitmap)
 }
 
 GC_FUNC int
-GC_bitmap_find2 (struct GC_bitmap * bitmap,
+GC_bitmap_find (struct GC_bitmap * bitmap,
                 size_t pos,
                 size_t len)
 {
@@ -61,18 +61,4 @@ GC_bitmap_find2 (struct GC_bitmap * bitmap,
   for (i=1; i<len; i++)
     if (GC_BITMAP_GET(bitmap, pos+i)) return 0;
   return 1;
-}
-
-
-GC_FUNC int
-GC_bitmap_find3 (const char * file, int line, struct GC_bitmap * bitmap,
-                size_t pos,
-                size_t len)
-{
-  int rc = GC_bitmap_find2(bitmap,pos,len);
-  if (!rc)
-  {
-    printf("bitmap: not found: pos=%llu (0x%llx), len=%llu, %s:%d\n", (GC_ULL) pos, (GC_ULL) pos, (GC_ULL) len, file, line);
-  }
-  return rc;
 }

@@ -32,9 +32,8 @@ GC_FUNC void
 GC_bitmap_clr (struct GC_bitmap * bitmap);
 
 // returns non-zero if the entry is found
-#define GC_bitmap_find(x,y,z) GC_bitmap_find3(__FILE__,__LINE__,(x),(y),(z))
 GC_FUNC int
-GC_bitmap_find3 (const char * file, int line, struct GC_bitmap * bitmap,
+GC_bitmap_find (struct GC_bitmap * bitmap,
                 size_t pos,
                 size_t len);
 
