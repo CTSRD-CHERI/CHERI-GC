@@ -20,7 +20,7 @@
 
 // If this is defined, we manually clean the stack. Otherwise, we rely on
 // __attribute__((sensitive)) annotations to do it for us.
-#define GC_USE_GC_STACK_CLEAN
+//#define GC_USE_GC_STACK_CLEAN
 
 // Magic values for debugging
 
