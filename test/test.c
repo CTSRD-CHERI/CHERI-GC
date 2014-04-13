@@ -41,11 +41,11 @@ typedef struct bintree_tag
 // ----------------------------------------------------------------------------
 
 #define TESTS \
-  /*X_MACRO(fill_test, "Fill the heap with 512-byte chunks and ensure integrity after collection") \
+  X_MACRO(fill_test, "Fill the heap with 512-byte chunks and ensure integrity after collection") \
   X_MACRO(list_test, "Fill the heap with a list and ensure integrity after collection") \
   X_MACRO(bintree_test, "Create some binary trees and ensure integrity after collection") \
   X_MACRO(regroots_test, "Check register roots") \
-  */X_MACRO(bitmap_test, "Check bitmap operations") \
+  X_MACRO(bitmap_test, "Check bitmap operations") \
 
 #define DECLARE_TEST(test,descr) \
 ATTR_SENSITIVE int \
@@ -150,11 +150,16 @@ DEFINE_TEST(fill_test)
   {
     GC_assert( (typ*)bufs[i] );
     GC_assert( GC_cheri_getlen(bufs[i]) == bufsz );
+    if (!GC_IN((void*)bufs[i], GC_state.thread_local_region.tospace))
+    {
+      printf("NOTE: bufs[i]=0x%llx, i=%d\n", (GC_ULL)(void*)bufs[i], (int) i);
+      GC_debug_print_region_stats(&GC_state.thread_local_region);
+    }
+    GC_assert( GC_IN((void*)bufs[i], GC_state.thread_local_region.tospace) );
+    
     size_t j;
     for (j=0; j<bufsz/sizeof(typ); j++)
-    {
-      GC_assert( GC_IN((void*)bufs[i], GC_state.thread_local_region.tospace) );
-      
+    {      
       if ( ((typ*)bufs[i])[j] != (typ) i )
       {
         printf("NOTE: i=%d, j=%d\n", (int) i, (int) j);

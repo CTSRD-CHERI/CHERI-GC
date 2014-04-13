@@ -2,7 +2,7 @@
 #define GC_CONFIG_H_HEADER
 
 #define GC_DEBUG
-#define GC_VERBOSE_DEBUG
+//#define GC_VERBOSE_DEBUG
 #define GC_THREAD_LOCAL_HEAP_SIZE             1013
 #define GC_OLD_GENERATION_SEMISPACE_SIZE      130000
 
@@ -14,6 +14,13 @@
 
 // Enable this to use a bitmap to track allocated objects.
 #define GC_USE_BITMAP
+
+// Kind of temporary
+#define GC_MAX_STACK_TOP    (void*) 0x7ffff00000
+
+// If this is defined, we manually clean the stack. Otherwise, we rely on
+// __attribute__((sensitive)) annotations to do it for us.
+#define GC_USE_GC_STACK_CLEAN
 
 // Magic values for debugging
 
@@ -97,12 +104,5 @@
 
 // Enable if you want the GC to time how long things take
 //#define GC_TIME
-
-// Kind of temporary
-#define GC_MAX_STACK_TOP    (void*) 0x7ffff00000
-
-// If this is defined, we manually clean the stack. Otherwise, we rely on
-// __attribute__((sensitive)) annotations to do it for us.
-//#define GC_USE_GC_STACK_CLEAN
 
 #endif // GC_CONFIG_H_HEADER

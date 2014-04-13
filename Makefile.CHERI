@@ -37,7 +37,7 @@ MEMWATCH_DIR=../memwatch
 # everything: clean lib gctest push run
 
 PATH:=$(CHERI):$(PATH)
-CC=PATH=$(PATH) $(CHERI)/bin/clang --sysroot $(CHERI) -integrated-as -msoft-float -O2
+CC=PATH=$(PATH) $(CHERI)/bin/clang --sysroot $(CHERI) -integrated-as -msoft-float -O0
 CFLAGS=-I$(GC_PRIV_INCLUDE)
 
 GC_SOURCES=objects/gc_init.o objects/gc_malloc.o objects/gc_debug.o \
