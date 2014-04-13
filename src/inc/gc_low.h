@@ -89,14 +89,17 @@ typedef __capability void * GC_cap_ptr;
 // Ensures we copy only objects that we've allocated.
 // Not strictly needed if we define pointers into our allocated memory as always
 // being managed by us.
-#define GC_IS_GC_ALLOCATED(cap) \
+//#define GC_IS_GC_ALLOCATED(cap) \
   ( ! (((GC_ULL) GC_cheri_getperm((cap))) & GC_PERM_GC_ALLOCATED)  )
+#define GC_IS_GC_ALLOCATED(cap) (1)
   
-#define GC_SET_GC_ALLOCATED(cap) \
+//#define GC_SET_GC_ALLOCATED(cap) \
   ( GC_cheri_andperm((cap), ~GC_PERM_GC_ALLOCATED) )
+#define GC_SET_GC_ALLOCATED(cap) (cap)
 
-#define GC_UNSET_GC_ALLOCATED(cap) \
+//#define GC_UNSET_GC_ALLOCATED(cap) \
   ( GC_orperm((cap), GC_PERM_GC_ALLOCATED) )
+#define GC_UNSET_GC_ALLOCATED(cap) (cap)
 
 // TODO: also define this in gc.h
 // used for old-to-young pointer handling when the technique is GC_WB_MANUAL

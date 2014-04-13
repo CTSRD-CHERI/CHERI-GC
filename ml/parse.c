@@ -138,9 +138,7 @@ GC_USER_FUNC GC_CAP expr_t * \
     } \
   } \
    \
-  printf("Setting invalid ptr... 0x%llx 0x%llx 0x%llx\n", (GC_ULL) &((op_expr_t *) ((expr_t*)expr)->op_expr)->a, (GC_ULL) &(((expr_t*)expr)->op_expr), (GC_ULL) &expr); \
   ((op_expr_t *) ((expr_t*)expr)->op_expr)->a = GC_INVALID_PTR; \
-  printf("Done!\n"); \
   GC_STORE_CAP(((op_expr_t *) ((expr_t*)expr)->op_expr)->a, a); \
   ((op_expr_t *) ((expr_t*)expr)->op_expr)->b = GC_INVALID_PTR; \
   ((op_expr_t *) ((expr_t*)expr)->op_expr)->op = GC_INVALID_PTR; \

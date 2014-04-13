@@ -1,7 +1,7 @@
 #ifndef GC_CONFIG_H_HEADER
 #define GC_CONFIG_H_HEADER
 
-#define GC_DEBUG
+//#define GC_DEBUG
 //#define GC_VERBOSE_DEBUG
 #define GC_THREAD_LOCAL_HEAP_SIZE             1013
 #define GC_OLD_GENERATION_SEMISPACE_SIZE      130000
@@ -21,6 +21,9 @@
 // If this is defined, we manually clean the stack. Otherwise, we rely on
 // __attribute__((sensitive)) annotations to do it for us.
 //#define GC_USE_GC_STACK_CLEAN
+#ifndef GC_USE_GC_STACK_CLEAN
+//#define GC_USE_ATTR_SENSITIVE
+#endif // GC_USE_GC_STACK_CLEAN
 
 // Magic values for debugging
 
@@ -76,7 +79,7 @@
 // growth.
 // TODO: the 0 setting
 #define GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION        10000
-#define GC_THREAD_LOCAL_HEAP_MAX_SIZE                          20000
+#define GC_THREAD_LOCAL_HEAP_MAX_SIZE                          90000
 #define GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION 130000
 #define GC_OLD_GENERATION_SEMISPACE_MAX_SIZE                   130000
 
@@ -100,7 +103,7 @@
 #endif // GC_GENERATIONAL
 
 #define GC_COLLECT_STATS
-#define GC_DEBUG_TRACK_ALLOCATIONS
+//#define GC_DEBUG_TRACK_ALLOCATIONS
 
 // Enable if you want the GC to time how long things take
 //#define GC_TIME
