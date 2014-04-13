@@ -13,8 +13,8 @@
 #include <string.h>
 #include <time.h>
 
-#define ATTR_SENSITIVE __attribute__((sensitive))
-//#define ATTR_SENSITIVE
+//#define ATTR_SENSITIVE __attribute__((sensitive))
+#define ATTR_SENSITIVE
 
 typedef struct
 {
@@ -41,11 +41,12 @@ typedef struct bintree_tag
 // ----------------------------------------------------------------------------
 
 #define TESTS \
-  X_MACRO(fill_test, "Fill the heap with 512-byte chunks and ensure integrity after collection") \
+  /*X_MACRO(fill_test, "Fill the heap with 512-byte chunks and ensure integrity after collection") \
   X_MACRO(list_test, "Fill the heap with a list and ensure integrity after collection") \
   X_MACRO(bintree_test, "Create some binary trees and ensure integrity after collection") \
   X_MACRO(regroots_test, "Check register roots") \
-  X_MACRO(bitmap_test, "Check bitmap operations") \
+  X_MACRO(bitmap_test, "Check bitmap operations")*/ \
+  X_MACRO(experimental_test, "For experiments") \
 
 #define DECLARE_TEST(test,descr) \
 ATTR_SENSITIVE int \
@@ -501,5 +502,16 @@ DEFINE_TEST(bitmap_test)
   GC_assert( !GC_bitmap_find(&bitmap, 812, 0) );
   GC_assert( !GC_bitmap_find(&bitmap, 810, 0) );
   
+  return 0;
+}
+
+DEFINE_TEST(experimental_test)
+{
+  GC_CAP void * x = GC_malloc(50);
+  GC_debug_print_bitmap(GC_state.thread_local_region.tospace_bitmap);
+  x = GC_malloc(100);
+  GC_debug_print_bitmap(GC_state.thread_local_region.tospace_bitmap);
+  GC_collect();
+  GC_debug_print_bitmap(GC_state.thread_local_region.tospace_bitmap);
   return 0;
 }

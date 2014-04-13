@@ -53,6 +53,8 @@ GC_bitmap_find (struct GC_bitmap * bitmap,
                 size_t pos,
                 size_t len)
 {
+  GC_dbgf("pos: %llu (0x%llx), len: %llu",
+    (GC_ULL) pos, (GC_ULL) pos, (GC_ULL) len);
   if (pos+len > bitmap->used) return 0;
   if (!len) return 0;
   if (!GC_BITMAP_GET(bitmap, pos)) return 0;
@@ -60,5 +62,6 @@ GC_bitmap_find (struct GC_bitmap * bitmap,
   int i;
   for (i=1; i<len; i++)
     if (GC_BITMAP_GET(bitmap, pos+i)) return 0;
+  GC_dbgf("(found) pos: %llu, len: %llu", (GC_ULL) pos, (GC_ULL) len);
   return 1;
 }

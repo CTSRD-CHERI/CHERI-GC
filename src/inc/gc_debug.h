@@ -5,6 +5,7 @@
 #include "gc_init.h"
 #include "gc_config.h"
 #include "gc_low.h"
+#include "gc_bitmap.h"
 
 #ifdef GC_DEBUG
 #ifdef GC_VERBOSE_DEBUG
@@ -193,5 +194,8 @@ GC_debug_print_allocated_stats (void);
 #define GC_debug_print_allocated_stats()
 
 #endif // GC_DEBUG_TRACK_ALLOCATIONS
+
+GC_FUNC void
+GC_debug_print_bitmap (struct GC_bitmap * bitmap);
 
 #endif // GC_DEBUG_H_HEADER

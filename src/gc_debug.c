@@ -753,3 +753,20 @@ GC_debug_print_allocated_stats (void)
   
 }
 #endif // GC_DEBUG_TRACK_ALLOCATIONS
+
+GC_FUNC void
+GC_debug_print_bitmap (struct GC_bitmap * bitmap)
+{
+  int i;
+  if (!bitmap->used) printf("(");
+  for (i=0; i<bitmap->size; i++)
+  {
+    int bit = GC_BITMAP_GET(bitmap, i);
+    if (i==bitmap->used-1) printf("(");
+    printf("%d", bit);
+  }
+  printf(")\n");
+  printf("bitmap location: 0x%llx\n", (GC_ULL) bitmap);
+  printf("bitmap used:     %llu\n", (GC_ULL) bitmap->used);
+  printf("bitmap size:     %llu\n", (GC_ULL) bitmap->size);
+}

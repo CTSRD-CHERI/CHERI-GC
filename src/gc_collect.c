@@ -198,7 +198,7 @@ GC_copy_object (struct GC_region * region,
 {
   // Copy the object pointed to by cap to region->tospace
   
-  GC_assert( GC_IS_IN_BITMAP(region->fromspace_bitmap, cap) );
+  GC_assert( GC_IS_IN_FROMSPACE_BITMAP(region, cap) );
   GC_assert( GC_IS_GC_ALLOCATED(cap) );
   GC_assert( GC_IN(GC_cheri_getbase(cap), region->fromspace) );
   GC_assert( GC_IS_ALIGNED_32(cap) );
@@ -301,7 +301,7 @@ GC_copy_roots (struct GC_region * region,
       continue;
     }
     if (GC_cheri_gettag(*p)
-        && GC_IS_IN_BITMAP(region->fromspace_bitmap, *p)
+        && GC_IS_IN_FROMSPACE_BITMAP(region, *p)
         && GC_IS_GC_ALLOCATED(*p)
         && GC_IN(GC_cheri_getbase(*p), region->fromspace))
     {
@@ -340,7 +340,7 @@ GC_copy_child (struct GC_region * region,
                int is_generational)
 {
   if (GC_cheri_gettag(*child_addr)
-    && GC_IS_IN_BITMAP(region->fromspace_bitmap, *child_addr)
+    && GC_IS_IN_FROMSPACE_BITMAP(region, *child_addr)
     && GC_IS_GC_ALLOCATED(*child_addr)
        // necessary now for remembered set too
     && GC_IN(GC_cheri_getbase(*child_addr), region->fromspace))
@@ -690,7 +690,7 @@ GC_rebase (struct GC_region * region,
   for (p = (GC_cap_ptr *) start; ((uintptr_t) p) < ((uintptr_t) end); p++)
   {
     if (GC_cheri_gettag(*p)
-        && GC_IS_IN_BITMAP(region->fromspace_bitmap, *p)
+        && GC_IS_IN_FROMSPACE_BITMAP(region, *p)
         && GC_IS_GC_ALLOCATED(*p)
        )//&& !GC_IS_FORWARDING_ADDRESS(*p))
     {

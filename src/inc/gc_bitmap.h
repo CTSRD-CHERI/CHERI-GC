@@ -55,11 +55,11 @@ GC_bitmap_find (struct GC_bitmap * bitmap,
     ~(1 << GC_BITMAP_SMALL_INDEX(index)) )
     
 #ifdef GC_USE_BITMAP
-#define GC_IS_IN_BITMAP(bitmap,cap) \
+#define GC_IS_IN_FROMSPACE_BITMAP(region,cap) \
   ( \
     GC_bitmap_find( \
-      (bitmap), \
-      ((size_t) (GC_cheri_getbase((cap)) - GC_state.thread_local_region.tospace)) / 32, \
+      (region)->fromspace_bitmap, \
+      ((size_t) (GC_cheri_getbase((cap)) - GC_cheri_getbase((region)->fromspace))) / 32, \
       (GC_ALIGN_32(GC_cheri_getlen((cap)), size_t)) / 32) \
   )
 #define GC_ADD_TO_BITMAP(bitmap,cap) \
@@ -69,7 +69,7 @@ GC_bitmap_find (struct GC_bitmap * bitmap,
       (GC_ALIGN_32(GC_cheri_getlen((cap)), size_t)) / 32) \
   )
 #else // GC_USE_BITMAP
-#define GC_IS_IN_BITMAP(bitmap,cap) (1)
+#define GC_IS_IN_FROMSPACE_BITMAP(bitmap,cap) (1)
 #define GC_ADD_TO_BITMAP(bitmap,cap) do{}while(0)
 #endif // GC_USE_BITMAP
 
