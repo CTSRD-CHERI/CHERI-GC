@@ -41,11 +41,11 @@ typedef struct bintree_tag
 // ----------------------------------------------------------------------------
 
 #define TESTS \
-  /*X_MACRO(fill_test, "Fill the heap with 512-byte chunks and ensure integrity after collection") \
+  X_MACRO(fill_test, "Fill the heap with 512-byte chunks and ensure integrity after collection") \
   X_MACRO(list_test, "Fill the heap with a list and ensure integrity after collection") \
   X_MACRO(bintree_test, "Create some binary trees and ensure integrity after collection") \
   X_MACRO(regroots_test, "Check register roots") \
-  X_MACRO(bitmap_test, "Check bitmap operations")*/ \
+  X_MACRO(bitmap_test, "Check bitmap operations") \
   X_MACRO(experimental_test, "For experiments") \
 
 #define DECLARE_TEST(test,descr) \
@@ -146,6 +146,21 @@ DEFINE_TEST(fill_test)
   GC_collect();
   
   TESTF("checking buffers\n");
+
+  for (i=0; i<nbufs; i++)
+  {
+    GC_assert( GC_cheri_gettag(bufs[i]) );
+    if (!GC_IN((void*)bufs[i], GC_state.thread_local_region.tospace))
+    {
+      printf(
+        "Warning: bufs[%d] (0x%llx) "
+        "is not in the tospace (0x%llx to 0x%llx)\n",
+        (int) i, (GC_ULL)(void*)bufs[i],
+        (GC_ULL)(void*)GC_state.thread_local_region.tospace,
+        (GC_ULL)(((void*)GC_state.thread_local_region.tospace)+
+                GC_cheri_getlen(GC_state.thread_local_region.tospace)));
+    }
+  }
   
   for (i=0; i<nbufs; i++)
   {
@@ -507,11 +522,13 @@ DEFINE_TEST(bitmap_test)
 
 DEFINE_TEST(experimental_test)
 {
+#ifdef GC_USE_BITMAP
   GC_CAP void * x = GC_malloc(50);
   GC_debug_print_bitmap(GC_state.thread_local_region.tospace_bitmap);
   x = GC_malloc(100);
   GC_debug_print_bitmap(GC_state.thread_local_region.tospace_bitmap);
   GC_collect();
   GC_debug_print_bitmap(GC_state.thread_local_region.tospace_bitmap);
+#endif // GC_USE_BITMAP
   return 0;
 }

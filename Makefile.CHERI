@@ -52,7 +52,8 @@ all: everything
 
 objects/%.o : src/%.c
 	$(CC) $(CFLAGS) -c -o $@ $< && \
-	$(CC) $(CFLAGS) -S -o $@.s $<
+	$(CC) $(CFLAGS) -S -o $@.s $< && \
+	$(CC) $(CFLAGS) -E -o $@.E $<
 
 clean:
 	rm -rf objects

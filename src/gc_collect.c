@@ -690,7 +690,7 @@ GC_rebase (struct GC_region * region,
   for (p = (GC_cap_ptr *) start; ((uintptr_t) p) < ((uintptr_t) end); p++)
   {
     if (GC_cheri_gettag(*p)
-        && GC_IS_IN_FROMSPACE_BITMAP(region, *p)
+        && GC_IS_IN_BITMAP(region->tospace_bitmap, *p, old_base)
         && GC_IS_GC_ALLOCATED(*p)
        )//&& !GC_IS_FORWARDING_ADDRESS(*p))
     {
