@@ -63,7 +63,7 @@ __UNLOCK_MALLOC (void);
 #define  GC_init()
 #define  GC_PTR_VALID(x)   ( ((void*)(cheri_getbase(x))) != NULL)
 #define  GC_INVALID_PTR     GC_cheri_ptr(NULL, 0)
-GC_CAP void *
+GC_USER_FUNC GC_CAP void *
 ml_no_gc_malloc (size_t sz);
 #define ML_ALIGN_32(p) \
   ( (void *) ( (((uintptr_t) (p)) + (uintptr_t) 31) & ~(uintptr_t) 0x1F ) )
