@@ -161,13 +161,19 @@ GC_copy_region (struct GC_region * region,
   GC_assert( GC_state.stack_top && GC_state.reg_bottom && GC_state.reg_top );
   
   GC_assert( GC_state.stack_top <= GC_state.stack_bottom );
-   
+  
+  GC_assert( GC_state.static_bottom <= GC_state.state_bottom );
+  GC_assert( GC_state.state_bottom <= GC_state.state_top );
+  GC_assert( GC_state.state_top <= GC_state.static_top );
+  
   GC_copy_roots(
     region, GC_state.stack_top, GC_state.stack_bottom, is_generational, 0);
   GC_copy_roots(
     region, GC_state.reg_bottom, GC_state.reg_top, is_generational, 0);
   GC_copy_roots(
-    region, GC_state.static_bottom, GC_state.static_top, is_generational, 1);
+    region, GC_state.static_bottom, GC_state.state_bottom, is_generational, 1);
+  GC_copy_roots(
+    region, GC_state.state_top, GC_state.static_top, is_generational, 1);
   GC_copy_children(region, is_generational);
 #ifdef GC_GENERATIONAL
 #if (GC_OY_STORE_DEFAULT == GC_OY_STORE_REMEMBERED_SET)
@@ -184,7 +190,7 @@ GC_copy_region (struct GC_region * region,
     GC_cheri_getbase(region->fromspace) + GC_cheri_getlen(region->fromspace));*/
   
 #ifdef GC_DEBUG
-  GC_cap_memset(region->fromspace, GC_JUST_CLEARED_FROMSPACE);
+  GC_cap_memset(region->fromspace, GC_MAGIC_JUST_CLEARED_FROMSPACE);
 #endif // GC_DEBUG
   
   //GC_cap_memclr(region->fromspace);
@@ -296,10 +302,10 @@ GC_copy_roots (struct GC_region * region,
        ((uintptr_t) p) < ((uintptr_t) root_end);
        p++)
   {
-    if (is_data_segment && GC_IN(p, GC_state_cap))
+    /*if (is_data_segment && GC_IN(p, GC_state.GC_state_cap))
     {
       continue;
-    }
+    }*/
     if (GC_cheri_gettag(*p)
         && GC_IS_IN_FROMSPACE_BITMAP(region, *p)
         && GC_IS_GC_ALLOCATED(*p)
@@ -604,7 +610,9 @@ GC_region_rebase (struct GC_region * region, void * old_base, size_t old_size)
             old_base, old_size, new_base);
   GC_rebase(region, GC_state.reg_bottom, GC_state.reg_top,
             old_base, old_size, new_base);
-  GC_rebase(region, GC_state.static_bottom, GC_state.static_top,
+  GC_rebase(region, GC_state.static_bottom, GC_state.state_bottom,
+            old_base, old_size, new_base);
+  GC_rebase(region, GC_state.state_top, GC_state.static_top,
             old_base, old_size, new_base);
   GC_rebase(region, new_base, new_base+new_size,
             old_base, old_size, new_base);
@@ -696,10 +704,10 @@ GC_rebase (struct GC_region * region,
         && GC_IS_GC_ALLOCATED(*p)
        )//&& !GC_IS_FORWARDING_ADDRESS(*p))
     {
-      if (GC_IN(p, GC_state_cap))
+      /*if (GC_IN(p, GC_state.GC_state_cap))
       {
         continue;
-      }
+      }*/
       void * base = GC_cheri_getbase(*p);
       if ((base >= old_base) && (base <= (old_base+old_size)))
       {
@@ -718,7 +726,7 @@ GC_rebase (struct GC_region * region,
   //GC_clean_forwarding(start, end);
 }
 
-GC_FUNC void
+/*GC_FUNC void
 GC_clean_forwarding (void * start,
                      void * end)
 {
@@ -728,7 +736,7 @@ GC_clean_forwarding (void * start,
   GC_cap_ptr * p;
   for (p = (GC_cap_ptr *) start; p < (GC_cap_ptr *) end; p++)
   {    
-    if (GC_IN(p, GC_state_cap))
+    if (GC_IN(p, GC_state.GC_state_cap))
     {
       continue;
     }
@@ -737,4 +745,4 @@ GC_clean_forwarding (void * start,
       *p = GC_STRIP_FORWARDING(*p);
     }
   }
-}
+}*/

@@ -37,7 +37,7 @@ struct GC_region
 #endif // GC_GROW_HEAP
 #ifdef GC_TIME
   GC_time_t time_spent_in_collector;
-#endif // GC_TIME  
+#endif // GC_TIME
 };
 
 struct GC_state_struct
@@ -46,7 +46,9 @@ struct GC_state_struct
   struct GC_region thread_local_region;
   
   // set once on init
-  void * stack_bottom, * static_bottom, * static_top;
+  void * stack_bottom,
+       * static_bottom, * static_top, // data segment area
+       * state_bottom, * state_top; // location of this struct
   
   // set before GC_collect_region() is called and cleared by GC_collect_region()
   void * stack_top, * reg_bottom, * reg_top;
@@ -61,8 +63,6 @@ struct GC_state_struct
 
 extern struct GC_state_struct GC_state;
 
-// For convenience. Contains the data segment area used internally for GC state.
-extern __capability struct GC_state_struct * GC_state_cap;
 
 #ifdef GC_GENERATIONAL
 

@@ -198,4 +198,7 @@ GC_debug_print_allocated_stats (void);
 GC_FUNC void
 GC_debug_print_bitmap (struct GC_bitmap * bitmap);
 
+GC_FUNC void
+GC_debug_dump (void);
+
 #endif // GC_DEBUG_H_HEADER

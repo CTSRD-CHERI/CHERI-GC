@@ -82,6 +82,13 @@ do { \
   printf(__VA_ARGS__); \
 } while (0)
 
+#define TEST_ASSERT(cond) \
+do { \
+  if (!(cond)) \
+    printf("****FATAL: %s:%d: assertion failed: %s\n", \
+      __FILE__, __LINE__, #cond); \
+} while (0)
+
 #define X_MACRO DECLARE_TEST
   TESTS
 #undef X_MACRO
@@ -89,14 +96,13 @@ do { \
 int
 main (int argc, char **argv)
 {
-  int x = 0;
-  GC_assert( x = 1 );
-  if (!(x==1))
+  int rc = GC_init();
+  if (rc)
   {
-    printf("Need assertions on\n");
+    printf("GC_init failed with %d\n", rc);
     return 1;
   }
-  GC_assert( !GC_init() );
+  GC_debug_dump();
 #define X_MACRO DO_TEST
   TESTS
 #undef X_MACRO
@@ -112,13 +118,13 @@ DEFINE_TEST(fill_test)
   
   size_t heapsz =
     GC_state.thread_local_region.max_grow_size_after_collection;
-  GC_assert( heapsz );
+  TEST_ASSERT( heapsz );
   
   heapsz -= heapsz/10;
-  GC_assert( heapsz > 0 );
+  TEST_ASSERT( heapsz > 0 );
   
   size_t nbufs = heapsz / bufsz;
-  GC_assert( maxnbufs > nbufs );
+  TEST_ASSERT( maxnbufs > nbufs );
   
   TESTF("nbufs: %llu  bufsz: %llu\n", (GC_ULL) nbufs, (GC_ULL) bufsz);
   
@@ -128,8 +134,8 @@ DEFINE_TEST(fill_test)
     bufs[i] = GC_INVALID_PTR;
     GC_STORE_CAP(bufs[i], GC_malloc(bufsz));
     
-    GC_assert( (typ*)bufs[i] );
-    GC_assert( GC_cheri_getlen(bufs[i]) == bufsz );
+    TEST_ASSERT( (typ*)bufs[i] );
+    TEST_ASSERT( GC_cheri_getlen(bufs[i]) == bufsz );
     
     size_t j;
     for (j=0; j<bufsz/sizeof(typ); j++)
@@ -139,7 +145,7 @@ DEFINE_TEST(fill_test)
     
     // dummy, should be lost on collection
     typ * tmp = (typ*) GC_malloc(bufsz*2);
-    GC_assert( tmp );
+    TEST_ASSERT( tmp );
     memset(tmp, 0, bufsz*2);
   }
   
@@ -148,10 +154,10 @@ DEFINE_TEST(fill_test)
   GC_collect();
   GC_collect();
   GC_collect();
-  GC_assert( heapsz/100 );
+  TEST_ASSERT( heapsz/100 );
   for (i=0; i<heapsz/100; i++)
   {
-    GC_assert( (void*) GC_malloc(heapsz/10) );
+    TEST_ASSERT( (void*) GC_malloc(heapsz/10) );
   }
   GC_collect();
   GC_collect();
@@ -160,7 +166,7 @@ DEFINE_TEST(fill_test)
 
   for (i=0; i<nbufs; i++)
   {
-    GC_assert( GC_cheri_gettag(bufs[i]) );
+    TEST_ASSERT( GC_cheri_gettag(bufs[i]) );
     if (!GC_IN((void*)bufs[i], GC_state.thread_local_region.tospace))
     {
       printf(
@@ -175,14 +181,14 @@ DEFINE_TEST(fill_test)
   
   for (i=0; i<nbufs; i++)
   {
-    GC_assert( (typ*)bufs[i] );
-    GC_assert( GC_cheri_getlen(bufs[i]) == bufsz );
+    TEST_ASSERT( (typ*)bufs[i] );
+    TEST_ASSERT( GC_cheri_getlen(bufs[i]) == bufsz );
     if (!GC_IN((void*)bufs[i], GC_state.thread_local_region.tospace))
     {
       printf("NOTE: bufs[i]=0x%llx, i=%d\n", (GC_ULL)(void*)bufs[i], (int) i);
       GC_debug_print_region_stats(&GC_state.thread_local_region);
     }
-    GC_assert( GC_IN((void*)bufs[i], GC_state.thread_local_region.tospace) );
+    TEST_ASSERT( GC_IN((void*)bufs[i], GC_state.thread_local_region.tospace) );
     
     size_t j;
     for (j=0; j<bufsz/sizeof(typ); j++)
@@ -193,7 +199,7 @@ DEFINE_TEST(fill_test)
         GC_debug_memdump((typ*)bufs[i], ((typ*)bufs[i])+bufsz);
       }
       
-      GC_assert( ((typ*)bufs[i])[j] == (typ) i );
+      TEST_ASSERT( ((typ*)bufs[i])[j] == (typ) i );
     }
   }
   
@@ -203,12 +209,12 @@ DEFINE_TEST(fill_test)
 DEFINE_TEST(list_test)
 {
   // Don't allow an unlimited heap
-  GC_assert( GC_state.thread_local_region.max_grow_size_before_collection );
-  GC_assert( GC_state.thread_local_region.max_grow_size_after_collection );
+  TEST_ASSERT( GC_state.thread_local_region.max_grow_size_before_collection );
+  TEST_ASSERT( GC_state.thread_local_region.max_grow_size_after_collection );
  
   size_t heapsz =
     GC_state.thread_local_region.max_grow_size_after_collection;
-  GC_assert( heapsz );
+  TEST_ASSERT( heapsz );
   
   int i;
   GC_CAP node * head = GC_INVALID_PTR;
@@ -249,21 +255,21 @@ DEFINE_TEST(list_test)
   GC_STORE_CAP(p, head);
   for (j=0; j<=i; j++)
   {
-    GC_assert( GC_IN(p, GC_state.thread_local_region.tospace) );
+    TEST_ASSERT( GC_IN(p, GC_state.thread_local_region.tospace) );
     if (!(void*)p)
     {
       printf("failed at j=%d\n", j);
     }
-    GC_assert( (void*)p );
+    TEST_ASSERT( (void*)p );
     if (((node*)p)->value != (i - j))
     {
       printf("at j=%d, the value is %d (0x%llx)\n", j, ((node*)p)->value, (GC_ULL) ((node*)p)->value);
     }
-    GC_assert( ((node*)p)->value == (i - j) );
+    TEST_ASSERT( ((node*)p)->value == (i - j) );
     GC_STORE_CAP(p, ((node*)p)->next);
   }
  
-  GC_assert( !(void*)p );
+  TEST_ASSERT( !(void*)p );
   
   TESTF("checked %d nodes\n", i);
   
@@ -300,27 +306,27 @@ bintree_create (int depth, int value)
     
     GC_STORE_CAP( ((bintree*)tree)->left, bintree_create(depth-1, 2*value) );
     if (!(void*)((bintree*)tree)->left) return GC_INVALID_PTR;
-    GC_assert( GC_cheri_gettag(((bintree*)tree)->left) );
+    TEST_ASSERT( GC_cheri_gettag(((bintree*)tree)->left) );
     
-    GC_assert( bintree_check(((bintree*)tree)->left, depth-1, 2*value) );
+    TEST_ASSERT( bintree_check(((bintree*)tree)->left, depth-1, 2*value) );
     
     GC_malloc(50);
     
     GC_STORE_CAP( ((bintree*)tree)->right, bintree_create(depth-1, 2*value+1) );
     if (!(void*)((bintree*)tree)->right) return GC_INVALID_PTR;
-    GC_assert( GC_cheri_gettag(((bintree*)tree)->right) );
+    TEST_ASSERT( GC_cheri_gettag(((bintree*)tree)->right) );
 
-    GC_assert( bintree_check(((bintree*)tree)->right, depth-1, 2*value+1) );
+    TEST_ASSERT( bintree_check(((bintree*)tree)->right, depth-1, 2*value+1) );
     
     GC_malloc(50);
-    GC_assert( bintree_check(((bintree*)tree)->right, depth-1, 2*value+1) );
+    TEST_ASSERT( bintree_check(((bintree*)tree)->right, depth-1, 2*value+1) );
   }
   GC_malloc(50);
   if (!bintree_check(tree, depth, value))
   {
     printf("At depth %d, value %d, bintree_check failed\n", depth, value);
   }
-  GC_assert( bintree_check(tree, depth, value) );
+  TEST_ASSERT( bintree_check(tree, depth, value) );
   return tree;
 }
 
@@ -345,16 +351,16 @@ bintree_check (GC_CAP bintree * tree, int depth, int value)
 ATTR_SENSITIVE static void
 bintree_print (GC_CAP bintree * tree, int depth)
 {
-  GC_assert((void*)tree);
+  TEST_ASSERT((void*)tree);
   printf("[0x%llx\n", (GC_ULL) ((bintree*)tree)->value);
   if (depth>1)
   {
-    GC_assert( (void*)((bintree*)tree)->left );
-    GC_assert( (void*)((bintree*)tree)->right );
-    GC_assert(GC_IN(
+    TEST_ASSERT( (void*)((bintree*)tree)->left );
+    TEST_ASSERT( (void*)((bintree*)tree)->right );
+    TEST_ASSERT(GC_IN(
       (void*)((bintree*)tree)->left, GC_state.thread_local_region.tospace 
     ));
-    GC_assert(GC_IN(
+    TEST_ASSERT(GC_IN(
       (void*)((bintree*)tree)->right, GC_state.thread_local_region.tospace 
     ));
     printf(",L(");
@@ -365,8 +371,8 @@ bintree_print (GC_CAP bintree * tree, int depth)
   }
   else
   {
-    GC_assert( !(void*)((bintree*)tree)->left );
-    GC_assert( !(void*)((bintree*)tree)->right );
+    TEST_ASSERT( !(void*)((bintree*)tree)->left );
+    TEST_ASSERT( !(void*)((bintree*)tree)->right );
   }
   printf("]");
 }
@@ -374,12 +380,12 @@ bintree_print (GC_CAP bintree * tree, int depth)
 DEFINE_TEST(bintree_test)
 {
   // Don't allow an unlimited heap
-  GC_assert( GC_state.thread_local_region.max_grow_size_before_collection );
-  GC_assert( GC_state.thread_local_region.max_grow_size_after_collection );
+  TEST_ASSERT( GC_state.thread_local_region.max_grow_size_before_collection );
+  TEST_ASSERT( GC_state.thread_local_region.max_grow_size_after_collection );
  
   size_t heapsz =
     GC_state.thread_local_region.max_grow_size_after_collection;
-  GC_assert( heapsz );
+  TEST_ASSERT( heapsz );
   
   const int max_trees = 1;
   const int tree_depth = 3;
@@ -407,7 +413,7 @@ DEFINE_TEST(bintree_test)
   int j;
   for (j=0; j<i; j++)
   {
-    GC_assert( bintree_check(trees[j], tree_depth, j) );
+    TEST_ASSERT( bintree_check(trees[j], tree_depth, j) );
   }
   
   TESTF("checked %d trees\n", j);
@@ -432,14 +438,14 @@ DEFINE_TEST(bitmap_test)
   size_t sz = 811;
   size_t i;
   
-  GC_assert( !GC_init_bitmap(&bitmap, sz) );
-  GC_assert( bitmap.size == sz );
-  GC_assert( bitmap.used == 0 );
+  TEST_ASSERT( !GC_init_bitmap(&bitmap, sz) );
+  TEST_ASSERT( bitmap.size == sz );
+  TEST_ASSERT( bitmap.used == 0 );
   
   for (i=0; i<bitmap.size; i++)
   {
     int bit = GC_BITMAP_GET(&bitmap, i);
-    GC_assert( !bit );
+    TEST_ASSERT( !bit );
     printf("%d", bit);
   }
   printf("\n");
@@ -453,43 +459,43 @@ DEFINE_TEST(bitmap_test)
   {
     int bit = GC_BITMAP_GET(&bitmap, i);
     if ((i == 0) || (i == 23) || (i==23+42) || (i==23+42+19))
-      GC_assert( bit );
+      TEST_ASSERT( bit );
     else
-      GC_assert( !bit );
+      TEST_ASSERT( !bit );
     printf("%d", bit);
   }
   printf("\n");
   
-  GC_assert( !GC_bitmap_find(&bitmap, 0, 10) );
-  GC_assert( !GC_bitmap_find(&bitmap, 0, 0) );
-  GC_assert( !GC_bitmap_find(&bitmap, 0, 1) );
-  GC_assert( !GC_bitmap_find(&bitmap, 0, 22) );
-  GC_assert( !GC_bitmap_find(&bitmap, 0, 24) );
-  GC_assert( !GC_bitmap_find(&bitmap, 0, 0) );
-  GC_assert( GC_bitmap_find(&bitmap, 0, 23) );
-  GC_assert( !GC_bitmap_find(&bitmap, 23, 23) );
-  GC_assert( !GC_bitmap_find(&bitmap, 23, 0) );
-  GC_assert( !GC_bitmap_find(&bitmap, 23, 41) );
-  GC_assert( !GC_bitmap_find(&bitmap, 23, 1) );
-  GC_assert( !GC_bitmap_find(&bitmap, 23, 43) );
-  GC_assert( GC_bitmap_find(&bitmap, 23, 42) );
-  GC_assert( GC_bitmap_find(&bitmap, 23+42, 19) );
-  GC_assert( !GC_bitmap_find(&bitmap, 23+42+19, 6) );
-  GC_assert( !GC_bitmap_find(&bitmap, 23+42+19, 99) );
-  GC_assert( !GC_bitmap_find(&bitmap, 23+42+19, 8) );
-  GC_assert( !GC_bitmap_find(&bitmap, 23+42+19, 0) );
-  GC_assert( !GC_bitmap_find(&bitmap, 23+42+19, 1) );
-  GC_assert( !GC_bitmap_find(&bitmap, 23, 19999999) );
-  GC_assert( GC_bitmap_find(&bitmap, 23+42+19, 7) );
+  TEST_ASSERT( !GC_bitmap_find(&bitmap, 0, 10) );
+  TEST_ASSERT( !GC_bitmap_find(&bitmap, 0, 0) );
+  TEST_ASSERT( !GC_bitmap_find(&bitmap, 0, 1) );
+  TEST_ASSERT( !GC_bitmap_find(&bitmap, 0, 22) );
+  TEST_ASSERT( !GC_bitmap_find(&bitmap, 0, 24) );
+  TEST_ASSERT( !GC_bitmap_find(&bitmap, 0, 0) );
+  TEST_ASSERT( GC_bitmap_find(&bitmap, 0, 23) );
+  TEST_ASSERT( !GC_bitmap_find(&bitmap, 23, 23) );
+  TEST_ASSERT( !GC_bitmap_find(&bitmap, 23, 0) );
+  TEST_ASSERT( !GC_bitmap_find(&bitmap, 23, 41) );
+  TEST_ASSERT( !GC_bitmap_find(&bitmap, 23, 1) );
+  TEST_ASSERT( !GC_bitmap_find(&bitmap, 23, 43) );
+  TEST_ASSERT( GC_bitmap_find(&bitmap, 23, 42) );
+  TEST_ASSERT( GC_bitmap_find(&bitmap, 23+42, 19) );
+  TEST_ASSERT( !GC_bitmap_find(&bitmap, 23+42+19, 6) );
+  TEST_ASSERT( !GC_bitmap_find(&bitmap, 23+42+19, 99) );
+  TEST_ASSERT( !GC_bitmap_find(&bitmap, 23+42+19, 8) );
+  TEST_ASSERT( !GC_bitmap_find(&bitmap, 23+42+19, 0) );
+  TEST_ASSERT( !GC_bitmap_find(&bitmap, 23+42+19, 1) );
+  TEST_ASSERT( !GC_bitmap_find(&bitmap, 23, 19999999) );
+  TEST_ASSERT( GC_bitmap_find(&bitmap, 23+42+19, 7) );
   
   
   // clear
   GC_bitmap_clr(&bitmap);
-  GC_assert( bitmap.used == 0 );
+  TEST_ASSERT( bitmap.used == 0 );
   for (i=0; i<bitmap.size; i++)
   {
     int bit = GC_BITMAP_GET(&bitmap, i);
-    GC_assert( !bit );
+    TEST_ASSERT( !bit );
   }
   
   // try to resize the bitmap
@@ -505,13 +511,13 @@ DEFINE_TEST(bitmap_test)
   printf("\n");
   GC_grow_bitmap(&bitmap, 812);
   
-  GC_assert( GC_bitmap_find(&bitmap, 810, 1) );
-  GC_assert( !GC_bitmap_find(&bitmap, 811, 1) );
-  GC_assert( !GC_bitmap_find(&bitmap, 812, 1) );
-  GC_assert( !GC_bitmap_find(&bitmap, 813, 1) );
-  GC_assert( !GC_bitmap_find(&bitmap, 811, 0) );
-  GC_assert( !GC_bitmap_find(&bitmap, 812, 0) );
-  GC_assert( !GC_bitmap_find(&bitmap, 810, 0) );
+  TEST_ASSERT( GC_bitmap_find(&bitmap, 810, 1) );
+  TEST_ASSERT( !GC_bitmap_find(&bitmap, 811, 1) );
+  TEST_ASSERT( !GC_bitmap_find(&bitmap, 812, 1) );
+  TEST_ASSERT( !GC_bitmap_find(&bitmap, 813, 1) );
+  TEST_ASSERT( !GC_bitmap_find(&bitmap, 811, 0) );
+  TEST_ASSERT( !GC_bitmap_find(&bitmap, 812, 0) );
+  TEST_ASSERT( !GC_bitmap_find(&bitmap, 810, 0) );
   
   GC_bitmap_allocate(&bitmap, 1);
   for (i=0; i<bitmap.size; i++)
@@ -520,13 +526,13 @@ DEFINE_TEST(bitmap_test)
     printf("%d", bit);
   }
   printf("\n");
-  GC_assert( GC_bitmap_find(&bitmap, 810, 1) );
-  GC_assert( GC_bitmap_find(&bitmap, 811, 1) );
-  GC_assert( !GC_bitmap_find(&bitmap, 812, 1) );
-  GC_assert( !GC_bitmap_find(&bitmap, 813, 1) );
-  GC_assert( !GC_bitmap_find(&bitmap, 811, 0) );
-  GC_assert( !GC_bitmap_find(&bitmap, 812, 0) );
-  GC_assert( !GC_bitmap_find(&bitmap, 810, 0) );
+  TEST_ASSERT( GC_bitmap_find(&bitmap, 810, 1) );
+  TEST_ASSERT( GC_bitmap_find(&bitmap, 811, 1) );
+  TEST_ASSERT( !GC_bitmap_find(&bitmap, 812, 1) );
+  TEST_ASSERT( !GC_bitmap_find(&bitmap, 813, 1) );
+  TEST_ASSERT( !GC_bitmap_find(&bitmap, 811, 0) );
+  TEST_ASSERT( !GC_bitmap_find(&bitmap, 812, 0) );
+  TEST_ASSERT( !GC_bitmap_find(&bitmap, 810, 0) );
   
   return 0;
 }

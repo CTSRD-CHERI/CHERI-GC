@@ -1,7 +1,7 @@
 #ifndef GC_CONFIG_H_HEADER
 #define GC_CONFIG_H_HEADER
 
-#define GC_DEBUG
+//#define GC_DEBUG
 //#define GC_VERBOSE_DEBUG
 #define GC_THREAD_LOCAL_HEAP_SIZE             1013
 #define GC_OLD_GENERATION_SEMISPACE_SIZE      130000
@@ -43,10 +43,10 @@
 #define GC_MAGIC_JUST_CLEARED_STACK           0x46      // 'F'
 
 // Used by GC_malloc on freshly allocated objects
-#define GC_JUST_GC_ALLOCATED                  0x47      // 'G'
+#define GC_MAGIC_JUST_GC_ALLOCATED            0x47      // 'G'
 
 // Used by GC_collect to clear the fromspace
-#define GC_JUST_CLEARED_FROMSPACE             0x48      // 'H'
+#define GC_MAGIC_JUST_CLEARED_FROMSPACE       0x48      // 'H'
 
 // ----HEAP GROWING----
 // Current policies with GC_GENERATIONAL turned on:

@@ -209,7 +209,7 @@ GC_malloc_region
   GC_cap_memclr(ret);
 
 #ifdef GC_DEBUG
-  GC_cap_memset(ret, GC_JUST_GC_ALLOCATED);
+  GC_cap_memset(ret, GC_MAGIC_JUST_GC_ALLOCATED);
 #endif
   
   region->num_allocations++;

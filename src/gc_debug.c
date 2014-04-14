@@ -770,3 +770,121 @@ GC_debug_print_bitmap (struct GC_bitmap * bitmap)
   printf("bitmap used:     %llu\n", (GC_ULL) bitmap->used);
   printf("bitmap size:     %llu\n", (GC_ULL) bitmap->size);
 }
+
+GC_FUNC void
+GC_debug_dump (void)
+{
+  printf("---------------BEGIN GC DEBUG DUMP---------------\n");
+
+#define GC_DEF_PRINT_STATUS(def,value) printf("%s is %s\n", (def), (value))
+#define GC_DEF_PRINTI(def) printf("%s is %d\n", #def, def)
+#define GC_DEF_PRINTULLX(def) printf("%s is 0x%llx\n", #def, (GC_ULL) (def))
+#define GC_DEF_PRINTD(def) printf("%s is %f\n", #def, def)
+#define GC_DEF_PRINTX(def) printf("%s is 0x%x\n", #def, def)
+#define GC_STRINGIFY(x) #x
+#define GC_DEF_PRINTT(def) printf("%s is %s\n", #def, GC_STRINGIFY(def))
+
+#ifdef GC_DEBUG
+  GC_DEF_PRINT_STATUS("GC_DEBUG", "on");
+#else // GC_DEBUG
+  GC_DEF_PRINT_STATUS("GC_DEBUG", "off");
+#endif // GC_DEBUG
+
+#ifdef GC_VERBOSE_DEBUG
+  GC_DEF_PRINT_STATUS("GC_VERBOSE_DEBUG", "on");
+#else // GC_VERBOSE_DEBUG
+  GC_DEF_PRINT_STATUS("GC_VERBOSE_DEBUG", "off");
+#endif // GC_VERBOSE_DEBUG
+
+#ifdef GC_GENERATIONAL
+  GC_DEF_PRINT_STATUS("GC_GENERATIONAL", "on");
+#else // GC_GENERATIONAL
+  GC_DEF_PRINT_STATUS("GC_GENERATIONAL", "off");
+#endif // GC_GENERATIONAL
+
+#ifdef GC_USE_BITMAP
+  GC_DEF_PRINT_STATUS("GC_USE_BITMAP", "on");
+#else // GC_USE_BITMAP
+  GC_DEF_PRINT_STATUS("GC_USE_BITMAP", "off");
+#endif // GC_USE_BITMAP
+
+#ifdef GC_USE_STACK_CLEAN
+  GC_DEF_PRINT_STATUS("GC_USE_STACK_CLEAN", "on");
+#else // GC_USE_STACK_CLEAN
+  GC_DEF_PRINT_STATUS("GC_USE_STACK_CLEAN", "off");
+#endif // GC_USE_STACK_CLEAN
+
+#ifdef GC_GROW_YOUNG_HEAP
+  GC_DEF_PRINT_STATUS("GC_GROW_YOUNG_HEAP", "on");
+#else // GC_GROW_YOUNG_HEAP
+  GC_DEF_PRINT_STATUS("GC_GROW_YOUNG_HEAP", "off");
+#endif // GC_GROW_YOUNG_HEAP
+
+#ifdef GC_GROW_OLD_HEAP
+  GC_DEF_PRINT_STATUS("GC_GROW_OLD_HEAP", "on");
+#else // GC_GROW_OLD_HEAP
+  GC_DEF_PRINT_STATUS("GC_GROW_OLD_HEAP", "off");
+#endif // GC_GROW_OLD_HEAP
+
+#ifdef GC_TIME
+  GC_DEF_PRINT_STATUS("GC_TIME", "on");
+#else // GC_TIME
+  GC_DEF_PRINT_STATUS("GC_TIME", "off");
+#endif // GC_TIME
+
+#ifdef GC_DEBUG_TRACK_ALLOCATIONS
+  GC_DEF_PRINT_STATUS("GC_DEBUG_TRACK_ALLOCATIONS", "on");
+#else // GC_DEBUG_TRACK_ALLOCATIONS
+  GC_DEF_PRINT_STATUS("GC_DEBUG_TRACK_ALLOCATIONS", "off");
+#endif // GC_DEBUG_TRACK_ALLOCATIONS
+
+
+
+  GC_DEF_PRINTI(GC_COLLECT_ON_ALLOCATION_FAILURE);
+  
+  GC_DEF_PRINTI(GC_THREAD_LOCAL_HEAP_SIZE);
+  GC_DEF_PRINTI(GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION);
+  GC_DEF_PRINTI(GC_THREAD_LOCAL_HEAP_MAX_SIZE);
+  
+  GC_DEF_PRINTI(GC_OLD_GENERATION_SEMISPACE_SIZE);
+  GC_DEF_PRINTI(GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION);
+  GC_DEF_PRINTI(GC_OLD_GENERATION_SEMISPACE_MAX_SIZE);
+  GC_DEF_PRINTD(GC_OLD_GENERATION_HIGH_WATERMARK);
+
+  GC_DEF_PRINTX(GC_MAGIC_JUST_ALLOCATED);
+  GC_DEF_PRINTX(GC_MAGIC_JUST_REALLOCATED);
+  GC_DEF_PRINTX(GC_MAGIC_JUST_CLEARED);
+  GC_DEF_PRINTX(GC_MAGIC_DEALLOCATION_DETECTED);
+  GC_DEF_PRINTX(GC_MAGIC_JUST_COPIED);
+  GC_DEF_PRINTX(GC_MAGIC_JUST_CLEARED_STACK);
+  GC_DEF_PRINTX(GC_MAGIC_JUST_GC_ALLOCATED);
+  GC_DEF_PRINTX(GC_MAGIC_JUST_CLEARED_FROMSPACE);
+
+#ifdef GC_GENERATIONAL
+  GC_DEF_PRINTT(GC_WB_DEFAULT);
+  GC_DEF_PRINTT(GC_OY_STORE_DEFAULT);
+#endif // GC_GENERATIONAL
+
+  printf("\nGC_state:\n");
+  
+  GC_DEF_PRINTI(GC_state.initialized);
+  GC_DEF_PRINTULLX(GC_state.stack_bottom);
+  GC_DEF_PRINTULLX(GC_state.static_bottom);
+  GC_DEF_PRINTULLX(GC_state.static_top);
+  GC_DEF_PRINTULLX(GC_state.state_bottom);
+  GC_DEF_PRINTULLX(GC_state.state_top);
+  GC_DEF_PRINTULLX(GC_state.reg_bottom);
+  GC_DEF_PRINTULLX(GC_state.reg_top);
+  
+  
+#ifdef GC_GENERATIONAL
+  GC_DEF_PRINTI(GC_state.wb_type);
+#endif // GC_GENERATIONAL
+
+  GC_debug_print_region_stats(&GC_state.thread_local_region);
+#ifdef GC_GENERATIONAL
+  GC_debug_print_region_stats(&GC_state.old_generation);
+#endif // GC_GENERATIONAL
+
+  printf("---------------END GC DEBUG DUMP---------------\n");
+}

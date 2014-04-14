@@ -77,8 +77,8 @@ GC_rebase (struct GC_region * region,
            void * new_base);
            
 // Removes forwarding addresses in the given region
-GC_FUNC void
+/*GC_FUNC void
 GC_clean_forwarding (void * start,
-                     void * end);
+                     void * end);*/
 
 #endif // GC_COLLECT_H_HEADER

@@ -10,7 +10,6 @@
 #include <stdlib.h>
 
 struct GC_state_struct GC_state = {.initialized = 0};
-__capability struct GC_state_struct * GC_state_cap;
 
 GC_FUNC int
 GC_init2 (void * arg_for_stack_bottom, const char * file, int line)
@@ -20,7 +19,8 @@ GC_init2 (void * arg_for_stack_bottom, const char * file, int line)
     GC_dbgf("GC_init called from %s:%d\nGC compiled %s",
       file, line, __TIME__ " " __DATE__);
     
-    GC_state_cap = GC_cheri_ptr(&GC_state, sizeof GC_state);
+    GC_state.state_bottom = &GC_state;
+    GC_state.state_top = GC_state.state_bottom + sizeof GC_state;
 
     int rc;
 #ifdef GC_GENERATIONAL
