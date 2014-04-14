@@ -67,7 +67,10 @@ lib_final: $(GC_SOURCES)
 lib: lib_init $(GC_SOURCES) lib_final
 
 loc:
-	cat src/*.c src/inc/*.h | wc -l
+	@echo Core collector: `cat src/*.c src/inc/*.h | wc -l` lines && \
+	echo ML interpreter: `cat ml/*.c ml/*.h | wc -l` lines && \
+	echo Tests: `cat test/*.c test/*.h | wc -l` lines && \
+	echo Total: `cat ml/*.c ml/*.h src/*.c src/inc/*.h test/*.c test/*.h | wc -l` lines
 
 gctest:
 	PATH=$(PATH) $(CC) -DGC_CHERI -S -o objects/gctest.o.s -I$(GC_PUBLIC_INCLUDE) $(TEST_SOURCES) && \
