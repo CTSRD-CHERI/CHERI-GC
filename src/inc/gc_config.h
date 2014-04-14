@@ -3,7 +3,12 @@
 
 //#define GC_DEBUG
 //#define GC_VERBOSE_DEBUG
-#define GC_THREAD_LOCAL_HEAP_SIZE             1013
+
+// Can be used when testing against the Boehm collector, defined here for
+// convenience.
+#define GC_BOEHM_MAX_HEAP_SIZE                10240
+
+#define GC_THREAD_LOCAL_HEAP_SIZE             10240
 #define GC_OLD_GENERATION_SEMISPACE_SIZE      130000
 
 // If old heap residency exceeds this, collect, and if that fails, grow.
@@ -78,8 +83,8 @@
 // Maximum sizes for when the heap does grow. Set to 0 to allow unlimited
 // growth.
 // TODO: the 0 setting
-#define GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION        10000
-#define GC_THREAD_LOCAL_HEAP_MAX_SIZE                          90000
+#define GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION        10240
+#define GC_THREAD_LOCAL_HEAP_MAX_SIZE                          10240
 #define GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION 130000
 #define GC_OLD_GENERATION_SEMISPACE_MAX_SIZE                   130000
 

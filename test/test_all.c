@@ -5,6 +5,8 @@
  *
  * How to use:
  *
+ * 0. Configure the collector(s) as appropriate using gc_config.h and below.
+ *
  * 1. Add your test to the TESTS macro in the format:
  *    X_MACRO(your_test_name, "your_test_description")
  *
@@ -75,7 +77,15 @@
 #include <time.h>
 
 
+/*
+ * Boehm GC configuration
+ *
+ */
 #ifdef GC_BOEHM
+
+#include "../src/inc/gc_config.h"
+#define TF_MAX_BOEHM_HEAP_SIZE  GC_BOEHM_MAX_HEAP_SIZE
+
 void
 __LOCK_MALLOC (void)
 {
@@ -230,11 +240,18 @@ main (int argc, char **argv)
     tf_printf("tf_gc_init failed with %d\n", rc);
     return 1;
   }
+
+#ifdef GC_BOEHM
+  // Limit the Boehm heap size to match that of our collector.
+  GC_set_max_heap_size(TF_MAX_BOEHM_HEAP_SIZE);
+#endif // GC_BOEHM
+
   tf_dump_stats();
 #define X_MACRO DO_TEST
   TESTS
 #undef X_MACRO
 
+  tf_dump_stats();
 #ifdef MEMWATCH
   mwTerm();
 #endif // MEMWATCH  

@@ -52,7 +52,7 @@
 #undef tf_cheri_gettag
 #define  tf_invalid_ptr     NULL
 #define  tf_ptr_valid(x)    ((x) != NULL)
-#define  tf_gc_init()       (GC_init(),1)
+#define  tf_gc_init()       (GC_init(),0)
 void
 __LOCK_MALLOC (void);
 void

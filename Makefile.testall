@@ -55,19 +55,23 @@ loc:
 testall:
 	echo "[i] building for my GC" && \
 	PATH=$(PATH) $(CC) -DGC_CHERI -o objects/testall -I$(GC_PUBLIC_INCLUDE) objects/*.o $(TESTALL_SOURCES) && \
-	PATH=$(PATH) $(CC) -DGC_CHERI -S -o objects/testall.parse.s -I$(GC_PUBLIC_INCLUDE) $(TESTALL_SOURCES) && \
-	PATH=$(PATH) $(CC) -DGC_CHERI -E -o objects/testall.parse.E -I$(GC_PUBLIC_INCLUDE) $(TESTALL_SOURCES)
+	PATH=$(PATH) $(CC) -DGC_CHERI -S -o objects/testall.s -I$(GC_PUBLIC_INCLUDE) $(TESTALL_SOURCES) && \
+	PATH=$(PATH) $(CC) -DGC_CHERI -E -o objects/testall.E -I$(GC_PUBLIC_INCLUDE) $(TESTALL_SOURCES)
 
 testall-boehm:
 	echo "[i] building for Boehm" && \
 	mkdir -p objects/boehm && \
 	cp $(BOEHM_GC_LIB_DIR)/gc.a objects/boehm/boehm.a && \
 	cd objects/boehm && ar -x boehm.a && cd ../.. && \
-	PATH=$(PATH) $(CC) -DGC_BOEHM -o objects/testall-boehm -I$(BOEHM_GC_INC_DIR) $(TESTALL_SOURCES) objects/boehm/*.o
+	PATH=$(PATH) $(CC) -DGC_BOEHM -o objects/testall-boehm -I$(BOEHM_GC_INC_DIR) $(TESTALL_SOURCES) objects/boehm/*.o && \
+	PATH=$(PATH) $(CC) -DGC_BOEHM -S -o objects/testall-boehm.S -I$(BOEHM_GC_INC_DIR) $(TESTALL_SOURCES) && \
+	PATH=$(PATH) $(CC) -DGC_BOEHM -E -o objects/testall-boehm.E -I$(BOEHM_GC_INC_DIR) $(TESTALL_SOURCES)
 
 testall-no-gc:
 	echo "[i] building for no GC" && \
-	PATH=$(PATH) $(CC) -DGC_NONE $(MEMWATCH_FLAGS) -o objects/testall-no-gc $(MEMWATCH_SOURCES) $(TESTALL_SOURCES)
+	PATH=$(PATH) $(CC) -DGC_NONE $(MEMWATCH_FLAGS) -o objects/testall-no-gc $(MEMWATCH_SOURCES) $(TESTALL_SOURCES) && \
+	PATH=$(PATH) $(CC) -DGC_NONE $(MEMWATCH_FLAGS) -S -o objects/testall-no-gc.S $(TESTALL_SOURCES) && \
+	PATH=$(PATH) $(CC) -DGC_NONE $(MEMWATCH_FLAGS) -E -o objects/testall-no-gc.E $(TESTALL_SOURCES)
 
 PASSWORD=`cat $(SSH_PASSWD_FILE)`
 CMD=scp -i $(SSH_PRIV_KEY) objects/testall objects/testall-boehm objects/testall-no-gc $(WENGER_USER)@$(WENGER_ADDR):$(WENGER_FILE_ZFS)
