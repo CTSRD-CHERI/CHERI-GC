@@ -41,12 +41,14 @@ typedef struct bintree_tag
 // ----------------------------------------------------------------------------
 
 #define TESTS \
-  X_MACRO(fill_test, "Fill the heap with 512-byte chunks and ensure integrity after collection") \
+  /*X_MACRO(fill_test, "Fill the heap with 512-byte chunks and ensure integrity after collection") \
   X_MACRO(list_test, "Fill the heap with a list and ensure integrity after collection") \
   X_MACRO(bintree_test, "Create some binary trees and ensure integrity after collection") \
   X_MACRO(regroots_test, "Check register roots") \
   X_MACRO(bitmap_test, "Check bitmap operations") \
   X_MACRO(experimental_test, "For experiments") \
+  X_MACRO(malloc_time_test, "Tests how long GC_malloc takes without collecting")*/ \
+  X_MACRO(malloc_time_test_with_collect, "Tests how long GC_malloc takes with collecting")
 
 #define DECLARE_TEST(test,descr) \
 ATTR_SENSITIVE int \
@@ -547,5 +549,57 @@ DEFINE_TEST(experimental_test)
   GC_collect();
   GC_debug_print_bitmap(GC_state.thread_local_region.tospace_bitmap);
 #endif // GC_USE_BITMAP
+  return 0;
+}
+
+DEFINE_TEST(malloc_time_test)
+{
+  size_t szalloc = 50;
+  int nalloc = 1000000;
+  
+  GC_time_t before = GC_time();
+  int i;
+  for (i=0; i<nalloc; i++)
+  {
+    GC_state.thread_local_region.free = GC_state.thread_local_region.tospace;
+    GC_state.thread_local_region.tospace_bitmap->used = 0;
+    GC_CAP void * x = GC_malloc(szalloc);
+  }
+  GC_time_t after = GC_time();
+  
+  GC_time_t diff = after - before;
+  
+  GC_time_t time_per_alloc = ((double)diff)/(double)nalloc;
+  
+  printf("Did %d allocs in %llu%s (%llu%s per alloc)\n",
+    nalloc, GC_TIME_PRETTY(diff), GC_TIME_PRETTY_UNIT(diff),
+    GC_TIME_PRETTY(time_per_alloc), GC_TIME_PRETTY_UNIT(time_per_alloc));
+
+  return 0;
+}
+
+DEFINE_TEST(malloc_time_test_with_collect)
+{
+  size_t szalloc = 50;
+  int nalloc = 1000000;
+  
+  GC_time_t before = GC_time();
+  int i;
+  for (i=0; i<nalloc; i++)
+  {
+    GC_CAP void * x = GC_malloc(szalloc);
+  }
+  GC_time_t after = GC_time();
+  
+  GC_time_t diff = after - before;
+  
+  GC_time_t time_per_alloc = ((double)diff)/(double)nalloc;
+
+  GC_debug_print_region_stats(&GC_state.thread_local_region);
+  
+  printf("Did %d allocs in %llu%s (%llu%s per alloc)\n",
+    nalloc, GC_TIME_PRETTY(diff), GC_TIME_PRETTY_UNIT(diff),
+    GC_TIME_PRETTY(time_per_alloc), GC_TIME_PRETTY_UNIT(time_per_alloc));
+  
   return 0;
 }
