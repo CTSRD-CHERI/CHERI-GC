@@ -1,0 +1,78 @@
+# These are system-dependent
+#CHERI=/home/munraj/projectscratch/ctsrd-svn/cherilibs-build/trunk/tools/sdk
+CHERI=/home/munraj/projectscratch/SDK
+#CHERI=/home/munraj/projectscratch/SDK_NEW_1/sdk
+SSH_PASSWD_FILE=/home/munraj/ssh_passwd
+SSH_PRIV_KEY=/home/munraj/.ssh/mbv21
+WENGER_USER=mbv21
+WENGER_ADDR=wenger
+WENGER_FILE_ZFS=/exports/users/mbv21/
+
+# To test against the Boehm collector
+BOEHM_GC_DIR=../gc1/gc-7.2
+# BOEHM_GC_LIB_DIR should point to where gc.a is.
+BOEHM_GC_LIB_DIR=$(BOEHM_GC_DIR)
+BOEHM_GC_INC_DIR=$(BOEHM_GC_DIR)/include/
+
+# Location of memwatch, for debugging the non-gc ML test
+MEMWATCH_DIR=../memwatch
+# Comment these out to disable memwatch
+#MEMWATCH_FLAGS=-DMEMWATCH -I$(MEMWATCH_DIR)
+#MEMWATCH_SOURCES=$(MEMWATCH_DIR)/memwatch.c
+
+PATH:=$(CHERI):$(PATH)
+CC=PATH=$(PATH) $(CHERI)/bin/clang --sysroot $(CHERI) -integrated-as -msoft-float -O0
+CFLAGS=-I$(GC_PRIV_INCLUDE)
+
+GC_SOURCES=objects/gc_init.o objects/gc_malloc.o objects/gc_debug.o \
+           objects/gc_low.o objects/gc_collect.o objects/gc_time.o \
+           objects/gc_remset.o objects/gc_bitmap.o
+GC_PUBLIC_INCLUDE=src/inc/
+GC_PRIV_INCLUDE=src/inc/
+TESTALL_SOURCES=test/test_all.c
+
+all: clean lib testall testall-boehm testall-no-gc push-testall
+
+objects/%.o : src/%.c
+	$(CC) $(CFLAGS) -c -o $@ $< && \
+	$(CC) $(CFLAGS) -S -o $@.s $< && \
+	$(CC) $(CFLAGS) -E -o $@.E $<
+
+clean:
+	rm -rf objects
+
+lib_init:
+	mkdir -p objects
+
+lib_final: $(GC_SOURCES)
+	ar rcs objects/gc.a objects/*.o
+
+lib: lib_init $(GC_SOURCES) lib_final
+
+loc:
+	cat src/*.c src/inc/*.h | wc -l
+
+testall:
+	echo "[i] building for my GC" && \
+	PATH=$(PATH) $(CC) -DGC_CHERI -o objects/testall -I$(GC_PUBLIC_INCLUDE) objects/*.o $(TESTALL_SOURCES) && \
+	PATH=$(PATH) $(CC) -DGC_CHERI -S -o objects/testall.parse.s -I$(GC_PUBLIC_INCLUDE) $(TESTALL_SOURCES) && \
+	PATH=$(PATH) $(CC) -DGC_CHERI -E -o objects/testall.parse.E -I$(GC_PUBLIC_INCLUDE) $(TESTALL_SOURCES)
+
+testall-boehm:
+	echo "[i] building for Boehm" && \
+	mkdir -p objects/boehm && \
+	cp $(BOEHM_GC_LIB_DIR)/gc.a objects/boehm/boehm.a && \
+	cd objects/boehm && ar -x boehm.a && cd ../.. && \
+	PATH=$(PATH) $(CC) -DGC_BOEHM -o objects/testall-boehm -I$(BOEHM_GC_INC_DIR) $(TESTALL_SOURCES) objects/boehm/*.o
+
+testall-no-gc:
+	echo "[i] building for no GC" && \
+	PATH=$(PATH) $(CC) -DGC_NONE $(MEMWATCH_FLAGS) -o objects/testall-no-gc $(MEMWATCH_SOURCES) $(TESTALL_SOURCES)
+
+PASSWORD=`cat $(SSH_PASSWD_FILE)`
+CMD=scp -i $(SSH_PRIV_KEY) objects/testall objects/testall-boehm objects/testall-no-gc $(WENGER_USER)@$(WENGER_ADDR):$(WENGER_FILE_ZFS)
+push-testall:
+	echo "[i] pushing files to wenger ZFS" && \
+	echo -e "set timeout 60\nspawn $(CMD)\nexpect \": \"\nsend \"$(PASSWORD)\\\\n\"\ninteract\n" > cloud4_push_helper.expect && \
+	expect -f cloud4_push_helper.expect && \
+	rm -f cloud4_push_helper.expect

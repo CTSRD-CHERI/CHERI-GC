@@ -52,7 +52,7 @@
 #undef tf_cheri_gettag
 #define  tf_invalid_ptr     NULL
 #define  tf_ptr_valid(x)    ((x) != NULL)
-#define  tf_gc_init         GC_INIT
+#define  tf_gc_init()       (GC_init(),1)
 void
 __LOCK_MALLOC (void);
 void
@@ -76,7 +76,7 @@ __UNLOCK_MALLOC (void);
 #define tf_cheri_gettag     cheri_gettag
 #define tf_invalid_ptr      cheri_ptr(NULL, 0)
 #define tf_ptr_valid(x)     ( ((void*)(cheri_getbase(x))) != NULL)
-#define tf_gc_init()        do{}while(0)
+#define tf_gc_init()        0
 
 tf_func_t tf_cap_t void *
 tf_no_gc_malloc (size_t sz);
@@ -97,5 +97,8 @@ tf_no_gc_free (tf_cap_t void * ptr);
 
 #include <stdio.h>
 #define tf_printf printf
+
+tf_func_t void
+tf_dump_stats (void);
 
 #endif // TEST_ALL_H_HEADER

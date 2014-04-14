@@ -33,8 +33,6 @@
       tf_time_pretty(x), tf_time_pretty_unit(x), \
       tf_time_pretty(x##_tot/x##_num), tf_time_pretty_unit(x##_tot/x##_num)); \
   } while (0)
-#endif // tf_time
-
 
 #define tf_time_t             TF_ULL
 #define tf_time_diff(a,b)     ( (a)-(b) )
@@ -53,7 +51,7 @@
   "s" \
 )
 
-tf_func tf_time_t
+tf_func_t tf_time_t
 tf_time (void);
 
 #endif // TEST_TIME_H_HEADER
