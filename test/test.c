@@ -60,6 +60,7 @@ test (const char * TEST__test_name)
 do { \
   printf("----------Begin test " #test "----------\n"); \
   printf(#test ": " descr "\n"); \
+  GC_time_t before = GC_time(); \
   int e = test(#test); \
   if (e) \
   { \
@@ -68,7 +69,10 @@ do { \
   } \
   else \
   { \
-    printf("----------Finished test " #test "----------\n"); \
+    GC_time_t after = GC_time(); \
+    printf("----------Finished test " #test " (took %llu%s)----------\n", \
+      GC_TIME_PRETTY(GC_time_diff(after, before)), \
+      GC_TIME_PRETTY_UNIT(GC_time_diff(after, before))); \
   } \
 } while(0); \
 
@@ -85,6 +89,13 @@ do { \
 int
 main (int argc, char **argv)
 {
+  int x = 0;
+  GC_assert( x = 1 );
+  if (!(x==1))
+  {
+    printf("Need assertions on\n");
+    return 1;
+  }
   GC_assert( !GC_init() );
 #define X_MACRO DO_TEST
   TESTS

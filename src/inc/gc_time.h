@@ -48,11 +48,11 @@
 #define GC_time_add(a,b)      ( (a)+(b) )
 
 #define GC_TIME_PRETTY(x) \
-( \
+((GC_ULL) ( \
   (x) < 1000 ? (x) : \
   (x) < 10000000 ? ((x)+1000/2) / 1000 : \
   ((x)+1000000/2) / 1000000 \
-)
+))
 #define GC_TIME_PRETTY_UNIT(x) \
 ( \
   (x) < 1000 ? "us" : \

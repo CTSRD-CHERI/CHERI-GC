@@ -578,7 +578,9 @@ GC_region_rebase (struct GC_region * region, void * old_base, size_t old_size)
   // Now unneeded, because GC_IS_GC_ALLOCATED(region->free) is not true.
   // TODO: make sure this stays on the stack!  
   //GC_cap_ptr free_ptr_on_the_stack = region->free;
-  GC_assert( !GC_IS_GC_ALLOCATED(region->free) );
+  
+  // Now unneeded due to bitmaps
+  // GC_assert( !GC_IS_GC_ALLOCATED(region->free) );
   
   //void * stack_top = NULL;
   //GC_GET_STACK_PTR(stack_top);
