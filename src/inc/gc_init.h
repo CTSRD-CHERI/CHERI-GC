@@ -192,4 +192,7 @@ GC_init_region (struct GC_region * region,
                 size_t max_grow_size_after_collection);
 #endif // GC_GENERATIONAL
 
+GC_FUNC void
+GC_reset_region (struct GC_region * region);
+
 #endif // GC_INIT_H_HEADER

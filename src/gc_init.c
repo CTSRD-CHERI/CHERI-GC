@@ -261,3 +261,16 @@ GC_set_wb_type (int wb_type)
   return 0;
 }
 #endif // GC_GENERATIONAL
+
+GC_FUNC void
+GC_reset_region (struct GC_region * region)
+{
+  region->free = region->tospace;
+  region->scan = NULL;
+#ifdef GC_USE_BITMAP
+  GC_bitmap_clr(region->tospace_bitmap);
+#endif // GC_USE_BITMAP
+#ifdef GC_DEBUG
+  GC_cap_memset(region->tospace, GC_MAGIC_JUST_CLEARED_TOSPACE);
+#endif // GC_DEBUG
+}

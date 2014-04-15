@@ -87,9 +87,11 @@ do { \
 #define TEST_ASSERT(cond) \
 do { \
   if (!(cond)) \
+  { \
     printf("****FATAL: %s:%d: assertion failed: %s\n", \
       __FILE__, __LINE__, #cond); \
     exit(1); \
+  } \
 } while (0)
 
 #define X_MACRO DECLARE_TEST
@@ -178,13 +180,18 @@ DEFINE_TEST(fill_test)
     TEST_ASSERT( GC_cheri_gettag(bufs[i]) );
     if (!GC_IN((void*)bufs[i], GC_state.thread_local_region.tospace))
     {
-      printf(
-        "Warning: bufs[%d] (0x%llx) "
-        "is not in the tospace (0x%llx to 0x%llx)\n",
-        (int) i, (GC_ULL)(void*)bufs[i],
-        (GC_ULL)(void*)GC_state.thread_local_region.tospace,
-        (GC_ULL)(((void*)GC_state.thread_local_region.tospace)+
-                GC_cheri_getlen(GC_state.thread_local_region.tospace)));
+#ifdef GC_GENERATIONAL
+      if (!GC_IN((void*)bufs[i], GC_state.old_generation.tospace))
+#endif // GC_GENERATIONAL
+      {
+        printf(
+          "Warning: bufs[%d] (0x%llx) "
+          "is not in the tospace (0x%llx to 0x%llx)\n",
+          (int) i, (GC_ULL)(void*)bufs[i],
+          (GC_ULL)(void*)GC_state.thread_local_region.tospace,
+          (GC_ULL)(((void*)GC_state.thread_local_region.tospace)+
+                  GC_cheri_getlen(GC_state.thread_local_region.tospace)));
+      }
     }
   }
   
@@ -194,10 +201,15 @@ DEFINE_TEST(fill_test)
     TEST_ASSERT( GC_cheri_getlen(bufs[i]) == bufsz );
     if (!GC_IN((void*)bufs[i], GC_state.thread_local_region.tospace))
     {
-      printf("NOTE: bufs[i]=0x%llx, i=%d\n", (GC_ULL)(void*)bufs[i], (int) i);
-      GC_debug_print_region_stats(&GC_state.thread_local_region);
+#ifdef GC_GENERATIONAL
+      if (!GC_IN((void*)bufs[i], GC_state.old_generation.tospace))
+#endif // GC_GENERATIONAL
+      {
+        printf("NOTE: bufs[i]=0x%llx, i=%d\n", (GC_ULL)(void*)bufs[i], (int) i);
+        GC_debug_print_region_stats(&GC_state.thread_local_region);
+        TEST_ASSERT(0);
+      }
     }
-    TEST_ASSERT( GC_IN((void*)bufs[i], GC_state.thread_local_region.tospace) );
     
     size_t j;
     for (j=0; j<bufsz/sizeof(typ); j++)
@@ -220,10 +232,18 @@ DEFINE_TEST(list_test)
   // Don't allow an unlimited heap
   TEST_ASSERT( GC_state.thread_local_region.max_grow_size_before_collection );
   TEST_ASSERT( GC_state.thread_local_region.max_grow_size_after_collection );
+#ifdef GC_GENERATIONAL
+  TEST_ASSERT( GC_state.old_generation.max_grow_size_before_collection );
+  TEST_ASSERT( GC_state.old_generation.max_grow_size_after_collection );
+#endif // GC_GENERATIONAL
  
   size_t heapsz =
     GC_state.thread_local_region.max_grow_size_after_collection;
   TEST_ASSERT( heapsz );
+
+#ifdef GC_GENERATIONAL
+  heapsz += GC_state.old_generation.max_grow_size_after_collection;
+#endif
   
   int i;
   GC_CAP node * head = GC_INVALID_PTR;
@@ -231,8 +251,8 @@ DEFINE_TEST(list_test)
   {
     if (i > heapsz/sizeof(node))
     {
-      TESTF("FATAL: too many nodes!\n");
-      GC_debug_print_region_stats(&GC_state.thread_local_region);
+      TESTF("FATAL: too many nodes\n");
+      GC_debug_dump();
       return 1;
     }
     
@@ -264,7 +284,11 @@ DEFINE_TEST(list_test)
   GC_STORE_CAP(p, head);
   for (j=0; j<=i; j++)
   {
-    TEST_ASSERT( GC_IN(p, GC_state.thread_local_region.tospace) );
+    TEST_ASSERT( GC_IN(p, GC_state.thread_local_region.tospace)
+#ifdef GC_GENERATIONAL
+    || GC_IN(p, GC_state.old_generation.tospace)
+#endif // GC_GENERATIONAL
+      );
     if (!(void*)p)
     {
       printf("failed at j=%d\n", j);
@@ -343,8 +367,12 @@ ATTR_SENSITIVE static int
 bintree_check (GC_CAP bintree * tree, int depth, int value)
 {
   printf("Bintree checking at depth=%d, value=%d, tree=0x%llx\n", depth, value, (GC_ULL) (void*)tree);
+  if (!GC_IN((void*)tree, GC_state.thread_local_region.tospace)
+#ifdef GC_GENERATIONAL
+      && !GC_IN((void*)tree, GC_state.old_generation.tospace)
+  #endif // GC_GENERATIONAL
+  ) return 0;
   if (!GC_cheri_gettag(tree) ||
-      !GC_IN((void*)tree, GC_state.thread_local_region.tospace) ||
       !(void*)tree ||
       ((bintree*)tree)->value != bintree_encode_value(depth, value))
     return 0;
@@ -401,11 +429,15 @@ DEFINE_TEST(bintree_test)
   
   GC_CAP bintree * trees[max_trees];
   
+  GC_minor_free();
+  GC_major_collect();
+  GC_major_collect();
+  
   int i;
   for (i=0; i<max_trees; i++)
   {
     TESTF("allocated %d trees so far\n", i);
-    GC_debug_print_region_stats(&GC_state.thread_local_region);
+    GC_debug_dump();
     trees[i] = bintree_create(tree_depth, i);
     if (!(void*)trees[i]) break;
   }
@@ -438,7 +470,11 @@ DEFINE_TEST(regroots_test)
   GC_collect();
   printf("after collecting, x.base = 0x%llx\n", (GC_ULL)(void*)x);
   GC_PRINT_CAP(GC_state.thread_local_region.tospace);
-  return !GC_IN((void*)x, GC_state.thread_local_region.tospace);
+  return 
+    !GC_IN((void*)x, GC_state.thread_local_region.tospace)
+#ifdef GC_GENERATIONAL
+    && !GC_IN((void*)x, GC_state.old_generation.tospace);
+#endif // GC_GENERATIONAL
 }
 
 DEFINE_TEST(bitmap_test)

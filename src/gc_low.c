@@ -330,7 +330,7 @@ GC_grow (struct GC_region * region, size_t hint, size_t max_size)
     
   size_t old_size = GC_cheri_getlen(region->tospace);
   
-  if (old_size >= max_size)
+  if (max_size && (old_size >= max_size))
   {
     GC_vdbgf("GC_grow(): region already max size (%llu%s)",
       GC_MEM_PRETTY((GC_ULL) max_size),

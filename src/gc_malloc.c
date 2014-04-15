@@ -136,7 +136,7 @@ GC_malloc_region
       GC_assert( GC_state.reg_bottom );
       GC_assert( GC_state.reg_top );
 
-      GC_collect_region(region);
+      GC_collect_region(region, 0);
       
       //printf("TODO: clean the stack after collection.\n");
       

@@ -1,7 +1,7 @@
 #ifndef GC_CONFIG_H_HEADER
 #define GC_CONFIG_H_HEADER
 
-#define GC_DEBUG
+//#define GC_DEBUG
 //#define GC_VERBOSE_DEBUG
 
 // Can be used when testing against the Boehm collector, defined here for
@@ -52,6 +52,9 @@
 
 // Used by GC_collect to clear the fromspace
 #define GC_MAGIC_JUST_CLEARED_FROMSPACE       0x48      // 'H'
+
+// Used by GC_reset_region and GC_gen_promote to clear the tospace
+#define GC_MAGIC_JUST_CLEARED_TOSPACE         0x49      // 'I'
 
 // ----HEAP GROWING----
 // Current policies with GC_GENERATIONAL turned on:

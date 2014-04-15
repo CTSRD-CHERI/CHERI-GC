@@ -10,8 +10,26 @@
 GC_FUNC void
 GC_collect (void);
 
+// also declared in gc.h
+// In non-generational mode, this has the same effect as GC_collect()
 GC_FUNC void
-GC_collect_region (struct GC_region * region);
+GC_major_collect (void);
+
+// also declared in gc.h
+// Free the entire young generation. Does not collect.
+GC_FUNC void
+GC_minor_free (void);
+
+// force_major_collection is ignored if GC_GENERATIONAL is not set. Otherwise,
+// if it is set, a major collection is triggered immediately after the minor
+// collection. With more than two generations, the force_major_collection value
+// propagates through to older generations.
+GC_FUNC void
+GC_collect2 (int force_major_collection);
+
+GC_FUNC void
+GC_collect_region (struct GC_region * region,
+                   int force_major_collection);
 
 // Using capability registers, the stack and the data segment as roots, this
 // copies objects from region->fromspace to region->tospace. Assumes
@@ -51,8 +69,11 @@ GC_copy_remembered_set (struct GC_region * region);
 // We conservatively estimate whether the older generation has enough space to
 // store all the objects from the young generation, and we collect the older
 // generation if there is not enough space.
+// If force_major_collection is set, a major collection is triggered immediately
+// after the minor collection. With more than two generations, the
+// force_major_collection value propagates through to older generations.
 GC_FUNC void
-GC_gen_promote (struct GC_region * region);
+GC_gen_promote (struct GC_region * region, int force_major_collection);
 #endif // GC_GENERATIONAL
 
 // Replaces all capabilities in region->tospace, on the stack, in global areas

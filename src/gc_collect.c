@@ -13,6 +13,18 @@
 GC_FUNC void
 GC_collect (void)
 {
+  GC_collect2(0);
+}
+
+GC_FUNC void
+GC_major_collect (void)
+{
+  GC_collect2(1);
+}
+
+GC_FUNC void
+GC_collect2 (int force_major_collection)
+{
   int local;
   //GC_SAVE_STACK_PTR
   //GC_state.stack_top = GC_MAX_STACK_TOP;
@@ -30,7 +42,7 @@ GC_collect (void)
     //GC_init();
     GC_fatalf("GC not initialized, call GC_init from main.");
   }
-  GC_collect_region(&GC_state.thread_local_region);
+  GC_collect_region(&GC_state.thread_local_region, force_major_collection);
   
   GC_RESTORE_REG_STATE();
   
@@ -40,7 +52,7 @@ GC_collect (void)
 }
 
 GC_FUNC void
-GC_collect_region (struct GC_region * region)
+GC_collect_region (struct GC_region * region, int force_major_collection)
 {
   GC_START_TIMING(GC_collect_region_time);
    
@@ -68,13 +80,19 @@ GC_collect_region (struct GC_region * region)
     size_t old_used =
       GC_cheri_getbase(region->free) - GC_cheri_getbase(region->tospace);
     
-    GC_gen_promote(region);
+    GC_gen_promote(region, force_major_collection);
     
     size_t new_used =
       GC_cheri_getbase(region->free) - GC_cheri_getbase(region->tospace);
     
     // Current policy dictates that GC_gen_promote frees everything.
-    GC_assert( new_used == 0 );
+    //GC_assert( new_used == 0 );
+    if (new_used != 0)
+    {
+      // Collection must have failed.
+      GC_errf("warning: new_used is not zero, probably out of memory");
+      return;
+    }
     
     freed = old_used - new_used;
     promoted = 1;
@@ -416,7 +434,7 @@ GC_copy_remembered_set (struct GC_region * region)
 #endif // GC_OY_STORE_DEFAULT
 
 GC_FUNC void
-GC_gen_promote (struct GC_region * region)
+GC_gen_promote (struct GC_region * region, int force_major_collection)
 {
   // Conservative estimate. Usually requires the old generation to have at least
   // as much space as the entire young generation (because GC_gen_promote is
@@ -440,7 +458,8 @@ GC_gen_promote (struct GC_region * region)
 #endif // GC_GROW_OLD_HEAP
   if (too_small)
   {
-    GC_errf("old generation out of memory");
+    GC_errf("old generation out of memory (expected_sz = %llu bytes)",
+      (GC_ULL) expected_sz);
     return;
   }
   
@@ -481,6 +500,10 @@ GC_gen_promote (struct GC_region * region)
 #endif // GC_USE_BITMAP
   region->older_region->remset = old_remset;
   region->free = region->tospace;
+
+#ifdef GC_DEBUG
+  GC_cap_memset(region->tospace, GC_MAGIC_JUST_CLEARED_TOSPACE);
+#endif // GC_DEBUG
   
   void * newfree = GC_cheri_getbase(region->older_region->free);
   size_t freelen = GC_cheri_getlen(region->older_region->free);
@@ -496,11 +519,17 @@ GC_gen_promote (struct GC_region * region)
       ((double) GC_cheri_getlen(region->older_region->tospace))));
   
   GC_dbgf(
-    "total heap residency after promote: %llu kbytes (%llu%s, %d%%)\n",
+    "total heap residency after promote: %llu kbytes (%llu%s, %d%%)",
     (GC_ULL) (usedlen / 1000),
     GC_MEM_PRETTY((GC_ULL) usedlen), GC_MEM_PRETTY_UNIT((GC_ULL) usedlen),
     residency
   );
+  
+  if (force_major_collection)
+  {
+    GC_dbgf("force_major_collection is set, forcing major collection now");
+    GC_collect_region(region->older_region, force_major_collection);
+  }
   
   // Collect (and possibly grow) the heap if we've hit the high watermark. This
   // should usually be set so that if the collection and/or growth succeeds, the
@@ -517,7 +546,7 @@ GC_gen_promote (struct GC_region * region)
       residency,
       (int) (100.0 * GC_OLD_GENERATION_HIGH_WATERMARK)
     );
-    GC_collect_region(region->older_region);
+    GC_collect_region(region->older_region, 0);
     
     residency = 
         (int) (100.0 * (1.0 -
@@ -537,7 +566,7 @@ GC_gen_promote (struct GC_region * region)
       GC_dbgf("trying to grow old generation");
       too_small = !GC_grow(region->older_region,
                            GC_cheri_getlen(region->older_region->free),
-                           region->max_grow_size_after_collection);
+                           region->older_region->max_grow_size_after_collection);
       residency = 
           (int) (100.0 * (1.0 -
             ((double) GC_cheri_getlen(region->older_region->free)) /
@@ -758,3 +787,9 @@ GC_clean_forwarding (void * start,
     }
   }
 }*/
+
+GC_FUNC void
+GC_minor_free (void)
+{
+  GC_reset_region(&GC_state.thread_local_region);
+}

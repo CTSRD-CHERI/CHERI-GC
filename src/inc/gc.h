@@ -75,6 +75,14 @@ GC_malloc2
 GC_FUNC void
 GC_collect (void);
 
+// In non-generational mode, this has the same effect as GC_collect()
+GC_FUNC void
+GC_major_collect (void);
+
+// Free the entire young generation. Does not collect.
+GC_FUNC void
+GC_minor_free (void);
+
 // the void* cast of GC_INVALID_PTR is guaranteed to be NULL
 //#define     GC_INVALID_PTR    cheri_zerocap()
 //#define GC_INVALID_PTR GC_cheri_ptr(NULL, 0)
