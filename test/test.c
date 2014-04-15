@@ -89,6 +89,7 @@ do { \
   if (!(cond)) \
     printf("****FATAL: %s:%d: assertion failed: %s\n", \
       __FILE__, __LINE__, #cond); \
+    exit(1); \
 } while (0)
 
 #define X_MACRO DECLARE_TEST
@@ -122,7 +123,7 @@ DEFINE_TEST(fill_test)
     GC_state.thread_local_region.max_grow_size_after_collection;
   
 #ifdef GC_GENERATIONAL
-  heapsz = GC_state.old_generation.max_grow_size_after_collection - heapsz;
+  heapsz = GC_state.old_generation.max_grow_size_after_collection - heapsz - 1000;
 #endif
 
   TEST_ASSERT( heapsz );
@@ -133,7 +134,8 @@ DEFINE_TEST(fill_test)
   size_t nbufs = heapsz / bufsz;
   TEST_ASSERT( maxnbufs > nbufs );
   
-  TESTF("nbufs: %llu  bufsz: %llu\n", (GC_ULL) nbufs, (GC_ULL) bufsz);
+  TESTF("heapsz: %llu  nbufs: %llu  bufsz: %llu\n",
+    (GC_ULL) heapsz, (GC_ULL) nbufs, (GC_ULL) bufsz);
   
   size_t i;
   for (i=0; i<nbufs; i++)

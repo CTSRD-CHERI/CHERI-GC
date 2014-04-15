@@ -395,14 +395,14 @@ GC_copy_remembered_set (struct GC_region * region)
 {
   if (region->remset)
   {
-    GC_dbgf("GC_copy_remembered_set: copying %d roots from remset",
+    GC_vdbgf("GC_copy_remembered_set: copying %d roots from remset",
       (int) region->remset->nroots);
     size_t i;
     for (i=0; i<region->remset->nroots; i++)
     {
       GC_cap_ptr * root = (GC_cap_ptr *) region->remset->roots[i];
       GC_assert( root );
-      GC_dbgf("[%d] Processing remembered root 0x%llx",
+      GC_vdbgf("[%d] Processing remembered root 0x%llx",
         (int) i, (GC_ULL) root);
       printf("Note: currently the capability at the root is:\n");
       GC_PRINT_CAP(*root);
