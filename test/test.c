@@ -41,13 +41,13 @@ typedef struct bintree_tag
 // ----------------------------------------------------------------------------
 
 #define TESTS \
-  /*X_MACRO(fill_test, "Fill the heap with 512-byte chunks and ensure integrity after collection") \
+  X_MACRO(fill_test, "Fill the heap with 512-byte chunks and ensure integrity after collection") \
   X_MACRO(list_test, "Fill the heap with a list and ensure integrity after collection") \
   X_MACRO(bintree_test, "Create some binary trees and ensure integrity after collection") \
   X_MACRO(regroots_test, "Check register roots") \
   X_MACRO(bitmap_test, "Check bitmap operations") \
   X_MACRO(experimental_test, "For experiments") \
-  X_MACRO(malloc_time_test, "Tests how long GC_malloc takes without collecting")*/ \
+  X_MACRO(malloc_time_test, "Tests how long GC_malloc takes without collecting") \
   X_MACRO(malloc_time_test_with_collect, "Tests how long GC_malloc takes with collecting")
 
 #define DECLARE_TEST(test,descr) \
@@ -120,6 +120,11 @@ DEFINE_TEST(fill_test)
   
   size_t heapsz =
     GC_state.thread_local_region.max_grow_size_after_collection;
+  
+#ifdef GC_GENERATIONAL
+  heapsz = GC_state.old_generation.max_grow_size_after_collection - heapsz;
+#endif
+
   TEST_ASSERT( heapsz );
   
   heapsz -= heapsz/10;

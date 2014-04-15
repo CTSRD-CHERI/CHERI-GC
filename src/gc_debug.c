@@ -73,6 +73,18 @@ GC_debug_print_region_stats(struct GC_region * region)
 #ifdef GC_GENERATIONAL
              old   = (GC_ULL) region->older_region,
 #endif // GC_GENERATIONAL
+#ifdef GC_USE_BITMAP
+             tobit = (GC_ULL) region->tospace_bitmap,
+             frombit = (GC_ULL) region->fromspace_bitmap,
+             ltobit = region->tospace_bitmap ?
+                (GC_ULL) region->tospace_bitmap->size : -1,
+             utobit = region->tospace_bitmap ?
+                (GC_ULL) region->tospace_bitmap->used : -1,
+             lfrombit = region->fromspace_bitmap ?
+              (GC_ULL) region->fromspace_bitmap->size : -1,
+             ufrombit = region->fromspace_bitmap ?
+              (GC_ULL) region->fromspace_bitmap->used : -1,
+#endif // GC_USE_BITMAP
              lfrom = (fromspace_exists ?
               (GC_ULL) GC_cheri_getlen(region->fromspace) : 0),
              lto   = (GC_ULL) GC_cheri_getlen(region->tospace),
@@ -92,15 +104,21 @@ GC_debug_print_region_stats(struct GC_region * region)
   (
     "Region statistics\n"
     "-----------------\n"
-    "fromspace   : b=  0x%-16llx  l=0x%-16llx\n"
-    "              end=0x%-16llx\n"
-    "tospace     : b=  0x%-16llx  l=0x%-16llx\n"
-    "              end=0x%-16llx\n"
-    "free        : b=  0x%-16llx  l=0x%-16llx\n"
-    "              end=0x%-16llx\n"
-    "scan        :     0x%-16llx\n"
+    "fromspace :      b=  0x%-16llx  l=0x%-16llx\n"
+    "               end=  0x%-16llx\n"
+#ifdef GC_USE_BITMAP
+    "            bitmap=  0x%-16llx  s=0x%-16llx  u=0x%-16llx\n"
+#endif // GC_USE_BITMAP
+    "tospace   :      b=  0x%-16llx  l=0x%-16llx\n"
+    "               end=  0x%-16llx\n"
+#ifdef GC_USE_BITMAP
+    "            bitmap=  0x%-16llx  s=0x%-16llx  u=0x%-16llx\n"
+#endif // GC_USE_BITMAP
+    "free      :      b=  0x%-16llx  l=0x%-16llx\n"
+    "               end=  0x%-16llx\n"
+    "scan      :          0x%-16llx\n"
 #ifdef GC_GENERATIONAL
-    "old         :   0x%-16llx\n"
+    "old       :          0x%-16llx\n"
 #endif // GC_GENERATIONAL
     "\n"
     "used size   : 0x%-16llx bytes (%llu%s)\n"
@@ -121,8 +139,14 @@ GC_debug_print_region_stats(struct GC_region * region)
     ,
     from, lfrom,
     efrom,
+#ifdef GC_USE_BITMAP
+    frombit, lfrombit, ufrombit,
+#endif // GC_USE_BITMAP
     to, lto,
     eto,
+#ifdef GC_USE_BITMAP
+    tobit, ltobit, utobit,
+#endif // GC_USE_BITMAP
     free, lfree,
     efree,
     scan,

@@ -253,7 +253,7 @@ GC_copy_object (struct GC_region * region,
       GC_cheri_getlen (region->free)-GC_cheri_getlen(cap));
 
   tmp = GC_SET_GC_ALLOCATED(tmp);
-  GC_ADD_TO_BITMAP(GC_state.thread_local_region.tospace_bitmap, tmp);
+  GC_ADD_TO_BITMAP(region->tospace_bitmap, tmp);
   
 #ifndef GC_GENERATIONAL
   // Not true always; consider young-old copy
@@ -425,8 +425,6 @@ GC_gen_promote (struct GC_region * region)
     GC_cheri_getbase(region->free) - GC_cheri_getbase(region->tospace);
   int too_small = GC_cheri_getlen(region->older_region->free) < expected_sz;
   
-  printf("##FATAL## TODO: save+switch the misaligned fromspace/tospace pointer and bitmaps.\n");exit(1);
-  
 #ifdef GC_GROW_OLD_HEAP
   // Grow the heap if we have to.
   if (too_small)
@@ -453,6 +451,15 @@ GC_gen_promote (struct GC_region * region)
   GC_cap_ptr old_fromspace = region->older_region->fromspace;
   region->older_region->fromspace = region->tospace;
   
+  void * old_fromspace_misaligned = region->older_region->fromspace_misaligned;
+  region->older_region->fromspace_misaligned = region->tospace_misaligned;
+
+#ifdef GC_USE_BITMAP
+  struct GC_bitmap * old_fromspace_bitmap =
+    region->older_region->fromspace_bitmap;
+  region->older_region->fromspace_bitmap = region->tospace_bitmap;
+#endif // GC_USE_BITMAP
+    
   struct GC_remembered_set * old_remset = region->older_region->remset;
   region->older_region->remset = region->remset;
   
@@ -467,6 +474,11 @@ GC_gen_promote (struct GC_region * region)
   GC_copy_region(region->older_region, 1);
   
   region->older_region->fromspace = old_fromspace;
+  region->older_region->fromspace_misaligned = old_fromspace_misaligned;
+#ifdef GC_USE_BITMAP
+  region->older_region->fromspace_bitmap = old_fromspace_bitmap;
+  GC_bitmap_clr(region->tospace_bitmap);
+#endif // GC_USE_BITMAP
   region->older_region->remset = old_remset;
   region->free = region->tospace;
   
@@ -475,7 +487,7 @@ GC_gen_promote (struct GC_region * region)
   size_t usedlen = GC_cheri_getlen(region->older_region->tospace) - freelen;
   ptrdiff_t szdiff = newfree - oldfree;
   
-  GC_vdbgf("copied %llu%s (%llu bytes less than expected) into the old generation",
+  GC_dbgf("copied %llu%s (%llu bytes less than expected) into the old generation",
     GC_MEM_PRETTY((GC_ULL) szdiff), GC_MEM_PRETTY_UNIT((GC_ULL) szdiff),
     (GC_ULL) (expected_sz - szdiff));
   
@@ -483,7 +495,7 @@ GC_gen_promote (struct GC_region * region)
     (int) (100.0 * (1.0-((double) freelen) /
       ((double) GC_cheri_getlen(region->older_region->tospace))));
   
-  GC_vdbgf(
+  GC_dbgf(
     "total heap residency after promote: %llu kbytes (%llu%s, %d%%)\n",
     (GC_ULL) (usedlen / 1000),
     GC_MEM_PRETTY((GC_ULL) usedlen), GC_MEM_PRETTY_UNIT((GC_ULL) usedlen),
@@ -499,7 +511,7 @@ GC_gen_promote (struct GC_region * region)
                 (double)GC_cheri_getlen(region->older_region->tospace)));
   if (too_small)
   {
-    GC_vdbgf(
+    GC_dbgf(
       "old generation hit high watermark (residency=%d%%, watermark=%d%%),"
       " triggering major collection",
       residency,
@@ -511,7 +523,7 @@ GC_gen_promote (struct GC_region * region)
         (int) (100.0 * (1.0 -
           ((double) GC_cheri_getlen(region->older_region->free)) /
           ((double) GC_cheri_getlen(region->older_region->tospace))));
-    GC_vdbgf("after collection heap residency=%d%%", residency);
+    GC_dbgf("after collection heap residency=%d%%", residency);
 
     too_small = GC_cheri_getlen(region->older_region->free) <
                 ((size_t) ((1.0-GC_OLD_GENERATION_HIGH_WATERMARK) *

@@ -92,7 +92,11 @@ GC_low_calloc (size_t num, size_t sz)
 }
 
 GC_FUNC void *
-GC_low_realloc (void * ptr, size_t sz)
+GC_low_realloc2 (
+#ifdef GC_DEBUG
+const char * file, int line,
+#endif // GC_DEBUG
+void * ptr, size_t sz)
 {
   //void * p = realloc(ptr, sz);
   //return GC_add_to_alloc_list(p, sz, ptr);
@@ -106,7 +110,8 @@ GC_low_realloc (void * ptr, size_t sz)
   }
   if (i<GC_alloc_index)
   {
-    GC_vdbgf("[GC_low_realloc]: REALLOC: Found. OLD: p=0x%llx sz=%d NEW: p=(not known yet) sz=%d\n",
+    GC_vdbgf("[GC_low_realloc %s:%d]: REALLOC: Found. OLD: p=0x%llx sz=%d NEW: p=(not known yet) sz=%d\n",
+      file, line,
       (GC_ULL) GC_alloc_table[i].ptr,
       (int) GC_alloc_table[i].len,
       (int) sz);
@@ -421,13 +426,19 @@ GC_grow (struct GC_region * region, size_t hint, size_t max_size)
     region->tospace,
     GC_ALIGN_32(new_tospace_base_misaligned, void *),
     new_size);
+  
+  GC_vdbgf("GC_grow(): new_size=%llu\n", (GC_ULL) new_size);
 
 #ifdef GC_USE_BITMAP
-  if (GC_grow_bitmap(region->tospace_bitmap, new_size/32)
-      || GC_grow_bitmap(region->fromspace_bitmap, new_size/32))
+  if (GC_grow_bitmap(region->tospace_bitmap, new_size/32))
   {
     // TODO: handle this better
-    GC_fatalf("GC_resize_bitmap failed\n");
+    GC_fatalf("GC_resize_bitmap failed (tospace)\n");
+  }
+  if (fromspace_exists && GC_grow_bitmap(region->fromspace_bitmap, new_size/32))
+  {
+    // TODO: handle this better
+    GC_fatalf("GC_resize_bitmap failed (fromspace)\n");
   }
 #endif // GC_USE_BITMAP
   

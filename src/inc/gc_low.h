@@ -203,7 +203,7 @@ typedef __capability void * GC_cap_ptr;
       } \
     } \
     *tmpx = tmpy; \
-    tmpx = (__capability void * __capability *) GC_cheri_ptr(NULL, 0); \
+    tmpx = NULL; \
   } while (0)
 //#define GC_STORE_CAP(x,y) \
   do { \
@@ -231,7 +231,7 @@ typedef __capability void * GC_cap_ptr;
     __asm__ ("daddiu $2, $2, 0"); \
     printf("[GC_STORE_CAP] &x=0x%llx, tmpx=0x%llx\n", (unsigned long long) &(x), (unsigned long long) tmpx); \
     GC_assert((uintptr_t)&(x) ==(uintptr_t) tmpx); \
-    tmpx = (__capability void * __capability *) GC_cheri_ptr(NULL, 0); \
+    tmpx = NULL; \
     printf("[GC_STORE_CAP] __DONE__: %s=%s\n", #x, #y); \
   } while (0)
   
@@ -573,8 +573,18 @@ GC_low_malloc (size_t sz);
 GC_FUNC void *
 GC_low_calloc (size_t num, size_t sz);
 
+#ifdef GC_DEBUG
+#define GC_low_realloc(ptr,sz) GC_low_realloc2(__FILE__,__LINE__,(ptr),(sz))
+#else // GC_DEBUG
+#define GC_low_realloc GC_low_realloc2
+#endif // GC_DEBUG
+
 GC_FUNC void *
-GC_low_realloc (void * ptr, size_t sz);
+GC_low_realloc2 (
+#ifdef GC_DEBUG
+const char * file, int line,
+#endif // GC_DEBUG
+void * ptr, size_t sz);
 
 GC_FUNC void *
 GC_get_stack_bottom (void);

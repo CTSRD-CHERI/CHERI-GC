@@ -20,7 +20,7 @@ GC_init_bitmap (struct GC_bitmap * bitmap,
 GC_FUNC int
 GC_grow_bitmap (struct GC_bitmap * bitmap, size_t new_size)
 {
-  GC_assert( new_size > bitmap->size );
+  GC_assert( new_size >= bitmap->size );
   char * tmp = GC_low_realloc(bitmap->map, GC_BITMAP_BITS_TO_BYTES(new_size));
   if (!tmp) return 1;
   bitmap->map = tmp;
