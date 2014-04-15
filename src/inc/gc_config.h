@@ -18,14 +18,14 @@
 #define GC_COLLECT_ON_ALLOCATION_FAILURE      1
 
 // Enable this to use a bitmap to track allocated objects.
-#define GC_USE_BITMAP
+//#define GC_USE_BITMAP
 
 // Kind of temporary
 #define GC_MAX_STACK_TOP    (void*) 0x7ffff00000
 
 // If this is defined, we manually clean the stack. Otherwise, we rely on
 // __attribute__((sensitive)) annotations to do it for us.
-//#define GC_USE_GC_STACK_CLEAN
+#define GC_USE_GC_STACK_CLEAN
 #ifndef GC_USE_GC_STACK_CLEAN
 //#define GC_USE_ATTR_SENSITIVE
 #endif // GC_USE_GC_STACK_CLEAN

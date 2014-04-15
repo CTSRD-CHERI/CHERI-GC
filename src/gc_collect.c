@@ -422,11 +422,7 @@ GC_copy_remembered_set (struct GC_region * region)
       GC_assert( root );
       GC_vdbgf("[%d] Processing remembered root 0x%llx",
         (int) i, (GC_ULL) root);
-      printf("Note: currently the capability at the root is:\n");
-      GC_PRINT_CAP(*root);
       GC_copy_child(region, root, 1);
-      printf("Now it is:\n");
-      GC_PRINT_CAP(*root);
     }
     GC_remembered_set_clr(region->remset);
   }
