@@ -175,7 +175,8 @@ typedef struct bintree_tag
 #define TESTS \
   /*X_MACRO(malloc_time_test, "Tests how long tf_malloc takes without collecting") \
   X_MACRO(malloc_time_test_with_collect, "Tests how long tf_malloc takes with collecting") \
-  */X_MACRO(allocate_loads, "Tests how long it takes to allocate a large amount of data")
+  X_MACRO(allocate_loads, "Tests how long it takes to allocate a large amount of data") \
+  */X_MACRO(pause_time_test, "Measures collector pause time")
 
 #define DECLARE_TEST(test,descr) \
 tf_func_t int \
@@ -328,7 +329,7 @@ DEFINE_TEST(allocate_loads)
   size_t nobj       = 50;
   
   // number of allocations to do
-  size_t nalloc     = 100000;
+  size_t nalloc     = 10000;
   
   // this many bytes are stored at any one time
   size_t total_stored = objsz * nobj;
@@ -370,5 +371,43 @@ DEFINE_TEST(allocate_loads)
     "Took %llu%s (diff=%llu)\n",
     tf_time_pretty(diff), tf_time_pretty_unit(diff), (tf_ull_t) diff);
   
+  return 0;
+}
+
+DEFINE_TEST(pause_time_test)
+{
+  // Assume the heap is at least 65536 bytes big.
+  tf_printf("Note: make sure the heap size is at least 65536 bytes big.\n");
+  int j, max=100, sz=512;
+  tf_time_t tot = 0, tmin = 0, tmax = 0;
+  for (j=0; j<max; j++)
+  {
+    int i;
+    for (i=0; i<65535/sz; i++)
+    {
+      tf_malloc(sz);
+    }
+    tf_time_t before = tf_time();
+    tf_collect();
+    tf_time_t after = tf_time();
+    tf_time_t diff = after - before;
+    if (tot+diff<tot)
+    {
+      tf_printf("tot overflow\n");
+      exit(1);
+    }
+    tot += diff;
+    if (diff > tmax) tmax = diff;
+    if ((diff < tmin)||!tmin) tmin = diff;
+    tf_printf("[%d] Pause time %llu%s (%llu)\n",
+      j, tf_time_pretty(diff), tf_time_pretty_unit(diff), (tf_ull_t) diff);
+  }
+  tf_time_t avg = tot/max;
+  tf_printf(
+    "Pause time %llu%s (%llu)\nTotal time %llu%s (%llu))\nMin pause %llu%s (%llu))\nMax pause %llu%s (%llu))\n",
+    tf_time_pretty(avg), tf_time_pretty_unit(avg), (tf_ull_t) avg,
+    tf_time_pretty(tot), tf_time_pretty_unit(tot), (tf_ull_t) tot,
+    tf_time_pretty(tmin), tf_time_pretty_unit(tmin), (tf_ull_t) tmin,
+    tf_time_pretty(tmax), tf_time_pretty_unit(tmax), (tf_ull_t) tmax);
   return 0;
 }

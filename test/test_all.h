@@ -43,7 +43,7 @@
 #define  tf_cap_t
 #define  tf_malloc(x)       cheri_getbase(GC_MALLOC((x)))
 #define  tf_free(x)         do{}while(0)
-#define  tf_collect         GC_COLLECT
+#define  tf_collect         GC_gcollect
 #define  tf_store_cap(x,y)  ((x) = (y))
 #define  tf_func_t
 #define  tf_cheri_ptr(x,y)  ((x))
