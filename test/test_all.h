@@ -6,7 +6,7 @@
 #ifndef TEST_ALL_H_HEADER
 #define TEST_ALL_H_HEADER
 
-#define TF_ULL unsigned long long
+#define tf_ull_t unsigned long long
 
 #ifdef GC_CHERI
 // --------------------Begin GC_CHERI--------------------
@@ -100,5 +100,28 @@ tf_no_gc_free (tf_cap_t void * ptr);
 
 tf_func_t void
 tf_dump_stats (void);
+
+#define tf_mem_pretty(x) \
+((tf_ull_t)( \
+  (x) < 1000 ? (x) : \
+  (x) < 1000000 ? ((x)+1000/2) / 1000 : \
+  (x) < 1000000000 ? ((x)+1000000/2) / 1000000 : \
+  ((x)+1000000000/2) / 1000000000 \
+))
+#define tf_mem_pretty_unit(x) \
+( \
+  (x) < 1000 ? "B" : \
+  (x) < 1000000 ? "kB" : \
+  (x) < 1000000000 ? "MB" : \
+  "GB" \
+)
+#define tf_num_pretty tf_mem_pretty
+#define tf_num_pretty_unit(x) \
+( \
+  (x) < 1000 ? "" : \
+  (x) < 1000000 ? "k" : \
+  (x) < 1000000000 ? "M" : \
+  "G" \
+)
 
 #endif // TEST_ALL_H_HEADER

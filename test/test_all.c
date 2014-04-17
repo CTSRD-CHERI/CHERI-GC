@@ -24,7 +24,7 @@
  * The things you can use in all tests are:
  *
  * Thing you can use  Type  Description (for my GC, usually)
- * TF_ULL             T     Unsigned long long type
+ * tf_ull_t           T     Unsigned long long type
  * tf_cap_t           T     Capability type or nothing. All pointers that might
  *                          need to be capabilities for my GC should be tagged
  *                          with this. The Boehm and no GC case use this as
@@ -46,6 +46,14 @@
  * tf_dump_stats      F     Dump GC stats
  * tf_assert          M     Assert
  * tf_printf          F     Print formatted string
+ * tf_mem_pretty      M     Divide memory argument by a divisor based on its
+ *                          size
+ * tf_mem_pretty_unit M     Get the memory unit corresponding to the argument
+ *                          when divided by tf_mem_pretty
+ * tf_num_pretty      M     Divide number argument by a divisor based on its
+ *                          size
+ * tf_num_pretty_unit M     Get the number unit corresponding to the argument
+ *                          when divided by tf_mem_pretty
  * tf_time_t          T     Time type for use with tf_time
  * tf_time            F     Get the time (note that tests are timed
  *                          automatically)
@@ -120,7 +128,7 @@ tf_dump_stats (void)
 #if defined(GC_CHERI)
   GC_debug_dump();
 #elif defined(GC_BOEHM)
-  tf_printf("Boehm heap size: %llu\n", (TF_ULL) GC_get_heap_size());
+  tf_printf("Boehm heap size: %llu\n", (tf_ull_t) GC_get_heap_size());
 #endif // GC selector
 }
 
@@ -165,8 +173,9 @@ typedef struct bintree_tag
 // ----------------------------------------------------------------------------
 
 #define TESTS \
-  /*X_MACRO(malloc_time_test, "Tests how long tf_malloc takes without collecting")*/ \
-  X_MACRO(malloc_time_test_with_collect, "Tests how long tf_malloc takes with collecting")
+  /*X_MACRO(malloc_time_test, "Tests how long tf_malloc takes without collecting") \
+  X_MACRO(malloc_time_test_with_collect, "Tests how long tf_malloc takes with collecting") \
+  */X_MACRO(allocate_loads, "Tests how long it takes to allocate a large amount of data")
 
 #define DECLARE_TEST(test,descr) \
 tf_func_t int \
@@ -306,6 +315,60 @@ DEFINE_TEST(malloc_time_test_with_collect)
   tf_printf("Did %d allocs in %llu%s (%llu%s per alloc)\n",
     nalloc, tf_time_pretty(diff), tf_time_pretty_unit(diff),
     tf_time_pretty(time_per_alloc), tf_time_pretty_unit(time_per_alloc));
+  
+  return 0;
+}
+
+DEFINE_TEST(allocate_loads)
+{
+  // this many bytes are allocated in each element of the array
+  size_t objsz      = 16384;
+  
+  // this many bytes are allocated in each element
+  size_t nobj       = 50;
+  
+  // number of allocations to do
+  size_t nalloc     = 100000;
+  
+  // this many bytes are stored at any one time
+  size_t total_stored = objsz * nobj;
+  
+  // this many bytes are allocated in total
+  size_t total_allocated = objsz * nalloc;
+  
+  tf_cap_t void * refs[nobj];
+  
+  tf_printf(
+    "Object size............%llu%s (%llu bytes)\n"
+    "Number of objects......%llu%s (%llu)\n"
+    "Number of allocations..%llu%s (%llu)\n"
+    "Total stored...........%llu%s (%llu bytes)\n"
+    "Total allocated........%llu%s (%llu bytes)\n",
+    tf_mem_pretty(objsz), tf_mem_pretty_unit(objsz), (tf_ull_t) objsz,
+    tf_num_pretty(nobj), tf_num_pretty_unit(nobj), (tf_ull_t) nobj,
+    tf_num_pretty(nalloc), tf_num_pretty_unit(nalloc), (tf_ull_t) nalloc,
+    tf_mem_pretty(total_stored), tf_mem_pretty_unit(total_stored), (tf_ull_t) total_stored,
+    tf_mem_pretty(total_allocated), tf_mem_pretty_unit(total_allocated), (tf_ull_t) total_allocated);
+  
+  
+  tf_time_t before = tf_time();
+  
+  size_t i;
+  for (i=0; i<nalloc; i++)
+  {
+    size_t index = i % nobj;
+    refs[index] = tf_invalid_ptr;
+    tf_store_cap(refs[index], tf_malloc(objsz));
+    // TODO: check integrity of stored data...
+  }
+  
+  tf_time_t after = tf_time();
+
+  tf_time_t diff = after - before;
+  
+  tf_printf(
+    "Took %llu%s (diff=%llu)\n",
+    tf_time_pretty(diff), tf_time_pretty_unit(diff), (tf_ull_t) diff);
   
   return 0;
 }

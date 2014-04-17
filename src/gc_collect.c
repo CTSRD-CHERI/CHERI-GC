@@ -420,7 +420,7 @@ GC_copy_remembered_set (struct GC_region * region)
     {
       GC_cap_ptr * root = (GC_cap_ptr *) region->remset->roots[i];
       GC_assert( root );
-      GC_vdbgf("[%d] Processing remembered root 0x%llx",
+      GC_dbgf("[%d] Processing remembered root 0x%llx",
         (int) i, (GC_ULL) root);
       GC_copy_child(region, root, 1);
     }
@@ -671,7 +671,9 @@ GC_region_rebase (struct GC_region * region, void * old_base, size_t old_size)
       GC_assert( root );
       GC_dbgf("[%d] Rebasing remembered root 0x%llx",
         (int) i, (GC_ULL) root);
-      if (GC_cheri_gettag(*root))
+      if (GC_cheri_gettag(*root)
+        && GC_IS_IN_BITMAP(region->tospace_bitmap, *root, old_base)
+        && GC_IS_GC_ALLOCATED(*root))
       {
         void * base = GC_cheri_getbase(*root);
         if ((base >= old_base) && (base <= (old_base+old_size)))

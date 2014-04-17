@@ -42,8 +42,8 @@ typedef struct bintree_tag
 
 #define TESTS \
   /*X_MACRO(fill_test, "Fill the heap with 512-byte chunks and ensure integrity after collection") \
-  X_MACRO(list_test, "Fill the heap with a list and ensure integrity after collection")*/ \
-  X_MACRO(bintree_test, "Create some binary trees and ensure integrity after collection") \
+  X_MACRO(list_test, "Fill the heap with a list and ensure integrity after collection") \
+  */X_MACRO(bintree_test, "Create some binary trees and ensure integrity after collection") \
   /*X_MACRO(regroots_test, "Check register roots") \
   X_MACRO(bitmap_test, "Check bitmap operations") \
   X_MACRO(experimental_test, "For experiments") \
@@ -403,6 +403,7 @@ bintree_check (GC_CAP bintree * tree, int depth, int value)
       printf("bintree_check: not NULL right\n");
       return 0;
     }
+    return 1;
   }
 }
 
@@ -504,8 +505,9 @@ DEFINE_TEST(regroots_test)
   return 
     !GC_IN((void*)x, GC_state.thread_local_region.tospace)
 #ifdef GC_GENERATIONAL
-    && !GC_IN((void*)x, GC_state.old_generation.tospace);
+    && !GC_IN((void*)x, GC_state.old_generation.tospace)
 #endif // GC_GENERATIONAL
+  ;
 }
 
 DEFINE_TEST(bitmap_test)
@@ -615,14 +617,25 @@ DEFINE_TEST(bitmap_test)
 
 DEFINE_TEST(experimental_test)
 {
-#ifdef GC_USE_BITMAP
-  GC_CAP void * x = GC_malloc(50);
-  GC_debug_print_bitmap(GC_state.thread_local_region.tospace_bitmap);
-  x = GC_malloc(100);
-  GC_debug_print_bitmap(GC_state.thread_local_region.tospace_bitmap);
-  GC_collect();
-  GC_debug_print_bitmap(GC_state.thread_local_region.tospace_bitmap);
-#endif // GC_USE_BITMAP
+  int i;
+  for (i=0; i<1000; i++)
+  {
+    GC_CAP P * x = GC_malloc(50);
+    GC_CAP P * tmp = GC_INVALID_PTR;
+    GC_STORE_CAP(tmp, x);
+    while (GC_IN((void*)x,GC_state.thread_local_region.tospace))
+    {
+      GC_CAP P * tmp2 = GC_malloc(50);
+      GC_STORE_CAP(((P*)tmp2)->ptr, tmp);
+      GC_STORE_CAP(tmp, tmp2);
+    }
+    // Now x is in old generation.
+    GC_STORE_CAP(x->ptr, GC_malloc(50));
+    *(int*)((P*)x)->ptr = 0x0BADF00D;
+    // Force x->ptr into old generation
+    while (GC_IN((void*)((P*)x)->ptr,GC_state.thread_local_region.tospace)) GC_malloc(50);
+    TEST_ASSERT( *(int*)((P*)x)->ptr == 0x0BADF00D );
+  }
   return 0;
 }
 

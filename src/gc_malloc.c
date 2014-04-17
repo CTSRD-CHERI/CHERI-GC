@@ -100,7 +100,7 @@ GC_malloc_region
     sz = sizeof(GC_cap_ptr);
   }*/
   
-  int too_small = sz > (size_t) cheri_getlen(region->free);
+  int too_small = sz > (size_t) GC_cheri_getlen(region->free);
   
   if (too_small)
   {
@@ -123,7 +123,7 @@ GC_malloc_region
     }
 #endif // GC_GROW_YOUNG_HEAP
       
-    GC_assert( too_small == (sz > (size_t) cheri_getlen(region->free)) );
+    GC_assert( too_small == (sz > (size_t) GC_cheri_getlen(region->free)) );
     
     if (too_small && collect_on_failure)
     {
@@ -135,7 +135,6 @@ GC_malloc_region
       GC_assert( GC_state.stack_top );
       GC_assert( GC_state.reg_bottom );
       GC_assert( GC_state.reg_top );
-
       GC_collect_region(region, 0);
       
       //printf("TODO: clean the stack after collection.\n");
@@ -147,7 +146,7 @@ GC_malloc_region
 
       //GC_STOP_TIMING(GC_malloc_region_collect_time, "GC_malloc_region collection");
       
-      too_small = sz > (size_t) cheri_getlen(region->free);
+      too_small = sz > (size_t) GC_cheri_getlen(region->free);
       GC_vdbgf("GC_malloc_region(): collecting complete. Too small? %d",
         too_small);
     
@@ -166,7 +165,7 @@ GC_malloc_region
     
     }
     
-    GC_assert( too_small == (sz > (size_t) cheri_getlen(region->free)) );
+    GC_assert( too_small == (sz > (size_t) GC_cheri_getlen(region->free)) );
     
     if (too_small)
     {

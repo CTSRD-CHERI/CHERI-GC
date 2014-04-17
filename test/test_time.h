@@ -34,12 +34,12 @@
       tf_time_pretty(x##_tot/x##_num), tf_time_pretty_unit(x##_tot/x##_num)); \
   } while (0)
 
-#define tf_time_t             TF_ULL
+#define tf_time_t             tf_ull_t
 #define tf_time_diff(a,b)     ( (a)-(b) )
 #define tf_time_add(a,b)      ( (a)+(b) )
 
 #define tf_time_pretty(x) \
-((TF_ULL) ( \
+((tf_ull_t) ( \
   (x) < 1000 ? (x) : \
   (x) < 10000000 ? ((x)+1000/2) / 1000 : \
   ((x)+1000000/2) / 1000000 \
