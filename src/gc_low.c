@@ -239,8 +239,17 @@ GC_cap_memcpy (GC_cap_ptr dest, GC_cap_ptr src)
   // Set the tag bits on all capabilities stored in the copied object.
   // We need some way of identifying tag bits better for this part: this is
   // slow.
-  GC_cap_ptr * src_child  = GC_ALIGN_32(vpsrc, GC_cap_ptr *);
-  GC_cap_ptr * dest_child = GC_ALIGN_32(vpdest, GC_cap_ptr *);
+  
+  // bug: src_child and dest_child internal addresses may not line up in the
+  //      same way to a 32-byte boundary, but this is required for this to work.
+  //      We just assert that they are 32-byte aligned for now.
+  if (!GC_IS_ALIGNED_32(vpsrc) || !GC_IS_ALIGNED_32(vpdest))
+  {
+    GC_fatalf("GC_cap_memcpy: require src and dest to be 32-byte aligned\n");
+  }
+  
+  GC_cap_ptr * src_child  = vpsrc; //GC_ALIGN_32(vpsrc, GC_cap_ptr *);
+  GC_cap_ptr * dest_child = vpdest; //GC_ALIGN_32(vpdest, GC_cap_ptr *);
   size_t i;
   for (i = 0; i < srclen / sizeof(GC_cap_ptr); i++)
   {

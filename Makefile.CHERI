@@ -42,7 +42,7 @@ CFLAGS=-I$(GC_PRIV_INCLUDE)
 
 GC_SOURCES=objects/gc_init.o objects/gc_malloc.o objects/gc_debug.o \
            objects/gc_low.o objects/gc_collect.o objects/gc_time.o \
-           objects/gc_remset.o objects/gc_bitmap.o
+           objects/gc_remset.o objects/gc_bitmap.o objects/gc_memcpy.o
 GC_PUBLIC_INCLUDE=src/inc/
 GC_PRIV_INCLUDE=src/inc/
 TEST_SOURCES=test/test.c #`ls -m test/*.c | sed s/,//g`
