@@ -133,10 +133,10 @@ extern struct GC_state_struct GC_state;
 // Return values:
 // 0 : success
 // 1 : error
-#define GC_init()   GC_init2(&argc, __FILE__, __LINE__)
+#define GC_init()   GC_init2(__FILE__, __LINE__)
 
-GC_FUNC int
-GC_init2 (void * arg_for_stack_bottom, const char * file, int line);
+__attribute__((constructor)) GC_FUNC int
+GC_init2 (const char * file, int line);
 
 // Return values:
 // 0 : not initialized

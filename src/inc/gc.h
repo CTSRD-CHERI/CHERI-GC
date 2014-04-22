@@ -41,9 +41,9 @@
 // Return values:
 // 0 : success
 // 1 : error
-#define GC_init()   GC_init2(&argc, __FILE__, __LINE__)
-GC_FUNC int
-GC_init2 (void * arg_for_stack_bottom, const char * file, int line);
+#define GC_init()   GC_init2(__FILE__, __LINE__)
+__attribute__((constructor)) GC_FUNC int
+GC_init2 (const char * file, int line);
 
 #ifdef GC_GENERATIONAL
 // Return values:

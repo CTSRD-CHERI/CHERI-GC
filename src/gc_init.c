@@ -11,11 +11,12 @@
 
 struct GC_state_struct GC_state = {.initialized = 0};
 
-GC_FUNC int
-GC_init2 (void * arg_for_stack_bottom, const char * file, int line)
+__attribute__((constructor)) GC_FUNC int
+GC_init2 (const char * file, int line)
 {
   if (!GC_state.initialized)
   {
+    printf("GC_init2 called from %s : %d\n", file, line);
     GC_dbgf("GC_init called from %s:%d\nGC compiled %s",
       file, line, __TIME__ " " __DATE__);
     
@@ -50,8 +51,8 @@ GC_init2 (void * arg_for_stack_bottom, const char * file, int line)
     if (rc) return rc;
 #endif // GC_GENERATIONAL
     
-    //GC_state.stack_bottom = GC_get_stack_bottom();
-    GC_state.stack_bottom = arg_for_stack_bottom;
+    GC_state.stack_bottom = GC_get_stack_bottom();
+    //GC_state.stack_bottom = arg_for_stack_bottom;
     if (GC_state.stack_bottom == NULL) return 1;
     GC_dbgf("The stack bottom is probably near 0x%llx\n",
       (GC_ULL) GC_state.stack_bottom);
