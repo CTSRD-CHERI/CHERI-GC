@@ -385,10 +385,20 @@ GC_copy_child (struct GC_region * region,
 {
   if (GC_cheri_gettag(*child_addr)
     && GC_IN(GC_cheri_getbase(*child_addr), region->fromspace)
-    && GC_IS_IN_FROMSPACE_BITMAP(region, *child_addr)
     && GC_IS_GC_ALLOCATED(*child_addr))
        // necessary now for remembered set too
   {
+    size_t offset = 0;
+    if (!GC_IS_IN_FROMSPACE_BITMAP(region, *child_addr))
+    {
+      // See GC_copy_roots for explanation.
+      offset = GC_FROMSPACE_BITMAP_GET_CONTAINER(region, *child_addr);
+      if (offset==(size_t)-32) return;
+      *child_addr = GC_setbaselen(
+        *child_addr,
+        GC_cheri_getbase(*child_addr)-offset,
+        GC_cheri_getlen(*child_addr)+offset);
+    }
     GC_vdbgf("[child] location=0x%llx, b=0x%llx, l=0x%llx",
       (GC_ULL) child_addr,
       (GC_ULL) *child_addr, 
@@ -406,6 +416,14 @@ GC_copy_child (struct GC_region * region,
       );
     }
 #endif // GC_GENERATIONAL
+    
+    if (offset!=(size_t)-1)
+    {
+      *child_addr = GC_setbaselen(
+        *child_addr,
+        GC_cheri_getbase(*child_addr)+offset,
+        GC_cheri_getlen(*child_addr)-offset);
+    }
   }
 }
 
@@ -694,7 +712,7 @@ GC_region_rebase (struct GC_region * region, void * old_base, size_t old_size)
       GC_dbgf("[%d] Rebasing remembered root 0x%llx",
         (int) i, (GC_ULL) root);
       if (GC_cheri_gettag(*root)
-        && GC_IS_IN_BITMAP(region->tospace_bitmap, *root, old_base)
+        /*&& GC_IS_IN_BITMAP(region->tospace_bitmap, *root, old_base)*/
         && GC_IS_GC_ALLOCATED(*root))
       {
         void * base = GC_cheri_getbase(*root);
@@ -761,7 +779,7 @@ GC_rebase (struct GC_region * region,
   for (p = (GC_cap_ptr *) start; ((uintptr_t) p) < ((uintptr_t) end); p++)
   {
     if (GC_cheri_gettag(*p)
-        && GC_IS_IN_BITMAP(region->tospace_bitmap, *p, old_base)
+        /*&& GC_IS_IN_BITMAP(region->tospace_bitmap, *p, old_base)*/
         && GC_IS_GC_ALLOCATED(*p)
        )//&& !GC_IS_FORWARDING_ADDRESS(*p))
     {
