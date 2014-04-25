@@ -34,7 +34,7 @@ GC_remembered_set_add (struct GC_remembered_set * remset,
   if (remset->nroots+1 > remset->size)
   {
     size_t new_size = remset->size ? 2*remset->size : 1;
-    void ** tmp = GC_low_realloc(remset->roots, new_size*sizeof(void *));
+    void ** tmp = GC_low_realloc(remset->roots, new_size*sizeof(void *), 0);
     if (!tmp)
     {
       GC_fatalf("GC_remembered_set_add(): could not grow remembered set");

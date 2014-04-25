@@ -49,8 +49,8 @@
 #define  tf_func_t
 #define  tf_cheri_ptr(x,y)  ((x))
 #define  tf_cheri_getbase(x) ((x))
-#undef tf_cheri_getlen
-#undef tf_cheri_gettag
+#define  tf_cheri_getlen(x)   0
+#define  tf_cheri_gettag(x)   1
 #define  tf_invalid_ptr     NULL
 #define  tf_ptr_valid(x)    ((x) != NULL)
 #define  tf_gc_init()       (GC_init(),0)

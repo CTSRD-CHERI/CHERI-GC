@@ -176,8 +176,9 @@ typedef struct bintree_tag
   /*X_MACRO(malloc_time_test, "Tests how long tf_malloc takes without collecting") \
   X_MACRO(malloc_time_test_with_collect, "Tests how long tf_malloc takes with collecting") \
   X_MACRO(allocate_loads, "Tests how long it takes to allocate a large amount of data") \
-  X_MACRO(old_pause_time_test, "Measures pause time of GC_collect ONLY"),
-  */X_MACRO(pause_time_test, "Measures collector pause time")
+  X_MACRO(old_pause_time_test, "Measures pause time of GC_collect ONLY") \
+  X_MACRO(pause_time_test, "Measures collector pause time") \
+  */X_MACRO(experimental_test, "For experiments")
 
 #define DECLARE_TEST(test,descr) \
 tf_func_t int \
@@ -330,7 +331,7 @@ DEFINE_TEST(allocate_loads)
   size_t nobj       = 50;
   
   // number of allocations to do
-  size_t nalloc     = 10000;
+  size_t nalloc     = 1000;
   
   // this many bytes are stored at any one time
   size_t total_stored = objsz * nobj;
@@ -361,6 +362,11 @@ DEFINE_TEST(allocate_loads)
     size_t index = i % nobj;
     refs[index] = tf_invalid_ptr;
     tf_store_cap(refs[index], tf_malloc(objsz));
+    if (!(void*)refs[index])
+    {
+      tf_printf("i=%d: out of memory?\n", (int)i);
+      exit(1);
+    }
     // TODO: check integrity of stored data...
   }
   
@@ -414,36 +420,51 @@ DEFINE_TEST(old_pause_time_test)
 
 DEFINE_TEST(pause_time_test)
 {
-  int j, max=100, sz=10000000, heapsz=65536, max_alloc=(heapsz-1)/sz?(heapsz-1)/sz:1000;
-  tf_printf("Note: make sure the heap size is at least %d bytes big.\n", heapsz);
+  int number_of_allocations = 1000;
+  size_t allocation_size    = 1000000;
+  tf_printf(
+    "Doing %d %llu%s allocations\n",
+    number_of_allocations,
+    tf_mem_pretty(allocation_size), tf_mem_pretty_unit(allocation_size));
+  
   tf_time_t tot = 0, tmin = 0, tmax = 0;
-  for (j=0; j<max; j++)
+  
+  int i;
+  for (i=0; i<number_of_allocations; i++)
   {
-    int i;
-    for (i=0; i<max_alloc; i++)
+    //printf("[%d] allocating...\n", i);
+    tf_time_t before = tf_time();
+    tf_cap_t void * p = tf_malloc(allocation_size);
+    tf_free(p);
+    tf_time_t after = tf_time();
+    tf_time_t diff = after - before;
+    //printf("allocated (%d).\n", (int) diff);
+    if ((tot+diff) < tot)
     {
-      tf_time_t before = tf_time();
-      tf_malloc(sz);
-      tf_time_t after = tf_time();
-      tf_time_t diff = after - before;
-      if (tot+diff<tot)
-      {
-        tf_printf("tot overflow\n");
-        exit(1);
-      }
-      tot += diff;
-      if (diff > tmax) tmax = diff;
-      if ((diff < tmin)||!tmin) tmin = diff;
+      tf_printf("tot overflow\n");
+      exit(1);
     }
-    /*tf_printf("[%d] Pause time %llu%s (%llu)\n",
-      j, tf_time_pretty(diff), tf_time_pretty_unit(diff), (tf_ull_t) diff);*/
+    tot += diff;
+    if (diff > tmax) tmax = diff;
+    if ((diff < tmin) || !tmin) tmin = diff;
   }
-  tf_time_t avg = tot/max;
+  tf_time_t avg = tot/number_of_allocations;
   tf_printf(
     "Average pause time %llu%s (%llu)\nTotal pause time %llu%s (%llu))\nMin pause %llu%s (%llu))\nMax pause %llu%s (%llu))\n",
     tf_time_pretty(avg), tf_time_pretty_unit(avg), (tf_ull_t) avg,
     tf_time_pretty(tot), tf_time_pretty_unit(tot), (tf_ull_t) tot,
     tf_time_pretty(tmin), tf_time_pretty_unit(tmin), (tf_ull_t) tmin,
     tf_time_pretty(tmax), tf_time_pretty_unit(tmax), (tf_ull_t) tmax);
+  return 0;
+}
+
+DEFINE_TEST(experimental_test)
+{
+  P tmp;
+  tmp.ptr = tf_cheri_ptr((void*)0x1234, 0x5678);
+  
+  tf_cap_t P * tmp2 = tf_cheri_ptr(&tmp, sizeof(P));
+  printf("tmp2 is 0x%llx\n", (tf_ull_t)(void*)tmp2);
+  printf("tmp2->ptr is 0x%llx\n", (tf_ull_t)(void*)(tmp2->ptr));
   return 0;
 }

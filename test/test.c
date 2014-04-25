@@ -18,6 +18,7 @@
 
 typedef struct
 {
+  GC_CAP void * other;
   GC_CAP void * ptr;
 } P;
 
@@ -43,11 +44,11 @@ typedef struct bintree_tag
 #define TESTS \
   /*X_MACRO(fill_test, "Fill the heap with 512-byte chunks and ensure integrity after collection") \
   X_MACRO(list_test, "Fill the heap with a list and ensure integrity after collection") \
-  */X_MACRO(bintree_test, "Create some binary trees and ensure integrity after collection") \
-  /*X_MACRO(regroots_test, "Check register roots") \
+  X_MACRO(bintree_test, "Create some binary trees and ensure integrity after collection") \
+  X_MACRO(regroots_test, "Check register roots") \
   X_MACRO(bitmap_test, "Check bitmap operations") \
-  X_MACRO(experimental_test, "For experiments") \
-  X_MACRO(malloc_time_test, "Tests how long GC_malloc takes without collecting") \
+  */X_MACRO(experimental_test, "For experiments") \
+  /*X_MACRO(malloc_time_test, "Tests how long GC_malloc takes without collecting") \
   X_MACRO(malloc_time_test_with_collect, "Tests how long GC_malloc takes with collecting")*/ \
 
 #define DECLARE_TEST(test,descr) \
@@ -114,13 +115,12 @@ main (int argc, char **argv)
   return 0;
 }
 
+#define typ int
+const int bufsz = 128*sizeof(typ);
+const int maxnbufs = 100000;
+static GC_CAP char * bufs[maxnbufs];
 DEFINE_TEST(fill_test)
 {
-#define typ int
-  const int bufsz = 128*sizeof(typ);
-  const int maxnbufs = 100000;
-  GC_CAP char * bufs[maxnbufs/bufsz];
-  
   size_t heapsz =
     GC_state.thread_local_region.max_grow_size_after_collection;
   
@@ -165,10 +165,11 @@ DEFINE_TEST(fill_test)
   GC_collect();
   GC_collect();
   GC_collect();
-  TEST_ASSERT( heapsz/100 );
-  for (i=0; i<heapsz/100; i++)
+  //TEST_ASSERT( heapsz/100 );
+  for (i=0; i<10; i++)
   {
-    TEST_ASSERT( (void*) GC_malloc(heapsz/10) );
+    TESTF("allocating %d bytes...\n", (int) (heapsz/20));
+    TEST_ASSERT( (void*) GC_malloc(heapsz/20) );
   }
   GC_collect();
   GC_collect();
@@ -267,6 +268,7 @@ DEFINE_TEST(list_test)
     ((node*)p)->value = i;
     GC_STORE_CAP(((node*)p)->next, head);
     GC_STORE_CAP(head, p);
+    if (!(i % 1000)) TESTF("allocated %d nodes so far\n", i);
   }
   
   i--;
@@ -359,6 +361,7 @@ bintree_create (int depth, int value)
     printf("At depth %d, value %d, bintree_check failed\n", depth, value);
   }
   TEST_ASSERT( bintree_check(tree, depth, value) );
+  
   return tree;
 }
 
@@ -428,14 +431,15 @@ bintree_print (GC_CAP bintree * tree, int depth)
       || GC_IN((void*)((bintree*)tree)->right, GC_state.old_generation.tospace)
 #endif // GC_GENERATIONAL
     );
-    printf(",L(");
+    printf(",L=0x%llx(", (GC_ULL)(void*)((bintree*)tree)->left);
     bintree_print( ((bintree*)tree)->left, depth-1);
-    printf("),R(");
+    printf("),R=0x%llx(", (GC_ULL)(void*)((bintree*)tree)->right);
     bintree_print( ((bintree*)tree)->right, depth-1);
     printf(")");
   }
   else
   {
+    if ((void*)((bintree*)tree)->left) GC_debug_dump(); // DEBUG
     TEST_ASSERT( !(void*)((bintree*)tree)->left );
     TEST_ASSERT( !(void*)((bintree*)tree)->right );
   }
@@ -471,15 +475,20 @@ DEFINE_TEST(bintree_test)
     bintree_print(trees[i],tree_depth); printf("\n");
     TEST_ASSERT(bintree_check(trees[i], tree_depth, i));
     TESTF("tree %d allocated\n", i);
+    GC_debug_dump();
   }
   
   TESTF("allocated %d trees\n", i);
-  
+  bintree_print(trees[9], tree_depth);printf("\n");
+  printf("done printing tree 9\n");
+  GC_debug_dump();
   GC_collect();
   GC_collect();
   GC_collect();
   GC_collect();
   GC_collect();
+  TESTF("collection complete\n");
+  bintree_print(trees[9], tree_depth);printf("\n");
 
   int j;
   for (j=0; j<i; j++)
@@ -615,27 +624,27 @@ DEFINE_TEST(bitmap_test)
   return 0;
 }
 
+GC_ULL
+getbase_delay (GC_CAP void * x)
+{
+  printf("getbase_delay: got 0x%llx\n", (GC_ULL)(void*)x);
+  return (GC_ULL) (void*)x;
+}
+
 DEFINE_TEST(experimental_test)
 {
-  int i;
-  for (i=0; i<1000; i++)
-  {
-    GC_CAP P * x = GC_malloc(50);
-    GC_CAP P * tmp = GC_INVALID_PTR;
-    GC_STORE_CAP(tmp, x);
-    while (GC_IN((void*)x,GC_state.thread_local_region.tospace))
-    {
-      GC_CAP P * tmp2 = GC_malloc(50);
-      GC_STORE_CAP(((P*)tmp2)->ptr, tmp);
-      GC_STORE_CAP(tmp, tmp2);
-    }
-    // Now x is in old generation.
-    GC_STORE_CAP(x->ptr, GC_malloc(50));
-    *(int*)((P*)x)->ptr = 0x0BADF00D;
-    // Force x->ptr into old generation
-    while (GC_IN((void*)((P*)x)->ptr,GC_state.thread_local_region.tospace)) GC_malloc(50);
-    TEST_ASSERT( *(int*)((P*)x)->ptr == 0x0BADF00D );
-  }
+  int tmp = 0xDEADCAFE;
+  GC_CAP P * cap = GC_malloc(sizeof(P));
+  cap->other = GC_INVALID_PTR;
+  cap->ptr = GC_cheri_ptr(&tmp, sizeof tmp);;
+  GC_CAP void * x = GC_cheri_ptr(&(cap->ptr), GC_cheri_getlen(cap)-((void*)&(cap->ptr)-(void*)cap));
+  GC_PRINT_CAP(cap);
+  GC_PRINT_CAP(cap->ptr);
+  GC_PRINT_CAP(x); // should be equal to base(cap)+0x20
+  GC_collect();
+  GC_PRINT_CAP(cap);
+  GC_PRINT_CAP(cap->ptr);
+  GC_PRINT_CAP(x); // with current collector, won't be equal to base(cap)+0x20
   return 0;
 }
 

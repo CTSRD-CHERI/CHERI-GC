@@ -96,7 +96,7 @@ GC_low_realloc2 (
 #ifdef GC_DEBUG
 const char * file, int line,
 #endif // GC_DEBUG
-void * ptr, size_t sz)
+void * ptr, size_t sz, int stores_caps)
 {
   //void * p = realloc(ptr, sz);
   //return GC_add_to_alloc_list(p, sz, ptr);
@@ -122,7 +122,13 @@ void * ptr, size_t sz)
       GC_cap_ptr new_cap = GC_cheri_ptr(p, sz);
       GC_cap_ptr old_cap =
         GC_cheri_ptr(GC_alloc_table[i].ptr, GC_alloc_table[i].len);
-      GC_cap_memcpy(new_cap, old_cap);
+      if (stores_caps)
+        GC_cap_memcpy(new_cap, old_cap);
+      else
+        memcpy((void*)new_cap, (void*)old_cap, GC_cheri_getlen(old_cap));
+#ifdef GC_DEBUG
+      memset((void*)old_cap, GC_MAGIC_JUST_FREED, GC_cheri_getlen(old_cap));
+#endif // GC_DEBUG
       free(ptr);
     }
     return GC_add_to_alloc_list(p, sz, ptr);
@@ -283,7 +289,7 @@ GC_cap_memclr (GC_cap_ptr dest)
   GC_cap_ptr * p;
   for (p = start; p < end; p++)
   {
-    *p = GC_INVALID_PTR;
+    if (GC_cheri_gettag(*p)) *p = GC_INVALID_PTR;
   }
   
   //GC_vdbgf("NOTE: doing a memclr...\n");
@@ -375,7 +381,7 @@ GC_grow (struct GC_region * region, size_t hint, size_t max_size)
   {
     // try doubling first
     new_fromspace_base_misaligned =
-      GC_low_realloc(old_fromspace_base_misaligned, new_size+32);
+      GC_low_realloc(old_fromspace_base_misaligned, new_size+32, 1);
     
     if (new_fromspace_base_misaligned == NULL)
     {
@@ -385,7 +391,7 @@ GC_grow (struct GC_region * region, size_t hint, size_t max_size)
         // doubling failed; try allocating only what is required
         new_size = old_size+hint;
         new_fromspace_base_misaligned =
-          GC_low_realloc(old_fromspace_base_misaligned, new_size+32);
+          GC_low_realloc(old_fromspace_base_misaligned, new_size+32, 1);
         if (new_fromspace_base_misaligned == NULL)
         {
           GC_dbgf("GC_grow(): growing the fromspace (second attempt) failed\n");
@@ -396,7 +402,7 @@ GC_grow (struct GC_region * region, size_t hint, size_t max_size)
   }
   
   new_tospace_base_misaligned =
-    GC_low_realloc(old_tospace_base_misaligned, new_size+32);
+    GC_low_realloc(old_tospace_base_misaligned, new_size+32, 1);
   if (new_tospace_base_misaligned == NULL)
   {
     GC_dbgf("GC_grow(): growing the tospace (first attempt) failed\n");
@@ -406,7 +412,7 @@ GC_grow (struct GC_region * region, size_t hint, size_t max_size)
       // doubling failed; try allocating only what is required, but first shrink
       // down the fromspace, if possible
       void * tmp =
-        GC_low_realloc(new_fromspace_base_misaligned, new_size+32);
+        GC_low_realloc(new_fromspace_base_misaligned, new_size+32, 1);
       if (tmp == NULL)
       {
         GC_dbgf("GC_grow(): warning: shrinking the fromspace failed\n");
@@ -416,7 +422,7 @@ GC_grow (struct GC_region * region, size_t hint, size_t max_size)
         new_fromspace_base_misaligned = tmp;
       }
       new_tospace_base_misaligned = 
-        GC_low_realloc(old_tospace_base_misaligned, new_size+32);
+        GC_low_realloc(old_tospace_base_misaligned, new_size+32, 1);
       if (new_tospace_base_misaligned == NULL)
       {
         GC_dbgf("GC_grow(): growing the tospace (second attempt) failed\n");

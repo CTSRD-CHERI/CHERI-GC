@@ -260,7 +260,6 @@ GC_copy_object (struct GC_region * region,
 
   GC_assert( GC_cheri_getlen(region->free) >= GC_cheri_getlen(cap) );
 
-  
   GC_cap_ptr tmp = GC_cap_memcpy(region->free, cap);
 
   tmp = GC_cheri_setlen(tmp, user_length);
@@ -364,10 +363,10 @@ GC_copy_child (struct GC_region * region,
                int is_generational)
 {
   if (GC_cheri_gettag(*child_addr)
+    && GC_IN(GC_cheri_getbase(*child_addr), region->fromspace)
     && GC_IS_IN_FROMSPACE_BITMAP(region, *child_addr)
-    && GC_IS_GC_ALLOCATED(*child_addr)
+    && GC_IS_GC_ALLOCATED(*child_addr))
        // necessary now for remembered set too
-    && GC_IN(GC_cheri_getbase(*child_addr), region->fromspace))
   {
     GC_vdbgf("[child] location=0x%llx, b=0x%llx, l=0x%llx",
       (GC_ULL) child_addr,
@@ -420,9 +419,11 @@ GC_copy_remembered_set (struct GC_region * region)
     {
       GC_cap_ptr * root = (GC_cap_ptr *) region->remset->roots[i];
       GC_assert( root );
-      GC_dbgf("[%d] Processing remembered root 0x%llx",
-        (int) i, (GC_ULL) root);
+      GC_dbgf("[%d] Processing remembered root 0x%llx containing address 0x%llx",
+        (int) i, (GC_ULL) root, (GC_ULL) *(GC_cap_ptr*)root );
       GC_copy_child(region, root, 1);
+      printf("[%d] Remembered root 0x%llx now contains 0x%llx\n", 
+        (int) i, (GC_ULL) root, (GC_ULL) *(GC_cap_ptr*)root );
     }
     GC_remembered_set_clr(region->remset);
   }

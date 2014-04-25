@@ -1,15 +1,27 @@
 #ifndef GC_CONFIG_H_HEADER
 #define GC_CONFIG_H_HEADER
 
-//#define GC_DEBUG
+#define GC_DEBUG
 //#define GC_VERBOSE_DEBUG
 
 // Can be used when testing against the Boehm collector, defined here for
 // convenience. test_all.c, for example, uses this.
 #define GC_BOEHM_MAX_HEAP_SIZE                0//1900000
 
-#define GC_THREAD_LOCAL_HEAP_SIZE             65536
-#define GC_OLD_GENERATION_SEMISPACE_SIZE      30000
+#define GC_THREAD_LOCAL_HEAP_SIZE                              65536
+#define GC_OLD_GENERATION_SEMISPACE_SIZE                       1553600
+
+// Maximum sizes for when the heap does grow. Set to 0 to allow unlimited
+// growth.
+// TODO: the 0 setting
+#define GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION        2453504
+#define GC_THREAD_LOCAL_HEAP_MAX_SIZE                          2453504
+#define GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION 1553600
+#define GC_OLD_GENERATION_SEMISPACE_MAX_SIZE                   1553600
+
+// Determines whether we use generational GC or not. If disabled, only
+// copying collection is implemented.
+//#define GC_GENERATIONAL
 
 // If old heap residency exceeds this, collect, and if that fails, grow.
 #define GC_OLD_GENERATION_HIGH_WATERMARK      0.5
@@ -35,6 +47,8 @@
 // Used by lower-level routines:
 #define GC_MAGIC_JUST_ALLOCATED               0x41      // 'A'
 #define GC_MAGIC_JUST_REALLOCATED             0x42      // 'B'
+
+// Used by GC_cap_memclr
 #define GC_MAGIC_JUST_CLEARED                 0x43      // 'C'
 
 // Used only if GC_DEBUG_TRACK_ALLOCATIONS is defined, when a deallocation is
@@ -55,6 +69,9 @@
 
 // Used by GC_reset_region and GC_gen_promote to clear the tospace
 #define GC_MAGIC_JUST_CLEARED_TOSPACE         0x49      // 'I'
+
+// Used by GC_low_realloc
+#define GC_MAGIC_JUST_FREED                   0x4A      // 'J'
 
 // ----HEAP GROWING----
 // Current policies with GC_GENERATIONAL turned on:
@@ -82,18 +99,6 @@
     || defined(GC_GROW_OLD_HEAP)
 #define GC_GROW_HEAP
 #endif
-
-// Maximum sizes for when the heap does grow. Set to 0 to allow unlimited
-// growth.
-// TODO: the 0 setting
-#define GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION        65536
-#define GC_THREAD_LOCAL_HEAP_MAX_SIZE                          50000000
-#define GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION 35000
-#define GC_OLD_GENERATION_SEMISPACE_MAX_SIZE                   40000
-
-// Determines whether we use generational GC or not. If disabled, only
-// copying collection is implemented.
-//#define GC_GENERATIONAL
 
 #ifdef GC_GENERATIONAL
 // This determines the write barrier technique we use to deal with old-to-young

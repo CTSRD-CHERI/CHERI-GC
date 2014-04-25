@@ -205,7 +205,9 @@ GC_malloc_region
   GC_ADD_TO_BITMAP(region->tospace_bitmap, ret);
   
   // Remove any latent caps (esp forwarding addresses from the fromspace)
-  GC_cap_memclr(ret);
+  //GC_cap_memclr(ret);
+  //memset((void*)ret, 0, sz);
+  *((char*)(GC_FORWARDING_ADDRESS_PTR(ret))) = 0; // zero out the forwarding address
 
 #ifdef GC_DEBUG
   GC_cap_memset(ret, GC_MAGIC_JUST_GC_ALLOCATED);

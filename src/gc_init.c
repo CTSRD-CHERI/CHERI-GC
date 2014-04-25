@@ -14,9 +14,10 @@ struct GC_state_struct GC_state = {.initialized = 0};
 __attribute__((constructor)) GC_FUNC int
 GC_init2 (const char * file, int line)
 {
+  printf("GC_init2 called from %s:%d%s\n", file, line,
+    GC_state.initialized ? " (initialized already)" : "");
   if (!GC_state.initialized)
   {
-    printf("GC_init2 called from %s : %d\n", file, line);
     GC_dbgf("GC_init called from %s:%d\nGC compiled %s",
       file, line, __TIME__ " " __DATE__);
     
@@ -30,7 +31,11 @@ GC_init2 (const char * file, int line)
       GC_OLD_GENERATION_SEMISPACE_SIZE,
       GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION,
       GC_OLD_GENERATION_SEMISPACE_MAX_SIZE);
-    if (rc) return rc;
+    if (rc)
+    {
+      GC_errf("GC_init2: could not initialize old region\n");
+      return rc;
+    }
     
     rc = GC_init_young_region(
       &GC_state.thread_local_region,
@@ -38,7 +43,11 @@ GC_init2 (const char * file, int line)
       GC_THREAD_LOCAL_HEAP_SIZE,
       GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION,
       GC_THREAD_LOCAL_HEAP_MAX_SIZE);
-    if (rc) return rc;
+    if (rc)
+    {
+      GC_errf("GC_init2: could not initialize young region\n");
+      return rc;
+    }
 #ifdef GC_WB_RUNTIME
     GC_state.wb_type = GC_WB_DEFAULT;
 #endif // GC_WB_RUNTIME
@@ -48,12 +57,20 @@ GC_init2 (const char * file, int line)
       GC_THREAD_LOCAL_HEAP_SIZE,
       GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION,
       GC_THREAD_LOCAL_HEAP_MAX_SIZE);
-    if (rc) return rc;
+    if (rc)
+    {
+      GC_errf("GC_init2: could not initialize region\n");
+      return rc;
+    }
 #endif // GC_GENERATIONAL
     
     GC_state.stack_bottom = GC_get_stack_bottom();
     //GC_state.stack_bottom = arg_for_stack_bottom;
-    if (GC_state.stack_bottom == NULL) return 1;
+    if (GC_state.stack_bottom == NULL)
+    {
+      GC_errf("GC_init2: could not get stack bottom\n");
+      return 1;
+    }
     GC_dbgf("The stack bottom is probably near 0x%llx\n",
       (GC_ULL) GC_state.stack_bottom);
       
@@ -63,11 +80,17 @@ GC_init2 (const char * file, int line)
 #endif // GC_USE_GC_STACK_CLEAN
     
     GC_state.static_bottom = GC_get_static_bottom();
-    if (GC_state.stack_bottom == NULL) return 1;
-
+    if (GC_state.static_bottom == NULL)
+    {
+      GC_errf("GC_init2: could not get static bottom\n");
+      return 1;
+    }
     GC_state.static_top = GC_get_static_top();
-    if (GC_state.stack_bottom == NULL) return 1;    
-      
+    if (GC_state.static_top == NULL)
+    {
+      GC_errf("GC_init2: could not get static top\n");
+      return 1;
+    }    
     GC_state.initialized = 1;
     GC_dbgf("initialized");
   }

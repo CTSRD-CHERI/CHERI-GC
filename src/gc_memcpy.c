@@ -25,7 +25,7 @@ GC_memcpy (void * dest, const void * src, size_t sz)
   {
     if (GC_cheri_gettag(src_child[i]))
     {
-      dest_child[i] = src_child[i];
+      GC_STORE_CAP(dest_child[i], src_child[i]);
     }
   }
 

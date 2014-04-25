@@ -57,9 +57,12 @@ typedef __capability void * GC_cap_ptr;
 
 #define GC_NOOP do{}while(0)
 
+// requires cap base to be 32-byte aligned
 #define GC_FORWARDING_ADDRESS_PTR(cap) \
-  ( GC_ALIGN_32(GC_cheri_getbase((cap)), void *) )
+  ((void*)(cap))
+  //( GC_ALIGN_32(GC_cheri_getbase((cap)), void *) )
 
+// requires cap base to be 32-byte aligned
 #define GC_FORWARDING_CAP(cap) \
   ( * (GC_cap_ptr *) GC_FORWARDING_ADDRESS_PTR((cap)) )
 
@@ -574,7 +577,8 @@ GC_FUNC void *
 GC_low_calloc (size_t num, size_t sz);
 
 #ifdef GC_DEBUG
-#define GC_low_realloc(ptr,sz) GC_low_realloc2(__FILE__,__LINE__,(ptr),(sz))
+#define GC_low_realloc(ptr,sz,stores_caps) \
+  GC_low_realloc2(__FILE__,__LINE__,(ptr),(sz),(stores_caps))
 #else // GC_DEBUG
 #define GC_low_realloc GC_low_realloc2
 #endif // GC_DEBUG
@@ -584,7 +588,7 @@ GC_low_realloc2 (
 #ifdef GC_DEBUG
 const char * file, int line,
 #endif // GC_DEBUG
-void * ptr, size_t sz);
+void * ptr, size_t sz, int stores_caps);
 
 GC_FUNC void *
 GC_get_stack_bottom (void);
