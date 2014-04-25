@@ -324,10 +324,23 @@ GC_copy_roots (struct GC_region * region,
       continue;
     }*/
     if (GC_cheri_gettag(*p)
-        && GC_IS_IN_FROMSPACE_BITMAP(region, *p)
         && GC_IS_GC_ALLOCATED(*p)
         && GC_IN(GC_cheri_getbase(*p), region->fromspace))
     {
+      size_t offset = 0;
+      if (!GC_IS_IN_FROMSPACE_BITMAP(region, *p))
+      {
+        // This could be an internal pointer. GC_FROMSPACE_BITMAP_GET_CONTAINER
+        // gives us the number of bytes forwards this internal pointer is from
+        // the start of the object. We copy the whole object, then adjust for
+        // the offset later.
+        offset = GC_FROMSPACE_BITMAP_GET_CONTAINER(region, *p);
+        if (offset==(size_t)-32) continue;
+        
+        // i.e. *p -= offset
+        *p = GC_setbaselen(
+          *p, GC_cheri_getbase(*p)-offset, GC_cheri_getlen(*p)+offset);
+      }
       GC_vdbgf("[root] [%d%%] location=0x%llx (%s?), b=0x%llx, l=0x%llx",
       (int) (
         100.0*
@@ -351,6 +364,14 @@ GC_copy_roots (struct GC_region * region,
         );
       }
 #endif // GC_GENERATIONAL
+      
+      if (offset!=(size_t)-1)
+      {
+        // i.e. *p += offset
+        *p = GC_setbaselen(
+          *p, GC_cheri_getbase(*p)+offset, GC_cheri_getlen(*p)-offset);
+      }
+      
     }
   }
   

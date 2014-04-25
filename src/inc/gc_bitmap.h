@@ -37,6 +37,12 @@ GC_bitmap_find (struct GC_bitmap * bitmap,
                 size_t pos,
                 size_t len);
 
+// returns the relative position of the `1' in the bitmap closest to and less
+// than or equal to pos, and ((size_t)-1) if no such position is found.
+GC_FUNC size_t
+GC_bitmap_get_container (struct GC_bitmap * bitmap,
+                         size_t pos);
+
 #define GC_BITMAP_BITS_TO_BYTES(size) ( ((size)+7)/8 )
 
 #define GC_BITMAP_BIG_INDEX(index)   ( (index)/8 )
@@ -68,9 +74,16 @@ GC_bitmap_find (struct GC_bitmap * bitmap,
       (bitmap), \
       (GC_ALIGN_32(GC_cheri_getlen((cap)), size_t)) / 32) \
   )
+#define GC_BITMAP_GET_CONTAINER(bitmap,cap,base) \
+  ( \
+    32*GC_bitmap_get_container( \
+      (bitmap), \
+      ((size_t) (GC_cheri_getbase((cap)) - (base))) / 32) \
+  )
 #else // GC_USE_BITMAP
 #define GC_IS_IN_BITMAP(bitmap,cap,base) (1)
 #define GC_ADD_TO_BITMAP(bitmap,cap) do{}while(0)
+#define GC_BITMAP_GET_CONTAINER(bitmap,cap,base) (-1)
 #endif // GC_USE_BITMAP
 
 #define GC_IS_IN_FROMSPACE_BITMAP(region,cap) \
@@ -78,5 +91,8 @@ GC_bitmap_find (struct GC_bitmap * bitmap,
 
 #define GC_IS_IN_TOSPACE_BITMAP(region,cap) \
   GC_IS_IN_BITMAP((region)->tospace_bitmap,(cap),GC_cheri_getbase((region)->tospace))
+  
+#define GC_FROMSPACE_BITMAP_GET_CONTAINER(region,cap) \
+  GC_BITMAP_GET_CONTAINER((region)->fromspace_bitmap,(cap),GC_cheri_getbase((region)->fromspace))
 
 #endif // GC_BITMAP_H_HEADER
