@@ -9,19 +9,19 @@
 #define GC_BOEHM_MAX_HEAP_SIZE                0//1900000
 
 #define GC_THREAD_LOCAL_HEAP_SIZE                              1000
-#define GC_OLD_GENERATION_SEMISPACE_SIZE                       1553600
+#define GC_OLD_GENERATION_SEMISPACE_SIZE                       50000
 
 // Maximum sizes for when the heap does grow. Set to 0 to allow unlimited
 // growth.
 // TODO: the 0 setting
 #define GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION        15000
 #define GC_THREAD_LOCAL_HEAP_MAX_SIZE                          15000
-#define GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION 1553600
-#define GC_OLD_GENERATION_SEMISPACE_MAX_SIZE                   1553600
+#define GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION 60000
+#define GC_OLD_GENERATION_SEMISPACE_MAX_SIZE                   70000
 
 // Determines whether we use generational GC or not. If disabled, only
 // copying collection is implemented.
-//#define GC_GENERATIONAL
+#define GC_GENERATIONAL
 
 // If old heap residency exceeds this, collect, and if that fails, grow.
 #define GC_OLD_GENERATION_HIGH_WATERMARK      0.5
