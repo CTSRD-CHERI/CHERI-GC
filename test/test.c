@@ -44,11 +44,11 @@ typedef struct bintree_tag
 #define TESTS \
   /*X_MACRO(fill_test, "Fill the heap with 512-byte chunks and ensure integrity after collection") \
   X_MACRO(list_test, "Fill the heap with a list and ensure integrity after collection") \
-  X_MACRO(bintree_test, "Create some binary trees and ensure integrity after collection") \
-  X_MACRO(regroots_test, "Check register roots") \
+  */X_MACRO(bintree_test, "Create some binary trees and ensure integrity after collection") \
+  /*X_MACRO(regroots_test, "Check register roots") \
   X_MACRO(bitmap_test, "Check bitmap operations") \
-  */X_MACRO(experimental_test, "For experiments") \
-  /*X_MACRO(malloc_time_test, "Tests how long GC_malloc takes without collecting") \
+  X_MACRO(experimental_test, "For experiments") \
+  X_MACRO(malloc_time_test, "Tests how long GC_malloc takes without collecting") \
   X_MACRO(malloc_time_test_with_collect, "Tests how long GC_malloc takes with collecting")*/ \
 
 #define DECLARE_TEST(test,descr) \
@@ -118,7 +118,7 @@ main (int argc, char **argv)
 #define typ int
 const int bufsz = 128*sizeof(typ);
 const int maxnbufs = 100000;
-static GC_CAP char * bufs[maxnbufs];
+static GC_CAP typ * bufs[maxnbufs];
 DEFINE_TEST(fill_test)
 {
   size_t heapsz =
@@ -151,7 +151,7 @@ DEFINE_TEST(fill_test)
     size_t j;
     for (j=0; j<bufsz/sizeof(typ); j++)
     {
-      ((typ*)bufs[i])[j] = i;
+      bufs[i][j] = i;
     }
     
     // dummy, should be lost on collection
@@ -215,13 +215,13 @@ DEFINE_TEST(fill_test)
     size_t j;
     for (j=0; j<bufsz/sizeof(typ); j++)
     {      
-      if ( ((typ*)bufs[i])[j] != (typ) i )
+      if ( bufs[i][j] != (typ) i )
       {
         printf("NOTE: i=%d, j=%d\n", (int) i, (int) j);
         GC_debug_memdump((typ*)bufs[i], ((typ*)bufs[i])+bufsz);
       }
       
-      TEST_ASSERT( ((typ*)bufs[i])[j] == (typ) i );
+      TEST_ASSERT( bufs[i][j] == (typ) i );
     }
   }
   
@@ -265,8 +265,8 @@ DEFINE_TEST(list_test)
     void * tmp = (void*) GC_malloc(500);
     if (tmp) memset(tmp, 0, 500);
     
-    ((node*)p)->value = i;
-    GC_STORE_CAP(((node*)p)->next, head);
+    p->value = i;
+    GC_STORE_CAP(p->next, head);
     GC_STORE_CAP(head, p);
     if (!(i % 1000)) TESTF("allocated %d nodes so far\n", i);
   }
@@ -296,12 +296,12 @@ DEFINE_TEST(list_test)
       printf("failed at j=%d\n", j);
     }
     TEST_ASSERT( (void*)p );
-    if (((node*)p)->value != (i - j))
+    if (p->value != (i - j))
     {
-      printf("at j=%d, the value is %d (0x%llx)\n", j, ((node*)p)->value, (GC_ULL) ((node*)p)->value);
+      printf("at j=%d, the value is %d (0x%llx)\n", j, p->value, (GC_ULL) p->value);
     }
-    TEST_ASSERT( ((node*)p)->value == (i - j) );
-    GC_STORE_CAP(p, ((node*)p)->next);
+    TEST_ASSERT( p->value == (i - j) );
+    GC_STORE_CAP(p, p->next);
   }
  
   TEST_ASSERT( !(void*)p );
@@ -329,31 +329,31 @@ bintree_create (int depth, int value)
   GC_STORE_CAP(tree, GC_malloc(sizeof(bintree)));
   //tree = GC_cheri_ptr(GC_low_malloc(sizeof(bintree)), sizeof(bintree));
   if (!(void*)tree) return GC_INVALID_PTR;
-  ((bintree*)tree)->value = bintree_encode_value(depth, value);
-  ((bintree*)tree)->left = GC_INVALID_PTR;
-  ((bintree*)tree)->right = GC_INVALID_PTR;
+  tree->value = bintree_encode_value(depth, value);
+  tree->left = GC_INVALID_PTR;
+  tree->right = GC_INVALID_PTR;
   
   GC_malloc(50);
   if (depth > 1)
   {
     GC_malloc(50);
     
-    GC_STORE_CAP( ((bintree*)tree)->left, bintree_create(depth-1, 2*value) );
-    if (!(void*)((bintree*)tree)->left) return GC_INVALID_PTR;
-    TEST_ASSERT( GC_cheri_gettag(((bintree*)tree)->left) );
+    GC_STORE_CAP( tree->left, bintree_create(depth-1, 2*value) );
+    if (!(void*)tree->left) return GC_INVALID_PTR;
+    TEST_ASSERT( GC_cheri_gettag(tree->left) );
     
-    TEST_ASSERT( bintree_check(((bintree*)tree)->left, depth-1, 2*value) );
+    TEST_ASSERT( bintree_check(tree->left, depth-1, 2*value) );
     
     GC_malloc(50);
     
-    GC_STORE_CAP( ((bintree*)tree)->right, bintree_create(depth-1, 2*value+1) );
-    if (!(void*)((bintree*)tree)->right) return GC_INVALID_PTR;
-    TEST_ASSERT( GC_cheri_gettag(((bintree*)tree)->right) );
+    GC_STORE_CAP( tree->right, bintree_create(depth-1, 2*value+1) );
+    if (!(void*)tree->right) return GC_INVALID_PTR;
+    TEST_ASSERT( GC_cheri_gettag(tree->right) );
 
-    TEST_ASSERT( bintree_check(((bintree*)tree)->right, depth-1, 2*value+1) );
+    TEST_ASSERT( bintree_check(tree->right, depth-1, 2*value+1) );
     
     GC_malloc(50);
-    TEST_ASSERT( bintree_check(((bintree*)tree)->right, depth-1, 2*value+1) );
+    TEST_ASSERT( bintree_check(tree->right, depth-1, 2*value+1) );
   }
   GC_malloc(50);
   if (!bintree_check(tree, depth, value))
@@ -384,24 +384,24 @@ bintree_check (GC_CAP bintree * tree, int depth, int value)
       (GC_ULL)(void*)tree, depth, value);
     return 0;
   }
-  if (((bintree*)tree)->value != bintree_encode_value(depth, value))
+  if (tree->value != bintree_encode_value(depth, value))
   {
     printf("bintree_check: 0x%llx has bad value 0x%x (expected 0x%x) (d=0x%x, v=0x%x)\n",
-      (GC_ULL)(void*)tree, ((bintree*)tree)->value, bintree_encode_value(depth, value), depth, value);
+      (GC_ULL)(void*)tree, tree->value, bintree_encode_value(depth, value), depth, value);
     return 0;
   }
   if (depth>1)
     return
-      bintree_check(((bintree*)tree)->left, depth-1, 2*value) &&
-      bintree_check(((bintree*)tree)->right, depth-1, 2*value+1);
+      bintree_check(tree->left, depth-1, 2*value) &&
+      bintree_check(tree->right, depth-1, 2*value+1);
   else
   {
-    if ((void*)((bintree*)tree)->left)
+    if ((void*)tree->left)
     {
       printf("bintree_check: not NULL left\n");
       return 0;
     }
-    if ((void*)((bintree*)tree)->right)
+    if ((void*)tree->right)
     {
       printf("bintree_check: not NULL right\n");
       return 0;
@@ -414,34 +414,35 @@ ATTR_SENSITIVE static void
 bintree_print (GC_CAP bintree * tree, int depth)
 {
   TEST_ASSERT((void*)tree);
-  printf("[0x%llx\n", (GC_ULL) ((bintree*)tree)->value);
+  int val = tree->value; // compiler crashes if print tree->value directly (why?)
+  printf("[0x%llx\n", (GC_ULL) val);
   if (depth>1)
   {
-    TEST_ASSERT( (void*)((bintree*)tree)->left );
-    TEST_ASSERT( (void*)((bintree*)tree)->right );
+    TEST_ASSERT( (void*)tree->left );
+    TEST_ASSERT( (void*)tree->right );
     TEST_ASSERT(GC_IN(
-      (void*)((bintree*)tree)->left, GC_state.thread_local_region.tospace)
+      (void*)tree->left, GC_state.thread_local_region.tospace)
 #ifdef GC_GENERATIONAL
-      || GC_IN((void*)((bintree*)tree)->left, GC_state.old_generation.tospace)
+      || GC_IN((void*)tree->left, GC_state.old_generation.tospace)
 #endif // GC_GENERATIONAL
     );
     TEST_ASSERT(GC_IN(
-      (void*)((bintree*)tree)->right, GC_state.thread_local_region.tospace)
+      (void*)tree->right, GC_state.thread_local_region.tospace)
 #ifdef GC_GENERATIONAL
-      || GC_IN((void*)((bintree*)tree)->right, GC_state.old_generation.tospace)
+      || GC_IN((void*)tree->right, GC_state.old_generation.tospace)
 #endif // GC_GENERATIONAL
     );
-    printf(",L=0x%llx(", (GC_ULL)(void*)((bintree*)tree)->left);
-    bintree_print( ((bintree*)tree)->left, depth-1);
-    printf("),R=0x%llx(", (GC_ULL)(void*)((bintree*)tree)->right);
-    bintree_print( ((bintree*)tree)->right, depth-1);
+    printf(",L=0x%llx(", (GC_ULL)(void*)tree->left);
+    bintree_print( tree->left, depth-1);
+    printf("),R=0x%llx(", (GC_ULL)(void*)tree->right);
+    bintree_print( tree->right, depth-1);
     printf(")");
   }
   else
   {
-    if ((void*)((bintree*)tree)->left) GC_debug_dump(); // DEBUG
-    TEST_ASSERT( !(void*)((bintree*)tree)->left );
-    TEST_ASSERT( !(void*)((bintree*)tree)->right );
+    if ((void*)tree->left) GC_debug_dump(); // DEBUG
+    TEST_ASSERT( !(void*)tree->left );
+    TEST_ASSERT( !(void*)tree->right );
   }
   printf("]");
 }

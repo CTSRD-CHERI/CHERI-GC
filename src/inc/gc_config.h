@@ -8,14 +8,14 @@
 // convenience. test_all.c, for example, uses this.
 #define GC_BOEHM_MAX_HEAP_SIZE                0//1900000
 
-#define GC_THREAD_LOCAL_HEAP_SIZE                              65536
+#define GC_THREAD_LOCAL_HEAP_SIZE                              1000
 #define GC_OLD_GENERATION_SEMISPACE_SIZE                       1553600
 
 // Maximum sizes for when the heap does grow. Set to 0 to allow unlimited
 // growth.
 // TODO: the 0 setting
-#define GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION        2453504
-#define GC_THREAD_LOCAL_HEAP_MAX_SIZE                          2453504
+#define GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION        15000
+#define GC_THREAD_LOCAL_HEAP_MAX_SIZE                          15000
 #define GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION 1553600
 #define GC_OLD_GENERATION_SEMISPACE_MAX_SIZE                   1553600
 
