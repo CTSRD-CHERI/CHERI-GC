@@ -289,7 +289,7 @@ GC_cap_memclr (GC_cap_ptr dest)
   GC_cap_ptr * p;
   for (p = start; p < end; p++)
   {
-    if (GC_cheri_gettag(*p)) *p = GC_INVALID_PTR;
+    if (GC_cheri_gettag(*p)) *p = GC_INVALID_PTR();
   }
   
   //GC_vdbgf("NOTE: doing a memclr...\n");

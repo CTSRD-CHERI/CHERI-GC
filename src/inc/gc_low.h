@@ -50,7 +50,8 @@ typedef __capability void * GC_cap_ptr;
 //#define     GC_INVALID_PTR    cheri_zerocap()
 //#define GC_INVALID_PTR GC_cheri_ptr(NULL, 0)
 //#define GC_INVALID_PTR ((__capability void *)NULL)
-#define GC_INVALID_PTR NULL
+//#define GC_INVALID_PTR NULL
+#define GC_INVALID_PTR() NULL
 
 // also declared in gc.h
 //#define     GC_PTR_VALID(x)   (GC_cheri_gettag((x)))

@@ -142,7 +142,7 @@ DEFINE_TEST(fill_test)
   size_t i;
   for (i=0; i<nbufs; i++)
   {
-    bufs[i] = GC_INVALID_PTR;
+    bufs[i] = GC_INVALID_PTR();
     GC_STORE_CAP(bufs[i], GC_malloc(bufsz));
     
     TEST_ASSERT( (typ*)bufs[i] );
@@ -247,7 +247,7 @@ DEFINE_TEST(list_test)
 #endif
   
   int i;
-  GC_CAP node * head = GC_INVALID_PTR;
+  GC_CAP node * head = GC_INVALID_PTR();
   for (i=0; ; i++)
   {
     if (i > heapsz/sizeof(node))
@@ -257,7 +257,7 @@ DEFINE_TEST(list_test)
       return 1;
     }
     
-    GC_CAP node * p = GC_INVALID_PTR;
+    GC_CAP node * p = GC_INVALID_PTR();
     GC_STORE_CAP(p, GC_malloc(sizeof(node)));
     if (!(void*)p) break;
     
@@ -282,7 +282,7 @@ DEFINE_TEST(list_test)
   GC_collect();
   
   int j;
-  GC_CAP node * p = GC_INVALID_PTR;
+  GC_CAP node * p = GC_INVALID_PTR();
   GC_STORE_CAP(p, head);
   for (j=0; j<=i; j++)
   {
@@ -325,19 +325,20 @@ bintree_check (GC_CAP bintree * tree, int depth, int value);
 ATTR_SENSITIVE static GC_CAP bintree *
 bintree_create (int depth, int value)
 {
-  GC_CAP bintree * tree = GC_INVALID_PTR;
+  GC_CAP bintree * tree = GC_INVALID_PTR();
   GC_STORE_CAP(tree, GC_malloc(sizeof(bintree)));
   //tree = GC_cheri_ptr(GC_low_malloc(sizeof(bintree)), sizeof(bintree));
-  if (!(void*)tree) return GC_INVALID_PTR;
+  if (!(void*)tree) return GC_INVALID_PTR();
   printf("tree is 0x%llx, length=%d\n", (GC_ULL)(void*)tree, (int)GC_cheri_getlen(tree));
   tree->value = bintree_encode_value(depth, value);
   printf("&tree->value is 0x%llx\n", (GC_ULL)&tree->value);
-  tree->left = GC_INVALID_PTR;
+  tree->left = GC_INVALID_PTR();
   printf("&tree->left is 0x%llx\n", (GC_ULL)&tree->left);
   printf("&tree->right is 0x%llx\n", (GC_ULL)&tree->right);
 __asm__ __volatile__ ("daddiu $1, $1, 0");
 __asm__ __volatile__ ("daddiu $2, $2, 0");
 __asm__ __volatile__ ("daddiu $3, $3, 0");
+  tree->right = GC_INVALID_PTR();/*
   int tmp = 0;
   tree->right = GC_cheri_ptr(&tmp, sizeof tmp);
   {
@@ -345,7 +346,7 @@ __asm__ __volatile__ ("daddiu $3, $3, 0");
     int i;
     for (i=0; i<32; i++)
       p[i] = 0;
-  }
+  }*/
 __asm__ __volatile__ ("daddiu $5, $5, 0");
 __asm__ __volatile__ ("daddiu $5, $5, 0");
 __asm__ __volatile__ ("daddiu $5, $5, 0");
@@ -357,7 +358,7 @@ __asm__ __volatile__ ("daddiu $5, $5, 0");
     GC_malloc(50);
     
     GC_STORE_CAP( tree->left, bintree_create(depth-1, 2*value) );
-    if (!(void*)tree->left) return GC_INVALID_PTR;
+    if (!(void*)tree->left) return GC_INVALID_PTR();
     TEST_ASSERT( GC_cheri_gettag(tree->left) );
     
     TEST_ASSERT( bintree_check(tree->left, depth-1, 2*value) );
@@ -365,7 +366,7 @@ __asm__ __volatile__ ("daddiu $5, $5, 0");
     GC_malloc(50);
     
     GC_STORE_CAP( tree->right, bintree_create(depth-1, 2*value+1) );
-    if (!(void*)tree->right) return GC_INVALID_PTR;
+    if (!(void*)tree->right) return GC_INVALID_PTR();
     TEST_ASSERT( GC_cheri_gettag(tree->right) );
 
     TEST_ASSERT( bintree_check(tree->right, depth-1, 2*value+1) );
@@ -489,7 +490,7 @@ DEFINE_TEST(bintree_test)
   {
     //GC_debug_dump();
     TESTF("allocating tree %d\n", i);
-    trees[i] = GC_INVALID_PTR;
+    trees[i] = GC_INVALID_PTR();
     GC_STORE_CAP(trees[i], bintree_create(tree_depth, i));
     TESTF("tree %d is 0x%llx\n", i, (GC_ULL) (void*)trees[i]);
     if (!(void*)trees[i]) break;
@@ -656,9 +657,9 @@ DEFINE_TEST(experimental_test)
 {
   int tmp = 0xDEADCAFE;
   GC_CAP P * cap = GC_malloc(sizeof(P));
-  cap->other = GC_INVALID_PTR;
+  cap->other = GC_INVALID_PTR();
   cap->ptr = GC_cheri_ptr(&tmp, sizeof tmp);;
-  GC_CAP void * x = GC_cheri_ptr(&(cap->ptr), GC_cheri_getlen(cap)-((void*)&(cap->ptr)-(void*)cap));
+  GC_CAP void * x = GC_cheri_ptr((void*)&(cap->ptr), GC_cheri_getlen(cap)-((void*)&(cap->ptr)-(void*)cap));
   GC_PRINT_CAP(cap);
   GC_PRINT_CAP(cap->ptr);
   GC_PRINT_CAP(x); // should be equal to base(cap)+0x20

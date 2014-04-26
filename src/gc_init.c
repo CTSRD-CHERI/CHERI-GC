@@ -9,6 +9,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+GC_CAP void * GC_invalid_cap;
+
 struct GC_state_struct GC_state = {.initialized = 0};
 
 __attribute__((constructor)) GC_FUNC int
@@ -20,6 +22,13 @@ GC_init2 (const char * file, int line)
   {
     GC_dbgf("GC_init called from %s:%d\nGC compiled %s",
       file, line, __TIME__ " " __DATE__);
+    
+    /*int tmp = 0;
+    GC_invalid_cap = GC_cheri_ptr(&tmp, sizeof tmp);
+    char * p = (char*)&GC_invalid_cap;
+    int i;
+    for (i=0; i<32; i++)
+      p[i] = 0;*/
     
     GC_state.state_bottom = &GC_state;
     GC_state.state_top = GC_state.state_bottom + sizeof GC_state;
@@ -227,7 +236,7 @@ GC_init_young_region (struct GC_region * region,
   //region->tospace = GC_SET_GC_ALLOCATED(region->tospace);
   
   region->fromspace_misaligned = NULL;
-  region->fromspace = GC_INVALID_PTR;
+  region->fromspace = GC_INVALID_PTR();
   region->free = region->tospace;
   region->scan = NULL;
   region->older_region = older_region;
