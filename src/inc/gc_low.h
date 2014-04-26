@@ -80,13 +80,13 @@ typedef __capability void * GC_cap_ptr;
 // NOTE: GC_PERM_YOUNG, GC_PERM_CONTAINED_IN_OLD only used when WB technique is
 //       GC_WB_MANUAL.
 // actually uses permit_store_ephemeral_capability for now.
-#define GC_PERM_YOUNG CHERI_PERM_STORE_EPHEM_CAP
+#define GC_PERM_YOUNG CHERI_PERM_SETTYPE
 // actually uses permit_seal for now
 #define GC_PERM_CONTAINED_IN_OLD CHERI_PERM_SEAL
 // TODO: use a *custom* perm and ensure it's *always* set for non-forwarding
 // addresses (even when we pass caps around and make new ones...)
 // At the moment we're using the Set_Type permission
-#define GC_PERM_FORWARDING    CHERI_PERM_SETTYPE
+#define GC_PERM_FORWARDING    CHERI_PERM_STORE_EPHEM_CAP
 // actually uses permit_execute for now
 #define GC_PERM_GC_ALLOCATED  CHERI_PERM_EXECUTE
 

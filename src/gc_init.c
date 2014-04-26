@@ -281,6 +281,7 @@ GC_init_young_region (struct GC_region * region,
   return 0;
 }
 
+#ifdef GC_WB_RUNTIME
 GC_FUNC int
 GC_set_wb_type (int wb_type)
 {
@@ -293,6 +294,7 @@ GC_set_wb_type (int wb_type)
   GC_state.wb_type = wb_type;
   return 0;
 }
+#endif // GC_WB_RUNTIME
 #endif // GC_GENERATIONAL
 
 GC_FUNC void

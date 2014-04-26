@@ -905,7 +905,9 @@ GC_debug_dump (void)
   
   
 #ifdef GC_GENERATIONAL
+#ifdef GC_WB_RUNTIME
   GC_DEF_PRINTI(GC_state.wb_type);
+#endif // GC_WB_RUNTIME
 #endif // GC_GENERATIONAL
 
   GC_debug_print_region_stats(&GC_state.thread_local_region);

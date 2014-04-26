@@ -105,7 +105,7 @@ extern struct GC_state_struct GC_state;
 // whenever any capability is stored in an old object.
 #define GC_WB_NOSTORE      3
 
-#ifdef GC_WB_RUNTIME
+#if defined(GC_WB_RUNTIME)
 #define GC_SWITCH_WB_TYPE(manual_statement,ephemeral_statement) \
   do { \
     if (GC_state.wb_type == GC_WB_MANUAL) \
@@ -114,15 +114,18 @@ extern struct GC_state_struct GC_state;
       {ephemeral_statement;} \
   } while (0)
 
-#elif GC_WB_DEFAULT == GC_WB_MANUAL \
+#else // defined(GC_WB_RUNTIME)
+#if GC_WB_DEFAULT==GC_WB_MANUAL
 #define GC_SWITCH_WB_TYPE(manual_statement,ephemeral_statement) \
   do {manual_statement;} while (0)
+#endif // GC_WB_DEFAULT == GC_WB_MANUAL
 
-#elif GC_WB_DEFAULT == GC_WB_EPHEMERAL \
+#if GC_WB_DEFAULT==GC_WB_EPHEMERAL
 #define GC_SWITCH_WB_TYPE(manual_statement,ephemeral_statement) \
   do {ephemeral_statement;} while (0)
+#endif // GC_WB_DEFAULT == GC_WB_EPHEMERAL
 
-#endif // GC_WB_RUNTIME etc
+#endif // defined(GC_WB_RUNTIME)
   
 #endif // GC_GENERATIONAL
 
