@@ -36,11 +36,11 @@ GC_debug_print_cap (const char * name, GC_cap_ptr cap)
 {
   if (GC_cheri_gettag(cap) == 0)
   {
-    GC_dbgf("%s: t=0\n", name);
+    printf("%s: t=0\n", name);
   }
   else
   {
-    GC_dbgf(
+    printf(
       "%s: t=1, b=0x%llx, l=0x%llx, alloc=%d, fwd=%d"
 #ifdef GC_GENERATIONAL
       ", young=%d, cOLD=%d, eph=%d, region=%s"

@@ -325,7 +325,7 @@ GC_handle_oy_store (__capability void * __capability * x, GC_cap_ptr y);
 #define GC_UNSET_YOUNG(cap) \
   ( GC_orperm((cap), GC_PERM_YOUNG) )
 
-#define GC_PERM_NON_EPHEMERAL 1
+#define GC_PERM_NON_EPHEMERAL (1 << 0)
 
 #define GC_IS_EPHEMERAL(cap) \
   ( ! (((GC_ULL) GC_cheri_getperm((cap))) & GC_PERM_NON_EPHEMERAL)  )

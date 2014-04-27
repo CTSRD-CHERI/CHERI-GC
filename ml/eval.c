@@ -47,7 +47,7 @@ print_env (GC_CAP env_t * env)
 
 GC_USER_FUNC void
 print_ast (GC_CAP expr_t * expr)
-{printf("\n");
+{
   if (!PTR_VALID(expr))
   {
     printf("(invalid expression)");
@@ -108,8 +108,6 @@ print_ast (GC_CAP expr_t * expr)
         fprintf(stderr, "Invalid op_expr->op\n");
         exit(1);
       }
-      printf("expr->op_expr is 0x%llx\n", (unsigned long long) (void*) expr->op_expr);
-      printf("expr->op_expr->op is 0x%llx\n", (unsigned long long) (void*) expr->op_expr->op);
       size_t oplen = cstrlen(expr->op_expr->op)+1;
       if (oplen > 1)
       {
@@ -224,7 +222,7 @@ eval (GC_CAP expr_t * expr, GC_CAP env_t * env)
       GC_STORE_CAP(a, eval(expr->op_expr->a, env));
       GC_CAP val_t * b = GC_INVALID_PTR();
       GC_STORE_CAP(b, eval(expr->op_expr->b, env));
-
+      
       size_t oplen = cstrlen(expr->op_expr->op)+1;
       if (oplen > 1)
       {
@@ -258,7 +256,6 @@ eval (GC_CAP expr_t * expr, GC_CAP env_t * env)
           fprintf(stderr, "eval: out of memory allocating num_val_t\n");
           exit(1);
         }
-        
         char op = expr->op_expr->op[0];
         switch (op)
         {

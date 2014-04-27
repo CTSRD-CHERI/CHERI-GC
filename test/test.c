@@ -44,10 +44,10 @@ typedef struct bintree_tag
 #define TESTS \
   /*X_MACRO(fill_test, "Fill the heap with 512-byte chunks and ensure integrity after collection") \
   X_MACRO(list_test, "Fill the heap with a list and ensure integrity after collection") \
-  */X_MACRO(bintree_test, "Create some binary trees and ensure integrity after collection") \
-  /*X_MACRO(regroots_test, "Check register roots") \
-  X_MACRO(bitmap_test, "Check bitmap operations") \
-  X_MACRO(experimental_test, "For experiments") \
+  X_MACRO(bintree_test, "Create some binary trees and ensure integrity after collection") \
+  X_MACRO(regroots_test, "Check register roots") \
+  */X_MACRO(bitmap_test, "Check bitmap operations") \
+  /*X_MACRO(experimental_test, "For experiments") \
   X_MACRO(malloc_time_test, "Tests how long GC_malloc takes without collecting") \
   X_MACRO(malloc_time_test_with_collect, "Tests how long GC_malloc takes with collecting")*/ \
 
@@ -633,6 +633,21 @@ DEFINE_TEST(bitmap_test)
   TEST_ASSERT( !GC_bitmap_find(&bitmap, 811, 0) );
   TEST_ASSERT( !GC_bitmap_find(&bitmap, 812, 0) );
   TEST_ASSERT( !GC_bitmap_find(&bitmap, 810, 0) );
+  
+  
+  // Find member objects
+  size_t offset = 0;
+  size_t len = 0;
+  TEST_ASSERT( GC_bitmap_get_container(&bitmap, 810, &offset, &len) );
+  TEST_ASSERT( offset == 0 );
+  TEST_ASSERT( len == 1);
+  TEST_ASSERT( GC_bitmap_get_container(&bitmap, 53, &offset, &len) );
+  TEST_ASSERT( offset == 53 );
+  TEST_ASSERT( len == 800);
+  TEST_ASSERT( GC_bitmap_get_container(&bitmap, 811, &offset, &len) );
+  TEST_ASSERT( offset == 0 );
+  TEST_ASSERT( len == 1);
+  TEST_ASSERT( !GC_bitmap_get_container(&bitmap, 812, &offset, &len) );
   
   return 0;
 }

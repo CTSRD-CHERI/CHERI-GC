@@ -345,8 +345,11 @@ GC_copy_roots (struct GC_region * region,
         }
         offset *= sizeof(GC_cap_ptr);
         len *= sizeof(GC_cap_ptr);
-        printf("offset is %d\n", (int) offset);
-        GC_PRINT_CAP(*p);
+        if (polen > (len-offset))
+        {
+          // length of the cap is greater than length of the object, so invalid
+          continue;
+        }
         // i.e. *p -= offset
         *p = GC_setbaselen(*p, GC_cheri_getbase(*p)-offset, len);
       }
@@ -414,6 +417,10 @@ GC_copy_child (struct GC_region * region,
       }
       offset *= sizeof(GC_cap_ptr);
       len *= sizeof(GC_cap_ptr);
+      if (polen > (len-offset))
+      {
+        return;
+      }
       *child_addr =
         GC_setbaselen(*child_addr, GC_cheri_getbase(*child_addr)-offset, len);
     }
@@ -557,7 +564,7 @@ GC_gen_promote (struct GC_region * region, int force_major_collection)
   region->free = region->tospace;
 
 
-  {
+  /*{
     GC_CAP void ** start = GC_cheri_getbase(region->older_region->tospace),
                 ** end   = GC_cheri_getbase(region->older_region->free),
                 ** p;
@@ -566,10 +573,11 @@ GC_gen_promote (struct GC_region * region, int force_major_collection)
       if (GC_IN(GC_cheri_getbase(*p), region->tospace))
       {
         GC_PRINT_CAP(*p);
-        GC_fatalf("Bad pointer: p=0x%llx\n", (GC_ULL) GC_cheri_getbase(p));
+        printf("Bad pointer: p=0x%llx\n", (GC_ULL) GC_cheri_getbase(p));
       }
     }
-  }
+  }*/
+  
 #ifdef GC_DEBUG
   GC_cap_memset(region->tospace, GC_MAGIC_JUST_CLEARED_YOUNG_TOSPACE);
 #endif // GC_DEBUG

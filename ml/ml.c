@@ -158,7 +158,7 @@ GC_USER_FUNC int main (int argc, char ** argv)
   
   printf("AST:\n");
   print_ast(expr);
-  printf("\n\n");
+  printf("\nDone printing AST\n");
   
   /*printf("collecting loads\n");
   ml_collect();
@@ -183,7 +183,10 @@ GC_USER_FUNC int main (int argc, char ** argv)
   GC_STORE_CAP(val, eval(expr, GC_INVALID_PTR()));
   
   printf("eval: ");
-  print_val(val);
+  if (!PTR_VALID(val))
+    printf("(invalid");
+  else
+    print_val(val);
   printf("\n\n");
 
   ML_STOP_TIMING(main_time, "main()");

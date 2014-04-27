@@ -1,7 +1,7 @@
 #ifndef GC_CONFIG_H_HEADER
 #define GC_CONFIG_H_HEADER
 
-#define GC_DEBUG
+//#define GC_DEBUG
 //#define GC_VERBOSE_DEBUG
 
 // Can be used when testing against the Boehm collector, defined here for
