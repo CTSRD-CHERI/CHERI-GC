@@ -52,7 +52,7 @@ lex_read_file (GC_CAP const char * name)
       memcpy((char *) tmp, (char *) lex_state.file, lex_state.max-1);
     }
     GC_STORE_CAP(lex_state.file, tmp);
-    ((char*)lex_state.file)[lex_state.max-1] = c;
+    lex_state.file[lex_state.max-1] = c;
   }
 
   fclose(file);
@@ -95,65 +95,65 @@ lex (void)
 {
   GC_CAP token_t * t = GC_INVALID_PTR();
   GC_STORE_CAP(t, ml_malloc(sizeof(token_t)));
-  ((token_t*)t)->type = TKEOF;
-  ((token_t*)t)->nearby_character = lex_state.index;
-  ((token_t*)t)->token_number = lex_state.num_tokens;
+  t->type = TKEOF;
+  t->nearby_character = lex_state.index;
+  t->token_number = lex_state.num_tokens;
   
   lex_state.num_tokens++;
   
 #define LEX_APPEND_STR(c) \
   do { \
-    ((token_t*)t)->len++; \
+    t->len++; \
     GC_CAP char * tmp = GC_INVALID_PTR(); \
-    GC_STORE_CAP(tmp, ml_malloc(((token_t*)t)->len)); \
+    GC_STORE_CAP(tmp, ml_malloc(t->len)); \
     if (!PTR_VALID(tmp)) \
     { \
       fprintf(stderr, "out of memory lexing string\n"); \
       exit(1); \
     } \
-    memcpy((char *) tmp, (char *) ((token_t*)t)->str, ((token_t*)t)->len-1); \
-    GC_STORE_CAP(((token_t*)t)->str, tmp); \
-    ((char*)((token_t*)t)->str)[((token_t*)t)->len-1] = (c); \
+    memcpy((char *) tmp, (char *) t->str, t->len-1); \
+    GC_STORE_CAP(t->str, tmp); \
+    t->str[t->len-1] = (c); \
   } while (0)
 
 #define LEX_INIT_STR(c) \
   do { \
-    ((token_t*)t)->len = 1; \
-    ((token_t*)t)->str = GC_INVALID_PTR(); \
-    GC_STORE_CAP(((token_t*)t)->str, ml_malloc(1)); \
-    if (!PTR_VALID(((token_t*)t)->str)) \
+    t->len = 1; \
+    t->str = GC_INVALID_PTR(); \
+    GC_STORE_CAP(t->str, ml_malloc(1)); \
+    if (!PTR_VALID(t->str)) \
     { \
       fprintf(stderr, "out of memory lexing string\n"); \
       exit(1); \
     } \
-    ((char*)((token_t*)t)->str)[0] = (c); \
+    t->str[0] = (c); \
   } while (0)
 
   int state = 0;
   while (lex_state.index < lex_state.max)
   {
-    char c = ((char*)lex_state.file)[lex_state.index];
+    char c = lex_state.file[lex_state.index];
     switch (state)
     {
       case 0:
       {
         if (LEX_IS_SYM(c))
         {
-          ((token_t*)t)->type = TKSYM;
+          t->type = TKSYM;
           LEX_INIT_STR(c);
           lex_state.index++;
           state = 1;
         }
         else if (LEX_IS_LETTER(c))
         {
-          ((token_t*)t)->type = TKWORD;
+          t->type = TKWORD;
           LEX_INIT_STR(c);
           lex_state.index++;
           state = 2;
         }
         else if (LEX_IS_DIGIT(c))
         {
-          ((token_t*)t)->type = TKINT;
+          t->type = TKINT;
           LEX_INIT_STR(c);
           lex_state.index++;
           state = 3;
@@ -205,11 +205,11 @@ lex (void)
     if (state == 5) break;
   }
   
-  if (((token_t*)t)->type != TKEOF)
+  if (t->type != TKEOF)
   {
     LEX_APPEND_STR('\0');
     char buf[11];
-    ml_itoa((unsigned) ((token_t*)t)->token_number,
+    ml_itoa((unsigned) t->token_number,
             GC_cheri_ptr((char*)&buf, sizeof buf));
     //GC_debug_track_allocated(((token_t*)t)->str, buf);
   }
@@ -224,12 +224,12 @@ ml_itoa (unsigned num, GC_CAP char * buf)
   {
     for (j=1000000000; j; j/=10)
     {
-      if (num / j) ((char*)buf)[i++] = '0' + ((num / j) % 10);
+      if (num / j) buf[i++] = '0' + ((num / j) % 10);
     }
   }
   else
   {
-    ((char*)buf)[i++] = '0';
+    buf[i++] = '0';
   }
-  ((char*)buf)[i] = '\0';
+  buf[i] = '\0';
 }

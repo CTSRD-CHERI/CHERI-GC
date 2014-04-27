@@ -102,11 +102,11 @@ GC_USER_FUNC GC_CAP expr_t * \
     fprintf(stderr, "parse_op(): out of memory allocating expr_t\n"); \
     exit(1); \
   } \
-  ((expr_t*)expr)->type = EXPR_OP; \
+  expr->type = EXPR_OP; \
   \
-  ((expr_t*)expr)->op_expr = GC_INVALID_PTR(); \
-  GC_STORE_CAP(((expr_t*)expr)->op_expr, ml_malloc(sizeof(op_expr_t))); \
-  if (!PTR_VALID(((expr_t*)expr)->op_expr)) \
+  expr->op_expr = GC_INVALID_PTR(); \
+  GC_STORE_CAP(expr->op_expr, ml_malloc(sizeof(op_expr_t))); \
+  if (!PTR_VALID(expr->op_expr)) \
   { \
     fprintf(stderr, "parse_op(): out of memory allocating op_expr_t\n"); \
     exit(1); \
@@ -138,11 +138,11 @@ GC_USER_FUNC GC_CAP expr_t * \
     } \
   } \
    \
-  ((op_expr_t *) ((expr_t*)expr)->op_expr)->a = GC_INVALID_PTR(); \
-  GC_STORE_CAP(((op_expr_t *) ((expr_t*)expr)->op_expr)->a, a); \
-  ((op_expr_t *) ((expr_t*)expr)->op_expr)->b = GC_INVALID_PTR(); \
-  ((op_expr_t *) ((expr_t*)expr)->op_expr)->op = GC_INVALID_PTR(); \
-  GC_STORE_CAP(((op_expr_t *) ((expr_t*)expr)->op_expr)->op, copy_string(op)); \
+  expr->op_expr->a = GC_INVALID_PTR(); \
+  GC_STORE_CAP(expr->op_expr->a, a); \
+  expr->op_expr->b = GC_INVALID_PTR(); \
+  expr->op_expr->op = GC_INVALID_PTR(); \
+  GC_STORE_CAP(expr->op_expr->op, copy_string(op)); \
   while (1) \
   { \
     if (oplen > 1) \
@@ -166,10 +166,10 @@ GC_USER_FUNC GC_CAP expr_t * \
       return b; \
     } \
     \
-    if (!PTR_VALID(((op_expr_t *)((expr_t*)expr)->op_expr)->b)) \
+    if (!PTR_VALID(expr->op_expr->b)) \
     { \
-      ((op_expr_t *)((expr_t*)expr)->op_expr)->b = GC_INVALID_PTR(); \
-      GC_STORE_CAP(((op_expr_t *)((expr_t*)expr)->op_expr)->b, b); \
+      expr->op_expr->b = GC_INVALID_PTR(); \
+      GC_STORE_CAP(expr->op_expr->b, b); \
     } \
     else \
     { \
@@ -181,12 +181,12 @@ GC_USER_FUNC GC_CAP expr_t * \
           "parse_op(): out of memory allocating a new op_expr_t\n"); \
         exit(1); \
       } \
-      ((op_expr_t *) new_op_expr)->a = GC_INVALID_PTR(); \
-      GC_STORE_CAP(((op_expr_t *) new_op_expr)->a, expr); \
-      ((op_expr_t *) new_op_expr)->b = GC_INVALID_PTR(); \
-      GC_STORE_CAP(((op_expr_t *) new_op_expr)->b, b); \
-      ((op_expr_t *) new_op_expr)->op = GC_INVALID_PTR(); \
-      GC_STORE_CAP(((op_expr_t *) new_op_expr)->op, copy_string(op)); \
+      new_op_expr->a = GC_INVALID_PTR(); \
+      GC_STORE_CAP(new_op_expr->a, expr); \
+      new_op_expr->b = GC_INVALID_PTR(); \
+      GC_STORE_CAP(new_op_expr->b, b); \
+      new_op_expr->op = GC_INVALID_PTR(); \
+      GC_STORE_CAP(new_op_expr->op, copy_string(op)); \
       \
       GC_STORE_CAP(expr, ml_malloc(sizeof(expr_t))); \
       if (!PTR_VALID(expr)) \
@@ -194,9 +194,9 @@ GC_USER_FUNC GC_CAP expr_t * \
         fprintf(stderr, "parse_op(): out of memory allocating a new expr_t\n"); \
         exit(1); \
       }\
-      ((expr_t*)expr)->type = EXPR_OP; \
-      ((expr_t*)expr)->op_expr = GC_INVALID_PTR(); \
-      GC_STORE_CAP(((expr_t*)expr)->op_expr, new_op_expr); \
+      expr->type = EXPR_OP; \
+      expr->op_expr = GC_INVALID_PTR(); \
+      GC_STORE_CAP(expr->op_expr, new_op_expr); \
     } \
   } \
   return expr; \
@@ -218,10 +218,10 @@ parse_base_expr (void)
   }
   if (parse_tok_eq(TKWORD, GC_cheri_ptr("if", sizeof("if"))))
   {
-    ((expr_t *) expr)->type = EXPR_IF;
-    ((expr_t *) expr)->if_expr = GC_INVALID_PTR();
-    GC_STORE_CAP(((expr_t *) expr)->if_expr, parse_if());
-    if (!PTR_VALID(((expr_t *) expr)->if_expr))
+    expr->type = EXPR_IF;
+    expr->if_expr = GC_INVALID_PTR();
+    GC_STORE_CAP(expr->if_expr, parse_if());
+    if (!PTR_VALID(expr->if_expr))
     {
       fprintf(stderr,
         "parse_base_expr(): warning: invalid pointer for if_expr\n");
@@ -230,10 +230,10 @@ parse_base_expr (void)
   }
   else if (parse_tok_eq(TKWORD, GC_cheri_ptr("fn", sizeof("fn"))))
   {
-    ((expr_t *) expr)->type = EXPR_FN;
-    ((expr_t *) expr)->fn_expr = GC_INVALID_PTR();
-    GC_STORE_CAP(((expr_t *) expr)->fn_expr, parse_fn());
-    if (!PTR_VALID(((expr_t *) expr)->fn_expr))
+    expr->type = EXPR_FN;
+    expr->fn_expr = GC_INVALID_PTR();
+    GC_STORE_CAP(expr->fn_expr, parse_fn());
+    if (!PTR_VALID(expr->fn_expr))
     {
       fprintf(stderr,
         "parse_base_expr(): warning: invalid pointer for fn_expr\n");
@@ -242,10 +242,10 @@ parse_base_expr (void)
   }
   else if (parse_tok_eq(TKWORD, GC_INVALID_PTR()))
   {
-    ((expr_t *) expr)->type = EXPR_NAME;
-    ((expr_t *) expr)->name_expr = GC_INVALID_PTR();
-    GC_STORE_CAP(((expr_t *) expr)->name_expr, parse_name());
-    if (!PTR_VALID(((expr_t *) expr)->name_expr))
+    expr->type = EXPR_NAME;
+    expr->name_expr = GC_INVALID_PTR();
+    GC_STORE_CAP(expr->name_expr, parse_name());
+    if (!PTR_VALID(expr->name_expr))
     {
       fprintf(stderr,
         "parse_base_expr(): warning: invalid pointer for name_expr\n");
@@ -254,10 +254,10 @@ parse_base_expr (void)
   }
   else if (parse_tok_eq(TKINT, GC_INVALID_PTR()))
   {
-    ((expr_t *) expr)->type = EXPR_NUM;
-    ((expr_t *) expr)->num_expr = GC_INVALID_PTR();
-    GC_STORE_CAP(((expr_t *) expr)->num_expr, parse_num());
-    if (!PTR_VALID(((expr_t *) expr)->num_expr))
+    expr->type = EXPR_NUM;
+    expr->num_expr = GC_INVALID_PTR();
+    GC_STORE_CAP(expr->num_expr, parse_num());
+    if (!PTR_VALID(expr->num_expr))
     {
       fprintf(stderr,
         "parse_base_expr(): warning: invalid pointer for num_expr\n");
@@ -299,9 +299,9 @@ parse_if (void)
   parse_get_next_tok();
   parse_eof_error();
   
-  ((if_expr_t *) if_expr)->cond = GC_INVALID_PTR();
-  GC_STORE_CAP(((if_expr_t *) if_expr)->cond, parse());
-  if (!PTR_VALID( ((if_expr_t *) if_expr)->cond))
+  if_expr->cond = GC_INVALID_PTR();
+  GC_STORE_CAP(if_expr->cond, parse());
+  if (!PTR_VALID(if_expr->cond))
   {
     fprintf(stderr,
       "parse_if(): warning: invalid pointer for cond\n");
@@ -313,9 +313,9 @@ parse_if (void)
   parse_get_next_tok();
   parse_eof_error();
   
-  ((if_expr_t *) if_expr)->true_expr = GC_INVALID_PTR();
-  GC_STORE_CAP(((if_expr_t *) if_expr)->true_expr, parse());
-  if (!PTR_VALID( ((if_expr_t *) if_expr)->true_expr))
+  if_expr->true_expr = GC_INVALID_PTR();
+  GC_STORE_CAP(if_expr->true_expr, parse());
+  if (!PTR_VALID(if_expr->true_expr))
   {
     fprintf(stderr,
       "parse_if(): warning: invalid pointer for true_expr\n");
@@ -327,9 +327,9 @@ parse_if (void)
   parse_get_next_tok();
   parse_eof_error();
   
-  ((if_expr_t *) if_expr)->false_expr = GC_INVALID_PTR();
-  GC_STORE_CAP(((if_expr_t *) if_expr)->false_expr, parse());
-  if (!PTR_VALID( ((if_expr_t *) if_expr)->false_expr))
+  if_expr->false_expr = GC_INVALID_PTR();
+  GC_STORE_CAP(if_expr->false_expr, parse());
+  if (!PTR_VALID(if_expr->false_expr))
   {
     fprintf(stderr,
       "parse_if(): warning: invalid pointer for false_expr\n");
@@ -361,10 +361,8 @@ parse_fn (void)
       "parse_fn(): warning: invalid pointer for name_expr\n");
     return GC_INVALID_PTR();
   }
-  ((fn_expr_t *) fn_expr)->name = GC_INVALID_PTR();
-  GC_STORE_CAP(
-    ((fn_expr_t *) fn_expr)->name,
-    ((name_expr_t *) name_expr)->name);
+  fn_expr->name = GC_INVALID_PTR();
+  GC_STORE_CAP(fn_expr->name, name_expr->name);
   parse_eof_error();
 
   parse_expect(TKSYM, GC_cheri_ptr(".", sizeof(".")));
@@ -372,9 +370,9 @@ parse_fn (void)
   parse_eof_error();
   
   
-  ((fn_expr_t *) fn_expr)->body = GC_INVALID_PTR();
-  GC_STORE_CAP(((fn_expr_t *) fn_expr)->body, parse());
-  if (!PTR_VALID( ((fn_expr_t *) fn_expr)->body))
+  fn_expr->body = GC_INVALID_PTR();
+  GC_STORE_CAP(fn_expr->body, parse());
+  if (!PTR_VALID(fn_expr->body))
   {
     fprintf(stderr,
       "parse_fn(): warning: invalid pointer for body\n");
@@ -394,13 +392,12 @@ parse_num (void)
     exit(1);
   }
   
-  ((num_expr_t *) num_expr)->num = 0;
+  num_expr->num = 0;
   size_t i;
-  for (i=0; i<((token_t*)parse_state.tok)->len-1; i++)
+  for (i=0; i<parse_state.tok->len-1; i++)
   {
-    ((num_expr_t *) num_expr)->num *= 10;
-    ((num_expr_t *) num_expr)->num +=
-      ((char*) (((token_t*)parse_state.tok)->str))[i] - '0';
+    num_expr->num *= 10;
+    num_expr->num += parse_state.tok->str[i] - '0';
   }
   parse_get_next_tok();
   return num_expr;
@@ -416,10 +413,8 @@ parse_name (void)
     fprintf(stderr, "parse_name(): out of memory\n");
     exit(1);
   }
-  ((name_expr_t *) name_expr)->name = GC_INVALID_PTR();
-  GC_STORE_CAP(
-    ((name_expr_t *) name_expr)->name,
-    ((token_t*)parse_state.tok)->str);
+  name_expr->name = GC_INVALID_PTR();
+  GC_STORE_CAP(name_expr->name, parse_state.tok->str);
   parse_get_next_tok();
   return name_expr;
 }
@@ -445,13 +440,13 @@ parse_tok_eq (int type, GC_CAP const char * str)
   return
   (
     PTR_VALID(str) &&
-    (type == ((token_t*)parse_state.tok)->type) &&
-    PTR_VALID(((token_t*)parse_state.tok)->str) &&
-    (!strcmp((const char*)str,(char*)((token_t*)parse_state.tok)->str))
+    (type == parse_state.tok->type) &&
+    PTR_VALID(parse_state.tok->str) &&
+    (!strcmp((const char*)str,(char*)parse_state.tok->str))
   ) ||
   (
     !PTR_VALID(str) &&
-    (type == ((token_t*)parse_state.tok)->type)
+    (type == parse_state.tok->type)
   );
 }
 
@@ -470,8 +465,8 @@ parse_unexpected (void)
 {
   parse_eof_error(); // because then the string is invalid
   fprintf(stderr, "unexpected token %s (near character %d)\n",
-    (char*) ((token_t*)parse_state.tok)->str,
-    (int) ((token_t*)parse_state.tok)->nearby_character);
+    (char*) parse_state.tok->str,
+    (int) parse_state.tok->nearby_character);
   exit(1);
 }
 
@@ -483,8 +478,8 @@ parse_expect (int type, GC_CAP const char * str)
   {
     fprintf(stderr, "expected `%s', not `%s' (near character %d)\n",
             (const char *) str, 
-            (char*) ((token_t*)parse_state.tok)->str,
-            (int) ((token_t*)parse_state.tok)->nearby_character);
+            (char*) parse_state.tok->str,
+            (int) parse_state.tok->nearby_character);
     exit(1);
   }
 }
