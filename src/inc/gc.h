@@ -46,13 +46,15 @@ __attribute__((constructor)) GC_FUNC int
 GC_init2 (const char * file, int line);
 
 #ifdef GC_GENERATIONAL
+#ifdef GC_WB_RUNTIME
 // Return values:
 // 0 : success
 // 1 : error
 GC_FUNC int
 GC_set_wb_type (int wb_type);
-#else // GC_GENERATIONAL
+#else // GC_WB_RUNTIME
 #define GC_set_wb_type(wb_type) 0
+#endif // GC_WB_RUNTIME
 #endif // GC_GENERATIONAL
 
 // GC_malloc:

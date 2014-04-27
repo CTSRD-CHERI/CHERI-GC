@@ -158,7 +158,7 @@ lookup (GC_CAP char * name, GC_CAP env_t * env)
   }
   fprintf(stderr, "unbound variable: %s\n", (char*) name);
   exit(1);
-  return GC_INVALID_PTR; // should never reach here
+  return GC_INVALID_PTR(); // should never reach here
 }
 
 GC_USER_FUNC GC_CAP val_t *
@@ -167,18 +167,18 @@ eval (GC_CAP expr_t * expr, GC_CAP env_t * env)
   if (!PTR_VALID(expr))
   {
     printf("eval: invalid expression\n");
-    return GC_INVALID_PTR;
+    return GC_INVALID_PTR();
   }
   switch (((expr_t*)expr)->type)
   {
     case EXPR_IF:
     {
-      GC_CAP val_t * cond = GC_INVALID_PTR;
+      GC_CAP val_t * cond = GC_INVALID_PTR();
       GC_STORE_CAP(
         cond,
         eval((((if_expr_t*) ((expr_t*)expr)->if_expr))->cond, env));
       if (!PTR_VALID(cond))
-        return GC_INVALID_PTR;
+        return GC_INVALID_PTR();
       if ( ((val_t *) cond)->type != VAL_NUM )
       {
         fprintf(stderr, "eval: type error: if condition not a number\n");
@@ -200,7 +200,7 @@ eval (GC_CAP expr_t * expr, GC_CAP env_t * env)
     }
     case EXPR_NUM:
     {
-      GC_CAP val_t * val = GC_INVALID_PTR;
+      GC_CAP val_t * val = GC_INVALID_PTR();
       GC_STORE_CAP(val, ml_malloc(sizeof(val_t)));
       if (!PTR_VALID(val))
       {
@@ -208,7 +208,7 @@ eval (GC_CAP expr_t * expr, GC_CAP env_t * env)
         exit(1);
       }
       ((val_t*) val)->type = VAL_NUM;
-      ((val_t*) val)->num_val = GC_INVALID_PTR;
+      ((val_t*) val)->num_val = GC_INVALID_PTR();
       GC_STORE_CAP(((val_t*) val)->num_val, ml_malloc(sizeof(num_val_t)));
       if (!PTR_VALID(((val_t*) val)->num_val))
       {
@@ -224,10 +224,10 @@ eval (GC_CAP expr_t * expr, GC_CAP env_t * env)
       // No short-circuiting for operators and no call-by-name for now.
       // Can emulate call-by-name by passing a function by value instead if need
       // be..
-      GC_CAP val_t * a = GC_INVALID_PTR;
+      GC_CAP val_t * a = GC_INVALID_PTR();
       GC_STORE_CAP(a, 
         eval( (((op_expr_t*) ((expr_t*)expr)->op_expr))->a, env ) );
-      GC_CAP val_t * b = GC_INVALID_PTR;
+      GC_CAP val_t * b = GC_INVALID_PTR();
       GC_STORE_CAP(b, 
         eval( (((op_expr_t*) ((expr_t*)expr)->op_expr))->b, env ) );
 
@@ -250,7 +250,7 @@ eval (GC_CAP expr_t * expr, GC_CAP env_t * env)
         num_t b_num = ((num_val_t *) (((val_t *) b)->num_val))->num;
         num_t result = 0;
 
-        GC_CAP val_t * val = GC_INVALID_PTR;
+        GC_CAP val_t * val = GC_INVALID_PTR();
         GC_STORE_CAP(val, ml_malloc(sizeof(val_t)));
         if (!PTR_VALID(val))
         {
@@ -258,7 +258,7 @@ eval (GC_CAP expr_t * expr, GC_CAP env_t * env)
           exit(1);
         }
         ((val_t*) val)->type = VAL_NUM;
-        ((val_t*) val)->num_val = GC_INVALID_PTR;
+        ((val_t*) val)->num_val = GC_INVALID_PTR();
         GC_STORE_CAP(((val_t*) val)->num_val, ml_malloc(sizeof(num_val_t)));
         if (!PTR_VALID(((val_t*) val)->num_val))
         {
@@ -319,28 +319,28 @@ eval (GC_CAP expr_t * expr, GC_CAP env_t * env)
         }
         
         // add new environment entry to the function value's saved environment
-        GC_CAP env_t * new_env = GC_INVALID_PTR;
+        GC_CAP env_t * new_env = GC_INVALID_PTR();
         GC_STORE_CAP(new_env, ml_malloc(sizeof(env_t)));
         if (!PTR_VALID(new_env))
         {
           fprintf(stderr, "eval: out of memory allocating env_t\n");
           exit(1);
         }
-        ((env_t *) new_env)->name = GC_INVALID_PTR;
+        ((env_t *) new_env)->name = GC_INVALID_PTR();
         GC_STORE_CAP(((env_t *) new_env)->name,
           ((fn_val_t *) (((val_t *) a)->fn_val))->name);
-        ((env_t *) new_env)->val = GC_INVALID_PTR;
+        ((env_t *) new_env)->val = GC_INVALID_PTR();
         GC_STORE_CAP(((env_t *) new_env)->val, b);
-        ((env_t *) new_env)->next = GC_INVALID_PTR;
+        ((env_t *) new_env)->next = GC_INVALID_PTR();
         GC_STORE_CAP(((env_t *) new_env)->next,
           ((fn_val_t *) (((val_t *) a)->fn_val))->env);
         return eval(((fn_val_t *) (((val_t *) a)->fn_val))->body, new_env);
       }
-      return GC_INVALID_PTR; // should never reach here
+      return GC_INVALID_PTR(); // should never reach here
     }
     case EXPR_FN:
     {
-      GC_CAP val_t * val = GC_INVALID_PTR;
+      GC_CAP val_t * val = GC_INVALID_PTR();
       GC_STORE_CAP(val, ml_malloc(sizeof(val_t)));
       if (!PTR_VALID(val))
       {
@@ -348,27 +348,27 @@ eval (GC_CAP expr_t * expr, GC_CAP env_t * env)
         exit(1);
       }
       ((val_t*) val)->type = VAL_FN;
-      ((val_t*) val)->fn_val = GC_INVALID_PTR;
+      ((val_t*) val)->fn_val = GC_INVALID_PTR();
       GC_STORE_CAP(((val_t*) val)->fn_val, ml_malloc(sizeof(fn_val_t)));
       if (!PTR_VALID(((val_t*) val)->fn_val))
       {
         fprintf(stderr, "eval: out of memory allocating fn_val_t\n");
         exit(1);
       }
-      ((fn_val_t *) (((val_t*) val)->fn_val))->name = GC_INVALID_PTR;
+      ((fn_val_t *) (((val_t*) val)->fn_val))->name = GC_INVALID_PTR();
       GC_STORE_CAP(((fn_val_t *) (((val_t*) val)->fn_val))->name, 
         (((fn_expr_t*) ((expr_t*)expr)->fn_expr))->name);
-      ((fn_val_t *) (((val_t*) val)->fn_val))->body = GC_INVALID_PTR;
+      ((fn_val_t *) (((val_t*) val)->fn_val))->body = GC_INVALID_PTR();
       GC_STORE_CAP(((fn_val_t *) (((val_t*) val)->fn_val))->body,
         (((fn_expr_t*) ((expr_t*)expr)->fn_expr))->body);
-      ((fn_val_t *) (((val_t*) val)->fn_val))->env = GC_INVALID_PTR;
+      ((fn_val_t *) (((val_t*) val)->fn_val))->env = GC_INVALID_PTR();
       GC_STORE_CAP(((fn_val_t *) (((val_t*) val)->fn_val))->env, env);
       return val;
     }
     default:
     {
       printf("unknown expression type %d\n", ((expr_t*)expr)->type);
-      return GC_INVALID_PTR;
+      return GC_INVALID_PTR();
     }
   }
 }

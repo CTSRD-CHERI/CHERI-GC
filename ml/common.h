@@ -42,8 +42,8 @@ void
 __LOCK_MALLOC (void);
 void
 __UNLOCK_MALLOC (void);
-#define ml_malloc(x)           cheri_getbase(GC_MALLOC((x)))
-#define  GC_INVALID_PTR     NULL
+#define  ml_malloc(x)       cheri_getbase(GC_MALLOC((x)))
+#define  GC_INVALID_PTR()   NULL
 #define  GC_PTR_VALID(x)    ((x) != NULL)
 // --------------------End   GC_BOEHM-------------------
 #elif defined(GC_NONE)
@@ -62,7 +62,7 @@ __UNLOCK_MALLOC (void);
 #define  GC_CAP             __capability
 #define  GC_init()
 #define  GC_PTR_VALID(x)   ( ((void*)(cheri_getbase(x))) != NULL)
-#define  GC_INVALID_PTR     GC_cheri_ptr(NULL, 0)
+#define  GC_INVALID_PTR()  NULL
 GC_USER_FUNC GC_CAP void *
 ml_no_gc_malloc (size_t sz);
 #define ML_ALIGN_32(p) \

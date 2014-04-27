@@ -9,7 +9,7 @@ GC_USER_FUNC GC_CAP char *
 copy_string (GC_CAP const char * str)
 {
   size_t len = strlen((const char *) str)+1;
-  GC_CAP char * copy = GC_INVALID_PTR;
+  GC_CAP char * copy = GC_INVALID_PTR();
   GC_STORE_CAP(copy, ml_malloc(len));
   if (!PTR_VALID(copy))
   {
@@ -33,13 +33,13 @@ lex_read_file (GC_CAP const char * name)
   
   // A very inefficient way of reading a file, designed to stress the collector.
   lex_state.max = 0;
-  lex_state.file = GC_INVALID_PTR;
+  lex_state.file = GC_INVALID_PTR();
   lex_state.index = 0;
   char c;
   while (fread(&c, 1, 1, file) == 1)
   {
     lex_state.max++;
-    GC_CAP char * tmp = GC_INVALID_PTR;
+    GC_CAP char * tmp = GC_INVALID_PTR();
     GC_STORE_CAP(tmp, ml_malloc(lex_state.max));
     if (!PTR_VALID(tmp))
     {
@@ -62,7 +62,7 @@ GC_USER_FUNC void
 lex_read_string (GC_CAP const char * str)
 {
   lex_state.num_tokens = 0;
-  lex_state.file = GC_INVALID_PTR;
+  lex_state.file = GC_INVALID_PTR();
   GC_STORE_CAP(lex_state.file, copy_string(str));
   if (!PTR_VALID(lex_state.file))
   {
@@ -93,7 +93,7 @@ lex_read_string (GC_CAP const char * str)
 GC_USER_FUNC GC_CAP token_t *
 lex (void)
 {
-  GC_CAP token_t * t = GC_INVALID_PTR;
+  GC_CAP token_t * t = GC_INVALID_PTR();
   GC_STORE_CAP(t, ml_malloc(sizeof(token_t)));
   ((token_t*)t)->type = TKEOF;
   ((token_t*)t)->nearby_character = lex_state.index;
@@ -104,7 +104,7 @@ lex (void)
 #define LEX_APPEND_STR(c) \
   do { \
     ((token_t*)t)->len++; \
-    GC_CAP char * tmp = GC_INVALID_PTR; \
+    GC_CAP char * tmp = GC_INVALID_PTR(); \
     GC_STORE_CAP(tmp, ml_malloc(((token_t*)t)->len)); \
     if (!PTR_VALID(tmp)) \
     { \
@@ -119,7 +119,7 @@ lex (void)
 #define LEX_INIT_STR(c) \
   do { \
     ((token_t*)t)->len = 1; \
-    ((token_t*)t)->str = GC_INVALID_PTR; \
+    ((token_t*)t)->str = GC_INVALID_PTR(); \
     GC_STORE_CAP(((token_t*)t)->str, ml_malloc(1)); \
     if (!PTR_VALID(((token_t*)t)->str)) \
     { \

@@ -27,7 +27,7 @@ ml_no_gc_malloc (size_t sz)
   if (p)
     return GC_cheri_ptr(ML_ALIGN_32(p), sz);
   else
-    return GC_INVALID_PTR;
+    return GC_INVALID_PTR();
 }
 #endif // GC_NONE
 
@@ -128,7 +128,7 @@ GC_USER_FUNC int main (int argc, char ** argv)
   
   parse_init();
   
-  GC_CAP expr_t * expr = GC_INVALID_PTR;
+  GC_CAP expr_t * expr = GC_INVALID_PTR();
   GC_STORE_CAP(expr, parse());
   
   printf("AST:\n");
@@ -154,8 +154,8 @@ GC_USER_FUNC int main (int argc, char ** argv)
   printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~done collecting loads\n");
   GC_debug_print_region_stats(&GC_state.thread_local_region);*/
   
-  GC_CAP val_t * val = GC_INVALID_PTR;
-  GC_STORE_CAP(val, eval(expr, GC_INVALID_PTR));
+  GC_CAP val_t * val = GC_INVALID_PTR();
+  GC_STORE_CAP(val, eval(expr, GC_INVALID_PTR()));
   
   printf("eval: ");
   print_val(val);
