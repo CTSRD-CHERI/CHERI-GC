@@ -30,7 +30,7 @@
 #define tf_cheri_getbase    GC_cheri_getbase
 #define tf_cheri_getlen     GC_cheri_getlen
 #define tf_cheri_gettag     GC_cheri_gettag
-#define tf_invalid_ptr      GC_INVALID_PTR
+#define tf_invalid_ptr      GC_INVALID_PTR()
 #define tf_ptr_valid        GC_PTR_VALID
 //#define tf_gc_init          GC_init
 #define tf_gc_init()        0

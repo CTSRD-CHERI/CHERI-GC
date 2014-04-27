@@ -94,7 +94,7 @@ parse_op (GC_CAP const char * op,
 GC_USER_FUNC GC_CAP expr_t * \
   parse_op__##lower_precedence_func(GC_CAP const char * op) \
 { \
-  size_t oplen = strlen((const char *) op)+1; \
+  size_t oplen = cstrlen(op)+1; \
   GC_CAP expr_t * expr = GC_INVALID_PTR(); \
   GC_STORE_CAP(expr, ml_malloc(sizeof(expr_t))); \
   if (!PTR_VALID(expr)) \
@@ -442,7 +442,7 @@ parse_tok_eq (int type, GC_CAP const char * str)
     PTR_VALID(str) &&
     (type == parse_state.tok->type) &&
     PTR_VALID(parse_state.tok->str) &&
-    (!strcmp((const char*)str,(char*)parse_state.tok->str))
+    (!cstrcmp(str,parse_state.tok->str))
   ) ||
   (
     !PTR_VALID(str) &&

@@ -14,6 +14,7 @@ CLOUD2_USER=mbv21
 CLOUD2_PASSWORD=mbv21
 CLOUD2_ADDR=cloud2
 CLOUD2_FILE_ZFS=/mnt/mbv21zfs/cloud2gc2test
+CLOUD2_FILE_ZFS_MLTEST=/mnt/mbv21zfs/cloud2mltest
 
 # To test against the Boehm collector
 BOEHM_GC_DIR=../gc1/gc-7.2
@@ -109,6 +110,7 @@ run:
 CMD3=scp -i $(SSH_PRIV_KEY) objects/mltest $(WENGER_USER)@$(WENGER_ADDR):$(WENGER_FILE_ZFS_MLTEST)
 CMD4=scp -i $(SSH_PRIV_KEY) objects/mltest-boehm $(WENGER_USER)@$(WENGER_ADDR):$(WENGER_FILE_ZFS_MLTEST_BOEHM)
 CMD5=scp -i $(SSH_PRIV_KEY) objects/mltest-no-gc $(WENGER_USER)@$(WENGER_ADDR):$(WENGER_FILE_ZFS_MLTEST_NO_GC)
+CMD6=ssh $(CLOUD2_USER)@$(CLOUD2_ADDR) $(CLOUD2_FILE_ZFS_MLTEST)
 pushml:
 	echo "[i] pushing file to wenger ZFS" && \
 	echo -e "set timeout 60\nspawn $(CMD3)\nexpect \": \"\nsend \"$(PASSWORD)\\\\n\"\ninteract\n" > cloud4_push_helper.expect && \
@@ -122,6 +124,11 @@ pushml-boehm:
 pushml-no-gc:
 	echo "[i] pushing file to wenger ZFS" && \
 	echo -e "set timeout 60\nspawn $(CMD5)\nexpect \": \"\nsend \"$(PASSWORD)\\\\n\"\ninteract\n" > cloud4_push_helper.expect && \
+	expect -f cloud4_push_helper.expect && \
+	rm -f cloud4_push_helper.expect
+runml:
+	echo "[i] running executable on cloud2" && \
+	echo -e "set timeout 60\nspawn $(CMD6)\nexpect \": \"\nsend \"$(PASSWORD)\\\\n\"\nexpect \":\"\nsend \"$(CLOUD2_PASSWORD)\\\\n\"\ninteract\n" > cloud4_push_helper.expect && \
 	expect -f cloud4_push_helper.expect && \
 	rm -f cloud4_push_helper.expect
 everything: clean lib gctest push run loc

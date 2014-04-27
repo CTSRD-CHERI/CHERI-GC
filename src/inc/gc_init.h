@@ -29,7 +29,7 @@ struct GC_region
 #if (GC_OY_STORE_DEFAULT == GC_OY_STORE_REMEMBERED_SET)
   struct GC_remembered_set * remset;
 #endif // GC_OY_STORE_DEFAULT
-  
+
 #endif // GC_GENERATIONAL
 #ifdef GC_GROW_HEAP
   size_t max_grow_size_before_collection;

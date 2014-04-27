@@ -304,7 +304,7 @@ GC_cap_memclr (GC_cap_ptr dest)
 GC_FUNC __capability void * __capability *
 GC_handle_oy_store (__capability void * __capability * x, GC_cap_ptr y)
 {
-  GC_dbgf("old-young store : *(0x%llx) := 0x%llx", (GC_ULL) x, (GC_ULL) y);
+  GC_vdbgf("old-young store : *(0x%llx) := 0x%llx", (GC_ULL) x, (GC_ULL) y);
   
   //GC_fatalf("unhandled for now, quitting.");
   

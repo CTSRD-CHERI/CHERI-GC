@@ -9,15 +9,15 @@
 #define GC_BOEHM_MAX_HEAP_SIZE                0//1900000
 
 #define GC_THREAD_LOCAL_HEAP_SIZE                              1000
-#define GC_OLD_GENERATION_SEMISPACE_SIZE                       50000
+#define GC_OLD_GENERATION_SEMISPACE_SIZE                       9000000
 
 // Maximum sizes for when the heap does grow. Set to 0 to allow unlimited
 // growth.
 // TODO: the 0 setting
-#define GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION        15000
-#define GC_THREAD_LOCAL_HEAP_MAX_SIZE                          15000
-#define GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION 60000
-#define GC_OLD_GENERATION_SEMISPACE_MAX_SIZE                   70000
+#define GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION        1000
+#define GC_THREAD_LOCAL_HEAP_MAX_SIZE                          1000
+#define GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION 9000000
+#define GC_OLD_GENERATION_SEMISPACE_MAX_SIZE                   9000000
 
 // Determines whether we use generational GC or not. If disabled, only
 // copying collection is implemented.
@@ -67,11 +67,14 @@
 // Used by GC_collect to clear the fromspace
 #define GC_MAGIC_JUST_CLEARED_FROMSPACE       0x48      // 'H'
 
-// Used by GC_reset_region and GC_gen_promote to clear the tospace
+// Used by GC_reset_region to clear the tospace
 #define GC_MAGIC_JUST_CLEARED_TOSPACE         0x49      // 'I'
 
 // Used by GC_low_realloc
 #define GC_MAGIC_JUST_FREED                   0x4A      // 'J'
+
+// Used by GC_gen_promote to clear the young tospace
+#define GC_MAGIC_JUST_CLEARED_YOUNG_TOSPACE   0x4B      // 'H'
 
 // ----HEAP GROWING----
 // Current policies with GC_GENERATIONAL turned on:

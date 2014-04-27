@@ -75,4 +75,16 @@ ml_no_gc_malloc (size_t sz);
 
 #include <stdlib.h>
 
+// These are not necessarily capability-aware, but are just here because of the
+// type issue (casts to standard pointers lose capability tracking, often
+// unpredictably).
+GC_USER_FUNC GC_CAP void *
+cmemset (GC_CAP void * ptr, int value, size_t num);
+GC_USER_FUNC GC_CAP void *
+cmemcpy (GC_CAP void * dest, GC_CAP const void * source, size_t num);
+GC_USER_FUNC int
+cstrcmp (GC_CAP const char * str1, GC_CAP const char * str2);
+GC_USER_FUNC size_t
+cstrlen (GC_CAP const char * str);
+
 #endif // COMMON_H_HEADER

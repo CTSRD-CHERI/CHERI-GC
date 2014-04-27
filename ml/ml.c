@@ -34,6 +34,31 @@ ml_no_gc_malloc (size_t sz)
 GC_USER_FUNC void
 ml_print_gc_stats (void);
 
+#include <string.h>
+GC_USER_FUNC GC_CAP void *
+cmemset (GC_CAP void * ptr, int value, size_t num)
+{
+  memset((void*)ptr, value, num);
+  return ptr;
+}
+GC_USER_FUNC GC_CAP void *
+cmemcpy (GC_CAP void * dest, GC_CAP const void * source, size_t num)
+{
+  memcpy((void*)dest, (const void*)source, num);
+  return dest;
+}
+GC_USER_FUNC int
+cstrcmp (GC_CAP const char * str1, GC_CAP const char * str2)
+{
+  return strcmp((const char*)str1, (const char*)str2);
+}
+GC_USER_FUNC size_t
+cstrlen (GC_CAP const char * str)
+{
+  return strlen((const char*)str);
+}
+
+
 /* What we require from the GC:
 
   GC_init

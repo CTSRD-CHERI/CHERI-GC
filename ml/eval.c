@@ -47,7 +47,7 @@ print_env (GC_CAP env_t * env)
 
 GC_USER_FUNC void
 print_ast (GC_CAP expr_t * expr)
-{
+{printf("\n");
   if (!PTR_VALID(expr))
   {
     printf("(invalid expression)");
@@ -108,7 +108,9 @@ print_ast (GC_CAP expr_t * expr)
         fprintf(stderr, "Invalid op_expr->op\n");
         exit(1);
       }
-      size_t oplen = strlen((const char *) expr->op_expr->op)+1;
+      printf("expr->op_expr is 0x%llx\n", (unsigned long long) (void*) expr->op_expr);
+      printf("expr->op_expr->op is 0x%llx\n", (unsigned long long) (void*) expr->op_expr->op);
+      size_t oplen = cstrlen(expr->op_expr->op)+1;
       if (oplen > 1)
       {
         printf("op(%s,", (char *) expr->op_expr->op);
@@ -147,7 +149,7 @@ lookup (GC_CAP char * name, GC_CAP env_t * env)
 {
   while (PTR_VALID(env))
   {
-    if (!strcmp((char *) name, (char *) env->name))
+    if (!cstrcmp(name, env->name))
     {
       return env->val;
     }
@@ -223,7 +225,7 @@ eval (GC_CAP expr_t * expr, GC_CAP env_t * env)
       GC_CAP val_t * b = GC_INVALID_PTR();
       GC_STORE_CAP(b, eval(expr->op_expr->b, env));
 
-      size_t oplen = strlen((const char *) expr->op_expr->op)+1;
+      size_t oplen = cstrlen(expr->op_expr->op)+1;
       if (oplen > 1)
       {
         if ( a->type != VAL_NUM )

@@ -15,7 +15,7 @@ GC_FUNC int
 GC_remembered_set_add (struct GC_remembered_set * remset,
                        void * address)
 {
-  GC_dbgf("adding to remembered set: 0x%llx", (GC_ULL) address);
+  GC_vdbgf("adding to remembered set: 0x%llx", (GC_ULL) address);
   
   GC_assert( address );
   GC_assert( GC_IS_ALIGNED_32(address) );

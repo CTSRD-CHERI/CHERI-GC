@@ -862,10 +862,12 @@ GC_debug_dump (void)
   GC_DEF_PRINT_STATUS("GC_DEBUG_TRACK_ALLOCATIONS", "off");
 #endif // GC_DEBUG_TRACK_ALLOCATIONS
 
+#ifdef GC_GENERATIONAL
   GC_SWITCH_WB_TYPE(
     {printf("Write barrier type is GC_WB_MANUAL\n");},      // GC_WB_MANUAL
     {printf("Write barrier type is GC_WB_EPHEMERAL\n");}    // GC_WB_EPHEMERAL
   );
+#endif // GC_GENERATIONAL
 
   GC_DEF_PRINTI(GC_COLLECT_ON_ALLOCATION_FAILURE);
   

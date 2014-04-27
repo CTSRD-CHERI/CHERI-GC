@@ -192,7 +192,6 @@ GC_copy_region (struct GC_region * region,
     region, GC_state.static_bottom, GC_state.state_bottom, is_generational, 1);
   GC_copy_roots(
     region, GC_state.state_top, GC_state.static_top, is_generational, 1);
-  GC_copy_children(region, is_generational);
 #ifdef GC_GENERATIONAL
 #if (GC_OY_STORE_DEFAULT == GC_OY_STORE_REMEMBERED_SET)
   if (is_generational)
@@ -201,6 +200,7 @@ GC_copy_region (struct GC_region * region,
   }
 #endif // GC_OY_STORE_DEFAULT
 #endif // GC_GENERATIONAL
+  GC_copy_children(region, is_generational);
 
   // TODO: ensure no forwarding addresses left in registers.
   /*GC_clean_forwarding(
@@ -461,7 +461,7 @@ GC_copy_remembered_set (struct GC_region * region)
       GC_dbgf("[%d] Processing remembered root 0x%llx containing address 0x%llx",
         (int) i, (GC_ULL) root, (GC_ULL) *(GC_cap_ptr*)root );
       GC_copy_child(region, root, 1);
-      printf("[%d] Remembered root 0x%llx now contains 0x%llx\n", 
+      GC_vdbgf("[%d] Remembered root 0x%llx now contains 0x%llx\n", 
         (int) i, (GC_ULL) root, (GC_ULL) *(GC_cap_ptr*)root );
     }
     GC_remembered_set_clr(region->remset);
@@ -537,8 +537,22 @@ GC_gen_promote (struct GC_region * region, int force_major_collection)
   region->older_region->remset = old_remset;
   region->free = region->tospace;
 
+
+  {
+    GC_CAP void ** start = GC_cheri_getbase(region->older_region->tospace),
+                ** end   = GC_cheri_getbase(region->older_region->free),
+                ** p;
+    for (p=start; p<end; p++)
+    {
+      if (GC_IN(GC_cheri_getbase(*p), region->tospace))
+      {
+        GC_PRINT_CAP(*p);
+        GC_fatalf("Bad pointer: p=0x%llx\n", (GC_ULL) GC_cheri_getbase(p));
+      }
+    }
+  }
 #ifdef GC_DEBUG
-  GC_cap_memset(region->tospace, GC_MAGIC_JUST_CLEARED_TOSPACE);
+  GC_cap_memset(region->tospace, GC_MAGIC_JUST_CLEARED_YOUNG_TOSPACE);
 #endif // GC_DEBUG
   
   void * newfree = GC_cheri_getbase(region->older_region->free);

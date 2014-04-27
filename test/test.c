@@ -445,7 +445,12 @@ bintree_print (GC_CAP bintree * tree, int depth)
   }
   else
   {
-    if ((void*)tree->left) GC_debug_dump(); // DEBUG
+    if ((void*)tree->left)
+    {
+      GC_debug_dump(); // DEBUG
+      GC_PRINT_CAP(tree->left);
+      printf("tree->left is 0x%llx\n", (GC_ULL) tree->left);
+    }
     TEST_ASSERT( !(void*)tree->left );
     TEST_ASSERT( !(void*)tree->right );
   }

@@ -8,7 +8,7 @@
 GC_USER_FUNC GC_CAP char *
 copy_string (GC_CAP const char * str)
 {
-  size_t len = strlen((const char *) str)+1;
+  size_t len = cstrlen(str)+1;
   GC_CAP char * copy = GC_INVALID_PTR();
   GC_STORE_CAP(copy, ml_malloc(len));
   if (!PTR_VALID(copy))
@@ -16,7 +16,7 @@ copy_string (GC_CAP const char * str)
     fprintf(stderr, "copy_string(): out of memory\n");
     exit(1);
   }
-  memcpy((char*)copy, (const char*)str, len);
+  cmemcpy(copy, str, len);
   return copy;
 }
 
@@ -46,10 +46,10 @@ lex_read_file (GC_CAP const char * name)
       fprintf(stderr, "out of memory reading file %s\n", (const char *) name);
       exit(1);
     }
-    memset((char*) tmp, 0, lex_state.max);
+    cmemset(tmp, 0, lex_state.max);
     if (PTR_VALID(lex_state.file))
     {
-      memcpy((char *) tmp, (char *) lex_state.file, lex_state.max-1);
+      cmemcpy(tmp, lex_state.file, lex_state.max-1);
     }
     GC_STORE_CAP(lex_state.file, tmp);
     lex_state.file[lex_state.max-1] = c;
@@ -71,7 +71,7 @@ lex_read_string (GC_CAP const char * str)
   }
   //GC_debug_track_allocated(lex_state.file, "lex_state file");
   lex_state.index = 0;
-  lex_state.max = strlen((const char *) str);
+  lex_state.max = cstrlen(str);
 }
 
 #define LEX_IS_SYM(c) ( \
@@ -111,7 +111,7 @@ lex (void)
       fprintf(stderr, "out of memory lexing string\n"); \
       exit(1); \
     } \
-    memcpy((char *) tmp, (char *) t->str, t->len-1); \
+    cmemcpy(tmp, t->str, t->len-1); \
     GC_STORE_CAP(t->str, tmp); \
     t->str[t->len-1] = (c); \
   } while (0)
