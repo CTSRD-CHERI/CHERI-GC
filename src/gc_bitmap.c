@@ -63,17 +63,30 @@ GC_bitmap_find (struct GC_bitmap * bitmap,
   return 1;
 }
 
-GC_FUNC size_t
+GC_FUNC int
 GC_bitmap_get_container (struct GC_bitmap * bitmap,
-                         size_t pos)
+                         size_t pos,
+                         size_t * relbase_out,
+                         size_t * len_out)
 {
   size_t opos = pos;
-  if (pos >= bitmap->used) return -1;
+  if (pos >= bitmap->used) return 0;
   while (1)
   {
-    if (GC_BITMAP_GET(bitmap, pos)) return opos-pos;
+    if (GC_BITMAP_GET(bitmap, pos))
+    {
+      *relbase_out = opos-pos;
+      *len_out = 1;
+      pos++;
+      while ((pos != bitmap->used) && !GC_BITMAP_GET(bitmap, pos))
+      {
+        (*len_out)++;
+        pos++;
+      }
+      return 1;
+    }
     if (!pos) break;
     pos--;
   }
-  return -1;
+  return 0;
 }

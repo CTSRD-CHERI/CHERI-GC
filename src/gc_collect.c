@@ -327,20 +327,32 @@ GC_copy_roots (struct GC_region * region,
         && GC_IS_GC_ALLOCATED(*p)
         && GC_IN(GC_cheri_getbase(*p), region->fromspace))
     {
-      size_t offset = 0;
+      size_t offset = -1;
+      size_t polen = GC_cheri_getlen(*p);
       if (!GC_IS_IN_FROMSPACE_BITMAP(region, *p))
       {
         // This could be an internal pointer. GC_FROMSPACE_BITMAP_GET_CONTAINER
         // gives us the number of bytes forwards this internal pointer is from
         // the start of the object. We copy the whole object, then adjust for
         // the offset later.
-        offset = GC_FROMSPACE_BITMAP_GET_CONTAINER(region, *p);
-        if (offset==(size_t)-32) continue;
-        
+        size_t len = 0;
+        if (!GC_bitmap_get_container(
+          region->fromspace_bitmap,
+          (GC_cheri_getbase(*p) - GC_cheri_getbase(region->fromspace))/sizeof(GC_cap_ptr),
+          &offset, &len))
+        {
+          continue;
+        }
+        offset *= sizeof(GC_cap_ptr);
+        len *= sizeof(GC_cap_ptr);
+        printf("offset is %d\n", (int) offset);
+        GC_PRINT_CAP(*p);
         // i.e. *p -= offset
-        *p = GC_setbaselen(
-          *p, GC_cheri_getbase(*p)-offset, GC_cheri_getlen(*p)+offset);
+        *p = GC_setbaselen(*p, GC_cheri_getbase(*p)-offset, len);
       }
+      
+      GC_assert(GC_IS_IN_FROMSPACE_BITMAP(region, *p));
+      
       GC_vdbgf("[root] [%d%%] location=0x%llx (%s?), b=0x%llx, l=0x%llx",
       (int) (
         100.0*
@@ -368,8 +380,7 @@ GC_copy_roots (struct GC_region * region,
       if (offset!=(size_t)-1)
       {
         // i.e. *p += offset
-        *p = GC_setbaselen(
-          *p, GC_cheri_getbase(*p)+offset, GC_cheri_getlen(*p)-offset);
+        *p = GC_setbaselen(*p, GC_cheri_getbase(*p)+offset, polen);
       }
       
     }
@@ -388,17 +399,27 @@ GC_copy_child (struct GC_region * region,
     && GC_IS_GC_ALLOCATED(*child_addr))
        // necessary now for remembered set too
   {
-    size_t offset = 0;
+    size_t offset = -1;
+    size_t polen = GC_cheri_getlen(*child_addr);
     if (!GC_IS_IN_FROMSPACE_BITMAP(region, *child_addr))
     {
       // See GC_copy_roots for explanation.
-      offset = GC_FROMSPACE_BITMAP_GET_CONTAINER(region, *child_addr);
-      if (offset==(size_t)-32) return;
-      *child_addr = GC_setbaselen(
-        *child_addr,
-        GC_cheri_getbase(*child_addr)-offset,
-        GC_cheri_getlen(*child_addr)+offset);
+      size_t len = 0;
+      if (!GC_bitmap_get_container(
+        region->fromspace_bitmap,
+        (GC_cheri_getbase(*child_addr) - GC_cheri_getbase(region->fromspace))/sizeof(GC_cap_ptr),
+        &offset, &len))
+      {
+        return;
+      }
+      offset *= sizeof(GC_cap_ptr);
+      len *= sizeof(GC_cap_ptr);
+      *child_addr =
+        GC_setbaselen(*child_addr, GC_cheri_getbase(*child_addr)-offset, len);
     }
+    
+    GC_assert(GC_IS_IN_FROMSPACE_BITMAP(region, *child_addr));
+    
     GC_vdbgf("[child] location=0x%llx, b=0x%llx, l=0x%llx",
       (GC_ULL) child_addr,
       (GC_ULL) *child_addr, 
@@ -416,14 +437,12 @@ GC_copy_child (struct GC_region * region,
       );
     }
 #endif // GC_GENERATIONAL
-    
     if (offset!=(size_t)-1)
     {
-      *child_addr = GC_setbaselen(
-        *child_addr,
-        GC_cheri_getbase(*child_addr)+offset,
-        GC_cheri_getlen(*child_addr)-offset);
+      *child_addr =
+        GC_setbaselen(*child_addr, GC_cheri_getbase(*child_addr)+offset, polen);
     }
+    
   }
 }
 
