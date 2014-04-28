@@ -177,8 +177,8 @@ typedef struct bintree_tag
   X_MACRO(malloc_time_test_with_collect, "Tests how long tf_malloc takes with collecting") \
   X_MACRO(allocate_loads, "Tests how long it takes to allocate a large amount of data") \
   X_MACRO(old_pause_time_test, "Measures pause time of GC_collect ONLY") \
-  X_MACRO(pause_time_test, "Measures collector pause time") \
-  */X_MACRO(experimental_test, "For experiments")
+  */X_MACRO(pause_time_test, "Measures collector pause time") \
+  /*X_MACRO(experimental_test, "For experiments")*/
 
 #define DECLARE_TEST(test,descr) \
 tf_func_t int \
@@ -421,7 +421,7 @@ DEFINE_TEST(old_pause_time_test)
 DEFINE_TEST(pause_time_test)
 {
   int number_of_allocations = 1000;
-  size_t allocation_size    = 1000000;
+  size_t allocation_size    = 1000;
   tf_printf(
     "Doing %d %llu%s allocations\n",
     number_of_allocations,

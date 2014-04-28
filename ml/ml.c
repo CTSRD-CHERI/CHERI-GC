@@ -129,7 +129,7 @@ GC_USER_FUNC int main (int argc, char ** argv)
   //  "((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn a . (g g) a)))) (fn f . fn n . if n then n * f (n-1) else 1)) 6";
 
   const char str[] =
-    "((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn fsoiosifosifsfskcxnvkxfsoiosifosifsfskcxnvkxfsoiosifosifsfskcxnvkxfsoiosifosifsfskcxnvkxfsoiosifosifsfskcxnvkxfsoiosifosifsfskcxnvkxfsoiosifosifsfskcxnvkxfsoiosifosifsfskcxnvkxfsoiosifosifsfskcxnvkxfsoiosifosifsfskcxnvkxfsoiosifosifsfskcxnvkxfsoiosifosifsfskcxnvkxfsoiosifosifsfskcxnvkxfsoiosifosifsfskcxnvkxfsoiosifosifsfskcxnvkxfsoiosifosifsfskcxnvkx . (g g) fsoiosifosifsfskcxnvkxfsoiosifosifsfskcxnvkxfsoiosifosifsfskcxnvkxfsoiosifosifsfskcxnvkxfsoiosifosifsfskcxnvkxfsoiosifosifsfskcxnvkxfsoiosifosifsfskcxnvkxfsoiosifosifsfskcxnvkxfsoiosifosifsfskcxnvkxfsoiosifosifsfskcxnvkxfsoiosifosifsfskcxnvkxfsoiosifosifsfskcxnvkxfsoiosifosifsfskcxnvkxfsoiosifosifsfskcxnvkxfsoiosifosifsfskcxnvkxfsoiosifosifsfskcxnvkx)))) (fn f . fn n . if n then n + f (n-1) else 1)) 60";
+    "((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 60";
 
   lex_read_string(GC_cheri_ptr((void *) str, sizeof(str)));
   printf("program: %s\n\n", str);
