@@ -418,10 +418,16 @@ DEFINE_TEST(old_pause_time_test)
   return 0;
 }
 
-DEFINE_TEST(pause_time_test)
+tf_func_t tf_time_t
+pause_time_test_helper (int number_of_allocations, size_t allocation_size)
 {
-  int number_of_allocations = 1000;
-  size_t allocation_size    = 1000;
+  // so that this function can be used many times in succession without previous
+  // objects affecting the results
+//#ifdef GC_CHERI
+  //GC_reset();
+//#endif // GC_CHERI
+  // TODO: similar for Boehm
+  
   tf_printf(
     "Doing %d %llu%s allocations\n",
     number_of_allocations,
@@ -438,6 +444,11 @@ DEFINE_TEST(pause_time_test)
     tf_free(p);
     tf_time_t after = tf_time();
     tf_time_t diff = after - before;
+    if (!tf_ptr_valid(p))
+    {
+      tf_printf("out of memory\n");
+      exit(1);
+    }
     //printf("allocated (%d).\n", (int) diff);
     if ((tot+diff) < tot)
     {
@@ -455,6 +466,52 @@ DEFINE_TEST(pause_time_test)
     tf_time_pretty(tot), tf_time_pretty_unit(tot), (tf_ull_t) tot,
     tf_time_pretty(tmin), tf_time_pretty_unit(tmin), (tf_ull_t) tmin,
     tf_time_pretty(tmax), tf_time_pretty_unit(tmax), (tf_ull_t) tmax);
+  return avg;
+}
+
+DEFINE_TEST(pause_time_test)
+{
+#if defined(GC_CHERI)
+#if defined(GC_GENERATIONAL)
+  tf_printf(
+    "[plot] # data for my generational GC (yI=%d yB=%d yA=%d oI=%d oB=%d oA=%d)\n",
+    (int) GC_THREAD_LOCAL_HEAP_SIZE,
+    (int) GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION,
+    (int) GC_THREAD_LOCAL_HEAP_MAX_SIZE,
+    (int) GC_OLD_GENERATION_SEMISPACE_SIZE,
+    (int) GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION,
+    (int) GC_OLD_GENERATION_SEMISPACE_MAX_SIZE);
+#else // GC_GENERATIONAL
+  tf_printf(
+    "[plot] # data for my copying GC (I=%d B=%d A=%d)\n",
+    (int) GC_THREAD_LOCAL_HEAP_SIZE,
+    (int) GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION,
+    (int) GC_THREAD_LOCAL_HEAP_MAX_SIZE);
+#endif // GC_GENERATIONAL
+#elif defined(GC_BOEHM)
+  tf_printf(
+    "[plot] # data for my Boehm GC (I=%d)\n",
+    (int) GC_get_heap_size());
+#elif defined(GC_NONE)
+  tf_printf("[plot] # data for no GC\n");
+#else
+  #error "Define one of GC_CHERI, GC_BOEHM, GC_NONE"
+#endif // GC selector
+
+  int number_of_allocations = 1000;
+  tf_printf("[plot] # %d allocations per iteration\n", number_of_allocations);
+  tf_printf("[plot] # allocation size (B)        avg pause time (us)\n");
+  
+  pause_time_test_helper(1000, 1000); // fill the heap first
+  
+  int i;
+  //for (i=0; i<=10; i++)
+  for (i=10; i>=0; i--)
+  {
+    size_t allocation_size = i*1000;
+    tf_time_t avg = pause_time_test_helper(number_of_allocations, allocation_size);
+    tf_printf("[plot] %d    %d\n", (int) allocation_size, (int) avg);
+  }
   return 0;
 }
 

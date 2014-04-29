@@ -145,9 +145,14 @@ result [1] avg=2088ms total=42s min=1323ms max=4147ms
 
 key: I=initial heap size, B=max grow before collecting, A=max grow after collecting, F=final measured heap size
 
+generational key: y=young, o=old
+
 1000 1000-byte allocations
 My collector: I=65536, B=A=F=196608: avg=195us, total=196ms, min=29us, max=59ms
 Boehm:        I=65536, F=196608:     avg=455us, total=456ms, min=22us, max=65ms
+My collector: I=B=A=F=65536, avg=97us, total=98ms, min=31us, max=26ms
+My collector: I=B=A=F=65536/2, avg=130us, total=131ms, min=29us, max=28ms
+My generational: yI=yB=yA=yF=oI=oB=oA=oF=65536, avg=139us, total=320ms, min=27us, max=35ms
 
 10,000 1000-byte allocations
 My collector: I=65536, B=A=F=196608: avg=67us, total=675ms, min=29us, max=84ms
@@ -189,8 +194,6 @@ My collector: I=65536, B=A=F=2453504:avg=199ms, total=199s, min=172ms, max=1063m
 ---ML test---
 (With -O2)
 Recursive sum of a series evaluated at 60
-
-key: y=young, o=old
 
 Boehm:           I=65536, F=65536, time=633ms,339ms,360ms,347ms
 My generational: yI=yB=yA=yF=6000, oI=65536, oB=oA=196608, oF=131072, time=436ms,462ms,426ms,455ms,411ms,452ms

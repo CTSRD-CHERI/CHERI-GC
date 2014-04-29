@@ -85,6 +85,13 @@ GC_major_collect (void);
 GC_FUNC void
 GC_minor_free (void);
 
+// Attempt to reset the collector internally. Should not be used normally, only
+// for testing the collector. Resets the free and scan pointers of all regions
+// without collecting. Does not reset any grown heaps. Resets statistics
+// collected about regions, except for those collected via timing.
+GC_FUNC void
+GC_reset (void);
+
 // the void* cast of GC_INVALID_PTR is guaranteed to be NULL
 //#define     GC_INVALID_PTR    cheri_zerocap()
 //#define GC_INVALID_PTR GC_cheri_ptr(NULL, 0)

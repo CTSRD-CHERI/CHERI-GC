@@ -302,10 +302,24 @@ GC_reset_region (struct GC_region * region)
 {
   region->free = region->tospace;
   region->scan = NULL;
+  region->num_allocations = 0;
+  region->num_collections = 0;
 #ifdef GC_USE_BITMAP
   GC_bitmap_clr(region->tospace_bitmap);
 #endif // GC_USE_BITMAP
+  
+  GC_cap_memset(region->tospace, 0);
+  
 #ifdef GC_DEBUG
   GC_cap_memset(region->tospace, GC_MAGIC_JUST_CLEARED_TOSPACE);
 #endif // GC_DEBUG
+}
+
+GC_FUNC void
+GC_reset (void)
+{
+  GC_reset_region(&GC_state.thread_local_region);
+#ifdef GC_GENERATIONAL
+  GC_reset_region(&GC_state.old_generation);
+#endif // GC_GENERATIONAL
 }

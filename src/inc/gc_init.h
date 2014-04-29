@@ -198,4 +198,12 @@ GC_init_region (struct GC_region * region,
 GC_FUNC void
 GC_reset_region (struct GC_region * region);
 
+// also declared in gc.h
+// Attempt to reset the collector internally. Should not be used normally, only
+// for testing the collector. Resets the free and scan pointers of all regions
+// without collecting. Does not reset any grown heaps. Resets statistics
+// collected about regions, except for those collected via timing.
+GC_FUNC void
+GC_reset (void);
+
 #endif // GC_INIT_H_HEADER

@@ -872,3 +872,4 @@ GC_minor_free (void)
 {
   GC_reset_region(&GC_state.thread_local_region);
 }
+
