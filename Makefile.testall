@@ -86,20 +86,21 @@ remote-script:
 	echo -e "\$$1\ni=1\nwhile [ \$$i -le 10 ]\ndo\n\$$1 data\ni=\`expr \$$i + 1\`\ndone" > objects/run10times.sh
 
 CLOUD2_PASSWORD=mbv21
-RUNCMD=ssh -i $(SSH_PRIV_KEY) mbv21@cloud2 $(CLOUD2_ZFS_MOUNT)/run10times.sh
+#RUNCMD=ssh -i $(SSH_PRIV_KEY) mbv21@cloud2 $(CLOUD2_ZFS_MOUNT)/run10times.sh
+RUNCMD=ssh -i $(SSH_PRIV_KEY) mbv21@cloud2
 run:
 	echo "[i] running tests on cloud2" && \
-	echo -e "set timeout 60\nspawn $(RUNCMD) $(CLOUD2_ZFS_MOUNT)/testall \nexpect \": \"\nsend \"$(PASSWORD)\\\\n\"\nexpect \":\"\nsend \"$(CLOUD2_PASSWORD)\\\\n\"\ninteract\n" > cloud4_push_helper.expect && \
-	expect -f cloud4_push_helper.expect | tee objects/run_output.sh && \
+	echo -e "set timeout 60\nspawn $(RUNCMD) $(CLOUD2_ZFS_MOUNT)/testall-no-gc \nexpect \": \"\nsend \"$(PASSWORD)\\\\n\"\nexpect \":\"\nsend \"$(CLOUD2_PASSWORD)\\\\n\"\ninteract\n" > cloud4_push_helper.expect && \
+	expect -f cloud4_push_helper.expect | tee objects/run_output && \
 	echo "[i] done running tests" && \
 	rm -f cloud4_push_helper.expect
 
 # parse and plot the run output
 plot:
-	cat objects/run_output.sh | grep "\[plotdata\]" | awk '{$$1="";print $$0;}' > objects/plot_data && \
-	cat objects/run_output.sh | grep "\[plotscript\]" | awk '{$$1="";print $$0;}' > objects/plot.gp && \
+	cat objects/run_output | grep "\[plotdata\]" | awk '{$$1="";print $$0;}' > objects/plot_data && \
+	cat objects/run_output | grep "\[plotscript\]" | awk '{$$1="";print $$0;}' > objects/plot.gp && \
 	rm -f objects/plot.png && \
 	gnuplot objects/plot.gp && \
 	qiv objects/plot.png
 
-#cat objects/run_output.sh | grep "\[plotdata\] #\|\[avg\]" | awk '{$$1="";if($$2=="[avg]")$$2="";print $$0;}' > objects/plot_data && \
+#cat objects/run_output | grep "\[plotdata\] #\|\[avg\]" | awk '{$$1="";if($$2=="[avg]")$$2="";print $$0;}' > objects/plot_data && \

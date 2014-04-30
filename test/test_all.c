@@ -546,9 +546,9 @@ DEFINE_TEST(pause_time_test)
   
   int i;
   //for (i=0; i<=10; i++)
-  for (i=10; i>=10; i--)
+  for (i=200; i>=0; i--)
   {
-    size_t allocation_size = i*1000;
+    size_t allocation_size = i*100;
     tf_time_t avg, min, max;
     pause_time_test_helper(number_of_allocations, allocation_size, &avg, &min, &max);
     /*tf_printf("[plot] [avg] %d    %d\n", (int) allocation_size, (int) avg);

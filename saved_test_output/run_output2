@@ -1,0 +1,1234 @@
+spawn ssh -i /home/munraj/.ssh/mbv21 mbv21@cloud2 /mnt/mbv21zfs//testall-boehm
+Enter passphrase for key '/home/munraj/.ssh/mbv21': 
+Password for mbv21@cloud2:
+Compiled for GC_BOEHM at 18:37:28 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] set terminal png
+[plotscript] set output "objects/plot.png"
+[plotscript] set title "Time taken for GC_malloc() averaged over 1000 allocations"
+[plotscript] set xlabel "Allocation size (B)"
+[plotscript] set ylabel "Pause time (us)"
+[plotscript] #set xrange [-2:2]
+[plotscript] #set yrange [-10:10]
+[plotscript] set zeroaxis
+[plotscript] #plot 'objects/plot_data' with yerrorbars
+[plotscript] plot 'objects/plot_data' with linespoints
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 485us (485)
+Total pause time 486ms (485848))
+Min pause 21us (21))
+Max pause 65ms (65099))
+Doing 1000 20kB allocations
+Average pause time 7ms (6946)
+Total pause time 6947ms (6946885))
+Min pause 753us (753))
+Max pause 66ms (66189))
+[plotdata] 20000   6946
+Doing 1000 20kB allocations
+Average pause time 7ms (6892)
+Total pause time 6892ms (6892056))
+Min pause 753us (753))
+Max pause 65ms (64970))
+[plotdata] 19900   6892
+Doing 1000 20kB allocations
+Average pause time 7ms (7419)
+Total pause time 7420ms (7419575))
+Min pause 753us (753))
+Max pause 98ms (97545))
+[plotdata] 19800   7419
+Doing 1000 20kB allocations
+Average pause time 7ms (7005)
+Total pause time 7006ms (7005820))
+Min pause 752us (752))
+Max pause 66ms (65808))
+[plotdata] 19700   7005
+Doing 1000 20kB allocations
+Average pause time 7ms (6904)
+Total pause time 6905ms (6904676))
+Min pause 753us (753))
+Max pause 66ms (65659))
+[plotdata] 19600   6904
+Doing 1000 20kB allocations
+Average pause time 7ms (6929)
+Total pause time 6930ms (6929538))
+Min pause 753us (753))
+Max pause 65ms (65198))
+[plotdata] 19500   6929
+Doing 1000 19kB allocations
+Average pause time 7ms (6918)
+Total pause time 6918ms (6918284))
+Min pause 753us (753))
+Max pause 66ms (65803))
+[plotdata] 19400   6918
+Doing 1000 19kB allocations
+Average pause time 7ms (6935)
+Total pause time 6936ms (6935694))
+Min pause 754us (754))
+Max pause 64ms (64167))
+[plotdata] 19300   6935
+Doing 1000 19kB allocations
+Average pause time 7ms (6947)
+Total pause time 6948ms (6947961))
+Min pause 753us (753))
+Max pause 66ms (66118))
+[plotdata] 19200   6947
+Doing 1000 19kB allocations
+Average pause time 7ms (6908)
+Total pause time 6909ms (6908699))
+Min pause 753us (753))
+Max pause 65ms (64585))
+[plotdata] 19100   6908
+Doing 1000 19kB allocations
+Average pause time 7ms (6937)
+Total pause time 6937ms (6937213))
+Min pause 753us (753))
+Max pause 65ms (65482))
+[plotdata] 19000   6937
+Doing 1000 19kB allocations
+Average pause time 7ms (6840)
+Total pause time 6840ms (6840306))
+Min pause 753us (753))
+Max pause 66ms (65517))
+[plotdata] 18900   6840
+Doing 1000 19kB allocations
+Average pause time 9ms (8798)
+Total pause time 8799ms (8798714))
+Min pause 753us (753))
+Max pause 584ms (583765))
+[plotdata] 18800   8798
+Doing 1000 19kB allocations
+Average pause time 7ms (6952)
+Total pause time 6952ms (6952452))
+Min pause 753us (753))
+Max pause 65ms (65050))
+[plotdata] 18700   6952
+Doing 1000 19kB allocations
+Average pause time 7ms (6912)
+Total pause time 6913ms (6912832))
+Min pause 754us (754))
+Max pause 67ms (66961))
+[plotdata] 18600   6912
+Doing 1000 19kB allocations
+Average pause time 7ms (6912)
+Total pause time 6913ms (6912749))
+Min pause 752us (752))
+Max pause 65ms (65147))
+[plotdata] 18500   6912
+Doing 1000 18kB allocations
+Average pause time 5ms (5388)
+Total pause time 5388ms (5388439))
+Min pause 753us (753))
+Max pause 75ms (75452))
+[plotdata] 18400   5388
+Doing 1000 18kB allocations
+Average pause time 5ms (5137)
+Total pause time 5138ms (5137513))
+Min pause 753us (753))
+Max pause 65ms (65270))
+[plotdata] 18300   5137
+Doing 1000 18kB allocations
+Average pause time 6ms (5823)
+Total pause time 5824ms (5823931))
+Min pause 754us (754))
+Max pause 750ms (749782))
+[plotdata] 18200   5823
+Doing 1000 18kB allocations
+Average pause time 5ms (5124)
+Total pause time 5124ms (5124231))
+Min pause 753us (753))
+Max pause 74ms (74132))
+[plotdata] 18100   5124
+Doing 1000 18kB allocations
+Average pause time 5ms (5129)
+Total pause time 5129ms (5129136))
+Min pause 753us (753))
+Max pause 65ms (65294))
+[plotdata] 18000   5129
+Doing 1000 18kB allocations
+Average pause time 5ms (5163)
+Total pause time 5163ms (5163289))
+Min pause 753us (753))
+Max pause 65ms (64665))
+[plotdata] 17900   5163
+Doing 1000 18kB allocations
+Average pause time 5ms (5148)
+Total pause time 5149ms (5148850))
+Min pause 753us (753))
+Max pause 64ms (64406))
+[plotdata] 17800   5148
+Doing 1000 18kB allocations
+Average pause time 5ms (5040)
+Total pause time 5040ms (5040200))
+Min pause 753us (753))
+Max pause 63ms (62820))
+[plotdata] 17700   5040
+Doing 1000 18kB allocations
+Average pause time 5ms (5407)
+Total pause time 5407ms (5407386))
+Min pause 754us (754))
+Max pause 71ms (71159))
+[plotdata] 17600   5407
+Doing 1000 18kB allocations
+Average pause time 5ms (5136)
+Total pause time 5137ms (5136828))
+Min pause 754us (754))
+Max pause 66ms (65650))
+[plotdata] 17500   5136
+Doing 1000 17kB allocations
+Average pause time 5ms (5150)
+Total pause time 5151ms (5150722))
+Min pause 753us (753))
+Max pause 66ms (66102))
+[plotdata] 17400   5150
+Doing 1000 17kB allocations
+Average pause time 5ms (5175)
+Total pause time 5176ms (5175819))
+Min pause 753us (753))
+Max pause 64ms (64252))
+[plotdata] 17300   5175
+Doing 1000 17kB allocations
+Average pause time 5ms (5148)
+Total pause time 5148ms (5148083))
+Min pause 754us (754))
+Max pause 65ms (64680))
+[plotdata] 17200   5148
+Doing 1000 17kB allocations
+Average pause time 5ms (5129)
+Total pause time 5130ms (5129597))
+Min pause 753us (753))
+Max pause 67ms (67117))
+[plotdata] 17100   5129
+Doing 1000 17kB allocations
+Average pause time 5ms (5135)
+Total pause time 5136ms (5135521))
+Min pause 753us (753))
+Max pause 75ms (74923))
+[plotdata] 17000   5135
+Doing 1000 17kB allocations
+Average pause time 5ms (5110)
+Total pause time 5110ms (5110303))
+Min pause 753us (753))
+Max pause 66ms (66362))
+[plotdata] 16900   5110
+Doing 1000 17kB allocations
+Average pause time 5ms (5118)
+Total pause time 5118ms (5118054))
+Min pause 752us (752))
+Max pause 65ms (65222))
+[plotdata] 16800   5118
+Doing 1000 17kB allocations
+Average pause time 5ms (5157)
+Total pause time 5157ms (5157373))
+Min pause 753us (753))
+Max pause 66ms (65741))
+[plotdata] 16700   5157
+Doing 1000 17kB allocations
+Average pause time 5ms (5140)
+Total pause time 5140ms (5140322))
+Min pause 753us (753))
+Max pause 65ms (65012))
+[plotdata] 16600   5140
+Doing 1000 17kB allocations
+Average pause time 5ms (5080)
+Total pause time 5081ms (5080873))
+Min pause 753us (753))
+Max pause 64ms (63905))
+[plotdata] 16500   5080
+Doing 1000 16kB allocations
+Average pause time 5ms (5135)
+Total pause time 5135ms (5135494))
+Min pause 753us (753))
+Max pause 66ms (65763))
+[plotdata] 16400   5135
+Doing 1000 16kB allocations
+Average pause time 4ms (4042)
+Total pause time 4043ms (4042823))
+Min pause 625us (625))
+Max pause 65ms (64998))
+[plotdata] 16300   4042
+Doing 1000 16kB allocations
+Average pause time 4ms (4027)
+Total pause time 4027ms (4027423))
+Min pause 625us (625))
+Max pause 65ms (64862))
+[plotdata] 16200   4027
+Doing 1000 16kB allocations
+Average pause time 4ms (3931)
+Total pause time 3932ms (3931961))
+Min pause 626us (626))
+Max pause 66ms (65505))
+[plotdata] 16100   3931
+Doing 1000 16kB allocations
+Average pause time 4ms (4075)
+Total pause time 4076ms (4075901))
+Min pause 625us (625))
+Max pause 65ms (64644))
+[plotdata] 16000   4075
+Doing 1000 16kB allocations
+Average pause time 4ms (3987)
+Total pause time 3987ms (3987367))
+Min pause 625us (625))
+Max pause 65ms (64891))
+[plotdata] 15900   3987
+Doing 1000 16kB allocations
+Average pause time 4ms (4045)
+Total pause time 4045ms (4045293))
+Min pause 625us (625))
+Max pause 65ms (65301))
+[plotdata] 15800   4045
+Doing 1000 16kB allocations
+Average pause time 4ms (3959)
+Total pause time 3959ms (3959465))
+Min pause 625us (625))
+Max pause 64ms (64111))
+[plotdata] 15700   3959
+Doing 1000 16kB allocations
+Average pause time 4ms (4051)
+Total pause time 4051ms (4051204))
+Min pause 625us (625))
+Max pause 74ms (73790))
+[plotdata] 15600   4051
+Doing 1000 16kB allocations
+Average pause time 4ms (3958)
+Total pause time 3959ms (3958984))
+Min pause 626us (626))
+Max pause 63ms (63352))
+[plotdata] 15500   3958
+Doing 1000 15kB allocations
+Average pause time 4ms (4015)
+Total pause time 4015ms (4015344))
+Min pause 624us (624))
+Max pause 65ms (65125))
+[plotdata] 15400   4015
+Doing 1000 15kB allocations
+Average pause time 4ms (3951)
+Total pause time 3951ms (3951411))
+Min pause 626us (626))
+Max pause 66ms (65598))
+[plotdata] 15300   3951
+Doing 1000 15kB allocations
+Average pause time 4ms (3980)
+Total pause time 3981ms (3980829))
+Min pause 625us (625))
+Max pause 64ms (64325))
+[plotdata] 15200   3980
+Doing 1000 15kB allocations
+Average pause time 4ms (3972)
+Total pause time 3973ms (3972963))
+Min pause 625us (625))
+Max pause 65ms (64675))
+[plotdata] 15100   3972
+Doing 1000 15kB allocations
+Average pause time 4ms (4014)
+Total pause time 4014ms (4014227))
+Min pause 625us (625))
+Max pause 64ms (64027))
+[plotdata] 15000   4014
+Doing 1000 15kB allocations
+Average pause time 4ms (3993)
+Total pause time 3994ms (3993645))
+Min pause 625us (625))
+Max pause 76ms (75732))
+[plotdata] 14900   3993
+Doing 1000 15kB allocations
+Average pause time 4ms (4016)
+Total pause time 4016ms (4016024))
+Min pause 625us (625))
+Max pause 65ms (65014))
+[plotdata] 14800   4016
+Doing 1000 15kB allocations
+Average pause time 4ms (4007)
+Total pause time 4008ms (4007867))
+Min pause 624us (624))
+Max pause 64ms (64106))
+[plotdata] 14700   4007
+Doing 1000 15kB allocations
+Average pause time 4ms (3981)
+Total pause time 3982ms (3981525))
+Min pause 625us (625))
+Max pause 64ms (64429))
+[plotdata] 14600   3981
+Doing 1000 15kB allocations
+Average pause time 4ms (3909)
+Total pause time 3909ms (3909046))
+Min pause 625us (625))
+Max pause 65ms (64654))
+[plotdata] 14500   3909
+Doing 1000 14kB allocations
+Average pause time 4ms (4032)
+Total pause time 4033ms (4032706))
+Min pause 625us (625))
+Max pause 67ms (66535))
+[plotdata] 14400   4032
+Doing 1000 14kB allocations
+Average pause time 4ms (3965)
+Total pause time 3965ms (3965353))
+Min pause 626us (626))
+Max pause 64ms (64107))
+[plotdata] 14300   3965
+Doing 1000 14kB allocations
+Average pause time 4ms (4030)
+Total pause time 4031ms (4030633))
+Min pause 626us (626))
+Max pause 65ms (64758))
+[plotdata] 14200   4030
+Doing 1000 14kB allocations
+Average pause time 4ms (3980)
+Total pause time 3980ms (3980377))
+Min pause 625us (625))
+Max pause 64ms (64141))
+[plotdata] 14100   3980
+Doing 1000 14kB allocations
+Average pause time 4ms (4020)
+Total pause time 4020ms (4020147))
+Min pause 624us (624))
+Max pause 65ms (65244))
+[plotdata] 14000   4020
+Doing 1000 14kB allocations
+Average pause time 4ms (3960)
+Total pause time 3960ms (3960361))
+Min pause 626us (626))
+Max pause 64ms (64490))
+[plotdata] 13900   3960
+Doing 1000 14kB allocations
+Average pause time 4ms (3962)
+Total pause time 3963ms (3962964))
+Min pause 626us (626))
+Max pause 62ms (61812))
+[plotdata] 13800   3962
+Doing 1000 14kB allocations
+Average pause time 4ms (3971)
+Total pause time 3972ms (3971947))
+Min pause 625us (625))
+Max pause 64ms (64305))
+[plotdata] 13700   3971
+Doing 1000 14kB allocations
+Average pause time 4ms (4025)
+Total pause time 4026ms (4025826))
+Min pause 625us (625))
+Max pause 65ms (65302))
+[plotdata] 13600   4025
+Doing 1000 14kB allocations
+Average pause time 4ms (4013)
+Total pause time 4014ms (4013713))
+Min pause 625us (625))
+Max pause 66ms (66286))
+[plotdata] 13500   4013
+Doing 1000 13kB allocations
+Average pause time 4ms (3990)
+Total pause time 3990ms (3990380))
+Min pause 624us (624))
+Max pause 64ms (63927))
+[plotdata] 13400   3990
+Doing 1000 13kB allocations
+Average pause time 4ms (4008)
+Total pause time 4008ms (4008480))
+Min pause 626us (626))
+Max pause 66ms (65586))
+[plotdata] 13300   4008
+Doing 1000 13kB allocations
+Average pause time 4ms (4038)
+Total pause time 4039ms (4038997))
+Min pause 625us (625))
+Max pause 64ms (64457))
+[plotdata] 13200   4038
+Doing 1000 13kB allocations
+Average pause time 4ms (3937)
+Total pause time 3938ms (3937507))
+Min pause 625us (625))
+Max pause 64ms (63688))
+[plotdata] 13100   3937
+Doing 1000 13kB allocations
+Average pause time 4ms (3986)
+Total pause time 3986ms (3986204))
+Min pause 626us (626))
+Max pause 65ms (64757))
+[plotdata] 13000   3986
+Doing 1000 13kB allocations
+Average pause time 4ms (3978)
+Total pause time 3979ms (3978826))
+Min pause 625us (625))
+Max pause 65ms (65158))
+[plotdata] 12900   3978
+Doing 1000 13kB allocations
+Average pause time 4ms (3973)
+Total pause time 3974ms (3973801))
+Min pause 625us (625))
+Max pause 64ms (64299))
+[plotdata] 12800   3973
+Doing 1000 13kB allocations
+Average pause time 4ms (3999)
+Total pause time 4000ms (3999753))
+Min pause 625us (625))
+Max pause 64ms (64486))
+[plotdata] 12700   3999
+Doing 1000 13kB allocations
+Average pause time 4ms (3985)
+Total pause time 3985ms (3985449))
+Min pause 624us (624))
+Max pause 65ms (64653))
+[plotdata] 12600   3985
+Doing 1000 13kB allocations
+Average pause time 4ms (3977)
+Total pause time 3977ms (3977038))
+Min pause 626us (626))
+Max pause 65ms (64841))
+[plotdata] 12500   3977
+Doing 1000 12kB allocations
+Average pause time 5ms (5020)
+Total pause time 5021ms (5020562))
+Min pause 626us (626))
+Max pause 642ms (641974))
+[plotdata] 12400   5020
+Doing 1000 12kB allocations
+Average pause time 5ms (5040)
+Total pause time 5040ms (5040205))
+Min pause 625us (625))
+Max pause 360ms (359563))
+[plotdata] 12300   5040
+Doing 1000 12kB allocations
+Average pause time 3ms (3072)
+Total pause time 3072ms (3072208))
+Min pause 498us (498))
+Max pause 68ms (67622))
+[plotdata] 12200   3072
+Doing 1000 12kB allocations
+Average pause time 3ms (3025)
+Total pause time 3025ms (3025062))
+Min pause 498us (498))
+Max pause 67ms (66859))
+[plotdata] 12100   3025
+Doing 1000 12kB allocations
+Average pause time 3ms (3035)
+Total pause time 3036ms (3035776))
+Min pause 498us (498))
+Max pause 65ms (65101))
+[plotdata] 12000   3035
+Doing 1000 12kB allocations
+Average pause time 3ms (3014)
+Total pause time 3014ms (3014233))
+Min pause 499us (499))
+Max pause 62ms (61981))
+[plotdata] 11900   3014
+Doing 1000 12kB allocations
+Average pause time 3ms (3054)
+Total pause time 3055ms (3054508))
+Min pause 498us (498))
+Max pause 62ms (61509))
+[plotdata] 11800   3054
+Doing 1000 12kB allocations
+Average pause time 3ms (3008)
+Total pause time 3009ms (3008941))
+Min pause 499us (499))
+Max pause 64ms (64181))
+[plotdata] 11700   3008
+Doing 1000 12kB allocations
+Average pause time 3ms (3026)
+Total pause time 3027ms (3026718))
+Min pause 498us (498))
+Max pause 68ms (68009))
+[plotdata] 11600   3026
+Doing 1000 12kB allocations
+Average pause time 3ms (3330)
+Total pause time 3331ms (3330584))
+Min pause 498us (498))
+Max pause 79ms (78670))
+[plotdata] 11500   3330
+Doing 1000 11kB allocations
+Average pause time 3ms (3033)
+Total pause time 3033ms (3033455))
+Min pause 498us (498))
+Max pause 63ms (63492))
+[plotdata] 11400   3033
+Doing 1000 11kB allocations
+Average pause time 3ms (3067)
+Total pause time 3068ms (3067897))
+Min pause 498us (498))
+Max pause 67ms (66561))
+[plotdata] 11300   3067
+Doing 1000 11kB allocations
+Average pause time 3ms (3010)
+Total pause time 3011ms (3010632))
+Min pause 497us (497))
+Max pause 62ms (61521))
+[plotdata] 11200   3010
+Doing 1000 11kB allocations
+Average pause time 4ms (3692)
+Total pause time 3693ms (3692805))
+Min pause 498us (498))
+Max pause 527ms (527086))
+[plotdata] 11100   3692
+Doing 1000 11kB allocations
+Average pause time 3ms (3017)
+Total pause time 3017ms (3017461))
+Min pause 499us (499))
+Max pause 64ms (64354))
+[plotdata] 11000   3017
+Doing 1000 11kB allocations
+Average pause time 3ms (3057)
+Total pause time 3057ms (3057054))
+Min pause 499us (499))
+Max pause 65ms (64847))
+[plotdata] 10900   3057
+Doing 1000 11kB allocations
+Average pause time 3ms (3010)
+Total pause time 3011ms (3010644))
+Min pause 498us (498))
+Max pause 65ms (65399))
+[plotdata] 10800   3010
+Doing 1000 11kB allocations
+Average pause time 3ms (3070)
+Total pause time 3070ms (3070180))
+Min pause 497us (497))
+Max pause 64ms (64133))
+[plotdata] 10700   3070
+Doing 1000 11kB allocations
+Average pause time 3ms (3021)
+Total pause time 3021ms (3021253))
+Min pause 498us (498))
+Max pause 63ms (63205))
+[plotdata] 10600   3021
+Doing 1000 11kB allocations
+Average pause time 3ms (2988)
+Total pause time 2988ms (2988485))
+Min pause 498us (498))
+Max pause 63ms (62865))
+[plotdata] 10500   2988
+Doing 1000 10kB allocations
+Average pause time 3ms (3051)
+Total pause time 3051ms (3051465))
+Min pause 499us (499))
+Max pause 64ms (64026))
+[plotdata] 10400   3051
+Doing 1000 10kB allocations
+Average pause time 3ms (2957)
+Total pause time 2958ms (2957753))
+Min pause 499us (499))
+Max pause 65ms (64558))
+[plotdata] 10300   2957
+Doing 1000 10kB allocations
+Average pause time 3ms (3130)
+Total pause time 3130ms (3130152))
+Min pause 497us (497))
+Max pause 68ms (68313))
+[plotdata] 10200   3130
+Doing 1000 10kB allocations
+Average pause time 3ms (3190)
+Total pause time 3190ms (3190160))
+Min pause 499us (499))
+Max pause 71ms (71004))
+[plotdata] 10100   3190
+Doing 1000 10kB allocations
+Average pause time 3ms (3039)
+Total pause time 3040ms (3039848))
+Min pause 498us (498))
+Max pause 63ms (62890))
+[plotdata] 10000   3039
+Doing 1000 10kB allocations
+Average pause time 3ms (2954)
+Total pause time 2954ms (2954405))
+Min pause 498us (498))
+Max pause 65ms (64635))
+[plotdata] 9900   2954
+Doing 1000 10kB allocations
+Average pause time 3ms (3035)
+Total pause time 3036ms (3035920))
+Min pause 498us (498))
+Max pause 65ms (64826))
+[plotdata] 9800   3035
+Doing 1000 10kB allocations
+Average pause time 3ms (2952)
+Total pause time 2952ms (2952373))
+Min pause 499us (499))
+Max pause 73ms (72657))
+[plotdata] 9700   2952
+Doing 1000 10kB allocations
+Average pause time 3ms (3020)
+Total pause time 3021ms (3020673))
+Min pause 499us (499))
+Max pause 64ms (64392))
+[plotdata] 9600   3020
+Doing 1000 10kB allocations
+Average pause time 3ms (2994)
+Total pause time 2994ms (2994389))
+Min pause 500us (500))
+Max pause 63ms (63437))
+[plotdata] 9500   2994
+Doing 1000 9kB allocations
+Average pause time 3ms (2927)
+Total pause time 2928ms (2927642))
+Min pause 499us (499))
+Max pause 63ms (63479))
+[plotdata] 9400   2927
+Doing 1000 9kB allocations
+Average pause time 3ms (3007)
+Total pause time 3007ms (3007339))
+Min pause 500us (500))
+Max pause 64ms (63777))
+[plotdata] 9300   3007
+Doing 1000 9kB allocations
+Average pause time 3ms (2979)
+Total pause time 2980ms (2979541))
+Min pause 497us (497))
+Max pause 64ms (63507))
+[plotdata] 9200   2979
+Doing 1000 9kB allocations
+Average pause time 3ms (3059)
+Total pause time 3059ms (3059066))
+Min pause 498us (498))
+Max pause 63ms (62952))
+[plotdata] 9100   3059
+Doing 1000 9kB allocations
+Average pause time 3ms (2989)
+Total pause time 2990ms (2989771))
+Min pause 498us (498))
+Max pause 63ms (62925))
+[plotdata] 9000   2989
+Doing 1000 9kB allocations
+Average pause time 3ms (3046)
+Total pause time 3046ms (3046129))
+Min pause 498us (498))
+Max pause 64ms (64412))
+[plotdata] 8900   3046
+Doing 1000 9kB allocations
+Average pause time 3ms (2977)
+Total pause time 2978ms (2977841))
+Min pause 497us (497))
+Max pause 63ms (63490))
+[plotdata] 8800   2977
+Doing 1000 9kB allocations
+Average pause time 3ms (3039)
+Total pause time 3040ms (3039926))
+Min pause 497us (497))
+Max pause 72ms (71817))
+[plotdata] 8700   3039
+Doing 1000 9kB allocations
+Average pause time 3ms (2985)
+Total pause time 2985ms (2985434))
+Min pause 498us (498))
+Max pause 63ms (63026))
+[plotdata] 8600   2985
+Doing 1000 9kB allocations
+Average pause time 3ms (3054)
+Total pause time 3054ms (3054120))
+Min pause 497us (497))
+Max pause 64ms (64081))
+[plotdata] 8500   3054
+Doing 1000 8kB allocations
+Average pause time 3ms (2958)
+Total pause time 2959ms (2958845))
+Min pause 497us (497))
+Max pause 64ms (64319))
+[plotdata] 8400   2958
+Doing 1000 8kB allocations
+Average pause time 3ms (2991)
+Total pause time 2991ms (2991251))
+Min pause 497us (497))
+Max pause 61ms (61457))
+[plotdata] 8300   2991
+Doing 1000 8kB allocations
+Average pause time 3ms (3027)
+Total pause time 3028ms (3027908))
+Min pause 498us (498))
+Max pause 65ms (64866))
+[plotdata] 8200   3027
+Doing 1000 8kB allocations
+Average pause time 3ms (2697)
+Total pause time 2697ms (2697119))
+Min pause 379us (379))
+Max pause 63ms (62600))
+[plotdata] 8100   2697
+Doing 1000 8kB allocations
+Average pause time 3ms (2665)
+Total pause time 2666ms (2665629))
+Min pause 392us (392))
+Max pause 62ms (61715))
+[plotdata] 8000   2665
+Doing 1000 8kB allocations
+Average pause time 3ms (2722)
+Total pause time 2722ms (2722049))
+Min pause 393us (393))
+Max pause 63ms (63165))
+[plotdata] 7900   2722
+Doing 1000 8kB allocations
+Average pause time 3ms (2685)
+Total pause time 2686ms (2685544))
+Min pause 378us (378))
+Max pause 62ms (62466))
+[plotdata] 7800   2685
+Doing 1000 8kB allocations
+Average pause time 3ms (2643)
+Total pause time 2644ms (2643723))
+Min pause 379us (379))
+Max pause 61ms (60576))
+[plotdata] 7700   2643
+Doing 1000 8kB allocations
+Average pause time 3ms (2591)
+Total pause time 2592ms (2591927))
+Min pause 378us (378))
+Max pause 60ms (60484))
+[plotdata] 7600   2591
+Doing 1000 8kB allocations
+Average pause time 3ms (2635)
+Total pause time 2635ms (2635332))
+Min pause 378us (378))
+Max pause 62ms (62376))
+[plotdata] 7500   2635
+Doing 1000 7kB allocations
+Average pause time 3ms (2626)
+Total pause time 2627ms (2626696))
+Min pause 378us (378))
+Max pause 62ms (62441))
+[plotdata] 7400   2626
+Doing 1000 7kB allocations
+Average pause time 3ms (2649)
+Total pause time 2649ms (2649255))
+Min pause 382us (382))
+Max pause 61ms (60995))
+[plotdata] 7300   2649
+Doing 1000 7kB allocations
+Average pause time 3ms (2584)
+Total pause time 2585ms (2584723))
+Min pause 382us (382))
+Max pause 64ms (64474))
+[plotdata] 7200   2584
+Doing 1000 7kB allocations
+Average pause time 3ms (2549)
+Total pause time 2549ms (2549370))
+Min pause 383us (383))
+Max pause 64ms (63928))
+[plotdata] 7100   2549
+Doing 1000 7kB allocations
+Average pause time 3ms (2592)
+Total pause time 2593ms (2592591))
+Min pause 377us (377))
+Max pause 65ms (65184))
+[plotdata] 7000   2592
+Doing 1000 7kB allocations
+Average pause time 3ms (2570)
+Total pause time 2571ms (2570880))
+Min pause 377us (377))
+Max pause 64ms (64120))
+[plotdata] 6900   2570
+Doing 1000 7kB allocations
+Average pause time 2ms (2453)
+Total pause time 2453ms (2453302))
+Min pause 376us (376))
+Max pause 62ms (62296))
+[plotdata] 6800   2453
+Doing 1000 7kB allocations
+Average pause time 3ms (2556)
+Total pause time 2557ms (2556553))
+Min pause 376us (376))
+Max pause 64ms (63809))
+[plotdata] 6700   2556
+Doing 1000 7kB allocations
+Average pause time 3ms (2517)
+Total pause time 2517ms (2517332))
+Min pause 377us (377))
+Max pause 63ms (63378))
+[plotdata] 6600   2517
+Doing 1000 7kB allocations
+Average pause time 2ms (2492)
+Total pause time 2492ms (2492486))
+Min pause 377us (377))
+Max pause 65ms (64770))
+[plotdata] 6500   2492
+Doing 1000 6kB allocations
+Average pause time 2ms (2490)
+Total pause time 2490ms (2490402))
+Min pause 377us (377))
+Max pause 63ms (62662))
+[plotdata] 6400   2490
+Doing 1000 6kB allocations
+Average pause time 2ms (2400)
+Total pause time 2401ms (2400570))
+Min pause 376us (376))
+Max pause 61ms (60678))
+[plotdata] 6300   2400
+Doing 1000 6kB allocations
+Average pause time 2ms (2469)
+Total pause time 2469ms (2469081))
+Min pause 390us (390))
+Max pause 65ms (64908))
+[plotdata] 6200   2469
+Doing 1000 6kB allocations
+Average pause time 2ms (2430)
+Total pause time 2431ms (2430768))
+Min pause 390us (390))
+Max pause 63ms (63063))
+[plotdata] 6100   2430
+Doing 1000 6kB allocations
+Average pause time 2ms (2397)
+Total pause time 2398ms (2397505))
+Min pause 378us (378))
+Max pause 62ms (61643))
+[plotdata] 6000   2397
+Doing 1000 6kB allocations
+Average pause time 2ms (2362)
+Total pause time 2362ms (2362367))
+Min pause 381us (381))
+Max pause 64ms (63784))
+[plotdata] 5900   2362
+Doing 1000 6kB allocations
+Average pause time 2ms (2413)
+Total pause time 2414ms (2413685))
+Min pause 374us (374))
+Max pause 63ms (63074))
+[plotdata] 5800   2413
+Doing 1000 6kB allocations
+Average pause time 2ms (2360)
+Total pause time 2361ms (2360626))
+Min pause 372us (372))
+Max pause 64ms (63974))
+[plotdata] 5700   2360
+Doing 1000 6kB allocations
+Average pause time 2ms (2361)
+Total pause time 2361ms (2361092))
+Min pause 373us (373))
+Max pause 64ms (64075))
+[plotdata] 5600   2361
+Doing 1000 6kB allocations
+Average pause time 2ms (2387)
+Total pause time 2387ms (2387246))
+Min pause 377us (377))
+Max pause 61ms (61212))
+[plotdata] 5500   2387
+Doing 1000 5kB allocations
+Average pause time 2ms (2285)
+Total pause time 2285ms (2285210))
+Min pause 377us (377))
+Max pause 63ms (62986))
+[plotdata] 5400   2285
+Doing 1000 5kB allocations
+Average pause time 2ms (2306)
+Total pause time 2306ms (2306403))
+Min pause 378us (378))
+Max pause 62ms (61811))
+[plotdata] 5300   2306
+Doing 1000 5kB allocations
+Average pause time 2ms (2314)
+Total pause time 2315ms (2314776))
+Min pause 379us (379))
+Max pause 62ms (61909))
+[plotdata] 5200   2314
+Doing 1000 5kB allocations
+Average pause time 2ms (2238)
+Total pause time 2239ms (2238547))
+Min pause 377us (377))
+Max pause 62ms (62411))
+[plotdata] 5100   2238
+Doing 1000 5kB allocations
+Average pause time 2ms (2315)
+Total pause time 2316ms (2315830))
+Min pause 376us (376))
+Max pause 65ms (64694))
+[plotdata] 5000   2315
+Doing 1000 5kB allocations
+Average pause time 2ms (2240)
+Total pause time 2240ms (2240102))
+Min pause 381us (381))
+Max pause 62ms (62219))
+[plotdata] 4900   2240
+Doing 1000 5kB allocations
+Average pause time 2ms (2227)
+Total pause time 2228ms (2227674))
+Min pause 381us (381))
+Max pause 61ms (60900))
+[plotdata] 4800   2227
+Doing 1000 5kB allocations
+Average pause time 2ms (2228)
+Total pause time 2229ms (2228718))
+Min pause 376us (376))
+Max pause 62ms (61697))
+[plotdata] 4700   2228
+Doing 1000 5kB allocations
+Average pause time 4ms (3871)
+Total pause time 3871ms (3871495))
+Min pause 375us (375))
+Max pause 537ms (536881))
+[plotdata] 4600   3871
+Doing 1000 5kB allocations
+Average pause time 3ms (3416)
+Total pause time 3416ms (3416041))
+Min pause 374us (374))
+Max pause 245ms (244899))
+[plotdata] 4500   3416
+Doing 1000 4kB allocations
+Average pause time 2ms (2243)
+Total pause time 2244ms (2243560))
+Min pause 373us (373))
+Max pause 82ms (81595))
+[plotdata] 4400   2243
+Doing 1000 4kB allocations
+Average pause time 2ms (2098)
+Total pause time 2098ms (2098191))
+Min pause 373us (373))
+Max pause 61ms (60985))
+[plotdata] 4300   2098
+Doing 1000 4kB allocations
+Average pause time 2ms (2072)
+Total pause time 2073ms (2072857))
+Min pause 373us (373))
+Max pause 62ms (61852))
+[plotdata] 4200   2072
+Doing 1000 4kB allocations
+Average pause time 2ms (1817)
+Total pause time 1817ms (1817160))
+Min pause 374us (374))
+Max pause 63ms (63336))
+[plotdata] 4100   1817
+Doing 1000 4kB allocations
+Average pause time 2ms (1728)
+Total pause time 1729ms (1728882))
+Min pause 249us (249))
+Max pause 61ms (60550))
+[plotdata] 4000   1728
+Doing 1000 4kB allocations
+Average pause time 2ms (1771)
+Total pause time 1771ms (1771498))
+Min pause 250us (250))
+Max pause 61ms (61279))
+[plotdata] 3900   1771
+Doing 1000 4kB allocations
+Average pause time 2ms (1731)
+Total pause time 1732ms (1731800))
+Min pause 245us (245))
+Max pause 82ms (82235))
+[plotdata] 3800   1731
+Doing 1000 4kB allocations
+Average pause time 2ms (1720)
+Total pause time 1720ms (1720154))
+Min pause 245us (245))
+Max pause 64ms (63694))
+[plotdata] 3700   1720
+Doing 1000 4kB allocations
+Average pause time 2ms (1658)
+Total pause time 1659ms (1658758))
+Min pause 247us (247))
+Max pause 62ms (62137))
+[plotdata] 3600   1658
+Doing 1000 4kB allocations
+Average pause time 2ms (1617)
+Total pause time 1618ms (1617729))
+Min pause 248us (248))
+Max pause 61ms (60547))
+[plotdata] 3500   1617
+Doing 1000 3kB allocations
+Average pause time 2ms (1641)
+Total pause time 1641ms (1641321))
+Min pause 250us (250))
+Max pause 60ms (60372))
+[plotdata] 3400   1641
+Doing 1000 3kB allocations
+Average pause time 2ms (1589)
+Total pause time 1589ms (1589394))
+Min pause 248us (248))
+Max pause 64ms (64112))
+[plotdata] 3300   1589
+Doing 1000 3kB allocations
+Average pause time 2ms (1784)
+Total pause time 1785ms (1784866))
+Min pause 249us (249))
+Max pause 73ms (72703))
+[plotdata] 3200   1784
+Doing 1000 3kB allocations
+Average pause time 2ms (1520)
+Total pause time 1521ms (1520885))
+Min pause 248us (248))
+Max pause 64ms (63993))
+[plotdata] 3100   1520
+Doing 1000 3kB allocations
+Averffage pause time 2ms (1522)
+Total pause time 1523ms (1522781))
+Min pause 247us (247))
+Max pause 63ms (62947))
+[plotdata] 3000   1522
+Doing 1000 3kB allocations
+Average pause time 2ms (1505)
+Total pause time 1506ms (1505699))
+Min pause 252us (252))
+Max pause 63ms (63006))
+[plotdata] 2900   1505
+Doing 1000 3kB allocations
+Average pause time 1ms (1397)
+Total pause time 1398ms (1397734))
+Min pause 246us (246))
+Max pause 60ms (60315))
+[plotdata] 2800   1397
+Doing 1000 3kB allocations
+Average pause time 1ms (1468)
+Total pause time 1468ms (1468405))
+Min pause 251us (251))
+Max pause 61ms (60708))
+[plotdata] 2700   1468
+Doing 1000 3kB allocations
+Average pause time 1ms (1351)
+Total pause time 1352ms (1351927))
+Min pause 247us (247))
+Max pause 64ms (63928))
+[plotdata] 2600   1351
+Doing 1000 3kB allocations
+Average pause time 1ms (1424)
+Total pause time 1424ms (1424160))
+Min pause 246us (246))
+Max pause 61ms (61136))
+[plotdata] 2500   1424
+Doing 1000 2kB allocations
+Average pause time 1ms (1307)
+Total pause time 1308ms (1307754))
+Min pause 247us (247))
+Max pause 64ms (63889))
+[plotdata] 2400   1307
+Doing 1000 2kB allocations
+Average pause time 1ms (1321)
+Total pause time 1322ms (1321810))
+Min pause 247us (247))
+Max pause 65ms (64595))
+[plotdata] 2300   1321
+Doing 1000 2kB allocations
+Average pause time 1ms (1236)
+Total pause time 1237ms (1236996))
+Min pause 246us (246))
+Max pause 60ms (60111))
+[plotdata] 2200   1236
+Doing 1000 2kB allocations
+Average pause time 1ms (1267)
+Total pause time 1268ms (1267792))
+Min pause 246us (246))
+Max pause 66ms (65715))
+[plotdata] 2100   1267
+Doing 1000 2kB allocations
+Average pause time 934us (934)
+Total pause time 934ms (934205))
+Min pause 22us (22))
+Max pause 60ms (60131))
+[plotdata] 2000   934
+Doing 1000 2kB allocations
+Average pause time 872us (872)
+Total pause time 873ms (872874))
+Min pause 22us (22))
+Max pause 60ms (59848))
+[plotdata] 1900   872
+Doing 1000 2kB allocations
+Average pause time 956us (956)
+Total pause time 957ms (956893))
+Min pause 22us (22))
+Max pause 61ms (60598))
+[plotdata] 1800   956
+Doing 1000 2kB allocations
+Average pause time 971us (971)
+Total pause time 972ms (971629))
+Min pause 22us (22))
+Max pause 61ms (61221))
+[plotdata] 1700   971
+Doing 1000 2kB allocations
+Average pause time 913us (913)
+Total pause time 914ms (913665))
+Min pause 22us (22))
+Max pause 62ms (61875))
+[plotdata] 1600   913
+Doing 1000 2kB allocations
+Average pause time 963us (963)
+Total pause time 964ms (963917))
+Min pause 22us (22))
+Max pause 62ms (62051))
+[plotdata] 1500   963
+Doing 1000 1kB allocations
+Average pause time 960us (960)
+Total pause time 960ms (960445))
+Min pause 21us (21))
+Max pause 64ms (63867))
+[plotdata] 1400   960
+Doing 1000 1kB allocations
+Average pause time 915us (915)
+Total pause time 916ms (915537))
+Min pause 22us (22))
+Max pause 60ms (60184))
+[plotdata] 1300   915
+Doing 1000 1kB allocations
+Average pause time 959us (959)
+Total pause time 959ms (959097))
+Min pause 22us (22))
+Max pause 63ms (62838))
+[plotdata] 1200   959
+Doing 1000 1kB allocations
+Average pause time 938us (938)
+Total pause time 939ms (938653))
+Min pause 22us (22))
+Max pause 61ms (61203))
+[plotdata] 1100   938
+Doing 1000 1kB allocations
+Average pause time 482us (482)
+Total pause time 482ms (482162))
+Min pause 21us (21))
+Max pause 60ms (60270))
+[plotdata] 1000   482
+Doing 1000 900B allocations
+Average pause time 511us (511)
+Total pause time 511ms (511259))
+Min pause 21us (21))
+Max pause 60ms (60079))
+[plotdata] 900   511
+Doing 1000 800B allocations
+Average pause time 479us (479)
+Total pause time 480ms (479833))
+Min pause 21us (21))
+Max pause 62ms (62014))
+[plotdata] 800   479
+Doing 1000 700B allocations
+Average pause time 392us (392)
+Total pause time 393ms (392694))
+Min pause 21us (21))
+Max pause 61ms (61292))
+[plotdata] 700   392
+Doing 1000 600B allocations
+Average pause time 395us (395)
+Total pause time 395ms (395389))
+Min pause 21us (21))
+Max pause 57ms (56754))
+[plotdata] 600   395
+Doing 1000 500B allocations
+Average pause time 233us (233)
+Total pause time 234ms (233791))
+Min pause 21us (21))
+Max pause 57ms (57016))
+[plotdata] 500   233
+Doing 1000 400B allocations
+Average pause time 277us (277)
+Total pause time 278ms (277592))
+Min pause 21us (21))
+Max pause 60ms (60104))
+[plotdata] 400   277
+Doing 1000 300B allocations
+Average pause time 185us (185)
+Total pause time 186ms (185825))
+Min pause 22us (22))
+Max pause 60ms (60433))
+[plotdata] 300   185
+Doing 1000 200B allocations
+Average pause time 150us (150)
+Total pause time 150ms (150258))
+Min pause 21us (21))
+Max pause 35ms (35212))
+[plotdata] 200   150
+Doing 1000 100B allocations
+Average pause time 83us (83)
+Total pause time 83ms (83462))
+Min pause 21us (21))
+Max pause 35ms (34706))
+[plotdata] 100   83
+Doing 1000 0B allocations
+Average pause time 36us (36)
+Total pause time 37ms (36543))
+Min pause 21us (21))
+Max pause 2ms (2047))
+[plotdata] 0   36
+[plotscript] # end of test Boehm GC (I=385024)
+----------Finished test pause_time_test (took 670s)----------
+Boehm heap size: 385024
