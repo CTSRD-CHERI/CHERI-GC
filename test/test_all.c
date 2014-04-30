@@ -225,6 +225,8 @@ do { \
   TESTS
 #undef X_MACRO
 
+static int flag_data_only = 0;
+
 int
 main (int argc, char **argv)
 {
@@ -233,6 +235,11 @@ main (int argc, char **argv)
   mwInit();
   mwDoFlush(1);
 #endif // MEMWATCH
+  
+  if (argc > 1)
+  {
+    if (!strcmp(argv[1], "data")) flag_data_only = 1;
+  }
 
   tf_printf("Compiled for "
 #if   defined(GC_CHERI)
@@ -418,8 +425,10 @@ DEFINE_TEST(old_pause_time_test)
   return 0;
 }
 
-tf_func_t tf_time_t
-pause_time_test_helper (int number_of_allocations, size_t allocation_size)
+tf_func_t void
+pause_time_test_helper (int number_of_allocations, size_t allocation_size,
+                        tf_time_t * avg_out, tf_time_t * min_out,
+                        tf_time_t * max_out)
 {
   // so that this function can be used many times in succession without previous
   // objects affecting the results
@@ -466,52 +475,90 @@ pause_time_test_helper (int number_of_allocations, size_t allocation_size)
     tf_time_pretty(tot), tf_time_pretty_unit(tot), (tf_ull_t) tot,
     tf_time_pretty(tmin), tf_time_pretty_unit(tmin), (tf_ull_t) tmin,
     tf_time_pretty(tmax), tf_time_pretty_unit(tmax), (tf_ull_t) tmax);
-  return avg;
+  if (avg_out) *avg_out = avg;
+  if (min_out) *min_out = tmin;
+  if (max_out) *max_out = tmax;
+}
+
+tf_func_t static void
+print_gc_stats2 (const char * msg)
+{
+  #if defined(GC_CHERI)
+#if defined(GC_GENERATIONAL)
+  tf_printf(
+    "[plotscript] # %s my generational GC (yI=%d yB=%d yA=%d ycur=%d oI=%d oB=%d oA=%d ocur=%d)\n",
+    msg,
+    (int) GC_THREAD_LOCAL_HEAP_SIZE,
+    (int) GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION,
+    (int) GC_THREAD_LOCAL_HEAP_MAX_SIZE,
+    (int) GC_cheri_getlen(GC_state.thread_local_region.tospace),
+    (int) GC_OLD_GENERATION_SEMISPACE_SIZE,
+    (int) GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION,
+    (int) GC_OLD_GENERATION_SEMISPACE_MAX_SIZE,
+    (int) GC_cheri_getlen(GC_state.old_generation.tospace)
+  );
+#else // GC_GENERATIONAL
+  tf_printf(
+    "[plotscript] # %s my copying GC (I=%d B=%d A=%d cur=%d)\n",
+    msg,
+    (int) GC_THREAD_LOCAL_HEAP_SIZE,
+    (int) GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION,
+    (int) GC_THREAD_LOCAL_HEAP_MAX_SIZE,
+    (int) GC_cheri_getlen(GC_state.thread_local_region.tospace)
+  );
+#endif // GC_GENERATIONAL
+#elif defined(GC_BOEHM)
+  tf_printf(
+    "[plotscript] # %s Boehm GC (I=%d)\n",
+    msg,
+    (int) GC_get_heap_size());
+#elif defined(GC_NONE)
+  tf_printf("[plotscript] # %s no GC\n", msg);
+#else
+  #error "Define one of GC_CHERI, GC_BOEHM, GC_NONE"
+#endif // GC selector
 }
 
 DEFINE_TEST(pause_time_test)
 {
-#if defined(GC_CHERI)
-#if defined(GC_GENERATIONAL)
-  tf_printf(
-    "[plot] # data for my generational GC (yI=%d yB=%d yA=%d oI=%d oB=%d oA=%d)\n",
-    (int) GC_THREAD_LOCAL_HEAP_SIZE,
-    (int) GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION,
-    (int) GC_THREAD_LOCAL_HEAP_MAX_SIZE,
-    (int) GC_OLD_GENERATION_SEMISPACE_SIZE,
-    (int) GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION,
-    (int) GC_OLD_GENERATION_SEMISPACE_MAX_SIZE);
-#else // GC_GENERATIONAL
-  tf_printf(
-    "[plot] # data for my copying GC (I=%d B=%d A=%d)\n",
-    (int) GC_THREAD_LOCAL_HEAP_SIZE,
-    (int) GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION,
-    (int) GC_THREAD_LOCAL_HEAP_MAX_SIZE);
-#endif // GC_GENERATIONAL
-#elif defined(GC_BOEHM)
-  tf_printf(
-    "[plot] # data for my Boehm GC (I=%d)\n",
-    (int) GC_get_heap_size());
-#elif defined(GC_NONE)
-  tf_printf("[plot] # data for no GC\n");
-#else
-  #error "Define one of GC_CHERI, GC_BOEHM, GC_NONE"
-#endif // GC selector
-
+  
+  if (!flag_data_only)
+  {
+    tf_printf("[plotscript] set terminal png\n"
+              "[plotscript] set output \"objects/plot.png\"\n"
+              "[plotscript] set title \"Time taken for GC_malloc() averaged over 1000 allocations\"\n"
+              "[plotscript] set xlabel \"Allocation size (B)\"\n"
+              "[plotscript] set ylabel \"Pause time (us)\"\n"
+              "[plotscript] #set xrange [-2:2]\n"
+              "[plotscript] #set yrange [-10:10]\n"
+              "[plotscript] set zeroaxis\n"
+              "[plotscript] #plot 'objects/plot_data' with yerrorbars\n"
+              "[plotscript] plot 'objects/plot_data' with linespoints\n");
+  }
+  
+  print_gc_stats2("data for");
+  
   int number_of_allocations = 1000;
   tf_printf("[plot] # %d allocations per iteration\n", number_of_allocations);
-  tf_printf("[plot] # allocation size (B)        avg pause time (us)\n");
+  tf_printf("[plot] # allocation size (B)        pause time (us)\n");
   
-  pause_time_test_helper(1000, 1000); // fill the heap first
+  pause_time_test_helper(1000, 1000, NULL, NULL, NULL); // fill the heap first
   
   int i;
   //for (i=0; i<=10; i++)
-  for (i=10; i>=0; i--)
+  for (i=10; i>=10; i--)
   {
     size_t allocation_size = i*1000;
-    tf_time_t avg = pause_time_test_helper(number_of_allocations, allocation_size);
-    tf_printf("[plot] %d    %d\n", (int) allocation_size, (int) avg);
+    tf_time_t avg, min, max;
+    pause_time_test_helper(number_of_allocations, allocation_size, &avg, &min, &max);
+    /*tf_printf("[plot] [avg] %d    %d\n", (int) allocation_size, (int) avg);
+    tf_printf("[plot] [min] %d    %d\n", (int) allocation_size, (int) min);
+    tf_printf("[plot] [max] %d    %d\n", (int) allocation_size, (int) max);*/
+    tf_printf("[plotdata] %d   %d\n", (int) allocation_size, (int) avg);
   }
+  
+  print_gc_stats2("end of test");
+  
   return 0;
 }
 

@@ -198,3 +198,18 @@ Recursive sum of a series evaluated at 60
 Boehm:           I=65536, F=65536, time=633ms,339ms,360ms,347ms
 My generational: yI=yB=yA=yF=6000, oI=65536, oB=oA=196608, oF=131072, time=436ms,462ms,426ms,455ms,411ms,452ms
 My copying:      I=B=A=F=65536, time=95ms,269ms,106ms,83ms,262ms,256ms,115ms,262ms,103ms,252ms,258ms,256ms
+
+
+
+
+
+-------------------------
+
+Pause time (time taken for GC_malloc to run).
+1000 allocations
+10,000 bytes each
+My *copying* collector configured with I=B=65536, (A=270336), F=65536:
+avg=709, 605, 686, 637, 736, 621, 651, 638, 613, 583, 648 us
+min=28, 30, 28, 29, 28, 29, 28, 28, 28, 28, 28
+max=30995, 28217, 58729, 30044, 139496, 29845, 74631, 28287, 28473, 28482, 30654
+

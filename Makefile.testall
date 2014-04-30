@@ -7,6 +7,7 @@ SSH_PRIV_KEY=/home/munraj/.ssh/mbv21
 WENGER_USER=mbv21
 WENGER_ADDR=wenger
 WENGER_FILE_ZFS=/exports/users/mbv21/
+CLOUD2_ZFS_MOUNT=/mnt/mbv21zfs/
 
 # To test against the Boehm collector
 BOEHM_GC_DIR=../gc1/gc-7.2
@@ -31,7 +32,7 @@ GC_PUBLIC_INCLUDE=src/inc/
 GC_PRIV_INCLUDE=src/inc/
 TESTALL_SOURCES=test/test_all.c
 
-all: clean lib testall testall-boehm testall-no-gc push-testall
+all: clean lib remote-script testall testall-boehm testall-no-gc push-testall
 
 objects/%.o : src/%.c
 	$(CC) $(CFLAGS) -c -o $@ $< && \
@@ -74,9 +75,31 @@ testall-no-gc:
 	PATH=$(PATH) $(CC) -DGC_NONE $(MEMWATCH_FLAGS) -E -o objects/testall-no-gc.E $(TESTALL_SOURCES)
 
 PASSWORD=`cat $(SSH_PASSWD_FILE)`
-CMD=scp -i $(SSH_PRIV_KEY) objects/testall objects/testall-boehm objects/testall-no-gc $(WENGER_USER)@$(WENGER_ADDR):$(WENGER_FILE_ZFS)
+CMD=scp -i $(SSH_PRIV_KEY) objects/testall objects/testall-boehm objects/testall-no-gc objects/run10times.sh $(WENGER_USER)@$(WENGER_ADDR):$(WENGER_FILE_ZFS)
 push-testall:
 	echo "[i] pushing files to wenger ZFS" && \
 	echo -e "set timeout 60\nspawn $(CMD)\nexpect \": \"\nsend \"$(PASSWORD)\\\\n\"\ninteract\n" > cloud4_push_helper.expect && \
 	expect -f cloud4_push_helper.expect && \
 	rm -f cloud4_push_helper.expect
+
+remote-script:
+	echo -e "\$$1\ni=1\nwhile [ \$$i -le 10 ]\ndo\n\$$1 data\ni=\`expr \$$i + 1\`\ndone" > objects/run10times.sh
+
+CLOUD2_PASSWORD=mbv21
+RUNCMD=ssh -i $(SSH_PRIV_KEY) mbv21@cloud2 $(CLOUD2_ZFS_MOUNT)/run10times.sh
+run:
+	echo "[i] running tests on cloud2" && \
+	echo -e "set timeout 60\nspawn $(RUNCMD) $(CLOUD2_ZFS_MOUNT)/testall \nexpect \": \"\nsend \"$(PASSWORD)\\\\n\"\nexpect \":\"\nsend \"$(CLOUD2_PASSWORD)\\\\n\"\ninteract\n" > cloud4_push_helper.expect && \
+	expect -f cloud4_push_helper.expect | tee objects/run_output.sh && \
+	echo "[i] done running tests" && \
+	rm -f cloud4_push_helper.expect
+
+# parse and plot the run output
+plot:
+	cat objects/run_output.sh | grep "\[plotdata\]" | awk '{$$1="";print $$0;}' > objects/plot_data && \
+	cat objects/run_output.sh | grep "\[plotscript\]" | awk '{$$1="";print $$0;}' > objects/plot.gp && \
+	rm -f objects/plot.png && \
+	gnuplot objects/plot.gp && \
+	qiv objects/plot.png
+
+#cat objects/run_output.sh | grep "\[plotdata\] #\|\[avg\]" | awk '{$$1="";if($$2=="[avg]")$$2="";print $$0;}' > objects/plot_data && \
