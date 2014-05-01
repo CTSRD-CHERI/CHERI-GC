@@ -226,6 +226,7 @@ do { \
 #undef X_MACRO
 
 static int flag_data_only = 0;
+static int flag_input_number = 0;
 
 int
 main (int argc, char **argv)
@@ -236,9 +237,17 @@ main (int argc, char **argv)
   mwDoFlush(1);
 #endif // MEMWATCH
   
-  if (argc > 1)
+  if (argc < 2)
   {
-    if (!strcmp(argv[1], "data")) flag_data_only = 1;
+    tf_printf("need a number argument\n");
+    return 1;
+  }
+  
+  flag_input_number = atoi(argv[1]);
+  
+  if (argc > 2)
+  {
+    if (!strcmp(argv[2], "data")) flag_data_only = 1;
   }
 
   tf_printf("Compiled for "
@@ -450,7 +459,7 @@ pause_time_test_helper (int number_of_allocations, size_t allocation_size,
     //printf("[%d] allocating...\n", i);
     tf_time_t before = tf_time();
     tf_cap_t void * p = tf_malloc(allocation_size);
-    tf_free(p);
+    //tf_free(p);
     tf_time_t after = tf_time();
     tf_time_t diff = after - before;
     if (!tf_ptr_valid(p))
@@ -542,13 +551,13 @@ DEFINE_TEST(pause_time_test)
   tf_printf("[plot] # %d allocations per iteration\n", number_of_allocations);
   tf_printf("[plot] # allocation size (B)        pause time (us)\n");
   
-  pause_time_test_helper(1000, 1000, NULL, NULL, NULL); // fill the heap first
+  //pause_time_test_helper(1000, 1000, NULL, NULL, NULL); // fill the heap first
   
-  int i;
+  int i = flag_input_number;
   //for (i=0; i<=10; i++)
-  for (i=200; i>=0; i--)
+  //for (i=0; i<=200; i++)
   {
-    size_t allocation_size = i*100;
+    size_t allocation_size = i*1000;
     tf_time_t avg, min, max;
     pause_time_test_helper(number_of_allocations, allocation_size, &avg, &min, &max);
     /*tf_printf("[plot] [avg] %d    %d\n", (int) allocation_size, (int) avg);

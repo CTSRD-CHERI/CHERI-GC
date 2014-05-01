@@ -1,0 +1,3832 @@
+spawn ssh -i /home/munraj/.ssh/mbv21 mbv21@cloud2 /mnt/mbv21zfs//run10times.sh /mnt/mbv21zfs//testall-no-gc
+Enter passphrase for key '/home/munraj/.ssh/mbv21': 
+Password for mbv21@cloud2:
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] set terminal png
+[plotscript] set output "objects/plot.png"
+[plotscript] set title "Time taken for GC_malloc() averaged over 1000 allocations"
+[plotscript] set xlabel "Allocation size (B)"
+[plotscript] set ylabel "Pause time (us)"
+[plotscript] #set xrange [-2:2]
+[plotscript] #set yrange [-10:10]
+[plotscript] set zeroaxis
+[plotscript] #plot 'objects/plot_data' with yerrorbars
+[plotscript] plot 'objects/plot_data' with linespoints
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1473)
+Total pause time 1474ms (1473556))
+Min pause 351us (351))
+Max pause 152ms (151798))
+Doing 1000 0B allocations
+Average pause time 998us (998)
+Total pause time 999ms (998725))
+Min pause 332us (332))
+Max pause 158ms (158169))
+[plotdata] 0   998
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2860ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1025)
+Total pause time 1025ms (1025207))
+Min pause 350us (350))
+Max pause 158ms (158212))
+Doing 1000 100B allocations
+Average pause time 1ms (1147)
+Total pause time 1148ms (1147538))
+Min pause 345us (345))
+Max pause 158ms (158048))
+[plotdata] 100   1147
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2745ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1415)
+Total pause time 1416ms (1415535))
+Min pause 351us (351))
+Max pause 182ms (181738))
+Doing 1000 200B allocations
+Average pause time 1ms (1316)
+Total pause time 1317ms (1316506))
+Min pause 346us (346))
+Max pause 197ms (197474))
+[plotdata] 200   1316
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2821ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1237)
+Total pause time 1238ms (1237928))
+Min pause 346us (346))
+Max pause 158ms (158245))
+Doing 1000 300B allocations
+Average pause time 1ms (1357)
+Total pause time 1358ms (1357993))
+Min pause 337us (337))
+Max pause 197ms (197290))
+[plotdata] 300   1357
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2739ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1213)
+Total pause time 1213ms (1213346))
+Min pause 348us (348))
+Max pause 198ms (197510))
+Doing 1000 400B allocations
+Average pause time 1ms (1218)
+Total pause time 1218ms (1218282))
+Min pause 341us (341))
+Max pause 154ms (153770))
+[plotdata] 400   1218
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2675ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1317)
+Total pause time 1317ms (1317464))
+Min pause 351us (351))
+Max pause 174ms (173810))
+Doing 1000 500B allocations
+Average pause time 1ms (1394)
+Total pause time 1394ms (1394358))
+Min pause 350us (350))
+Max pause 207ms (206943))
+[plotdata] 500   1394
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2800ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 2ms (1537)
+Total pause time 1537ms (1537173))
+Min pause 353us (353))
+Max pause 207ms (207349))
+Doing 1000 600B allocations
+Average pause time 1ms (1499)
+Total pause time 1499ms (1499001))
+Min pause 350us (350))
+Max pause 198ms (197563))
+[plotdata] 600   1499
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 3142ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1076)
+Total pause time 1076ms (1076274))
+Min pause 353us (353))
+Max pause 158ms (158035))
+Doing 1000 700B allocations
+Average pause time 1ms (1101)
+Total pause time 1102ms (1101909))
+Min pause 350us (350))
+Max pause 137ms (136935))
+[plotdata] 700   1101
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2439ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1289)
+Total pause time 1290ms (1289748))
+Min pause 347us (347))
+Max pause 189ms (189467))
+Doing 1000 800B allocations
+Average pause time 1ms (1389)
+Total pause time 1389ms (1389257))
+Min pause 350us (350))
+Max pause 182ms (181713))
+[plotdata] 800   1389
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2968ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 746us (746)
+Total pause time 746ms (746491))
+Min pause 347us (347))
+Max pause 134ms (134394))
+Doing 1000 900B allocations
+Average pause time 1ms (1226)
+Total pause time 1226ms (1226149))
+Min pause 346us (346))
+Max pause 190ms (189588))
+[plotdata] 900   1226
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2332ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1257)
+Total pause time 1257ms (1257032))
+Min pause 348us (348))
+Max pause 152ms (151903))
+Doing 1000 1kB allocations
+Average pause time 1ms (1458)
+Total pause time 1458ms (1458168))
+Min pause 348us (348))
+Max pause 158ms (158248))
+[plotdata] 1000   1458
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2886ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1322)
+Total pause time 1323ms (1322941))
+Min pause 351us (351))
+Max pause 151ms (151488))
+Doing 1000 1kB allocations
+Average pause time 2ms (1516)
+Total pause time 1517ms (1516534))
+Min pause 354us (354))
+Max pause 189ms (189384))
+[plotdata] 1100   1516
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 3125ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1081)
+Total pause time 1082ms (1081620))
+Min pause 350us (350))
+Max pause 142ms (142365))
+Doing 1000 1kB allocations
+Average pause time 1ms (1214)
+Total pause time 1214ms (1214166))
+Min pause 351us (351))
+Max pause 142ms (142447))
+[plotdata] 1200   1214
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2781ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1386)
+Total pause time 1386ms (1386163))
+Min pause 349us (349))
+Max pause 158ms (157925))
+Doing 1000 1kB allocations
+Average pause time 1ms (1161)
+Total pause time 1162ms (1161535))
+Min pause 351us (351))
+Max pause 167ms (166811))
+[plotdata] 1300   1161
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2675ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1057)
+Total pause time 1058ms (1057982))
+Min pause 351us (351))
+Max pause 177ms (176729))
+Doing 1000 1kB allocations
+Average pause time 1ms (1316)
+Total pause time 1317ms (1316767))
+Min pause 352us (352))
+Max pause 182ms (181568))
+[plotdata] 1400   1316
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2974ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1324)
+Total pause time 1324ms (1324036))
+Min pause 349us (349))
+Max pause 189ms (189421))
+Doing 1000 2kB allocations
+Average pause time 2ms (1525)
+Total pause time 1526ms (1525619))
+Min pause 352us (352))
+Max pause 167ms (166955))
+[plotdata] 1500   1525
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2938ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1331)
+Total pause time 1331ms (1331001))
+Min pause 351us (351))
+Max pause 189ms (189495))
+Doing 1000 2kB allocations
+Average pause time 1ms (1213)
+Total pause time 1214ms (1213968))
+Min pause 348us (348))
+Max pause 182ms (181691))
+[plotdata] 1600   1213
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2902ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1087)
+Total pause time 1088ms (1087678))
+Min pause 346us (346))
+Max pause 127ms (127417))
+Doing 1000 2kB allocations
+Average pause time 1ms (1098)
+Total pause time 1098ms (1098393))
+Min pause 347us (347))
+Max pause 190ms (189684))
+[plotdata] 1700   1098
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2592ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 2ms (1616)
+Total pause time 1617ms (1616799))
+Min pause 350us (350))
+Max pause 166ms (165898))
+Doing 1000 2kB allocations
+Average pause time 1ms (1221)
+Total pause time 1221ms (1221123))
+Min pause 356us (356))
+Max pause 174ms (173636))
+[plotdata] 1800   1221
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 3036ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 971us (971)
+Total pause time 971ms (971295))
+Min pause 350us (350))
+Max pause 158ms (158259))
+Doing 1000 2kB allocations
+Average pause time 1ms (1379)
+Total pause time 1380ms (1379741))
+Min pause 361us (361))
+Max pause 174ms (174038))
+[plotdata] 1900   1379
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2592ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 2ms (1539)
+Total pause time 1540ms (1539633))
+Min pause 351us (351))
+Max pause 182ms (181689))
+Doing 1000 2kB allocations
+Average pause time 1ms (1378)
+Total pause time 1378ms (1378260))
+Min pause 360us (360))
+Max pause 190ms (189607))
+[plotdata] 2000   1378
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 3154ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1333)
+Total pause time 1334ms (1333715))
+Min pause 351us (351))
+Max pause 190ms (189544))
+Doing 1000 2kB allocations
+Average pause time 1ms (1211)
+Total pause time 1211ms (1211126))
+Min pause 361us (361))
+Max pause 190ms (189670))
+[plotdata] 2100   1211
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2964ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1424)
+Total pause time 1425ms (1424779))
+Min pause 348us (348))
+Max pause 152ms (152038))
+Doing 1000 2kB allocations
+Average pause time 1ms (1456)
+Total pause time 1457ms (1456869))
+Min pause 359us (359))
+Max pause 174ms (173953))
+[plotdata] 2200   1456
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2987ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1445)
+Total pause time 1446ms (1445984))
+Min pause 352us (352))
+Max pause 182ms (181573))
+Doing 1000 2kB allocations
+Average pause time 1ms (1171)
+Total pause time 1172ms (1171549))
+Min pause 359us (359))
+Max pause 174ms (173763))
+[plotdata] 2300   1171
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2839ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1276)
+Total pause time 1276ms (1276279))
+Min pause 347us (347))
+Max pause 190ms (189618))
+Doing 1000 2kB allocations
+Average pause time 1ms (1307)
+Total pause time 1307ms (1307113))
+Min pause 359us (359))
+Max pause 167ms (166706))
+[plotdata] 2400   1307
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2830ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1212)
+Total pause time 1213ms (1212516))
+Min pause 351us (351))
+Max pause 182ms (181728))
+Doing 1000 3kB allocations
+Average pause time 978us (978)
+Total pause time 978ms (978275))
+Min pause 362us (362))
+Max pause 136ms (136321))
+[plotdata] 2500   978
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2483ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1456)
+Total pause time 1456ms (1456264))
+Min pause 350us (350))
+Max pause 151ms (151431))
+Doing 1000 3kB allocations
+Average pause time 1ms (1355)
+Total pause time 1356ms (1355812))
+Min pause 368us (368))
+Max pause 182ms (181636))
+[plotdata] 2600   1355
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2926ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1300)
+Total pause time 1301ms (1300642))
+Min pause 348us (348))
+Max pause 152ms (151960))
+Doing 1000 3kB allocations
+Average pause time 1ms (1316)
+Total pause time 1317ms (1316609))
+Min pause 364us (364))
+Max pause 190ms (189553))
+[plotdata] 2700   1316
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2870ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1421)
+Total pause time 1421ms (1421483))
+Min pause 352us (352))
+Max pause 151ms (151472))
+Doing 1000 3kB allocations
+Average pause time 1ms (1423)
+Total pause time 1423ms (1423396))
+Min pause 362us (362))
+Max pause 189ms (189496))
+[plotdata] 2800   1423
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2951ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1478)
+Total pause time 1479ms (1478876))
+Min pause 347us (347))
+Max pause 158ms (158116))
+Doing 1000 3kB allocations
+Average pause time 1ms (1191)
+Total pause time 1191ms (1191279))
+Min pause 362us (362))
+Max pause 142ms (142185))
+[plotdata] 2900   1191
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2791ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1130)
+Total pause time 1130ms (1130155))
+Min pause 349us (349))
+Max pause 174ms (173951))
+Doing 1000 3kB allocations
+Average pause time 2ms (1524)
+Total pause time 1524ms (1524146))
+Min pause 362us (362))
+Max pause 182ms (181623))
+[plotdata] 3000   1524
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2925ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1292)
+Total pause time 1292ms (1292042))
+Min pause 349us (349))
+Max pause 150ms (150145))
+Doing 1000 3kB allocations
+Average pause time 1ms (1221)
+Total pause time 1222ms (1221658))
+Min pause 366us (366))
+Max pause 152ms (151509))
+[plotdata] 3100   1221
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2672ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1096)
+Total pause time 1096ms (1096107))
+Min pause 349us (349))
+Max pause 143ms (142526))
+Doing 1000 3kB allocations
+Average pause time 1ms (1350)
+Total pause time 1350ms (1350210))
+Min pause 364us (364))
+Max pause 152ms (152097))
+[plotdata] 3200   1350
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2773ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1477)
+Total pause time 1478ms (1477741))
+Min pause 351us (351))
+Max pause 189ms (189377))
+Doing 1000 3kB allocations
+Average pause time 1ms (1309)
+Total pause time 1309ms (1309049))
+Min pause 367us (367))
+Max pause 181ms (181405))
+[plotdata] 3300   1309
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2876ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1287)
+Total pause time 1288ms (1287930))
+Min pause 348us (348))
+Max pause 190ms (189575))
+Doing 1000 3kB allocations
+Average pause time 1ms (1164)
+Total pause time 1165ms (1164789))
+Min pause 365us (365))
+Max pause 189ms (189382))
+[plotdata] 3400   1164
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2566ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1477)
+Total pause time 1477ms (1477202))
+Min pause 354us (354))
+Max pause 182ms (181755))
+Doing 1000 4kB allocations
+Average pause time 1ms (1179)
+Total pause time 1179ms (1179271))
+Min pause 368us (368))
+Max pause 158ms (157937))
+[plotdata] 3500   1179
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 3170ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1336)
+Total pause time 1337ms (1336820))
+Min pause 348us (348))
+Max pause 158ms (158124))
+Doing 1000 4kB allocations
+Average pause time 787us (787)
+Total pause time 787ms (787446))
+Min pause 231us (231))
+Max pause 182ms (181616))
+[plotdata] 3600   787
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2387ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1357)
+Total pause time 1357ms (1357105))
+Min pause 352us (352))
+Max pause 190ms (189589))
+Doing 1000 4kB allocations
+Average pause time 849us (849)
+Total pause time 849ms (849186))
+Min pause 233us (233))
+Max pause 182ms (181586))
+[plotdata] 3700   849
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2456ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1422)
+Total pause time 1423ms (1422876))
+Min pause 349us (349))
+Max pause 182ms (181679))
+Doing 1000 4kB allocations
+Average pause time 668us (668)
+Total pause time 668ms (668069))
+Min pause 236us (236))
+Max pause 134ms (134313))
+[plotdata] 3800   668
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2193ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1456)
+Total pause time 1456ms (1456303))
+Min pause 346us (346))
+Max pause 182ms (181818))
+Doing 1000 4kB allocations
+Average pause time 927us (927)
+Total pause time 927ms (927153))
+Min pause 232us (232))
+Max pause 197ms (197301))
+[plotdata] 3900   927
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2508ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1049)
+Total pause time 1049ms (1049339))
+Min pause 350us (350))
+Max pause 150ms (150187))
+Doing 1000 4kB allocations
+Average pause time 958us (958)
+Total pause time 959ms (958633))
+Min pause 235us (235))
+Max pause 197ms (197420))
+[plotdata] 4000   958
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2481ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1429)
+Total pause time 1430ms (1429717))
+Min pause 351us (351))
+Max pause 182ms (181623))
+Doing 1000 4kB allocations
+Average pause time 888us (888)
+Total pause time 889ms (888621))
+Min pause 241us (241))
+Max pause 189ms (189405))
+[plotdata] 4100   888
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2577ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1262)
+Total pause time 1262ms (1262169))
+Min pause 351us (351))
+Max pause 182ms (181857))
+Doing 1000 4kB allocations
+Average pause time 742us (742)
+Total pause time 742ms (742319))
+Min pause 237us (237))
+Max pause 174ms (173687))
+[plotdata] 4200   742
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2298ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1338)
+Total pause time 1339ms (1338658))
+Min pause 349us (349))
+Max pause 189ms (189452))
+Doing 1000 4kB allocations
+Average pause time 1ms (1005)
+Total pause time 1005ms (1005330))
+Min pause 237us (237))
+Max pause 158ms (157953))
+[plotdata] 4300   1005
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2461ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1281)
+Total pause time 1281ms (1281295))
+Min pause 348us (348))
+Max pause 167ms (166540))
+Doing 1000 4kB allocations
+Average pause time 688us (688)
+Total pause time 688ms (688341))
+Min pause 239us (239))
+Max pause 142ms (142296))
+[plotdata] 4400   688
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2250ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1217)
+Total pause time 1217ms (1217073))
+Min pause 345us (345))
+Max pause 197ms (197394))
+Doing 1000 5kB allocations
+Average pause time 842us (842)
+Total pause time 842ms (842179))
+Min pause 241us (241))
+Max pause 182ms (181669))
+[plotdata] 4500   842
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2349ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1079)
+Total pause time 1080ms (1079933))
+Min pause 351us (351))
+Max pause 190ms (189729))
+Doing 1000 5kB allocations
+Average pause time 1ms (1140)
+Total pause time 1140ms (1140005))
+Min pause 241us (241))
+Max pause 190ms (189565))
+[plotdata] 4600   1140
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2354ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1086)
+Total pause time 1086ms (1086217))
+Min pause 351us (351))
+Max pause 158ms (158272))
+Doing 1000 5kB allocations
+Average pause time 602us (602)
+Total pause time 603ms (602610))
+Min pause 240us (240))
+Max pause 98ms (97839))
+[plotdata] 4700   602
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2201ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1133)
+Total pause time 1134ms (1133600))
+Min pause 348us (348))
+Max pause 189ms (189401))
+Doing 1000 5kB allocations
+Average pause time 1ms (1063)
+Total pause time 1063ms (1063395))
+Min pause 238us (238))
+Max pause 190ms (189512))
+[plotdata] 4800   1063
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2285ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1231)
+Total pause time 1231ms (1231476))
+Min pause 351us (351))
+Max pause 207ms (206991))
+Doing 1000 5kB allocations
+Average pause time 902us (902)
+Total pause time 903ms (902703))
+Min pause 237us (237))
+Max pause 197ms (197255))
+[plotdata] 4900   902
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2452ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1454)
+Total pause time 1454ms (1454116))
+Min pause 348us (348))
+Max pause 152ms (152172))
+Doing 1000 5kB allocations
+Average pause time 626us (626)
+Total pause time 626ms (626121))
+Min pause 239us (239))
+Max pause 112ms (112345))
+[plotdata] 5000   626
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2333ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1059)
+Total pause time 1060ms (1059968))
+Min pause 351us (351))
+Max pause 174ms (173724))
+Doing 1000 5kB allocations
+Average pause time 825us (825)
+Total pause time 825ms (825396))
+Min pause 239us (239))
+Max pause 142ms (142344))
+[plotdata] 5100   825
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2409ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1223)
+Total pause time 1223ms (1223195))
+Min pause 346us (346))
+Max pause 168ms (167993))
+Doing 1000 5kB allocations
+Average pause time 842us (842)
+Total pause time 842ms (842306))
+Min pause 239us (239))
+Max pause 142ms (142380))
+[plotdata] 5200   842
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2440ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1229)
+Total pause time 1230ms (1229960))
+Min pause 349us (349))
+Max pause 150ms (150212))
+Doing 1000 5kB allocations
+Average pause time 909us (909)
+Total pause time 910ms (909527))
+Min pause 239us (239))
+Max pause 142ms (142323))
+[plotdata] 5300   909
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2441ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1014)
+Total pause time 1015ms (1014909))
+Min pause 347us (347))
+Max pause 143ms (143051))
+Doing 1000 5kB allocations
+Average pause time 587us (587)
+Total pause time 587ms (587065))
+Min pause 239us (239))
+Max pause 143ms (143172))
+[plotdata] 5400   587
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 1998ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1183)
+Total pause time 1183ms (1183492))
+Min pause 353us (353))
+Max pause 174ms (173766))
+Doing 1000 6kB allocations
+Average pause time 773us (773)
+Total pause time 773ms (773206))
+Min pause 241us (241))
+Max pause 167ms (166819))
+[plotdata] 5500   773
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2355ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1299)
+Total pause time 1300ms (1299772))
+Min pause 353us (353))
+Max pause 182ms (181740))
+Doing 1000 6kB allocations
+Average pause time 624us (624)
+Total pause time 624ms (624136))
+Min pause 239us (239))
+Max pause 98ms (97791))
+[plotdata] 5600   624
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2291ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1222)
+Total pause time 1222ms (1222013))
+Min pause 347us (347))
+Max pause 190ms (189593))
+Doing 1000 6kB allocations
+Average pause time 1ms (1010)
+Total pause time 1010ms (1010080))
+Min pause 237us (237))
+Max pause 158ms (157920))
+[plotdata] 5700   1010
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2330ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1254)
+Total pause time 1255ms (1254961))
+Min pause 349us (349))
+Max pause 158ms (158090))
+Doing 1000 6kB allocations
+Average pause time 800us (800)
+Total pause time 801ms (800898))
+Min pause 238us (238))
+Max pause 143ms (143135))
+[plotdata] 5800   800
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2285ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 2ms (1510)
+Total pause time 1511ms (1510696))
+Min pause 348us (348))
+Max pause 168ms (168113))
+Doing 1000 6kB allocations
+Average pause time 898us (898)
+Total pause time 898ms (898226))
+Min pause 240us (240))
+Max pause 158ms (158039))
+[plotdata] 5900   898
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2521ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 2ms (1641)
+Total pause time 1641ms (1641407))
+Min pause 349us (349))
+Max pause 190ms (189719))
+Doing 1000 6kB allocations
+Average pause time 731us (731)
+Total pause time 731ms (731427))
+Min pause 239us (239))
+Max pause 158ms (158038))
+[plotdata] 6000   731
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2516ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 2ms (2223)
+Total pause time 2224ms (2223684))
+Min pause 352us (352))
+Max pause 582ms (581733))
+Doing 1000 6kB allocations
+Average pause time 1ms (1030)
+Total pause time 1031ms (1030537))
+Min pause 241us (241))
+Max pause 158ms (157995))
+[plotdata] 6100   1030
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 3363ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 2ms (1633)
+Total pause time 1634ms (1633764))
+Min pause 340us (340))
+Max pause 158ms (158403))
+Doing 1000 6kB allocations
+Average pause time 901us (901)
+Total pause time 901ms (901354))
+Min pause 233us (233))
+Max pause 150ms (150055))
+[plotdata] 6200   901
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2716ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1243)
+Total pause time 1243ms (1243085))
+Min pause 334us (334))
+Max pause 197ms (197306))
+Doing 1000 6kB allocations
+Average pause time 913us (913)
+Total pause time 913ms (913480))
+Min pause 229us (229))
+Max pause 189ms (189242))
+[plotdata] 6300   913
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2245ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1315)
+Total pause time 1316ms (1315506))
+Min pause 335us (335))
+Max pause 151ms (151447))
+Doing 1000 6kB allocations
+Average pause time 684us (684)
+Total pause time 684ms (684330))
+Min pause 231us (231))
+Max pause 159ms (159362))
+[plotdata] 6400   684
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2210ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1311)
+Total pause time 1312ms (1311600))
+Min pause 331us (331))
+Max pause 179ms (179142))
+Doing 1000 7kB allocations
+Average pause time 922us (922)
+Total pause time 923ms (922642))
+Min pause 226us (226))
+Max pause 181ms (181368))
+[plotdata] 6500   922
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2371ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1171)
+Total pause time 1172ms (1171913))
+Min pause 334us (334))
+Max pause 190ms (189555))
+Doing 1000 7kB allocations
+Average pause time 738us (738)
+Total pause time 739ms (738798))
+Min pause 230us (230))
+Max pause 150ms (150069))
+[plotdata] 6600   738
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2143ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1269)
+Total pause time 1270ms (1269774))
+Min pause 333us (333))
+Max pause 174ms (173880))
+Doing 1000 7kB allocations
+Average pause time 844us (844)
+Total pause time 844ms (844370))
+Min pause 229us (229))
+Max pause 151ms (151386))
+[plotdata] 6700   844
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2325ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1265)
+Total pause time 1266ms (1265582))
+Min pause 335us (335))
+Max pause 158ms (158179))
+Doing 1000 7kB allocations
+Average pause time 1ms (1088)
+Total pause time 1088ms (1088096))
+Min pause 232us (232))
+Max pause 198ms (197500))
+[plotdata] 6800   1088
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2497ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1085)
+Total pause time 1086ms (1085716))
+Min pause 335us (335))
+Max pause 189ms (189315))
+Doing 1000 7kB allocations
+Average pause time 962us (962)
+Total pause time 962ms (962329))
+Min pause 228us (228))
+Max pause 174ms (173756))
+[plotdata] 6900   962
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2306ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1335)
+Total pause time 1335ms (1335314))
+Min pause 334us (334))
+Max pause 190ms (189519))
+Doing 1000 7kB allocations
+Average pause time 906us (906)
+Total pause time 906ms (906021))
+Min pause 232us (232))
+Max pause 174ms (173761))
+[plotdata] 7000   906
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2360ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1251)
+Total pause time 1252ms (1251805))
+Min pause 333us (333))
+Max pause 150ms (150050))
+Doing 1000 7kB allocations
+Average pause time 817us (817)
+Total pause time 817ms (817252))
+Min pause 228us (228))
+Max pause 158ms (157888))
+[plotdata] 7100   817
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2208ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1315)
+Total pause time 1316ms (1315836))
+Min pause 335us (335))
+Max pause 189ms (189389))
+Doing 1000 7kB allocations
+Average pause time 779us (779)
+Total pause time 779ms (779150))
+Min pause 231us (231))
+Max pause 136ms (136324))
+[plotdata] 7200   779
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2209ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1309)
+Total pause time 1309ms (1309134))
+Min pause 344us (344))
+Max pause 158ms (158148))
+Doing 1000 7kB allocations
+Average pause time 913us (913)
+Total pause time 914ms (913640))
+Min pause 237us (237))
+Max pause 158ms (157844))
+[plotdata] 7300   913
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2329ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1226)
+Total pause time 1227ms (1226757))
+Min pause 337us (337))
+Max pause 174ms (173985))
+Doing 1000 7kB allocations
+Average pause time 543us (543)
+Total pause time 544ms (543919))
+Min pause 233us (233))
+Max pause 112ms (112456))
+[plotdata] 7400   543
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2095ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1190)
+Total pause time 1191ms (1190806))
+Min pause 343us (343))
+Max pause 182ms (181587))
+Doing 1000 8kB allocations
+Average pause time 969us (969)
+Total pause time 969ms (969312))
+Min pause 236us (236))
+Max pause 189ms (189404))
+[plotdata] 7500   969
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2290ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1056)
+Total pause time 1056ms (1056235))
+Min pause 340us (340))
+Max pause 150ms (150101))
+Doing 1000 8kB allocations
+Average pause time 872us (872)
+Total pause time 873ms (872500))
+Min pause 234us (234))
+Max pause 158ms (158058))
+[plotdata] 7600   872
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2194ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1331)
+Total pause time 1331ms (1331026))
+Min pause 341us (341))
+Max pause 151ms (151478))
+Doing 1000 8kB allocations
+Average pause time 880us (880)
+Total pause time 881ms (880956))
+Min pause 235us (235))
+Max pause 174ms (173863))
+[plotdata] 7700   880
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2529ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1295)
+Total pause time 1296ms (1295881))
+Min pause 340us (340))
+Max pause 152ms (151997))
+Doing 1000 8kB allocations
+Average pause time 1ms (1048)
+Total pause time 1049ms (1048781))
+Min pause 234us (234))
+Max pause 189ms (189430))
+[plotdata] 7800   1048
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2484ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1189)
+Total pause time 1189ms (1189270))
+Min pause 341us (341))
+Max pause 174ms (173968))
+Doing 1000 8kB allocations
+Average pause time 848us (848)
+Total pause time 849ms (848601))
+Min pause 236us (236))
+Max pause 150ms (150096))
+[plotdata] 7900   848
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2272ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1231)
+Total pause time 1231ms (1231326))
+Min pause 339us (339))
+Max pause 182ms (181639))
+Doing 1000 8kB allocations
+Average pause time 944us (944)
+Total pause time 945ms (944546))
+Min pause 233us (233))
+Max pause 174ms (173835))
+[plotdata] 8000   944
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2249ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1318)
+Total pause time 1319ms (1318869))
+Min pause 343us (343))
+Max pause 158ms (158103))
+Doing 1000 8kB allocations
+Average pause time 839us (839)
+Total pause time 839ms (839155))
+Min pause 235us (235))
+Max pause 160ms (159515))
+[plotdata] 8100   839
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2436ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1032)
+Total pause time 1033ms (1032774))
+Min pause 340us (340))
+Max pause 150ms (150256))
+Doing 1000 8kB allocations
+Average pause time 1ms (1042)
+Total pause time 1042ms (1042464))
+Min pause 236us (236))
+Max pause 152ms (152116))
+[plotdata] 8200   1042
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2287ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1278)
+Total pause time 1279ms (1278957))
+Min pause 341us (341))
+Max pause 152ms (152001))
+Doing 1000 8kB allocations
+Average pause time 730us (730)
+Total pause time 731ms (730769))
+Min pause 239us (239))
+Max pause 142ms (142140))
+[plotdata] 8300   730
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2320ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1100)
+Total pause time 1100ms (1100231))
+Min pause 339us (339))
+Max pause 167ms (166797))
+Doing 1000 8kB allocations
+Average pause time 1ms (1013)
+Total pause time 1013ms (1013074))
+Min pause 239us (239))
+Max pause 189ms (189414))
+[plotdata] 8400   1013
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2240ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1116)
+Total pause time 1117ms (1116627))
+Min pause 342us (342))
+Max pause 136ms (136280))
+Doing 1000 9kB allocations
+Average pause time 957us (957)
+Total pause time 957ms (957029))
+Min pause 240us (240))
+Max pause 158ms (157975))
+[plotdata] 8500   957
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2152ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1069)
+Total pause time 1070ms (1069649))
+Min pause 338us (338))
+Max pause 159ms (158667))
+Doing 1000 9kB allocations
+Average pause time 827us (827)
+Total pause time 827ms (827458))
+Min pause 236us (236))
+Max pause 189ms (189467))
+[plotdata] 8600   827
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2002ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 843us (843)
+Total pause time 844ms (843898))
+Min pause 342us (342))
+Max pause 182ms (181721))
+Doing 1000 9kB allocations
+Average pause time 695us (695)
+Total pause time 695ms (695352))
+Min pause 238us (238))
+Max pause 190ms (189574))
+[plotdata] 8700   695
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2036ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1467)
+Total pause time 1467ms (1467311))
+Min pause 339us (339))
+Max pause 158ms (157874))
+Doing 1000 9kB allocations
+Average pause time 849us (849)
+Total pause time 850ms (849831))
+Min pause 236us (236))
+Max pause 158ms (157822))
+[plotdata] 8800   849
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2543ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1389)
+Total pause time 1389ms (1389050))
+Min pause 341us (341))
+Max pause 174ms (173752))
+Doing 1000 9kB allocations
+Average pause time 1ms (1020)
+Total pause time 1021ms (1020817))
+Min pause 241us (241))
+Max pause 189ms (189469))
+[plotdata] 8900   1020
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2496ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1114)
+Total pause time 1115ms (1114948))
+Min pause 340us (340))
+Max pause 152ms (151926))
+Doing 1000 9kB allocations
+Average pause time 721us (721)
+Total pause time 722ms (721910))
+Min pause 238us (238))
+Max pause 150ms (150115))
+[plotdata] 9000   721
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2082ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1161)
+Total pause time 1161ms (1161409))
+Min pause 342us (342))
+Max pause 142ms (142417))
+Doing 1000 9kB allocations
+Average pause time 720us (720)
+Total pause time 721ms (720907))
+Min pause 239us (239))
+Max pause 128ms (127782))
+[plotdata] 9100   720
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2280ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1131)
+Total pause time 1131ms (1131391))
+Min pause 338us (338))
+Max pause 150ms (150177))
+Doing 1000 9kB allocations
+Average pause time 886us (886)
+Total pause time 886ms (886207))
+Min pause 235us (235))
+Max pause 151ms (151342))
+[plotdata] 9200   886
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2353ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1273)
+Total pause time 1274ms (1273837))
+Min pause 343us (343))
+Max pause 197ms (197478))
+Doing 1000 9kB allocations
+Average pause time 895us (895)
+Total pause time 896ms (895638))
+Min pause 239us (239))
+Max pause 181ms (181476))
+[plotdata] 9300   895
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2360ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1252)
+Total pause time 1253ms (1252581))
+Min pause 340us (340))
+Max pause 182ms (182359))
+Doing 1000 9kB allocations
+Average pause time 730us (730)
+Total pause time 731ms (730724))
+Min pause 236us (236))
+Max pause 189ms (189304))
+[plotdata] 9400   730
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2324ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1240)
+Total pause time 1240ms (1240032))
+Min pause 343us (343))
+Max pause 158ms (158153))
+Doing 1000 10kB allocations
+Average pause time 1ms (1044)
+Total pause time 1044ms (1044162))
+Min pause 239us (239))
+Max pause 197ms (197343))
+[plotdata] 9500   1044
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2353ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 2ms (1537)
+Total pause time 1538ms (1537512))
+Min pause 340us (340))
+Max pause 190ms (189703))
+Doing 1000 10kB allocations
+Average pause time 979us (979)
+Total pause time 979ms (979414))
+Min pause 238us (238))
+Max pause 158ms (158100))
+[plotdata] 9600   979
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2772ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1307)
+Total pause time 1307ms (1307147))
+Min pause 341us (341))
+Max pause 152ms (152093))
+Doing 1000 10kB allocations
+Average pause time 971us (971)
+Total pause time 971ms (971375))
+Min pause 238us (238))
+Max pause 182ms (181627))
+[plotdata] 9700   971
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2371ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 931us (931)
+Total pause time 932ms (931929))
+Min pause 339us (339))
+Max pause 134ms (134484))
+Doing 1000 10kB allocations
+Average pause time 993us (993)
+Total pause time 993ms (993470))
+Min pause 235us (235))
+Max pause 158ms (158058))
+[plotdata] 9800   993
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2198ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1297)
+Total pause time 1298ms (1297696))
+Min pause 342us (342))
+Max pause 158ms (158133))
+Doing 1000 10kB allocations
+Average pause time 976us (976)
+Total pause time 977ms (976506))
+Min pause 239us (239))
+Max pause 158ms (157973))
+[plotdata] 9900   976
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2415ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1324)
+Total pause time 1325ms (1324955))
+Min pause 342us (342))
+Max pause 150ms (149998))
+Doing 1000 10kB allocations
+Average pause time 967us (967)
+Total pause time 967ms (967077))
+Min pause 237us (237))
+Max pause 190ms (189534))
+[plotdata] 10000   967
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2373ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1368)
+Total pause time 1368ms (1368343))
+Min pause 342us (342))
+Max pause 158ms (158214))
+Doing 1000 10kB allocations
+Average pause time 736us (736)
+Total pause time 736ms (736357))
+Min pause 239us (239))
+Max pause 177ms (177202))
+[plotdata] 10100   736
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2230ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1186)
+Total pause time 1186ms (1186104))
+Min pause 340us (340))
+Max pause 197ms (197335))
+Doing 1000 10kB allocations
+Average pause time 987us (987)
+Total pause time 987ms (987405))
+Min pause 238us (238))
+Max pause 189ms (189399))
+[plotdata] 10200   987
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2407ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1421)
+Total pause time 1421ms (1421400))
+Min pause 342us (342))
+Max pause 190ms (189623))
+Doing 1000 10kB allocations
+Average pause time 600us (600)
+Total pause time 600ms (600071))
+Min pause 240us (240))
+Max pause 112ms (111557))
+[plotdata] 10300   600
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2229ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1419)
+Total pause time 1419ms (1419083))
+Min pause 338us (338))
+Max pause 190ms (189668))
+Doing 1000 10kB allocations
+Average pause time 869us (869)
+Total pause time 870ms (869522))
+Min pause 236us (236))
+Max pause 158ms (158151))
+[plotdata] 10400   869
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2590ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1175)
+Total pause time 1175ms (1175336))
+Min pause 342us (342))
+Max pause 153ms (152558))
+Doing 1000 11kB allocations
+Average pause time 746us (746)
+Total pause time 746ms (746216))
+Min pause 238us (238))
+Max pause 150ms (149997))
+[plotdata] 10500   746
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2198ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1153)
+Total pause time 1153ms (1153319))
+Min pause 339us (339))
+Max pause 190ms (189556))
+Doing 1000 11kB allocations
+Average pause time 774us (774)
+Total pause time 775ms (774706))
+Min pause 237us (237))
+Max pause 182ms (181530))
+[plotdata] 10600   774
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2175ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1178)
+Total pause time 1178ms (1178204))
+Min pause 343us (343))
+Max pause 190ms (189646))
+Doing 1000 11kB allocations
+Average pause time 713us (713)
+Total pause time 714ms (713516))
+Min pause 239us (239))
+Max pause 143ms (143022))
+[plotdata] 10700   713
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 1975ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1226)
+Total pause time 1227ms (1226558))
+Min pause 341us (341))
+Max pause 152ms (151862))
+Doing 1000 11kB allocations
+Average pause time 736us (736)
+Total pause time 737ms (736956))
+Min pause 238us (238))
+Max pause 182ms (181614))
+[plotdata] 10800   736
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2382ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1341)
+Total pause time 1342ms (1341780))
+Min pause 343us (343))
+Max pause 151ms (151266))
+Doing 1000 11kB allocations
+Average pause time 735us (735)
+Total pause time 736ms (735859))
+Min pause 240us (240))
+Max pause 158ms (158085))
+[plotdata] 10900   735
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2210ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1052)
+Total pause time 1053ms (1052893))
+Min pause 339us (339))
+Max pause 174ms (173672))
+Doing 1000 11kB allocations
+Average pause time 918us (918)
+Total pause time 919ms (918858))
+Min pause 236us (236))
+Max pause 190ms (189548))
+[plotdata] 11000   918
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2221ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1120)
+Total pause time 1121ms (1120605))
+Min pause 343us (343))
+Max pause 182ms (181503))
+Doing 1000 11kB allocations
+Average pause time 727us (727)
+Total pause time 727ms (727458))
+Min pause 238us (238))
+Max pause 127ms (127186))
+[plotdata] 11100   727
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2112ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1282)
+Total pause time 1283ms (1282662))
+Min pause 339us (339))
+Max pause 151ms (151470))
+Doing 1000 11kB allocations
+Average pause time 1ms (1038)
+Total pause time 1039ms (1038920))
+Min pause 236us (236))
+Max pause 150ms (150239))
+[plotdata] 11200   1038
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2437ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1357)
+Total pause time 1357ms (1357114))
+Min pause 342us (342))
+Max pause 190ms (189575))
+Doing 1000 11kB allocations
+Average pause time 819us (819)
+Total pause time 819ms (819177))
+Min pause 239us (239))
+Max pause 143ms (143175))
+[plotdata] 11300   819
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2261ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1080)
+Total pause time 1081ms (1080819))
+Min pause 339us (339))
+Max pause 182ms (181568))
+Doing 1000 11kB allocations
+Average pause time 707us (707)
+Total pause time 707ms (707198))
+Min pause 237us (237))
+Max pause 135ms (135211))
+[plotdata] 11400   707
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2128ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1141)
+Total pause time 1141ms (1141262))
+Min pause 341us (341))
+Max pause 150ms (150173))
+Doing 1000 12kB allocations
+Average pause time 954us (954)
+Total pause time 955ms (954982))
+Min pause 239us (239))
+Max pause 159ms (159444))
+[plotdata] 11500   954
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2181ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1405)
+Total pause time 1405ms (1405360))
+Min pause 338us (338))
+Max pause 197ms (197258))
+Doing 1000 12kB allocations
+Average pause time 816us (816)
+Total pause time 817ms (816804))
+Min pause 236us (236))
+Max pause 151ms (151151))
+[plotdata] 11600   816
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2502ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1097)
+Total pause time 1098ms (1097716))
+Min pause 342us (342))
+Max pause 174ms (173869))
+Doing 1000 12kB allocations
+Average pause time 746us (746)
+Total pause time 747ms (746882))
+Min pause 238us (238))
+Max pause 134ms (134308))
+[plotdata] 11700   746
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2161ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 924us (924)
+Total pause time 925ms (924954))
+Min pause 340us (340))
+Max pause 182ms (181706))
+Doing 1000 12kB allocations
+Average pause time 1ms (1087)
+Total pause time 1087ms (1087333))
+Min pause 237us (237))
+Max pause 174ms (173917))
+[plotdata] 11800   1087
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2438ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1269)
+Total pause time 1269ms (1269257))
+Min pause 341us (341))
+Max pause 150ms (150123))
+Doing 1000 12kB allocations
+Average pause time 899us (899)
+Total pause time 900ms (899801))
+Min pause 239us (239))
+Max pause 158ms (158043))
+[plotdata] 11900   899
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2382ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1237)
+Total pause time 1237ms (1237062))
+Min pause 341us (341))
+Max pause 207ms (207008))
+Doing 1000 12kB allocations
+Average pause time 834us (834)
+Total pause time 834ms (834175))
+Min pause 239us (239))
+Max pause 142ms (142023))
+[plotdata] 12000   834
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2153ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 945us (945)
+Total pause time 945ms (945024))
+Min pause 342us (342))
+Max pause 174ms (173782))
+Doing 1000 12kB allocations
+Average pause time 879us (879)
+Total pause time 880ms (879608))
+Min pause 239us (239))
+Max pause 158ms (157993))
+[plotdata] 12100   879
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2037ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1215)
+Total pause time 1215ms (1215032))
+Min pause 338us (338))
+Max pause 190ms (189521))
+Doing 1000 12kB allocations
+Average pause time 779us (779)
+Total pause time 780ms (779616))
+Min pause 235us (235))
+Max pause 150ms (150030))
+[plotdata] 12200   779
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2231ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1275)
+Total pause time 1275ms (1275452))
+Min pause 341us (341))
+Max pause 174ms (174247))
+Doing 1000 12kB allocations
+Average pause time 773us (773)
+Total pause time 773ms (773391))
+Min pause 243us (243))
+Max pause 137ms (136838))
+[plotdata] 12300   773
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2215ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 986us (986)
+Total pause time 986ms (986105))
+Min pause 339us (339))
+Max pause 159ms (159041))
+Doing 1000 12kB allocations
+Average pause time 828us (828)
+Total pause time 829ms (828850))
+Min pause 241us (241))
+Max pause 182ms (181521))
+[plotdata] 12400   828
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2220ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1074)
+Total pause time 1075ms (1074775))
+Min pause 343us (343))
+Max pause 134ms (134434))
+Doing 1000 13kB allocations
+Average pause time 948us (948)
+Total pause time 948ms (948127))
+Min pause 246us (246))
+Max pause 197ms (197418))
+[plotdata] 12500   948
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2120ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1075)
+Total pause time 1076ms (1075564))
+Min pause 341us (341))
+Max pause 144ms (143809))
+Doing 1000 13kB allocations
+Average pause time 908us (908)
+Total pause time 908ms (908054))
+Min pause 244us (244))
+Max pause 166ms (166318))
+[plotdata] 12600   908
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2070ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1302)
+Total pause time 1303ms (1302921))
+Min pause 343us (343))
+Max pause 158ms (158361))
+Doing 1000 13kB allocations
+Average pause time 1ms (1050)
+Total pause time 1050ms (1050376))
+Min pause 244us (244))
+Max pause 190ms (189537))
+[plotdata] 12700   1050
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2457ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1124)
+Total pause time 1125ms (1124503))
+Min pause 338us (338))
+Max pause 177ms (176744))
+Doing 1000 13kB allocations
+Average pause time 995us (995)
+Total pause time 996ms (995584))
+Min pause 241us (241))
+Max pause 197ms (197424))
+[plotdata] 12800   995
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2199ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1035)
+Total pause time 1035ms (1035447))
+Min pause 343us (343))
+Max pause 142ms (142230))
+Doing 1000 13kB allocations
+Average pause time 716us (716)
+Total pause time 717ms (716866))
+Min pause 244us (244))
+Max pause 190ms (189615))
+[plotdata] 12900   716
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2148ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 906us (906)
+Total pause time 906ms (906448))
+Min pause 340us (340))
+Max pause 144ms (144133))
+Doing 1000 13kB allocations
+Average pause time 1ms (1017)
+Total pause time 1018ms (1017703))
+Min pause 242us (242))
+Max pause 182ms (181526))
+[plotdata] 13000   1017
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2260ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1037)
+Total pause time 1038ms (1037680))
+Min pause 342us (342))
+Max pause 150ms (149973))
+Doing 1000 13kB allocations
+Average pause time 731us (731)
+Total pause time 732ms (731665))
+Min pause 244us (244))
+Max pause 174ms (173738))
+[plotdata] 13100   731
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 1949ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1082)
+Total pause time 1082ms (1082274))
+Min pause 339us (339))
+Max pause 158ms (158157))
+Doing 1000 13kB allocations
+Average pause time 965us (965)
+Total pause time 965ms (965319))
+Min pause 242us (242))
+Max pause 181ms (181475))
+[plotdata] 13200   965
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2294ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1080)
+Total pause time 1081ms (1080570))
+Min pause 340us (340))
+Max pause 174ms (173793))
+Doing 1000 13kB allocations
+Average pause time 644us (644)
+Total pause time 645ms (644864))
+Min pause 244us (244))
+Max pause 138ms (137544))
+[plotdata] 13300   644
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2154ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1007)
+Total pause time 1008ms (1007962))
+Min pause 339us (339))
+Max pause 128ms (127581))
+Doing 1000 13kB allocations
+Average pause time 877us (877)
+Total pause time 877ms (877025))
+Min pause 242us (242))
+Max pause 151ms (151393))
+[plotdata] 13400   877
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2111ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1107)
+Total pause time 1107ms (1107372))
+Min pause 342us (342))
+Max pause 159ms (159180))
+Doing 1000 14kB allocations
+Average pause time 1ms (1069)
+Total pause time 1069ms (1069169))
+Min pause 244us (244))
+Max pause 189ms (189402))
+[plotdata] 13500   1069
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2438ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1249)
+Total pause time 1249ms (1249413))
+Min pause 340us (340))
+Max pause 190ms (189537))
+Doing 1000 14kB allocations
+Average pause time 684us (684)
+Total pause time 684ms (684294))
+Min pause 243us (243))
+Max pause 127ms (127451))
+[plotdata] 13600   684
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2255ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1152)
+Total pause time 1152ms (1152045))
+Min pause 341us (341))
+Max pause 198ms (197539))
+Doing 1000 14kB allocations
+Average pause time 859us (859)
+Total pause time 860ms (859750))
+Min pause 244us (244))
+Max pause 158ms (158037))
+[plotdata] 13700   859
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2137ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1201)
+Total pause time 1201ms (1201102))
+Min pause 340us (340))
+Max pause 151ms (151384))
+Doing 1000 14kB allocations
+Average pause time 822us (822)
+Total pause time 823ms (822889))
+Min pause 244us (244))
+Max pause 144ms (143749))
+[plotdata] 13800   822
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2440ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1014)
+Total pause time 1014ms (1014416))
+Min pause 341us (341))
+Max pause 159ms (158765))
+Doing 1000 14kB allocations
+Average pause time 793us (793)
+Total pause time 794ms (793527))
+Min pause 245us (245))
+Max pause 142ms (142185))
+[plotdata] 13900   793
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2205ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1184)
+Total pause time 1185ms (1184963))
+Min pause 339us (339))
+Max pause 190ms (189665))
+Doing 1000 14kB allocations
+Average pause time 576us (576)
+Total pause time 577ms (576628))
+Min pause 241us (241))
+Max pause 134ms (134317))
+[plotdata] 14000   576
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 1991ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1288)
+Total pause time 1288ms (1288377))
+Min pause 342us (342))
+Max pause 190ms (189719))
+Doing 1000 14kB allocations
+Average pause time 602us (602)
+Total pause time 603ms (602745))
+Min pause 243us (243))
+Max pause 152ms (151917))
+[plotdata] 14100   602
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2040ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1128)
+Total pause time 1128ms (1128257))
+Min pause 339us (339))
+Max pause 152ms (152006))
+Doing 1000 14kB allocations
+Average pause time 823us (823)
+Total pause time 823ms (823137))
+Min pause 240us (240))
+Max pause 151ms (151317))
+[plotdata] 14200   823
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2202ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1485)
+Total pause time 1485ms (1485158))
+Min pause 341us (341))
+Max pause 207ms (206814))
+Doing 1000 14kB allocations
+Average pause time 768us (768)
+Total pause time 768ms (768105))
+Min pause 244us (244))
+Max pause 120ms (119552))
+[plotdata] 14300   768
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2354ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 945us (945)
+Total pause time 946ms (945923))
+Min pause 340us (340))
+Max pause 134ms (134379))
+Doing 1000 14kB allocations
+Average pause time 684us (684)
+Total pause time 684ms (684289))
+Min pause 243us (243))
+Max pause 197ms (197053))
+[plotdata] 14400   684
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2070ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1336)
+Total pause time 1336ms (1336128))
+Min pause 343us (343))
+Max pause 152ms (151539))
+Doing 1000 15kB allocations
+Average pause time 1ms (1017)
+Total pause time 1017ms (1017439))
+Min pause 245us (245))
+Max pause 158ms (158044))
+[plotdata] 14500   1017
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2431ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1262)
+Total pause time 1262ms (1262406))
+Min pause 338us (338))
+Max pause 174ms (173785))
+Doing 1000 15kB allocations
+Average pause time 667us (667)
+Total pause time 667ms (667444))
+Min pause 242us (242))
+Max pause 182ms (181549))
+[plotdata] 14600   667
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2368ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1000)
+Total pause time 1001ms (1000500))
+Min pause 342us (342))
+Max pause 159ms (159054))
+Doing 1000 15kB allocations
+Average pause time 966us (966)
+Total pause time 967ms (966800))
+Min pause 243us (243))
+Max pause 158ms (157979))
+[plotdata] 14700   966
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2217ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1231)
+Total pause time 1232ms (1231597))
+Min pause 340us (340))
+Max pause 159ms (159332))
+Doing 1000 15kB allocations
+Average pause time 513us (513)
+Total pause time 514ms (513583))
+Min pause 241us (241))
+Max pause 57ms (57070))
+[plotdata] 14800   513
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2098ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1097)
+Total pause time 1098ms (1097802))
+Min pause 340us (340))
+Max pause 190ms (189552))
+Doing 1000 15kB allocations
+Average pause time 915us (915)
+Total pause time 916ms (915918))
+Min pause 244us (244))
+Max pause 182ms (181696))
+[plotdata] 14900   915
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2308ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1198)
+Total pause time 1199ms (1198752))
+Min pause 340us (340))
+Max pause 173ms (173425))
+Doing 1000 15kB allocations
+Average pause time 1ms (1399)
+Total pause time 1400ms (1399717))
+Min pause 242us (242))
+Max pause 498ms (497988))
+[plotdata] 15000   1399
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2790ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 2ms (1500)
+Total pause time 1500ms (1500362))
+Min pause 342us (342))
+Max pause 166ms (166022))
+Doing 1000 15kB allocations
+Average pause time 1ms (1172)
+Total pause time 1173ms (1172973))
+Min pause 244us (244))
+Max pause 158ms (158053))
+[plotdata] 15100   1172
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2784ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1331)
+Total pause time 1332ms (1331803))
+Min pause 337us (337))
+Max pause 190ms (189613))
+Doing 1000 15kB allocations
+Average pause time 1ms (1091)
+Total pause time 1091ms (1091302))
+Min pause 241us (241))
+Max pause 142ms (142347))
+[plotdata] 15200   1091
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2514ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 995us (995)
+Total pause time 996ms (995576))
+Min pause 332us (332))
+Max pause 158ms (158036))
+Doing 1000 15kB allocations
+Average pause time 826us (826)
+Total pause time 827ms (826891))
+Min pause 234us (234))
+Max pause 150ms (150012))
+[plotdata] 15300   826
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2180ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1095)
+Total pause time 1095ms (1095317))
+Min pause 333us (333))
+Max pause 142ms (142455))
+Doing 1000 15kB allocations
+Average pause time 850us (850)
+Total pause time 850ms (850421))
+Min pause 238us (238))
+Max pause 190ms (189541))
+[plotdata] 15400   850
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2338ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1309)
+Total pause time 1310ms (1309743))
+Min pause 330us (330))
+Max pause 190ms (189644))
+Doing 1000 16kB allocations
+Average pause time 823us (823)
+Total pause time 824ms (823958))
+Min pause 236us (236))
+Max pause 174ms (173763))
+[plotdata] 15500   823
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2335ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1132)
+Total pause time 1133ms (1132792))
+Min pause 344us (344))
+Max pause 165ms (164904))
+Doing 1000 16kB allocations
+Average pause time 928us (928)
+Total pause time 929ms (928736))
+Min pause 249us (249))
+Max pause 197ms (197351))
+[plotdata] 15600   928
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2175ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 2ms (1836)
+Total pause time 1837ms (1836802))
+Min pause 343us (343))
+Max pause 632ms (632146))
+Doing 1000 16kB allocations
+Average pause time 833us (833)
+Total pause time 834ms (833974))
+Min pause 249us (249))
+Max pause 159ms (159266))
+[plotdata] 15700   833
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 3201ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 2ms (1680)
+Total pause time 1681ms (1680914))
+Min pause 335us (335))
+Max pause 207ms (207045))
+Doing 1000 16kB allocations
+Average pause time 1ms (1105)
+Total pause time 1106ms (1105509))
+Min pause 238us (238))
+Max pause 189ms (189279))
+[plotdata] 15800   1105
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2924ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1203)
+Total pause time 1204ms (1203500))
+Min pause 331us (331))
+Max pause 158ms (158024))
+Doing 1000 16kB allocations
+Average pause time 882us (882)
+Total pause time 882ms (882481))
+Min pause 238us (238))
+Max pause 158ms (157976))
+[plotdata] 15900   882
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2360ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1229)
+Total pause time 1229ms (1229270))
+Min pause 332us (332))
+Max pause 182ms (181674))
+Doing 1000 16kB allocations
+Average pause time 715us (715)
+Total pause time 715ms (715176))
+Min pause 240us (240))
+Max pause 134ms (134267))
+[plotdata] 16000   715
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2110ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1079)
+Total pause time 1079ms (1079190))
+Min pause 342us (342))
+Max pause 137ms (136976))
+Doing 1000 16kB allocations
+Average pause time 918us (918)
+Total pause time 919ms (918516))
+Min pause 245us (245))
+Max pause 181ms (181427))
+[plotdata] 16100   918
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2190ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1279)
+Total pause time 1280ms (1279779))
+Min pause 327us (327))
+Max pause 158ms (158088))
+Doing 1000 16kB allocations
+Average pause time 814us (814)
+Total pause time 814ms (814197))
+Min pause 235us (235))
+Max pause 174ms (173646))
+[plotdata] 16200   814
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2203ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 949us (949)
+Total pause time 950ms (949621))
+Min pause 328us (328))
+Max pause 174ms (173943))
+Doing 1000 16kB allocations
+Average pause time 838us (838)
+Total pause time 839ms (838631))
+Min pause 237us (237))
+Max pause 158ms (158149))
+[plotdata] 16300   838
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 1921ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1109)
+Total pause time 1109ms (1109028))
+Min pause 343us (343))
+Max pause 190ms (189634))
+Doing 1000 16kB allocations
+Average pause time 1ms (1066)
+Total pause time 1066ms (1066235))
+Min pause 248us (248))
+Max pause 189ms (189467))
+[plotdata] 16400   1066
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2263ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 782us (782)
+Total pause time 782ms (782069))
+Min pause 327us (327))
+Max pause 142ms (142378))
+Doing 1000 17kB allocations
+Average pause time 763us (763)
+Total pause time 763ms (763034))
+Min pause 242us (242))
+Max pause 142ms (142210))
+[plotdata] 16500   763
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 1644ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1100)
+Total pause time 1101ms (1100865))
+Min pause 331us (331))
+Max pause 150ms (150205))
+Doing 1000 17kB allocations
+Average pause time 807us (807)
+Total pause time 807ms (807306))
+Min pause 235us (235))
+Max pause 197ms (197322))
+[plotdata] 16600   807
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2203ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1209)
+Total pause time 1210ms (1209961))
+Min pause 345us (345))
+Max pause 159ms (159422))
+Doing 1000 17kB allocations
+Average pause time 822us (822)
+Total pause time 823ms (822591))
+Min pause 249us (249))
+Max pause 150ms (150050))
+[plotdata] 16700   822
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2406ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1083)
+Total pause time 1084ms (1083641))
+Min pause 332us (332))
+Max pause 142ms (142355))
+Doing 1000 17kB allocations
+Average pause time 997us (997)
+Total pause time 998ms (997500))
+Min pause 241us (241))
+Max pause 189ms (189450))
+[plotdata] 16800   997
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2181ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1435)
+Total pause time 1435ms (1435191))
+Min pause 333us (333))
+Max pause 190ms (189502))
+Doing 1000 17kB allocations
+Average pause time 776us (776)
+Total pause time 777ms (776777))
+Min pause 242us (242))
+Max pause 142ms (142216))
+[plotdata] 16900   776
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2294ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1129)
+Total pause time 1130ms (1129538))
+Min pause 332us (332))
+Max pause 151ms (151383))
+Doing 1000 17kB allocations
+Average pause time 674us (674)
+Total pause time 675ms (674737))
+Min pause 243us (243))
+Max pause 120ms (119555))
+[plotdata] 17000   674
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2263ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1041)
+Total pause time 1042ms (1041899))
+Min pause 327us (327))
+Max pause 197ms (197431))
+Doing 1000 17kB allocations
+Average pause time 894us (894)
+Total pause time 894ms (894393))
+Min pause 234us (234))
+Max pause 158ms (158042))
+[plotdata] 17100   894
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2040ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1092)
+Total pause time 1093ms (1092728))
+Min pause 325us (325))
+Max pause 182ms (181736))
+Doing 1000 17kB allocations
+Average pause time 686us (686)
+Total pause time 687ms (686993))
+Min pause 232us (232))
+Max pause 128ms (127687))
+[plotdata] 17200   686
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2040ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1168)
+Total pause time 1169ms (1168637))
+Min pause 330us (330))
+Max pause 166ms (165850))
+Doing 1000 17kB allocations
+Average pause time 1ms (1055)
+Total pause time 1056ms (1055615))
+Min pause 239us (239))
+Max pause 158ms (157852))
+[plotdata] 17300   1055
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2298ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1476)
+Total pause time 1477ms (1476613))
+Min pause 340us (340))
+Max pause 207ms (207434))
+Doing 1000 17kB allocations
+Average pause time 580us (580)
+Total pause time 580ms (580212))
+Min pause 247us (247))
+Max pause 142ms (142126))
+[plotdata] 17400   580
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2427ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1233)
+Total pause time 1233ms (1233108))
+Min pause 331us (331))
+Max pause 166ms (165784))
+Doing 1000 18kB allocations
+Average pause time 865us (865)
+Total pause time 866ms (865947))
+Min pause 241us (241))
+Max pause 150ms (150020))
+[plotdata] 17500   865
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2354ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 997us (997)
+Total pause time 997ms (997355))
+Min pause 330us (330))
+Max pause 150ms (150111))
+Doing 1000 18kB allocations
+Average pause time 970us (970)
+Total pause time 970ms (970379))
+Min pause 236us (236))
+Max pause 182ms (181527))
+[plotdata] 17600   970
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2377ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1245)
+Total pause time 1245ms (1245358))
+Min pause 328us (328))
+Max pause 189ms (189384))
+Doing 1000 18kB allocations
+Average pause time 844us (844)
+Total pause time 845ms (844733))
+Min pause 234us (234))
+Max pause 151ms (151416))
+[plotdata] 17700   844
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2280ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1294)
+Total pause time 1294ms (1294233))
+Min pause 326us (326))
+Max pause 174ms (173670))
+Doing 1000 18kB allocations
+Average pause time 749us (749)
+Total pause time 750ms (749701))
+Min pause 237us (237))
+Max pause 197ms (197424))
+[plotdata] 17800   749
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2210ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1199)
+Total pause time 1199ms (1199444))
+Min pause 339us (339))
+Max pause 158ms (158135))
+Doing 1000 18kB allocations
+Average pause time 970us (970)
+Total pause time 970ms (970460))
+Min pause 246us (246))
+Max pause 150ms (150036))
+[plotdata] 17900   970
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2370ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1141)
+Total pause time 1142ms (1141732))
+Min pause 329us (329))
+Max pause 150ms (150146))
+Doing 1000 18kB allocations
+Average pause time 1ms (1110)
+Total pause time 1111ms (1110593))
+Min pause 240us (240))
+Max pause 158ms (157996))
+[plotdata] 18000   1110
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2338ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1086)
+Total pause time 1087ms (1086587))
+Min pause 327us (327))
+Max pause 150ms (150217))
+Doing 1000 18kB allocations
+Average pause time 821us (821)
+Total pause time 821ms (821192))
+Min pause 234us (234))
+Max pause 190ms (189629))
+[plotdata] 18100   821
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2388ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 976us (976)
+Total pause time 977ms (976584))
+Min pause 330us (330))
+Max pause 174ms (173688))
+Doing 1000 18kB allocations
+Average pause time 876us (876)
+Total pause time 877ms (876680))
+Min pause 235us (235))
+Max pause 152ms (152017))
+[plotdata] 18200   876
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2063ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1078)
+Total pause time 1078ms (1078307))
+Min pause 329us (329))
+Max pause 150ms (150246))
+Doing 1000 18kB allocations
+Average pause time 755us (755)
+Total pause time 756ms (755597))
+Min pause 239us (239))
+Max pause 190ms (189522))
+[plotdata] 18300   755
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 1959ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1083)
+Total pause time 1083ms (1083332))
+Min pause 336us (336))
+Max pause 190ms (189513))
+Doing 1000 18kB allocations
+Average pause time 936us (936)
+Total pause time 937ms (936553))
+Min pause 245us (245))
+Max pause 174ms (173689))
+[plotdata] 18400   936
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2519ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1303)
+Total pause time 1304ms (1303974))
+Min pause 330us (330))
+Max pause 189ms (189476))
+Doing 1000 19kB allocations
+Average pause time 803us (803)
+Total pause time 804ms (803717))
+Min pause 242us (242))
+Max pause 150ms (150016))
+[plotdata] 18500   803
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2195ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1068)
+Total pause time 1068ms (1068108))
+Min pause 327us (327))
+Max pause 182ms (181663))
+Doing 1000 19kB allocations
+Average pause time 670us (670)
+Total pause time 670ms (670199))
+Min pause 234us (234))
+Max pause 135ms (135364))
+[plotdata] 18600   670
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 1998ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1143)
+Total pause time 1143ms (1143134))
+Min pause 326us (326))
+Max pause 182ms (181791))
+Doing 1000 19kB allocations
+Average pause time 562us (562)
+Total pause time 563ms (562553))
+Min pause 234us (234))
+Max pause 120ms (119544))
+[plotdata] 18700   562
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2261ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1075)
+Total pause time 1076ms (1075721))
+Min pause 330us (330))
+Max pause 158ms (158157))
+Doing 1000 19kB allocations
+Average pause time 787us (787)
+Total pause time 788ms (787876))
+Min pause 239us (239))
+Max pause 142ms (142378))
+[plotdata] 18800   787
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2334ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1280)
+Total pause time 1280ms (1280038))
+Min pause 337us (337))
+Max pause 158ms (157918))
+Doing 1000 19kB allocations
+Average pause time 718us (718)
+Total pause time 719ms (718542))
+Min pause 245us (245))
+Max pause 150ms (150027))
+[plotdata] 18900   718
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2235ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1455)
+Total pause time 1456ms (1455802))
+Min pause 331us (331))
+Max pause 150ms (150159))
+Doing 1000 19kB allocations
+Average pause time 979us (979)
+Total pause time 979ms (979176))
+Min pause 241us (241))
+Max pause 158ms (158023))
+[plotdata] 19000   979
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2508ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1339)
+Total pause time 1340ms (1339887))
+Min pause 329us (329))
+Max pause 197ms (197213))
+Doing 1000 19kB allocations
+Average pause time 825us (825)
+Total pause time 826ms (825924))
+Min pause 237us (237))
+Max pause 159ms (159127))
+[plotdata] 19100   825
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2253ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 805us (805)
+Total pause time 806ms (805600))
+Min pause 327us (327))
+Max pause 112ms (111668))
+Doing 1000 19kB allocations
+Average pause time 763us (763)
+Total pause time 763ms (763315))
+Min pause 234us (234))
+Max pause 150ms (150090))
+[plotdata] 19200   763
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 1951ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1151)
+Total pause time 1151ms (1151130))
+Min pause 327us (327))
+Max pause 168ms (167806))
+Doing 1000 19kB allocations
+Average pause time 510us (510)
+Total pause time 510ms (510264))
+Min pause 236us (236))
+Max pause 65ms (64578))
+[plotdata] 19300   510
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2202ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1268)
+Total pause time 1268ms (1268291))
+Min pause 343us (343))
+Max pause 152ms (151958))
+Doing 1000 19kB allocations
+Average pause time 550us (550)
+Total pause time 550ms (550187))
+Min pause 249us (249))
+Max pause 80ms (80350))
+[plotdata] 19400   550
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2382ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1293)
+Total pause time 1293ms (1293074))
+Min pause 329us (329))
+Max pause 182ms (181651))
+Doing 1000 20kB allocations
+Average pause time 747us (747)
+Total pause time 747ms (747188))
+Min pause 240us (240))
+Max pause 127ms (127423))
+[plotdata] 19500   747
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2181ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1085)
+Total pause time 1085ms (1085445))
+Min pause 325us (325))
+Max pause 190ms (189757))
+Doing 1000 20kB allocations
+Average pause time 818us (818)
+Total pause time 818ms (818297))
+Min pause 234us (234))
+Max pause 174ms (173780))
+[plotdata] 19600   818
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 1996ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1301)
+Total pause time 1301ms (1301069))
+Min pause 326us (326))
+Max pause 152ms (152355))
+Doing 1000 20kB allocations
+Average pause time 683us (683)
+Total pause time 683ms (683378))
+Min pause 233us (233))
+Max pause 142ms (142157))
+[plotdata] 19700   683
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2326ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 897us (897)
+Total pause time 898ms (897776))
+Min pause 327us (327))
+Max pause 150ms (150156))
+Doing 1000 20kB allocations
+Average pause time 964us (964)
+Total pause time 965ms (964921))
+Min pause 236us (236))
+Max pause 189ms (189429))
+[plotdata] 19800   964
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2036ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1308)
+Total pause time 1309ms (1308922))
+Min pause 340us (340))
+Max pause 158ms (158043))
+Doing 1000 20kB allocations
+Average pause time 925us (925)
+Total pause time 925ms (925219))
+Min pause 246us (246))
+Max pause 197ms (197381))
+[plotdata] 19900   925
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2364ms)----------
+Compiled for GC_NONE at 23:04:11 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1261)
+Total pause time 1261ms (1261474))
+Min pause 331us (331))
+Max pause 197ms (197400))
+Doing 1000 20kB allocations
+Average pause time 949us (949)
+Total pause time 949ms (949446))
+Min pause 241us (241))
+Max pause 174ms (173867))
+[plotdata] 20000   949
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 2297ms)----------

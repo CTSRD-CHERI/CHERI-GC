@@ -1,0 +1,152 @@
+spawn ssh -i /home/munraj/.ssh/mbv21 mbv21@cloud2 /mnt/mbv21zfs//testall-no-gc
+Enter passphrase for key '/home/munraj/.ssh/mbv21': 
+Password for mbv21@cloud2:
+Compiled for GC_NONE at 19:27:20 Apr 30 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] set terminal png
+[plotscript] set output "objects/plot.png"
+[plotscript] set title "Time taken for GC_malloc() averaged over 1000 allocations"
+[plotscript] set xlabel "Allocation size (B)"
+[plotscript] set ylabel "Pause time (us)"
+[plotscript] #set xrange [-2:2]
+[plotscript] #set yrange [-10:10]
+[plotscript] set zeroaxis
+[plotscript] #plot 'objects/plot_data' with yerrorbars
+[plotscript] plot 'objects/plot_data' with linespoints
+[plotscript] # data for no GC
+[plotscript] # 1000 allocations per iteration
+[plotscript] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 539us (539)
+Total pause time 539ms (539186))
+Min pause 319us (319))
+Max pause 26ms (26427))
+Doing 1000 200kB allocations
+Average pause time 676us (676)
+Total pause time 677ms (676587))
+Min pause 356us (356))
+Max pause 27ms (27206))
+[plotdata] 200000   27206
+Doing 1000 190kB allocations
+Average pause time 670us (670)
+Total pause time 670ms (670462))
+Min pause 349us (349))
+Max pause 29ms (29309))
+[plotdata] 190000   29309
+Doing 1000 180kB allocations
+Average pause time 618us (618)
+Total pause time 618ms (618224))
+Min pause 339us (339))
+Max pause 28ms (28357))
+[plotdata] 180000   28357
+Doing 1000 170kB allocations
+Average pause time 614us (614)
+Total pause time 614ms (614050))
+Min pause 333us (333))
+Max pause 27ms (27387))
+[plotdata] 170000   27387
+Doing 1000 160kB allocations
+Average pause time 598us (598)
+Total pause time 598ms (598347))
+Min pause 328us (328))
+Max pause 27ms (27075))
+[plotdata] 160000   27075
+Doing 1000 150kB allocations
+Average pause time 599us (599)
+Total pause time 600ms (599608))
+Min pause 317us (317))
+Max pause 30ms (29598))
+[plotdata] 150000   29598
+Doing 1000 140kB allocations
+Average pause time 588us (588)
+Total pause time 589ms (588734))
+Min pause 312us (312))
+Max pause 29ms (29330))
+[plotdata] 140000   29330
+Doing 1000 130kB allocations
+Average pause time 576us (576)
+Total pause time 577ms (576783))
+Min pause 302us (302))
+Max pause 30ms (30040))
+[plotdata] 130000   30040
+Doing 1000 120kB allocations
+Average pause time 555us (555)
+Total pause time 555ms (555242))
+Min pause 296us (296))
+Max pause 28ms (27582))
+[plotdata] 120000   27582
+Doing 1000 110kB allocations
+Average pause time 469us (469)
+Total pause time 469ms (469027))
+Min pause 288us (288))
+Max pause 27ms (26905))
+[plotdata] 110000   26905
+Doing 1000 100kB allocations
+Average pause time 514us (514)
+Total pause time 515ms (514543))
+Min pause 282us (282))
+Max pause 27ms (27070))
+[plotdata] 100000   27070
+Doing 1000 90kB allocations
+Average pause time 494us (494)
+Total pause time 494ms (494183))
+Min pause 273us (273))
+Max pause 27ms (27309))
+[plotdata] 90000   27309
+Doing 1000 80kB allocations
+Average pause time 515us (515)
+Total pause time 515ms (515327))
+Min pause 267us (267))
+Max pause 28ms (28375))
+[plotdata] 80000   28375
+Doing 1000 70kB allocations
+Average pause time 462us (462)
+Total pause time 462ms (462245))
+Min pause 261us (261))
+Max pause 27ms (27201))
+[plotdata] 70000   27201
+Doing 1000 60kB allocations
+Average pause time 453us (453)
+Total pause time 453ms (453471))
+Min pause 254us (254))
+Max pause 27ms (27449))
+[plotdata] 60000   27449
+Doing 1000 50kB allocations
+Average pause time 473us (473)
+Total pause time 473ms (473273))
+Min pause 248us (248))
+Max pause 30ms (29581))
+[plotdata] 50000   29581
+Doing 1000 40kB allocations
+Average pause time 414us (414)
+Total pause time 414ms (414096))
+Min pause 239us (239))
+Max pause 27ms (26705))
+[plotdata] 40000   26705
+Doing 1000 30kB allocations
+Average pause time 441us (441)
+Total pause time 442ms (441667))
+Min pause 234us (234))
+Max pause 27ms (26730))
+[plotdata] 30000   26730
+Doing 1000 20kB allocations
+Average pause time 426us (426)
+Total pause time 427ms (426688))
+Min pause 225us (225))
+Max pause 29ms (28651))
+[plotdata] 20000   28651
+Doing 1000 10kB allocations
+Average pause time 424us (424)
+Total pause time 425ms (424632))
+Min pause 220us (220))
+Max pause 27ms (27194))
+[plotdata] 10000   27194
+Doing 1000 0B allocations
+Average pause time 586us (586)
+Total pause time 587ms (586668))
+Min pause 304us (304))
+Max pause 29ms (28967))
+[plotdata] 0   28967
+[plotscript] # end of test no GC
+----------Finished test pause_time_test (took 13s)----------

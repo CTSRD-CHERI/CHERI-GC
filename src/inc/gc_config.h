@@ -14,8 +14,8 @@
 // Maximum sizes for when the heap does grow. Set to 0 to allow unlimited
 // growth.
 // TODO: the 0 setting
-#define GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION        (65536)
-#define GC_THREAD_LOCAL_HEAP_MAX_SIZE                          (270336)
+#define GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION        (815104)
+#define GC_THREAD_LOCAL_HEAP_MAX_SIZE                          (815104)
 #define GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION (65536/3)
 #define GC_OLD_GENERATION_SEMISPACE_MAX_SIZE                   (65536/3)
 

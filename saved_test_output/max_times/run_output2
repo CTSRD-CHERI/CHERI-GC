@@ -1,0 +1,154 @@
+spawn ssh -i /home/munraj/.ssh/mbv21 mbv21@cloud2 /mnt/mbv21zfs//testall-boehm
+Enter passphrase for key '/home/munraj/.ssh/mbv21': 
+Password for mbv21@cloud2:
+Compiled for GC_BOEHM at 19:27:20 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] set terminal png
+[plotscript] set output "objects/plot.png"
+[plotscript] set title "Time taken for GC_malloc() averaged over 1000 allocations"
+[plotscript] set xlabel "Allocation size (B)"
+[plotscript] set ylabel "Pause time (us)"
+[plotscript] #set xrange [-2:2]
+[plotscript] #set yrange [-10:10]
+[plotscript] set zeroaxis
+[plotscript] #plot 'objects/plot_data' with yerrorbars
+[plotscript] plot 'objects/plot_data' with linespoints
+[plotscript] # data for Boehm GC (I=65536)
+[plotscript] # 1000 allocations per iteration
+[plotscript] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 484us (484)
+Total pause time 484ms (484341))
+Min pause 23us (23))
+Max pause 70ms (69512))
+Doing 1000 200kB allocations
+Average pause time 34ms (34328)
+Total pause time 34s (34328572))
+Min pause 7ms (7401))
+Max pause 111ms (111276))
+[plotdata] 200000   111276
+Doing 1000 190kB allocations
+Average pause time 33ms (33018)
+Total pause time 33s (33018826))
+Min pause 7ms (7070))
+Max pause 101ms (101020))
+[plotdata] 190000   101020
+Doing 1000 180kB allocations
+Average pause time 32ms (31861)
+Total pause time 32s (31861848))
+Min pause 6ms (5962))
+Max pause 98ms (98460))
+[plotdata] 180000   98460
+Doing 1000 170kB allocations
+Average pause time 31ms (30941)
+Total pause time 31s (30941243))
+Min pause 6ms (6477))
+Max pause 90ms (90052))
+[plotdata] 170000   90052
+Doing 1000 160kB allocations
+Average pause time 32ms (32356)
+Total pause time 32s (32356984))
+Min pause 5ms (5431))
+Max pause 707ms (707318))
+[plotdata] 160000   707318
+Doing 1000 150kB allocations
+Average pause time 29ms (29351)
+Total pause time 29s (29351744))
+Min pause 6ms (5869))
+Max pause 101ms (100625))
+[plotdata] 150000   100625
+Doing 1000 140kB allocations
+Average pause time 29ms (29008)
+Total pause time 29s (29008912))
+Min pause 6ms (5618))
+Max pause 783ms (783453))
+[plotdata] 140000   783453
+Doing 1000 130kB allocations
+Average pause time 24ms (24378)
+Total pause time 24s (24378085))
+Min pause 5ms (5263))
+Max pause 89ms (89182))
+[plotdata] 130000   89182
+Doing 1000 120kB allocations
+Average pause time 26ms (26491)
+Total pause time 26s (26491511))
+Min pause 5ms (4916))
+Max pause 870ms (869536))
+[plotdata] 120000   869536
+Doing 1000 110kB allocations
+Average pause time 21ms (20645)
+Total pause time 21s (20645098))
+Min pause 4ms (3623))
+Max pause 90ms (90368))
+[plotdata] 110000   90368
+Doing 1000 100kB allocations
+Average pause time 18ms (18069)
+Total pause time 18s (18069051))
+Min pause 3ms (3306))
+Max pause 90ms (89795))
+[plotdata] 100000   89795
+Doing 1000 90kB allocations
+Average pause time 12ms (12118)
+Total pause time 12s (12118433))
+Min pause 3ms (2936))
+Max pause 76ms (76298))
+[plotdata] 90000   76298
+Doing 1000 80kB allocations
+Average pause time 14ms (14363)
+Total pause time 14s (14363079))
+Min pause 3ms (2678))
+Max pause 83ms (82936))
+[plotdata] 80000   82936
+Doing 1000 70kB allocations
+Average pause time 10ms (9653)
+Total pause time 9654ms (9653951))
+Min pause 2ms (2434))
+Max pause 74ms (73594))
+[plotdata] 70000   73594
+Doing 1000 60kB allocations
+Average pause time 10ms (10279)
+Total pause time 10s (10279696))
+Min pause 2ms (2060))
+Max pause 72ms (72469))
+[plotdata] 60000   72469
+Doing 1000 50kB allocations
+Average pause time 9ms (8782)
+Total pause time 8782ms (8782249))
+Min pause 2ms (1785))
+Max pause 70ms (70477))
+[plotdata] 50000   70477
+Doing 1000 40kB allocations
+Average pause time 9ms (9358)
+Total pause time 9358ms (9358335))
+Min pause 1ms (1403))
+Max pause 340ms (340149))
+[plotdata] 40000   340149
+Doing 1000 30kB allocations
+Average pause time 9ms (9207)
+Total pause time 9208ms (9207860))
+Min pause 1ms (1152))
+Max pause 281ms (281114))
+[plotdata] 30000   281114
+Doing 1000 20kB allocations
+Average pause time 6ms (6461)
+Total pause time 6462ms (6461977))
+Min pause 761us (761))
+Max pause 1181ms (1180675))
+[plotdata] 20000   1180675
+Doing 1000 10kB allocations
+Average pause time 2ms (1770)
+Total pause time 1770ms (1770495))
+Min pause 503us (503))
+Max pause 40ms (39568))
+[plotdata] 10000   39568
+Doing 1000 0B allocations
+Average pause time 72us (72)
+Total pause time 72ms (72173))
+Min pause 23us (23))
+Max pause 36ms (35725))
+[plotdata] 0   35725
+[plotscript] # end of test Boehm GC (I=815104)
+----------Finished test pause_time_test (took 396s)----------
+Boehm heap size: 815104

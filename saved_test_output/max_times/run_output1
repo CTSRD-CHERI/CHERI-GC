@@ -1,0 +1,125 @@
+spawn ssh -i /home/munraj/.ssh/mbv21 mbv21@cloud2 /mnt/mbv21zfs//testall
+Enter passphrase for key '/home/munraj/.ssh/mbv21': 
+Password for mbv21@cloud2:
+GC_init2 called from :1610917200
+Compiled for GC_CHERI at 19:38:38 Apr 30 2014
+---------------BEGIN GC DEBUG DUMP---------------
+GC_DEBUG is off
+GC_VERBOSE_DEBUG is off
+GC_GENERATIONAL is off
+GC_USE_BITMAP is on
+GC_USE_STACK_CLEAN is off
+GC_GROW_YOUNG_HEAP is on
+GC_GROW_OLD_HEAP is on
+GC_TIME is off
+GC_DEBUG_TRACK_ALLOCATIONS is off
+GC_COLLECT_ON_ALLOCATION_FAILURE is 1
+GC_THREAD_LOCAL_HEAP_SIZE is 65536
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 815104
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 815104
+GC_OLD_GENERATION_SEMISPACE_SIZE is 21845
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 21845
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 21845
+GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
+GC_MAGIC_JUST_ALLOCATED is 0x41
+GC_MAGIC_JUST_REALLOCATED is 0x42
+GC_MAGIC_JUST_CLEARED is 0x43
+GC_MAGIC_DEALLOCATION_DETECTED is 0x44
+GC_MAGIC_JUST_COPIED is 0x45
+GC_MAGIC_JUST_CLEARED_STACK is 0x46
+GC_MAGIC_JUST_GC_ALLOCATED is 0x47
+GC_MAGIC_JUST_CLEARED_FROMSPACE is 0x48
+
+GC_state:
+GC_state.initialized is 1
+GC_state.stack_bottom is 0x7ffffff000
+GC_state.static_bottom is 0x12001c000
+GC_state.static_top is 0x12001ec80
+GC_state.state_bottom is 0x12001c900
+GC_state.state_top is 0x12001ca00
+GC_state.reg_bottom is 0x0
+GC_state.reg_top is 0x0
+Region statistics
+-----------------
+fromspace :      b=  0x160818000         l=0x10000           
+               end=  0x160828000       
+            bitmap=  0x160829058         s=0x800               u=0x0               
+tospace   :      b=  0x160807000         l=0x10000           
+               end=  0x160817000       
+            bitmap=  0x160829040         s=0x800               u=0x0               
+free      :      b=  0x160807000         l=0x10000           
+               end=  0x160817000       
+scan      :          0x0               
+
+used size   : 0x0                bytes (0B)
+free size   : 0x10000            bytes (66kB)
+heap size   : 0x10000            bytes (66kB)
+
+stats:
+allocations : 0 (0)
+collections : 0 (0)
+---------------END GC DEBUG DUMP---------------
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] set terminal png
+[plotscript] set output "objects/plot.png"
+[plotscript] set title "Time taken for GC_malloc() averaged over 1000 allocations"
+[plotscript] set xlabel "Allocation size (B)"
+[plotscript] set ylabel "Pause time (us)"
+[plotscript] #set xrange [-2:2]
+[plotscript] #set yrange [-10:10]
+[plotscript] set zeroaxis
+[plotscript] #plot 'objects/plot_data' with yerrorbars
+[plotscript] plot 'objects/plot_data' with linespoints
+[plotscript] # data for my copying GC (I=65536 B=815104 A=815104 cur=65536)
+[plotscript] # 1000 allocations per iteration
+[plotscript] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 833us (833)
+Total pause time 833ms (833380))
+Min pause 30us (30))
+Max pause 351ms (351159))
+Doing 1000 200kB allocations
+Average pause time 14ms (13731)
+Total pause time 14s (13731945))
+Min pause 30us (30))
+Max pause 148ms (147944))
+[plotdata] 200000   147944
+Doing 1000 190kB allocations
+Average pause time 13ms (13336)
+Total pause time 13s (13336393))
+Min pause 30us (30))
+Max pause 92ms (91898))
+[plotdata] 190000   91898
+Doing 1000 180kB allocations
+Average pause time 12ms (12420)
+Total pause time 12s (12420582))
+Min pause 30us (30))
+Max pause 62ms (61715))
+[plotdata] 180000   61715
+Doing 1000 170kB allocations
+Average pause time 12ms (11571)
+Total pause time 12s (11571481))
+Min pause 30us (30))
+Max pause 59ms (58852))
+[plotdata] 170000   58852
+Doing 1000 160kB allocations
+Average pause time 8ms (8444)
+Total pause time 8445ms (8444935))
+Min pause 30us (30))
+Max pause 59ms (59041))
+[plotdata] 160000   59041
+Doing 1000 150kB allocations
+Average pause time 8ms (7707)
+Total pause time 7708ms (7707889))
+Min pause 30us (30))
+Max pause 54ms (54416))
+[plotdata] 150000   54416
+Doing 1000 140kB allocations
+Average pause time 7ms (7221)
+Total pause time 7222ms (7221843))
+Min pause 30us (30))
+Max pause 52ms (51945))
+[plotdata] 140000   51945
+Doing 1000 130kB allocations
+Average pause time 5

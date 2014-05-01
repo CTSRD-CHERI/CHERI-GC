@@ -1,0 +1,4234 @@
+spawn ssh -i /home/munraj/.ssh/mbv21 mbv21@cloud2 /mnt/mbv21zfs//run10times.sh /mnt/mbv21zfs//testall-boehm
+Enter passphrase for key '/home/munraj/.ssh/mbv21': 
+Password for mbv21@cloud2:
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] set terminal png
+[plotscript] set output "objects/plot.png"
+[plotscript] set title "Time taken for GC_malloc() averaged over 1000 allocations"
+[plotscript] set xlabel "Allocation size (B)"
+[plotscript] set ylabel "Pause time (us)"
+[plotscript] #set xrange [-2:2]
+[plotscript] #set yrange [-10:10]
+[plotscript] set zeroaxis
+[plotscript] #plot 'objects/plot_data' with yerrorbars
+[plotscript] plot 'objects/plot_data' with linespoints
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1107)
+Total pause time 1107ms (1107350))
+Min pause 21us (21))
+Max pause 207ms (206662))
+Doing 1000 0B allocations
+Average pause time 31us (31)
+Total pause time 31ms (31034))
+Min pause 21us (21))
+Max pause 2ms (1944))
+[plotdata] 0   31
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 1440ms)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1218)
+Total pause time 1218ms (1218086))
+Min pause 21us (21))
+Max pause 339ms (339119))
+Doing 1000 100B allocations
+Average pause time 66us (66)
+Total pause time 67ms (66810))
+Min pause 21us (21))
+Max pause 27ms (26800))
+[plotdata] 100   66
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 1379ms)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 897us (897)
+Total pause time 897ms (897047))
+Min pause 21us (21))
+Max pause 217ms (216826))
+Doing 1000 200B allocations
+Average pause time 115us (115)
+Total pause time 115ms (115373))
+Min pause 21us (21))
+Max pause 58ms (58063))
+[plotdata] 200   115
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 1483ms)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 853us (853)
+Total pause time 854ms (853880))
+Min pause 21us (21))
+Max pause 175ms (174709))
+Doing 1000 300B allocations
+Average pause time 97us (97)
+Total pause time 98ms (97689))
+Min pause 21us (21))
+Max pause 37ms (37209))
+[plotdata] 300   97
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 1197ms)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 980us (980)
+Total pause time 980ms (980069))
+Min pause 21us (21))
+Max pause 176ms (176336))
+Doing 1000 400B allocations
+Average pause time 382us (382)
+Total pause time 383ms (382762))
+Min pause 21us (21))
+Max pause 240ms (240359))
+[plotdata] 400   382
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 1628ms)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 861us (861)
+Total pause time 862ms (861660))
+Min pause 21us (21))
+Max pause 185ms (185421))
+Doing 1000 500B allocations
+Average pause time 477us (477)
+Total pause time 477ms (477205))
+Min pause 22us (22))
+Max pause 151ms (151341))
+[plotdata] 500   477
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 1406ms)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 816us (816)
+Total pause time 817ms (816621))
+Min pause 21us (21))
+Max pause 181ms (181394))
+Doing 1000 600B allocations
+Average pause time 593us (593)
+Total pause time 594ms (593510))
+Min pause 21us (21))
+Max pause 225ms (224758))
+[plotdata] 600   593
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 1738ms)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 652us (652)
+Total pause time 652ms (652006))
+Min pause 21us (21))
+Max pause 170ms (169618))
+Doing 1000 700B allocations
+Average pause time 893us (893)
+Total pause time 893ms (893428))
+Min pause 21us (21))
+Max pause 214ms (213611))
+[plotdata] 700   893
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 1665ms)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 609us (609)
+Total pause time 610ms (609952))
+Min pause 21us (21))
+Max pause 164ms (163704))
+Doing 1000 800B allocations
+Average pause time 406us (406)
+Total pause time 407ms (406716))
+Min pause 21us (21))
+Max pause 59ms (59357))
+[plotdata] 800   406
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 1076ms)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1050)
+Total pause time 1050ms (1050358))
+Min pause 21us (21))
+Max pause 190ms (189518))
+Doing 1000 900B allocations
+Average pause time 639us (639)
+Total pause time 639ms (639020))
+Min pause 21us (21))
+Max pause 177ms (177004))
+[plotdata] 900   639
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 2057ms)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 965us (965)
+Total pause time 966ms (965838))
+Min pause 21us (21))
+Max pause 378ms (377789))
+Doing 1000 1kB allocations
+Average pause time 957us (957)
+Total pause time 958ms (957633))
+Min pause 21us (21))
+Max pause 224ms (224291))
+[plotdata] 1000   957
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 1989ms)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 996us (996)
+Total pause time 996ms (996355))
+Min pause 21us (21))
+Max pause 190ms (189647))
+Doing 1000 1kB allocations
+Average pause time 1ms (1178)
+Total pause time 1179ms (1178587))
+Min pause 21us (21))
+Max pause 187ms (186732))
+[plotdata] 1100   1178
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 2296ms)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 797us (797)
+Total pause time 797ms (797383))
+Min pause 21us (21))
+Max pause 167ms (166716))
+Doing 1000 1kB allocations
+Average pause time 950us (950)
+Total pause time 950ms (950187))
+Min pause 21us (21))
+Max pause 187ms (186631))
+[plotdata] 1200   950
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 1865ms)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1071)
+Total pause time 1071ms (1071278))
+Min pause 22us (22))
+Max pause 225ms (224925))
+Doing 1000 1kB allocations
+Average pause time 893us (893)
+Total pause time 893ms (893447))
+Min pause 22us (22))
+Max pause 185ms (184604))
+[plotdata] 1300   893
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 2350ms)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 839us (839)
+Total pause time 840ms (839529))
+Min pause 22us (22))
+Max pause 174ms (174014))
+Doing 1000 1kB allocations
+Average pause time 1ms (1485)
+Total pause time 1486ms (1485538))
+Min pause 22us (22))
+Max pause 224ms (224201))
+[plotdata] 1400   1485
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 2550ms)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 706us (706)
+Total pause time 707ms (706615))
+Min pause 21us (21))
+Max pause 158ms (157928))
+Doing 1000 2kB allocations
+Average pause time 2ms (1682)
+Total pause time 1682ms (1682093))
+Min pause 21us (21))
+Max pause 225ms (225262))
+[plotdata] 1500   1682
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 2505ms)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 836us (836)
+Total pause time 836ms (836346))
+Min pause 21us (21))
+Max pause 174ms (174223))
+Doing 1000 2kB allocations
+Average pause time 2ms (1722)
+Total pause time 1723ms (1722912))
+Min pause 21us (21))
+Max pause 181ms (181286))
+[plotdata] 1600   1722
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 2631ms)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 959us (959)
+Total pause time 959ms (959339))
+Min pause 21us (21))
+Max pause 189ms (189280))
+Doing 1000 2kB allocations
+Average pause time 1ms (1487)
+Total pause time 1488ms (1487651))
+Min pause 21us (21))
+Max pause 199ms (199315))
+[plotdata] 1700   1487
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 2632ms)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 931us (931)
+Total pause time 932ms (931904))
+Min pause 21us (21))
+Max pause 223ms (223085))
+Doing 1000 2kB allocations
+Average pause time 1ms (1379)
+Total pause time 1379ms (1379195))
+Min pause 21us (21))
+Max pause 234ms (233688))
+[plotdata] 1800   1379
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 2487ms)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1176)
+Total pause time 1177ms (1176576))
+Min pause 21us (21))
+Max pause 424ms (424235))
+Doing 1000 2kB allocations
+Average pause time 1ms (1472)
+Total pause time 1473ms (1472804))
+Min pause 21us (21))
+Max pause 210ms (209917))
+[plotdata] 1900   1472
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 2852ms)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1003)
+Total pause time 1003ms (1003257))
+Min pause 21us (21))
+Max pause 174ms (174097))
+Doing 1000 2kB allocations
+Average pause time 2ms (1576)
+Total pause time 1576ms (1576121))
+Min pause 21us (21))
+Max pause 224ms (224248))
+[plotdata] 2000   1576
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 2821ms)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 971us (971)
+Total pause time 972ms (971664))
+Min pause 22us (22))
+Max pause 215ms (215012))
+Doing 1000 2kB allocations
+Average pause time 2ms (2291)
+Total pause time 2291ms (2291327))
+Min pause 264us (264))
+Max pause 164ms (164205))
+[plotdata] 2100   2291
+[plotscript] # end of test Boehm GC (I=356352)
+----------Finished test pause_time_test (took 3400ms)----------
+Boehm heap size: 356352
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1029)
+Total pause time 1030ms (1029711))
+Min pause 21us (21))
+Max pause 209ms (209475))
+Doing 1000 2kB allocations
+Average pause time 3ms (2678)
+Total pause time 2679ms (2678957))
+Min pause 249us (249))
+Max pause 226ms (225788))
+[plotdata] 2200   2678
+[plotscript] # end of test Boehm GC (I=266240)
+----------Finished test pause_time_test (took 3880ms)----------
+Boehm heap size: 266240
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 835us (835)
+Total pause time 835ms (835234))
+Min pause 21us (21))
+Max pause 159ms (158718))
+Doing 1000 2kB allocations
+Average pause time 2ms (2393)
+Total pause time 2393ms (2393173))
+Min pause 249us (249))
+Max pause 189ms (189491))
+[plotdata] 2300   2393
+[plotscript] # end of test Boehm GC (I=266240)
+----------Finished test pause_time_test (took 3304ms)----------
+Boehm heap size: 266240
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 988us (988)
+Total pause time 988ms (988068))
+Min pause 22us (22))
+Max pause 208ms (207854))
+Doing 1000 2kB allocations
+Average pause time 2ms (2254)
+Total pause time 2254ms (2254032))
+Min pause 254us (254))
+Max pause 210ms (210063))
+[plotdata] 2400   2254
+[plotscript] # end of test Boehm GC (I=266240)
+----------Finished test pause_time_test (took 3462ms)----------
+Boehm heap size: 266240
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1002)
+Total pause time 1003ms (1002879))
+Min pause 21us (21))
+Max pause 369ms (369234))
+Doing 1000 3kB allocations
+Average pause time 3ms (2622)
+Total pause time 2623ms (2622548))
+Min pause 254us (254))
+Max pause 216ms (216246))
+[plotdata] 2500   2622
+[plotscript] # end of test Boehm GC (I=266240)
+----------Finished test pause_time_test (took 3721ms)----------
+Boehm heap size: 266240
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1052)
+Total pause time 1052ms (1052144))
+Min pause 21us (21))
+Max pause 224ms (224106))
+Doing 1000 3kB allocations
+Average pause time 3ms (2736)
+Total pause time 2737ms (2736529))
+Min pause 250us (250))
+Max pause 189ms (189418))
+[plotdata] 2600   2736
+[plotscript] # end of test Boehm GC (I=266240)
+----------Finished test pause_time_test (took 3920ms)----------
+Boehm heap size: 266240
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 957us (957)
+Total pause time 957ms (957048))
+Min pause 21us (21))
+Max pause 209ms (209446))
+Doing 1000 3kB allocations
+Average pause time 3ms (2596)
+Total pause time 2597ms (2596965))
+Min pause 250us (250))
+Max pause 202ms (202080))
+[plotdata] 2700   2596
+[plotscript] # end of test Boehm GC (I=266240)
+----------Finished test pause_time_test (took 3628ms)----------
+Boehm heap size: 266240
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 822us (822)
+Total pause time 823ms (822515))
+Min pause 21us (21))
+Max pause 200ms (199852))
+Doing 1000 3kB allocations
+Average pause time 3ms (2835)
+Total pause time 2835ms (2835271))
+Min pause 249us (249))
+Max pause 200ms (200442))
+[plotdata] 2800   2835
+[plotscript] # end of test Boehm GC (I=266240)
+----------Finished test pause_time_test (took 3834ms)----------
+Boehm heap size: 266240
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 759us (759)
+Total pause time 760ms (759918))
+Min pause 21us (21))
+Max pause 158ms (158138))
+Doing 1000 3kB allocations
+Average pause time 2ms (2382)
+Total pause time 2382ms (2382293))
+Min pause 249us (249))
+Max pause 188ms (188316))
+[plotdata] 2900   2382
+[plotscript] # end of test Boehm GC (I=266240)
+----------Finished test pause_time_test (took 3265ms)----------
+Boehm heap size: 266240
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1110)
+Total pause time 1111ms (1110899))
+Min pause 21us (21))
+Max pause 224ms (223546))
+Doing 1000 3kB allocations
+Average pause time 3ms (3035)
+Total pause time 3036ms (3035881))
+Min pause 249us (249))
+Max pause 210ms (209927))
+[plotdata] 3000   3035
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 4249ms)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1006)
+Total pause time 1006ms (1006235))
+Min pause 22us (22))
+Max pause 217ms (217337))
+Doing 1000 3kB allocations
+Average pause time 3ms (2716)
+Total pause time 2716ms (2716267))
+Min pause 254us (254))
+Max pause 224ms (223947))
+[plotdata] 3100   2716
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 4183ms)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1026)
+Total pause time 1026ms (1026098))
+Min pause 21us (21))
+Max pause 209ms (208798))
+Doing 1000 3kB allocations
+Average pause time 3ms (2934)
+Total pause time 2935ms (2934873))
+Min pause 248us (248))
+Max pause 216ms (216407))
+[plotdata] 3200   2934
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 4060ms)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 941us (941)
+Total pause time 942ms (941695))
+Min pause 21us (21))
+Max pause 196ms (196222))
+Doing 1000 3kB allocations
+Average pause time 3ms (2726)
+Total pause time 2727ms (2726894))
+Min pause 247us (247))
+Max pause 272ms (271514))
+[plotdata] 3300   2726
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 4234ms)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 964us (964)
+Total pause time 964ms (964038))
+Min pause 21us (21))
+Max pause 210ms (209589))
+Doing 1000 3kB allocations
+Average pause time 3ms (2918)
+Total pause time 2918ms (2918058))
+Min pause 248us (248))
+Max pause 224ms (223940))
+[plotdata] 3400   2918
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 3980ms)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 747us (747)
+Total pause time 747ms (747390))
+Min pause 21us (21))
+Max pause 225ms (224938))
+Doing 1000 4kB allocations
+Average pause time 3ms (2989)
+Total pause time 2990ms (2989614))
+Min pause 253us (253))
+Max pause 225ms (224823))
+[plotdata] 3500   2989
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 4129ms)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1165)
+Total pause time 1166ms (1165607))
+Min pause 21us (21))
+Max pause 246ms (246158))
+Doing 1000 4kB allocations
+Average pause time 3ms (2893)
+Total pause time 2894ms (2893626))
+Min pause 252us (252))
+Max pause 218ms (217532))
+[plotdata] 3600   2893
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 4138ms)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1062)
+Total pause time 1063ms (1062685))
+Min pause 21us (21))
+Max pause 177ms (177177))
+Doing 1000 4kB allocations
+Average pause time 3ms (3143)
+Total pause time 3144ms (3143880))
+Min pause 248us (248))
+Max pause 189ms (189100))
+[plotdata] 3700   3143
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 4643ms)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1259)
+Total pause time 1259ms (1259330))
+Min pause 21us (21))
+Max pause 245ms (245372))
+Doing 1000 4kB allocations
+Average pause time 3ms (3121)
+Total pause time 3121ms (3121114))
+Min pause 251us (251))
+Max pause 225ms (224834))
+[plotdata] 3800   3121
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 4529ms)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 801us (801)
+Total pause time 801ms (801032))
+Min pause 21us (21))
+Max pause 174ms (174150))
+Doing 1000 4kB allocations
+Average pause time 3ms (3075)
+Total pause time 3075ms (3075063))
+Min pause 248us (248))
+Max pause 209ms (209378))
+[plotdata] 3900   3075
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 4141ms)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 2ms (1821)
+Total pause time 1822ms (1821527))
+Min pause 21us (21))
+Max pause 722ms (722070))
+Doing 1000 4kB allocations
+Average pause time 4ms (3888)
+Total pause time 3888ms (3888129))
+Min pause 251us (251))
+Max pause 226ms (225502))
+[plotdata] 4000   3888
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 5966ms)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 763us (763)
+Total pause time 764ms (763565))
+Min pause 21us (21))
+Max pause 165ms (165316))
+Doing 1000 4kB allocations
+Average pause time 4ms (4160)
+Total pause time 4161ms (4160668))
+Min pause 378us (378))
+Max pause 224ms (224497))
+[plotdata] 4100   4160
+[plotscript] # end of test Boehm GC (I=368640)
+----------Finished test pause_time_test (took 5082ms)----------
+Boehm heap size: 368640
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1219)
+Total pause time 1220ms (1219754))
+Min pause 21us (21))
+Max pause 270ms (270329))
+Doing 1000 4kB allocations
+Average pause time 4ms (3767)
+Total pause time 3768ms (3767958))
+Min pause 383us (383))
+Max pause 227ms (226747))
+[plotdata] 4200   3767
+[plotscript] # end of test Boehm GC (I=368640)
+----------Finished test pause_time_test (took 5308ms)----------
+Boehm heap size: 368640
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 718us (718)
+Total pause time 719ms (718975))
+Min pause 21us (21))
+Max pause 142ms (142181))
+Doing 1000 4kB allocations
+Average pause time 4ms (3550)
+Total pause time 3550ms (3550194))
+Min pause 377us (377))
+Max pause 228ms (227711))
+[plotdata] 4300   3550
+[plotscript] # end of test Boehm GC (I=368640)
+----------Finished test pause_time_test (took 4450ms)----------
+Boehm heap size: 368640
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 732us (732)
+Total pause time 732ms (732122))
+Min pause 21us (21))
+Max pause 150ms (149917))
+Doing 1000 4kB allocations
+Average pause time 4ms (3680)
+Total pause time 3681ms (3680920))
+Min pause 377us (377))
+Max pause 211ms (210509))
+[plotdata] 4400   3680
+[plotscript] # end of test Boehm GC (I=368640)
+----------Finished test pause_time_test (took 4625ms)----------
+Boehm heap size: 368640
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 819us (819)
+Total pause time 820ms (819834))
+Min pause 21us (21))
+Max pause 213ms (213413))
+Doing 1000 5kB allocations
+Average pause time 5ms (4615)
+Total pause time 4616ms (4615713))
+Min pause 384us (384))
+Max pause 225ms (224957))
+[plotdata] 4500   4615
+[plotscript] # end of test Boehm GC (I=270336)
+----------Finished test pause_time_test (took 5524ms)----------
+Boehm heap size: 270336
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1081)
+Total pause time 1081ms (1081085))
+Min pause 21us (21))
+Max pause 209ms (208533))
+Doing 1000 5kB allocations
+Average pause time 5ms (5129)
+Total pause time 5129ms (5129394))
+Min pause 377us (377))
+Max pause 510ms (509978))
+[plotdata] 4600   5129
+[plotscript] # end of test Boehm GC (I=270336)
+----------Finished test pause_time_test (took 6391ms)----------
+Boehm heap size: 270336
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 773us (773)
+Total pause time 773ms (773080))
+Min pause 21us (21))
+Max pause 235ms (235253))
+Doing 1000 5kB allocations
+Average pause time 5ms (4593)
+Total pause time 4593ms (4593436))
+Min pause 376us (376))
+Max pause 231ms (231375))
+[plotdata] 4700   4593
+[plotscript] # end of test Boehm GC (I=270336)
+----------Finished test pause_time_test (took 5465ms)----------
+Boehm heap size: 270336
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 848us (848)
+Total pause time 848ms (848218))
+Min pause 21us (21))
+Max pause 184ms (184290))
+Doing 1000 5kB allocations
+Average pause time 4ms (4369)
+Total pause time 4369ms (4369122))
+Min pause 379us (379))
+Max pause 231ms (230737))
+[plotdata] 4800   4369
+[plotscript] # end of test Boehm GC (I=270336)
+----------Finished test pause_time_test (took 5762ms)----------
+Boehm heap size: 270336
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 846us (846)
+Total pause time 847ms (846593))
+Min pause 21us (21))
+Max pause 209ms (209224))
+Doing 1000 5kB allocations
+Average pause time 5ms (4804)
+Total pause time 4805ms (4804563))
+Min pause 378us (378))
+Max pause 230ms (229669))
+[plotdata] 4900   4804
+[plotscript] # end of test Boehm GC (I=270336)
+----------Finished test pause_time_test (took 6046ms)----------
+Boehm heap size: 270336
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 785us (785)
+Total pause time 785ms (785142))
+Min pause 21us (21))
+Max pause 239ms (239133))
+Doing 1000 5kB allocations
+Average pause time 4ms (3983)
+Total pause time 3983ms (3983039))
+Min pause 379us (379))
+Max pause 225ms (224806))
+[plotdata] 5000   3983
+[plotscript] # end of test Boehm GC (I=270336)
+----------Finished test pause_time_test (took 5171ms)----------
+Boehm heap size: 270336
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 929us (929)
+Total pause time 929ms (929068))
+Min pause 21us (21))
+Max pause 232ms (232026))
+Doing 1000 5kB allocations
+Average pause time 5ms (4619)
+Total pause time 4619ms (4619340))
+Min pause 378us (378))
+Max pause 250ms (250046))
+[plotdata] 5100   4619
+[plotscript] # end of test Boehm GC (I=270336)
+----------Finished test pause_time_test (took 5644ms)----------
+Boehm heap size: 270336
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1182)
+Total pause time 1182ms (1182174))
+Min pause 21us (21))
+Max pause 225ms (225177))
+Doing 1000 5kB allocations
+Average pause time 4ms (4263)
+Total pause time 4263ms (4263244))
+Min pause 375us (375))
+Max pause 210ms (209503))
+[plotdata] 5200   4263
+[plotscript] # end of test Boehm GC (I=270336)
+----------Finished test pause_time_test (took 5520ms)----------
+Boehm heap size: 270336
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 872us (872)
+Total pause time 872ms (872186))
+Min pause 21us (21))
+Max pause 210ms (209582))
+Doing 1000 5kB allocations
+Average pause time 4ms (4042)
+Total pause time 4043ms (4042847))
+Min pause 377us (377))
+Max pause 218ms (217856))
+[plotdata] 5300   4042
+[plotscript] # end of test Boehm GC (I=270336)
+----------Finished test pause_time_test (took 5030ms)----------
+Boehm heap size: 270336
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1097)
+Total pause time 1097ms (1097129))
+Min pause 21us (21))
+Max pause 229ms (228919))
+Doing 1000 5kB allocations
+Average pause time 4ms (4424)
+Total pause time 4425ms (4424628))
+Min pause 380us (380))
+Max pause 225ms (225235))
+[plotdata] 5400   4424
+[plotscript] # end of test Boehm GC (I=270336)
+----------Finished test pause_time_test (took 5632ms)----------
+Boehm heap size: 270336
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 815us (815)
+Total pause time 815ms (815057))
+Min pause 21us (21))
+Max pause 213ms (213467))
+Doing 1000 6kB allocations
+Average pause time 5ms (4544)
+Total pause time 4545ms (4544612))
+Min pause 379us (379))
+Max pause 234ms (234170))
+[plotdata] 5500   4544
+[plotscript] # end of test Boehm GC (I=270336)
+----------Finished test pause_time_test (took 5465ms)----------
+Boehm heap size: 270336
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 701us (701)
+Total pause time 701ms (701267))
+Min pause 21us (21))
+Max pause 155ms (155013))
+Doing 1000 6kB allocations
+Average pause time 4ms (4368)
+Total pause time 4369ms (4368604))
+Min pause 377us (377))
+Max pause 223ms (223475))
+[plotdata] 5600   4368
+[plotscript] # end of test Boehm GC (I=270336)
+----------Finished test pause_time_test (took 5324ms)----------
+Boehm heap size: 270336
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 969us (969)
+Total pause time 969ms (969290))
+Min pause 21us (21))
+Max pause 225ms (224500))
+Doing 1000 6kB allocations
+Average pause time 4ms (4369)
+Total pause time 4369ms (4369265))
+Min pause 378us (378))
+Max pause 217ms (216966))
+[plotdata] 5700   4369
+[plotscript] # end of test Boehm GC (I=270336)
+----------Finished test pause_time_test (took 5444ms)----------
+Boehm heap size: 270336
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1208)
+Total pause time 1209ms (1208618))
+Min pause 21us (21))
+Max pause 263ms (262507))
+Doing 1000 6kB allocations
+Average pause time 4ms (4307)
+Total pause time 4307ms (4307048))
+Min pause 382us (382))
+Max pause 214ms (213920))
+[plotdata] 5800   4307
+[plotscript] # end of test Boehm GC (I=270336)
+----------Finished test pause_time_test (took 5585ms)----------
+Boehm heap size: 270336
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 917us (917)
+Total pause time 918ms (917757))
+Min pause 21us (21))
+Max pause 173ms (172529))
+Doing 1000 6kB allocations
+Average pause time 5ms (4654)
+Total pause time 4654ms (4654370))
+Min pause 376us (376))
+Max pause 225ms (224947))
+[plotdata] 5900   4654
+[plotscript] # end of test Boehm GC (I=270336)
+----------Finished test pause_time_test (took 5761ms)----------
+Boehm heap size: 270336
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1173)
+Total pause time 1174ms (1173853))
+Min pause 21us (21))
+Max pause 324ms (323553))
+Doing 1000 6kB allocations
+Average pause time 4ms (4309)
+Total pause time 4309ms (4309195))
+Min pause 377us (377))
+Max pause 231ms (231212))
+[plotdata] 6000   4309
+[plotscript] # end of test Boehm GC (I=270336)
+----------Finished test pause_time_test (took 5730ms)----------
+Boehm heap size: 270336
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 667us (667)
+Total pause time 668ms (667853))
+Min pause 21us (21))
+Max pause 182ms (181551))
+Doing 1000 6kB allocations
+Average pause time 5ms (5409)
+Total pause time 5409ms (5409103))
+Min pause 376us (376))
+Max pause 225ms (224692))
+[plotdata] 6100   5409
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 6480ms)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 939us (939)
+Total pause time 940ms (939702))
+Min pause 21us (21))
+Max pause 172ms (172481))
+Doing 1000 6kB allocations
+Average pause time 6ms (5696)
+Total pause time 5697ms (5696563))
+Min pause 376us (376))
+Max pause 225ms (224729))
+[plotdata] 6200   5696
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 6860ms)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 748us (748)
+Total pause time 749ms (748991))
+Min pause 21us (21))
+Max pause 170ms (169745))
+Doing 1000 6kB allocations
+Average pause time 5ms (5309)
+Total pause time 5309ms (5309277))
+Min pause 376us (376))
+Max pause 225ms (225149))
+[plotdata] 6300   5309
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 6315ms)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1063)
+Total pause time 1063ms (1063081))
+Min pause 21us (21))
+Max pause 198ms (197683))
+Doing 1000 6kB allocations
+Average pause time 5ms (5286)
+Total pause time 5287ms (5286760))
+Min pause 377us (377))
+Max pause 224ms (224157))
+[plotdata] 6400   5286
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 6602ms)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 686us (686)
+Total pause time 686ms (686311))
+Min pause 21us (21))
+Max pause 224ms (223850))
+Doing 1000 7kB allocations
+Average pause time 5ms (5375)
+Total pause time 5376ms (5375902))
+Min pause 379us (379))
+Max pause 210ms (210102))
+[plotdata] 6500   5375
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 6462ms)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1057)
+Total pause time 1058ms (1057960))
+Min pause 21us (21))
+Max pause 395ms (395278))
+Doing 1000 7kB allocations
+Average pause time 5ms (5408)
+Total pause time 5408ms (5408009))
+Min pause 377us (377))
+Max pause 224ms (223762))
+[plotdata] 6600   5408
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 6935ms)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 742us (742)
+Total pause time 742ms (742001))
+Min pause 21us (21))
+Max pause 190ms (189533))
+Doing 1000 7kB allocations
+Average pause time 5ms (5247)
+Total pause time 5248ms (5247769))
+Min pause 379us (379))
+Max pause 209ms (208512))
+[plotdata] 6700   5247
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 6117ms)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 805us (805)
+Total pause time 806ms (805522))
+Min pause 21us (21))
+Max pause 208ms (208281))
+Doing 1000 7kB allocations
+Average pause time 6ms (5615)
+Total pause time 5616ms (5615720))
+Min pause 375us (375))
+Max pause 240ms (239786))
+[plotdata] 6800   5615
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 6506ms)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1143)
+Total pause time 1143ms (1143420))
+Min pause 21us (21))
+Max pause 224ms (224475))
+Doing 1000 7kB allocations
+Average pause time 5ms (5393)
+Total pause time 5394ms (5393667))
+Min pause 379us (379))
+Max pause 224ms (223767))
+[plotdata] 6900   5393
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 6631ms)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1090)
+Total pause time 1091ms (1090561))
+Min pause 21us (21))
+Max pause 177ms (177144))
+Doing 1000 7kB allocations
+Average pause time 5ms (5381)
+Total pause time 5382ms (5381804))
+Min pause 384us (384))
+Max pause 224ms (223734))
+[plotdata] 7000   5381
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 6715ms)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 703us (703)
+Total pause time 703ms (703347))
+Min pause 21us (21))
+Max pause 197ms (197457))
+Doing 1000 7kB allocations
+Average pause time 5ms (5084)
+Total pause time 5085ms (5084989))
+Min pause 380us (380))
+Max pause 224ms (224047))
+[plotdata] 7100   5084
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 6179ms)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 947us (947)
+Total pause time 948ms (947888))
+Min pause 22us (22))
+Max pause 194ms (193861))
+Doing 1000 7kB allocations
+Average pause time 5ms (5473)
+Total pause time 5473ms (5473268))
+Min pause 382us (382))
+Max pause 235ms (234840))
+[plotdata] 7200   5473
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 6585ms)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 978us (978)
+Total pause time 978ms (978015))
+Min pause 22us (22))
+Max pause 198ms (197523))
+Doing 1000 7kB allocations
+Average pause time 5ms (5467)
+Total pause time 5468ms (5467943))
+Min pause 382us (382))
+Max pause 215ms (215209))
+[plotdata] 7300   5467
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 6749ms)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1052)
+Total pause time 1053ms (1052967))
+Min pause 21us (21))
+Max pause 212ms (212323))
+Doing 1000 7kB allocations
+Average pause time 5ms (5291)
+Total pause time 5292ms (5291521))
+Min pause 380us (380))
+Max pause 211ms (211465))
+[plotdata] 7400   5291
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 6525ms)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 854us (854)
+Total pause time 854ms (854328))
+Min pause 21us (21))
+Max pause 158ms (157991))
+Doing 1000 8kB allocations
+Average pause time 5ms (5352)
+Total pause time 5352ms (5352341))
+Min pause 380us (380))
+Max pause 220ms (220404))
+[plotdata] 7500   5352
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 6425ms)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1097)
+Total pause time 1098ms (1097668))
+Min pause 21us (21))
+Max pause 215ms (215445))
+Doing 1000 8kB allocations
+Average pause time 5ms (5430)
+Total pause time 5430ms (5430078))
+Min pause 379us (379))
+Max pause 237ms (236756))
+[plotdata] 7600   5430
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 6671ms)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 769us (769)
+Total pause time 770ms (769545))
+Min pause 21us (21))
+Max pause 179ms (178528))
+Doing 1000 8kB allocations
+Average pause time 6ms (5516)
+Total pause time 5516ms (5516221))
+Min pause 379us (379))
+Max pause 224ms (223878))
+[plotdata] 7700   5516
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 6577ms)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 958us (958)
+Total pause time 959ms (958598))
+Min pause 21us (21))
+Max pause 191ms (191173))
+Doing 1000 8kB allocations
+Average pause time 5ms (5215)
+Total pause time 5215ms (5215142))
+Min pause 377us (377))
+Max pause 224ms (224058))
+[plotdata] 7800   5215
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 6254ms)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1129)
+Total pause time 1129ms (1129211))
+Min pause 21us (21))
+Max pause 345ms (344670))
+Doing 1000 8kB allocations
+Average pause time 6ms (5570)
+Total pause time 5571ms (5570913))
+Min pause 377us (377))
+Max pause 225ms (224911))
+[plotdata] 7900   5570
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 6802ms)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 645us (645)
+Total pause time 646ms (645936))
+Min pause 21us (21))
+Max pause 217ms (216663))
+Doing 1000 8kB allocations
+Average pause time 6ms (5739)
+Total pause time 5739ms (5739183))
+Min pause 377us (377))
+Max pause 218ms (217660))
+[plotdata] 8000   5739
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 6496ms)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 898us (898)
+Total pause time 898ms (898277))
+Min pause 21us (21))
+Max pause 225ms (224852))
+Doing 1000 8kB allocations
+Average pause time 5ms (5254)
+Total pause time 5255ms (5254861))
+Min pause 376us (376))
+Max pause 231ms (231433))
+[plotdata] 8100   5254
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 6394ms)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 783us (783)
+Total pause time 784ms (783958))
+Min pause 21us (21))
+Max pause 175ms (175399))
+Doing 1000 8kB allocations
+Average pause time 8ms (7566)
+Total pause time 7566ms (7566302))
+Min pause 507us (507))
+Max pause 691ms (691481))
+[plotdata] 8200   7566
+[plotscript] # end of test Boehm GC (I=274432)
+----------Finished test pause_time_test (took 8635ms)----------
+Boehm heap size: 274432
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1086)
+Total pause time 1086ms (1086068))
+Min pause 22us (22))
+Max pause 217ms (216803))
+Doing 1000 8kB allocations
+Average pause time 6ms (6441)
+Total pause time 6442ms (6441632))
+Min pause 508us (508))
+Max pause 225ms (225211))
+[plotdata] 8300   6441
+[plotscript] # end of test Boehm GC (I=274432)
+----------Finished test pause_time_test (took 7624ms)----------
+Boehm heap size: 274432
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 855us (855)
+Total pause time 856ms (855592))
+Min pause 21us (21))
+Max pause 211ms (210892))
+Doing 1000 8kB allocations
+Average pause time 7ms (7360)
+Total pause time 7360ms (7360395))
+Min pause 505us (505))
+Max pause 536ms (536206))
+[plotdata] 8400   7360
+[plotscript] # end of test Boehm GC (I=274432)
+----------Finished test pause_time_test (took 8289ms)----------
+Boehm heap size: 274432
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 810us (810)
+Total pause time 810ms (810147))
+Min pause 21us (21))
+Max pause 200ms (199707))
+Doing 1000 9kB allocations
+Average pause time 6ms (6286)
+Total pause time 6286ms (6286232))
+Min pause 502us (502))
+Max pause 225ms (225397))
+[plotdata] 8500   6286
+[plotscript] # end of test Boehm GC (I=274432)
+----------Finished test pause_time_test (took 7214ms)----------
+Boehm heap size: 274432
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1076)
+Total pause time 1077ms (1076718))
+Min pause 21us (21))
+Max pause 167ms (167340))
+Doing 1000 9kB allocations
+Average pause time 6ms (6414)
+Total pause time 6415ms (6414809))
+Min pause 502us (502))
+Max pause 218ms (217789))
+[plotdata] 8600   6414
+[plotscript] # end of test Boehm GC (I=274432)
+----------Finished test pause_time_test (took 7731ms)----------
+Boehm heap size: 274432
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 2ms (1557)
+Total pause time 1558ms (1557881))
+Min pause 21us (21))
+Max pause 497ms (497155))
+Doing 1000 9kB allocations
+Average pause time 7ms (6511)
+Total pause time 6512ms (6511735))
+Min pause 503us (503))
+Max pause 227ms (227386))
+[plotdata] 8700   6511
+[plotscript] # end of test Boehm GC (I=274432)
+----------Finished test pause_time_test (took 8345ms)----------
+Boehm heap size: 274432
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 998us (998)
+Total pause time 998ms (998097))
+Min pause 21us (21))
+Max pause 185ms (184627))
+Doing 1000 9kB allocations
+Average pause time 7ms (6543)
+Total pause time 6543ms (6543398))
+Min pause 506us (506))
+Max pause 212ms (212320))
+[plotdata] 8800   6543
+[plotscript] # end of test Boehm GC (I=274432)
+----------Finished test pause_time_test (took 7646ms)----------
+Boehm heap size: 274432
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 767us (767)
+Total pause time 768ms (767884))
+Min pause 21us (21))
+Max pause 174ms (173791))
+Doing 1000 9kB allocations
+Average pause time 6ms (6407)
+Total pause time 6408ms (6407720))
+Min pause 505us (505))
+Max pause 222ms (222433))
+[plotdata] 8900   6407
+[plotscript] # end of test Boehm GC (I=274432)
+----------Finished test pause_time_test (took 7284ms)----------
+Boehm heap size: 274432
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 638us (638)
+Total pause time 638ms (638033))
+Min pause 21us (21))
+Max pause 180ms (180379))
+Doing 1000 9kB allocations
+Average pause time 6ms (6198)
+Total pause time 6198ms (6198326))
+Min pause 503us (503))
+Max pause 232ms (231900))
+[plotdata] 9000   6198
+[plotscript] # end of test Boehm GC (I=274432)
+----------Finished test pause_time_test (took 7139ms)----------
+Boehm heap size: 274432
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1132)
+Total pause time 1132ms (1132301))
+Min pause 21us (21))
+Max pause 224ms (224075))
+Doing 1000 9kB allocations
+Average pause time 7ms (6624)
+Total pause time 6625ms (6624545))
+Min pause 505us (505))
+Max pause 231ms (230880))
+[plotdata] 9100   6624
+[plotscript] # end of test Boehm GC (I=274432)
+----------Finished test pause_time_test (took 8109ms)----------
+Boehm heap size: 274432
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 985us (985)
+Total pause time 985ms (985088))
+Min pause 21us (21))
+Max pause 213ms (213405))
+Doing 1000 9kB allocations
+Average pause time 6ms (6295)
+Total pause time 6295ms (6295313))
+Min pause 502us (502))
+Max pause 223ms (222803))
+[plotdata] 9200   6295
+[plotscript] # end of test Boehm GC (I=274432)
+----------Finished test pause_time_test (took 7407ms)----------
+Boehm heap size: 274432
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 810us (810)
+Total pause time 810ms (810347))
+Min pause 21us (21))
+Max pause 150ms (149672))
+Doing 1000 9kB allocations
+Average pause time 6ms (6080)
+Total pause time 6080ms (6080397))
+Min pause 502us (502))
+Max pause 225ms (224841))
+[plotdata] 9300   6080
+[plotscript] # end of test Boehm GC (I=274432)
+----------Finished test pause_time_test (took 7134ms)----------
+Boehm heap size: 274432
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 739us (739)
+Total pause time 740ms (739534))
+Min pause 21us (21))
+Max pause 225ms (224909))
+Doing 1000 9kB allocations
+Average pause time 6ms (5977)
+Total pause time 5978ms (5977913))
+Min pause 506us (506))
+Max pause 218ms (218086))
+[plotdata] 9400   5977
+[plotscript] # end of test Boehm GC (I=274432)
+----------Finished test pause_time_test (took 7189ms)----------
+Boehm heap size: 274432
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 804us (804)
+Total pause time 805ms (804542))
+Min pause 21us (21))
+Max pause 210ms (210092))
+Doing 1000 10kB allocations
+Average pause time 6ms (6471)
+Total pause time 6471ms (6471348))
+Min pause 502us (502))
+Max pause 215ms (215191))
+[plotdata] 9500   6471
+[plotscript] # end of test Boehm GC (I=274432)
+----------Finished test pause_time_test (took 7671ms)----------
+Boehm heap size: 274432
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1071)
+Total pause time 1071ms (1071140))
+Min pause 21us (21))
+Max pause 198ms (197561))
+Doing 1000 10kB allocations
+Average pause time 6ms (6254)
+Total pause time 6255ms (6254971))
+Min pause 511us (511))
+Max pause 227ms (226667))
+[plotdata] 9600   6254
+[plotscript] # end of test Boehm GC (I=274432)
+----------Finished test pause_time_test (took 7397ms)----------
+Boehm heap size: 274432
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 928us (928)
+Total pause time 928ms (928165))
+Min pause 21us (21))
+Max pause 182ms (181644))
+Doing 1000 10kB allocations
+Average pause time 6ms (6224)
+Total pause time 6224ms (6224392))
+Min pause 503us (503))
+Max pause 218ms (217599))
+[plotdata] 9700   6224
+[plotscript] # end of test Boehm GC (I=274432)
+----------Finished test pause_time_test (took 7510ms)----------
+Boehm heap size: 274432
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 868us (868)
+Total pause time 868ms (868181))
+Min pause 21us (21))
+Max pause 220ms (219624))
+Doing 1000 10kB allocations
+Average pause time 6ms (6080)
+Total pause time 6080ms (6080392))
+Min pause 506us (506))
+Max pause 225ms (225191))
+[plotdata] 9800   6080
+[plotscript] # end of test Boehm GC (I=274432)
+----------Finished test pause_time_test (took 7220ms)----------
+Boehm heap size: 274432
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 673us (673)
+Total pause time 673ms (673286))
+Min pause 21us (21))
+Max pause 215ms (214905))
+Doing 1000 10kB allocations
+Average pause time 7ms (6512)
+Total pause time 6512ms (6512209))
+Min pause 507us (507))
+Max pause 241ms (240571))
+[plotdata] 9900   6512
+[plotscript] # end of test Boehm GC (I=274432)
+----------Finished test pause_time_test (took 7320ms)----------
+Boehm heap size: 274432
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 793us (793)
+Total pause time 794ms (793663))
+Min pause 21us (21))
+Max pause 174ms (173740))
+Doing 1000 10kB allocations
+Average pause time 6ms (6412)
+Total pause time 6412ms (6412112))
+Min pause 504us (504))
+Max pause 223ms (222528))
+[plotdata] 10000   6412
+[plotscript] # end of test Boehm GC (I=274432)
+----------Finished test pause_time_test (took 7303ms)----------
+Boehm heap size: 274432
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 708us (708)
+Total pause time 708ms (708317))
+Min pause 21us (21))
+Max pause 174ms (174102))
+Doing 1000 10kB allocations
+Average pause time 7ms (6512)
+Total pause time 6513ms (6512730))
+Min pause 505us (505))
+Max pause 231ms (231038))
+[plotdata] 10100   6512
+[plotscript] # end of test Boehm GC (I=274432)
+----------Finished test pause_time_test (took 7312ms)----------
+Boehm heap size: 274432
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 740us (740)
+Total pause time 741ms (740745))
+Min pause 21us (21))
+Max pause 225ms (224732))
+Doing 1000 10kB allocations
+Average pause time 8ms (7953)
+Total pause time 7954ms (7953749))
+Min pause 502us (502))
+Max pause 232ms (231685))
+[plotdata] 10200   7953
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 8770ms)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1169)
+Total pause time 1169ms (1169447))
+Min pause 21us (21))
+Max pause 225ms (224739))
+Doing 1000 10kB allocations
+Average pause time 8ms (7592)
+Total pause time 7593ms (7592874))
+Min pause 506us (506))
+Max pause 225ms (224737))
+[plotdata] 10300   7592
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 8892ms)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 677us (677)
+Total pause time 677ms (677187))
+Min pause 21us (21))
+Max pause 161ms (161094))
+Doing 1000 10kB allocations
+Average pause time 8ms (8099)
+Total pause time 8100ms (8099507))
+Min pause 501us (501))
+Max pause 233ms (233405))
+[plotdata] 10400   8099
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 8855ms)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 739us (739)
+Total pause time 740ms (739936))
+Min pause 21us (21))
+Max pause 185ms (184880))
+Doing 1000 11kB allocations
+Average pause time 8ms (7788)
+Total pause time 7789ms (7788994))
+Min pause 506us (506))
+Max pause 225ms (224788))
+[plotdata] 10500   7788
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 8990ms)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 949us (949)
+Total pause time 949ms (949132))
+Min pause 21us (21))
+Max pause 170ms (170216))
+Doing 1000 11kB allocations
+Average pause time 8ms (8045)
+Total pause time 8045ms (8045346))
+Min pause 504us (504))
+Max pause 251ms (251298))
+[plotdata] 10600   8045
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 9415ms)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 956us (956)
+Total pause time 957ms (956879))
+Min pause 21us (21))
+Max pause 188ms (188494))
+Doing 1000 11kB allocations
+Average pause time 8ms (7838)
+Total pause time 7839ms (7838921))
+Min pause 504us (504))
+Max pause 225ms (224612))
+[plotdata] 10700   7838
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 9074ms)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 578us (578)
+Total pause time 579ms (578545))
+Min pause 21us (21))
+Max pause 160ms (160452))
+Doing 1000 11kB allocations
+Average pause time 8ms (7859)
+Total pause time 7860ms (7859924))
+Min pause 503us (503))
+Max pause 225ms (224524))
+[plotdata] 10800   7859
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 8659ms)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 664us (664)
+Total pause time 665ms (664602))
+Min pause 21us (21))
+Max pause 190ms (189688))
+Doing 1000 11kB allocations
+Average pause time 8ms (7959)
+Total pause time 7960ms (7959867))
+Min pause 501us (501))
+Max pause 283ms (283446))
+[plotdata] 10900   7959
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 8726ms)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 894us (894)
+Total pause time 894ms (894367))
+Min pause 21us (21))
+Max pause 233ms (233299))
+Doing 1000 11kB allocations
+Average pause time 8ms (8066)
+Total pause time 8066ms (8066161))
+Min pause 505us (505))
+Max pause 218ms (217661))
+[plotdata] 11000   8066
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 9043ms)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 596us (596)
+Total pause time 597ms (596696))
+Min pause 21us (21))
+Max pause 216ms (216165))
+Doing 1000 11kB allocations
+Average pause time 8ms (8139)
+Total pause time 8140ms (8139661))
+Min pause 504us (504))
+Max pause 231ms (230891))
+[plotdata] 11100   8139
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 8984ms)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 963us (963)
+Total pause time 963ms (963108))
+Min pause 21us (21))
+Max pause 225ms (225369))
+Doing 1000 11kB allocations
+Average pause time 8ms (7602)
+Total pause time 7603ms (7602750))
+Min pause 505us (505))
+Max pause 224ms (223911))
+[plotdata] 11200   7602
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 8792ms)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 695us (695)
+Total pause time 695ms (695239))
+Min pause 22us (22))
+Max pause 145ms (144769))
+Doing 1000 11kB allocations
+Average pause time 8ms (7823)
+Total pause time 7823ms (7823056))
+Min pause 508us (508))
+Max pause 225ms (225209))
+[plotdata] 11300   7823
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 8892ms)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1025)
+Total pause time 1026ms (1025892))
+Min pause 21us (21))
+Max pause 182ms (181616))
+Doing 1000 11kB allocations
+Average pause time 8ms (7848)
+Total pause time 7849ms (7848614))
+Min pause 510us (510))
+Max pause 233ms (233044))
+[plotdata] 11400   7848
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 9131ms)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 729us (729)
+Total pause time 730ms (729995))
+Min pause 21us (21))
+Max pause 137ms (137182))
+Doing 1000 12kB allocations
+Average pause time 10ms (9970)
+Total pause time 9971ms (9970934))
+Min pause 504us (504))
+Max pause 672ms (672065))
+[plotdata] 11500   9970
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 11s)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 701us (701)
+Total pause time 701ms (701350))
+Min pause 21us (21))
+Max pause 190ms (189578))
+Doing 1000 12kB allocations
+Average pause time 8ms (7677)
+Total pause time 7677ms (7677056))
+Min pause 504us (504))
+Max pause 231ms (230743))
+[plotdata] 11600   7677
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 8585ms)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 966us (966)
+Total pause time 967ms (966577))
+Min pause 21us (21))
+Max pause 376ms (375706))
+Doing 1000 12kB allocations
+Average pause time 8ms (7604)
+Total pause time 7604ms (7604273))
+Min pause 502us (502))
+Max pause 238ms (237789))
+[plotdata] 11700   7604
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 8973ms)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1212)
+Total pause time 1212ms (1212329))
+Min pause 21us (21))
+Max pause 263ms (262606))
+Doing 1000 12kB allocations
+Average pause time 8ms (8059)
+Total pause time 8059ms (8059105))
+Min pause 505us (505))
+Max pause 250ms (250011))
+[plotdata] 11800   8059
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 9469ms)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1239)
+Total pause time 1239ms (1239141))
+Min pause 21us (21))
+Max pause 217ms (217283))
+Doing 1000 12kB allocations
+Average pause time 9ms (8837)
+Total pause time 8837ms (8837278))
+Min pause 503us (503))
+Max pause 258ms (258395))
+[plotdata] 11900   8837
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 10s)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 778us (778)
+Total pause time 779ms (778616))
+Min pause 21us (21))
+Max pause 150ms (150166))
+Doing 1000 12kB allocations
+Average pause time 8ms (8107)
+Total pause time 8107ms (8107423))
+Min pause 503us (503))
+Max pause 227ms (226593))
+[plotdata] 12000   8107
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 9225ms)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 614us (614)
+Total pause time 615ms (614855))
+Min pause 21us (21))
+Max pause 112ms (112160))
+Doing 1000 12kB allocations
+Average pause time 8ms (8053)
+Total pause time 8054ms (8053999))
+Min pause 503us (503))
+Max pause 218ms (217688))
+[plotdata] 12100   8053
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 9110ms)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 616us (616)
+Total pause time 617ms (616711))
+Min pause 21us (21))
+Max pause 145ms (145490))
+Doing 1000 12kB allocations
+Average pause time 8ms (7732)
+Total pause time 7732ms (7732476))
+Min pause 506us (506))
+Max pause 224ms (224492))
+[plotdata] 12200   7732
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 8653ms)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1158)
+Total pause time 1159ms (1158631))
+Min pause 21us (21))
+Max pause 189ms (189474))
+Doing 1000 12kB allocations
+Average pause time 8ms (8054)
+Total pause time 8054ms (8054198))
+Min pause 629us (629))
+Max pause 218ms (218244))
+[plotdata] 12300   8054
+[plotscript] # end of test Boehm GC (I=278528)
+----------Finished test pause_time_test (took 9394ms)----------
+Boehm heap size: 278528
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 800us (800)
+Total pause time 801ms (800577))
+Min pause 21us (21))
+Max pause 154ms (153798))
+Doing 1000 12kB allocations
+Average pause time 8ms (8356)
+Total pause time 8356ms (8356057))
+Min pause 631us (631))
+Max pause 225ms (224723))
+[plotdata] 12400   8356
+[plotscript] # end of test Boehm GC (I=278528)
+----------Finished test pause_time_test (took 9299ms)----------
+Boehm heap size: 278528
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 688us (688)
+Total pause time 688ms (688395))
+Min pause 21us (21))
+Max pause 113ms (113124))
+Doing 1000 13kB allocations
+Average pause time 8ms (7821)
+Total pause time 7822ms (7821728))
+Min pause 629us (629))
+Max pause 222ms (222348))
+[plotdata] 12500   7821
+[plotscript] # end of test Boehm GC (I=278528)
+----------Finished test pause_time_test (took 9082ms)----------
+Boehm heap size: 278528
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 720us (720)
+Total pause time 721ms (720709))
+Min pause 21us (21))
+Max pause 181ms (181160))
+Doing 1000 13kB allocations
+Average pause time 8ms (8036)
+Total pause time 8037ms (8036924))
+Min pause 630us (630))
+Max pause 231ms (231155))
+[plotdata] 12600   8036
+[plotscript] # end of test Boehm GC (I=278528)
+----------Finished test pause_time_test (took 9180ms)----------
+Boehm heap size: 278528
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 990us (990)
+Total pause time 991ms (990975))
+Min pause 21us (21))
+Max pause 218ms (218333))
+Doing 1000 13kB allocations
+Average pause time 8ms (8167)
+Total pause time 8167ms (8167265))
+Min pause 629us (629))
+Max pause 227ms (227104))
+[plotdata] 12700   8167
+[plotscript] # end of test Boehm GC (I=278528)
+----------Finished test pause_time_test (took 9263ms)----------
+Boehm heap size: 278528
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1110)
+Total pause time 1110ms (1110448))
+Min pause 21us (21))
+Max pause 314ms (313827))
+Doing 1000 13kB allocations
+Average pause time 8ms (8278)
+Total pause time 8279ms (8278664))
+Min pause 633us (633))
+Max pause 224ms (224243))
+[plotdata] 12800   8278
+[plotscript] # end of test Boehm GC (I=278528)
+----------Finished test pause_time_test (took 9527ms)----------
+Boehm heap size: 278528
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1111)
+Total pause time 1111ms (1111184))
+Min pause 21us (21))
+Max pause 340ms (339598))
+Doing 1000 13kB allocations
+Average pause time 8ms (7998)
+Total pause time 7998ms (7998144))
+Min pause 631us (631))
+Max pause 225ms (225119))
+[plotdata] 12900   7998
+[plotscript] # end of test Boehm GC (I=278528)
+----------Finished test pause_time_test (took 9320ms)----------
+Boehm heap size: 278528
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1338)
+Total pause time 1339ms (1338900))
+Min pause 21us (21))
+Max pause 207ms (206964))
+Doing 1000 13kB allocations
+Average pause time 8ms (7775)
+Total pause time 7776ms (7775934))
+Min pause 630us (630))
+Max pause 225ms (225159))
+[plotdata] 13000   7775
+[plotscript] # end of test Boehm GC (I=278528)
+----------Finished test pause_time_test (took 9402ms)----------
+Boehm heap size: 278528
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1058)
+Total pause time 1058ms (1058248))
+Min pause 21us (21))
+Max pause 197ms (197391))
+Doing 1000 13kB allocations
+Average pause time 8ms (8291)
+Total pause time 8292ms (8291564))
+Min pause 632us (632))
+Max pause 224ms (224100))
+[plotdata] 13100   8291
+[plotscript] # end of test Boehm GC (I=278528)
+----------Finished test pause_time_test (took 9430ms)----------
+Boehm heap size: 278528
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 899us (899)
+Total pause time 899ms (899188))
+Min pause 21us (21))
+Max pause 193ms (192972))
+Doing 1000 13kB allocations
+Average pause time 8ms (7967)
+Total pause time 7968ms (7967723))
+Min pause 633us (633))
+Max pause 219ms (218636))
+[plotdata] 13200   7967
+[plotscript] # end of test Boehm GC (I=278528)
+----------Finished test pause_time_test (took 9103ms)----------
+Boehm heap size: 278528
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 768us (768)
+Total pause time 769ms (768945))
+Min pause 21us (21))
+Max pause 227ms (226878))
+Doing 1000 13kB allocations
+Average pause time 8ms (8295)
+Total pause time 8296ms (8295634))
+Min pause 629us (629))
+Max pause 220ms (220208))
+[plotdata] 13300   8295
+[plotscript] # end of test Boehm GC (I=278528)
+----------Finished test pause_time_test (took 9367ms)----------
+Boehm heap size: 278528
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 848us (848)
+Total pause time 849ms (848693))
+Min pause 21us (21))
+Max pause 182ms (181643))
+Doing 1000 13kB allocations
+Average pause time 8ms (8199)
+Total pause time 8199ms (8199097))
+Min pause 629us (629))
+Max pause 225ms (225112))
+[plotdata] 13400   8199
+[plotscript] # end of test Boehm GC (I=278528)
+----------Finished test pause_time_test (took 9172ms)----------
+Boehm heap size: 278528
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 858us (858)
+Total pause time 859ms (858980))
+Min pause 21us (21))
+Max pause 175ms (175422))
+Doing 1000 14kB allocations
+Average pause time 8ms (8192)
+Total pause time 8192ms (8192415))
+Min pause 631us (631))
+Max pause 226ms (225542))
+[plotdata] 13500   8192
+[plotscript] # end of test Boehm GC (I=278528)
+----------Finished test pause_time_test (took 9157ms)----------
+Boehm heap size: 278528
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1230)
+Total pause time 1230ms (1230299))
+Min pause 21us (21))
+Max pause 373ms (373155))
+Doing 1000 14kB allocations
+Average pause time 8ms (8365)
+Total pause time 8366ms (8365791))
+Min pause 629us (629))
+Max pause 231ms (231202))
+[plotdata] 13600   8365
+[plotscript] # end of test Boehm GC (I=278528)
+----------Finished test pause_time_test (took 9705ms)----------
+Boehm heap size: 278528
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 806us (806)
+Total pause time 806ms (806299))
+Min pause 21us (21))
+Max pause 151ms (151366))
+Doing 1000 14kB allocations
+Average pause time 8ms (8163)
+Total pause time 8164ms (8163992))
+Min pause 631us (631))
+Max pause 219ms (218800))
+[plotdata] 13700   8163
+[plotscript] # end of test Boehm GC (I=278528)
+----------Finished test pause_time_test (took 9314ms)----------
+Boehm heap size: 278528
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 916us (916)
+Total pause time 917ms (916598))
+Min pause 22us (22))
+Max pause 208ms (208390))
+Doing 1000 14kB allocations
+Average pause time 8ms (7949)
+Total pause time 7949ms (7949254))
+Min pause 636us (636))
+Max pause 224ms (224448))
+[plotdata] 13800   7949
+[plotscript] # end of test Boehm GC (I=278528)
+----------Finished test pause_time_test (took 9120ms)----------
+Boehm heap size: 278528
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 857us (857)
+Total pause time 858ms (857779))
+Min pause 21us (21))
+Max pause 347ms (347399))
+Doing 1000 14kB allocations
+Average pause time 8ms (8083)
+Total pause time 8084ms (8083835))
+Min pause 628us (628))
+Max pause 216ms (216244))
+[plotdata] 13900   8083
+[plotscript] # end of test Boehm GC (I=278528)
+----------Finished test pause_time_test (took 9311ms)----------
+Boehm heap size: 278528
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 725us (725)
+Total pause time 725ms (725075))
+Min pause 21us (21))
+Max pause 139ms (138927))
+Doing 1000 14kB allocations
+Average pause time 8ms (7914)
+Total pause time 7914ms (7914302))
+Min pause 631us (631))
+Max pause 225ms (225367))
+[plotdata] 14000   7914
+[plotscript] # end of test Boehm GC (I=278528)
+----------Finished test pause_time_test (took 9030ms)----------
+Boehm heap size: 278528
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 886us (886)
+Total pause time 886ms (886044))
+Min pause 21us (21))
+Max pause 220ms (219643))
+Doing 1000 14kB allocations
+Average pause time 8ms (8403)
+Total pause time 8403ms (8403325))
+Min pause 632us (632))
+Max pause 246ms (246205))
+[plotdata] 14100   8403
+[plotscript] # end of test Boehm GC (I=278528)
+----------Finished test pause_time_test (took 9435ms)----------
+Boehm heap size: 278528
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1199)
+Total pause time 1199ms (1199399))
+Min pause 21us (21))
+Max pause 217ms (217393))
+Doing 1000 14kB allocations
+Average pause time 8ms (8293)
+Total pause time 8294ms (8293736))
+Min pause 630us (630))
+Max pause 215ms (214938))
+[plotdata] 14200   8293
+[plotscript] # end of test Boehm GC (I=278528)
+----------Finished test pause_time_test (took 9712ms)----------
+Boehm heap size: 278528
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 756us (756)
+Total pause time 756ms (756060))
+Min pause 21us (21))
+Max pause 136ms (136266))
+Doing 1000 14kB allocations
+Average pause time 10ms (10064)
+Total pause time 10s (10064632))
+Min pause 629us (629))
+Max pause 657ms (657134))
+[plotdata] 14300   10064
+[plotscript] # end of test Boehm GC (I=278528)
+----------Finished test pause_time_test (took 11s)----------
+Boehm heap size: 278528
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 934us (934)
+Total pause time 934ms (934134))
+Min pause 21us (21))
+Max pause 230ms (229909))
+Doing 1000 14kB allocations
+Average pause time 9ms (8608)
+Total pause time 8609ms (8608604))
+Min pause 628us (628))
+Max pause 249ms (248714))
+[plotdata] 14400   8608
+[plotscript] # end of test Boehm GC (I=278528)
+----------Finished test pause_time_test (took 9719ms)----------
+Boehm heap size: 278528
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 835us (835)
+Total pause time 836ms (835897))
+Min pause 21us (21))
+Max pause 176ms (176097))
+Doing 1000 15kB allocations
+Average pause time 8ms (8433)
+Total pause time 8434ms (8433989))
+Min pause 629us (629))
+Max pause 231ms (231073))
+[plotdata] 14500   8433
+[plotscript] # end of test Boehm GC (I=278528)
+----------Finished test pause_time_test (took 9381ms)----------
+Boehm heap size: 278528
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1024)
+Total pause time 1024ms (1024124))
+Min pause 21us (21))
+Max pause 262ms (261992))
+Doing 1000 15kB allocations
+Average pause time 10ms (10488)
+Total pause time 10s (10488496))
+Min pause 630us (630))
+Max pause 225ms (225256))
+[plotdata] 14600   10488
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 12s)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 2ms (1626)
+Total pause time 1627ms (1626681))
+Min pause 21us (21))
+Max pause 228ms (227976))
+Doing 1000 15kB allocations
+Average pause time 14ms (13644)
+Total pause time 14s (13644144))
+Min pause 630us (630))
+Max pause 427ms (427018))
+[plotdata] 14700   13644
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 16s)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 788us (788)
+Total pause time 789ms (788812))
+Min pause 21us (21))
+Max pause 158ms (158076))
+Doing 1000 15kB allocations
+Average pause time 16ms (15554)
+Total pause time 16s (15554609))
+Min pause 625us (625))
+Max pause 1011ms (1011369))
+[plotdata] 14800   15554
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 17s)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1296)
+Total pause time 1296ms (1296435))
+Min pause 21us (21))
+Max pause 216ms (216075))
+Doing 1000 15kB allocations
+Average pause time 16ms (15911)
+Total pause time 16s (15911639))
+Min pause 627us (627))
+Max pause 233ms (233101))
+[plotdata] 14900   15911
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 17s)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1347)
+Total pause time 1348ms (1347624))
+Min pause 21us (21))
+Max pause 193ms (193466))
+Doing 1000 15kB allocations
+Average pause time 16ms (15778)
+Total pause time 16s (15778027))
+Min pause 627us (627))
+Max pause 346ms (345697))
+[plotdata] 15000   15778
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 17s)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1208)
+Total pause time 1208ms (1208360))
+Min pause 21us (21))
+Max pause 206ms (206281))
+Doing 1000 15kB allocations
+Average pause time 16ms (15554)
+Total pause time 16s (15554378))
+Min pause 627us (627))
+Max pause 233ms (233120))
+[plotdata] 15100   15554
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 17s)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1307)
+Total pause time 1308ms (1307886))
+Min pause 22us (22))
+Max pause 194ms (194454))
+Doing 1000 15kB allocations
+Average pause time 11ms (11453)
+Total pause time 11s (11453540))
+Min pause 632us (632))
+Max pause 238ms (238139))
+[plotdata] 15200   11453
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 13s)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 791us (791)
+Total pause time 791ms (791180))
+Min pause 23us (23))
+Max pause 210ms (209932))
+Doing 1000 15kB allocations
+Average pause time 11ms (10967)
+Total pause time 11s (10967954))
+Min pause 639us (639))
+Max pause 240ms (240440))
+[plotdata] 15300   10967
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 12s)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1083)
+Total pause time 1084ms (1083843))
+Min pause 22us (22))
+Max pause 209ms (208871))
+Doing 1000 15kB allocations
+Average pause time 10ms (10412)
+Total pause time 10s (10412555))
+Min pause 631us (631))
+Max pause 234ms (234317))
+[plotdata] 15400   10412
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 12s)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 742us (742)
+Total pause time 742ms (742353))
+Min pause 22us (22))
+Max pause 151ms (151466))
+Doing 1000 16kB allocations
+Average pause time 10ms (10489)
+Total pause time 10s (10489008))
+Min pause 634us (634))
+Max pause 224ms (224419))
+[plotdata] 15500   10489
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 12s)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 597us (597)
+Total pause time 597ms (597087))
+Min pause 23us (23))
+Max pause 161ms (160895))
+Doing 1000 16kB allocations
+Average pause time 11ms (10579)
+Total pause time 11s (10579633))
+Min pause 633us (633))
+Max pause 225ms (225358))
+[plotdata] 15600   10579
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 11s)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 921us (921)
+Total pause time 921ms (921403))
+Min pause 22us (22))
+Max pause 158ms (158056))
+Doing 1000 16kB allocations
+Average pause time 10ms (10474)
+Total pause time 10s (10474406))
+Min pause 633us (633))
+Max pause 277ms (276772))
+[plotdata] 15700   10474
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 12s)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 830us (830)
+Total pause time 831ms (830693))
+Min pause 22us (22))
+Max pause 171ms (171143))
+Doing 1000 16kB allocations
+Average pause time 10ms (10454)
+Total pause time 10s (10454634))
+Min pause 632us (632))
+Max pause 234ms (234111))
+[plotdata] 15800   10454
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 12s)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 775us (775)
+Total pause time 775ms (775097))
+Min pause 22us (22))
+Max pause 198ms (197501))
+Doing 1000 16kB allocations
+Average pause time 11ms (10700)
+Total pause time 11s (10700452))
+Min pause 638us (638))
+Max pause 240ms (240046))
+[plotdata] 15900   10700
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 12s)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 762us (762)
+Total pause time 763ms (762805))
+Min pause 22us (22))
+Max pause 223ms (222619))
+Doing 1000 16kB allocations
+Average pause time 11ms (10551)
+Total pause time 11s (10551271))
+Min pause 636us (636))
+Max pause 232ms (231941))
+[plotdata] 16000   10551
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 12s)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 748us (748)
+Total pause time 749ms (748908))
+Min pause 22us (22))
+Max pause 176ms (175619))
+Doing 1000 16kB allocations
+Average pause time 11ms (10714)
+Total pause time 11s (10714379))
+Min pause 634us (634))
+Max pause 256ms (255812))
+[plotdata] 16100   10714
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 12s)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 937us (937)
+Total pause time 938ms (937544))
+Min pause 22us (22))
+Max pause 190ms (189648))
+Doing 1000 16kB allocations
+Average pause time 11ms (10597)
+Total pause time 11s (10597381))
+Min pause 634us (634))
+Max pause 232ms (231873))
+[plotdata] 16200   10597
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 12s)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 851us (851)
+Total pause time 852ms (851886))
+Min pause 23us (23))
+Max pause 209ms (208753))
+Doing 1000 16kB allocations
+Average pause time 11ms (10660)
+Total pause time 11s (10660896))
+Min pause 638us (638))
+Max pause 233ms (232947))
+[plotdata] 16300   10660
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 12s)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 905us (905)
+Total pause time 905ms (905132))
+Min pause 22us (22))
+Max pause 230ms (230391))
+Doing 1000 16kB allocations
+Average pause time 12ms (11507)
+Total pause time 12s (11507562))
+Min pause 763us (763))
+Max pause 774ms (774384))
+[plotdata] 16400   11507
+[plotscript] # end of test Boehm GC (I=282624)
+----------Finished test pause_time_test (took 13s)----------
+Boehm heap size: 282624
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1206)
+Total pause time 1206ms (1206407))
+Min pause 22us (22))
+Max pause 174ms (173725))
+Doing 1000 17kB allocations
+Average pause time 11ms (10689)
+Total pause time 11s (10689620))
+Min pause 759us (759))
+Max pause 291ms (290713))
+[plotdata] 16500   10689
+[plotscript] # end of test Boehm GC (I=282624)
+----------Finished test pause_time_test (took 12s)----------
+Boehm heap size: 282624
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 743us (743)
+Total pause time 744ms (743897))
+Min pause 22us (22))
+Max pause 234ms (234073))
+Doing 1000 17kB allocations
+Average pause time 10ms (10458)
+Total pause time 10s (10458918))
+Min pause 757us (757))
+Max pause 271ms (271249))
+[plotdata] 16600   10458
+[plotscript] # end of test Boehm GC (I=282624)
+----------Finished test pause_time_test (took 11s)----------
+Boehm heap size: 282624
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1091)
+Total pause time 1091ms (1091059))
+Min pause 22us (22))
+Max pause 318ms (318206))
+Doing 1000 17kB allocations
+Average pause time 11ms (10837)
+Total pause time 11s (10837092))
+Min pause 757us (757))
+Max pause 575ms (575476))
+[plotdata] 16700   10837
+[plotscript] # end of test Boehm GC (I=282624)
+----------Finished test pause_time_test (took 12s)----------
+Boehm heap size: 282624
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 902us (902)
+Total pause time 903ms (902519))
+Min pause 22us (22))
+Max pause 231ms (230851))
+Doing 1000 17kB allocations
+Average pause time 10ms (10372)
+Total pause time 10s (10372174))
+Min pause 761us (761))
+Max pause 225ms (225037))
+[plotdata] 16800   10372
+[plotscript] # end of test Boehm GC (I=282624)
+----------Finished test pause_time_test (took 11s)----------
+Boehm heap size: 282624
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 899us (899)
+Total pause time 900ms (899704))
+Min pause 22us (22))
+Max pause 154ms (153622))
+Doing 1000 17kB allocations
+Average pause time 10ms (10046)
+Total pause time 10s (10046515))
+Min pause 761us (761))
+Max pause 249ms (248782))
+[plotdata] 16900   10046
+[plotscript] # end of test Boehm GC (I=282624)
+----------Finished test pause_time_test (took 11s)----------
+Boehm heap size: 282624
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 923us (923)
+Total pause time 923ms (923399))
+Min pause 22us (22))
+Max pause 339ms (339292))
+Doing 1000 17kB allocations
+Average pause time 10ms (10430)
+Total pause time 10s (10430305))
+Min pause 758us (758))
+Max pause 231ms (231402))
+[plotdata] 17000   10430
+[plotscript] # end of test Boehm GC (I=282624)
+----------Finished test pause_time_test (took 12s)----------
+Boehm heap size: 282624
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1253)
+Total pause time 1254ms (1253523))
+Min pause 22us (22))
+Max pause 348ms (347528))
+Doing 1000 17kB allocations
+Average pause time 11ms (10776)
+Total pause time 11s (10776949))
+Min pause 765us (765))
+Max pause 233ms (233020))
+[plotdata] 17100   10776
+[plotscript] # end of test Boehm GC (I=282624)
+----------Finished test pause_time_test (took 12s)----------
+Boehm heap size: 282624
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1113)
+Total pause time 1113ms (1113243))
+Min pause 22us (22))
+Max pause 308ms (307974))
+Doing 1000 17kB allocations
+Average pause time 11ms (10547)
+Total pause time 11s (10547943))
+Min pause 762us (762))
+Max pause 233ms (233427))
+[plotdata] 17200   10547
+[plotscript] # end of test Boehm GC (I=282624)
+----------Finished test pause_time_test (took 12s)----------
+Boehm heap size: 282624
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1051)
+Total pause time 1052ms (1051865))
+Min pause 22us (22))
+Max pause 223ms (223442))
+Doing 1000 17kB allocations
+Average pause time 10ms (10155)
+Total pause time 10s (10155286))
+Min pause 760us (760))
+Max pause 240ms (240355))
+[plotdata] 17300   10155
+[plotscript] # end of test Boehm GC (I=282624)
+----------Finished test pause_time_test (took 11s)----------
+Boehm heap size: 282624
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 770us (770)
+Total pause time 770ms (770149))
+Min pause 22us (22))
+Max pause 137ms (136632))
+Doing 1000 17kB allocations
+Average pause time 10ms (10269)
+Total pause time 10s (10269950))
+Min pause 763us (763))
+Max pause 232ms (232323))
+[plotdata] 17400   10269
+[plotscript] # end of test Boehm GC (I=282624)
+----------Finished test pause_time_test (took 11s)----------
+Boehm heap size: 282624
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 699us (699)
+Total pause time 700ms (699652))
+Min pause 22us (22))
+Max pause 146ms (145594))
+Doing 1000 18kB allocations
+Average pause time 11ms (10510)
+Total pause time 11s (10510267))
+Min pause 762us (762))
+Max pause 218ms (218214))
+[plotdata] 17500   10510
+[plotscript] # end of test Boehm GC (I=282624)
+----------Finished test pause_time_test (took 12s)----------
+Boehm heap size: 282624
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 605us (605)
+Total pause time 606ms (605863))
+Min pause 22us (22))
+Max pause 201ms (201399))
+Doing 1000 18kB allocations
+Average pause time 11ms (10790)
+Total pause time 11s (10790587))
+Min pause 760us (760))
+Max pause 233ms (233271))
+[plotdata] 17600   10790
+[plotscript] # end of test Boehm GC (I=282624)
+----------Finished test pause_time_test (took 12s)----------
+Boehm heap size: 282624
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 945us (945)
+Total pause time 946ms (945723))
+Min pause 22us (22))
+Max pause 247ms (246640))
+Doing 1000 18kB allocations
+Average pause time 10ms (10292)
+Total pause time 10s (10292440))
+Min pause 758us (758))
+Max pause 225ms (225326))
+[plotdata] 17700   10292
+[plotscript] # end of test Boehm GC (I=282624)
+----------Finished test pause_time_test (took 11s)----------
+Boehm heap size: 282624
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 944us (944)
+Total pause time 944ms (944072))
+Min pause 22us (22))
+Max pause 263ms (262906))
+Doing 1000 18kB allocations
+Average pause time 11ms (10771)
+Total pause time 11s (10771111))
+Min pause 761us (761))
+Max pause 246ms (245866))
+[plotdata] 17800   10771
+[plotscript] # end of test Boehm GC (I=282624)
+----------Finished test pause_time_test (took 12s)----------
+Boehm heap size: 282624
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 975us (975)
+Total pause time 976ms (975640))
+Min pause 22us (22))
+Max pause 223ms (223431))
+Doing 1000 18kB allocations
+Average pause time 10ms (10440)
+Total pause time 10s (10440717))
+Min pause 762us (762))
+Max pause 233ms (233395))
+[plotdata] 17900   10440
+[plotscript] # end of test Boehm GC (I=282624)
+----------Finished test pause_time_test (took 12s)----------
+Boehm heap size: 282624
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1195)
+Total pause time 1195ms (1195249))
+Min pause 22us (22))
+Max pause 189ms (189163))
+Doing 1000 18kB allocations
+Average pause time 10ms (10349)
+Total pause time 10s (10349798))
+Min pause 759us (759))
+Max pause 219ms (219497))
+[plotdata] 18000   10349
+[plotscript] # end of test Boehm GC (I=282624)
+----------Finished test pause_time_test (took 12s)----------
+Boehm heap size: 282624
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 771us (771)
+Total pause time 772ms (771940))
+Min pause 22us (22))
+Max pause 200ms (199714))
+Doing 1000 18kB allocations
+Average pause time 10ms (10044)
+Total pause time 10s (10044928))
+Min pause 760us (760))
+Max pause 232ms (232113))
+[plotdata] 18100   10044
+[plotscript] # end of test Boehm GC (I=282624)
+----------Finished test pause_time_test (took 11s)----------
+Boehm heap size: 282624
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 770us (770)
+Total pause time 770ms (770227))
+Min pause 22us (22))
+Max pause 187ms (186936))
+Doing 1000 18kB allocations
+Average pause time 10ms (10277)
+Total pause time 10s (10277816))
+Min pause 763us (763))
+Max pause 231ms (231311))
+[plotdata] 18200   10277
+[plotscript] # end of test Boehm GC (I=282624)
+----------Finished test pause_time_test (took 11s)----------
+Boehm heap size: 282624
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1047)
+Total pause time 1047ms (1047284))
+Min pause 22us (22))
+Max pause 244ms (243665))
+Doing 1000 18kB allocations
+Average pause time 10ms (10278)
+Total pause time 10s (10278789))
+Min pause 759us (759))
+Max pause 227ms (226689))
+[plotdata] 18300   10278
+[plotscript] # end of test Boehm GC (I=282624)
+----------Finished test pause_time_test (took 12s)----------
+Boehm heap size: 282624
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 865us (865)
+Total pause time 865ms (865240))
+Min pause 23us (23))
+Max pause 178ms (178424))
+Doing 1000 18kB allocations
+Average pause time 11ms (10631)
+Total pause time 11s (10631444))
+Min pause 764us (764))
+Max pause 226ms (226310))
+[plotdata] 18400   10631
+[plotscript] # end of test Boehm GC (I=282624)
+----------Finished test pause_time_test (took 12s)----------
+Boehm heap size: 282624
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 721us (721)
+Total pause time 722ms (721778))
+Min pause 22us (22))
+Max pause 155ms (154779))
+Doing 1000 19kB allocations
+Average pause time 14ms (14098)
+Total pause time 14s (14098048))
+Min pause 761us (761))
+Max pause 239ms (238532))
+[plotdata] 18500   14098
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 15s)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1094)
+Total pause time 1095ms (1094985))
+Min pause 22us (22))
+Max pause 231ms (230699))
+Doing 1000 19kB allocations
+Average pause time 14ms (14214)
+Total pause time 14s (14214915))
+Min pause 765us (765))
+Max pause 226ms (225787))
+[plotdata] 18600   14214
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 16s)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1064)
+Total pause time 1065ms (1064946))
+Min pause 22us (22))
+Max pause 262ms (262215))
+Doing 1000 19kB allocations
+Average pause time 16ms (15837)
+Total pause time 16s (15837642))
+Min pause 760us (760))
+Max pause 863ms (862765))
+[plotdata] 18700   15837
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 18s)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 977us (977)
+Total pause time 978ms (977573))
+Min pause 22us (22))
+Max pause 235ms (235213))
+Doing 1000 19kB allocations
+Average pause time 14ms (14005)
+Total pause time 14s (14005275))
+Min pause 759us (759))
+Max pause 231ms (231330))
+[plotdata] 18800   14005
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 15s)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 746us (746)
+Total pause time 746ms (746242))
+Min pause 22us (22))
+Max pause 198ms (197804))
+Doing 1000 19kB allocations
+Average pause time 15ms (15396)
+Total pause time 15s (15396430))
+Min pause 762us (762))
+Max pause 687ms (686738))
+[plotdata] 18900   15396
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 16s)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 932us (932)
+Total pause time 933ms (932685))
+Min pause 22us (22))
+Max pause 227ms (226781))
+Doing 1000 19kB allocations
+Average pause time 14ms (13645)
+Total pause time 14s (13645160))
+Min pause 759us (759))
+Max pause 216ms (216173))
+[plotdata] 19000   13645
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 15s)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 781us (781)
+Total pause time 781ms (781075))
+Min pause 22us (22))
+Max pause 174ms (173685))
+Doing 1000 19kB allocations
+Average pause time 15ms (14609)
+Total pause time 15s (14609877))
+Min pause 761us (761))
+Max pause 249ms (248615))
+[plotdata] 19100   14609
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 16s)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 683us (683)
+Total pause time 684ms (683786))
+Min pause 22us (22))
+Max pause 152ms (152443))
+Doing 1000 19kB allocations
+Average pause time 15ms (14624)
+Total pause time 15s (14624343))
+Min pause 767us (767))
+Max pause 226ms (226354))
+[plotdata] 19200   14624
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 16s)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1036)
+Total pause time 1037ms (1036783))
+Min pause 22us (22))
+Max pause 225ms (225284))
+Doing 1000 19kB allocations
+Average pause time 17ms (17054)
+Total pause time 17s (17054621))
+Min pause 760us (760))
+Max pause 728ms (727719))
+[plotdata] 19300   17054
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 18s)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1068)
+Total pause time 1068ms (1068229))
+Min pause 22us (22))
+Max pause 232ms (232273))
+Doing 1000 19kB allocations
+Average pause time 14ms (14043)
+Total pause time 14s (14043912))
+Min pause 763us (763))
+Max pause 295ms (294744))
+[plotdata] 19400   14043
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 15s)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 822us (822)
+Total pause time 823ms (822922))
+Min pause 22us (22))
+Max pause 191ms (190823))
+Doing 1000 20kB allocations
+Average pause time 14ms (14033)
+Total pause time 14s (14033097))
+Min pause 763us (763))
+Max pause 234ms (233791))
+[plotdata] 19500   14033
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 15s)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 831us (831)
+Total pause time 831ms (831456))
+Min pause 22us (22))
+Max pause 189ms (189223))
+Doing 1000 20kB allocations
+Average pause time 14ms (13913)
+Total pause time 14s (13913917))
+Min pause 760us (760))
+Max pause 247ms (246661))
+[plotdata] 19600   13913
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 15s)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 954us (954)
+Total pause time 954ms (954129))
+Min pause 23us (23))
+Max pause 225ms (224804))
+Doing 1000 20kB allocations
+Average pause time 14ms (13919)
+Total pause time 14s (13919625))
+Min pause 765us (765))
+Max pause 236ms (235930))
+[plotdata] 19700   13919
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 15s)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 771us (771)
+Total pause time 771ms (771432))
+Min pause 22us (22))
+Max pause 224ms (224248))
+Doing 1000 20kB allocations
+Average pause time 14ms (14129)
+Total pause time 14s (14129642))
+Min pause 764us (764))
+Max pause 236ms (235659))
+[plotdata] 19800   14129
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 15s)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1152)
+Total pause time 1152ms (1152435))
+Min pause 22us (22))
+Max pause 235ms (235240))
+Doing 1000 20kB allocations
+Average pause time 14ms (14242)
+Total pause time 14s (14242673))
+Min pause 759us (759))
+Max pause 233ms (233338))
+[plotdata] 19900   14242
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 16s)----------
+Boehm heap size: 196608
+Compiled for GC_BOEHM at 23:04:10 Apr 30 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] # data for Boehm GC (I=65536)
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 1ms (1086)
+Total pause time 1087ms (1086551))
+Min pause 22us (22))
+Max pause 243ms (243150))
+Doing 1000 20kB allocations
+Average pause time 14ms (14341)
+Total pause time 14s (14341309))
+Min pause 762us (762))
+Max pause 233ms (232860))
+[plotdata] 20000   14341
+[plotscript] # end of test Boehm GC (I=196608)
+----------Finished test pause_time_test (took 16s)----------
+Boehm heap size: 196608
