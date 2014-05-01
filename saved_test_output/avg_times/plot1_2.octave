@@ -1,0 +1,45 @@
+M = load("-ascii", "plot_data1");
+X=M(:,1);
+Y=M(:,2);
+
+# find equal X values and group them for averaging
+newX=zeros(length(X),1);
+newY=newX;
+minY=newY;
+maxY=newY;
+max=1;
+for i=1:length(X)
+  found=0;
+  for j=1:max
+    if (X(i)==newX(j))
+      found = 1;
+      break;
+    endif
+  endfor
+  if (found==0)
+    newX(max) = X(i);
+    num=0;
+    for j=1:length(X)
+      if (X(i)==X(j))
+        newY(max) += Y(j);
+        num++;
+        if ((minY(max)==0)||(Y(j)<minY(max)))
+          minY(max) = Y(j);
+        endif
+        if (Y(j)>maxY(max))
+          maxY(max) = Y(j);
+        endif
+      endif
+    endfor
+    newY(max) /= num;
+    max++;
+  endif
+endfor
+newX=newX(1:max-1);
+newY=newY(1:max-1);
+minY=minY(1:max-1);
+maxY=maxY(1:max-1);
+
+clf;
+hold on;
+errorbar(newX,newY,newY-minY,maxY-newY);

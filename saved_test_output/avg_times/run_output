@@ -1,0 +1,3027 @@
+spawn ssh -i /home/munraj/.ssh/mbv21 mbv21@cloud2 /mnt/mbv21zfs//testall.sh
+Enter passphrase for key '/home/munraj/.ssh/mbv21': 
+Password for mbv21@cloud2:
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotscript] set terminal png
+[plotscript] set output "objects/plot.png"
+[plotscript] set title "Time taken for GC_malloc() averaged over 1000 allocations"
+[plotscript] set xlabel "Allocation size (B)"
+[plotscript] set ylabel "Pause time (us)"
+[plotscript] #set xrange [-2:2]
+[plotscript] #set yrange [-10:10]
+[plotscript] set zeroaxis
+[plotscript] #plot 'objects/plot_data' with yerrorbars
+[plotscript] plot 'objects/plot_data' with linespoints
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 0B allocations
+Average pause time 213us (213)
+Total pause time 214ms (213982))
+Min pause 59us (59))
+Max pause 112ms (112381))
+[plotdata] 0   213
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 1392ms)----------
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 492us (492)
+Total pause time 493ms (492874))
+Min pause 55us (55))
+Max pause 374ms (373709))
+[plotdata] 1000   492
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 529ms)----------
+testall.sh: i=1 j=1
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 369us (369)
+Total pause time 370ms (369800))
+Min pause 56us (56))
+Max pause 137ms (136517))
+[plotdata] 1000   369
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 399ms)----------
+testall.sh: i=1 j=2
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 390us (390)
+Total pause time 391ms (390530))
+Min pause 55us (55))
+Max pause 145ms (145073))
+[plotdata] 1000   390
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 441ms)----------
+testall.sh: i=1 j=3
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 225us (225)
+Total pause time 225ms (225280))
+Min pause 55us (55))
+Max pause 112ms (112314))
+[plotdata] 1000   225
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 262ms)----------
+testall.sh: i=1 j=4
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 261us (261)
+Total pause time 262ms (261980))
+Min pause 55us (55))
+Max pause 150ms (149591))
+[plotdata] 1000   261
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 438ms)----------
+testall.sh: i=1 j=5
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 200us (200)
+Total pause time 200ms (200036))
+Min pause 56us (56))
+Max pause 112ms (111728))
+[plotdata] 1000   200
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 260ms)----------
+testall.sh: i=1 j=6
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 248us (248)
+Total pause time 249ms (248887))
+Min pause 61us (61))
+Max pause 128ms (127738))
+[plotdata] 1000   248
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 281ms)----------
+testall.sh: i=1 j=7
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 217us (217)
+Total pause time 218ms (217519))
+Min pause 56us (56))
+Max pause 128ms (127781))
+[plotdata] 1000   217
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 285ms)----------
+testall.sh: i=1 j=8
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 106us (106)
+Total pause time 107ms (106882))
+Min pause 57us (57))
+Max pause 17ms (17331))
+[plotdata] 1000   106
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 143ms)----------
+testall.sh: i=1 j=9
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 1kB allocations
+Average pause time 233us (233)
+Total pause time 234ms (233566))
+Min pause 55us (55))
+Max pause 123ms (122586))
+[plotdata] 1000   233
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 262ms)----------
+testall.sh: i=1 j=10
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 2kB allocations
+Average pause time 147us (147)
+Total pause time 148ms (147793))
+Min pause 56us (56))
+Max pause 60ms (59651))
+[plotdata] 2000   147
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 199ms)----------
+testall.sh: i=2 j=1
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 2kB allocations
+Average pause time 231us (231)
+Total pause time 232ms (231671))
+Min pause 57us (57))
+Max pause 111ms (110672))
+[plotdata] 2000   231
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 261ms)----------
+testall.sh: i=2 j=2
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 2kB allocations
+Average pause time 231us (231)
+Total pause time 232ms (231963))
+Min pause 58us (58))
+Max pause 112ms (112286))
+[plotdata] 2000   231
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 266ms)----------
+testall.sh: i=2 j=3
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 2kB allocations
+Average pause time 249us (249)
+Total pause time 249ms (249415))
+Min pause 56us (56))
+Max pause 144ms (143672))
+[plotdata] 2000   249
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 315ms)----------
+testall.sh: i=2 j=4
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 2kB allocations
+Average pause time 164us (164)
+Total pause time 164ms (164433))
+Min pause 57us (57))
+Max pause 29ms (29359))
+[plotdata] 2000   164
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 318ms)----------
+testall.sh: i=2 j=5
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 2kB allocations
+Average pause time 235us (235)
+Total pause time 236ms (235917))
+Min pause 56us (56))
+Max pause 71ms (71451))
+[plotdata] 2000   235
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 306ms)----------
+testall.sh: i=2 j=6
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 2kB allocations
+Average pause time 124us (124)
+Total pause time 124ms (124282))
+Min pause 64us (64))
+Max pause 19ms (19370))
+[plotdata] 2000   124
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 181ms)----------
+testall.sh: i=2 j=7
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 2kB allocations
+Average pause time 216us (216)
+Total pause time 216ms (216227))
+Min pause 58us (58))
+Max pause 120ms (119989))
+[plotdata] 2000   216
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 274ms)----------
+testall.sh: i=2 j=8
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 2kB allocations
+Average pause time 148us (148)
+Total pause time 149ms (148771))
+Min pause 57us (57))
+Max pause 63ms (63476))
+[plotdata] 2000   148
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 206ms)----------
+testall.sh: i=2 j=9
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 2kB allocations
+Average pause time 414us (414)
+Total pause time 414ms (414454))
+Min pause 57us (57))
+Max pause 174ms (173811))
+[plotdata] 2000   414
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 449ms)----------
+testall.sh: i=2 j=10
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 3kB allocations
+Average pause time 314us (314)
+Total pause time 315ms (314955))
+Min pause 55us (55))
+Max pause 137ms (137157))
+[plotdata] 3000   314
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 344ms)----------
+testall.sh: i=3 j=1
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 3kB allocations
+Average pause time 249us (249)
+Total pause time 249ms (249409))
+Min pause 56us (56))
+Max pause 129ms (128752))
+[plotdata] 3000   249
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 281ms)----------
+testall.sh: i=3 j=2
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 3kB allocations
+Average pause time 307us (307)
+Total pause time 308ms (307509))
+Min pause 56us (56))
+Max pause 181ms (181171))
+[plotdata] 3000   307
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 483ms)----------
+testall.sh: i=3 j=3
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 3kB allocations
+Average pause time 390us (390)
+Total pause time 390ms (390487))
+Min pause 55us (55))
+Max pause 158ms (158025))
+[plotdata] 3000   390
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 420ms)----------
+testall.sh: i=3 j=4
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 3kB allocations
+Average pause time 393us (393)
+Total pause time 394ms (393972))
+Min pause 56us (56))
+Max pause 158ms (157893))
+[plotdata] 3000   393
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 458ms)----------
+testall.sh: i=3 j=5
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 3kB allocations
+Average pause time 303us (303)
+Total pause time 304ms (303894))
+Min pause 56us (56))
+Max pause 158ms (157821))
+[plotdata] 3000   303
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 335ms)----------
+testall.sh: i=3 j=6
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 3kB allocations
+Average pause time 492us (492)
+Total pause time 492ms (492280))
+Min pause 55us (55))
+Max pause 207ms (206504))
+[plotdata] 3000   492
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 525ms)----------
+testall.sh: i=3 j=7
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 3kB allocations
+Average pause time 463us (463)
+Total pause time 463ms (463304))
+Min pause 55us (55))
+Max pause 262ms (262065))
+[plotdata] 3000   463
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 546ms)----------
+testall.sh: i=3 j=8
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 3kB allocations
+Average pause time 116us (116)
+Total pause time 116ms (116264))
+Min pause 55us (55))
+Max pause 19ms (18621))
+[plotdata] 3000   116
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 164ms)----------
+testall.sh: i=3 j=9
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 3kB allocations
+Average pause time 145us (145)
+Total pause time 146ms (145543))
+Min pause 57us (57))
+Max pause 43ms (42567))
+[plotdata] 3000   145
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 185ms)----------
+testall.sh: i=3 j=10
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 4kB allocations
+Average pause time 153us (153)
+Total pause time 153ms (153225))
+Min pause 66us (66))
+Max pause 27ms (26985))
+[plotdata] 4000   153
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 225ms)----------
+testall.sh: i=4 j=1
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 4kB allocations
+Average pause time 114us (114)
+Total pause time 115ms (114910))
+Min pause 65us (65))
+Max pause 19ms (18964))
+[plotdata] 4000   114
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 154ms)----------
+testall.sh: i=4 j=2
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 4kB allocations
+Average pause time 222us (222)
+Total pause time 222ms (222482))
+Min pause 66us (66))
+Max pause 97ms (96813))
+[plotdata] 4000   222
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 272ms)----------
+testall.sh: i=4 j=3
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 4kB allocations
+Average pause time 278us (278)
+Total pause time 278ms (278138))
+Min pause 69us (69))
+Max pause 144ms (144028))
+[plotdata] 4000   278
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 470ms)----------
+testall.sh: i=4 j=4
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 4kB allocations
+Average pause time 183us (183)
+Total pause time 183ms (183261))
+Min pause 68us (68))
+Max pause 79ms (79391))
+[plotdata] 4000   183
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 255ms)----------
+testall.sh: i=4 j=5
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 4kB allocations
+Average pause time 212us (212)
+Total pause time 212ms (212159))
+Min pause 66us (66))
+Max pause 57ms (57216))
+[plotdata] 4000   212
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 440ms)----------
+testall.sh: i=4 j=6
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 4kB allocations
+Average pause time 135us (135)
+Total pause time 136ms (135726))
+Min pause 66us (66))
+Max pause 21ms (21272))
+[plotdata] 4000   135
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 179ms)----------
+testall.sh: i=4 j=7
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 4kB allocations
+Average pause time 130us (130)
+Total pause time 131ms (130964))
+Min pause 65us (65))
+Max pause 28ms (28416))
+[plotdata] 4000   130
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 383ms)----------
+testall.sh: i=4 j=8
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 4kB allocations
+Average pause time 412us (412)
+Total pause time 412ms (412104))
+Min pause 67us (67))
+Max pause 189ms (189165))
+[plotdata] 4000   412
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 442ms)----------
+testall.sh: i=4 j=9
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 4kB allocations
+Average pause time 410us (410)
+Total pause time 410ms (410286))
+Min pause 70us (70))
+Max pause 174ms (174172))
+[plotdata] 4000   410
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 479ms)----------
+testall.sh: i=4 j=10
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 5kB allocations
+Average pause time 368us (368)
+Total pause time 369ms (368938))
+Min pause 65us (65))
+Max pause 152ms (152452))
+[plotdata] 5000   368
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 464ms)----------
+testall.sh: i=5 j=1
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 5kB allocations
+Average pause time 446us (446)
+Total pause time 446ms (446252))
+Min pause 74us (74))
+Max pause 149ms (149150))
+[plotdata] 5000   446
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 493ms)----------
+testall.sh: i=5 j=2
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 5kB allocations
+Average pause time 294us (294)
+Total pause time 295ms (294635))
+Min pause 68us (68))
+Max pause 132ms (132447))
+[plotdata] 5000   294
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 352ms)----------
+testall.sh: i=5 j=3
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 5kB allocations
+Average pause time 305us (305)
+Total pause time 305ms (305326))
+Min pause 66us (66))
+Max pause 112ms (112157))
+[plotdata] 5000   305
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 362ms)----------
+testall.sh: i=5 j=4
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 5kB allocations
+Average pause time 452us (452)
+Total pause time 453ms (452597))
+Min pause 67us (67))
+Max pause 223ms (223388))
+[plotdata] 5000   452
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 521ms)----------
+testall.sh: i=5 j=5
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 5kB allocations
+Average pause time 407us (407)
+Total pause time 408ms (407841))
+Min pause 71us (71))
+Max pause 150ms (149718))
+[plotdata] 5000   407
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 479ms)----------
+testall.sh: i=5 j=6
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 5kB allocations
+Average pause time 222us (222)
+Total pause time 222ms (222049))
+Min pause 65us (65))
+Max pause 95ms (95093))
+[plotdata] 5000   222
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 258ms)----------
+testall.sh: i=5 j=7
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 5kB allocations
+Average pause time 252us (252)
+Total pause time 252ms (252073))
+Min pause 65us (65))
+Max pause 133ms (133242))
+[plotdata] 5000   252
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 284ms)----------
+testall.sh: i=5 j=8
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 5kB allocations
+Average pause time 127us (127)
+Total pause time 127ms (127481))
+Min pause 67us (67))
+Max pause 21ms (21277))
+[plotdata] 5000   127
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 231ms)----------
+testall.sh: i=5 j=9
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 5kB allocations
+Average pause time 124us (124)
+Total pause time 124ms (124121))
+Min pause 68us (68))
+Max pause 19ms (19079))
+[plotdata] 5000   124
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 159ms)----------
+testall.sh: i=5 j=10
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 6kB allocations
+Average pause time 129us (129)
+Total pause time 129ms (129102))
+Min pause 72us (72))
+Max pause 17ms (17313))
+[plotdata] 6000   129
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 191ms)----------
+testall.sh: i=6 j=1
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 6kB allocations
+Average pause time 230us (230)
+Total pause time 230ms (230055))
+Min pause 65us (65))
+Max pause 104ms (103971))
+[plotdata] 6000   230
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 266ms)----------
+testall.sh: i=6 j=2
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 6kB allocations
+Average pause time 297us (297)
+Total pause time 297ms (297366))
+Min pause 69us (69))
+Max pause 158ms (158045))
+[plotdata] 6000   297
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 361ms)----------
+testall.sh: i=6 j=3
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 6kB allocations
+Average pause time 207us (207)
+Total pause time 207ms (207087))
+Min pause 66us (66))
+Max pause 84ms (84171))
+[plotdata] 6000   207
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 379ms)----------
+testall.sh: i=6 j=4
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 6kB allocations
+Average pause time 276us (276)
+Total pause time 277ms (276829))
+Min pause 66us (66))
+Max pause 112ms (112098))
+[plotdata] 6000   276
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 312ms)----------
+testall.sh: i=6 j=5
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 6kB allocations
+Average pause time 236us (236)
+Total pause time 236ms (236336))
+Min pause 67us (67))
+Max pause 112ms (112223))
+[plotdata] 6000   236
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 270ms)----------
+testall.sh: i=6 j=6
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 6kB allocations
+Average pause time 175us (175)
+Total pause time 175ms (175314))
+Min pause 66us (66))
+Max pause 59ms (58857))
+[plotdata] 6000   175
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 208ms)----------
+testall.sh: i=6 j=7
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 6kB allocations
+Average pause time 334us (334)
+Total pause time 334ms (334495))
+Min pause 67us (67))
+Max pause 107ms (107172))
+[plotdata] 6000   334
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 364ms)----------
+testall.sh: i=6 j=8
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 6kB allocations
+Average pause time 129us (129)
+Total pause time 129ms (129149))
+Min pause 73us (73))
+Max pause 19ms (19189))
+[plotdata] 6000   129
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 268ms)----------
+testall.sh: i=6 j=9
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 6kB allocations
+Average pause time 338us (338)
+Total pause time 339ms (338627))
+Min pause 69us (69))
+Max pause 112ms (111505))
+[plotdata] 6000   338
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 393ms)----------
+testall.sh: i=6 j=10
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 7kB allocations
+Average pause time 285us (285)
+Total pause time 285ms (285220))
+Min pause 68us (68))
+Max pause 128ms (127561))
+[plotdata] 7000   285
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 317ms)----------
+testall.sh: i=7 j=1
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 7kB allocations
+Average pause time 326us (326)
+Total pause time 326ms (326360))
+Min pause 66us (66))
+Max pause 189ms (189348))
+[plotdata] 7000   326
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 382ms)----------
+testall.sh: i=7 j=2
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 7kB allocations
+Average pause time 465us (465)
+Total pause time 466ms (465710))
+Min pause 65us (65))
+Max pause 286ms (286425))
+[plotdata] 7000   465
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 524ms)----------
+testall.sh: i=7 j=3
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 7kB allocations
+Average pause time 376us (376)
+Total pause time 377ms (376690))
+Min pause 67us (67))
+Max pause 124ms (124126))
+[plotdata] 7000   376
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 409ms)----------
+testall.sh: i=7 j=4
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 7kB allocations
+Average pause time 287us (287)
+Total pause time 288ms (287570))
+Min pause 68us (68))
+Max pause 181ms (181434))
+[plotdata] 7000   287
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 349ms)----------
+testall.sh: i=7 j=5
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 7kB allocations
+Average pause time 260us (260)
+Total pause time 260ms (260321))
+Min pause 65us (65))
+Max pause 112ms (112398))
+[plotdata] 7000   260
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 301ms)----------
+testall.sh: i=7 j=6
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 7kB allocations
+Average pause time 263us (263)
+Total pause time 263ms (263204))
+Min pause 67us (67))
+Max pause 142ms (142015))
+[plotdata] 7000   263
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 354ms)----------
+testall.sh: i=7 j=7
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 7kB allocations
+Average pause time 99us (99)
+Total pause time 99ms (99265))
+Min pause 69us (69))
+Max pause 3ms (2954))
+[plotdata] 7000   99
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 154ms)----------
+testall.sh: i=7 j=8
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 7kB allocations
+Average pause time 159us (159)
+Total pause time 159ms (159439))
+Min pause 67us (67))
+Max pause 60ms (60024))
+[plotdata] 7000   159
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 194ms)----------
+testall.sh: i=7 j=9
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 7kB allocations
+Average pause time 242us (242)
+Total pause time 243ms (242732))
+Min pause 67us (67))
+Max pause 111ms (111422))
+[plotdata] 7000   242
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 275ms)----------
+testall.sh: i=7 j=10
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 8kB allocations
+Average pause time 126us (126)
+Total pause time 126ms (126417))
+Min pause 67us (67))
+Max pause 24ms (24176))
+[plotdata] 8000   126
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 285ms)----------
+testall.sh: i=8 j=1
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 8kB allocations
+Average pause time 360us (360)
+Total pause time 360ms (360393))
+Min pause 66us (66))
+Max pause 174ms (173768))
+[plotdata] 8000   360
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 443ms)----------
+testall.sh: i=8 j=2
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 8kB allocations
+Average pause time 171us (171)
+Total pause time 172ms (171650))
+Min pause 65us (65))
+Max pause 28ms (28393))
+[plotdata] 8000   171
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 333ms)----------
+testall.sh: i=8 j=3
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 8kB allocations
+Average pause time 542us (542)
+Total pause time 542ms (542486))
+Min pause 66us (66))
+Max pause 147ms (147189))
+[plotdata] 8000   542
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 572ms)----------
+testall.sh: i=8 j=4
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 8kB allocations
+Average pause time 148us (148)
+Total pause time 149ms (148539))
+Min pause 67us (67))
+Max pause 38ms (38135))
+[plotdata] 8000   148
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 219ms)----------
+testall.sh: i=8 j=5
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 8kB allocations
+Average pause time 210us (210)
+Total pause time 210ms (210097))
+Min pause 66us (66))
+Max pause 93ms (92739))
+[plotdata] 8000   210
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 245ms)----------
+testall.sh: i=8 j=6
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 8kB allocations
+Average pause time 400us (400)
+Total pause time 401ms (400934))
+Min pause 66us (66))
+Max pause 158ms (157936))
+[plotdata] 8000   400
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 432ms)----------
+testall.sh: i=8 j=7
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 8kB allocations
+Average pause time 192us (192)
+Total pause time 192ms (192086))
+Min pause 73us (73))
+Max pause 59ms (59086))
+[plotdata] 8000   192
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 231ms)----------
+testall.sh: i=8 j=8
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 8kB allocations
+Average pause time 278us (278)
+Total pause time 278ms (278027))
+Min pause 68us (68))
+Max pause 152ms (152268))
+[plotdata] 8000   278
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 311ms)----------
+testall.sh: i=8 j=9
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 8kB allocations
+Average pause time 361us (361)
+Total pause time 362ms (361507))
+Min pause 67us (67))
+Max pause 119ms (119315))
+[plotdata] 8000   361
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 395ms)----------
+testall.sh: i=8 j=10
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 9kB allocations
+Average pause time 406us (406)
+Total pause time 407ms (406869))
+Min pause 65us (65))
+Max pause 167ms (167251))
+[plotdata] 9000   406
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 440ms)----------
+testall.sh: i=9 j=1
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 9kB allocations
+Average pause time 280us (280)
+Total pause time 280ms (280241))
+Min pause 64us (64))
+Max pause 105ms (104544))
+[plotdata] 9000   280
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 314ms)----------
+testall.sh: i=9 j=2
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 9kB allocations
+Average pause time 237us (237)
+Total pause time 238ms (237982))
+Min pause 67us (67))
+Max pause 112ms (111578))
+[plotdata] 9000   237
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 391ms)----------
+testall.sh: i=9 j=3
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 9kB allocations
+Average pause time 157us (157)
+Total pause time 158ms (157613))
+Min pause 63us (63))
+Max pause 27ms (27387))
+[plotdata] 9000   157
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 311ms)----------
+testall.sh: i=9 j=4
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 9kB allocations
+Average pause time 275us (275)
+Total pause time 275ms (275295))
+Min pause 67us (67))
+Max pause 174ms (173630))
+[plotdata] 9000   275
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 512ms)----------
+testall.sh: i=9 j=5
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 9kB allocations
+Average pause time 163us (163)
+Total pause time 163ms (163398))
+Min pause 64us (64))
+Max pause 26ms (26349))
+[plotdata] 9000   163
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 350ms)----------
+testall.sh: i=9 j=6
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 9kB allocations
+Average pause time 133us (133)
+Total pause time 134ms (133923))
+Min pause 65us (65))
+Max pause 26ms (26492))
+[plotdata] 9000   133
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 459ms)----------
+testall.sh: i=9 j=7
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 9kB allocations
+Average pause time 120us (120)
+Total pause time 121ms (120515))
+Min pause 63us (63))
+Max pause 19ms (19224))
+[plotdata] 9000   120
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 235ms)----------
+testall.sh: i=9 j=8
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 9kB allocations
+Average pause time 172us (172)
+Total pause time 173ms (172972))
+Min pause 63us (63))
+Max pause 73ms (73105))
+[plotdata] 9000   172
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 232ms)----------
+testall.sh: i=9 j=9
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 9kB allocations
+Average pause time 167us (167)
+Total pause time 168ms (167601))
+Min pause 65us (65))
+Max pause 42ms (42239))
+[plotdata] 9000   167
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 216ms)----------
+testall.sh: i=9 j=10
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 10kB allocations
+Average pause time 196us (196)
+Total pause time 197ms (196529))
+Min pause 66us (66))
+Max pause 75ms (75203))
+[plotdata] 10000   196
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 238ms)----------
+testall.sh: i=10 j=1
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 10kB allocations
+Average pause time 266us (266)
+Total pause time 266ms (266257))
+Min pause 68us (68))
+Max pause 105ms (105316))
+[plotdata] 10000   266
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 331ms)----------
+testall.sh: i=10 j=2
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 10kB allocations
+Average pause time 349us (349)
+Total pause time 349ms (349358))
+Min pause 66us (66))
+Max pause 167ms (167279))
+[plotdata] 10000   349
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 394ms)----------
+testall.sh: i=10 j=3
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 10kB allocations
+Average pause time 279us (279)
+Total pause time 279ms (279360))
+Min pause 70us (70))
+Max pause 158ms (157940))
+[plotdata] 10000   279
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 369ms)----------
+testall.sh: i=10 j=4
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 10kB allocations
+Average pause time 454us (454)
+Total pause time 455ms (454800))
+Min pause 67us (67))
+Max pause 206ms (205832))
+[plotdata] 10000   454
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 530ms)----------
+testall.sh: i=10 j=5
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 10kB allocations
+Average pause time 285us (285)
+Total pause time 285ms (285185))
+Min pause 70us (70))
+Max pause 112ms (111580))
+[plotdata] 10000   285
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 644ms)----------
+testall.sh: i=10 j=6
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 10kB allocations
+Average pause time 299us (299)
+Total pause time 299ms (299017))
+Min pause 65us (65))
+Max pause 122ms (121777))
+[plotdata] 10000   299
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 485ms)----------
+testall.sh: i=10 j=7
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 10kB allocations
+Average pause time 165us (165)
+Total pause time 166ms (165904))
+Min pause 65us (65))
+Max pause 41ms (41231))
+[plotdata] 10000   165
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 215ms)----------
+testall.sh: i=10 j=8
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 10kB allocations
+Average pause time 241us (241)
+Total pause time 241ms (241097))
+Min pause 66us (66))
+Max pause 86ms (86086))
+[plotdata] 10000   241
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 291ms)----------
+testall.sh: i=10 j=9
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 10kB allocations
+Average pause time 269us (269)
+Total pause time 270ms (269803))
+Min pause 65us (65))
+Max pause 112ms (112400))
+[plotdata] 10000   269
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 305ms)----------
+testall.sh: i=10 j=10
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 11kB allocations
+Average pause time 121us (121)
+Total pause time 121ms (121201))
+Min pause 65us (65))
+Max pause 18ms (18371))
+[plotdata] 11000   121
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 161ms)----------
+testall.sh: i=11 j=1
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 11kB allocations
+Average pause time 249us (249)
+Total pause time 249ms (249471))
+Min pause 65us (65))
+Max pause 89ms (88879))
+[plotdata] 11000   249
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 282ms)----------
+testall.sh: i=11 j=2
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 11kB allocations
+Average pause time 222us (222)
+Total pause time 222ms (222009))
+Min pause 66us (66))
+Max pause 111ms (111383))
+[plotdata] 11000   222
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 391ms)----------
+testall.sh: i=11 j=3
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 11kB allocations
+Average pause time 314us (314)
+Total pause time 314ms (314452))
+Min pause 68us (68))
+Max pause 179ms (178989))
+[plotdata] 11000   314
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 490ms)----------
+testall.sh: i=11 j=4
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 11kB allocations
+Average pause time 131us (131)
+Total pause time 131ms (131253))
+Min pause 67us (67))
+Max pause 23ms (23074))
+[plotdata] 11000   131
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 265ms)----------
+testall.sh: i=11 j=5
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 11kB allocations
+Average pause time 289us (289)
+Total pause time 290ms (289697))
+Min pause 64us (64))
+Max pause 112ms (112310))
+[plotdata] 11000   289
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 325ms)----------
+testall.sh: i=11 j=6
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 11kB allocations
+Average pause time 218us (218)
+Total pause time 218ms (218134))
+Min pause 65us (65))
+Max pause 82ms (82259))
+[plotdata] 11000   218
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 249ms)----------
+testall.sh: i=11 j=7
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 11kB allocations
+Average pause time 134us (134)
+Total pause time 134ms (134432))
+Min pause 66us (66))
+Max pause 29ms (28622))
+[plotdata] 11000   134
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 297ms)----------
+testall.sh: i=11 j=8
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 11kB allocations
+Average pause time 246us (246)
+Total pause time 247ms (246714))
+Min pause 72us (72))
+Max pause 64ms (64379))
+[plotdata] 11000   246
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 309ms)----------
+testall.sh: i=11 j=9
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 11kB allocations
+Average pause time 588us (588)
+Total pause time 588ms (588263))
+Min pause 67us (67))
+Max pause 317ms (317296))
+[plotdata] 11000   588
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 626ms)----------
+testall.sh: i=11 j=10
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 12kB allocations
+Average pause time 127us (127)
+Total pause time 127ms (127140))
+Min pause 64us (64))
+Max pause 26ms (26236))
+[plotdata] 12000   127
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 252ms)----------
+testall.sh: i=12 j=1
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 12kB allocations
+Average pause time 411us (411)
+Total pause time 411ms (411113))
+Min pause 67us (67))
+Max pause 150ms (150003))
+[plotdata] 12000   411
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 630ms)----------
+testall.sh: i=12 j=2
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 12kB allocations
+Average pause time 185us (185)
+Total pause time 185ms (185058))
+Min pause 67us (67))
+Max pause 72ms (72249))
+[plotdata] 12000   185
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 236ms)----------
+testall.sh: i=12 j=3
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 12kB allocations
+Average pause time 117us (117)
+Total pause time 118ms (117553))
+Min pause 65us (65))
+Max pause 4ms (3724))
+[plotdata] 12000   117
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 164ms)----------
+testall.sh: i=12 j=4
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 12kB allocations
+Average pause time 159us (159)
+Total pause time 160ms (159641))
+Min pause 65us (65))
+Max pause 60ms (59970))
+[plotdata] 12000   159
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 194ms)----------
+testall.sh: i=12 j=5
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 12kB allocations
+Average pause time 119us (119)
+Total pause time 119ms (119338))
+Min pause 65us (65))
+Max pause 17ms (17236))
+[plotdata] 12000   119
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 156ms)----------
+testall.sh: i=12 j=6
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 12kB allocations
+Average pause time 257us (257)
+Total pause time 258ms (257620))
+Min pause 66us (66))
+Max pause 120ms (120161))
+[plotdata] 12000   257
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 401ms)----------
+testall.sh: i=12 j=7
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 12kB allocations
+Average pause time 373us (373)
+Total pause time 374ms (373838))
+Min pause 65us (65))
+Max pause 143ms (143145))
+[plotdata] 12000   373
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 408ms)----------
+testall.sh: i=12 j=8
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 12kB allocations
+Average pause time 184us (184)
+Total pause time 185ms (184769))
+Min pause 63us (63))
+Max pause 29ms (28742))
+[plotdata] 12000   184
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 334ms)----------
+testall.sh: i=12 j=9
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 12kB allocations
+Average pause time 288us (288)
+Total pause time 288ms (288439))
+Min pause 66us (66))
+Max pause 111ms (111261))
+[plotdata] 12000   288
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 323ms)----------
+testall.sh: i=12 j=10
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 13kB allocations
+Average pause time 455us (455)
+Total pause time 455ms (455255))
+Min pause 67us (67))
+Max pause 174ms (174480))
+[plotdata] 13000   455
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 494ms)----------
+testall.sh: i=13 j=1
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 13kB allocations
+Average pause time 260us (260)
+Total pause time 261ms (260699))
+Min pause 66us (66))
+Max pause 150ms (149901))
+[plotdata] 13000   260
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 351ms)----------
+testall.sh: i=13 j=2
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 13kB allocations
+Average pause time 280us (280)
+Total pause time 281ms (280643))
+Min pause 74us (74))
+Max pause 104ms (103759))
+[plotdata] 13000   280
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 453ms)----------
+testall.sh: i=13 j=3
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 13kB allocations
+Average pause time 247us (247)
+Total pause time 248ms (247908))
+Min pause 68us (68))
+Max pause 112ms (112322))
+[plotdata] 13000   247
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 286ms)----------
+testall.sh: i=13 j=4
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 13kB allocations
+Average pause time 141us (141)
+Total pause time 141ms (141111))
+Min pause 68us (68))
+Max pause 3ms (3132))
+[plotdata] 13000   141
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 321ms)----------
+testall.sh: i=13 j=5
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 13kB allocations
+Average pause time 283us (283)
+Total pause time 283ms (283402))
+Min pause 69us (69))
+Max pause 112ms (112209))
+[plotdata] 13000   283
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 313ms)----------
+testall.sh: i=13 j=6
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 13kB allocations
+Average pause time 307us (307)
+Total pause time 308ms (307764))
+Min pause 67us (67))
+Max pause 112ms (111881))
+[plotdata] 13000   307
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 338ms)----------
+testall.sh: i=13 j=7
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 13kB allocations
+Average pause time 240us (240)
+Total pause time 241ms (240715))
+Min pause 67us (67))
+Max pause 108ms (108020))
+[plotdata] 13000   240
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 274ms)----------
+testall.sh: i=13 j=8
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 13kB allocations
+Average pause time 265us (265)
+Total pause time 266ms (265701))
+Min pause 68us (68))
+Max pause 120ms (119753))
+[plotdata] 13000   265
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 295ms)----------
+testall.sh: i=13 j=9
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 13kB allocations
+Average pause time 255us (255)
+Total pause time 255ms (255199))
+Min pause 73us (73))
+Max pause 112ms (111783))
+[plotdata] 13000   255
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 421ms)----------
+testall.sh: i=13 j=10
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 14kB allocations
+Average pause time 225us (225)
+Total pause time 226ms (225505))
+Min pause 66us (66))
+Max pause 88ms (88109))
+[plotdata] 14000   225
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 287ms)----------
+testall.sh: i=14 j=1
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 14kB allocations
+Average pause time 113us (113)
+Total pause time 114ms (113876))
+Min pause 67us (67))
+Max pause 2ms (2244))
+[plotdata] 14000   113
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 276ms)----------
+testall.sh: i=14 j=2
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 14kB allocations
+Average pause time 262us (262)
+Total pause time 262ms (262367))
+Min pause 66us (66))
+Max pause 128ms (128375))
+[plotdata] 14000   262
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 298ms)----------
+testall.sh: i=14 j=3
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 14kB allocations
+Average pause time 720us (720)
+Total pause time 721ms (720650))
+Min pause 67us (67))
+Max pause 263ms (262944))
+[plotdata] 14000   720
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 790ms)----------
+testall.sh: i=14 j=4
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 14kB allocations
+Average pause time 207us (207)
+Total pause time 207ms (207329))
+Min pause 67us (67))
+Max pause 77ms (77154))
+[plotdata] 14000   207
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 358ms)----------
+testall.sh: i=14 j=5
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 14kB allocations
+Average pause time 234us (234)
+Total pause time 234ms (234186))
+Min pause 67us (67))
+Max pause 103ms (103104))
+[plotdata] 14000   234
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 276ms)----------
+testall.sh: i=14 j=6
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 14kB allocations
+Average pause time 190us (190)
+Total pause time 190ms (190454))
+Min pause 67us (67))
+Max pause 62ms (61931))
+[plotdata] 14000   190
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 320ms)----------
+testall.sh: i=14 j=7
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 14kB allocations
+Average pause time 316us (316)
+Total pause time 317ms (316692))
+Min pause 67us (67))
+Max pause 158ms (157994))
+[plotdata] 14000   316
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 379ms)----------
+testall.sh: i=14 j=8
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 14kB allocations
+Average pause time 228us (228)
+Total pause time 229ms (228873))
+Min pause 69us (69))
+Max pause 57ms (57305))
+[plotdata] 14000   228
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 265ms)----------
+testall.sh: i=14 j=9
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 14kB allocations
+Average pause time 134us (134)
+Total pause time 135ms (134621))
+Min pause 67us (67))
+Max pause 22ms (21733))
+[plotdata] 14000   134
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 251ms)----------
+testall.sh: i=14 j=10
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 15kB allocations
+Average pause time 271us (271)
+Total pause time 272ms (271956))
+Min pause 68us (68))
+Max pause 112ms (111654))
+[plotdata] 15000   271
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 338ms)----------
+testall.sh: i=15 j=1
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 15kB allocations
+Average pause time 301us (301)
+Total pause time 302ms (301990))
+Min pause 67us (67))
+Max pause 172ms (172399))
+[plotdata] 15000   301
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 339ms)----------
+testall.sh: i=15 j=2
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 15kB allocations
+Average pause time 418us (418)
+Total pause time 418ms (418131))
+Min pause 68us (68))
+Max pause 174ms (173848))
+[plotdata] 15000   418
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 450ms)----------
+testall.sh: i=15 j=3
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 15kB allocations
+Average pause time 371us (371)
+Total pause time 372ms (371996))
+Min pause 67us (67))
+Max pause 152ms (151979))
+[plotdata] 15000   371
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 406ms)----------
+testall.sh: i=15 j=4
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 15kB allocations
+Average pause time 311us (311)
+Total pause time 312ms (311806))
+Min pause 66us (66))
+Max pause 197ms (197332))
+[plotdata] 15000   311
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 501ms)----------
+testall.sh: i=15 j=5
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 15kB allocations
+Average pause time 262us (262)
+Total pause time 263ms (262922))
+Min pause 67us (67))
+Max pause 120ms (120016))
+[plotdata] 15000   262
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 320ms)----------
+testall.sh: i=15 j=6
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 15kB allocations
+Average pause time 157us (157)
+Total pause time 157ms (157074))
+Min pause 68us (68))
+Max pause 26ms (26225))
+[plotdata] 15000   157
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 192ms)----------
+testall.sh: i=15 j=7
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 15kB allocations
+Average pause time 256us (256)
+Total pause time 257ms (256734))
+Min pause 66us (66))
+Max pause 120ms (120115))
+[plotdata] 15000   256
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 316ms)----------
+testall.sh: i=15 j=8
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 15kB allocations
+Average pause time 386us (386)
+Total pause time 387ms (386774))
+Min pause 67us (67))
+Max pause 153ms (152547))
+[plotdata] 15000   386
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 426ms)----------
+testall.sh: i=15 j=9
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 15kB allocations
+Average pause time 129us (129)
+Total pause time 129ms (129073))
+Min pause 67us (67))
+Max pause 19ms (18897))
+[plotdata] 15000   129
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 261ms)----------
+testall.sh: i=15 j=10
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 16kB allocations
+Average pause time 366us (366)
+Total pause time 366ms (366431))
+Min pause 68us (68))
+Max pause 213ms (213174))
+[plotdata] 16000   366
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 601ms)----------
+testall.sh: i=16 j=1
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 16kB allocations
+Average pause time 140us (140)
+Total pause time 140ms (140253))
+Min pause 70us (70))
+Max pause 28ms (27578))
+[plotdata] 16000   140
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 300ms)----------
+testall.sh: i=16 j=2
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 16kB allocations
+Average pause time 299us (299)
+Total pause time 299ms (299177))
+Min pause 69us (69))
+Max pause 120ms (119669))
+[plotdata] 16000   299
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 327ms)----------
+testall.sh: i=16 j=3
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 16kB allocations
+Average pause time 425us (425)
+Total pause time 426ms (425826))
+Min pause 67us (67))
+Max pause 280ms (279542))
+[plotdata] 16000   425
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 599ms)----------
+testall.sh: i=16 j=4
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 16kB allocations
+Average pause time 260us (260)
+Total pause time 261ms (260828))
+Min pause 65us (65))
+Max pause 120ms (120112))
+[plotdata] 16000   260
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 401ms)----------
+testall.sh: i=16 j=5
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 16kB allocations
+Average pause time 368us (368)
+Total pause time 369ms (368820))
+Min pause 74us (74))
+Max pause 102ms (101532))
+[plotdata] 16000   368
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 404ms)----------
+testall.sh: i=16 j=6
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 16kB allocations
+Average pause time 256us (256)
+Total pause time 256ms (256198))
+Min pause 68us (68))
+Max pause 120ms (119518))
+[plotdata] 16000   256
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 295ms)----------
+testall.sh: i=16 j=7
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 16kB allocations
+Average pause time 361us (361)
+Total pause time 362ms (361721))
+Min pause 67us (67))
+Max pause 224ms (224141))
+[plotdata] 16000   361
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 395ms)----------
+testall.sh: i=16 j=8
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 16kB allocations
+Average pause time 382us (382)
+Total pause time 382ms (382423))
+Min pause 71us (71))
+Max pause 154ms (153540))
+[plotdata] 16000   382
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 441ms)----------
+testall.sh: i=16 j=9
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 16kB allocations
+Average pause time 531us (531)
+Total pause time 532ms (531633))
+Min pause 67us (67))
+Max pause 230ms (230472))
+[plotdata] 16000   531
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 566ms)----------
+testall.sh: i=16 j=10
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 17kB allocations
+Average pause time 650us (650)
+Total pause time 650ms (650441))
+Min pause 69us (69))
+Max pause 189ms (189335))
+[plotdata] 17000   650
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 689ms)----------
+testall.sh: i=17 j=1
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 17kB allocations
+Average pause time 338us (338)
+Total pause time 338ms (338090))
+Min pause 66us (66))
+Max pause 162ms (161609))
+[plotdata] 17000   338
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 371ms)----------
+testall.sh: i=17 j=2
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 17kB allocations
+Average pause time 260us (260)
+Total pause time 261ms (260865))
+Min pause 68us (68))
+Max pause 120ms (119901))
+[plotdata] 17000   260
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 294ms)----------
+testall.sh: i=17 j=3
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 17kB allocations
+Average pause time 241us (241)
+Total pause time 242ms (241867))
+Min pause 65us (65))
+Max pause 104ms (104225))
+[plotdata] 17000   241
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 309ms)----------
+testall.sh: i=17 j=4
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 17kB allocations
+Average pause time 447us (447)
+Total pause time 447ms (447267))
+Min pause 68us (68))
+Max pause 189ms (189436))
+[plotdata] 17000   447
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 518ms)----------
+testall.sh: i=17 j=5
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 17kB allocations
+Average pause time 317us (317)
+Total pause time 318ms (317933))
+Min pause 71us (71))
+Max pause 158ms (158027))
+[plotdata] 17000   317
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 384ms)----------
+testall.sh: i=17 j=6
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 17kB allocations
+Average pause time 349us (349)
+Total pause time 349ms (349452))
+Min pause 69us (69))
+Max pause 174ms (173691))
+[plotdata] 17000   349
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 403ms)----------
+testall.sh: i=17 j=7
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 17kB allocations
+Average pause time 221us (221)
+Total pause time 222ms (221666))
+Min pause 66us (66))
+Max pause 92ms (91885))
+[plotdata] 17000   221
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 256ms)----------
+testall.sh: i=17 j=8
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 17kB allocations
+Average pause time 174us (174)
+Total pause time 175ms (174697))
+Min pause 68us (68))
+Max pause 26ms (26070))
+[plotdata] 17000   174
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 315ms)----------
+testall.sh: i=17 j=9
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 17kB allocations
+Average pause time 331us (331)
+Total pause time 332ms (331997))
+Min pause 67us (67))
+Max pause 144ms (143815))
+[plotdata] 17000   331
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 372ms)----------
+testall.sh: i=17 j=10
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 18kB allocations
+Average pause time 284us (284)
+Total pause time 285ms (284593))
+Min pause 65us (65))
+Max pause 112ms (112414))
+[plotdata] 18000   284
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 318ms)----------
+testall.sh: i=18 j=1
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 18kB allocations
+Average pause time 382us (382)
+Total pause time 382ms (382162))
+Min pause 70us (70))
+Max pause 206ms (205848))
+[plotdata] 18000   382
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 609ms)----------
+testall.sh: i=18 j=2
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 18kB allocations
+Average pause time 436us (436)
+Total pause time 436ms (436299))
+Min pause 66us (66))
+Max pause 169ms (169246))
+[plotdata] 18000   436
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 467ms)----------
+testall.sh: i=18 j=3
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 18kB allocations
+Average pause time 184us (184)
+Total pause time 184ms (184084))
+Min pause 68us (68))
+Max pause 60ms (60498))
+[plotdata] 18000   184
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 232ms)----------
+testall.sh: i=18 j=4
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 18kB allocations
+Average pause time 143us (143)
+Total pause time 144ms (143803))
+Min pause 68us (68))
+Max pause 25ms (24991))
+[plotdata] 18000   143
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 294ms)----------
+testall.sh: i=18 j=5
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 18kB allocations
+Average pause time 181us (181)
+Total pause time 182ms (181931))
+Min pause 66us (66))
+Max pause 28ms (28234))
+[plotdata] 18000   181
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 290ms)----------
+testall.sh: i=18 j=6
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 18kB allocations
+Average pause time 124us (124)
+Total pause time 124ms (124241))
+Min pause 67us (67))
+Max pause 3ms (2590))
+[plotdata] 18000   124
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 370ms)----------
+testall.sh: i=18 j=7
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 18kB allocations
+Average pause time 226us (226)
+Total pause time 226ms (226364))
+Min pause 68us (68))
+Max pause 72ms (71553))
+[plotdata] 18000   226
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 264ms)----------
+testall.sh: i=18 j=8
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 18kB allocations
+Average pause time 169us (169)
+Total pause time 169ms (169262))
+Min pause 68us (68))
+Max pause 58ms (57531))
+[plotdata] 18000   169
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 224ms)----------
+testall.sh: i=18 j=9
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 18kB allocations
+Average pause time 114us (114)
+Total pause time 114ms (114343))
+Min pause 68us (68))
+Max pause 2ms (2241))
+[plotdata] 18000   114
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 282ms)----------
+testall.sh: i=18 j=10
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 19kB allocations
+Average pause time 112us (112)
+Total pause time 112ms (112332))
+Min pause 66us (66))
+Max pause 3ms (2648))
+[plotdata] 19000   112
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 255ms)----------
+testall.sh: i=19 j=1
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 19kB allocations
+Average pause time 300us (300)
+Total pause time 300ms (300444))
+Min pause 67us (67))
+Max pause 138ms (138233))
+[plotdata] 19000   300
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 332ms)----------
+testall.sh: i=19 j=2
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 19kB allocations
+Average pause time 237us (237)
+Total pause time 238ms (237976))
+Min pause 65us (65))
+Max pause 120ms (119985))
+[plotdata] 19000   237
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 327ms)----------
+testall.sh: i=19 j=3
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 19kB allocations
+Average pause time 374us (374)
+Total pause time 374ms (374270))
+Min pause 67us (67))
+Max pause 113ms (112871))
+[plotdata] 19000   374
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 438ms)----------
+testall.sh: i=19 j=4
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 19kB allocations
+Average pause time 226us (226)
+Total pause time 226ms (226019))
+Min pause 66us (66))
+Max pause 90ms (89636))
+[plotdata] 19000   226
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 288ms)----------
+testall.sh: i=19 j=5
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 19kB allocations
+Average pause time 253us (253)
+Total pause time 254ms (253557))
+Min pause 67us (67))
+Max pause 113ms (112539))
+[plotdata] 19000   253
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 469ms)----------
+testall.sh: i=19 j=6
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 19kB allocations
+Average pause time 262us (262)
+Total pause time 263ms (262948))
+Min pause 67us (67))
+Max pause 64ms (63538))
+[plotdata] 19000   262
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 315ms)----------
+testall.sh: i=19 j=7
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 19kB allocations
+Average pause time 241us (241)
+Total pause time 241ms (241263))
+Min pause 70us (70))
+Max pause 57ms (56960))
+[plotdata] 19000   241
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 298ms)----------
+testall.sh: i=19 j=8
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 19kB allocations
+Average pause time 326us (326)
+Total pause time 326ms (326046))
+Min pause 68us (68))
+Max pause 133ms (132513))
+[plotdata] 19000   326
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 364ms)----------
+testall.sh: i=19 j=9
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 19kB allocations
+Average pause time 453us (453)
+Total pause time 453ms (453383))
+Min pause 68us (68))
+Max pause 158ms (157811))
+[plotdata] 19000   453
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 678ms)----------
+testall.sh: i=19 j=10
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 20kB allocations
+Average pause time 427us (427)
+Total pause time 427ms (427270))
+Min pause 66us (66))
+Max pause 144ms (143729))
+[plotdata] 20000   427
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 490ms)----------
+testall.sh: i=20 j=1
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 20kB allocations
+Average pause time 612us (612)
+Total pause time 613ms (612706))
+Min pause 69us (69))
+Max pause 166ms (165894))
+[plotdata] 20000   612
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 742ms)----------
+testall.sh: i=20 j=2
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 20kB allocations
+Average pause time 310us (310)
+Total pause time 311ms (310886))
+Min pause 68us (68))
+Max pause 191ms (190985))
+[plotdata] 20000   310
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 369ms)----------
+testall.sh: i=20 j=3
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 20kB allocations
+Average pause time 235us (235)
+Total pause time 235ms (235404))
+Min pause 67us (67))
+Max pause 112ms (112051))
+[plotdata] 20000   235
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 400ms)----------
+testall.sh: i=20 j=4
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 20kB allocations
+Average pause time 273us (273)
+Total pause time 274ms (273946))
+Min pause 68us (68))
+Max pause 158ms (157946))
+[plotdata] 20000   273
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 412ms)----------
+testall.sh: i=20 j=5
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 20kB allocations
+Average pause time 316us (316)
+Total pause time 317ms (316928))
+Min pause 69us (69))
+Max pause 112ms (111856))
+[plotdata] 20000   316
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 351ms)----------
+testall.sh: i=20 j=6
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 20kB allocations
+Average pause time 114us (114)
+Total pause time 115ms (114839))
+Min pause 66us (66))
+Max pause 3ms (2711))
+[plotdata] 20000   114
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 176ms)----------
+testall.sh: i=20 j=7
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 20kB allocations
+Average pause time 241us (241)
+Total pause time 241ms (241213))
+Min pause 67us (67))
+Max pause 127ms (127271))
+[plotdata] 20000   241
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 295ms)----------
+testall.sh: i=20 j=8
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 20kB allocations
+Average pause time 443us (443)
+Total pause time 443ms (443126))
+Min pause 69us (69))
+Max pause 189ms (189404))
+[plotdata] 20000   443
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 476ms)----------
+testall.sh: i=20 j=9
+Compiled for GC_NONE at 16:12:05 May  1 2014
+----------Begin test pause_time_test----------
+pause_time_test: Measures collector pause time
+[plotdata] # data for no GC
+[plot] # 1000 allocations per iteration
+[plot] # allocation size (B)        pause time (us)
+Doing 1000 20kB allocations
+Average pause time 121us (121)
+Total pause time 121ms (121284))
+Min pause 67us (67))
+Max pause 3ms (2630))
+[plotdata] 20000   121
+[plotdata] # end of test no GC
+----------Finished test pause_time_test (took 512ms)----------
+testall.sh: i=20 j=10

@@ -495,7 +495,7 @@ print_gc_stats2 (const char * msg)
   #if defined(GC_CHERI)
 #if defined(GC_GENERATIONAL)
   tf_printf(
-    "[plotscript] # %s my generational GC (yI=%d yB=%d yA=%d ycur=%d oI=%d oB=%d oA=%d ocur=%d)\n",
+    "[plotdata] # %s my generational GC (yI=%d yB=%d yA=%d ycur=%d oI=%d oB=%d oA=%d ocur=%d)\n",
     msg,
     (int) GC_THREAD_LOCAL_HEAP_SIZE,
     (int) GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION,
@@ -508,7 +508,7 @@ print_gc_stats2 (const char * msg)
   );
 #else // GC_GENERATIONAL
   tf_printf(
-    "[plotscript] # %s my copying GC (I=%d B=%d A=%d cur=%d)\n",
+    "[plotdata] # %s my copying GC (I=%d B=%d A=%d cur=%d)\n",
     msg,
     (int) GC_THREAD_LOCAL_HEAP_SIZE,
     (int) GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION,
@@ -518,11 +518,11 @@ print_gc_stats2 (const char * msg)
 #endif // GC_GENERATIONAL
 #elif defined(GC_BOEHM)
   tf_printf(
-    "[plotscript] # %s Boehm GC (I=%d)\n",
+    "[plotdata] # %s Boehm GC (I=%d)\n",
     msg,
     (int) GC_get_heap_size());
 #elif defined(GC_NONE)
-  tf_printf("[plotscript] # %s no GC\n", msg);
+  tf_printf("[plotdata] # %s no GC\n", msg);
 #else
   #error "Define one of GC_CHERI, GC_BOEHM, GC_NONE"
 #endif // GC selector
@@ -530,24 +530,25 @@ print_gc_stats2 (const char * msg)
 
 DEFINE_TEST(pause_time_test)
 {
+  int number_of_allocations = 1000;
   
   if (!flag_data_only)
   {
     tf_printf("[plotscript] set terminal png\n"
               "[plotscript] set output \"objects/plot.png\"\n"
-              "[plotscript] set title \"Time taken for GC_malloc() averaged over 1000 allocations\"\n"
+              "[plotscript] set title \"Time taken for GC_malloc() averaged over %d allocations\"\n"
               "[plotscript] set xlabel \"Allocation size (B)\"\n"
               "[plotscript] set ylabel \"Pause time (us)\"\n"
               "[plotscript] #set xrange [-2:2]\n"
               "[plotscript] #set yrange [-10:10]\n"
               "[plotscript] set zeroaxis\n"
               "[plotscript] #plot 'objects/plot_data' with yerrorbars\n"
-              "[plotscript] plot 'objects/plot_data' with linespoints\n");
+              "[plotscript] plot 'objects/plot_data' with linespoints\n",
+              number_of_allocations);
   }
   
   print_gc_stats2("data for");
   
-  int number_of_allocations = 1000;
   tf_printf("[plot] # %d allocations per iteration\n", number_of_allocations);
   tf_printf("[plot] # allocation size (B)        pause time (us)\n");
   
