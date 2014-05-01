@@ -1,0 +1,603 @@
+ # data for Boehm GC (I=65536)
+ 0 64
+ # end of test Boehm GC (I=65536)
+ # data for Boehm GC (I=65536)
+ 1000 1203
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 1000 1219
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 1000 1463
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 1000 1405
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 1000 1044
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 1000 1180
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 1000 945
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 1000 1088
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 1000 1050
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 1000 914
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 2000 1731
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 2000 1768
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 2000 1368
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 2000 1852
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 2000 1372
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 2000 1703
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 2000 1307
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 2000 1653
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 2000 1454
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 2000 1318
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 3000 3159
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 3000 2910
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 3000 2434
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 3000 3237
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 3000 2815
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 3000 2764
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 3000 3031
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 3000 3153
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 3000 3343
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 3000 3037
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 4000 2925
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 4000 3179
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 4000 3083
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 4000 3423
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 4000 3090
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 4000 3104
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 4000 3555
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 4000 3939
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 4000 3196
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 4000 3224
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 5000 4097
+ # end of test Boehm GC (I=270336)
+ # data for Boehm GC (I=65536)
+ 5000 4351
+ # end of test Boehm GC (I=270336)
+ # data for Boehm GC (I=65536)
+ 5000 5312
+ # end of test Boehm GC (I=270336)
+ # data for Boehm GC (I=65536)
+ 5000 4195
+ # end of test Boehm GC (I=270336)
+ # data for Boehm GC (I=65536)
+ 5000 4748
+ # end of test Boehm GC (I=270336)
+ # data for Boehm GC (I=65536)
+ 5000 4185
+ # end of test Boehm GC (I=270336)
+ # data for Boehm GC (I=65536)
+ 5000 4811
+ # end of test Boehm GC (I=270336)
+ # data for Boehm GC (I=65536)
+ 5000 4694
+ # end of test Boehm GC (I=270336)
+ # data for Boehm GC (I=65536)
+ 5000 4314
+ # end of test Boehm GC (I=270336)
+ # data for Boehm GC (I=65536)
+ 5000 4945
+ # end of test Boehm GC (I=270336)
+ # data for Boehm GC (I=65536)
+ 6000 4870
+ # end of test Boehm GC (I=270336)
+ # data for Boehm GC (I=65536)
+ 6000 4664
+ # end of test Boehm GC (I=270336)
+ # data for Boehm GC (I=65536)
+ 6000 4270
+ # end of test Boehm GC (I=270336)
+ # data for Boehm GC (I=65536)
+ 6000 5245
+ # end of test Boehm GC (I=270336)
+ # data for Boehm GC (I=65536)
+ 6000 4154
+ # end of test Boehm GC (I=270336)
+ # data for Boehm GC (I=65536)
+ 6000 4298
+ # end of test Boehm GC (I=270336)
+ # data for Boehm GC (I=65536)
+ 6000 4753
+ # end of test Boehm GC (I=270336)
+ # data for Boehm GC (I=65536)
+ 6000 4220
+ # end of test Boehm GC (I=270336)
+ # data for Boehm GC (I=65536)
+ 6000 4328
+ # end of test Boehm GC (I=270336)
+ # data for Boehm GC (I=65536)
+ 6000 4760
+ # end of test Boehm GC (I=270336)
+ # data for Boehm GC (I=65536)
+ 7000 5732
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 7000 8013
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 7000 5916
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 7000 5448
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 7000 5922
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 7000 5486
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 7000 5563
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 7000 5753
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 7000 5949
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 7000 5875
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 8000 5074
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 8000 6185
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 8000 5451
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 8000 5628
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 8000 5877
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 8000 5600
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 8000 5607
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 8000 4913
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 8000 5535
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 8000 5536
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 9000 5568
+ # end of test Boehm GC (I=274432)
+ # data for Boehm GC (I=65536)
+ 9000 6629
+ # end of test Boehm GC (I=274432)
+ # data for Boehm GC (I=65536)
+ 9000 9486
+ # end of test Boehm GC (I=274432)
+ # data for Boehm GC (I=65536)
+ 9000 6678
+ # end of test Boehm GC (I=274432)
+ # data for Boehm GC (I=65536)
+ 9000 6292
+ # end of test Boehm GC (I=274432)
+ # data for Boehm GC (I=65536)
+ 9000 6942
+ # end of test Boehm GC (I=274432)
+ # data for Boehm GC (I=65536)
+ 9000 5971
+ # end of test Boehm GC (I=274432)
+ # data for Boehm GC (I=65536)
+ 9000 6475
+ # end of test Boehm GC (I=274432)
+ # data for Boehm GC (I=65536)
+ 9000 6083
+ # end of test Boehm GC (I=274432)
+ # data for Boehm GC (I=65536)
+ 9000 6134
+ # end of test Boehm GC (I=274432)
+ # data for Boehm GC (I=65536)
+ 10000 8460
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 10000 7457
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 10000 8151
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 10000 7819
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 10000 8144
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 10000 8099
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 10000 8486
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 10000 8435
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 10000 8123
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 10000 7852
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 11000 7960
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 11000 8496
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 11000 8281
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 11000 7485
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 11000 7655
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 11000 8414
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 11000 8063
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 11000 7797
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 11000 8940
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 11000 8050
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 12000 8880
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 12000 7745
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 12000 8412
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 12000 7610
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 12000 11033
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 12000 8322
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 12000 7721
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 12000 8744
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 12000 8345
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 12000 7652
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 13000 8780
+ # end of test Boehm GC (I=278528)
+ # data for Boehm GC (I=65536)
+ 13000 8427
+ # end of test Boehm GC (I=278528)
+ # data for Boehm GC (I=65536)
+ 13000 9046
+ # end of test Boehm GC (I=278528)
+ # data for Boehm GC (I=65536)
+ 13000 9034
+ # end of test Boehm GC (I=278528)
+ # data for Boehm GC (I=65536)
+ 13000 9018
+ # end of test Boehm GC (I=278528)
+ # data for Boehm GC (I=65536)
+ 13000 8654
+ # end of test Boehm GC (I=278528)
+ # data for Boehm GC (I=65536)
+ 13000 8603
+ # end of test Boehm GC (I=278528)
+ # data for Boehm GC (I=65536)
+ 13000 9202
+ # end of test Boehm GC (I=278528)
+ # data for Boehm GC (I=65536)
+ 13000 8316
+ # end of test Boehm GC (I=278528)
+ # data for Boehm GC (I=65536)
+ 13000 7697
+ # end of test Boehm GC (I=278528)
+ # data for Boehm GC (I=65536)
+ 14000 8896
+ # end of test Boehm GC (I=278528)
+ # data for Boehm GC (I=65536)
+ 14000 8743
+ # end of test Boehm GC (I=278528)
+ # data for Boehm GC (I=65536)
+ 14000 8414
+ # end of test Boehm GC (I=278528)
+ # data for Boehm GC (I=65536)
+ 14000 8879
+ # end of test Boehm GC (I=278528)
+ # data for Boehm GC (I=65536)
+ 14000 10108
+ # end of test Boehm GC (I=278528)
+ # data for Boehm GC (I=65536)
+ 14000 10931
+ # end of test Boehm GC (I=278528)
+ # data for Boehm GC (I=65536)
+ 14000 8897
+ # end of test Boehm GC (I=278528)
+ # data for Boehm GC (I=65536)
+ 14000 9941
+ # end of test Boehm GC (I=278528)
+ # data for Boehm GC (I=65536)
+ 14000 8731
+ # end of test Boehm GC (I=278528)
+ # data for Boehm GC (I=65536)
+ 14000 8533
+ # end of test Boehm GC (I=278528)
+ # data for Boehm GC (I=65536)
+ 15000 12189
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 15000 11601
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 15000 14243
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 15000 12063
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 15000 12181
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 15000 11638
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 15000 11736
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 15000 11563
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 15000 11773
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 15000 11457
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 16000 11592
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 16000 11804
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 16000 11469
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 16000 11818
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 16000 11888
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 16000 11100
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 16000 12207
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 16000 11851
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 16000 11865
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 16000 11239
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 17000 10990
+ # end of test Boehm GC (I=282624)
+ # data for Boehm GC (I=65536)
+ 17000 11006
+ # end of test Boehm GC (I=282624)
+ # data for Boehm GC (I=65536)
+ 17000 10450
+ # end of test Boehm GC (I=282624)
+ # data for Boehm GC (I=65536)
+ 17000 10446
+ # end of test Boehm GC (I=282624)
+ # data for Boehm GC (I=65536)
+ 17000 12861
+ # end of test Boehm GC (I=282624)
+ # data for Boehm GC (I=65536)
+ 17000 11047
+ # end of test Boehm GC (I=282624)
+ # data for Boehm GC (I=65536)
+ 17000 11790
+ # end of test Boehm GC (I=282624)
+ # data for Boehm GC (I=65536)
+ 17000 10475
+ # end of test Boehm GC (I=282624)
+ # data for Boehm GC (I=65536)
+ 17000 11055
+ # end of test Boehm GC (I=282624)
+ # data for Boehm GC (I=65536)
+ 17000 10418
+ # end of test Boehm GC (I=282624)
+ # data for Boehm GC (I=65536)
+ 18000 10302
+ # end of test Boehm GC (I=282624)
+ # data for Boehm GC (I=65536)
+ 18000 10817
+ # end of test Boehm GC (I=282624)
+ # data for Boehm GC (I=65536)
+ 18000 11246
+ # end of test Boehm GC (I=282624)
+ # data for Boehm GC (I=65536)
+ 18000 9912
+ # end of test Boehm GC (I=282624)
+ # data for Boehm GC (I=65536)
+ 18000 10388
+ # end of test Boehm GC (I=282624)
+ # data for Boehm GC (I=65536)
+ 18000 10067
+ # end of test Boehm GC (I=282624)
+ # data for Boehm GC (I=65536)
+ 18000 10559
+ # end of test Boehm GC (I=282624)
+ # data for Boehm GC (I=65536)
+ 18000 10750
+ # end of test Boehm GC (I=282624)
+ # data for Boehm GC (I=65536)
+ 18000 11589
+ # end of test Boehm GC (I=282624)
+ # data for Boehm GC (I=65536)
+ 18000 10339
+ # end of test Boehm GC (I=282624)
+ # data for Boehm GC (I=65536)
+ 19000 15077
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 19000 14053
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 19000 14891
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 19000 15058
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 19000 18609
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 19000 16013
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 19000 15291
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 19000 15268
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 19000 14725
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 19000 14670
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 20000 14045
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 20000 14233
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 20000 14328
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 20000 15111
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 20000 14054
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 20000 14711
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 20000 14074
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 20000 14858
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 20000 14583
+ # end of test Boehm GC (I=196608)
+ # data for Boehm GC (I=65536)
+ 20000 14651
+ # end of test Boehm GC (I=196608)

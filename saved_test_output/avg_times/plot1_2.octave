@@ -1,12 +1,16 @@
-M = load("-ascii", "plot_data1");
+function [newX,avgY,errY] = readplotdata(file)
+
+M = load("-ascii", file);
 X=M(:,1);
 Y=M(:,2);
 
+X/=1000;
+Y/=1000;
+
 # find equal X values and group them for averaging
-newX=zeros(length(X),1);
-newY=newX;
-minY=newY;
-maxY=newY;
+newX=ones(length(X),1); # hack for the zero case
+avgY=newX;
+errY=newX;
 max=1;
 for i=1:length(X)
   found=0;
@@ -17,29 +21,54 @@ for i=1:length(X)
     endif
   endfor
   if (found==0)
-    newX(max) = X(i);
+    tmpY = zeros(length(X),1);
+    yptr = 1;
     num=0;
     for j=1:length(X)
       if (X(i)==X(j))
-        newY(max) += Y(j);
-        num++;
-        if ((minY(max)==0)||(Y(j)<minY(max)))
-          minY(max) = Y(j);
-        endif
-        if (Y(j)>maxY(max))
-          maxY(max) = Y(j);
-        endif
+        tmpY(yptr) = Y(j);
+        yptr++;
       endif
     endfor
-    newY(max) /= num;
+    tmpY=tmpY(1:yptr-1);
+    newX(max) = X(i);
+    avgY(max) = mean(tmpY);
+    errY(max) = std(tmpY,0);
     max++;
   endif
 endfor
 newX=newX(1:max-1);
-newY=newY(1:max-1);
-minY=minY(1:max-1);
-maxY=maxY(1:max-1);
+avgY=avgY(1:max-1);
+errY=errY(1:max-1);
+
+#errorbar(newX,avgY,errY,fmt);
+endfunction
+
 
 clf;
 hold on;
-errorbar(newX,newY,newY-minY,maxY-newY);
+xlabel "Allocation size (kB)";
+ylabel "Pause time (ms)";
+title 'Time taken by GC\_malloc() averaged over 1000 consecutive allocations and 10 independent runs for every 1kB';
+[newX1,avgY1,errY1]=readplotdata("plot_data1");
+[newX2,avgY2,errY2]=readplotdata("plot_data2");
+[newX3,avgY3,errY3]=readplotdata("plot_data3");
+#[newX4,avgY4,errY4]=readplotdata("plot_data4", 'o-');
+[newX5,avgY5,errY5]=readplotdata("plot_data5", 'o-');
+[newX6,avgY6,errY6]=readplotdata("plot_data6", 'o-');
+[newX7,avgY7,errY7]=readplotdata("plot_data7", 'o-');
+
+errorbar(
+  newX1,avgY1,errY1,'-o',
+  newX2,avgY2,errY2,'--o',
+  newX3,avgY3,errY3,':o',
+  #newX4,avgY4,errY4,'.-o',
+  newX5,avgY5,errY5,'.-o',
+  newX6,avgY6,errY6,'.-o',
+  newX7,avgY7,errY7,'.-o');
+
+print('-dps', 'plot1_2octave.ps');
+
+# plot_data2 and 4: Boehm: (initial heap size 65,536 B, final heap size: 196,608 B (for 5kB and 6kB, 270,336 B) (for 9kB, 274,432 B) (for 13kB and 14kB, 278,528 B) (for 17kB and 18kB, 282,624 B))
+# plot_data1: My copying GC (semispace size 815,104 B), initial was 65536
+# plot_data5: My copying GC (I=65536/2, B=65536/2, A=196608/2)
