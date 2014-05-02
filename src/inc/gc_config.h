@@ -21,7 +21,7 @@
 
 // Determines whether we use generational GC or not. If disabled, only
 // copying collection is implemented.
-#define GC_GENERATIONAL
+//#define GC_GENERATIONAL
 
 // If old heap residency exceeds this, collect, and if that fails, grow.
 #define GC_OLD_GENERATION_HIGH_WATERMARK      0.5

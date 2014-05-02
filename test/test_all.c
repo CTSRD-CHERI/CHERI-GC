@@ -177,7 +177,8 @@ typedef struct bintree_tag
   X_MACRO(malloc_time_test_with_collect, "Tests how long tf_malloc takes with collecting") \
   X_MACRO(allocate_loads, "Tests how long it takes to allocate a large amount of data") \
   X_MACRO(old_pause_time_test, "Measures pause time of GC_collect ONLY") \
-  */X_MACRO(pause_time_test, "Measures collector pause time") \
+  X_MACRO(pause_time_test, "Measures collector pause time") \
+  */X_MACRO(pause_time_test2, "Measures collector pause time") \
   /*X_MACRO(experimental_test, "For experiments")*/
 
 #define DECLARE_TEST(test,descr) \
@@ -452,7 +453,6 @@ pause_time_test_helper (int number_of_allocations, size_t allocation_size,
     tf_mem_pretty(allocation_size), tf_mem_pretty_unit(allocation_size));
   
   tf_time_t tot = 0, tmin = 0, tmax = 0;
-  
   int i;
   for (i=0; i<number_of_allocations; i++)
   {
@@ -569,6 +569,51 @@ DEFINE_TEST(pause_time_test)
   
   print_gc_stats2("end of test");
   
+  return 0;
+}
+
+DEFINE_TEST(pause_time_test2)
+{
+  int allocation_size = flag_input_number * 1000;
+  int number_of_allocations = 1000;
+  tf_printf("[plotdata] # %d allocations per iteration\n", number_of_allocations);
+  tf_printf("[plotdata] # allocation size (B)        total time (us)\n");
+  
+  if (!flag_data_only)
+  {
+    tf_printf("[plotscript] set terminal png\n"
+              "[plotscript] set output \"objects/plot.png\"\n"
+              "[plotscript] set title \"Time taken by GC_malloc() for %d allocations\"\n"
+              "[plotscript] set xlabel \"Allocation size (B)\"\n"
+              "[plotscript] set ylabel \"Pause time (us)\"\n"
+              "[plotscript] #set xrange [-2:2]\n"
+              "[plotscript] #set yrange [-10:10]\n"
+              "[plotscript] set zeroaxis\n"
+              "[plotscript] #plot 'objects/plot_data' with yerrorbars\n"
+              "[plotscript] plot 'objects/plot_data' with linespoints\n",
+              number_of_allocations);
+  }
+  
+  int i;
+  tf_time_t before = tf_time();
+  for (i=0; i<number_of_allocations; i++)
+  {
+    tf_cap_t void * p = tf_malloc(allocation_size);
+    tf_free(p);
+    if (!tf_ptr_valid(p))
+    {
+      tf_printf("out of memory\n");
+      exit(1);
+    }
+  }
+  tf_time_t after = tf_time();
+  
+  tf_time_t diff = after - before;
+  
+  tf_printf("[plotdata] %d %llu\n", allocation_size, (unsigned long long) diff);  
+  
+  print_gc_stats2("begin test");
+  print_gc_stats2("end test");
   return 0;
 }
 

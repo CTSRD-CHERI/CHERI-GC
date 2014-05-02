@@ -80,15 +80,15 @@ errorbar(
 # plot_data9: My generational GC (y=30,000, o=300,000/2)
 
 legend(
-  "My copying GC (2*800 kB)",
-  #"Boehm GC",
-  "No GC (with free)",
-  #"Boehm GC (200-300kB)",
-  #"My copying GC",
-  "My copying GC (2*100 kB)",
-  "Boehm GC",
-  #"My generational GC (15kB+2*150kB)",
-  "My generational GC (30kb+2*150kB)");
+  "My copying GC (2*800 kB)", # 1
+  #"Boehm GC",                # 2
+  "No GC (with free)",        # 3
+  #"Boehm GC (200-300kB)",    # 4
+  #"My copying GC",           # 5
+  "My copying GC (2*30 kB growing to 2*64 kB)", # 6
+  "Boehm GC",                 # 7
+  #"My generational GC (15kB+2*150kB)",  # 8
+  "My generational GC (30kb+2*150kB)");  # 9
 
 print('-dps', 'plot1_2octave.ps');
 print('-dpng', 'plot1_2octave.png');
