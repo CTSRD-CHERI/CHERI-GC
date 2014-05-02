@@ -1,0 +1,603 @@
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1000)
+ 0 39
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=39305 ocur=0)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 1000 104
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=104266 ocur=1000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 1000 256
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=256476 ocur=1000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 1000 107
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=107386 ocur=1000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 1000 93
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=93799 ocur=1000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 1000 74
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=74478 ocur=1000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 1000 231
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=231912 ocur=1000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 1000 127
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=127231 ocur=1000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 1000 225
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=225682 ocur=1000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 1000 95
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=95104 ocur=1000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 1000 244
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=244942 ocur=1000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 2000 330
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=330853 ocur=2000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 2000 336
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=336157 ocur=2000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 2000 360
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=360143 ocur=2000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 2000 367
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=367664 ocur=2000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 2000 185
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=185800 ocur=2000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 2000 151
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=151767 ocur=2000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 2000 319
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=319440 ocur=2000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 2000 289
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=289010 ocur=2000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 2000 331
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=331618 ocur=2000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 2000 314
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=314861 ocur=2000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 3000 230
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=230534 ocur=3000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 3000 460
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=460201 ocur=3000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 3000 401
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=401067 ocur=3000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 3000 290
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=290096 ocur=3000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 3000 400
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=400449 ocur=3000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 3000 406
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=406345 ocur=3000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 3000 433
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=433470 ocur=3000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 3000 405
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=405060 ocur=3000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 3000 405
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=405333 ocur=3000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 3000 406
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=406890 ocur=3000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 4000 496
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=496095 ocur=4000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 4000 529
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=529387 ocur=4000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 4000 509
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=509294 ocur=4000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 4000 494
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=494958 ocur=4000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 4000 767
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=767014 ocur=4000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 4000 569
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=569048 ocur=4000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 4000 397
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=397606 ocur=4000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 4000 594
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=594939 ocur=4000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 4000 359
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=359939 ocur=4000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 4000 508
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=508736 ocur=4000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 5000 660
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=660605 ocur=5000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 5000 847
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=847074 ocur=5000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 5000 863
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=863237 ocur=5000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 5000 661
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=661095 ocur=5000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 5000 643
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=643452 ocur=5000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 5000 732
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=732679 ocur=5000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 5000 638
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=638508 ocur=5000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 5000 668
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=668097 ocur=5000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 5000 673
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=673618 ocur=5000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 5000 653
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=653725 ocur=5000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 6000 828
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=828325 ocur=6000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 6000 747
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=747303 ocur=6000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 6000 798
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=798729 ocur=6000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 6000 811
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=811600 ocur=6000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 6000 772
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=772129 ocur=6000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 6000 792
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=792572 ocur=6000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 6000 832
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=832861 ocur=6000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 6000 749
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=749284 ocur=6000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 6000 754
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=754655 ocur=6000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 6000 807
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=807504 ocur=6000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 7000 821
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=821839 ocur=7000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 7000 824
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=824384 ocur=7000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 7000 895
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=895855 ocur=7000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 7000 825
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=825684 ocur=7000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 7000 915
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=915246 ocur=7000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 7000 898
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=898036 ocur=7000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 7000 860
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=860845 ocur=7000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 7000 745
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=745759 ocur=7000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 7000 816
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=816512 ocur=7000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 7000 871
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=871234 ocur=7000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 8000 1122
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1122300 ocur=8000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 8000 1005
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1005798 ocur=8000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 8000 1109
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1109742 ocur=8000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 8000 1185
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1185866 ocur=8000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 8000 977
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=977557 ocur=8000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 8000 1141
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1141894 ocur=8000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 8000 947
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=947240 ocur=8000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 8000 1118
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1118122 ocur=8000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 8000 1121
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1121798 ocur=8000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 8000 1200
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1200034 ocur=8000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 9000 1202
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1202499 ocur=9000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 9000 1194
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1194778 ocur=9000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 9000 1220
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1220485 ocur=9000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 9000 1253
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1253193 ocur=9000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 9000 1115
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1115279 ocur=9000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 9000 1208
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1208695 ocur=9000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 9000 1206
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1206063 ocur=9000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 9000 1076
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1076899 ocur=9000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 9000 1227
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1227340 ocur=9000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 9000 1225
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1225459 ocur=9000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 10000 1894
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1894979 ocur=10000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 10000 1837
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1837281 ocur=10000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 10000 1844
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1844007 ocur=10000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 10000 1818
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1818476 ocur=10000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 10000 1687
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1687377 ocur=10000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 10000 1841
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1841612 ocur=10000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 10000 1847
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1847935 ocur=10000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 10000 1774
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1774191 ocur=10000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 10000 1797
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1797161 ocur=10000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 10000 1811
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1811503 ocur=10000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 11000 1984
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1984757 ocur=11000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 11000 1990
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1990563 ocur=11000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 11000 1923
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1923427 ocur=11000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 11000 1812
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1812945 ocur=11000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 11000 2059
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=2059445 ocur=11000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 11000 1967
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1967336 ocur=11000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 11000 1984
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1984349 ocur=11000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 11000 2029
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=2029351 ocur=11000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 11000 1965
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1965920 ocur=11000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 11000 1987
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1987534 ocur=11000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 12000 2023
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=2023242 ocur=12000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 12000 2051
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=2051719 ocur=12000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 12000 2094
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=2094010 ocur=12000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 12000 2104
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=2104161 ocur=12000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 12000 2085
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=2085236 ocur=12000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 12000 2113
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=2113115 ocur=12000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 12000 1991
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1991772 ocur=12000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 12000 1897
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1897060 ocur=12000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 12000 2122
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=2122526 ocur=12000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 12000 2117
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=2117074 ocur=12000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 13000 2338
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=2338564 ocur=13000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 13000 2127
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=2127121 ocur=13000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 13000 2246
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=2246668 ocur=13000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 13000 2268
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=2268232 ocur=13000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 13000 2321
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=2321774 ocur=13000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 13000 2278
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=2278073 ocur=13000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 13000 2184
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=2184751 ocur=13000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 13000 2233
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=2233497 ocur=13000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 13000 2259
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=2259783 ocur=13000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 13000 2269
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=2269942 ocur=13000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 14000 2407
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=2407577 ocur=14000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 14000 2312
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=2312481 ocur=14000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 14000 2342
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=2342248 ocur=14000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 14000 2320
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=2320373 ocur=14000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 14000 2379
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=2379304 ocur=14000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 14000 2444
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=2444636 ocur=14000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 14000 3943
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=3943936 ocur=14000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 14000 2514
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=2514158 ocur=14000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 14000 2422
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=2422116 ocur=14000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 14000 2300
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=2300905 ocur=14000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 15000 2769
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=2769761 ocur=15000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 15000 2574
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=2574498 ocur=15000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 15000 2569
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=2569175 ocur=15000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 15000 2571
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=2571773 ocur=15000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 15000 2535
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=2535098 ocur=15000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 15000 2592
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=2592705 ocur=15000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 15000 2614
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=2614188 ocur=15000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 15000 2594
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=2594531 ocur=15000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 15000 2422
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=2422636 ocur=15000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 15000 2561
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=2561282 ocur=15000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 16000 5224
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=5224971 ocur=16000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 16000 5154
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=5154531 ocur=16000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 16000 5186
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=5186996 ocur=16000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 16000 4956
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=4956317 ocur=16000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 16000 5099
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=5099080 ocur=16000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 16000 5064
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=5064570 ocur=16000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 16000 5238
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=5238609 ocur=16000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 16000 5109
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=5109044 ocur=16000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 16000 5226
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=5226311 ocur=16000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 16000 5159
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=5159308 ocur=16000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 17000 5342
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=5342949 ocur=17000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 17000 5344
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=5344815 ocur=17000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 17000 5362
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=5362170 ocur=17000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 17000 5451
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=5451355 ocur=17000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 17000 5362
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=5362894 ocur=17000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 17000 5366
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=5366510 ocur=17000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 17000 5473
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=5473117 ocur=17000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 17000 5382
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=5382482 ocur=17000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 17000 5287
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=5287456 ocur=17000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 17000 5291
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=5291984 ocur=17000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 18000 5436
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=5436393 ocur=18000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 18000 5689
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=5689919 ocur=18000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 18000 5440
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=5440035 ocur=18000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 18000 5697
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=5697371 ocur=18000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 18000 5622
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=5622325 ocur=18000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 18000 5677
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=5677408 ocur=18000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 18000 5682
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=5682857 ocur=18000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 18000 5573
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=5573022 ocur=18000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 18000 6313
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=6313468 ocur=18000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 18000 5608
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=5608884 ocur=18000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 19000 6265
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=6265198 ocur=19000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 19000 6699
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=6699538 ocur=19000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 19000 6250
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=6250794 ocur=19000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 19000 6241
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=6241799 ocur=19000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 19000 6162
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=6162321 ocur=19000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 19000 6272
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=6272471 ocur=19000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 19000 6216
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=6216428 ocur=19000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 19000 6237
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=6237921 ocur=19000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 19000 6240
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=6240582 ocur=19000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 19000 6249
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=6249343 ocur=19000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 20000 6614
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=6614193 ocur=20000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 20000 7738
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=7738675 ocur=20000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 20000 6383
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=6383891 ocur=20000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 20000 6514
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=6514468 ocur=20000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 20000 6559
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=6559702 ocur=20000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 20000 6488
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=6488118 ocur=20000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 20000 6488
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=6488409 ocur=20000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 20000 6492
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=6492129 ocur=20000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 20000 6511
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=6511278 ocur=20000)
+ # data for my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=1612666096 ocur=1610748188)
+ 20000 6623
+ # end of test my generational GC (yI=30000 yB=30000 yA=30000 ycur=30016 oI=150000 oB=150000 oA=6623800 ocur=20000)

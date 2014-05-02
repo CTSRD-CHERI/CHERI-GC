@@ -53,22 +53,42 @@ title 'Time taken by GC\_malloc() averaged over 1000 consecutive allocations and
 [newX1,avgY1,errY1]=readplotdata("plot_data1");
 [newX2,avgY2,errY2]=readplotdata("plot_data2");
 [newX3,avgY3,errY3]=readplotdata("plot_data3");
-#[newX4,avgY4,errY4]=readplotdata("plot_data4", 'o-');
-[newX5,avgY5,errY5]=readplotdata("plot_data5", 'o-');
-[newX6,avgY6,errY6]=readplotdata("plot_data6", 'o-');
-[newX7,avgY7,errY7]=readplotdata("plot_data7", 'o-');
+[newX4,avgY4,errY4]=readplotdata("plot_data4");
+[newX5,avgY5,errY5]=readplotdata("plot_data5");
+[newX6,avgY6,errY6]=readplotdata("plot_data6");
+[newX7,avgY7,errY7]=readplotdata("plot_data7");
+[newX8,avgY8,errY8]=readplotdata("plot_data8");
+[newX9,avgY9,errY9]=readplotdata("plot_data9");
 
+axis([0 20]);
 errorbar(
   newX1,avgY1,errY1,'-o',
-  newX2,avgY2,errY2,'--o',
+  #newX2,avgY2,errY2,'--o',
   newX3,avgY3,errY3,':o',
   #newX4,avgY4,errY4,'.-o',
-  newX5,avgY5,errY5,'.-o',
+  #newX5,avgY5,errY5,'.-o',
   newX6,avgY6,errY6,'.-o',
-  newX7,avgY7,errY7,'.-o');
+  newX7,avgY7,errY7,'--o',
+  #newX8,avgY8,errY8,'.--o',
+  newX9,avgY9,errY9,'.--o');
+
+# plot_data2 and 4 and 7: Boehm: (initial heap size 65,536 B, final heap size: 196,608 B (for 5kB and 6kB, 270,336 B) (for 9kB, 274,432 B) (for 13kB and 14kB, 278,528 B) (for 17kB and 18kB, 282,624 B))
+# plot_data1: My copying GC (semispace size 815,104 B), initial was 65536
+# plot_data5 and 6: My copying GC (I=65536/2, B=65536/2, A=196608/2)
+# plot_data3: no GC
+# plot_data8: My generational GC (y=30,000/2, o=300,000/2)
+# plot_data9: My generational GC (y=30,000, o=300,000/2)
+
+legend(
+  "My copying GC (2*800 kB)",
+  #"Boehm GC",
+  "No GC (with free)",
+  #"Boehm GC (200-300kB)",
+  #"My copying GC",
+  "My copying GC (2*100 kB)",
+  "Boehm GC",
+  #"My generational GC (15kB+2*150kB)",
+  "My generational GC (30kb+2*150kB)");
 
 print('-dps', 'plot1_2octave.ps');
-
-# plot_data2 and 4: Boehm: (initial heap size 65,536 B, final heap size: 196,608 B (for 5kB and 6kB, 270,336 B) (for 9kB, 274,432 B) (for 13kB and 14kB, 278,528 B) (for 17kB and 18kB, 282,624 B))
-# plot_data1: My copying GC (semispace size 815,104 B), initial was 65536
-# plot_data5: My copying GC (I=65536/2, B=65536/2, A=196608/2)
+print('-dpng', 'plot1_2octave.png');

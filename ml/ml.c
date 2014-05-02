@@ -34,6 +34,9 @@ ml_no_gc_malloc (size_t sz)
 GC_USER_FUNC void
 ml_print_gc_stats (void);
 
+GC_USER_FUNC void
+ml_print_plot_data (void);
+
 #include <string.h>
 GC_USER_FUNC GC_CAP void *
 cmemset (GC_CAP void * ptr, int value, size_t num)
@@ -193,6 +196,8 @@ GC_USER_FUNC int main (int argc, char ** argv)
   
   ml_print_gc_stats();
   
+  ml_print_plot_data();
+  
 #ifdef MEMWATCH
   mwTerm();
 #endif // MEMWATCH
@@ -210,4 +215,31 @@ ml_print_gc_stats (void)
 #elif defined(GC_BOEHM)
   printf("Boehm heap size: %llu\n", (unsigned long long) GC_get_heap_size());
 #endif // GC selector
+}
+
+GC_USER_FUNC void
+ml_print_plot_data (void)
+{
+#if defined(GC_CHERI)
+  unsigned long long
+    heapsyinit = GC_THREAD_LOCAL_HEAP_SIZE,
+    heapsycurr = GC_cheri_getlen(GC_state.thread_local_region.tospace),
+    heapsymaxb = GC_state.thread_local_region.max_grow_size_before_collection,
+    heapsymaxa = GC_state.thread_local_region.max_grow_size_after_collection;
+  printf("[plotdata] heap size: (young generation) I=%llu B=%llu A=%llu F=%llu\n",
+    heapsyinit, heapsymaxb, heapsymaxa, heapsycurr);
+  
+#ifdef GC_GENERATIONAL
+  unsigned long long
+    heapsoinit = GC_OLD_GENERATION_HEAP_SIZE,
+    heapsocurr = GC_cheri_getlen(GC_state.old_generation.tospace),
+    heapsomaxb = GC_state.old_generation.max_grow_size_before_collection,
+    heapsomaxa = GC_state.old_generation.max_grow_size_after_collection;
+  printf("[plotdata] heap size: (old generation) I=%llu B=%llu A=%llu F=%llu\n",
+    heapsoinit, heapsomaxb, heapsomaxa, heapsocurr);
+#endif // GC_GENERATIONAL
+#elif defined(GC_BOEHM)
+  printf("[plotdata] Boehm heap size: %llu\n",
+    (unsigned long long) GC_get_heap_size());
+#endif
 }
