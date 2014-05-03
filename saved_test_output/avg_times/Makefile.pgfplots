@@ -1,7 +1,0 @@
-all:
-	TEXINPUTS="pgfplots//:" pdflatex file.tex && \
-  TEXINPUTS="pgfplots//:" pdflatex file.tex && \
-  TEXINPUTS="pgfplots//:" pdflatex file.tex
-
-clean:
-	rm -f file.aux file.log file.pdf

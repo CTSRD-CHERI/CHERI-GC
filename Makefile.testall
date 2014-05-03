@@ -95,11 +95,11 @@ run:
 	rm -f cloud4_push_helper.expect
 
 # parse and plot the run output
-plot:
-	cat objects/run_output | grep "\[plotdata\]" | awk '{$$1="";print $$0;}' > objects/plot_data && \
-	cat objects/run_output | grep "\[plotscript\]" | awk '{$$1="";print $$0;}' > objects/plot.gp && \
-	rm -f objects/plot.png && \
-	gnuplot objects/plot.gp && \
-	eog objects/plot.png
+#plot:
+	#cat objects/run_output | grep "\[plotdata\]" | awk '{$$1="";print $$0;}' > objects/plot_data && \
+	#cat objects/run_output | grep "\[plotscript\]" | awk '{$$1="";print $$0;}' > objects/plot.gp && \
+	#rm -f objects/plot.png && \
+	#gnuplot objects/plot.gp && \
+	#eog objects/plot.png
 
 #cat objects/run_output | grep "\[plotdata\] #\|\[avg\]" | awk '{$$1="";if($$2=="[avg]")$$2="";print $$0;}' > objects/plot_data && \
