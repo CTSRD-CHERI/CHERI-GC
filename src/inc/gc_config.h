@@ -15,7 +15,7 @@
 // growth.
 // TODO: the 0 setting
 #define GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION        (30000)
-#define GC_THREAD_LOCAL_HEAP_MAX_SIZE                          (30000)
+#define GC_THREAD_LOCAL_HEAP_MAX_SIZE                          (32000000)
 #define GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION (300000/2)
 #define GC_OLD_GENERATION_SEMISPACE_MAX_SIZE                   (300000/2)
 

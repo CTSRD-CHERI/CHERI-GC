@@ -1,0 +1,22 @@
+\documentclass{article}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.10}
+\begin{document}
+
+\begin{tikzpicture}
+\begin{axis}[
+  title=Time taken by \texttt{GC\_malloc()} for 1000 consecutive allocations averaged over 10 independent runs for every 1 kB,
+  xlabel=Allocation size (kB),
+  ylabel=Total time (s),
+  xmin=0,
+  xmax=20,
+  scaled ticks=false,
+  axis lines=left,
+  legend entries={My generational GC (y=30k o=150k), My copying GC (y=30k)},
+]
+%\addplot+[error bars/.cd, y dir=both,y explicit] table[x=x, y=y error=error] {../gc2/saved_test_output/avg_times/octout1};
+\addplot+[error bars/.cd, y dir=both, y explicit] table[y error index=2] {../gc2/saved_test_output/avg_times/octout1};
+\end{axis}
+\end{tikzpicture}
+
+\end{document}

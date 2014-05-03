@@ -574,7 +574,7 @@ DEFINE_TEST(pause_time_test)
 
 DEFINE_TEST(pause_time_test2)
 {
-  int allocation_size = flag_input_number * 1000;
+  int allocation_size = flag_input_number * 100000;
   int number_of_allocations = 1000;
   tf_printf("[plotdata] # %d allocations per iteration\n", number_of_allocations);
   tf_printf("[plotdata] # allocation size (B)        total time (us)\n");
