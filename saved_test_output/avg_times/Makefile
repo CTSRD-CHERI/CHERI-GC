@@ -1,6 +1,6 @@
 PGFPLOTSDIR="/usr/home/user/projectscratch/pgfplots/pgfplots//:"
 
-all: clean octave pdf
+all: clean parse octave pdf
 
 octave:
 	octave plotall.octave

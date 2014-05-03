@@ -1,0 +1,33 @@
+
+NOTE: directories are quoted relative to the main gc2 directory.
+
+How this works:
+
+1. You write a test in test/test_all.c and make sure it's the only one enabled.
+2. You decide which GC you want to use and configure it as appropriate. You
+   modify test/testall.sh to use the correct GC.
+3. You run `make -f Makefile.testall all run'.
+4. You run `cp objects/run_output saved_test_output/avg_times/run_output<X>'
+   where <X> is the next number in the sequence.
+5. You edit saved_test_output/avg_times/file.tex to include your new graph,
+   whose data after processing should end up in the file
+   saved_test_output/avg_times/octout<X>.
+6. You cd into saved_test_output/avg_times and run `make'. This creates the
+   appropriate file.pdf, the resulting graph output.
+
+Internally, the following happens:
+- (Step 3) test_all.c is compiled to the executable `testall' and pushed to
+  cloud2.
+- (Step 3) testall.sh is pushed to cloud2.
+- (Step 3) testall.sh is executed on cloud2. It executes `testall' many times to
+  gather results.
+- (Step 3) `testall' outputs lines beginning with "[plotdata]", so they can be
+  distinguished from diagnostic messages.
+- (Step 4) when the test finishes, you make a copy of objects/run_output.
+- (Step 6) For each run_output<X> file, the following is done:
+  - The "[plotdata]" lines are extracted and saved into plot_data<X>.
+  - GNU Octave runs the script plotall.octave in order to preprocess the
+    plot_data<X> file and output a preview of the graph. The preprocessed file
+    is octout<X>.
+  - pdflatex is run in order to typeset a final version of the graph at
+    file.pdf.
