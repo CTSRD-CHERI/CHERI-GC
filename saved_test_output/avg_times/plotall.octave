@@ -51,14 +51,18 @@ xlabel "Allocation size (kB)";
 ylabel "Total time (s)";
 title 'Time taken by GC\_malloc() for 1000 consecutive allocations averaged over 10 independent runs for every 1kB';
 
-num_files=2;
+num_files=4;
 seriesName={
   "My generational GC (y=30k o=150k)",
-  "My copying GC (y=30k)"
+  "My copying GC (y=30k)",
+  "",
+  ""
 };
 symbols={
   "-o",
-  "-x"
+  "-x",
+  "",
+  ""
 };
 
 newX=cell(num_files,1);
@@ -70,7 +74,7 @@ axis([0 20]);
 for i=1:num_files
   [newX{i},avgY{i},errY{i}] = readplotdata(["plot_data" int2str(i)]);
   errorbar(newX{i},avgY{i},errY{i},symbols{i});
-  M=[newX{1} avgY{1} errY{1}];
+  M=[newX{i} avgY{i} errY{i}];
   save('-ascii', ['octout' int2str(i)], 'M');
 endfor
 

@@ -11,7 +11,7 @@ pdf:
 	TEXINPUTS=$(PGFPLOTSDIR) pdflatex file.tex
 
 clean:
-	rm -f file.aux file.log file.pdf plot_data* octout* octave.core
+	rm -f file.aux file.log file.pdf plot_data* octout* plotall.png plotall.ps octave.core
 
 parse:
-	./parse.sh
+	./parse_run_output.sh

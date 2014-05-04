@@ -9,6 +9,7 @@ How this works:
 3. You run `make -f Makefile.testall all run'.
 4. You run `cp objects/run_output saved_test_output/avg_times/run_output<X>'
    where <X> is the next number in the sequence.
+4.5. You edit plotall.octave and increase the number of input files to <X>.
 5. You edit saved_test_output/avg_times/file.tex to include your new graph,
    whose data after processing should end up in the file
    saved_test_output/avg_times/octout<X>.
