@@ -197,17 +197,31 @@ typedef __capability void * GC_cap_ptr;
 // moves somewhere afterwards then tmpy should be updated because it is a root).
 #define GC_STORE_CAP(x,y) \
   do { \
+    printf("processing store.\n"); \
+    __asm__ __volatile__ ("daddiu $2, $2, 0"); \
+    __asm__ __volatile__ ("daddiu $3, $3, 0"); \
+    __asm__ __volatile__ ("daddiu $5, $5, 0"); \
     __capability void * tmpy = (y); \
+    __asm__ __volatile__ ("daddiu $16, $16, 0"); \
+    __asm__ __volatile__ ("daddiu $17, $17, 0"); \
+    __asm__ __volatile__ ("daddiu $18, $18, 0"); \
+    printf("x " #x " y " #y " [store] 0x%llx\n", (GC_ULL) tmpy); \
     __capability void * __capability * tmpx = (__capability void * __capability *) &(x); \
+    printf("tmpx evaluated ok: 0x%llx\n", (GC_ULL) GC_cheri_getbase(tmpx)); \
     if (GC_IN(tmpx, GC_state.old_generation.tospace)) \
     { \
-      if (GC_IN(tmpy, GC_state.thread_local_region.tospace)) \
+      printf("Checking young...\n"); \
+      if (GC_IN(GC_cheri_getbase(tmpy), GC_state.thread_local_region.tospace)) \
       { \
+        printf("handling OY store\n"); \
         GC_handle_oy_store(tmpx, tmpy); \
       } \
     } \
+    printf("storing tmpx, which is 0x%llx...\n", (GC_ULL) GC_cheri_getbase(tmpx)); \
     *tmpx = tmpy; \
+    printf("store done, setting null...\n"); \
     tmpx = NULL; \
+    printf("DONE!!\n"); \
   } while (0)
 //#define GC_STORE_CAP(x,y) \
   do { \

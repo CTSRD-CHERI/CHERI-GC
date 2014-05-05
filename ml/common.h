@@ -42,7 +42,7 @@ void
 __LOCK_MALLOC (void);
 void
 __UNLOCK_MALLOC (void);
-#define  ml_malloc(x)       cheri_getbase(GC_MALLOC((x)))
+#define  ml_malloc(x)       GC_MALLOC(x)
 #define  GC_INVALID_PTR()   NULL
 #define  GC_PTR_VALID(x)    ((x) != NULL)
 // --------------------End   GC_BOEHM-------------------

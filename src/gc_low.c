@@ -317,7 +317,12 @@ GC_handle_oy_store (__capability void * __capability * x, GC_cap_ptr y)
 
 GC_FUNC GC_cap_ptr
 GC_orperm (GC_cap_ptr cap, GC_ULL perm)
-{  
+{
+  GC_assert(GC_cheri_gettag(cap));
+  if (!(void*)GC_cheri_getbase(cap))
+  {
+    return cap;
+  }
   return GC_cheri_andperm(
           GC_cheri_ptr(GC_cheri_getbase(cap), GC_cheri_getlen(cap)),
           GC_cheri_getperm(cap) | perm);

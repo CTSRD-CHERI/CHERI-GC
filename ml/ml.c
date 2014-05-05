@@ -226,20 +226,20 @@ ml_print_plot_data (void)
     heapsycurr = GC_cheri_getlen(GC_state.thread_local_region.tospace),
     heapsymaxb = GC_state.thread_local_region.max_grow_size_before_collection,
     heapsymaxa = GC_state.thread_local_region.max_grow_size_after_collection;
-  printf("[plotdata] heap size: (young generation) I=%llu B=%llu A=%llu F=%llu\n",
+  printf("[plotdata] # heap size: (young generation) I=%llu B=%llu A=%llu F=%llu\n",
     heapsyinit, heapsymaxb, heapsymaxa, heapsycurr);
   
 #ifdef GC_GENERATIONAL
   unsigned long long
-    heapsoinit = GC_OLD_GENERATION_HEAP_SIZE,
+    heapsoinit = GC_OLD_GENERATION_SEMISPACE_SIZE,
     heapsocurr = GC_cheri_getlen(GC_state.old_generation.tospace),
     heapsomaxb = GC_state.old_generation.max_grow_size_before_collection,
     heapsomaxa = GC_state.old_generation.max_grow_size_after_collection;
-  printf("[plotdata] heap size: (old generation) I=%llu B=%llu A=%llu F=%llu\n",
+  printf("[plotdata] # heap size: (old generation) I=%llu B=%llu A=%llu F=%llu\n",
     heapsoinit, heapsomaxb, heapsomaxa, heapsocurr);
 #endif // GC_GENERATIONAL
 #elif defined(GC_BOEHM)
-  printf("[plotdata] Boehm heap size: %llu\n",
+  printf("[plotdata] # Boehm heap size: %llu\n",
     (unsigned long long) GC_get_heap_size());
 #endif
 }
