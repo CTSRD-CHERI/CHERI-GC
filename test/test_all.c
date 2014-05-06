@@ -165,6 +165,19 @@ typedef struct bintree_tag
   int value;
 } bintree;
 
+tf_func_t static int
+bintree_encode_value (int depth, int value);
+
+tf_func_t static void
+bintree_print (tf_cap_t bintree * tree, int depth);
+
+tf_func_t static int
+bintree_check (tf_cap_t bintree * tree, int depth, int value);
+
+tf_func_t static tf_cap_t bintree *
+bintree_create (int depth, int value);
+
+
 // ----------------------------------------------------------------------------
 // ------ To create a new test, just add it to the TESTS list and -------------
 // ------ define it with DEFINE_TEST. Tests should return 0 on ----------------
@@ -178,7 +191,8 @@ typedef struct bintree_tag
   X_MACRO(allocate_loads, "Tests how long it takes to allocate a large amount of data") \
   X_MACRO(old_pause_time_test, "Measures pause time of GC_collect ONLY") \
   X_MACRO(pause_time_test, "Measures collector pause time") \
-  */X_MACRO(pause_time_test2, "Measures collector pause time") \
+  X_MACRO(pause_time_test2, "Measures collector pause time")*/ \
+  X_MACRO(bintree_test, "Measures time taken to allocate a binary tree") \
   /*X_MACRO(experimental_test, "For experiments")*/
 
 #define DECLARE_TEST(test,descr) \
@@ -494,16 +508,17 @@ print_gc_stats2 (const char * msg)
 {
   #if defined(GC_CHERI)
 #if defined(GC_GENERATIONAL)
-  tf_printf(
-    "[plotdata] # %s my generational GC (yI=%d yB=%d yA=%d ycur=%d oI=%d oB=%d oA=%d ocur=%d)\n",
+  tf_printf("[plotdata] # %s my generational GC (yI=%d yB=%d yA=%d ycur=%d ",
     msg,
     (int) GC_THREAD_LOCAL_HEAP_SIZE,
-    (int) GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION,
-    (int) GC_THREAD_LOCAL_HEAP_MAX_SIZE,
-    (int) GC_cheri_getlen(GC_state.thread_local_region.tospace),
+    (int) GC_state.thread_local_region.max_grow_size_before_collection,
+    (int) GC_state.thread_local_region.max_grow_size_after_collection,
+    (int) GC_cheri_getlen(GC_state.thread_local_region.tospace)
+  );
+  tf_printf("oI=%d oB=%d oA=%d ocur=%d)\n",
     (int) GC_OLD_GENERATION_SEMISPACE_SIZE,
-    (int) GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION,
-    (int) GC_OLD_GENERATION_SEMISPACE_MAX_SIZE,
+    (int) GC_state.old_generation.max_grow_size_before_collection,
+    (int) GC_state.old_generation.max_grow_size_after_collection,
     (int) GC_cheri_getlen(GC_state.old_generation.tospace)
   );
 #else // GC_GENERATIONAL
@@ -511,8 +526,8 @@ print_gc_stats2 (const char * msg)
     "[plotdata] # %s my copying GC (I=%d B=%d A=%d cur=%d)\n",
     msg,
     (int) GC_THREAD_LOCAL_HEAP_SIZE,
-    (int) GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION,
-    (int) GC_THREAD_LOCAL_HEAP_MAX_SIZE,
+    (int) GC_state.thread_local_region.max_grow_size_before_collection,
+    (int) GC_state.thread_local_region.max_grow_size_after_collection,
     (int) GC_cheri_getlen(GC_state.thread_local_region.tospace)
   );
 #endif // GC_GENERATIONAL
@@ -574,7 +589,7 @@ DEFINE_TEST(pause_time_test)
 
 DEFINE_TEST(pause_time_test2)
 {
-  int allocation_size = flag_input_number * 100000;
+  int allocation_size = flag_input_number * 1000;
   int number_of_allocations = 1000;
   tf_printf("[plotdata] # %d allocations per iteration\n", number_of_allocations);
   tf_printf("[plotdata] # allocation size (B)        total time (us)\n");
@@ -617,6 +632,88 @@ DEFINE_TEST(pause_time_test2)
   return 0;
 }
 
+DEFINE_TEST(bintree_test)
+{
+  int depth = flag_input_number;
+  
+#ifdef GC_CHERI
+  int shift = depth >= 15 ? (depth-15) : 0;
+  int init_heap_sz = 200000;
+  size_t ycur = GC_ALIGN_32(GC_THREAD_LOCAL_HEAP_SIZE, size_t);
+  size_t ocur = GC_ALIGN_32(GC_OLD_GENERATION_SEMISPACE_SIZE, size_t);
+  GC_state.thread_local_region.max_grow_size_before_collection =
+    GC_ALIGN_32(4*(init_heap_sz<<shift), size_t); // young gen max before collect
+  GC_state.thread_local_region.max_grow_size_after_collection =
+    GC_ALIGN_32(4*(init_heap_sz<<shift), size_t); // young gen max after collect
+  GC_state.old_generation.max_grow_size_before_collection =
+    GC_ALIGN_32(4*10*(init_heap_sz<<shift), size_t); // old gen max before collect
+  GC_state.old_generation.max_grow_size_after_collection =
+    GC_ALIGN_32(4*10*(init_heap_sz<<shift), size_t); // old gen max after collect
+  
+  // GC_region_rebase requires the stack and registers saved, which normally
+  // happens inside the collector. This hack allows us to use GC_grow outside of
+  // the collector...
+  char buf_unaligned[32];
+  void * buf_aligned = GC_ALIGN_32(buf_unaligned, void*);
+  GC_state.stack_top = buf_aligned;
+  GC_state.reg_bottom = buf_aligned;
+  GC_state.reg_top = buf_aligned;
+  
+  if (!GC_grow(&GC_state.thread_local_region,
+               GC_state.thread_local_region.max_grow_size_before_collection-ycur,
+               GC_state.thread_local_region.max_grow_size_before_collection))
+  {
+    tf_printf("error: GC_grow young generation failed\n");
+    exit(1);
+  }
+  
+  if (!GC_grow(&GC_state.old_generation,
+               GC_state.old_generation.max_grow_size_before_collection-ocur,
+               GC_state.old_generation.max_grow_size_before_collection))
+  {
+    tf_printf("error: GC_grow old generation failed\n");
+    exit(1);
+  }
+  
+  
+#endif // GC_CHERI
+
+/*
+  BOEHM STATS:
+  heap size     bintree depth
+  2,052,096 for depth 15 (9s)
+  3,657,728 for depth 16 (18s),
+  8,679,424 for depth 17 (36s),
+  15,437,824 for depth 18 (72s)
+  27,451,392 for depth 19 (154s)
+  52,617,216 for depth 20 (312s)
+*/  
+  
+  print_gc_stats2("begin test");
+  
+  int i;
+  tf_time_t before = tf_time();
+  tf_cap_t bintree * tree = bintree_create(depth,0);
+  tf_time_t after = tf_time();
+  
+  tf_time_t diff = after - before;
+  
+  tf_printf("[plotdata] %d %llu\n", depth, (unsigned long long) diff);
+  
+  tf_printf("checking binary tree...\n");
+  if (!bintree_check(tree, depth, 0))
+  {
+    tf_printf("bintree check failed, exiting.\n");
+    fprintf(stderr, "error: bintree check failed, exiting.\n");
+    exit(1);
+  }
+  tf_printf("check completed ok\n");
+  //bintree_print(tree, depth); tf_printf("\n");
+  
+  print_gc_stats2("end test");
+  return 0;
+}
+
 DEFINE_TEST(experimental_test)
 {
   P tmp;
@@ -626,4 +723,142 @@ DEFINE_TEST(experimental_test)
   printf("tmp2 is 0x%llx\n", (tf_ull_t)(void*)tmp2);
   printf("tmp2->ptr is 0x%llx\n", (tf_ull_t)(void*)(tmp2->ptr));
   return 0;
+}
+
+
+tf_func_t static int
+bintree_encode_value (int depth, int value)
+{
+  return ((depth&0xFFFF) << 16) | (value&0xFFFF);
+}
+
+tf_func_t static tf_cap_t bintree *
+bintree_create (int depth, int value)
+{
+  tf_cap_t bintree * tree = tf_invalid_ptr;
+  tf_store_cap(tree, tf_malloc(sizeof(bintree)));
+  if (!(void*)tree) return tf_invalid_ptr;
+  tree->value = bintree_encode_value(depth, value);
+  tree->left = tf_invalid_ptr;
+  tree->right = tf_invalid_ptr;
+  
+  tf_malloc(50);
+  if (depth > 1)
+  {
+    tf_malloc(50);
+    
+    tf_store_cap( tree->left, bintree_create(depth-1, 2*value) );
+    if (!(void*)tree->left) return tf_invalid_ptr;
+    tf_assert( tf_cheri_gettag(tree->left) );
+    
+    tf_assert( bintree_check(tree->left, depth-1, 2*value) );
+    
+    tf_malloc(50);
+    
+    tf_store_cap( tree->right, bintree_create(depth-1, 2*value+1) );
+    if (!(void*)tree->right) return tf_invalid_ptr;
+    tf_assert( tf_cheri_gettag(tree->right) );
+
+    tf_assert( bintree_check(tree->right, depth-1, 2*value+1) );
+    
+    tf_malloc(50);
+    tf_assert( bintree_check(tree->right, depth-1, 2*value+1) );
+  }
+  tf_malloc(50);
+  if (!bintree_check(tree, depth, value))
+  {
+    tf_printf("At depth %d, value %d, bintree_check failed\n", depth, value);
+  }
+  tf_assert( bintree_check(tree, depth, value) );
+  
+  return tree;
+}
+
+tf_func_t static int
+bintree_check (tf_cap_t bintree * tree, int depth, int value)
+{
+  if (!tf_cheri_gettag(tree))
+  {
+    tf_printf("bintree_check: no tag (d=0x%x, v=0x%x)\n", depth, value);
+    return 0;
+  }
+#ifdef GC_CHERI
+  if (!GC_IN((void*)tree, GC_state.thread_local_region.tospace)
+#ifdef GC_GENERATIONAL
+      && !GC_IN((void*)tree, GC_state.old_generation.tospace)
+#endif // GC_GENERATIONAL
+  ) 
+  {
+    tf_printf("bintree_check: 0x%llx not in young or old generation (d=0x%x, v=0x%x)\n",
+      (tf_ull_t)(void*)tree, depth, value);
+    return 0;
+  }
+#endif // GC_CHERI
+  if (tree->value != bintree_encode_value(depth, value))
+  {
+    tf_printf("bintree_check: 0x%llx has bad value 0x%x (expected 0x%x) (d=0x%x, v=0x%x)\n",
+      (tf_ull_t)(void*)tree, tree->value, bintree_encode_value(depth, value), depth, value);
+    return 0;
+  }
+  if (depth>1)
+    return
+      bintree_check(tree->left, depth-1, 2*value) &&
+      bintree_check(tree->right, depth-1, 2*value+1);
+  else
+  {
+    if ((void*)tree->left)
+    {
+      tf_printf("bintree_check: not NULL left\n");
+      return 0;
+    }
+    if ((void*)tree->right)
+    {
+      tf_printf("bintree_check: not NULL right\n");
+      return 0;
+    }
+    return 1;
+  }
+}
+
+tf_func_t static void
+bintree_print (tf_cap_t bintree * tree, int depth)
+{
+  tf_assert((void*)tree);
+  int val = tree->value; // compiler crashes if print tree->value directly (why?)
+  
+  // -O2 optimises the above delay away, causing the compiler to crash
+  volatile int x = 0;
+  val += x;
+  
+  tf_printf("[0x%llx\n", (tf_ull_t) val);
+  if (depth>1)
+  {
+    tf_assert( (void*)tree->left );
+    tf_assert( (void*)tree->right );
+#ifdef GC_CHERI
+    tf_assert(GC_IN(
+      (void*)tree->left, GC_state.thread_local_region.tospace)
+#ifdef GC_GENERATIONAL
+      || GC_IN((void*)tree->left, GC_state.old_generation.tospace)
+#endif // GC_GENERATIONAL
+    );
+    tf_assert(GC_IN(
+      (void*)tree->right, GC_state.thread_local_region.tospace)
+#ifdef GC_GENERATIONAL
+      || GC_IN((void*)tree->right, GC_state.old_generation.tospace)
+#endif // GC_GENERATIONAL
+    );
+#endif // GC_CHERI
+    tf_printf(",L=0x%llx(", (tf_ull_t)(void*)tree->left);
+    bintree_print( tree->left, depth-1);
+    tf_printf("),R=0x%llx(", (tf_ull_t)(void*)tree->right);
+    bintree_print( tree->right, depth-1);
+    tf_printf(")");
+  }
+  else
+  {
+    tf_assert( !(void*)tree->left );
+    tf_assert( !(void*)tree->right );
+  }
+  tf_printf("]");
 }

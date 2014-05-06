@@ -14,6 +14,12 @@ GC_CAP void * GC_invalid_cap;
 struct GC_state_struct GC_state = {.initialized = 0};
 
 __attribute__((constructor)) GC_FUNC int
+GC_init_constructor ()
+{
+  return GC_init2("(GC_init_constructor)", 0);
+}
+
+GC_FUNC int
 GC_init2 (const char * file, int line)
 {
   printf("GC_init2 called from %s:%d%s\n", file, line,
@@ -99,7 +105,9 @@ GC_init2 (const char * file, int line)
     {
       GC_errf("GC_init2: could not get static top\n");
       return 1;
-    }    
+    }
+    
+    // only set GC_state.initialized on success
     GC_state.initialized = 1;
     GC_dbgf("initialized");
   }

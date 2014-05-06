@@ -5,6 +5,8 @@
 #include "gc_config.h"
 #ifdef GC_EPHEMERAL_TRAP_SUPPORT
 
+// By David Chisnall
+
 /**
  * A structure containing the source and destination for a capability store.
  */

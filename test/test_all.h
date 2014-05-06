@@ -32,8 +32,8 @@
 #define tf_cheri_gettag     GC_cheri_gettag
 #define tf_invalid_ptr      GC_INVALID_PTR()
 #define tf_ptr_valid        GC_PTR_VALID
-//#define tf_gc_init          GC_init
-#define tf_gc_init()        0
+#define tf_gc_init          GC_init
+//#define tf_gc_init()        0
 // --------------------End   GC_CHERI--------------------
 
 #elif defined(GC_BOEHM)
@@ -42,7 +42,7 @@
 #include <machine/cheri.h>
 #include <machine/cheric.h>
 #define  tf_cap_t
-#define  tf_malloc(x)       cheri_getbase(GC_MALLOC((x)))
+#define  tf_malloc(x)       GC_MALLOC((x))
 #define  tf_free(x)         do{}while(0)
 #define  tf_collect         GC_gcollect
 #define  tf_store_cap(x,y)  ((x) = (y))
@@ -76,7 +76,7 @@ __UNLOCK_MALLOC (void);
 #define tf_cheri_getlen     cheri_getlen
 #define tf_cheri_gettag     cheri_gettag
 #define tf_invalid_ptr      cheri_ptr(NULL, 0)
-#define tf_ptr_valid(x)     ( ((void*)(cheri_getbase(x))) != NULL)
+#define tf_ptr_valid(x)     ( ((void*)(cheri_getbase(x))) != NULL )
 #define tf_gc_init()        0
 
 tf_func_t tf_cap_t void *

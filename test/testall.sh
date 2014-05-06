@@ -1,11 +1,11 @@
 # this script is pushed to and run on cloud2 by Makefile.testall
-prog=/mnt/mbv21zfs/testall-boehm
+prog=/mnt/mbv21zfs/testall
 $prog 0
-i=1
+i=15
 while [ $i -le 20 ]
 do
   j=1
-  while [ $j -le 3 ]
+  while [ $j -le 1 ]
   do
     $prog $i data
     echo testall.sh: i=$i j=$j

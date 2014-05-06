@@ -1,6 +1,6 @@
 # These are system-dependent
-CHERI=/home/munraj/projectscratch/ctsrd-svn/cherilibs-build/trunk/tools/sdk
-#CHERI=/home/munraj/projectscratch/SDK
+#CHERI=/home/munraj/projectscratch/ctsrd-svn/cherilibs-build/trunk/tools/sdk
+CHERI=/home/munraj/projectscratch/SDK
 #CHERI=/home/munraj/projectscratch/SDK_NEW_1/sdk
 SSH_PASSWD_FILE=/home/munraj/ssh_passwd
 SSH_PRIV_KEY=/home/munraj/.ssh/mbv21
@@ -38,7 +38,7 @@ MEMWATCH_DIR=../memwatch
 # everything: clean lib gctest push run
 
 PATH:=$(CHERI):$(PATH)
-CC=PATH=$(PATH) $(CHERI)/bin/clang --sysroot $(CHERI) -integrated-as -msoft-float -O1
+CC=PATH=$(PATH) $(CHERI)/bin/clang --sysroot $(CHERI) -integrated-as -msoft-float -O2
 CFLAGS=-I$(GC_PRIV_INCLUDE)
 
 GC_SOURCES=objects/gc_init.o objects/gc_malloc.o objects/gc_debug.o \
@@ -103,6 +103,10 @@ push:
 	echo -e "set timeout 60\nspawn $(CMD1)\nexpect \": \"\nsend \"$(PASSWORD)\\\\n\"\ninteract\n" > cloud4_push_helper.expect && \
 	expect -f cloud4_push_helper.expect && \
 	rm -f cloud4_push_helper.expect
+push-cherrybox:
+	echo "[i] pushing file to cherrybox" && \
+	scp objects/gctest mbv21@cherrybox:~/gctest
+
 run:
 	echo "[i] running executable on cloud2" && \
 	echo -e "set timeout 60\nspawn $(CMD2)\nexpect \": \"\nsend \"$(PASSWORD)\\\\n\"\nexpect \":\"\nsend \"$(CLOUD2_PASSWORD)\\\\n\"\ninteract\n" > cloud4_push_helper.expect && \
@@ -139,6 +143,6 @@ pushml-cherrybox:
 	scp objects/mltest mbv21@cherrybox:~/mltest
 
 everything: clean lib gctest push run loc
-almost_everything: clean lib gctest push loc
+almost_everything: clean lib gctest push push-cherrybox loc
 ml: clean lib mltest pushml
 ml-all: clean lib mltest mltest-boehm mltest-no-gc pushml pushml-boehm pushml-no-gc pushml-cherrybox

@@ -33,7 +33,7 @@ GC_PUBLIC_INCLUDE=src/inc/
 GC_PRIV_INCLUDE=src/inc/
 TESTALL_SOURCES=test/test_all.c
 
-all: clean lib testall testall-boehm testall-no-gc push-testall
+all: clean lib testall testall-boehm testall-no-gc push-testall #push-cherrybox
 
 objects/%.o : src/%.c
 	$(CC) $(CFLAGS) -c -o $@ $< && \
@@ -82,6 +82,10 @@ push-testall:
 	echo -e "set timeout 60\nspawn $(CMD)\nexpect \": \"\nsend \"$(PASSWORD)\\\\n\"\ninteract\n" > cloud4_push_helper.expect && \
 	expect -f cloud4_push_helper.expect && \
 	rm -f cloud4_push_helper.expect
+
+push-cherrybox:
+	echo "[i] pushing file to cherrybox" && \
+	scp objects/testall mbv21@cherrybox:~/
 
 #remote-script:
 	#echo -e "\$$1 0\ni=1\nwhile [ \$$i -le 20 ]\ndo\n\$$1 \$$i data\ni=\`expr \$$i + 1\`\ndone" > objects/run10times.sh

@@ -4,7 +4,9 @@ M = load("-ascii", file);
 X=M(:,1);
 Y=M(:,2);
 
-X/=1000;
+if (X(2)>=1000)
+  X/=1000;
+endif
 Y/=1000000;
 
 # find equal X values and group them for averaging
@@ -51,16 +53,26 @@ xlabel "Allocation size (kB)";
 ylabel "Total time (s)";
 title 'Time taken by GC\_malloc() for 1000 consecutive allocations averaged over 10 independent runs for every 1kB';
 
-num_files=4;
+num_files=9;
 seriesName={
   "My generational GC (y=30k o=150k)",
   "My copying GC (y=30k)",
+  "",
+  "",
+  "",
+  "",
+  "",
   "",
   ""
 };
 symbols={
   "-o",
   "-x",
+  "",
+  "",
+  "",
+  "",
+  "",
   "",
   ""
 };

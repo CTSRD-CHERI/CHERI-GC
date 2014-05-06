@@ -137,9 +137,13 @@ extern struct GC_state_struct GC_state;
 // 0 : success
 // 1 : error
 #define GC_init()   GC_init2(__FILE__, __LINE__)
-
-__attribute__((constructor)) GC_FUNC int
+GC_FUNC int
 GC_init2 (const char * file, int line);
+
+// Called before main() on supported systems, in which case GC_init() does not
+// need to be explicitly called from the user program.
+__attribute__((constructor)) GC_FUNC int
+GC_init_constructor ();
 
 // Return values:
 // 0 : not initialized

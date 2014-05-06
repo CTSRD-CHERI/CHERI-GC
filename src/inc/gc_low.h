@@ -197,6 +197,20 @@ typedef __capability void * GC_cap_ptr;
 // moves somewhere afterwards then tmpy should be updated because it is a root).
 #define GC_STORE_CAP(x,y) \
   do { \
+    __capability void * tmpy = (y); \
+    __capability void * __capability * tmpx = (__capability void * __capability *) &(x); \
+    if (GC_IN(tmpx, GC_state.old_generation.tospace)) \
+    { \
+      if (GC_IN(GC_cheri_getbase(tmpy), GC_state.thread_local_region.tospace)) \
+      { \
+        GC_handle_oy_store(tmpx, tmpy); \
+      } \
+    } \
+    *tmpx = tmpy; \
+    tmpx = NULL; \
+  } while (0)
+//#define GC_STORE_CAP_DBG(x,y) \
+  do { \
     printf("processing store.\n"); \
     __asm__ __volatile__ ("daddiu $2, $2, 0"); \
     __asm__ __volatile__ ("daddiu $3, $3, 0"); \

@@ -1,6 +1,8 @@
 #include "gc_config.h"
 #ifdef GC_EPHEMERAL_TRAP_SUPPORT
 
+// By David Chisnall
+
 #include <sys/types.h>
 #include <machine/cheri.h>
 #include <assert.h>

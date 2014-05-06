@@ -514,7 +514,6 @@ GC_grow (struct GC_region * region, size_t hint, size_t max_size)
   GC_STOP_TIMING(GC_grow_time, "GC_grow %llu%s -> %llu%s",
     GC_MEM_PRETTY((GC_ULL) old_size), GC_MEM_PRETTY_UNIT((GC_ULL) old_size),
     GC_MEM_PRETTY((GC_ULL) new_size), GC_MEM_PRETTY_UNIT((GC_ULL) new_size));
-
   return new_size >= (old_size+hint);
 }
 

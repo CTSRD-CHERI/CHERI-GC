@@ -1,0 +1,27 @@
+=============================
+NOTE: this is with -O1, not -O2.
+NOTE: semispace sizes are quoted, not total heap size.
+
+"((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 60000"
+
+ML 600
+gen: y=70k, old=700k, time=2s
+boehm: final=196,608B, time=615ms
+copying: init=70k, max=400k, time=3s
+
+ML 6000
+gen: y=70k, old=7M, time=112s!!
+boehm: final=1,650,688B, time=3.369s
+copying: 6.4MB, time=2.705s (note: for a heap size of 1.6MB it ran out of memory, probably due to pointer size being 4x bigger...)
+gen: y=640k, old=7M, time=19s
+
+ML 30,000
+boehm: final=8,855,552, time=21s
+gen: y=4*1.7M, old=4*17M, time=42s
+gen: y=4*800k, old=4*8M, time=<ages>
+copying: 4*8MB, time=13s
+
+ML 60,000
+boehm: final=17,145,856B, time=40s
+gen: y=4*1.7M, old=4*17M, time=failed because stack overflow? (at around $sp=0x7ffbffefc0)
+copying: 4*17MB, time=25s
