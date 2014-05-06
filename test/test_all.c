@@ -190,9 +190,9 @@ bintree_create (int depth, int value);
   X_MACRO(malloc_time_test_with_collect, "Tests how long tf_malloc takes with collecting") \
   X_MACRO(allocate_loads, "Tests how long it takes to allocate a large amount of data") \
   X_MACRO(old_pause_time_test, "Measures pause time of GC_collect ONLY") \
-  X_MACRO(pause_time_test, "Measures collector pause time") \
-  X_MACRO(pause_time_test2, "Measures collector pause time")*/ \
-  X_MACRO(bintree_test, "Measures time taken to allocate a binary tree") \
+  X_MACRO(pause_time_test, "Measures collector pause time")*/ \
+  X_MACRO(pause_time_test2, "Measures collector pause time") \
+  /*X_MACRO(bintree_test, "Measures time taken to allocate a binary tree") \
   /*X_MACRO(experimental_test, "For experiments")*/
 
 #define DECLARE_TEST(test,descr) \
@@ -473,7 +473,7 @@ pause_time_test_helper (int number_of_allocations, size_t allocation_size,
     //printf("[%d] allocating...\n", i);
     tf_time_t before = tf_time();
     tf_cap_t void * p = tf_malloc(allocation_size);
-    //tf_free(p);
+    tf_free(p);
     tf_time_t after = tf_time();
     tf_time_t diff = after - before;
     if (!tf_ptr_valid(p))
@@ -638,18 +638,19 @@ DEFINE_TEST(bintree_test)
   
 #ifdef GC_CHERI
   int shift = depth >= 15 ? (depth-15) : 0;
-  int init_heap_sz = 200000;
+  int init_heap_sz = 2000000;
   size_t ycur = GC_ALIGN_32(GC_THREAD_LOCAL_HEAP_SIZE, size_t);
   size_t ocur = GC_ALIGN_32(GC_OLD_GENERATION_SEMISPACE_SIZE, size_t);
   GC_state.thread_local_region.max_grow_size_before_collection =
-    GC_ALIGN_32(4*(init_heap_sz<<shift), size_t); // young gen max before collect
+    GC_ALIGN_32(4*((init_heap_sz*2)<<shift), size_t); // young gen max before collect
   GC_state.thread_local_region.max_grow_size_after_collection =
-    GC_ALIGN_32(4*(init_heap_sz<<shift), size_t); // young gen max after collect
+    GC_ALIGN_32(4*((init_heap_sz*2)<<shift), size_t); // young gen max after collect
+#ifdef GC_GENERATIONAL
   GC_state.old_generation.max_grow_size_before_collection =
-    GC_ALIGN_32(4*10*(init_heap_sz<<shift), size_t); // old gen max before collect
+    GC_ALIGN_32(4*4*(init_heap_sz<<shift), size_t); // old gen max before collect
   GC_state.old_generation.max_grow_size_after_collection =
-    GC_ALIGN_32(4*10*(init_heap_sz<<shift), size_t); // old gen max after collect
-  
+    GC_ALIGN_32(4*4*(init_heap_sz<<shift), size_t); // old gen max after collect
+#endif // GC_GENERATIONAL
   // GC_region_rebase requires the stack and registers saved, which normally
   // happens inside the collector. This hack allows us to use GC_grow outside of
   // the collector...
@@ -666,7 +667,8 @@ DEFINE_TEST(bintree_test)
     tf_printf("error: GC_grow young generation failed\n");
     exit(1);
   }
-  
+
+#ifdef GC_GENERATIONAL  
   if (!GC_grow(&GC_state.old_generation,
                GC_state.old_generation.max_grow_size_before_collection-ocur,
                GC_state.old_generation.max_grow_size_before_collection))
@@ -674,7 +676,7 @@ DEFINE_TEST(bintree_test)
     tf_printf("error: GC_grow old generation failed\n");
     exit(1);
   }
-  
+#endif // GC_GENERATIONAL
   
 #endif // GC_CHERI
 
