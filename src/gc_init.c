@@ -197,6 +197,8 @@ GC_init_region
 #endif // GC_OY_STORE_DEFAULT
 #endif // GC_GENERATIONAL
   region->num_collections = 0;
+  region->num_allocations = 0;
+  region->num_copies = 0;
 #ifdef GC_GROW_HEAP
   region->max_grow_size_before_collection =
     GC_ALIGN_32(max_grow_size_before_collection, size_t);
@@ -249,6 +251,8 @@ GC_init_young_region (struct GC_region * region,
   region->scan = NULL;
   region->older_region = older_region;
   region->num_collections = 0;
+  region->num_allocations = 0;
+  region->num_copies = 0;
 #ifdef GC_USE_BITMAP
   int rc;
   region->tospace_bitmap = GC_low_malloc(sizeof(struct GC_bitmap));
@@ -312,6 +316,7 @@ GC_reset_region (struct GC_region * region)
   region->scan = NULL;
   region->num_allocations = 0;
   region->num_collections = 0;
+  region->num_copies = 0;
 #ifdef GC_USE_BITMAP
   GC_bitmap_clr(region->tospace_bitmap);
 #endif // GC_USE_BITMAP

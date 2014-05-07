@@ -17,7 +17,7 @@ struct GC_region
   __capability void * tospace, * fromspace, * free, ** scan;
   // The not-32-byte-aligned result from GC_low_malloc(), used by GC_grow().
   void * tospace_misaligned, * fromspace_misaligned;
-  int num_collections, num_allocations; // debugging/stats
+  int num_collections, num_allocations, num_copies; // debugging/stats
 
 #ifdef GC_USE_BITMAP
   struct GC_bitmap * tospace_bitmap, * fromspace_bitmap;

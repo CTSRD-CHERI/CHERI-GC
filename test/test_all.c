@@ -587,6 +587,7 @@ DEFINE_TEST(pause_time_test)
   return 0;
 }
 
+volatile tf_cap_t void * p;
 DEFINE_TEST(pause_time_test2)
 {
   int allocation_size = flag_input_number * 1000;
@@ -613,7 +614,7 @@ DEFINE_TEST(pause_time_test2)
   tf_time_t before = tf_time();
   for (i=0; i<number_of_allocations; i++)
   {
-    tf_cap_t void * p = tf_malloc(allocation_size);
+    p = tf_malloc(allocation_size);
     tf_free(p);
     if (!tf_ptr_valid(p))
     {

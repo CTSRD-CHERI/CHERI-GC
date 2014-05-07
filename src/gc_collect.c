@@ -257,6 +257,8 @@ GC_copy_object (struct GC_region * region,
   
   // No forwarding address present: do the actual copy and set the forwarding
   // address.
+  
+  region->num_copies++;
 
   GC_assert( GC_cheri_getlen(region->free) >= GC_cheri_getlen(cap) );
 

@@ -94,7 +94,8 @@ GC_debug_print_region_stats(struct GC_region * region)
              efree = free+lfree
 #ifdef GC_COLLECT_STATS
              , nalloc = (GC_ULL) region->num_allocations,
-             ncoll = (GC_ULL) region->num_collections
+             ncoll = (GC_ULL) region->num_collections,
+             ncopy = (GC_ULL) region->num_copies
 #endif // GC_COLLECT_STATS
 #ifdef GC_TIME
              , tcoll = (GC_ULL) region->time_spent_in_collector
@@ -129,6 +130,7 @@ GC_debug_print_region_stats(struct GC_region * region)
     "stats:\n"
     "allocations : %llu (%llu%s)\n"
     "collections : %llu (%llu%s)\n"
+    "copies      : %llu (%llu%s)\n"
 #endif // GC_COLLECT_STATS
 #ifdef GC_TIME
     "time spent in collector : %llu%s\n"
@@ -158,7 +160,8 @@ GC_debug_print_region_stats(struct GC_region * region)
     lto, GC_MEM_PRETTY(lto), GC_MEM_PRETTY_UNIT(lto)
 #ifdef GC_COLLECT_STATS
     , nalloc, GC_NUM_PRETTY(nalloc), GC_NUM_PRETTY_UNIT(nalloc),
-    ncoll, GC_NUM_PRETTY(ncoll), GC_NUM_PRETTY_UNIT(ncoll)
+    ncoll, GC_NUM_PRETTY(ncoll), GC_NUM_PRETTY_UNIT(ncoll),
+    ncopy, GC_NUM_PRETTY(ncopy), GC_NUM_PRETTY_UNIT(ncopy)
 #endif // GC_COLLECT_STATS
 #ifdef GC_TIME
     , GC_TIME_PRETTY(tcoll), GC_TIME_PRETTY_UNIT(tcoll)
