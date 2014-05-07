@@ -587,9 +587,12 @@ DEFINE_TEST(pause_time_test)
   return 0;
 }
 
-volatile tf_cap_t void * p;
+volatile tf_cap_t void * p, * oldp;
 DEFINE_TEST(pause_time_test2)
 {
+#ifdef GC_NONE
+  oldp = tf_invalid_ptr;
+#endif // GC_NONE
   int allocation_size = flag_input_number * 1000;
   int number_of_allocations = 1000;
   tf_printf("[plotdata] # %d allocations per iteration\n", number_of_allocations);
@@ -615,7 +618,10 @@ DEFINE_TEST(pause_time_test2)
   for (i=0; i<number_of_allocations; i++)
   {
     p = tf_malloc(allocation_size);
-    tf_free(p);
+#ifdef GC_NONE
+    if (tf_ptr_valid(oldp)) tf_free(oldp);
+    oldp = p;
+#endif // GC_NONE
     if (!tf_ptr_valid(p))
     {
       tf_printf("out of memory\n");
