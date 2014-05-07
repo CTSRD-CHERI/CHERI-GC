@@ -1,0 +1,2424 @@
+spawn ssh -i /home/munraj/.ssh/mbv21 mbv21@cloud2 /mnt/mbv21zfs//testall.sh
+Enter passphrase for key '/home/munraj/.ssh/mbv21': 
+Password for mbv21@cloud2:
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotscript] set terminal png
+[plotscript] set output "objects/plot.png"
+[plotscript] set title "Time taken by GC_malloc() for 1000 allocations"
+[plotscript] set xlabel "Allocation size (B)"
+[plotscript] set ylabel "Pause time (us)"
+[plotscript] #set xrange [-2:2]
+[plotscript] #set yrange [-10:10]
+[plotscript] set zeroaxis
+[plotscript] #plot 'objects/plot_data' with yerrorbars
+[plotscript] plot 'objects/plot_data' with linespoints
+[plotdata] 0 5966
+[plotdata] # begin test Boehm GC (I=65536)
+[plotdata] # end test Boehm GC (I=65536)
+----------Finished test pause_time_test2 (took 7ms)----------
+Boehm heap size: 65536
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 1000 530949
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 531ms)----------
+Boehm heap size: 196608
+testall.sh: i=1 j=1
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 1000 499396
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 500ms)----------
+Boehm heap size: 196608
+testall.sh: i=1 j=2
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 1000 348432
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 349ms)----------
+Boehm heap size: 196608
+testall.sh: i=1 j=3
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 1000 348371
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 349ms)----------
+Boehm heap size: 196608
+testall.sh: i=1 j=4
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 1000 355821
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 499ms)----------
+Boehm heap size: 196608
+testall.sh: i=1 j=5
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 1000 515057
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 515ms)----------
+Boehm heap size: 196608
+testall.sh: i=1 j=6
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 1000 502717
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 503ms)----------
+Boehm heap size: 196608
+testall.sh: i=1 j=7
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 1000 349596
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 350ms)----------
+Boehm heap size: 196608
+testall.sh: i=1 j=8
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 1000 532729
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 533ms)----------
+Boehm heap size: 196608
+testall.sh: i=1 j=9
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 1000 499973
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 500ms)----------
+Boehm heap size: 196608
+testall.sh: i=1 j=10
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 2000 616802
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 619ms)----------
+Boehm heap size: 196608
+testall.sh: i=2 j=1
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 2000 679811
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 680ms)----------
+Boehm heap size: 196608
+testall.sh: i=2 j=2
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 2000 778523
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 779ms)----------
+Boehm heap size: 196608
+testall.sh: i=2 j=3
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 2000 787806
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 790ms)----------
+Boehm heap size: 196608
+testall.sh: i=2 j=4
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 2000 774072
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 774ms)----------
+Boehm heap size: 196608
+testall.sh: i=2 j=5
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 2000 770466
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 771ms)----------
+Boehm heap size: 196608
+testall.sh: i=2 j=6
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 2000 779551
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 780ms)----------
+Boehm heap size: 196608
+testall.sh: i=2 j=7
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 2000 824879
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 825ms)----------
+Boehm heap size: 196608
+testall.sh: i=2 j=8
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 2000 629310
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 630ms)----------
+Boehm heap size: 196608
+testall.sh: i=2 j=9
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 2000 1049708
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 1050ms)----------
+Boehm heap size: 196608
+testall.sh: i=2 j=10
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 3000 1215957
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 1216ms)----------
+Boehm heap size: 196608
+testall.sh: i=3 j=1
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 3000 1328293
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 1329ms)----------
+Boehm heap size: 196608
+testall.sh: i=3 j=2
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 3000 1217683
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 1218ms)----------
+Boehm heap size: 196608
+testall.sh: i=3 j=3
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 3000 1181767
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 1184ms)----------
+Boehm heap size: 196608
+testall.sh: i=3 j=4
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 3000 1330396
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 1331ms)----------
+Boehm heap size: 196608
+testall.sh: i=3 j=5
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 3000 1336269
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 1337ms)----------
+Boehm heap size: 196608
+testall.sh: i=3 j=6
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 3000 1310445
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 1311ms)----------
+Boehm heap size: 196608
+testall.sh: i=3 j=7
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 3000 1176499
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 1177ms)----------
+Boehm heap size: 196608
+testall.sh: i=3 j=8
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 3000 1232207
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 1402ms)----------
+Boehm heap size: 196608
+testall.sh: i=3 j=9
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 3000 1324609
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 1325ms)----------
+Boehm heap size: 196608
+testall.sh: i=3 j=10
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 4000 1317415
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 1318ms)----------
+Boehm heap size: 196608
+testall.sh: i=4 j=1
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 4000 1175525
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 1178ms)----------
+Boehm heap size: 196608
+testall.sh: i=4 j=2
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 4000 1341023
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 1342ms)----------
+Boehm heap size: 196608
+testall.sh: i=4 j=3
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 4000 1381176
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 1384ms)----------
+Boehm heap size: 196608
+testall.sh: i=4 j=4
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 4000 1251174
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 1252ms)----------
+Boehm heap size: 196608
+testall.sh: i=4 j=5
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 4000 1315624
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 1316ms)----------
+Boehm heap size: 196608
+testall.sh: i=4 j=6
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 4000 1410210
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 1411ms)----------
+Boehm heap size: 196608
+testall.sh: i=4 j=7
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 4000 1355098
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 1356ms)----------
+Boehm heap size: 196608
+testall.sh: i=4 j=8
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 4000 1148574
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 1149ms)----------
+Boehm heap size: 196608
+testall.sh: i=4 j=9
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 4000 1198446
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 1199ms)----------
+Boehm heap size: 196608
+testall.sh: i=4 j=10
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 5000 1935471
+[plotdata] # begin test Boehm GC (I=270336)
+[plotdata] # end test Boehm GC (I=270336)
+----------Finished test pause_time_test2 (took 1936ms)----------
+Boehm heap size: 270336
+testall.sh: i=5 j=1
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 5000 1717600
+[plotdata] # begin test Boehm GC (I=270336)
+[plotdata] # end test Boehm GC (I=270336)
+----------Finished test pause_time_test2 (took 1718ms)----------
+Boehm heap size: 270336
+testall.sh: i=5 j=2
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 5000 1890526
+[plotdata] # begin test Boehm GC (I=270336)
+[plotdata] # end test Boehm GC (I=270336)
+----------Finished test pause_time_test2 (took 1891ms)----------
+Boehm heap size: 270336
+testall.sh: i=5 j=3
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 5000 1883473
+[plotdata] # begin test Boehm GC (I=270336)
+[plotdata] # end test Boehm GC (I=270336)
+----------Finished test pause_time_test2 (took 1905ms)----------
+Boehm heap size: 270336
+testall.sh: i=5 j=4
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 5000 1726700
+[plotdata] # begin test Boehm GC (I=270336)
+[plotdata] # end test Boehm GC (I=270336)
+----------Finished test pause_time_test2 (took 1727ms)----------
+Boehm heap size: 270336
+testall.sh: i=5 j=5
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 5000 1889977
+[plotdata] # begin test Boehm GC (I=270336)
+[plotdata] # end test Boehm GC (I=270336)
+----------Finished test pause_time_test2 (took 1890ms)----------
+Boehm heap size: 270336
+testall.sh: i=5 j=6
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 5000 1948564
+[plotdata] # begin test Boehm GC (I=270336)
+[plotdata] # end test Boehm GC (I=270336)
+----------Finished test pause_time_test2 (took 1949ms)----------
+Boehm heap size: 270336
+testall.sh: i=5 j=7
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 5000 2034832
+[plotdata] # begin test Boehm GC (I=270336)
+[plotdata] # end test Boehm GC (I=270336)
+----------Finished test pause_time_test2 (took 2035ms)----------
+Boehm heap size: 270336
+testall.sh: i=5 j=8
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 5000 1885953
+[plotdata] # begin test Boehm GC (I=270336)
+[plotdata] # end test Boehm GC (I=270336)
+----------Finished test pause_time_test2 (took 1886ms)----------
+Boehm heap size: 270336
+testall.sh: i=5 j=9
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 5000 1893467
+[plotdata] # begin test Boehm GC (I=270336)
+[plotdata] # end test Boehm GC (I=270336)
+----------Finished test pause_time_test2 (took 1894ms)----------
+Boehm heap size: 270336
+testall.sh: i=5 j=10
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 6000 1884208
+[plotdata] # begin test Boehm GC (I=270336)
+[plotdata] # end test Boehm GC (I=270336)
+----------Finished test pause_time_test2 (took 1885ms)----------
+Boehm heap size: 270336
+testall.sh: i=6 j=1
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 6000 1768727
+[plotdata] # begin test Boehm GC (I=270336)
+[plotdata] # end test Boehm GC (I=270336)
+----------Finished test pause_time_test2 (took 1769ms)----------
+Boehm heap size: 270336
+testall.sh: i=6 j=2
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 6000 1905706
+[plotdata] # begin test Boehm GC (I=270336)
+[plotdata] # end test Boehm GC (I=270336)
+----------Finished test pause_time_test2 (took 1906ms)----------
+Boehm heap size: 270336
+testall.sh: i=6 j=3
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 6000 1726913
+[plotdata] # begin test Boehm GC (I=270336)
+[plotdata] # end test Boehm GC (I=270336)
+----------Finished test pause_time_test2 (took 1730ms)----------
+Boehm heap size: 270336
+testall.sh: i=6 j=4
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 6000 1878410
+[plotdata] # begin test Boehm GC (I=270336)
+[plotdata] # end test Boehm GC (I=270336)
+----------Finished test pause_time_test2 (took 1879ms)----------
+Boehm heap size: 270336
+testall.sh: i=6 j=5
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 6000 1889816
+[plotdata] # begin test Boehm GC (I=270336)
+[plotdata] # end test Boehm GC (I=270336)
+----------Finished test pause_time_test2 (took 1890ms)----------
+Boehm heap size: 270336
+testall.sh: i=6 j=6
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 6000 1729685
+[plotdata] # begin test Boehm GC (I=270336)
+[plotdata] # end test Boehm GC (I=270336)
+----------Finished test pause_time_test2 (took 1730ms)----------
+Boehm heap size: 270336
+testall.sh: i=6 j=7
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 6000 1909027
+[plotdata] # begin test Boehm GC (I=270336)
+[plotdata] # end test Boehm GC (I=270336)
+----------Finished test pause_time_test2 (took 1909ms)----------
+Boehm heap size: 270336
+testall.sh: i=6 j=8
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 6000 1744382
+[plotdata] # begin test Boehm GC (I=270336)
+[plotdata] # end test Boehm GC (I=270336)
+----------Finished test pause_time_test2 (took 1745ms)----------
+Boehm heap size: 270336
+testall.sh: i=6 j=9
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 6000 1903883
+[plotdata] # begin test Boehm GC (I=270336)
+[plotdata] # end test Boehm GC (I=270336)
+----------Finished test pause_time_test2 (took 1904ms)----------
+Boehm heap size: 270336
+testall.sh: i=6 j=10
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 7000 2015912
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 2016ms)----------
+Boehm heap size: 196608
+testall.sh: i=7 j=1
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 7000 2184011
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 2184ms)----------
+Boehm heap size: 196608
+testall.sh: i=7 j=2
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 7000 2220153
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 2221ms)----------
+Boehm heap size: 196608
+testall.sh: i=7 j=3
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 7000 2238114
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 2239ms)----------
+Boehm heap size: 196608
+testall.sh: i=7 j=4
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 7000 2165084
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 2165ms)----------
+Boehm heap size: 196608
+testall.sh: i=7 j=5
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 7000 2204131
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 2205ms)----------
+Boehm heap size: 196608
+testall.sh: i=7 j=6
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 7000 2185788
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 2188ms)----------
+Boehm heap size: 196608
+testall.sh: i=7 j=7
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 7000 2039181
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 2040ms)----------
+Boehm heap size: 196608
+testall.sh: i=7 j=8
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 7000 2044699
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 2045ms)----------
+Boehm heap size: 196608
+testall.sh: i=7 j=9
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 7000 2094724
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 2095ms)----------
+Boehm heap size: 196608
+testall.sh: i=7 j=10
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 8000 2316146
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 2317ms)----------
+Boehm heap size: 196608
+testall.sh: i=8 j=1
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 8000 2218708
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 2219ms)----------
+Boehm heap size: 196608
+testall.sh: i=8 j=2
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 8000 2209899
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 2210ms)----------
+Boehm heap size: 196608
+testall.sh: i=8 j=3
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 8000 2043205
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 2044ms)----------
+Boehm heap size: 196608
+testall.sh: i=8 j=4
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 8000 2084200
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 2085ms)----------
+Boehm heap size: 196608
+testall.sh: i=8 j=5
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 8000 2213008
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 2213ms)----------
+Boehm heap size: 196608
+testall.sh: i=8 j=6
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 8000 4281357
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 4282ms)----------
+Boehm heap size: 196608
+testall.sh: i=8 j=7
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 8000 2241002
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 2241ms)----------
+Boehm heap size: 196608
+testall.sh: i=8 j=8
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 8000 2235836
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 2236ms)----------
+Boehm heap size: 196608
+testall.sh: i=8 j=9
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 8000 2193461
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 2196ms)----------
+Boehm heap size: 196608
+testall.sh: i=8 j=10
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 9000 2801534
+[plotdata] # begin test Boehm GC (I=274432)
+[plotdata] # end test Boehm GC (I=274432)
+----------Finished test pause_time_test2 (took 2804ms)----------
+Boehm heap size: 274432
+testall.sh: i=9 j=1
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 9000 2444252
+[plotdata] # begin test Boehm GC (I=274432)
+[plotdata] # end test Boehm GC (I=274432)
+----------Finished test pause_time_test2 (took 2445ms)----------
+Boehm heap size: 274432
+testall.sh: i=9 j=2
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 9000 2435216
+[plotdata] # begin test Boehm GC (I=274432)
+[plotdata] # end test Boehm GC (I=274432)
+----------Finished test pause_time_test2 (took 2438ms)----------
+Boehm heap size: 274432
+testall.sh: i=9 j=3
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 9000 2568410
+[plotdata] # begin test Boehm GC (I=274432)
+[plotdata] # end test Boehm GC (I=274432)
+----------Finished test pause_time_test2 (took 2569ms)----------
+Boehm heap size: 274432
+testall.sh: i=9 j=4
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 9000 2591569
+[plotdata] # begin test Boehm GC (I=274432)
+[plotdata] # end test Boehm GC (I=274432)
+----------Finished test pause_time_test2 (took 2592ms)----------
+Boehm heap size: 274432
+testall.sh: i=9 j=5
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 9000 2471434
+[plotdata] # begin test Boehm GC (I=274432)
+[plotdata] # end test Boehm GC (I=274432)
+----------Finished test pause_time_test2 (took 2472ms)----------
+Boehm heap size: 274432
+testall.sh: i=9 j=6
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 9000 2509321
+[plotdata] # begin test Boehm GC (I=274432)
+[plotdata] # end test Boehm GC (I=274432)
+----------Finished test pause_time_test2 (took 2510ms)----------
+Boehm heap size: 274432
+testall.sh: i=9 j=7
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 9000 2584851
+[plotdata] # begin test Boehm GC (I=274432)
+[plotdata] # end test Boehm GC (I=274432)
+----------Finished test pause_time_test2 (took 2585ms)----------
+Boehm heap size: 274432
+testall.sh: i=9 j=8
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 9000 2435813
+[plotdata] # begin test Boehm GC (I=274432)
+[plotdata] # end test Boehm GC (I=274432)
+----------Finished test pause_time_test2 (took 2436ms)----------
+Boehm heap size: 274432
+testall.sh: i=9 j=9
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 9000 2409879
+[plotdata] # begin test Boehm GC (I=274432)
+[plotdata] # end test Boehm GC (I=274432)
+----------Finished test pause_time_test2 (took 2410ms)----------
+Boehm heap size: 274432
+testall.sh: i=9 j=10
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 10000 3150338
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 3153ms)----------
+Boehm heap size: 196608
+testall.sh: i=10 j=1
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 10000 3090854
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 3093ms)----------
+Boehm heap size: 196608
+testall.sh: i=10 j=2
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 10000 3114713
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 3115ms)----------
+Boehm heap size: 196608
+testall.sh: i=10 j=3
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 10000 2937306
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 2939ms)----------
+Boehm heap size: 196608
+testall.sh: i=10 j=4
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 10000 2902041
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 2902ms)----------
+Boehm heap size: 196608
+testall.sh: i=10 j=5
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 10000 2923142
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 2924ms)----------
+Boehm heap size: 196608
+testall.sh: i=10 j=6
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 10000 2902444
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 2903ms)----------
+Boehm heap size: 196608
+testall.sh: i=10 j=7
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 10000 2934377
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 2937ms)----------
+Boehm heap size: 196608
+testall.sh: i=10 j=8
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 10000 3081431
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 3084ms)----------
+Boehm heap size: 196608
+testall.sh: i=10 j=9
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 10000 3066664
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 3068ms)----------
+Boehm heap size: 196608
+testall.sh: i=10 j=10
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 11000 3085360
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 3086ms)----------
+Boehm heap size: 196608
+testall.sh: i=11 j=1
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 11000 2925049
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 2925ms)----------
+Boehm heap size: 196608
+testall.sh: i=11 j=2
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 11000 2899189
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 2900ms)----------
+Boehm heap size: 196608
+testall.sh: i=11 j=3
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 11000 2940705
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 2941ms)----------
+Boehm heap size: 196608
+testall.sh: i=11 j=4
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 11000 3074234
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 3075ms)----------
+Boehm heap size: 196608
+testall.sh: i=11 j=5
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 11000 3069930
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 3070ms)----------
+Boehm heap size: 196608
+testall.sh: i=11 j=6
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 11000 3064457
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 3065ms)----------
+Boehm heap size: 196608
+testall.sh: i=11 j=7
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 11000 2900260
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 2901ms)----------
+Boehm heap size: 196608
+testall.sh: i=11 j=8
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 11000 3069539
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 3070ms)----------
+Boehm heap size: 196608
+testall.sh: i=11 j=9
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 11000 3133547
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 3134ms)----------
+Boehm heap size: 196608
+testall.sh: i=11 j=10
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 12000 3103590
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 3104ms)----------
+Boehm heap size: 196608
+testall.sh: i=12 j=1
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 12000 2935848
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 2936ms)----------
+Boehm heap size: 196608
+testall.sh: i=12 j=2
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 12000 3066454
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 3067ms)----------
+Boehm heap size: 196608
+testall.sh: i=12 j=3
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 12000 3067911
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 3068ms)----------
+Boehm heap size: 196608
+testall.sh: i=12 j=4
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 12000 3088850
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 3089ms)----------
+Boehm heap size: 196608
+testall.sh: i=12 j=5
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 12000 2959802
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 2960ms)----------
+Boehm heap size: 196608
+testall.sh: i=12 j=6
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 12000 3059604
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 3060ms)----------
+Boehm heap size: 196608
+testall.sh: i=12 j=7
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 12000 3098713
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 3099ms)----------
+Boehm heap size: 196608
+testall.sh: i=12 j=8
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 12000 3072982
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 3075ms)----------
+Boehm heap size: 196608
+testall.sh: i=12 j=9
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 12000 2915003
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 2915ms)----------
+Boehm heap size: 196608
+testall.sh: i=12 j=10
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 13000 3235908
+[plotdata] # begin test Boehm GC (I=278528)
+[plotdata] # end test Boehm GC (I=278528)
+----------Finished test pause_time_test2 (took 3236ms)----------
+Boehm heap size: 278528
+testall.sh: i=13 j=1
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 13000 3200169
+[plotdata] # begin test Boehm GC (I=278528)
+[plotdata] # end test Boehm GC (I=278528)
+----------Finished test pause_time_test2 (took 3201ms)----------
+Boehm heap size: 278528
+testall.sh: i=13 j=2
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 13000 3479035
+[plotdata] # begin test Boehm GC (I=278528)
+[plotdata] # end test Boehm GC (I=278528)
+----------Finished test pause_time_test2 (took 3479ms)----------
+Boehm heap size: 278528
+testall.sh: i=13 j=3
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 13000 3360061
+[plotdata] # begin test Boehm GC (I=278528)
+[plotdata] # end test Boehm GC (I=278528)
+----------Finished test pause_time_test2 (took 3360ms)----------
+Boehm heap size: 278528
+testall.sh: i=13 j=4
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 13000 4009149
+[plotdata] # begin test Boehm GC (I=278528)
+[plotdata] # end test Boehm GC (I=278528)
+----------Finished test pause_time_test2 (took 4010ms)----------
+Boehm heap size: 278528
+testall.sh: i=13 j=5
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 13000 3201518
+[plotdata] # begin test Boehm GC (I=278528)
+[plotdata] # end test Boehm GC (I=278528)
+----------Finished test pause_time_test2 (took 3202ms)----------
+Boehm heap size: 278528
+testall.sh: i=13 j=6
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 13000 3403769
+[plotdata] # begin test Boehm GC (I=278528)
+[plotdata] # end test Boehm GC (I=278528)
+----------Finished test pause_time_test2 (took 3404ms)----------
+Boehm heap size: 278528
+testall.sh: i=13 j=7
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 13000 3388001
+[plotdata] # begin test Boehm GC (I=278528)
+[plotdata] # end test Boehm GC (I=278528)
+----------Finished test pause_time_test2 (took 3388ms)----------
+Boehm heap size: 278528
+testall.sh: i=13 j=8
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 13000 3330113
+[plotdata] # begin test Boehm GC (I=278528)
+[plotdata] # end test Boehm GC (I=278528)
+----------Finished test pause_time_test2 (took 3332ms)----------
+Boehm heap size: 278528
+testall.sh: i=13 j=9
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 13000 3199865
+[plotdata] # begin test Boehm GC (I=278528)
+[plotdata] # end test Boehm GC (I=278528)
+----------Finished test pause_time_test2 (took 3200ms)----------
+Boehm heap size: 278528
+testall.sh: i=13 j=10
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 14000 3538978
+[plotdata] # begin test Boehm GC (I=278528)
+[plotdata] # end test Boehm GC (I=278528)
+----------Finished test pause_time_test2 (took 3539ms)----------
+Boehm heap size: 278528
+testall.sh: i=14 j=1
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 14000 3436590
+[plotdata] # begin test Boehm GC (I=278528)
+[plotdata] # end test Boehm GC (I=278528)
+----------Finished test pause_time_test2 (took 3438ms)----------
+Boehm heap size: 278528
+testall.sh: i=14 j=2
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 14000 3449014
+[plotdata] # begin test Boehm GC (I=278528)
+[plotdata] # end test Boehm GC (I=278528)
+----------Finished test pause_time_test2 (took 3449ms)----------
+Boehm heap size: 278528
+testall.sh: i=14 j=3
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 14000 3328301
+[plotdata] # begin test Boehm GC (I=278528)
+[plotdata] # end test Boehm GC (I=278528)
+----------Finished test pause_time_test2 (took 3330ms)----------
+Boehm heap size: 278528
+testall.sh: i=14 j=4
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 14000 3231570
+[plotdata] # begin test Boehm GC (I=278528)
+[plotdata] # end test Boehm GC (I=278528)
+----------Finished test pause_time_test2 (took 3232ms)----------
+Boehm heap size: 278528
+testall.sh: i=14 j=5
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 14000 3368250
+[plotdata] # begin test Boehm GC (I=278528)
+[plotdata] # end test Boehm GC (I=278528)
+----------Finished test pause_time_test2 (took 3369ms)----------
+Boehm heap size: 278528
+testall.sh: i=14 j=6
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 14000 3201574
+[plotdata] # begin test Boehm GC (I=278528)
+[plotdata] # end test Boehm GC (I=278528)
+----------Finished test pause_time_test2 (took 3202ms)----------
+Boehm heap size: 278528
+testall.sh: i=14 j=7
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 14000 3380328
+[plotdata] # begin test Boehm GC (I=278528)
+[plotdata] # end test Boehm GC (I=278528)
+----------Finished test pause_time_test2 (took 3381ms)----------
+Boehm heap size: 278528
+testall.sh: i=14 j=8
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 14000 3354701
+[plotdata] # begin test Boehm GC (I=278528)
+[plotdata] # end test Boehm GC (I=278528)
+----------Finished test pause_time_test2 (took 3355ms)----------
+Boehm heap size: 278528
+testall.sh: i=14 j=9
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 14000 3363083
+[plotdata] # begin test Boehm GC (I=278528)
+[plotdata] # end test Boehm GC (I=278528)
+----------Finished test pause_time_test2 (took 3364ms)----------
+Boehm heap size: 278528
+testall.sh: i=14 j=10
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 15000 4259415
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 4260ms)----------
+Boehm heap size: 196608
+testall.sh: i=15 j=1
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 15000 4266780
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 4270ms)----------
+Boehm heap size: 196608
+testall.sh: i=15 j=2
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 15000 4270581
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 4273ms)----------
+Boehm heap size: 196608
+testall.sh: i=15 j=3
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 15000 4265633
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 4266ms)----------
+Boehm heap size: 196608
+testall.sh: i=15 j=4
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 15000 4291727
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 4294ms)----------
+Boehm heap size: 196608
+testall.sh: i=15 j=5
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 15000 4397422
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 4398ms)----------
+Boehm heap size: 196608
+testall.sh: i=15 j=6
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 15000 4145580
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 4146ms)----------
+Boehm heap size: 196608
+testall.sh: i=15 j=7
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 15000 4072730
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 4073ms)----------
+Boehm heap size: 196608
+testall.sh: i=15 j=8
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 15000 4103474
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 4104ms)----------
+Boehm heap size: 196608
+testall.sh: i=15 j=9
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 15000 4301258
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 4302ms)----------
+Boehm heap size: 196608
+testall.sh: i=15 j=10
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 16000 4256472
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 4257ms)----------
+Boehm heap size: 196608
+testall.sh: i=16 j=1
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 16000 4298682
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 4299ms)----------
+Boehm heap size: 196608
+testall.sh: i=16 j=2
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 16000 4359238
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 4360ms)----------
+Boehm heap size: 196608
+testall.sh: i=16 j=3
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 16000 4105087
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 4106ms)----------
+Boehm heap size: 196608
+testall.sh: i=16 j=4
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 16000 6412736
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 6413ms)----------
+Boehm heap size: 196608
+testall.sh: i=16 j=5
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 16000 4175469
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 4176ms)----------
+Boehm heap size: 196608
+testall.sh: i=16 j=6
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 16000 4244852
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 4245ms)----------
+Boehm heap size: 196608
+testall.sh: i=16 j=7
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 16000 4104479
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 4105ms)----------
+Boehm heap size: 196608
+testall.sh: i=16 j=8
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 16000 4329849
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 4330ms)----------
+Boehm heap size: 196608
+testall.sh: i=16 j=9
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 16000 4110214
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 4111ms)----------
+Boehm heap size: 196608
+testall.sh: i=16 j=10
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 17000 3989376
+[plotdata] # begin test Boehm GC (I=282624)
+[plotdata] # end test Boehm GC (I=282624)
+----------Finished test pause_time_test2 (took 3990ms)----------
+Boehm heap size: 282624
+testall.sh: i=17 j=1
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 17000 4171574
+[plotdata] # begin test Boehm GC (I=282624)
+[plotdata] # end test Boehm GC (I=282624)
+----------Finished test pause_time_test2 (took 4172ms)----------
+Boehm heap size: 282624
+testall.sh: i=17 j=2
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 17000 4072661
+[plotdata] # begin test Boehm GC (I=282624)
+[plotdata] # end test Boehm GC (I=282624)
+----------Finished test pause_time_test2 (took 4073ms)----------
+Boehm heap size: 282624
+testall.sh: i=17 j=3
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 17000 4103199
+[plotdata] # begin test Boehm GC (I=282624)
+[plotdata] # end test Boehm GC (I=282624)
+----------Finished test pause_time_test2 (took 4104ms)----------
+Boehm heap size: 282624
+testall.sh: i=17 j=4
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 17000 4099222
+[plotdata] # begin test Boehm GC (I=282624)
+[plotdata] # end test Boehm GC (I=282624)
+----------Finished test pause_time_test2 (took 4100ms)----------
+Boehm heap size: 282624
+testall.sh: i=17 j=5
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 17000 4046265
+[plotdata] # begin test Boehm GC (I=282624)
+[plotdata] # end test Boehm GC (I=282624)
+----------Finished test pause_time_test2 (took 4047ms)----------
+Boehm heap size: 282624
+testall.sh: i=17 j=6
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 17000 4069074
+[plotdata] # begin test Boehm GC (I=282624)
+[plotdata] # end test Boehm GC (I=282624)
+----------Finished test pause_time_test2 (took 4069ms)----------
+Boehm heap size: 282624
+testall.sh: i=17 j=7
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 17000 4164593
+[plotdata] # begin test Boehm GC (I=282624)
+[plotdata] # end test Boehm GC (I=282624)
+----------Finished test pause_time_test2 (took 4165ms)----------
+Boehm heap size: 282624
+testall.sh: i=17 j=8
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 17000 3932939
+[plotdata] # begin test Boehm GC (I=282624)
+[plotdata] # end test Boehm GC (I=282624)
+----------Finished test pause_time_test2 (took 3933ms)----------
+Boehm heap size: 282624
+testall.sh: i=17 j=9
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 17000 4096628
+[plotdata] # begin test Boehm GC (I=282624)
+[plotdata] # end test Boehm GC (I=282624)
+----------Finished test pause_time_test2 (took 4098ms)----------
+Boehm heap size: 282624
+testall.sh: i=17 j=10
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 18000 4076210
+[plotdata] # begin test Boehm GC (I=282624)
+[plotdata] # end test Boehm GC (I=282624)
+----------Finished test pause_time_test2 (took 4077ms)----------
+Boehm heap size: 282624
+testall.sh: i=18 j=1
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 18000 4094519
+[plotdata] # begin test Boehm GC (I=282624)
+[plotdata] # end test Boehm GC (I=282624)
+----------Finished test pause_time_test2 (took 4095ms)----------
+Boehm heap size: 282624
+testall.sh: i=18 j=2
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 18000 4267032
+[plotdata] # begin test Boehm GC (I=282624)
+[plotdata] # end test Boehm GC (I=282624)
+----------Finished test pause_time_test2 (took 4267ms)----------
+Boehm heap size: 282624
+testall.sh: i=18 j=3
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 18000 4076732
+[plotdata] # begin test Boehm GC (I=282624)
+[plotdata] # end test Boehm GC (I=282624)
+----------Finished test pause_time_test2 (took 4078ms)----------
+Boehm heap size: 282624
+testall.sh: i=18 j=4
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 18000 4119118
+[plotdata] # begin test Boehm GC (I=282624)
+[plotdata] # end test Boehm GC (I=282624)
+----------Finished test pause_time_test2 (took 4120ms)----------
+Boehm heap size: 282624
+testall.sh: i=18 j=5
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 18000 4092369
+[plotdata] # begin test Boehm GC (I=282624)
+[plotdata] # end test Boehm GC (I=282624)
+----------Finished test pause_time_test2 (took 4093ms)----------
+Boehm heap size: 282624
+testall.sh: i=18 j=6
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 18000 4099395
+[plotdata] # begin test Boehm GC (I=282624)
+[plotdata] # end test Boehm GC (I=282624)
+----------Finished test pause_time_test2 (took 4100ms)----------
+Boehm heap size: 282624
+testall.sh: i=18 j=7
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 18000 6309881
+[plotdata] # begin test Boehm GC (I=282624)
+[plotdata] # end test Boehm GC (I=282624)
+----------Finished test pause_time_test2 (took 6310ms)----------
+Boehm heap size: 282624
+testall.sh: i=18 j=8
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 18000 5172403
+[plotdata] # begin test Boehm GC (I=282624)
+[plotdata] # end test Boehm GC (I=282624)
+----------Finished test pause_time_test2 (took 5174ms)----------
+Boehm heap size: 282624
+testall.sh: i=18 j=9
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 18000 4116415
+[plotdata] # begin test Boehm GC (I=282624)
+[plotdata] # end test Boehm GC (I=282624)
+----------Finished test pause_time_test2 (took 4117ms)----------
+Boehm heap size: 282624
+testall.sh: i=18 j=10
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 19000 5221024
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 5223ms)----------
+Boehm heap size: 196608
+testall.sh: i=19 j=1
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 19000 5086436
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 5087ms)----------
+Boehm heap size: 196608
+testall.sh: i=19 j=2
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 19000 5309332
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 5313ms)----------
+Boehm heap size: 196608
+testall.sh: i=19 j=3
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 19000 5260322
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 5261ms)----------
+Boehm heap size: 196608
+testall.sh: i=19 j=4
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 19000 5280042
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 5280ms)----------
+Boehm heap size: 196608
+testall.sh: i=19 j=5
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 19000 5094141
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 5095ms)----------
+Boehm heap size: 196608
+testall.sh: i=19 j=6
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 19000 5250678
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 5273ms)----------
+Boehm heap size: 196608
+testall.sh: i=19 j=7
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 19000 5941970
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 5942ms)----------
+Boehm heap size: 196608
+testall.sh: i=19 j=8
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 19000 5220386
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 5221ms)----------
+Boehm heap size: 196608
+testall.sh: i=19 j=9
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 19000 5215525
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 5216ms)----------
+Boehm heap size: 196608
+testall.sh: i=19 j=10
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 20000 5158420
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 5159ms)----------
+Boehm heap size: 196608
+testall.sh: i=20 j=1
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 20000 5090676
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 5091ms)----------
+Boehm heap size: 196608
+testall.sh: i=20 j=2
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 20000 5276042
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 5276ms)----------
+Boehm heap size: 196608
+testall.sh: i=20 j=3
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 20000 5294254
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 5295ms)----------
+Boehm heap size: 196608
+testall.sh: i=20 j=4
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 20000 5201343
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 5202ms)----------
+Boehm heap size: 196608
+testall.sh: i=20 j=5
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 20000 5338966
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 5339ms)----------
+Boehm heap size: 196608
+testall.sh: i=20 j=6
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 20000 5285245
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 5286ms)----------
+Boehm heap size: 196608
+testall.sh: i=20 j=7
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 20000 5079795
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 5080ms)----------
+Boehm heap size: 196608
+testall.sh: i=20 j=8
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 20000 5268676
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 5269ms)----------
+Boehm heap size: 196608
+testall.sh: i=20 j=9
+Compiled for GC_BOEHM at 10:19:08 May  7 2014
+Boehm heap size: 65536
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 20000 5394105
+[plotdata] # begin test Boehm GC (I=196608)
+[plotdata] # end test Boehm GC (I=196608)
+----------Finished test pause_time_test2 (took 5395ms)----------
+Boehm heap size: 196608
+testall.sh: i=20 j=10

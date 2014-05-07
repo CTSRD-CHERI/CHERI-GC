@@ -1,0 +1,2616 @@
+spawn ssh -i /home/munraj/.ssh/mbv21 mbv21@cloud2 /mnt/mbv21zfs//testall.sh
+Enter passphrase for key '/home/munraj/.ssh/mbv21': 
+Password for mbv21@cloud2:
+GC_init2 called from (GC_init_constructor):0
+Compiled for GC_CHERI at 17:11:36 May  7 2014
+GC_init2 called from test/test_all.c:280 (initialized already)
+---------------BEGIN GC DEBUG DUMP---------------
+GC_DEBUG is off
+GC_VERBOSE_DEBUG is off
+GC_GENERATIONAL is off
+GC_USE_BITMAP is on
+GC_USE_STACK_CLEAN is off
+GC_GROW_YOUNG_HEAP is on
+GC_GROW_OLD_HEAP is on
+GC_TIME is off
+GC_DEBUG_TRACK_ALLOCATIONS is off
+GC_COLLECT_ON_ALLOCATION_FAILURE is 1
+GC_THREAD_LOCAL_HEAP_SIZE is 30000
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 30000
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 32000000
+GC_OLD_GENERATION_SEMISPACE_SIZE is 650
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 655360
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 655360
+GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
+GC_MAGIC_JUST_ALLOCATED is 0x41
+GC_MAGIC_JUST_REALLOCATED is 0x42
+GC_MAGIC_JUST_CLEARED is 0x43
+GC_MAGIC_DEALLOCATION_DETECTED is 0x44
+GC_MAGIC_JUST_COPIED is 0x45
+GC_MAGIC_JUST_CLEARED_STACK is 0x46
+GC_MAGIC_JUST_GC_ALLOCATED is 0x47
+GC_MAGIC_JUST_CLEARED_FROMSPACE is 0x48
+
+GC_state:
+GC_state.initialized is 1
+GC_state.stack_bottom is 0x7ffffff000
+GC_state.static_bottom is 0x12001a000
+GC_state.static_top is 0x12001c9c0
+GC_state.state_bottom is 0x12001a640
+GC_state.state_top is 0x12001a740
+GC_state.reg_bottom is 0x0
+GC_state.reg_top is 0x0
+Region statistics
+-----------------
+fromspace :      b=  0x16080f000         l=0x7540            
+               end=  0x160816540       
+            bitmap=  0x160817058         s=0x3aa               u=0x0               
+tospace   :      b=  0x160807000         l=0x7540            
+               end=  0x16080e540       
+            bitmap=  0x160817040         s=0x3aa               u=0x0               
+free      :      b=  0x160807000         l=0x7540            
+               end=  0x16080e540       
+scan      :          0x0               
+
+used size   : 0x0                bytes (0B)
+free size   : 0x7540             bytes (30kB)
+heap size   : 0x7540             bytes (30kB)
+
+stats:
+allocations : 0 (0)
+collections : 0 (0)
+---------------END GC DEBUG DUMP---------------
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotscript] set terminal png
+[plotscript] set output "objects/plot.png"
+[plotscript] set title "Time taken by GC_malloc() for 1000 allocations"
+[plotscript] set xlabel "Allocation size (B)"
+[plotscript] set ylabel "Pause time (us)"
+[plotscript] #set xrange [-2:2]
+[plotscript] #set yrange [-10:10]
+[plotscript] set zeroaxis
+[plotscript] #plot 'objects/plot_data' with yerrorbars
+[plotscript] plot 'objects/plot_data' with linespoints
+[plotdata] 0 5479
+[plotdata] # begin test my copying GC (I=30000 B=30016 A=32000000 cur=30016)
+[plotdata] # end test my copying GC (I=30000 B=30016 A=32000000 cur=30016)
+----------Finished test pause_time_test2 (took 7ms)----------
+---------------BEGIN GC DEBUG DUMP---------------
+GC_DEBUG is off
+GC_VERBOSE_DEBUG is off
+GC_GENERATIONAL is off
+GC_USE_BITMAP is on
+GC_USE_STACK_CLEAN is off
+GC_GROW_YOUNG_HEAP is on
+GC_GROW_OLD_HEAP is on
+GC_TIME is off
+GC_DEBUG_TRACK_ALLOCATIONS is off
+GC_COLLECT_ON_ALLOCATION_FAILURE is 1
+GC_THREAD_LOCAL_HEAP_SIZE is 30000
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 30000
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 32000000
+GC_OLD_GENERATION_SEMISPACE_SIZE is 650
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 655360
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 655360
+GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
+GC_MAGIC_JUST_ALLOCATED is 0x41
+GC_MAGIC_JUST_REALLOCATED is 0x42
+GC_MAGIC_JUST_CLEARED is 0x43
+GC_MAGIC_DEALLOCATION_DETECTED is 0x44
+GC_MAGIC_JUST_COPIED is 0x45
+GC_MAGIC_JUST_CLEARED_STACK is 0x46
+GC_MAGIC_JUST_GC_ALLOCATED is 0x47
+GC_MAGIC_JUST_CLEARED_FROMSPACE is 0x48
+
+GC_state:
+GC_state.initialized is 1
+GC_state.stack_bottom is 0x7ffffff000
+GC_state.static_bottom is 0x12001a000
+GC_state.static_top is 0x12001c9c0
+GC_state.state_bottom is 0x12001a640
+GC_state.state_top is 0x12001a740
+GC_state.reg_bottom is 0x7fffffd860
+GC_state.reg_top is 0x7fffffd9c0
+Region statistics
+-----------------
+fromspace :      b=  0x16080f000         l=0x7540            
+               end=  0x160816540       
+            bitmap=  0x160817058         s=0x3aa               u=0x0               
+tospace   :      b=  0x160807000         l=0x7540            
+               end=  0x16080e540       
+            bitmap=  0x160817040         s=0x3aa               u=0x0               
+free      :      b=  0x160807000         l=0x7540            
+               end=  0x16080e540       
+scan      :          0x0               
+
+used size   : 0x0                bytes (0B)
+free size   : 0x7540             bytes (30kB)
+heap size   : 0x7540             bytes (30kB)
+
+stats:
+allocations : 1000 (1k)
+collections : 0 (0)
+---------------END GC DEBUG DUMP---------------
+GC_init2 called from (GC_init_constructor):0
+Compiled for GC_CHERI at 17:11:36 May  7 2014
+GC_init2 called from test/test_all.c:280 (initialized already)
+---------------BEGIN GC DEBUG DUMP---------------
+GC_DEBUG is off
+GC_VERBOSE_DEBUG is off
+GC_GENERATIONAL is off
+GC_USE_BITMAP is on
+GC_USE_STACK_CLEAN is off
+GC_GROW_YOUNG_HEAP is on
+GC_GROW_OLD_HEAP is on
+GC_TIME is off
+GC_DEBUG_TRACK_ALLOCATIONS is off
+GC_COLLECT_ON_ALLOCATION_FAILURE is 1
+GC_THREAD_LOCAL_HEAP_SIZE is 30000
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 30000
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 32000000
+GC_OLD_GENERATION_SEMISPACE_SIZE is 650
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 655360
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 655360
+GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
+GC_MAGIC_JUST_ALLOCATED is 0x41
+GC_MAGIC_JUST_REALLOCATED is 0x42
+GC_MAGIC_JUST_CLEARED is 0x43
+GC_MAGIC_DEALLOCATION_DETECTED is 0x44
+GC_MAGIC_JUST_COPIED is 0x45
+GC_MAGIC_JUST_CLEARED_STACK is 0x46
+GC_MAGIC_JUST_GC_ALLOCATED is 0x47
+GC_MAGIC_JUST_CLEARED_FROMSPACE is 0x48
+
+GC_state:
+GC_state.initialized is 1
+GC_state.stack_bottom is 0x7ffffff000
+GC_state.static_bottom is 0x12001a000
+GC_state.static_top is 0x12001c9c0
+GC_state.state_bottom is 0x12001a640
+GC_state.state_top is 0x12001a740
+GC_state.reg_bottom is 0x0
+GC_state.reg_top is 0x0
+Region statistics
+-----------------
+fromspace :      b=  0x16080f000         l=0x7540            
+               end=  0x160816540       
+            bitmap=  0x160817058         s=0x3aa               u=0x0               
+tospace   :      b=  0x160807000         l=0x7540            
+               end=  0x16080e540       
+            bitmap=  0x160817040         s=0x3aa               u=0x0               
+free      :      b=  0x160807000         l=0x7540            
+               end=  0x16080e540       
+scan      :          0x0               
+
+used size   : 0x0                bytes (0B)
+free size   : 0x7540             bytes (30kB)
+heap size   : 0x7540             bytes (30kB)
+
+stats:
+allocations : 0 (0)
+collections : 0 (0)
+---------------END GC DEBUG DUMP---------------
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 100000 379613
+[plotdata] # begin test my copying GC (I=30000 B=30016 A=32000000 cur=130016)
+[plotdata] # end test my copying GC (I=30000 B=30016 A=32000000 cur=130016)
+----------Finished test pause_time_test2 (took 380ms)----------
+---------------BEGIN GC DEBUG DUMP---------------
+GC_DEBUG is off
+GC_VERBOSE_DEBUG is off
+GC_GENERATIONAL is off
+GC_USE_BITMAP is on
+GC_USE_STACK_CLEAN is off
+GC_GROW_YOUNG_HEAP is on
+GC_GROW_OLD_HEAP is on
+GC_TIME is off
+GC_DEBUG_TRACK_ALLOCATIONS is off
+GC_COLLECT_ON_ALLOCATION_FAILURE is 1
+GC_THREAD_LOCAL_HEAP_SIZE is 30000
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 30000
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 32000000
+GC_OLD_GENERATION_SEMISPACE_SIZE is 650
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 655360
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 655360
+GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
+GC_MAGIC_JUST_ALLOCATED is 0x41
+GC_MAGIC_JUST_REALLOCATED is 0x42
+GC_MAGIC_JUST_CLEARED is 0x43
+GC_MAGIC_DEALLOCATION_DETECTED is 0x44
+GC_MAGIC_JUST_COPIED is 0x45
+GC_MAGIC_JUST_CLEARED_STACK is 0x46
+GC_MAGIC_JUST_GC_ALLOCATED is 0x47
+GC_MAGIC_JUST_CLEARED_FROMSPACE is 0x48
+
+GC_state:
+GC_state.initialized is 1
+GC_state.stack_bottom is 0x7ffffff000
+GC_state.static_bottom is 0x12001a000
+GC_state.static_top is 0x12001c9c0
+GC_state.state_bottom is 0x12001a640
+GC_state.state_top is 0x12001a740
+GC_state.reg_bottom is 0x0
+GC_state.reg_top is 0x0
+Region statistics
+-----------------
+fromspace :      b=  0x16083a000         l=0x1fbe0           
+               end=  0x160859be0       
+            bitmap=  0x160817058         s=0xfdf               u=0xc35             
+tospace   :      b=  0x16081a000         l=0x1fbe0           
+               end=  0x160839be0       
+            bitmap=  0x160817040         s=0xfdf               u=0xc35             
+free      :      b=  0x1608326a0         l=0x7540            
+               end=  0x160839be0       
+scan      :          0x16081a000       
+
+used size   : 0x186a0            bytes (100kB)
+free size   : 0x7540             bytes (30kB)
+heap size   : 0x1fbe0            bytes (130kB)
+
+stats:
+allocations : 1000 (1k)
+collections : 1000 (1k)
+---------------END GC DEBUG DUMP---------------
+testall.sh: i=1 j=1
+GC_init2 called from (GC_init_constructor):0
+Compiled for GC_CHERI at 17:11:36 May  7 2014
+GC_init2 called from test/test_all.c:280 (initialized already)
+---------------BEGIN GC DEBUG DUMP---------------
+GC_DEBUG is off
+GC_VERBOSE_DEBUG is off
+GC_GENERATIONAL is off
+GC_USE_BITMAP is on
+GC_USE_STACK_CLEAN is off
+GC_GROW_YOUNG_HEAP is on
+GC_GROW_OLD_HEAP is on
+GC_TIME is off
+GC_DEBUG_TRACK_ALLOCATIONS is off
+GC_COLLECT_ON_ALLOCATION_FAILURE is 1
+GC_THREAD_LOCAL_HEAP_SIZE is 30000
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 30000
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 32000000
+GC_OLD_GENERATION_SEMISPACE_SIZE is 650
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 655360
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 655360
+GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
+GC_MAGIC_JUST_ALLOCATED is 0x41
+GC_MAGIC_JUST_REALLOCATED is 0x42
+GC_MAGIC_JUST_CLEARED is 0x43
+GC_MAGIC_DEALLOCATION_DETECTED is 0x44
+GC_MAGIC_JUST_COPIED is 0x45
+GC_MAGIC_JUST_CLEARED_STACK is 0x46
+GC_MAGIC_JUST_GC_ALLOCATED is 0x47
+GC_MAGIC_JUST_CLEARED_FROMSPACE is 0x48
+
+GC_state:
+GC_state.initialized is 1
+GC_state.stack_bottom is 0x7ffffff000
+GC_state.static_bottom is 0x12001a000
+GC_state.static_top is 0x12001c9c0
+GC_state.state_bottom is 0x12001a640
+GC_state.state_top is 0x12001a740
+GC_state.reg_bottom is 0x0
+GC_state.reg_top is 0x0
+Region statistics
+-----------------
+fromspace :      b=  0x16080f000         l=0x7540            
+               end=  0x160816540       
+            bitmap=  0x160817058         s=0x3aa               u=0x0               
+tospace   :      b=  0x160807000         l=0x7540            
+               end=  0x16080e540       
+            bitmap=  0x160817040         s=0x3aa               u=0x0               
+free      :      b=  0x160807000         l=0x7540            
+               end=  0x16080e540       
+scan      :          0x0               
+
+used size   : 0x0                bytes (0B)
+free size   : 0x7540             bytes (30kB)
+heap size   : 0x7540             bytes (30kB)
+
+stats:
+allocations : 0 (0)
+collections : 0 (0)
+---------------END GC DEBUG DUMP---------------
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 200000 543053
+[plotdata] # begin test my copying GC (I=30000 B=30016 A=32000000 cur=230016)
+[plotdata] # end test my copying GC (I=30000 B=30016 A=32000000 cur=230016)
+----------Finished test pause_time_test2 (took 544ms)----------
+---------------BEGIN GC DEBUG DUMP---------------
+GC_DEBUG is off
+GC_VERBOSE_DEBUG is off
+GC_GENERATIONAL is off
+GC_USE_BITMAP is on
+GC_USE_STACK_CLEAN is off
+GC_GROW_YOUNG_HEAP is on
+GC_GROW_OLD_HEAP is on
+GC_TIME is off
+GC_DEBUG_TRACK_ALLOCATIONS is off
+GC_COLLECT_ON_ALLOCATION_FAILURE is 1
+GC_THREAD_LOCAL_HEAP_SIZE is 30000
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 30000
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 32000000
+GC_OLD_GENERATION_SEMISPACE_SIZE is 650
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 655360
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 655360
+GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
+GC_MAGIC_JUST_ALLOCATED is 0x41
+GC_MAGIC_JUST_REALLOCATED is 0x42
+GC_MAGIC_JUST_CLEARED is 0x43
+GC_MAGIC_DEALLOCATION_DETECTED is 0x44
+GC_MAGIC_JUST_COPIED is 0x45
+GC_MAGIC_JUST_CLEARED_STACK is 0x46
+GC_MAGIC_JUST_GC_ALLOCATED is 0x47
+GC_MAGIC_JUST_CLEARED_FROMSPACE is 0x48
+
+GC_state:
+GC_state.initialized is 1
+GC_state.stack_bottom is 0x7ffffff000
+GC_state.static_bottom is 0x12001a000
+GC_state.static_top is 0x12001c9c0
+GC_state.state_bottom is 0x12001a640
+GC_state.state_top is 0x12001a740
+GC_state.reg_bottom is 0x0
+GC_state.reg_top is 0x0
+Region statistics
+-----------------
+fromspace :      b=  0x160853000         l=0x38280           
+               end=  0x16088b280       
+            bitmap=  0x160817058         s=0x1c14              u=0x186a            
+tospace   :      b=  0x16081a000         l=0x38280           
+               end=  0x160852280       
+            bitmap=  0x160817040         s=0x1c14              u=0x186a            
+free      :      b=  0x16084ad40         l=0x7540            
+               end=  0x160852280       
+scan      :          0x16081a000       
+
+used size   : 0x30d40            bytes (200kB)
+free size   : 0x7540             bytes (30kB)
+heap size   : 0x38280            bytes (230kB)
+
+stats:
+allocations : 1000 (1k)
+collections : 1000 (1k)
+---------------END GC DEBUG DUMP---------------
+testall.sh: i=2 j=1
+GC_init2 called from (GC_init_constructor):0
+Compiled for GC_CHERI at 17:11:36 May  7 2014
+GC_init2 called from test/test_all.c:280 (initialized already)
+---------------BEGIN GC DEBUG DUMP---------------
+GC_DEBUG is off
+GC_VERBOSE_DEBUG is off
+GC_GENERATIONAL is off
+GC_USE_BITMAP is on
+GC_USE_STACK_CLEAN is off
+GC_GROW_YOUNG_HEAP is on
+GC_GROW_OLD_HEAP is on
+GC_TIME is off
+GC_DEBUG_TRACK_ALLOCATIONS is off
+GC_COLLECT_ON_ALLOCATION_FAILURE is 1
+GC_THREAD_LOCAL_HEAP_SIZE is 30000
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 30000
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 32000000
+GC_OLD_GENERATION_SEMISPACE_SIZE is 650
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 655360
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 655360
+GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
+GC_MAGIC_JUST_ALLOCATED is 0x41
+GC_MAGIC_JUST_REALLOCATED is 0x42
+GC_MAGIC_JUST_CLEARED is 0x43
+GC_MAGIC_DEALLOCATION_DETECTED is 0x44
+GC_MAGIC_JUST_COPIED is 0x45
+GC_MAGIC_JUST_CLEARED_STACK is 0x46
+GC_MAGIC_JUST_GC_ALLOCATED is 0x47
+GC_MAGIC_JUST_CLEARED_FROMSPACE is 0x48
+
+GC_state:
+GC_state.initialized is 1
+GC_state.stack_bottom is 0x7ffffff000
+GC_state.static_bottom is 0x12001a000
+GC_state.static_top is 0x12001c9c0
+GC_state.state_bottom is 0x12001a640
+GC_state.state_top is 0x12001a740
+GC_state.reg_bottom is 0x0
+GC_state.reg_top is 0x0
+Region statistics
+-----------------
+fromspace :      b=  0x16080f000         l=0x7540            
+               end=  0x160816540       
+            bitmap=  0x160817058         s=0x3aa               u=0x0               
+tospace   :      b=  0x160807000         l=0x7540            
+               end=  0x16080e540       
+            bitmap=  0x160817040         s=0x3aa               u=0x0               
+free      :      b=  0x160807000         l=0x7540            
+               end=  0x16080e540       
+scan      :          0x0               
+
+used size   : 0x0                bytes (0B)
+free size   : 0x7540             bytes (30kB)
+heap size   : 0x7540             bytes (30kB)
+
+stats:
+allocations : 0 (0)
+collections : 0 (0)
+---------------END GC DEBUG DUMP---------------
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 300000 560266
+[plotdata] # begin test my copying GC (I=30000 B=30016 A=32000000 cur=330016)
+[plotdata] # end test my copying GC (I=30000 B=30016 A=32000000 cur=330016)
+----------Finished test pause_time_test2 (took 563ms)----------
+---------------BEGIN GC DEBUG DUMP---------------
+GC_DEBUG is off
+GC_VERBOSE_DEBUG is off
+GC_GENERATIONAL is off
+GC_USE_BITMAP is on
+GC_USE_STACK_CLEAN is off
+GC_GROW_YOUNG_HEAP is on
+GC_GROW_OLD_HEAP is on
+GC_TIME is off
+GC_DEBUG_TRACK_ALLOCATIONS is off
+GC_COLLECT_ON_ALLOCATION_FAILURE is 1
+GC_THREAD_LOCAL_HEAP_SIZE is 30000
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 30000
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 32000000
+GC_OLD_GENERATION_SEMISPACE_SIZE is 650
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 655360
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 655360
+GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
+GC_MAGIC_JUST_ALLOCATED is 0x41
+GC_MAGIC_JUST_REALLOCATED is 0x42
+GC_MAGIC_JUST_CLEARED is 0x43
+GC_MAGIC_DEALLOCATION_DETECTED is 0x44
+GC_MAGIC_JUST_COPIED is 0x45
+GC_MAGIC_JUST_CLEARED_STACK is 0x46
+GC_MAGIC_JUST_GC_ALLOCATED is 0x47
+GC_MAGIC_JUST_CLEARED_FROMSPACE is 0x48
+
+GC_state:
+GC_state.initialized is 1
+GC_state.stack_bottom is 0x7ffffff000
+GC_state.static_bottom is 0x12001a000
+GC_state.static_top is 0x12001c9c0
+GC_state.state_bottom is 0x12001a640
+GC_state.state_top is 0x12001a740
+GC_state.reg_bottom is 0x0
+GC_state.reg_top is 0x0
+Region statistics
+-----------------
+fromspace :      b=  0x16086b000         l=0x50920           
+               end=  0x1608bb920       
+            bitmap=  0x160817058         s=0x2849              u=0x249f            
+tospace   :      b=  0x16081a000         l=0x50920           
+               end=  0x16086a920       
+            bitmap=  0x160817040         s=0x2849              u=0x249f            
+free      :      b=  0x1608633e0         l=0x7540            
+               end=  0x16086a920       
+scan      :          0x16081a000       
+
+used size   : 0x493e0            bytes (300kB)
+free size   : 0x7540             bytes (30kB)
+heap size   : 0x50920            bytes (330kB)
+
+stats:
+allocations : 1000 (1k)
+collections : 1000 (1k)
+---------------END GC DEBUG DUMP---------------
+testall.sh: i=3 j=1
+GC_init2 called from (GC_init_constructor):0
+Compiled for GC_CHERI at 17:11:36 May  7 2014
+GC_init2 called from test/test_all.c:280 (initialized already)
+---------------BEGIN GC DEBUG DUMP---------------
+GC_DEBUG is off
+GC_VERBOSE_DEBUG is off
+GC_GENERATIONAL is off
+GC_USE_BITMAP is on
+GC_USE_STACK_CLEAN is off
+GC_GROW_YOUNG_HEAP is on
+GC_GROW_OLD_HEAP is on
+GC_TIME is off
+GC_DEBUG_TRACK_ALLOCATIONS is off
+GC_COLLECT_ON_ALLOCATION_FAILURE is 1
+GC_THREAD_LOCAL_HEAP_SIZE is 30000
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 30000
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 32000000
+GC_OLD_GENERATION_SEMISPACE_SIZE is 650
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 655360
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 655360
+GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
+GC_MAGIC_JUST_ALLOCATED is 0x41
+GC_MAGIC_JUST_REALLOCATED is 0x42
+GC_MAGIC_JUST_CLEARED is 0x43
+GC_MAGIC_DEALLOCATION_DETECTED is 0x44
+GC_MAGIC_JUST_COPIED is 0x45
+GC_MAGIC_JUST_CLEARED_STACK is 0x46
+GC_MAGIC_JUST_GC_ALLOCATED is 0x47
+GC_MAGIC_JUST_CLEARED_FROMSPACE is 0x48
+
+GC_state:
+GC_state.initialized is 1
+GC_state.stack_bottom is 0x7ffffff000
+GC_state.static_bottom is 0x12001a000
+GC_state.static_top is 0x12001c9c0
+GC_state.state_bottom is 0x12001a640
+GC_state.state_top is 0x12001a740
+GC_state.reg_bottom is 0x0
+GC_state.reg_top is 0x0
+Region statistics
+-----------------
+fromspace :      b=  0x16080f000         l=0x7540            
+               end=  0x160816540       
+            bitmap=  0x160817058         s=0x3aa               u=0x0               
+tospace   :      b=  0x160807000         l=0x7540            
+               end=  0x16080e540       
+            bitmap=  0x160817040         s=0x3aa               u=0x0               
+free      :      b=  0x160807000         l=0x7540            
+               end=  0x16080e540       
+scan      :          0x0               
+
+used size   : 0x0                bytes (0B)
+free size   : 0x7540             bytes (30kB)
+heap size   : 0x7540             bytes (30kB)
+
+stats:
+allocations : 0 (0)
+collections : 0 (0)
+---------------END GC DEBUG DUMP---------------
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 400000 576671
+[plotdata] # begin test my copying GC (I=30000 B=30016 A=32000000 cur=430016)
+[plotdata] # end test my copying GC (I=30000 B=30016 A=32000000 cur=430016)
+----------Finished test pause_time_test2 (took 578ms)----------
+---------------BEGIN GC DEBUG DUMP---------------
+GC_DEBUG is off
+GC_VERBOSE_DEBUG is off
+GC_GENERATIONAL is off
+GC_USE_BITMAP is on
+GC_USE_STACK_CLEAN is off
+GC_GROW_YOUNG_HEAP is on
+GC_GROW_OLD_HEAP is on
+GC_TIME is off
+GC_DEBUG_TRACK_ALLOCATIONS is off
+GC_COLLECT_ON_ALLOCATION_FAILURE is 1
+GC_THREAD_LOCAL_HEAP_SIZE is 30000
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 30000
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 32000000
+GC_OLD_GENERATION_SEMISPACE_SIZE is 650
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 655360
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 655360
+GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
+GC_MAGIC_JUST_ALLOCATED is 0x41
+GC_MAGIC_JUST_REALLOCATED is 0x42
+GC_MAGIC_JUST_CLEARED is 0x43
+GC_MAGIC_DEALLOCATION_DETECTED is 0x44
+GC_MAGIC_JUST_COPIED is 0x45
+GC_MAGIC_JUST_CLEARED_STACK is 0x46
+GC_MAGIC_JUST_GC_ALLOCATED is 0x47
+GC_MAGIC_JUST_CLEARED_FROMSPACE is 0x48
+
+GC_state:
+GC_state.initialized is 1
+GC_state.stack_bottom is 0x7ffffff000
+GC_state.static_bottom is 0x12001a000
+GC_state.static_top is 0x12001c9c0
+GC_state.state_bottom is 0x12001a640
+GC_state.state_top is 0x12001a740
+GC_state.reg_bottom is 0x0
+GC_state.reg_top is 0x0
+Region statistics
+-----------------
+fromspace :      b=  0x160883000         l=0x68fc0           
+               end=  0x1608ebfc0       
+            bitmap=  0x160817058         s=0x347e              u=0x30d4            
+tospace   :      b=  0x16081a000         l=0x68fc0           
+               end=  0x160882fc0       
+            bitmap=  0x160817040         s=0x347e              u=0x30d4            
+free      :      b=  0x16087ba80         l=0x7540            
+               end=  0x160882fc0       
+scan      :          0x16081a000       
+
+used size   : 0x61a80            bytes (400kB)
+free size   : 0x7540             bytes (30kB)
+heap size   : 0x68fc0            bytes (430kB)
+
+stats:
+allocations : 1000 (1k)
+collections : 1000 (1k)
+---------------END GC DEBUG DUMP---------------
+testall.sh: i=4 j=1
+GC_init2 called from (GC_init_constructor):0
+Compiled for GC_CHERI at 17:11:36 May  7 2014
+GC_init2 called from test/test_all.c:280 (initialized already)
+---------------BEGIN GC DEBUG DUMP---------------
+GC_DEBUG is off
+GC_VERBOSE_DEBUG is off
+GC_GENERATIONAL is off
+GC_USE_BITMAP is on
+GC_USE_STACK_CLEAN is off
+GC_GROW_YOUNG_HEAP is on
+GC_GROW_OLD_HEAP is on
+GC_TIME is off
+GC_DEBUG_TRACK_ALLOCATIONS is off
+GC_COLLECT_ON_ALLOCATION_FAILURE is 1
+GC_THREAD_LOCAL_HEAP_SIZE is 30000
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 30000
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 32000000
+GC_OLD_GENERATION_SEMISPACE_SIZE is 650
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 655360
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 655360
+GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
+GC_MAGIC_JUST_ALLOCATED is 0x41
+GC_MAGIC_JUST_REALLOCATED is 0x42
+GC_MAGIC_JUST_CLEARED is 0x43
+GC_MAGIC_DEALLOCATION_DETECTED is 0x44
+GC_MAGIC_JUST_COPIED is 0x45
+GC_MAGIC_JUST_CLEARED_STACK is 0x46
+GC_MAGIC_JUST_GC_ALLOCATED is 0x47
+GC_MAGIC_JUST_CLEARED_FROMSPACE is 0x48
+
+GC_state:
+GC_state.initialized is 1
+GC_state.stack_bottom is 0x7ffffff000
+GC_state.static_bottom is 0x12001a000
+GC_state.static_top is 0x12001c9c0
+GC_state.state_bottom is 0x12001a640
+GC_state.state_top is 0x12001a740
+GC_state.reg_bottom is 0x0
+GC_state.reg_top is 0x0
+Region statistics
+-----------------
+fromspace :      b=  0x16080f000         l=0x7540            
+               end=  0x160816540       
+            bitmap=  0x160817058         s=0x3aa               u=0x0               
+tospace   :      b=  0x160807000         l=0x7540            
+               end=  0x16080e540       
+            bitmap=  0x160817040         s=0x3aa               u=0x0               
+free      :      b=  0x160807000         l=0x7540            
+               end=  0x16080e540       
+scan      :          0x0               
+
+used size   : 0x0                bytes (0B)
+free size   : 0x7540             bytes (30kB)
+heap size   : 0x7540             bytes (30kB)
+
+stats:
+allocations : 0 (0)
+collections : 0 (0)
+---------------END GC DEBUG DUMP---------------
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 500000 601414
+[plotdata] # begin test my copying GC (I=30000 B=30016 A=32000000 cur=530016)
+[plotdata] # end test my copying GC (I=30000 B=30016 A=32000000 cur=530016)
+----------Finished test pause_time_test2 (took 602ms)----------
+---------------BEGIN GC DEBUG DUMP---------------
+GC_DEBUG is off
+GC_VERBOSE_DEBUG is off
+GC_GENERATIONAL is off
+GC_USE_BITMAP is on
+GC_USE_STACK_CLEAN is off
+GC_GROW_YOUNG_HEAP is on
+GC_GROW_OLD_HEAP is on
+GC_TIME is off
+GC_DEBUG_TRACK_ALLOCATIONS is off
+GC_COLLECT_ON_ALLOCATION_FAILURE is 1
+GC_THREAD_LOCAL_HEAP_SIZE is 30000
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 30000
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 32000000
+GC_OLD_GENERATION_SEMISPACE_SIZE is 650
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 655360
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 655360
+GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
+GC_MAGIC_JUST_ALLOCATED is 0x41
+GC_MAGIC_JUST_REALLOCATED is 0x42
+GC_MAGIC_JUST_CLEARED is 0x43
+GC_MAGIC_DEALLOCATION_DETECTED is 0x44
+GC_MAGIC_JUST_COPIED is 0x45
+GC_MAGIC_JUST_CLEARED_STACK is 0x46
+GC_MAGIC_JUST_GC_ALLOCATED is 0x47
+GC_MAGIC_JUST_CLEARED_FROMSPACE is 0x48
+
+GC_state:
+GC_state.initialized is 1
+GC_state.stack_bottom is 0x7ffffff000
+GC_state.static_bottom is 0x12001a000
+GC_state.static_top is 0x12001c9c0
+GC_state.state_bottom is 0x12001a640
+GC_state.state_top is 0x12001a740
+GC_state.reg_bottom is 0x0
+GC_state.reg_top is 0x0
+Region statistics
+-----------------
+fromspace :      b=  0x16089c000         l=0x81660           
+               end=  0x16091d660       
+            bitmap=  0x160817058         s=0x40b3              u=0x3d09            
+tospace   :      b=  0x16081a000         l=0x81660           
+               end=  0x16089b660       
+            bitmap=  0x160817040         s=0x40b3              u=0x3d09            
+free      :      b=  0x160894120         l=0x7540            
+               end=  0x16089b660       
+scan      :          0x16081a000       
+
+used size   : 0x7a120            bytes (500kB)
+free size   : 0x7540             bytes (30kB)
+heap size   : 0x81660            bytes (530kB)
+
+stats:
+allocations : 1000 (1k)
+collections : 1000 (1k)
+---------------END GC DEBUG DUMP---------------
+testall.sh: i=5 j=1
+GC_init2 called from (GC_init_constructor):0
+Compiled for GC_CHERI at 17:11:36 May  7 2014
+GC_init2 called from test/test_all.c:280 (initialized already)
+---------------BEGIN GC DEBUG DUMP---------------
+GC_DEBUG is off
+GC_VERBOSE_DEBUG is off
+GC_GENERATIONAL is off
+GC_USE_BITMAP is on
+GC_USE_STACK_CLEAN is off
+GC_GROW_YOUNG_HEAP is on
+GC_GROW_OLD_HEAP is on
+GC_TIME is off
+GC_DEBUG_TRACK_ALLOCATIONS is off
+GC_COLLECT_ON_ALLOCATION_FAILURE is 1
+GC_THREAD_LOCAL_HEAP_SIZE is 30000
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 30000
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 32000000
+GC_OLD_GENERATION_SEMISPACE_SIZE is 650
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 655360
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 655360
+GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
+GC_MAGIC_JUST_ALLOCATED is 0x41
+GC_MAGIC_JUST_REALLOCATED is 0x42
+GC_MAGIC_JUST_CLEARED is 0x43
+GC_MAGIC_DEALLOCATION_DETECTED is 0x44
+GC_MAGIC_JUST_COPIED is 0x45
+GC_MAGIC_JUST_CLEARED_STACK is 0x46
+GC_MAGIC_JUST_GC_ALLOCATED is 0x47
+GC_MAGIC_JUST_CLEARED_FROMSPACE is 0x48
+
+GC_state:
+GC_state.initialized is 1
+GC_state.stack_bottom is 0x7ffffff000
+GC_state.static_bottom is 0x12001a000
+GC_state.static_top is 0x12001c9c0
+GC_state.state_bottom is 0x12001a640
+GC_state.state_top is 0x12001a740
+GC_state.reg_bottom is 0x0
+GC_state.reg_top is 0x0
+Region statistics
+-----------------
+fromspace :      b=  0x16080f000         l=0x7540            
+               end=  0x160816540       
+            bitmap=  0x160817058         s=0x3aa               u=0x0               
+tospace   :      b=  0x160807000         l=0x7540            
+               end=  0x16080e540       
+            bitmap=  0x160817040         s=0x3aa               u=0x0               
+free      :      b=  0x160807000         l=0x7540            
+               end=  0x16080e540       
+scan      :          0x0               
+
+used size   : 0x0                bytes (0B)
+free size   : 0x7540             bytes (30kB)
+heap size   : 0x7540             bytes (30kB)
+
+stats:
+allocations : 0 (0)
+collections : 0 (0)
+---------------END GC DEBUG DUMP---------------
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 600000 926186
+[plotdata] # begin test my copying GC (I=30000 B=30016 A=32000000 cur=630016)
+[plotdata] # end test my copying GC (I=30000 B=30016 A=32000000 cur=630016)
+----------Finished test pause_time_test2 (took 927ms)----------
+---------------BEGIN GC DEBUG DUMP---------------
+GC_DEBUG is off
+GC_VERBOSE_DEBUG is off
+GC_GENERATIONAL is off
+GC_USE_BITMAP is on
+GC_USE_STACK_CLEAN is off
+GC_GROW_YOUNG_HEAP is on
+GC_GROW_OLD_HEAP is on
+GC_TIME is off
+GC_DEBUG_TRACK_ALLOCATIONS is off
+GC_COLLECT_ON_ALLOCATION_FAILURE is 1
+GC_THREAD_LOCAL_HEAP_SIZE is 30000
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 30000
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 32000000
+GC_OLD_GENERATION_SEMISPACE_SIZE is 650
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 655360
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 655360
+GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
+GC_MAGIC_JUST_ALLOCATED is 0x41
+GC_MAGIC_JUST_REALLOCATED is 0x42
+GC_MAGIC_JUST_CLEARED is 0x43
+GC_MAGIC_DEALLOCATION_DETECTED is 0x44
+GC_MAGIC_JUST_COPIED is 0x45
+GC_MAGIC_JUST_CLEARED_STACK is 0x46
+GC_MAGIC_JUST_GC_ALLOCATED is 0x47
+GC_MAGIC_JUST_CLEARED_FROMSPACE is 0x48
+
+GC_state:
+GC_state.initialized is 1
+GC_state.stack_bottom is 0x7ffffff000
+GC_state.static_bottom is 0x12001a000
+GC_state.static_top is 0x12001c9c0
+GC_state.state_bottom is 0x12001a640
+GC_state.state_top is 0x12001a740
+GC_state.reg_bottom is 0x0
+GC_state.reg_top is 0x0
+Region statistics
+-----------------
+fromspace :      b=  0x1608b4000         l=0x99d00           
+               end=  0x16094dd00       
+            bitmap=  0x160817058         s=0x4ce8              u=0x493e            
+tospace   :      b=  0x16081a000         l=0x99d00           
+               end=  0x1608b3d00       
+            bitmap=  0x160817040         s=0x4ce8              u=0x493e            
+free      :      b=  0x1608ac7c0         l=0x7540            
+               end=  0x1608b3d00       
+scan      :          0x16081a000       
+
+used size   : 0x927c0            bytes (600kB)
+free size   : 0x7540             bytes (30kB)
+heap size   : 0x99d00            bytes (630kB)
+
+stats:
+allocations : 1000 (1k)
+collections : 1000 (1k)
+---------------END GC DEBUG DUMP---------------
+testall.sh: i=6 j=1
+GC_init2 called from (GC_init_constructor):0
+Compiled for GC_CHERI at 17:11:36 May  7 2014
+GC_init2 called from test/test_all.c:280 (initialized already)
+---------------BEGIN GC DEBUG DUMP---------------
+GC_DEBUG is off
+GC_VERBOSE_DEBUG is off
+GC_GENERATIONAL is off
+GC_USE_BITMAP is on
+GC_USE_STACK_CLEAN is off
+GC_GROW_YOUNG_HEAP is on
+GC_GROW_OLD_HEAP is on
+GC_TIME is off
+GC_DEBUG_TRACK_ALLOCATIONS is off
+GC_COLLECT_ON_ALLOCATION_FAILURE is 1
+GC_THREAD_LOCAL_HEAP_SIZE is 30000
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 30000
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 32000000
+GC_OLD_GENERATION_SEMISPACE_SIZE is 650
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 655360
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 655360
+GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
+GC_MAGIC_JUST_ALLOCATED is 0x41
+GC_MAGIC_JUST_REALLOCATED is 0x42
+GC_MAGIC_JUST_CLEARED is 0x43
+GC_MAGIC_DEALLOCATION_DETECTED is 0x44
+GC_MAGIC_JUST_COPIED is 0x45
+GC_MAGIC_JUST_CLEARED_STACK is 0x46
+GC_MAGIC_JUST_GC_ALLOCATED is 0x47
+GC_MAGIC_JUST_CLEARED_FROMSPACE is 0x48
+
+GC_state:
+GC_state.initialized is 1
+GC_state.stack_bottom is 0x7ffffff000
+GC_state.static_bottom is 0x12001a000
+GC_state.static_top is 0x12001c9c0
+GC_state.state_bottom is 0x12001a640
+GC_state.state_top is 0x12001a740
+GC_state.reg_bottom is 0x0
+GC_state.reg_top is 0x0
+Region statistics
+-----------------
+fromspace :      b=  0x16080f000         l=0x7540            
+               end=  0x160816540       
+            bitmap=  0x160817058         s=0x3aa               u=0x0               
+tospace   :      b=  0x160807000         l=0x7540            
+               end=  0x16080e540       
+            bitmap=  0x160817040         s=0x3aa               u=0x0               
+free      :      b=  0x160807000         l=0x7540            
+               end=  0x16080e540       
+scan      :          0x0               
+
+used size   : 0x0                bytes (0B)
+free size   : 0x7540             bytes (30kB)
+heap size   : 0x7540             bytes (30kB)
+
+stats:
+allocations : 0 (0)
+collections : 0 (0)
+---------------END GC DEBUG DUMP---------------
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 700000 674320
+[plotdata] # begin test my copying GC (I=30000 B=30016 A=32000000 cur=730016)
+[plotdata] # end test my copying GC (I=30000 B=30016 A=32000000 cur=730016)
+----------Finished test pause_time_test2 (took 675ms)----------
+---------------BEGIN GC DEBUG DUMP---------------
+GC_DEBUG is off
+GC_VERBOSE_DEBUG is off
+GC_GENERATIONAL is off
+GC_USE_BITMAP is on
+GC_USE_STACK_CLEAN is off
+GC_GROW_YOUNG_HEAP is on
+GC_GROW_OLD_HEAP is on
+GC_TIME is off
+GC_DEBUG_TRACK_ALLOCATIONS is off
+GC_COLLECT_ON_ALLOCATION_FAILURE is 1
+GC_THREAD_LOCAL_HEAP_SIZE is 30000
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 30000
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 32000000
+GC_OLD_GENERATION_SEMISPACE_SIZE is 650
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 655360
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 655360
+GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
+GC_MAGIC_JUST_ALLOCATED is 0x41
+GC_MAGIC_JUST_REALLOCATED is 0x42
+GC_MAGIC_JUST_CLEARED is 0x43
+GC_MAGIC_DEALLOCATION_DETECTED is 0x44
+GC_MAGIC_JUST_COPIED is 0x45
+GC_MAGIC_JUST_CLEARED_STACK is 0x46
+GC_MAGIC_JUST_GC_ALLOCATED is 0x47
+GC_MAGIC_JUST_CLEARED_FROMSPACE is 0x48
+
+GC_state:
+GC_state.initialized is 1
+GC_state.stack_bottom is 0x7ffffff000
+GC_state.static_bottom is 0x12001a000
+GC_state.static_top is 0x12001c9c0
+GC_state.state_bottom is 0x12001a640
+GC_state.state_top is 0x12001a740
+GC_state.reg_bottom is 0x0
+GC_state.reg_top is 0x0
+Region statistics
+-----------------
+fromspace :      b=  0x1608cd000         l=0xb23a0           
+               end=  0x16097f3a0       
+            bitmap=  0x160817058         s=0x591d              u=0x5573            
+tospace   :      b=  0x16081a000         l=0xb23a0           
+               end=  0x1608cc3a0       
+            bitmap=  0x160817040         s=0x591d              u=0x5573            
+free      :      b=  0x1608c4e60         l=0x7540            
+               end=  0x1608cc3a0       
+scan      :          0x16081a000       
+
+used size   : 0xaae60            bytes (700kB)
+free size   : 0x7540             bytes (30kB)
+heap size   : 0xb23a0            bytes (730kB)
+
+stats:
+allocations : 1000 (1k)
+collections : 1000 (1k)
+---------------END GC DEBUG DUMP---------------
+testall.sh: i=7 j=1
+GC_init2 called from (GC_init_constructor):0
+Compiled for GC_CHERI at 17:11:36 May  7 2014
+GC_init2 called from test/test_all.c:280 (initialized already)
+---------------BEGIN GC DEBUG DUMP---------------
+GC_DEBUG is off
+GC_VERBOSE_DEBUG is off
+GC_GENERATIONAL is off
+GC_USE_BITMAP is on
+GC_USE_STACK_CLEAN is off
+GC_GROW_YOUNG_HEAP is on
+GC_GROW_OLD_HEAP is on
+GC_TIME is off
+GC_DEBUG_TRACK_ALLOCATIONS is off
+GC_COLLECT_ON_ALLOCATION_FAILURE is 1
+GC_THREAD_LOCAL_HEAP_SIZE is 30000
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 30000
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 32000000
+GC_OLD_GENERATION_SEMISPACE_SIZE is 650
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 655360
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 655360
+GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
+GC_MAGIC_JUST_ALLOCATED is 0x41
+GC_MAGIC_JUST_REALLOCATED is 0x42
+GC_MAGIC_JUST_CLEARED is 0x43
+GC_MAGIC_DEALLOCATION_DETECTED is 0x44
+GC_MAGIC_JUST_COPIED is 0x45
+GC_MAGIC_JUST_CLEARED_STACK is 0x46
+GC_MAGIC_JUST_GC_ALLOCATED is 0x47
+GC_MAGIC_JUST_CLEARED_FROMSPACE is 0x48
+
+GC_state:
+GC_state.initialized is 1
+GC_state.stack_bottom is 0x7ffffff000
+GC_state.static_bottom is 0x12001a000
+GC_state.static_top is 0x12001c9c0
+GC_state.state_bottom is 0x12001a640
+GC_state.state_top is 0x12001a740
+GC_state.reg_bottom is 0x0
+GC_state.reg_top is 0x0
+Region statistics
+-----------------
+fromspace :      b=  0x16080f000         l=0x7540            
+               end=  0x160816540       
+            bitmap=  0x160817058         s=0x3aa               u=0x0               
+tospace   :      b=  0x160807000         l=0x7540            
+               end=  0x16080e540       
+            bitmap=  0x160817040         s=0x3aa               u=0x0               
+free      :      b=  0x160807000         l=0x7540            
+               end=  0x16080e540       
+scan      :          0x0               
+
+used size   : 0x0                bytes (0B)
+free size   : 0x7540             bytes (30kB)
+heap size   : 0x7540             bytes (30kB)
+
+stats:
+allocations : 0 (0)
+collections : 0 (0)
+---------------END GC DEBUG DUMP---------------
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 800000 695976
+[plotdata] # begin test my copying GC (I=30000 B=30016 A=32000000 cur=830016)
+[plotdata] # end test my copying GC (I=30000 B=30016 A=32000000 cur=830016)
+----------Finished test pause_time_test2 (took 696ms)----------
+---------------BEGIN GC DEBUG DUMP---------------
+GC_DEBUG is off
+GC_VERBOSE_DEBUG is off
+GC_GENERATIONAL is off
+GC_USE_BITMAP is on
+GC_USE_STACK_CLEAN is off
+GC_GROW_YOUNG_HEAP is on
+GC_GROW_OLD_HEAP is on
+GC_TIME is off
+GC_DEBUG_TRACK_ALLOCATIONS is off
+GC_COLLECT_ON_ALLOCATION_FAILURE is 1
+GC_THREAD_LOCAL_HEAP_SIZE is 30000
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 30000
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 32000000
+GC_OLD_GENERATION_SEMISPACE_SIZE is 650
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 655360
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 655360
+GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
+GC_MAGIC_JUST_ALLOCATED is 0x41
+GC_MAGIC_JUST_REALLOCATED is 0x42
+GC_MAGIC_JUST_CLEARED is 0x43
+GC_MAGIC_DEALLOCATION_DETECTED is 0x44
+GC_MAGIC_JUST_COPIED is 0x45
+GC_MAGIC_JUST_CLEARED_STACK is 0x46
+GC_MAGIC_JUST_GC_ALLOCATED is 0x47
+GC_MAGIC_JUST_CLEARED_FROMSPACE is 0x48
+
+GC_state:
+GC_state.initialized is 1
+GC_state.stack_bottom is 0x7ffffff000
+GC_state.static_bottom is 0x12001a000
+GC_state.static_top is 0x12001c9c0
+GC_state.state_bottom is 0x12001a640
+GC_state.state_top is 0x12001a740
+GC_state.reg_bottom is 0x0
+GC_state.reg_top is 0x0
+Region statistics
+-----------------
+fromspace :      b=  0x1608e5000         l=0xcaa40           
+               end=  0x1609afa40       
+            bitmap=  0x160817058         s=0x6552              u=0x61a8            
+tospace   :      b=  0x16081a000         l=0xcaa40           
+               end=  0x1608e4a40       
+            bitmap=  0x160817040         s=0x6552              u=0x61a8            
+free      :      b=  0x1608dd500         l=0x7540            
+               end=  0x1608e4a40       
+scan      :          0x16081a000       
+
+used size   : 0xc3500            bytes (800kB)
+free size   : 0x7540             bytes (30kB)
+heap size   : 0xcaa40            bytes (830kB)
+
+stats:
+allocations : 1000 (1k)
+collections : 1000 (1k)
+---------------END GC DEBUG DUMP---------------
+testall.sh: i=8 j=1
+GC_init2 called from (GC_init_constructor):0
+Compiled for GC_CHERI at 17:11:36 May  7 2014
+GC_init2 called from test/test_all.c:280 (initialized already)
+---------------BEGIN GC DEBUG DUMP---------------
+GC_DEBUG is off
+GC_VERBOSE_DEBUG is off
+GC_GENERATIONAL is off
+GC_USE_BITMAP is on
+GC_USE_STACK_CLEAN is off
+GC_GROW_YOUNG_HEAP is on
+GC_GROW_OLD_HEAP is on
+GC_TIME is off
+GC_DEBUG_TRACK_ALLOCATIONS is off
+GC_COLLECT_ON_ALLOCATION_FAILURE is 1
+GC_THREAD_LOCAL_HEAP_SIZE is 30000
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 30000
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 32000000
+GC_OLD_GENERATION_SEMISPACE_SIZE is 650
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 655360
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 655360
+GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
+GC_MAGIC_JUST_ALLOCATED is 0x41
+GC_MAGIC_JUST_REALLOCATED is 0x42
+GC_MAGIC_JUST_CLEARED is 0x43
+GC_MAGIC_DEALLOCATION_DETECTED is 0x44
+GC_MAGIC_JUST_COPIED is 0x45
+GC_MAGIC_JUST_CLEARED_STACK is 0x46
+GC_MAGIC_JUST_GC_ALLOCATED is 0x47
+GC_MAGIC_JUST_CLEARED_FROMSPACE is 0x48
+
+GC_state:
+GC_state.initialized is 1
+GC_state.stack_bottom is 0x7ffffff000
+GC_state.static_bottom is 0x12001a000
+GC_state.static_top is 0x12001c9c0
+GC_state.state_bottom is 0x12001a640
+GC_state.state_top is 0x12001a740
+GC_state.reg_bottom is 0x0
+GC_state.reg_top is 0x0
+Region statistics
+-----------------
+fromspace :      b=  0x16080f000         l=0x7540            
+               end=  0x160816540       
+            bitmap=  0x160817058         s=0x3aa               u=0x0               
+tospace   :      b=  0x160807000         l=0x7540            
+               end=  0x16080e540       
+            bitmap=  0x160817040         s=0x3aa               u=0x0               
+free      :      b=  0x160807000         l=0x7540            
+               end=  0x16080e540       
+scan      :          0x0               
+
+used size   : 0x0                bytes (0B)
+free size   : 0x7540             bytes (30kB)
+heap size   : 0x7540             bytes (30kB)
+
+stats:
+allocations : 0 (0)
+collections : 0 (0)
+---------------END GC DEBUG DUMP---------------
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 900000 686534
+[plotdata] # begin test my copying GC (I=30000 B=30016 A=32000000 cur=930016)
+[plotdata] # end test my copying GC (I=30000 B=30016 A=32000000 cur=930016)
+----------Finished test pause_time_test2 (took 687ms)----------
+---------------BEGIN GC DEBUG DUMP---------------
+GC_DEBUG is off
+GC_VERBOSE_DEBUG is off
+GC_GENERATIONAL is off
+GC_USE_BITMAP is on
+GC_USE_STACK_CLEAN is off
+GC_GROW_YOUNG_HEAP is on
+GC_GROW_OLD_HEAP is on
+GC_TIME is off
+GC_DEBUG_TRACK_ALLOCATIONS is off
+GC_COLLECT_ON_ALLOCATION_FAILURE is 1
+GC_THREAD_LOCAL_HEAP_SIZE is 30000
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 30000
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 32000000
+GC_OLD_GENERATION_SEMISPACE_SIZE is 650
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 655360
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 655360
+GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
+GC_MAGIC_JUST_ALLOCATED is 0x41
+GC_MAGIC_JUST_REALLOCATED is 0x42
+GC_MAGIC_JUST_CLEARED is 0x43
+GC_MAGIC_DEALLOCATION_DETECTED is 0x44
+GC_MAGIC_JUST_COPIED is 0x45
+GC_MAGIC_JUST_CLEARED_STACK is 0x46
+GC_MAGIC_JUST_GC_ALLOCATED is 0x47
+GC_MAGIC_JUST_CLEARED_FROMSPACE is 0x48
+
+GC_state:
+GC_state.initialized is 1
+GC_state.stack_bottom is 0x7ffffff000
+GC_state.static_bottom is 0x12001a000
+GC_state.static_top is 0x12001c9c0
+GC_state.state_bottom is 0x12001a640
+GC_state.state_top is 0x12001a740
+GC_state.reg_bottom is 0x0
+GC_state.reg_top is 0x0
+Region statistics
+-----------------
+fromspace :      b=  0x1608fe000         l=0xe30e0           
+               end=  0x1609e10e0       
+            bitmap=  0x160817058         s=0x7187              u=0x6ddd            
+tospace   :      b=  0x16081a000         l=0xe30e0           
+               end=  0x1608fd0e0       
+            bitmap=  0x160817040         s=0x7187              u=0x6ddd            
+free      :      b=  0x1608f5ba0         l=0x7540            
+               end=  0x1608fd0e0       
+scan      :          0x16081a000       
+
+used size   : 0xdbba0            bytes (900kB)
+free size   : 0x7540             bytes (30kB)
+heap size   : 0xe30e0            bytes (930kB)
+
+stats:
+allocations : 1000 (1k)
+collections : 1000 (1k)
+---------------END GC DEBUG DUMP---------------
+testall.sh: i=9 j=1
+GC_init2 called from (GC_init_constructor):0
+Compiled for GC_CHERI at 17:11:36 May  7 2014
+GC_init2 called from test/test_all.c:280 (initialized already)
+---------------BEGIN GC DEBUG DUMP---------------
+GC_DEBUG is off
+GC_VERBOSE_DEBUG is off
+GC_GENERATIONAL is off
+GC_USE_BITMAP is on
+GC_USE_STACK_CLEAN is off
+GC_GROW_YOUNG_HEAP is on
+GC_GROW_OLD_HEAP is on
+GC_TIME is off
+GC_DEBUG_TRACK_ALLOCATIONS is off
+GC_COLLECT_ON_ALLOCATION_FAILURE is 1
+GC_THREAD_LOCAL_HEAP_SIZE is 30000
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 30000
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 32000000
+GC_OLD_GENERATION_SEMISPACE_SIZE is 650
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 655360
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 655360
+GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
+GC_MAGIC_JUST_ALLOCATED is 0x41
+GC_MAGIC_JUST_REALLOCATED is 0x42
+GC_MAGIC_JUST_CLEARED is 0x43
+GC_MAGIC_DEALLOCATION_DETECTED is 0x44
+GC_MAGIC_JUST_COPIED is 0x45
+GC_MAGIC_JUST_CLEARED_STACK is 0x46
+GC_MAGIC_JUST_GC_ALLOCATED is 0x47
+GC_MAGIC_JUST_CLEARED_FROMSPACE is 0x48
+
+GC_state:
+GC_state.initialized is 1
+GC_state.stack_bottom is 0x7ffffff000
+GC_state.static_bottom is 0x12001a000
+GC_state.static_top is 0x12001c9c0
+GC_state.state_bottom is 0x12001a640
+GC_state.state_top is 0x12001a740
+GC_state.reg_bottom is 0x0
+GC_state.reg_top is 0x0
+Region statistics
+-----------------
+fromspace :      b=  0x16080f000         l=0x7540            
+               end=  0x160816540       
+            bitmap=  0x160817058         s=0x3aa               u=0x0               
+tospace   :      b=  0x160807000         l=0x7540            
+               end=  0x16080e540       
+            bitmap=  0x160817040         s=0x3aa               u=0x0               
+free      :      b=  0x160807000         l=0x7540            
+               end=  0x16080e540       
+scan      :          0x0               
+
+used size   : 0x0                bytes (0B)
+free size   : 0x7540             bytes (30kB)
+heap size   : 0x7540             bytes (30kB)
+
+stats:
+allocations : 0 (0)
+collections : 0 (0)
+---------------END GC DEBUG DUMP---------------
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 1000000 718160
+[plotdata] # begin test my copying GC (I=30000 B=30016 A=32000000 cur=1030016)
+[plotdata] # end test my copying GC (I=30000 B=30016 A=32000000 cur=1030016)
+----------Finished test pause_time_test2 (took 719ms)----------
+---------------BEGIN GC DEBUG DUMP---------------
+GC_DEBUG is off
+GC_VERBOSE_DEBUG is off
+GC_GENERATIONAL is off
+GC_USE_BITMAP is on
+GC_USE_STACK_CLEAN is off
+GC_GROW_YOUNG_HEAP is on
+GC_GROW_OLD_HEAP is on
+GC_TIME is off
+GC_DEBUG_TRACK_ALLOCATIONS is off
+GC_COLLECT_ON_ALLOCATION_FAILURE is 1
+GC_THREAD_LOCAL_HEAP_SIZE is 30000
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 30000
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 32000000
+GC_OLD_GENERATION_SEMISPACE_SIZE is 650
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 655360
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 655360
+GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
+GC_MAGIC_JUST_ALLOCATED is 0x41
+GC_MAGIC_JUST_REALLOCATED is 0x42
+GC_MAGIC_JUST_CLEARED is 0x43
+GC_MAGIC_DEALLOCATION_DETECTED is 0x44
+GC_MAGIC_JUST_COPIED is 0x45
+GC_MAGIC_JUST_CLEARED_STACK is 0x46
+GC_MAGIC_JUST_GC_ALLOCATED is 0x47
+GC_MAGIC_JUST_CLEARED_FROMSPACE is 0x48
+
+GC_state:
+GC_state.initialized is 1
+GC_state.stack_bottom is 0x7ffffff000
+GC_state.static_bottom is 0x12001a000
+GC_state.static_top is 0x12001c9c0
+GC_state.state_bottom is 0x12001a640
+GC_state.state_top is 0x12001a740
+GC_state.reg_bottom is 0x0
+GC_state.reg_top is 0x0
+Region statistics
+-----------------
+fromspace :      b=  0x160916000         l=0xfb780           
+               end=  0x160a11780       
+            bitmap=  0x160817058         s=0x7dbc              u=0x7a12            
+tospace   :      b=  0x16081a000         l=0xfb780           
+               end=  0x160915780       
+            bitmap=  0x160817040         s=0x7dbc              u=0x7a12            
+free      :      b=  0x16090e240         l=0x7540            
+               end=  0x160915780       
+scan      :          0x16081a000       
+
+used size   : 0xf4240            bytes (1MB)
+free size   : 0x7540             bytes (30kB)
+heap size   : 0xfb780            bytes (1MB)
+
+stats:
+allocations : 1000 (1k)
+collections : 1000 (1k)
+---------------END GC DEBUG DUMP---------------
+testall.sh: i=10 j=1
+GC_init2 called from (GC_init_constructor):0
+Compiled for GC_CHERI at 17:11:36 May  7 2014
+GC_init2 called from test/test_all.c:280 (initialized already)
+---------------BEGIN GC DEBUG DUMP---------------
+GC_DEBUG is off
+GC_VERBOSE_DEBUG is off
+GC_GENERATIONAL is off
+GC_USE_BITMAP is on
+GC_USE_STACK_CLEAN is off
+GC_GROW_YOUNG_HEAP is on
+GC_GROW_OLD_HEAP is on
+GC_TIME is off
+GC_DEBUG_TRACK_ALLOCATIONS is off
+GC_COLLECT_ON_ALLOCATION_FAILURE is 1
+GC_THREAD_LOCAL_HEAP_SIZE is 30000
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 30000
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 32000000
+GC_OLD_GENERATION_SEMISPACE_SIZE is 650
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 655360
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 655360
+GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
+GC_MAGIC_JUST_ALLOCATED is 0x41
+GC_MAGIC_JUST_REALLOCATED is 0x42
+GC_MAGIC_JUST_CLEARED is 0x43
+GC_MAGIC_DEALLOCATION_DETECTED is 0x44
+GC_MAGIC_JUST_COPIED is 0x45
+GC_MAGIC_JUST_CLEARED_STACK is 0x46
+GC_MAGIC_JUST_GC_ALLOCATED is 0x47
+GC_MAGIC_JUST_CLEARED_FROMSPACE is 0x48
+
+GC_state:
+GC_state.initialized is 1
+GC_state.stack_bottom is 0x7ffffff000
+GC_state.static_bottom is 0x12001a000
+GC_state.static_top is 0x12001c9c0
+GC_state.state_bottom is 0x12001a640
+GC_state.state_top is 0x12001a740
+GC_state.reg_bottom is 0x0
+GC_state.reg_top is 0x0
+Region statistics
+-----------------
+fromspace :      b=  0x16080f000         l=0x7540            
+               end=  0x160816540       
+            bitmap=  0x160817058         s=0x3aa               u=0x0               
+tospace   :      b=  0x160807000         l=0x7540            
+               end=  0x16080e540       
+            bitmap=  0x160817040         s=0x3aa               u=0x0               
+free      :      b=  0x160807000         l=0x7540            
+               end=  0x16080e540       
+scan      :          0x0               
+
+used size   : 0x0                bytes (0B)
+free size   : 0x7540             bytes (30kB)
+heap size   : 0x7540             bytes (30kB)
+
+stats:
+allocations : 0 (0)
+collections : 0 (0)
+---------------END GC DEBUG DUMP---------------
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 1100000 724448
+[plotdata] # begin test my copying GC (I=30000 B=30016 A=32000000 cur=1130016)
+[plotdata] # end test my copying GC (I=30000 B=30016 A=32000000 cur=1130016)
+----------Finished test pause_time_test2 (took 725ms)----------
+---------------BEGIN GC DEBUG DUMP---------------
+GC_DEBUG is off
+GC_VERBOSE_DEBUG is off
+GC_GENERATIONAL is off
+GC_USE_BITMAP is on
+GC_USE_STACK_CLEAN is off
+GC_GROW_YOUNG_HEAP is on
+GC_GROW_OLD_HEAP is on
+GC_TIME is off
+GC_DEBUG_TRACK_ALLOCATIONS is off
+GC_COLLECT_ON_ALLOCATION_FAILURE is 1
+GC_THREAD_LOCAL_HEAP_SIZE is 30000
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 30000
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 32000000
+GC_OLD_GENERATION_SEMISPACE_SIZE is 650
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 655360
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 655360
+GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
+GC_MAGIC_JUST_ALLOCATED is 0x41
+GC_MAGIC_JUST_REALLOCATED is 0x42
+GC_MAGIC_JUST_CLEARED is 0x43
+GC_MAGIC_DEALLOCATION_DETECTED is 0x44
+GC_MAGIC_JUST_COPIED is 0x45
+GC_MAGIC_JUST_CLEARED_STACK is 0x46
+GC_MAGIC_JUST_GC_ALLOCATED is 0x47
+GC_MAGIC_JUST_CLEARED_FROMSPACE is 0x48
+
+GC_state:
+GC_state.initialized is 1
+GC_state.stack_bottom is 0x7ffffff000
+GC_state.static_bottom is 0x12001a000
+GC_state.static_top is 0x12001c9c0
+GC_state.state_bottom is 0x12001a640
+GC_state.state_top is 0x12001a740
+GC_state.reg_bottom is 0x0
+GC_state.reg_top is 0x0
+Region statistics
+-----------------
+fromspace :      b=  0x16092e000         l=0x113e20          
+               end=  0x160a41e20       
+            bitmap=  0x160817058         s=0x89f1              u=0x8647            
+tospace   :      b=  0x16081a000         l=0x113e20          
+               end=  0x16092de20       
+            bitmap=  0x160817040         s=0x89f1              u=0x8647            
+free      :      b=  0x1609268e0         l=0x7540            
+               end=  0x16092de20       
+scan      :          0x16081a000       
+
+used size   : 0x10c8e0           bytes (1MB)
+free size   : 0x7540             bytes (30kB)
+heap size   : 0x113e20           bytes (1MB)
+
+stats:
+allocations : 1000 (1k)
+collections : 1000 (1k)
+---------------END GC DEBUG DUMP---------------
+testall.sh: i=11 j=1
+GC_init2 called from (GC_init_constructor):0
+Compiled for GC_CHERI at 17:11:36 May  7 2014
+GC_init2 called from test/test_all.c:280 (initialized already)
+---------------BEGIN GC DEBUG DUMP---------------
+GC_DEBUG is off
+GC_VERBOSE_DEBUG is off
+GC_GENERATIONAL is off
+GC_USE_BITMAP is on
+GC_USE_STACK_CLEAN is off
+GC_GROW_YOUNG_HEAP is on
+GC_GROW_OLD_HEAP is on
+GC_TIME is off
+GC_DEBUG_TRACK_ALLOCATIONS is off
+GC_COLLECT_ON_ALLOCATION_FAILURE is 1
+GC_THREAD_LOCAL_HEAP_SIZE is 30000
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 30000
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 32000000
+GC_OLD_GENERATION_SEMISPACE_SIZE is 650
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 655360
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 655360
+GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
+GC_MAGIC_JUST_ALLOCATED is 0x41
+GC_MAGIC_JUST_REALLOCATED is 0x42
+GC_MAGIC_JUST_CLEARED is 0x43
+GC_MAGIC_DEALLOCATION_DETECTED is 0x44
+GC_MAGIC_JUST_COPIED is 0x45
+GC_MAGIC_JUST_CLEARED_STACK is 0x46
+GC_MAGIC_JUST_GC_ALLOCATED is 0x47
+GC_MAGIC_JUST_CLEARED_FROMSPACE is 0x48
+
+GC_state:
+GC_state.initialized is 1
+GC_state.stack_bottom is 0x7ffffff000
+GC_state.static_bottom is 0x12001a000
+GC_state.static_top is 0x12001c9c0
+GC_state.state_bottom is 0x12001a640
+GC_state.state_top is 0x12001a740
+GC_state.reg_bottom is 0x0
+GC_state.reg_top is 0x0
+Region statistics
+-----------------
+fromspace :      b=  0x16080f000         l=0x7540            
+               end=  0x160816540       
+            bitmap=  0x160817058         s=0x3aa               u=0x0               
+tospace   :      b=  0x160807000         l=0x7540            
+               end=  0x16080e540       
+            bitmap=  0x160817040         s=0x3aa               u=0x0               
+free      :      b=  0x160807000         l=0x7540            
+               end=  0x16080e540       
+scan      :          0x0               
+
+used size   : 0x0                bytes (0B)
+free size   : 0x7540             bytes (30kB)
+heap size   : 0x7540             bytes (30kB)
+
+stats:
+allocations : 0 (0)
+collections : 0 (0)
+---------------END GC DEBUG DUMP---------------
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 1200000 742458
+[plotdata] # begin test my copying GC (I=30000 B=30016 A=32000000 cur=1230016)
+[plotdata] # end test my copying GC (I=30000 B=30016 A=32000000 cur=1230016)
+----------Finished test pause_time_test2 (took 743ms)----------
+---------------BEGIN GC DEBUG DUMP---------------
+GC_DEBUG is off
+GC_VERBOSE_DEBUG is off
+GC_GENERATIONAL is off
+GC_USE_BITMAP is on
+GC_USE_STACK_CLEAN is off
+GC_GROW_YOUNG_HEAP is on
+GC_GROW_OLD_HEAP is on
+GC_TIME is off
+GC_DEBUG_TRACK_ALLOCATIONS is off
+GC_COLLECT_ON_ALLOCATION_FAILURE is 1
+GC_THREAD_LOCAL_HEAP_SIZE is 30000
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 30000
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 32000000
+GC_OLD_GENERATION_SEMISPACE_SIZE is 650
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 655360
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 655360
+GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
+GC_MAGIC_JUST_ALLOCATED is 0x41
+GC_MAGIC_JUST_REALLOCATED is 0x42
+GC_MAGIC_JUST_CLEARED is 0x43
+GC_MAGIC_DEALLOCATION_DETECTED is 0x44
+GC_MAGIC_JUST_COPIED is 0x45
+GC_MAGIC_JUST_CLEARED_STACK is 0x46
+GC_MAGIC_JUST_GC_ALLOCATED is 0x47
+GC_MAGIC_JUST_CLEARED_FROMSPACE is 0x48
+
+GC_state:
+GC_state.initialized is 1
+GC_state.stack_bottom is 0x7ffffff000
+GC_state.static_bottom is 0x12001a000
+GC_state.static_top is 0x12001c9c0
+GC_state.state_bottom is 0x12001a640
+GC_state.state_top is 0x12001a740
+GC_state.reg_bottom is 0x0
+GC_state.reg_top is 0x0
+Region statistics
+-----------------
+fromspace :      b=  0x160947000         l=0x12c4c0          
+               end=  0x160a734c0       
+            bitmap=  0x160817058         s=0x9626              u=0x927c            
+tospace   :      b=  0x16081a000         l=0x12c4c0          
+               end=  0x1609464c0       
+            bitmap=  0x160817040         s=0x9626              u=0x927c            
+free      :      b=  0x16093ef80         l=0x7540            
+               end=  0x1609464c0       
+scan      :          0x16081a000       
+
+used size   : 0x124f80           bytes (1MB)
+free size   : 0x7540             bytes (30kB)
+heap size   : 0x12c4c0           bytes (1MB)
+
+stats:
+allocations : 1000 (1k)
+collections : 1000 (1k)
+---------------END GC DEBUG DUMP---------------
+testall.sh: i=12 j=1
+GC_init2 called from (GC_init_constructor):0
+Compiled for GC_CHERI at 17:11:36 May  7 2014
+GC_init2 called from test/test_all.c:280 (initialized already)
+---------------BEGIN GC DEBUG DUMP---------------
+GC_DEBUG is off
+GC_VERBOSE_DEBUG is off
+GC_GENERATIONAL is off
+GC_USE_BITMAP is on
+GC_USE_STACK_CLEAN is off
+GC_GROW_YOUNG_HEAP is on
+GC_GROW_OLD_HEAP is on
+GC_TIME is off
+GC_DEBUG_TRACK_ALLOCATIONS is off
+GC_COLLECT_ON_ALLOCATION_FAILURE is 1
+GC_THREAD_LOCAL_HEAP_SIZE is 30000
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 30000
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 32000000
+GC_OLD_GENERATION_SEMISPACE_SIZE is 650
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 655360
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 655360
+GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
+GC_MAGIC_JUST_ALLOCATED is 0x41
+GC_MAGIC_JUST_REALLOCATED is 0x42
+GC_MAGIC_JUST_CLEARED is 0x43
+GC_MAGIC_DEALLOCATION_DETECTED is 0x44
+GC_MAGIC_JUST_COPIED is 0x45
+GC_MAGIC_JUST_CLEARED_STACK is 0x46
+GC_MAGIC_JUST_GC_ALLOCATED is 0x47
+GC_MAGIC_JUST_CLEARED_FROMSPACE is 0x48
+
+GC_state:
+GC_state.initialized is 1
+GC_state.stack_bottom is 0x7ffffff000
+GC_state.static_bottom is 0x12001a000
+GC_state.static_top is 0x12001c9c0
+GC_state.state_bottom is 0x12001a640
+GC_state.state_top is 0x12001a740
+GC_state.reg_bottom is 0x0
+GC_state.reg_top is 0x0
+Region statistics
+-----------------
+fromspace :      b=  0x16080f000         l=0x7540            
+               end=  0x160816540       
+            bitmap=  0x160817058         s=0x3aa               u=0x0               
+tospace   :      b=  0x160807000         l=0x7540            
+               end=  0x16080e540       
+            bitmap=  0x160817040         s=0x3aa               u=0x0               
+free      :      b=  0x160807000         l=0x7540            
+               end=  0x16080e540       
+scan      :          0x0               
+
+used size   : 0x0                bytes (0B)
+free size   : 0x7540             bytes (30kB)
+heap size   : 0x7540             bytes (30kB)
+
+stats:
+allocations : 0 (0)
+collections : 0 (0)
+---------------END GC DEBUG DUMP---------------
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 1300000 726608
+[plotdata] # begin test my copying GC (I=30000 B=30016 A=32000000 cur=1330016)
+[plotdata] # end test my copying GC (I=30000 B=30016 A=32000000 cur=1330016)
+----------Finished test pause_time_test2 (took 729ms)----------
+---------------BEGIN GC DEBUG DUMP---------------
+GC_DEBUG is off
+GC_VERBOSE_DEBUG is off
+GC_GENERATIONAL is off
+GC_USE_BITMAP is on
+GC_USE_STACK_CLEAN is off
+GC_GROW_YOUNG_HEAP is on
+GC_GROW_OLD_HEAP is on
+GC_TIME is off
+GC_DEBUG_TRACK_ALLOCATIONS is off
+GC_COLLECT_ON_ALLOCATION_FAILURE is 1
+GC_THREAD_LOCAL_HEAP_SIZE is 30000
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 30000
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 32000000
+GC_OLD_GENERATION_SEMISPACE_SIZE is 650
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 655360
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 655360
+GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
+GC_MAGIC_JUST_ALLOCATED is 0x41
+GC_MAGIC_JUST_REALLOCATED is 0x42
+GC_MAGIC_JUST_CLEARED is 0x43
+GC_MAGIC_DEALLOCATION_DETECTED is 0x44
+GC_MAGIC_JUST_COPIED is 0x45
+GC_MAGIC_JUST_CLEARED_STACK is 0x46
+GC_MAGIC_JUST_GC_ALLOCATED is 0x47
+GC_MAGIC_JUST_CLEARED_FROMSPACE is 0x48
+
+GC_state:
+GC_state.initialized is 1
+GC_state.stack_bottom is 0x7ffffff000
+GC_state.static_bottom is 0x12001a000
+GC_state.static_top is 0x12001c9c0
+GC_state.state_bottom is 0x12001a640
+GC_state.state_top is 0x12001a740
+GC_state.reg_bottom is 0x0
+GC_state.reg_top is 0x0
+Region statistics
+-----------------
+fromspace :      b=  0x16095f000         l=0x144b60          
+               end=  0x160aa3b60       
+            bitmap=  0x160817058         s=0xa25b              u=0x9eb1            
+tospace   :      b=  0x16081a000         l=0x144b60          
+               end=  0x16095eb60       
+            bitmap=  0x160817040         s=0xa25b              u=0x9eb1            
+free      :      b=  0x160957620         l=0x7540            
+               end=  0x16095eb60       
+scan      :          0x16081a000       
+
+used size   : 0x13d620           bytes (1MB)
+free size   : 0x7540             bytes (30kB)
+heap size   : 0x144b60           bytes (1MB)
+
+stats:
+allocations : 1000 (1k)
+collections : 1000 (1k)
+---------------END GC DEBUG DUMP---------------
+testall.sh: i=13 j=1
+GC_init2 called from (GC_init_constructor):0
+Compiled for GC_CHERI at 17:11:36 May  7 2014
+GC_init2 called from test/test_all.c:280 (initialized already)
+---------------BEGIN GC DEBUG DUMP---------------
+GC_DEBUG is off
+GC_VERBOSE_DEBUG is off
+GC_GENERATIONAL is off
+GC_USE_BITMAP is on
+GC_USE_STACK_CLEAN is off
+GC_GROW_YOUNG_HEAP is on
+GC_GROW_OLD_HEAP is on
+GC_TIME is off
+GC_DEBUG_TRACK_ALLOCATIONS is off
+GC_COLLECT_ON_ALLOCATION_FAILURE is 1
+GC_THREAD_LOCAL_HEAP_SIZE is 30000
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 30000
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 32000000
+GC_OLD_GENERATION_SEMISPACE_SIZE is 650
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 655360
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 655360
+GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
+GC_MAGIC_JUST_ALLOCATED is 0x41
+GC_MAGIC_JUST_REALLOCATED is 0x42
+GC_MAGIC_JUST_CLEARED is 0x43
+GC_MAGIC_DEALLOCATION_DETECTED is 0x44
+GC_MAGIC_JUST_COPIED is 0x45
+GC_MAGIC_JUST_CLEARED_STACK is 0x46
+GC_MAGIC_JUST_GC_ALLOCATED is 0x47
+GC_MAGIC_JUST_CLEARED_FROMSPACE is 0x48
+
+GC_state:
+GC_state.initialized is 1
+GC_state.stack_bottom is 0x7ffffff000
+GC_state.static_bottom is 0x12001a000
+GC_state.static_top is 0x12001c9c0
+GC_state.state_bottom is 0x12001a640
+GC_state.state_top is 0x12001a740
+GC_state.reg_bottom is 0x0
+GC_state.reg_top is 0x0
+Region statistics
+-----------------
+fromspace :      b=  0x16080f000         l=0x7540            
+               end=  0x160816540       
+            bitmap=  0x160817058         s=0x3aa               u=0x0               
+tospace   :      b=  0x160807000         l=0x7540            
+               end=  0x16080e540       
+            bitmap=  0x160817040         s=0x3aa               u=0x0               
+free      :      b=  0x160807000         l=0x7540            
+               end=  0x16080e540       
+scan      :          0x0               
+
+used size   : 0x0                bytes (0B)
+free size   : 0x7540             bytes (30kB)
+heap size   : 0x7540             bytes (30kB)
+
+stats:
+allocations : 0 (0)
+collections : 0 (0)
+---------------END GC DEBUG DUMP---------------
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 1400000 826988
+[plotdata] # begin test my copying GC (I=30000 B=30016 A=32000000 cur=1430016)
+[plotdata] # end test my copying GC (I=30000 B=30016 A=32000000 cur=1430016)
+----------Finished test pause_time_test2 (took 827ms)----------
+---------------BEGIN GC DEBUG DUMP---------------
+GC_DEBUG is off
+GC_VERBOSE_DEBUG is off
+GC_GENERATIONAL is off
+GC_USE_BITMAP is on
+GC_USE_STACK_CLEAN is off
+GC_GROW_YOUNG_HEAP is on
+GC_GROW_OLD_HEAP is on
+GC_TIME is off
+GC_DEBUG_TRACK_ALLOCATIONS is off
+GC_COLLECT_ON_ALLOCATION_FAILURE is 1
+GC_THREAD_LOCAL_HEAP_SIZE is 30000
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 30000
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 32000000
+GC_OLD_GENERATION_SEMISPACE_SIZE is 650
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 655360
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 655360
+GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
+GC_MAGIC_JUST_ALLOCATED is 0x41
+GC_MAGIC_JUST_REALLOCATED is 0x42
+GC_MAGIC_JUST_CLEARED is 0x43
+GC_MAGIC_DEALLOCATION_DETECTED is 0x44
+GC_MAGIC_JUST_COPIED is 0x45
+GC_MAGIC_JUST_CLEARED_STACK is 0x46
+GC_MAGIC_JUST_GC_ALLOCATED is 0x47
+GC_MAGIC_JUST_CLEARED_FROMSPACE is 0x48
+
+GC_state:
+GC_state.initialized is 1
+GC_state.stack_bottom is 0x7ffffff000
+GC_state.static_bottom is 0x12001a000
+GC_state.static_top is 0x12001c9c0
+GC_state.state_bottom is 0x12001a640
+GC_state.state_top is 0x12001a740
+GC_state.reg_bottom is 0x0
+GC_state.reg_top is 0x0
+Region statistics
+-----------------
+fromspace :      b=  0x160978000         l=0x15d200          
+               end=  0x160ad5200       
+            bitmap=  0x160817058         s=0xae90              u=0xaae6            
+tospace   :      b=  0x16081a000         l=0x15d200          
+               end=  0x160977200       
+            bitmap=  0x160817040         s=0xae90              u=0xaae6            
+free      :      b=  0x16096fcc0         l=0x7540            
+               end=  0x160977200       
+scan      :          0x16081a000       
+
+used size   : 0x155cc0           bytes (1MB)
+free size   : 0x7540             bytes (30kB)
+heap size   : 0x15d200           bytes (1MB)
+
+stats:
+allocations : 1000 (1k)
+collections : 1000 (1k)
+---------------END GC DEBUG DUMP---------------
+testall.sh: i=14 j=1
+GC_init2 called from (GC_init_constructor):0
+Compiled for GC_CHERI at 17:11:36 May  7 2014
+GC_init2 called from test/test_all.c:280 (initialized already)
+---------------BEGIN GC DEBUG DUMP---------------
+GC_DEBUG is off
+GC_VERBOSE_DEBUG is off
+GC_GENERATIONAL is off
+GC_USE_BITMAP is on
+GC_USE_STACK_CLEAN is off
+GC_GROW_YOUNG_HEAP is on
+GC_GROW_OLD_HEAP is on
+GC_TIME is off
+GC_DEBUG_TRACK_ALLOCATIONS is off
+GC_COLLECT_ON_ALLOCATION_FAILURE is 1
+GC_THREAD_LOCAL_HEAP_SIZE is 30000
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 30000
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 32000000
+GC_OLD_GENERATION_SEMISPACE_SIZE is 650
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 655360
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 655360
+GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
+GC_MAGIC_JUST_ALLOCATED is 0x41
+GC_MAGIC_JUST_REALLOCATED is 0x42
+GC_MAGIC_JUST_CLEARED is 0x43
+GC_MAGIC_DEALLOCATION_DETECTED is 0x44
+GC_MAGIC_JUST_COPIED is 0x45
+GC_MAGIC_JUST_CLEARED_STACK is 0x46
+GC_MAGIC_JUST_GC_ALLOCATED is 0x47
+GC_MAGIC_JUST_CLEARED_FROMSPACE is 0x48
+
+GC_state:
+GC_state.initialized is 1
+GC_state.stack_bottom is 0x7ffffff000
+GC_state.static_bottom is 0x12001a000
+GC_state.static_top is 0x12001c9c0
+GC_state.state_bottom is 0x12001a640
+GC_state.state_top is 0x12001a740
+GC_state.reg_bottom is 0x0
+GC_state.reg_top is 0x0
+Region statistics
+-----------------
+fromspace :      b=  0x16080f000         l=0x7540            
+               end=  0x160816540       
+            bitmap=  0x160817058         s=0x3aa               u=0x0               
+tospace   :      b=  0x160807000         l=0x7540            
+               end=  0x16080e540       
+            bitmap=  0x160817040         s=0x3aa               u=0x0               
+free      :      b=  0x160807000         l=0x7540            
+               end=  0x16080e540       
+scan      :          0x0               
+
+used size   : 0x0                bytes (0B)
+free size   : 0x7540             bytes (30kB)
+heap size   : 0x7540             bytes (30kB)
+
+stats:
+allocations : 0 (0)
+collections : 0 (0)
+---------------END GC DEBUG DUMP---------------
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 1500000 807115
+[plotdata] # begin test my copying GC (I=30000 B=30016 A=32000000 cur=1530016)
+[plotdata] # end test my copying GC (I=30000 B=30016 A=32000000 cur=1530016)
+----------Finished test pause_time_test2 (took 808ms)----------
+---------------BEGIN GC DEBUG DUMP---------------
+GC_DEBUG is off
+GC_VERBOSE_DEBUG is off
+GC_GENERATIONAL is off
+GC_USE_BITMAP is on
+GC_USE_STACK_CLEAN is off
+GC_GROW_YOUNG_HEAP is on
+GC_GROW_OLD_HEAP is on
+GC_TIME is off
+GC_DEBUG_TRACK_ALLOCATIONS is off
+GC_COLLECT_ON_ALLOCATION_FAILURE is 1
+GC_THREAD_LOCAL_HEAP_SIZE is 30000
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 30000
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 32000000
+GC_OLD_GENERATION_SEMISPACE_SIZE is 650
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 655360
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 655360
+GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
+GC_MAGIC_JUST_ALLOCATED is 0x41
+GC_MAGIC_JUST_REALLOCATED is 0x42
+GC_MAGIC_JUST_CLEARED is 0x43
+GC_MAGIC_DEALLOCATION_DETECTED is 0x44
+GC_MAGIC_JUST_COPIED is 0x45
+GC_MAGIC_JUST_CLEARED_STACK is 0x46
+GC_MAGIC_JUST_GC_ALLOCATED is 0x47
+GC_MAGIC_JUST_CLEARED_FROMSPACE is 0x48
+
+GC_state:
+GC_state.initialized is 1
+GC_state.stack_bottom is 0x7ffffff000
+GC_state.static_bottom is 0x12001a000
+GC_state.static_top is 0x12001c9c0
+GC_state.state_bottom is 0x12001a640
+GC_state.state_top is 0x12001a740
+GC_state.reg_bottom is 0x0
+GC_state.reg_top is 0x0
+Region statistics
+-----------------
+fromspace :      b=  0x160990000         l=0x1758a0          
+               end=  0x160b058a0       
+            bitmap=  0x160817058         s=0xbac5              u=0xb71b            
+tospace   :      b=  0x16081a000         l=0x1758a0          
+               end=  0x16098f8a0       
+            bitmap=  0x160817040         s=0xbac5              u=0xb71b            
+free      :      b=  0x160988360         l=0x7540            
+               end=  0x16098f8a0       
+scan      :          0x16081a000       
+
+used size   : 0x16e360           bytes (2MB)
+free size   : 0x7540             bytes (30kB)
+heap size   : 0x1758a0           bytes (2MB)
+
+stats:
+allocations : 1000 (1k)
+collections : 1000 (1k)
+---------------END GC DEBUG DUMP---------------
+testall.sh: i=15 j=1
+GC_init2 called from (GC_init_constructor):0
+Compiled for GC_CHERI at 17:11:36 May  7 2014
+GC_init2 called from test/test_all.c:280 (initialized already)
+---------------BEGIN GC DEBUG DUMP---------------
+GC_DEBUG is off
+GC_VERBOSE_DEBUG is off
+GC_GENERATIONAL is off
+GC_USE_BITMAP is on
+GC_USE_STACK_CLEAN is off
+GC_GROW_YOUNG_HEAP is on
+GC_GROW_OLD_HEAP is on
+GC_TIME is off
+GC_DEBUG_TRACK_ALLOCATIONS is off
+GC_COLLECT_ON_ALLOCATION_FAILURE is 1
+GC_THREAD_LOCAL_HEAP_SIZE is 30000
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 30000
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 32000000
+GC_OLD_GENERATION_SEMISPACE_SIZE is 650
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 655360
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 655360
+GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
+GC_MAGIC_JUST_ALLOCATED is 0x41
+GC_MAGIC_JUST_REALLOCATED is 0x42
+GC_MAGIC_JUST_CLEARED is 0x43
+GC_MAGIC_DEALLOCATION_DETECTED is 0x44
+GC_MAGIC_JUST_COPIED is 0x45
+GC_MAGIC_JUST_CLEARED_STACK is 0x46
+GC_MAGIC_JUST_GC_ALLOCATED is 0x47
+GC_MAGIC_JUST_CLEARED_FROMSPACE is 0x48
+
+GC_state:
+GC_state.initialized is 1
+GC_state.stack_bottom is 0x7ffffff000
+GC_state.static_bottom is 0x12001a000
+GC_state.static_top is 0x12001c9c0
+GC_state.state_bottom is 0x12001a640
+GC_state.state_top is 0x12001a740
+GC_state.reg_bottom is 0x0
+GC_state.reg_top is 0x0
+Region statistics
+-----------------
+fromspace :      b=  0x16080f000         l=0x7540            
+               end=  0x160816540       
+            bitmap=  0x160817058         s=0x3aa               u=0x0               
+tospace   :      b=  0x160807000         l=0x7540            
+               end=  0x16080e540       
+            bitmap=  0x160817040         s=0x3aa               u=0x0               
+free      :      b=  0x160807000         l=0x7540            
+               end=  0x16080e540       
+scan      :          0x0               
+
+used size   : 0x0                bytes (0B)
+free size   : 0x7540             bytes (30kB)
+heap size   : 0x7540             bytes (30kB)
+
+stats:
+allocations : 0 (0)
+collections : 0 (0)
+---------------END GC DEBUG DUMP---------------
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 1600000 802830
+[plotdata] # begin test my copying GC (I=30000 B=30016 A=32000000 cur=1630016)
+[plotdata] # end test my copying GC (I=30000 B=30016 A=32000000 cur=1630016)
+----------Finished test pause_time_test2 (took 803ms)----------
+---------------BEGIN GC DEBUG DUMP---------------
+GC_DEBUG is off
+GC_VERBOSE_DEBUG is off
+GC_GENERATIONAL is off
+GC_USE_BITMAP is on
+GC_USE_STACK_CLEAN is off
+GC_GROW_YOUNG_HEAP is on
+GC_GROW_OLD_HEAP is on
+GC_TIME is off
+GC_DEBUG_TRACK_ALLOCATIONS is off
+GC_COLLECT_ON_ALLOCATION_FAILURE is 1
+GC_THREAD_LOCAL_HEAP_SIZE is 30000
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 30000
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 32000000
+GC_OLD_GENERATION_SEMISPACE_SIZE is 650
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 655360
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 655360
+GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
+GC_MAGIC_JUST_ALLOCATED is 0x41
+GC_MAGIC_JUST_REALLOCATED is 0x42
+GC_MAGIC_JUST_CLEARED is 0x43
+GC_MAGIC_DEALLOCATION_DETECTED is 0x44
+GC_MAGIC_JUST_COPIED is 0x45
+GC_MAGIC_JUST_CLEARED_STACK is 0x46
+GC_MAGIC_JUST_GC_ALLOCATED is 0x47
+GC_MAGIC_JUST_CLEARED_FROMSPACE is 0x48
+
+GC_state:
+GC_state.initialized is 1
+GC_state.stack_bottom is 0x7ffffff000
+GC_state.static_bottom is 0x12001a000
+GC_state.static_top is 0x12001c9c0
+GC_state.state_bottom is 0x12001a640
+GC_state.state_top is 0x12001a740
+GC_state.reg_bottom is 0x0
+GC_state.reg_top is 0x0
+Region statistics
+-----------------
+fromspace :      b=  0x1609a8000         l=0x18df40          
+               end=  0x160b35f40       
+            bitmap=  0x160817058         s=0xc6fa              u=0xc350            
+tospace   :      b=  0x16081a000         l=0x18df40          
+               end=  0x1609a7f40       
+            bitmap=  0x160817040         s=0xc6fa              u=0xc350            
+free      :      b=  0x1609a0a00         l=0x7540            
+               end=  0x1609a7f40       
+scan      :          0x16081a000       
+
+used size   : 0x186a00           bytes (2MB)
+free size   : 0x7540             bytes (30kB)
+heap size   : 0x18df40           bytes (2MB)
+
+stats:
+allocations : 1000 (1k)
+collections : 1000 (1k)
+---------------END GC DEBUG DUMP---------------
+testall.sh: i=16 j=1
+GC_init2 called from (GC_init_constructor):0
+Compiled for GC_CHERI at 17:11:36 May  7 2014
+GC_init2 called from test/test_all.c:280 (initialized already)
+---------------BEGIN GC DEBUG DUMP---------------
+GC_DEBUG is off
+GC_VERBOSE_DEBUG is off
+GC_GENERATIONAL is off
+GC_USE_BITMAP is on
+GC_USE_STACK_CLEAN is off
+GC_GROW_YOUNG_HEAP is on
+GC_GROW_OLD_HEAP is on
+GC_TIME is off
+GC_DEBUG_TRACK_ALLOCATIONS is off
+GC_COLLECT_ON_ALLOCATION_FAILURE is 1
+GC_THREAD_LOCAL_HEAP_SIZE is 30000
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 30000
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 32000000
+GC_OLD_GENERATION_SEMISPACE_SIZE is 650
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 655360
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 655360
+GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
+GC_MAGIC_JUST_ALLOCATED is 0x41
+GC_MAGIC_JUST_REALLOCATED is 0x42
+GC_MAGIC_JUST_CLEARED is 0x43
+GC_MAGIC_DEALLOCATION_DETECTED is 0x44
+GC_MAGIC_JUST_COPIED is 0x45
+GC_MAGIC_JUST_CLEARED_STACK is 0x46
+GC_MAGIC_JUST_GC_ALLOCATED is 0x47
+GC_MAGIC_JUST_CLEARED_FROMSPACE is 0x48
+
+GC_state:
+GC_state.initialized is 1
+GC_state.stack_bottom is 0x7ffffff000
+GC_state.static_bottom is 0x12001a000
+GC_state.static_top is 0x12001c9c0
+GC_state.state_bottom is 0x12001a640
+GC_state.state_top is 0x12001a740
+GC_state.reg_bottom is 0x0
+GC_state.reg_top is 0x0
+Region statistics
+-----------------
+fromspace :      b=  0x16080f000         l=0x7540            
+               end=  0x160816540       
+            bitmap=  0x160817058         s=0x3aa               u=0x0               
+tospace   :      b=  0x160807000         l=0x7540            
+               end=  0x16080e540       
+            bitmap=  0x160817040         s=0x3aa               u=0x0               
+free      :      b=  0x160807000         l=0x7540            
+               end=  0x16080e540       
+scan      :          0x0               
+
+used size   : 0x0                bytes (0B)
+free size   : 0x7540             bytes (30kB)
+heap size   : 0x7540             bytes (30kB)
+
+stats:
+allocations : 0 (0)
+collections : 0 (0)
+---------------END GC DEBUG DUMP---------------
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 1700000 819511
+[plotdata] # begin test my copying GC (I=30000 B=30016 A=32000000 cur=1730016)
+[plotdata] # end test my copying GC (I=30000 B=30016 A=32000000 cur=1730016)
+----------Finished test pause_time_test2 (took 820ms)----------
+---------------BEGIN GC DEBUG DUMP---------------
+GC_DEBUG is off
+GC_VERBOSE_DEBUG is off
+GC_GENERATIONAL is off
+GC_USE_BITMAP is on
+GC_USE_STACK_CLEAN is off
+GC_GROW_YOUNG_HEAP is on
+GC_GROW_OLD_HEAP is on
+GC_TIME is off
+GC_DEBUG_TRACK_ALLOCATIONS is off
+GC_COLLECT_ON_ALLOCATION_FAILURE is 1
+GC_THREAD_LOCAL_HEAP_SIZE is 30000
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 30000
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 32000000
+GC_OLD_GENERATION_SEMISPACE_SIZE is 650
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 655360
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 655360
+GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
+GC_MAGIC_JUST_ALLOCATED is 0x41
+GC_MAGIC_JUST_REALLOCATED is 0x42
+GC_MAGIC_JUST_CLEARED is 0x43
+GC_MAGIC_DEALLOCATION_DETECTED is 0x44
+GC_MAGIC_JUST_COPIED is 0x45
+GC_MAGIC_JUST_CLEARED_STACK is 0x46
+GC_MAGIC_JUST_GC_ALLOCATED is 0x47
+GC_MAGIC_JUST_CLEARED_FROMSPACE is 0x48
+
+GC_state:
+GC_state.initialized is 1
+GC_state.stack_bottom is 0x7ffffff000
+GC_state.static_bottom is 0x12001a000
+GC_state.static_top is 0x12001c9c0
+GC_state.state_bottom is 0x12001a640
+GC_state.state_top is 0x12001a740
+GC_state.reg_bottom is 0x0
+GC_state.reg_top is 0x0
+Region statistics
+-----------------
+fromspace :      b=  0x1609c1000         l=0x1a65e0          
+               end=  0x160b675e0       
+            bitmap=  0x160817058         s=0xd32f              u=0xcf85            
+tospace   :      b=  0x16081a000         l=0x1a65e0          
+               end=  0x1609c05e0       
+            bitmap=  0x160817040         s=0xd32f              u=0xcf85            
+free      :      b=  0x1609b90a0         l=0x7540            
+               end=  0x1609c05e0       
+scan      :          0x16081a000       
+
+used size   : 0x19f0a0           bytes (2MB)
+free size   : 0x7540             bytes (30kB)
+heap size   : 0x1a65e0           bytes (2MB)
+
+stats:
+allocations : 1000 (1k)
+collections : 1000 (1k)
+---------------END GC DEBUG DUMP---------------
+testall.sh: i=17 j=1
+GC_init2 called from (GC_init_constructor):0
+Compiled for GC_CHERI at 17:11:36 May  7 2014
+GC_init2 called from test/test_all.c:280 (initialized already)
+---------------BEGIN GC DEBUG DUMP---------------
+GC_DEBUG is off
+GC_VERBOSE_DEBUG is off
+GC_GENERATIONAL is off
+GC_USE_BITMAP is on
+GC_USE_STACK_CLEAN is off
+GC_GROW_YOUNG_HEAP is on
+GC_GROW_OLD_HEAP is on
+GC_TIME is off
+GC_DEBUG_TRACK_ALLOCATIONS is off
+GC_COLLECT_ON_ALLOCATION_FAILURE is 1
+GC_THREAD_LOCAL_HEAP_SIZE is 30000
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 30000
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 32000000
+GC_OLD_GENERATION_SEMISPACE_SIZE is 650
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 655360
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 655360
+GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
+GC_MAGIC_JUST_ALLOCATED is 0x41
+GC_MAGIC_JUST_REALLOCATED is 0x42
+GC_MAGIC_JUST_CLEARED is 0x43
+GC_MAGIC_DEALLOCATION_DETECTED is 0x44
+GC_MAGIC_JUST_COPIED is 0x45
+GC_MAGIC_JUST_CLEARED_STACK is 0x46
+GC_MAGIC_JUST_GC_ALLOCATED is 0x47
+GC_MAGIC_JUST_CLEARED_FROMSPACE is 0x48
+
+GC_state:
+GC_state.initialized is 1
+GC_state.stack_bottom is 0x7ffffff000
+GC_state.static_bottom is 0x12001a000
+GC_state.static_top is 0x12001c9c0
+GC_state.state_bottom is 0x12001a640
+GC_state.state_top is 0x12001a740
+GC_state.reg_bottom is 0x0
+GC_state.reg_top is 0x0
+Region statistics
+-----------------
+fromspace :      b=  0x16080f000         l=0x7540            
+               end=  0x160816540       
+            bitmap=  0x160817058         s=0x3aa               u=0x0               
+tospace   :      b=  0x160807000         l=0x7540            
+               end=  0x16080e540       
+            bitmap=  0x160817040         s=0x3aa               u=0x0               
+free      :      b=  0x160807000         l=0x7540            
+               end=  0x16080e540       
+scan      :          0x0               
+
+used size   : 0x0                bytes (0B)
+free size   : 0x7540             bytes (30kB)
+heap size   : 0x7540             bytes (30kB)
+
+stats:
+allocations : 0 (0)
+collections : 0 (0)
+---------------END GC DEBUG DUMP---------------
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 1800000 872206
+[plotdata] # begin test my copying GC (I=30000 B=30016 A=32000000 cur=1830016)
+[plotdata] # end test my copying GC (I=30000 B=30016 A=32000000 cur=1830016)
+----------Finished test pause_time_test2 (took 874ms)----------
+---------------BEGIN GC DEBUG DUMP---------------
+GC_DEBUG is off
+GC_VERBOSE_DEBUG is off
+GC_GENERATIONAL is off
+GC_USE_BITMAP is on
+GC_USE_STACK_CLEAN is off
+GC_GROW_YOUNG_HEAP is on
+GC_GROW_OLD_HEAP is on
+GC_TIME is off
+GC_DEBUG_TRACK_ALLOCATIONS is off
+GC_COLLECT_ON_ALLOCATION_FAILURE is 1
+GC_THREAD_LOCAL_HEAP_SIZE is 30000
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 30000
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 32000000
+GC_OLD_GENERATION_SEMISPACE_SIZE is 650
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 655360
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 655360
+GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
+GC_MAGIC_JUST_ALLOCATED is 0x41
+GC_MAGIC_JUST_REALLOCATED is 0x42
+GC_MAGIC_JUST_CLEARED is 0x43
+GC_MAGIC_DEALLOCATION_DETECTED is 0x44
+GC_MAGIC_JUST_COPIED is 0x45
+GC_MAGIC_JUST_CLEARED_STACK is 0x46
+GC_MAGIC_JUST_GC_ALLOCATED is 0x47
+GC_MAGIC_JUST_CLEARED_FROMSPACE is 0x48
+
+GC_state:
+GC_state.initialized is 1
+GC_state.stack_bottom is 0x7ffffff000
+GC_state.static_bottom is 0x12001a000
+GC_state.static_top is 0x12001c9c0
+GC_state.state_bottom is 0x12001a640
+GC_state.state_top is 0x12001a740
+GC_state.reg_bottom is 0x0
+GC_state.reg_top is 0x0
+Region statistics
+-----------------
+fromspace :      b=  0x1609d9000         l=0x1bec80          
+               end=  0x160b97c80       
+            bitmap=  0x160817058         s=0xdf64              u=0xdbba            
+tospace   :      b=  0x16081a000         l=0x1bec80          
+               end=  0x1609d8c80       
+            bitmap=  0x160817040         s=0xdf64              u=0xdbba            
+free      :      b=  0x1609d1740         l=0x7540            
+               end=  0x1609d8c80       
+scan      :          0x16081a000       
+
+used size   : 0x1b7740           bytes (2MB)
+free size   : 0x7540             bytes (30kB)
+heap size   : 0x1bec80           bytes (2MB)
+
+stats:
+allocations : 1000 (1k)
+collections : 1000 (1k)
+---------------END GC DEBUG DUMP---------------
+testall.sh: i=18 j=1
+GC_init2 called from (GC_init_constructor):0
+Compiled for GC_CHERI at 17:11:36 May  7 2014
+GC_init2 called from test/test_all.c:280 (initialized already)
+---------------BEGIN GC DEBUG DUMP---------------
+GC_DEBUG is off
+GC_VERBOSE_DEBUG is off
+GC_GENERATIONAL is off
+GC_USE_BITMAP is on
+GC_USE_STACK_CLEAN is off
+GC_GROW_YOUNG_HEAP is on
+GC_GROW_OLD_HEAP is on
+GC_TIME is off
+GC_DEBUG_TRACK_ALLOCATIONS is off
+GC_COLLECT_ON_ALLOCATION_FAILURE is 1
+GC_THREAD_LOCAL_HEAP_SIZE is 30000
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 30000
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 32000000
+GC_OLD_GENERATION_SEMISPACE_SIZE is 650
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 655360
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 655360
+GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
+GC_MAGIC_JUST_ALLOCATED is 0x41
+GC_MAGIC_JUST_REALLOCATED is 0x42
+GC_MAGIC_JUST_CLEARED is 0x43
+GC_MAGIC_DEALLOCATION_DETECTED is 0x44
+GC_MAGIC_JUST_COPIED is 0x45
+GC_MAGIC_JUST_CLEARED_STACK is 0x46
+GC_MAGIC_JUST_GC_ALLOCATED is 0x47
+GC_MAGIC_JUST_CLEARED_FROMSPACE is 0x48
+
+GC_state:
+GC_state.initialized is 1
+GC_state.stack_bottom is 0x7ffffff000
+GC_state.static_bottom is 0x12001a000
+GC_state.static_top is 0x12001c9c0
+GC_state.state_bottom is 0x12001a640
+GC_state.state_top is 0x12001a740
+GC_state.reg_bottom is 0x0
+GC_state.reg_top is 0x0
+Region statistics
+-----------------
+fromspace :      b=  0x16080f000         l=0x7540            
+               end=  0x160816540       
+            bitmap=  0x160817058         s=0x3aa               u=0x0               
+tospace   :      b=  0x160807000         l=0x7540            
+               end=  0x16080e540       
+            bitmap=  0x160817040         s=0x3aa               u=0x0               
+free      :      b=  0x160807000         l=0x7540            
+               end=  0x16080e540       
+scan      :          0x0               
+
+used size   : 0x0                bytes (0B)
+free size   : 0x7540             bytes (30kB)
+heap size   : 0x7540             bytes (30kB)
+
+stats:
+allocations : 0 (0)
+collections : 0 (0)
+---------------END GC DEBUG DUMP---------------
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 1900000 898364
+[plotdata] # begin test my copying GC (I=30000 B=30016 A=32000000 cur=1930016)
+[plotdata] # end test my copying GC (I=30000 B=30016 A=32000000 cur=1930016)
+----------Finished test pause_time_test2 (took 900ms)----------
+---------------BEGIN GC DEBUG DUMP---------------
+GC_DEBUG is off
+GC_VERBOSE_DEBUG is off
+GC_GENERATIONAL is off
+GC_USE_BITMAP is on
+GC_USE_STACK_CLEAN is off
+GC_GROW_YOUNG_HEAP is on
+GC_GROW_OLD_HEAP is on
+GC_TIME is off
+GC_DEBUG_TRACK_ALLOCATIONS is off
+GC_COLLECT_ON_ALLOCATION_FAILURE is 1
+GC_THREAD_LOCAL_HEAP_SIZE is 30000
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 30000
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 32000000
+GC_OLD_GENERATION_SEMISPACE_SIZE is 650
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 655360
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 655360
+GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
+GC_MAGIC_JUST_ALLOCATED is 0x41
+GC_MAGIC_JUST_REALLOCATED is 0x42
+GC_MAGIC_JUST_CLEARED is 0x43
+GC_MAGIC_DEALLOCATION_DETECTED is 0x44
+GC_MAGIC_JUST_COPIED is 0x45
+GC_MAGIC_JUST_CLEARED_STACK is 0x46
+GC_MAGIC_JUST_GC_ALLOCATED is 0x47
+GC_MAGIC_JUST_CLEARED_FROMSPACE is 0x48
+
+GC_state:
+GC_state.initialized is 1
+GC_state.stack_bottom is 0x7ffffff000
+GC_state.static_bottom is 0x12001a000
+GC_state.static_top is 0x12001c9c0
+GC_state.state_bottom is 0x12001a640
+GC_state.state_top is 0x12001a740
+GC_state.reg_bottom is 0x0
+GC_state.reg_top is 0x0
+Region statistics
+-----------------
+fromspace :      b=  0x1609f2000         l=0x1d7320          
+               end=  0x160bc9320       
+            bitmap=  0x160817058         s=0xeb99              u=0xe7ef            
+tospace   :      b=  0x16081a000         l=0x1d7320          
+               end=  0x1609f1320       
+            bitmap=  0x160817040         s=0xeb99              u=0xe7ef            
+free      :      b=  0x1609e9de0         l=0x7540            
+               end=  0x1609f1320       
+scan      :          0x16081a000       
+
+used size   : 0x1cfde0           bytes (2MB)
+free size   : 0x7540             bytes (30kB)
+heap size   : 0x1d7320           bytes (2MB)
+
+stats:
+allocations : 1000 (1k)
+collections : 1000 (1k)
+---------------END GC DEBUG DUMP---------------
+testall.sh: i=19 j=1
+GC_init2 called from (GC_init_constructor):0
+Compiled for GC_CHERI at 17:11:36 May  7 2014
+GC_init2 called from test/test_all.c:280 (initialized already)
+---------------BEGIN GC DEBUG DUMP---------------
+GC_DEBUG is off
+GC_VERBOSE_DEBUG is off
+GC_GENERATIONAL is off
+GC_USE_BITMAP is on
+GC_USE_STACK_CLEAN is off
+GC_GROW_YOUNG_HEAP is on
+GC_GROW_OLD_HEAP is on
+GC_TIME is off
+GC_DEBUG_TRACK_ALLOCATIONS is off
+GC_COLLECT_ON_ALLOCATION_FAILURE is 1
+GC_THREAD_LOCAL_HEAP_SIZE is 30000
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 30000
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 32000000
+GC_OLD_GENERATION_SEMISPACE_SIZE is 650
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 655360
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 655360
+GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
+GC_MAGIC_JUST_ALLOCATED is 0x41
+GC_MAGIC_JUST_REALLOCATED is 0x42
+GC_MAGIC_JUST_CLEARED is 0x43
+GC_MAGIC_DEALLOCATION_DETECTED is 0x44
+GC_MAGIC_JUST_COPIED is 0x45
+GC_MAGIC_JUST_CLEARED_STACK is 0x46
+GC_MAGIC_JUST_GC_ALLOCATED is 0x47
+GC_MAGIC_JUST_CLEARED_FROMSPACE is 0x48
+
+GC_state:
+GC_state.initialized is 1
+GC_state.stack_bottom is 0x7ffffff000
+GC_state.static_bottom is 0x12001a000
+GC_state.static_top is 0x12001c9c0
+GC_state.state_bottom is 0x12001a640
+GC_state.state_top is 0x12001a740
+GC_state.reg_bottom is 0x0
+GC_state.reg_top is 0x0
+Region statistics
+-----------------
+fromspace :      b=  0x16080f000         l=0x7540            
+               end=  0x160816540       
+            bitmap=  0x160817058         s=0x3aa               u=0x0               
+tospace   :      b=  0x160807000         l=0x7540            
+               end=  0x16080e540       
+            bitmap=  0x160817040         s=0x3aa               u=0x0               
+free      :      b=  0x160807000         l=0x7540            
+               end=  0x16080e540       
+scan      :          0x0               
+
+used size   : 0x0                bytes (0B)
+free size   : 0x7540             bytes (30kB)
+heap size   : 0x7540             bytes (30kB)
+
+stats:
+allocations : 0 (0)
+collections : 0 (0)
+---------------END GC DEBUG DUMP---------------
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 2000000 921559
+[plotdata] # begin test my copying GC (I=30000 B=30016 A=32000000 cur=2030016)
+[plotdata] # end test my copying GC (I=30000 B=30016 A=32000000 cur=2030016)
+----------Finished test pause_time_test2 (took 922ms)----------
+---------------BEGIN GC DEBUG DUMP---------------
+GC_DEBUG is off
+GC_VERBOSE_DEBUG is off
+GC_GENERATIONAL is off
+GC_USE_BITMAP is on
+GC_USE_STACK_CLEAN is off
+GC_GROW_YOUNG_HEAP is on
+GC_GROW_OLD_HEAP is on
+GC_TIME is off
+GC_DEBUG_TRACK_ALLOCATIONS is off
+GC_COLLECT_ON_ALLOCATION_FAILURE is 1
+GC_THREAD_LOCAL_HEAP_SIZE is 30000
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 30000
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 32000000
+GC_OLD_GENERATION_SEMISPACE_SIZE is 650
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 655360
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 655360
+GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
+GC_MAGIC_JUST_ALLOCATED is 0x41
+GC_MAGIC_JUST_REALLOCATED is 0x42
+GC_MAGIC_JUST_CLEARED is 0x43
+GC_MAGIC_DEALLOCATION_DETECTED is 0x44
+GC_MAGIC_JUST_COPIED is 0x45
+GC_MAGIC_JUST_CLEARED_STACK is 0x46
+GC_MAGIC_JUST_GC_ALLOCATED is 0x47
+GC_MAGIC_JUST_CLEARED_FROMSPACE is 0x48
+
+GC_state:
+GC_state.initialized is 1
+GC_state.stack_bottom is 0x7ffffff000
+GC_state.static_bottom is 0x12001a000
+GC_state.static_top is 0x12001c9c0
+GC_state.state_bottom is 0x12001a640
+GC_state.state_top is 0x12001a740
+GC_state.reg_bottom is 0x0
+GC_state.reg_top is 0x0
+Region statistics
+-----------------
+fromspace :      b=  0x160a0a000         l=0x1ef9c0          
+               end=  0x160bf99c0       
+            bitmap=  0x160817058         s=0xf7ce              u=0xf424            
+tospace   :      b=  0x16081a000         l=0x1ef9c0          
+               end=  0x160a099c0       
+            bitmap=  0x160817040         s=0xf7ce              u=0xf424            
+free      :      b=  0x160a02480         l=0x7540            
+               end=  0x160a099c0       
+scan      :          0x16081a000       
+
+used size   : 0x1e8480           bytes (2MB)
+free size   : 0x7540             bytes (30kB)
+heap size   : 0x1ef9c0           bytes (2MB)
+
+stats:
+allocations : 1000 (1k)
+collections : 1000 (1k)
+---------------END GC DEBUG DUMP---------------
+testall.sh: i=20 j=1

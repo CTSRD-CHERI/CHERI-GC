@@ -10,7 +10,13 @@ endif
 Y/=1000000;
 
 # find equal X values and group them for averaging
-newX=ones(length(X),1); # hack for the zero case
+newX=zeros(length(X),1);
+
+# hack for the zero case
+for i=1:length(newX)
+  newX(i) = -1;
+endfor
+
 avgY=newX;
 errY=newX;
 max=1;
@@ -53,7 +59,7 @@ endfunction
 #ylabel "Total time (s)";
 #title 'Time taken by GC\_malloc() for 1000 consecutive allocations averaged over 10 independent runs for every 1kB';
 
-num_files=13;
+num_files=29;
 newX=cell(num_files,1);
 avgY=newX;
 errY=newX;

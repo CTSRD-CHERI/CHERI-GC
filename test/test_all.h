@@ -75,7 +75,7 @@ __UNLOCK_MALLOC (void);
 #define tf_cheri_getbase    cheri_getbase
 #define tf_cheri_getlen     cheri_getlen
 #define tf_cheri_gettag     cheri_gettag
-#define tf_invalid_ptr      cheri_ptr(NULL, 0)
+#define tf_invalid_ptr      NULL
 #define tf_ptr_valid(x)     ( ((void*)(cheri_getbase(x))) != NULL )
 #define tf_gc_init()        0
 

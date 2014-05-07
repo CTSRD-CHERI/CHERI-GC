@@ -635,21 +635,22 @@ DEFINE_TEST(pause_time_test2)
 DEFINE_TEST(bintree_test)
 {
   int depth = flag_input_number;
+#define bintree_alloc_dummy_sz 640
   
 #ifdef GC_CHERI
   int shift = depth >= 15 ? (depth-15) : 0;
-  int init_heap_sz = 2000000;
+  int init_heap_sz = 200000;
   size_t ycur = GC_ALIGN_32(GC_THREAD_LOCAL_HEAP_SIZE, size_t);
   size_t ocur = GC_ALIGN_32(GC_OLD_GENERATION_SEMISPACE_SIZE, size_t);
   GC_state.thread_local_region.max_grow_size_before_collection =
-    GC_ALIGN_32(4*((init_heap_sz*2)<<shift), size_t); // young gen max before collect
+    GC_ALIGN_32(4*((init_heap_sz)<<shift), size_t); // young gen max before collect
   GC_state.thread_local_region.max_grow_size_after_collection =
-    GC_ALIGN_32(4*((init_heap_sz*2)<<shift), size_t); // young gen max after collect
+    GC_ALIGN_32(4*((init_heap_sz)<<shift), size_t); // young gen max after collect
 #ifdef GC_GENERATIONAL
   GC_state.old_generation.max_grow_size_before_collection =
-    GC_ALIGN_32(4*4*(init_heap_sz<<shift), size_t); // old gen max before collect
+    GC_ALIGN_32(4*10*(init_heap_sz<<shift), size_t); // old gen max before collect
   GC_state.old_generation.max_grow_size_after_collection =
-    GC_ALIGN_32(4*4*(init_heap_sz<<shift), size_t); // old gen max after collect
+    GC_ALIGN_32(4*10*(init_heap_sz<<shift), size_t); // old gen max after collect
 #endif // GC_GENERATIONAL
   // GC_region_rebase requires the stack and registers saved, which normally
   // happens inside the collector. This hack allows us to use GC_grow outside of
@@ -683,11 +684,11 @@ DEFINE_TEST(bintree_test)
 /*
   BOEHM STATS:
   heap size     bintree depth
-  2,052,096 for depth 15 (9s)
-  3,657,728 for depth 16 (18s),
-  8,679,424 for depth 17 (36s),
-  15,437,824 for depth 18 (72s)
-  27,451,392 for depth 19 (154s)
+  2,052,096 for depth 15 (9s)         13s
+  3,657,728 for depth 16 (18s),       26s
+  8,679,424 for depth 17 (36s),       58s
+  15,437,824 for depth 18 (72s)       120s
+  27,451,392 for depth 19 (154s)      211s
   52,617,216 for depth 20 (312s)
 */  
   
@@ -744,10 +745,10 @@ bintree_create (int depth, int value)
   tree->left = tf_invalid_ptr;
   tree->right = tf_invalid_ptr;
   
-  tf_malloc(50);
+  tf_malloc(bintree_alloc_dummy_sz);
   if (depth > 1)
   {
-    tf_malloc(50);
+    tf_malloc(bintree_alloc_dummy_sz);
     
     tf_store_cap( tree->left, bintree_create(depth-1, 2*value) );
     if (!(void*)tree->left) return tf_invalid_ptr;
@@ -755,7 +756,7 @@ bintree_create (int depth, int value)
     
     tf_assert( bintree_check(tree->left, depth-1, 2*value) );
     
-    tf_malloc(50);
+    tf_malloc(bintree_alloc_dummy_sz);
     
     tf_store_cap( tree->right, bintree_create(depth-1, 2*value+1) );
     if (!(void*)tree->right) return tf_invalid_ptr;
@@ -763,10 +764,10 @@ bintree_create (int depth, int value)
 
     tf_assert( bintree_check(tree->right, depth-1, 2*value+1) );
     
-    tf_malloc(50);
+    tf_malloc(bintree_alloc_dummy_sz);
     tf_assert( bintree_check(tree->right, depth-1, 2*value+1) );
   }
-  tf_malloc(50);
+  tf_malloc(bintree_alloc_dummy_sz);
   if (!bintree_check(tree, depth, value))
   {
     tf_printf("At depth %d, value %d, bintree_check failed\n", depth, value);

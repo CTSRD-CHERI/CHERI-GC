@@ -1,0 +1,74 @@
+spawn ssh -i /home/munraj/.ssh/mbv21 mbv21@cloud2 /mnt/mbv21zfs//testall.sh
+Enter passphrase for key '/home/munraj/.ssh/mbv21': 
+Password for mbv21@cloud2:
+Compiled for GC_BOEHM at 18:22:04 May  7 2014
+Boehm heap size: 65536
+----------Begin test bintree_test----------
+bintree_test: Measures time taken to allocate a binary tree
+[plotdata] # begin test Boehm GC (I=65536)
+[plotdata] 0 3303
+checking binary tree...
+check completed ok
+[plotdata] # end test Boehm GC (I=65536)
+----------Finished test bintree_test (took 4ms)----------
+Boehm heap size: 65536
+Compiled for GC_BOEHM at 18:22:04 May  7 2014
+Boehm heap size: 65536
+----------Begin test bintree_test----------
+bintree_test: Measures time taken to allocate a binary tree
+[plotdata] # begin test Boehm GC (I=65536)
+[plotdata] 15 18231481
+checking binary tree...
+check completed ok
+[plotdata] # end test Boehm GC (I=2052096)
+----------Finished test bintree_test (took 18s)----------
+Boehm heap size: 2052096
+testall.sh: i=15 j=1
+Compiled for GC_BOEHM at 18:22:04 May  7 2014
+Boehm heap size: 65536
+----------Begin test bintree_test----------
+bintree_test: Measures time taken to allocate a binary tree
+[plotdata] # begin test Boehm GC (I=65536)
+[plotdata] 16 38100551
+checking binary tree...
+check completed ok
+[plotdata] # end test Boehm GC (I=3657728)
+----------Finished test bintree_test (took 38s)----------
+Boehm heap size: 3657728
+testall.sh: i=16 j=1
+Compiled for GC_BOEHM at 18:22:04 May  7 2014
+Boehm heap size: 65536
+----------Begin test bintree_test----------
+bintree_test: Measures time taken to allocate a binary tree
+[plotdata] # begin test Boehm GC (I=65536)
+[plotdata] 17 76695142
+checking binary tree...
+check completed ok
+[plotdata] # end test Boehm GC (I=8679424)
+----------Finished test bintree_test (took 77s)----------
+Boehm heap size: 8679424
+testall.sh: i=17 j=1
+Compiled for GC_BOEHM at 18:22:04 May  7 2014
+Boehm heap size: 65536
+----------Begin test bintree_test----------
+bintree_test: Measures time taken to allocate a binary tree
+[plotdata] # begin test Boehm GC (I=65536)
+[plotdata] 18 161259409
+checking binary tree...
+check completed ok
+[plotdata] # end test Boehm GC (I=15437824)
+----------Finished test bintree_test (took 162s)----------
+Boehm heap size: 15437824
+testall.sh: i=18 j=1
+Compiled for GC_BOEHM at 18:22:04 May  7 2014
+Boehm heap size: 65536
+----------Begin test bintree_test----------
+bintree_test: Measures time taken to allocate a binary tree
+[plotdata] # begin test Boehm GC (I=65536)
+[plotdata] 19 331064427
+checking binary tree...
+check completed ok
+[plotdata] # end test Boehm GC (I=35840000)
+----------Finished test bintree_test (took 333s)----------
+Boehm heap size: 35840000
+testall.sh: i=19 j=1
