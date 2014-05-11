@@ -1,0 +1,105 @@
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+0 144009
+# begin test Boehm GC (I=65536)
+# end test Boehm GC (I=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+100000 8130935
+# begin test Boehm GC (I=352256)
+# end test Boehm GC (I=352256)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+200000 19048139
+# begin test Boehm GC (I=286720)
+# end test Boehm GC (I=286720)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+300000 21653736
+# begin test Boehm GC (I=389120)
+# end test Boehm GC (I=389120)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+400000 23959998
+# begin test Boehm GC (I=487424)
+# end test Boehm GC (I=487424)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+500000 26720823
+# begin test Boehm GC (I=589824)
+# end test Boehm GC (I=589824)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+600000 29226448
+# begin test Boehm GC (I=688128)
+# end test Boehm GC (I=688128)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+700000 33011723
+# begin test Boehm GC (I=786432)
+# end test Boehm GC (I=786432)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+800000 34530282
+# begin test Boehm GC (I=888832)
+# end test Boehm GC (I=888832)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+900000 36975325
+# begin test Boehm GC (I=987136)
+# end test Boehm GC (I=987136)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+1000000 41480267
+# begin test Boehm GC (I=1089536)
+# end test Boehm GC (I=1089536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+1100000 42206621
+# begin test Boehm GC (I=1187840)
+# end test Boehm GC (I=1187840)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+1200000 44438276
+# begin test Boehm GC (I=1286144)
+# end test Boehm GC (I=1286144)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+1300000 47106353
+# begin test Boehm GC (I=1388544)
+# end test Boehm GC (I=1388544)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+1400000 50416193
+# begin test Boehm GC (I=1486848)
+# end test Boehm GC (I=1486848)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+1500000 52467286
+# begin test Boehm GC (I=1589248)
+# end test Boehm GC (I=1589248)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+1600000 59941972
+# begin test Boehm GC (I=1687552)
+# end test Boehm GC (I=1687552)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+1700000 57567470
+# begin test Boehm GC (I=1789952)
+# end test Boehm GC (I=1789952)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+1800000 59760053
+# begin test Boehm GC (I=1888256)
+# end test Boehm GC (I=1888256)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+1900000 63038256
+# begin test Boehm GC (I=1986560)
+# end test Boehm GC (I=1986560)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+2000000 64960045
+# begin test Boehm GC (I=2088960)
+# end test Boehm GC (I=2088960)

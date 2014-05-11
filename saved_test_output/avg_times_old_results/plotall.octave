@@ -1,0 +1,84 @@
+num_files=36;
+
+function [newX,avgY,errY] = readplotdata(file)
+
+M = load("-ascii", file);
+X=M(:,1);
+Y=M(:,2);
+
+if (X(2)>=1000)
+  X/=1000;
+endif
+Y/=1000000;
+
+# find equal X values and group them for averaging
+newX=zeros(length(X),1);
+
+# hack for the zero case
+for i=1:length(newX)
+  newX(i) = -1;
+endfor
+
+avgY=newX;
+errY=newX;
+max=1;
+for i=1:length(X)
+  found=0;
+  for j=1:max
+    if (X(i)==newX(j))
+      found = 1;
+      break;
+    endif
+  endfor
+  if (found==0)
+    tmpY = zeros(length(X),1);
+    yptr = 1;
+    num=0;
+    for j=1:length(X)
+      if (X(i)==X(j))
+        tmpY(yptr) = Y(j);
+        yptr++;
+      endif
+    endfor
+    tmpY=tmpY(1:yptr-1);
+    newX(max) = X(i);
+    avgY(max) = mean(tmpY);
+    errY(max) = std(tmpY,0);
+    max++;
+  endif
+endfor
+newX=newX(1:max-1);
+avgY=avgY(1:max-1);
+errY=errY(1:max-1);
+
+#errorbar(newX,avgY,errY,fmt);
+endfunction
+
+
+#clf;
+#hold on;
+#xlabel "Allocation size (kB)";
+#ylabel "Total time (s)";
+#title 'Time taken by GC\_malloc() for 1000 consecutive allocations averaged over 10 independent runs for every 1kB';
+
+newX=cell(num_files,1);
+avgY=newX;
+errY=newX;
+
+#axis([0 20]);
+
+for i=1:num_files
+  [newX{i},avgY{i},errY{i}] = readplotdata(["plot_data" int2str(i)]);
+  #errorbar(newX{i},avgY{i},errY{i},symbols{i});
+  M=[newX{i} avgY{i} errY{i}];
+  save('-ascii', ['octout' int2str(i)], 'M');
+  [int2str(i) " of " int2str(num_files)]
+endfor
+
+#legend(
+ # seriesName
+#);
+
+#print('-dps', 'plotall.ps', '-F:Helvetica:12');
+#print('-dpng', 'plotall.png');
+

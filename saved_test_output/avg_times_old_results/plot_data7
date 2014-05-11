@@ -1,0 +1,151 @@
+# begin test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+0 2567
+# end test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+# begin test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+1 595
+# end test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+# begin test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+1 478
+# end test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+# begin test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+1 2155
+# end test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+# begin test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+2 680
+# end test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+# begin test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+2 710
+# end test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+# begin test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+2 2243
+# end test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+# begin test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+3 736
+# end test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+# begin test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+3 749
+# end test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+# begin test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+3 744
+# end test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+# begin test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+4 1444
+# end test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+# begin test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+4 2498
+# end test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+# begin test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+4 3209
+# end test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+# begin test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+5 2751
+# end test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+# begin test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+5 4416
+# end test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+# begin test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+5 4697
+# end test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+# begin test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+6 8426
+# end test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+# begin test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+6 6763
+# end test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+# begin test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+6 7379
+# end test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+# begin test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+7 18125
+# end test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+# begin test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+7 21262
+# end test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+# begin test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+7 16578
+# end test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+# begin test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+8 215373
+# end test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+# begin test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+8 54252
+# end test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+# begin test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+8 56396
+# end test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+# begin test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+9 257325
+# end test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+# begin test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+9 260453
+# end test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+# begin test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+9 250147
+# end test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+# begin test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+10 404561
+# end test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+# begin test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+10 430930
+# end test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+# begin test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+10 394227
+# end test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+# begin test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+11 675198
+# end test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+# begin test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+11 749346
+# end test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+# begin test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+11 706947
+# end test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+# begin test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+12 1314338
+# end test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+# begin test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+12 1331024
+# end test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+# begin test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+12 1340169
+# end test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+# begin test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+13 2721056
+# end test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+# begin test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+13 2671315
+# end test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+# begin test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+13 2672705
+# end test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+# begin test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+14 7285867
+# end test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+# begin test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+14 5319341
+# end test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+# begin test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+14 5267766
+# end test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+# begin test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+15 11181553
+# end test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+# begin test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+15 11258824
+# end test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+# begin test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+15 11064433
+# end test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+# begin test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+16 44075079
+# end test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+# begin test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+16 44650713
+# end test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+# begin test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+16 52136696
+# end test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+# begin test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+# 17 67451682 <--- the check failed on this
+# begin test my generational GC (yI=800000 yB=800000 yA=800000 ycur=800000 oI=8000000 oB=8000000 oA=8000000 ocur=8000000)
+# 17 60994253 <-- check failed

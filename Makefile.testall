@@ -33,7 +33,7 @@ GC_PUBLIC_INCLUDE=src/inc/
 GC_PRIV_INCLUDE=src/inc/
 TESTALL_SOURCES=test/test_all.c
 
-all: clean lib testall testall-boehm testall-no-gc push-testall #push-cherrybox
+all: clean lib testall testall-boehm testall-no-gc testall-no-cap push-testall #push-cherrybox
 
 objects/%.o : src/%.c
 	$(CC) $(CFLAGS) -c -o $@ $< && \
@@ -75,8 +75,14 @@ testall-no-gc:
 	PATH=$(PATH) $(CC) -DGC_NONE $(MEMWATCH_FLAGS) -S -o objects/testall-no-gc.S $(TESTALL_SOURCES) && \
 	PATH=$(PATH) $(CC) -DGC_NONE $(MEMWATCH_FLAGS) -E -o objects/testall-no-gc.E $(TESTALL_SOURCES)
 
+testall-no-cap:
+	echo "[i] building for GC_NOCAP" && \
+	PATH=$(PATH) $(CC) -DGC_NOCAP $(MEMWATCH_FLAGS) -o objects/testall-no-cap $(MEMWATCH_SOURCES) $(TESTALL_SOURCES) && \
+	PATH=$(PATH) $(CC) -DGC_NOCAP $(MEMWATCH_FLAGS) -S -o objects/testall-no-cap.S $(TESTALL_SOURCES) && \
+	PATH=$(PATH) $(CC) -DGC_NOCAP $(MEMWATCH_FLAGS) -E -o objects/testall-no-cap.E $(TESTALL_SOURCES)
+
 PASSWORD=`cat $(SSH_PASSWD_FILE)`
-CMD=scp -i $(SSH_PRIV_KEY) objects/testall objects/testall-boehm objects/testall-no-gc test/testall.sh $(WENGER_USER)@$(WENGER_ADDR):$(WENGER_FILE_ZFS)
+CMD=scp -i $(SSH_PRIV_KEY) objects/testall objects/testall-boehm objects/testall-no-gc objects/testall-no-cap test/testall.sh $(WENGER_USER)@$(WENGER_ADDR):$(WENGER_FILE_ZFS)
 push-testall:
 	echo "[i] pushing files to wenger ZFS" && \
 	echo -e "set timeout 60\nspawn $(CMD)\nexpect \": \"\nsend \"$(PASSWORD)\\\\n\"\ninteract\n" > cloud4_push_helper.expect && \

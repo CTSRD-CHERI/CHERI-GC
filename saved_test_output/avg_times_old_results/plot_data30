@@ -1,0 +1,1005 @@
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+0 7777
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+1000 23575
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+1000 24559
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+1000 20519
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+1000 20193
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+1000 40428
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+1000 20002
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+1000 42158
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+1000 165118
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+1000 41015
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+1000 20318
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+2000 30195
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+2000 35630
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+2000 174880
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+2000 33135
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+2000 30008
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+2000 29698
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+2000 35290
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+2000 180066
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+2000 30715
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+2000 29488
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+3000 75145
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+3000 39787
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+3000 44846
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+3000 195609
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+3000 49343
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+3000 61067
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+3000 190668
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+3000 37756
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+3000 201304
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+3000 39887
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+4000 70189
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+4000 84432
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+4000 69282
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+4000 83485
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+4000 71845
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+4000 52386
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+4000 50106
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+4000 69300
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+4000 224979
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+4000 228983
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+5000 83017
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+5000 227147
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+5000 67447
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+5000 238254
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+5000 82643
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+5000 104276
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+5000 66054
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+5000 64485
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+5000 222534
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+5000 61785
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+6000 99572
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+6000 125082
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+6000 95341
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+6000 95041
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+6000 258011
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+6000 96204
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+6000 84568
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+6000 96068
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+6000 247218
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+6000 96011
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+7000 251198
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+7000 98579
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+7000 94682
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+7000 247129
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+7000 74553
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+7000 121150
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+7000 186677
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+7000 261571
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+7000 74632
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+7000 253958
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+8000 264852
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+8000 340572
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+8000 121158
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+8000 294450
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+8000 275756
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+8000 299285
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+8000 115764
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+8000 117810
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+8000 149388
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+8000 117762
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+9000 305463
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+9000 279733
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+9000 283420
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+9000 296488
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+9000 261566
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+9000 112776
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+9000 120364
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+9000 305383
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+9000 290810
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+9000 114467
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+10000 341966
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+10000 320479
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+10000 350600
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+10000 356197
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+10000 360697
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+10000 360105
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+10000 337793
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+10000 347537
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+10000 346749
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+10000 327020
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+11000 352338
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+11000 368027
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+11000 355577
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+11000 368138
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+11000 364966
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+11000 212174
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+11000 369809
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+11000 337269
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+11000 335107
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+11000 344245
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+12000 339055
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+12000 339804
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+12000 325692
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+12000 360574
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+12000 356106
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+12000 356916
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+12000 373604
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+12000 224953
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+12000 336142
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+12000 349169
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+13000 344348
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+13000 348034
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+13000 357140
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+13000 356096
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+13000 373131
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+13000 224301
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+13000 160060
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+13000 159815
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+13000 327576
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+13000 343422
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+14000 356764
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+14000 350632
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+14000 338967
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+14000 366090
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+14000 365698
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+14000 339655
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+14000 345791
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+14000 347465
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+14000 371562
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+14000 313244
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+15000 165339
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+15000 350825
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+15000 365855
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+15000 361406
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+15000 160374
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+15000 311923
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+15000 348278
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+15000 323240
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+15000 341734
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+15000 360165
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+16000 558036
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+16000 558675
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+16000 535112
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+16000 554284
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+16000 560474
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+16000 553082
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+16000 555310
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+16000 562252
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+16000 532726
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+16000 1119972
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+17000 569358
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+17000 534167
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+17000 560973
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+17000 554334
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+17000 545670
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+17000 554633
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+17000 554049
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+17000 570153
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+17000 589552
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+17000 532312
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+18000 385384
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+18000 382621
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+18000 532669
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+18000 537099
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+18000 567126
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+18000 553900
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+18000 536031
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+18000 522730
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+18000 530790
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+18000 520470
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+19000 554318
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+19000 525389
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+19000 526387
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+19000 384390
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+19000 527403
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+19000 582509
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+19000 518924
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+19000 541562
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+19000 527487
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+19000 534703
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+20000 524990
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+20000 562985
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+20000 530748
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+20000 554930
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+20000 546900
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+20000 393428
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+20000 547583
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+20000 556315
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+20000 550228
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+20000 536974
+# begin test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)
+# end test my generational GC (yI=30000 yB=30016 yA=30016 ycur=30016 oI=300000 oB=300000 oA=300000 ocur=300000)

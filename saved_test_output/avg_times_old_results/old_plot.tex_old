@@ -1,0 +1,77 @@
+\begin{figure}
+\centering
+\caption{Time taken by \texttt{GC\_malloc()} for 1000 consecutive allocations averaged over 10 independent runs for every 1 kB.s}
+\begin{tikzpicture}
+\begin{axis}[
+  %title=
+  xlabel=Allocation size (kB),
+  ylabel=Total time (s),
+  xmin=0,
+  xmax=20,
+  scaled ticks=false,
+  axis lines=left,
+  legend entries={My generational GC (y=30k o=150k), Copying GC 10 runs, Boehm GC 10 runs, Gen GC 10 runs (y=30k*2 o=300k*2), No GC 10 runs, Gen GC 1 run (y=20k*2 o=200k*2), Gen GC 1 run y=2*40k o=2*400k, Gen GC 10 runs y=2*64k o=2*640k},
+  legend style={legend pos=outer north east,},
+]
+\addplot+[error bars/.cd, y dir=both, y explicit] table[y error index=2] {octout1};
+% My copying GC (y=2*30k), : \addplot+[error bars/.cd, y dir=both, y explicit] table[y error index=2] {octout2};
+\addplot+[error bars/.cd, y dir=both, y explicit] table[y error index=2] {octout14}; % Copying GC 10 runs
+\addplot+[error bars/.cd, y dir=both, y explicit] table[y error index=2] {octout15}; % Boehm 10 runs
+\addplot+[error bars/.cd, y dir=both, y explicit] table[y error index=2] {octout17}; % Gen GC 10 runs
+\addplot+[error bars/.cd, y dir=both, y explicit] table[y error index=2] {octout16}; % No GC 10 runs
+\addplot+[error bars/.cd, y dir=both, y explicit] table[y error index=2] {octout18}; % Gen GC 1 run
+\addplot+[error bars/.cd, y dir=both, y explicit] table[y error index=2] {octout19}; % Gen GC 1 run
+\addplot+[error bars/.cd, y dir=both, y explicit] table[y error index=2] {octout20}; % Gen GC 10 runs
+\end{axis}
+\end{tikzpicture}
+\end{figure}
+
+
+
+\begin{figure}
+\centering
+\caption{Time taken to binary trees of varying sizes, averaged over 3 runs.}
+\begin{tikzpicture}
+\begin{axis}[
+  %title={},
+  xlabel=Tree depth,
+  ylabel=Total time (s),
+  xmin=0,
+  xmax=20,
+  scaled ticks=false,
+  axis lines=left,
+  legend entries={My copying GC (2*64k-2*68M), Boehm GC, My generational GC (young: 2*Boehm/10 old:2*Boehm, My generational GC (young: 2*4*Boehm/10 old:2*4*Boehm),},
+  legend style={legend pos=outer north east,},
+]
+\addplot+[error bars/.cd, y dir=both, y explicit] table[y error index=2] {octout5};
+\addplot+[error bars/.cd, y dir=both, y explicit] table[y error index=2] {octout6};
+% % My generational GC (young: 2*800k old: 2*8M) - OK for bintree depth <15, probably \addplot+[error bars/.cd, y dir=both, y explicit] table[y error index=2] {octout7};
+\addplot+[error bars/.cd, y dir=both, y explicit] table[y error index=2] {octout8};
+\addplot+[error bars/.cd, y dir=both, y explicit] table[y error index=2] {octout9};
+%Gen GC 0.4 watermark, (same as octout9 but watermak 0.4 instead of 0.5) : \addplot+[error bars/.cd, y dir=both, y explicit] table[y error index=2] {octout10};
+\end{axis}
+\end{tikzpicture}
+\end{figure}
+
+
+
+\begin{figure}
+\centering
+\caption{Time taken by \texttt{GC\_malloc()} for 1000 consecutive allocations averaged over N independent runs for every 1 kB.}
+\begin{tikzpicture}
+\begin{axis}[
+  %title=,
+  xlabel=Allocation size (kB),
+  ylabel=Total time (s),
+  %xmin=0,
+  %xmax=20,
+  scaled ticks=false,
+  axis lines=left,
+  legend entries={My copying GC (2*30k-2*32MB) (N=10), Boehm GC (N=3)},
+  legend style={legend pos=outer north east,},
+]
+\addplot+[error bars/.cd, y dir=both, y explicit] table[y error index=2] {octout3};
+\addplot+[error bars/.cd, y dir=both, y explicit] table[y error index=2] {octout4};
+\end{axis}
+\end{tikzpicture}
+\end{figure}

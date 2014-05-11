@@ -1,0 +1,1005 @@
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+0 164756
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+1000 23995
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+1000 19413
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+1000 24716
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+1000 188127
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+1000 39434
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+1000 19478
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+1000 18288
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+1000 19606
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+1000 23202
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+1000 24415
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+2000 23462
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+2000 51036
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+2000 43371
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+2000 21613
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+2000 29007
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+2000 42389
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+2000 21811
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+2000 21940
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+2000 24008
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+2000 176668
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+3000 26283
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+3000 169589
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+3000 201036
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+3000 42597
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+3000 25907
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+3000 30488
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+3000 176843
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+3000 27008
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+3000 48028
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+3000 25590
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+4000 48855
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+4000 207245
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+4000 28453
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+4000 30066
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+4000 49961
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+4000 29259
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+4000 34195
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+4000 30122
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+4000 48646
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+4000 29164
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+5000 175648
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+5000 60170
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+5000 30535
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+5000 53340
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+5000 29965
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+5000 176775
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+5000 61071
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+5000 50305
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+5000 36548
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+5000 198220
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+6000 43848
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+6000 34073
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+6000 34723
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+6000 188676
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+6000 34411
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+6000 51536
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+6000 36014
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+6000 52742
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+6000 189427
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+6000 52497
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+7000 199738
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+7000 213109
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+7000 52817
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+7000 36847
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+7000 41849
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+7000 37714
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+7000 35123
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+7000 35874
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+7000 202786
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+7000 36950
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+8000 37118
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+8000 59619
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+8000 179567
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+8000 69498
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+8000 38155
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+8000 37295
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+8000 186055
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+8000 206171
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+8000 46347
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+8000 38595
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+9000 40585
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+9000 217940
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+9000 40642
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+9000 61603
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+9000 40621
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+9000 213993
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+9000 42249
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+9000 73438
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+9000 194421
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+9000 63367
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+10000 65487
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+10000 46272
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+10000 215295
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+10000 67965
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+10000 186403
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+10000 78395
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+10000 43523
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+10000 69899
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+10000 232533
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+10000 66753
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+11000 217248
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+11000 227837
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+11000 53687
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+11000 222228
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+11000 230929
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+11000 52150
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+11000 66427
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+11000 73617
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+11000 51234
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+11000 242922
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+12000 54050
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+12000 198363
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+12000 76804
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+12000 50523
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+12000 224620
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+12000 67815
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+12000 51536
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+12000 225502
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+12000 53753
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+12000 70878
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+13000 70718
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+13000 84657
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+13000 59516
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+13000 232586
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+13000 51584
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+13000 51856
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+13000 224774
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+13000 76750
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+13000 80345
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+13000 74262
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+14000 229474
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+14000 82977
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+14000 101445
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+14000 67770
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+14000 238498
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+14000 244048
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+14000 82747
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+14000 237364
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+14000 244158
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+14000 243564
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+15000 241618
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+15000 83159
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+15000 226675
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+15000 87623
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+15000 91246
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+15000 83564
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+15000 230002
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+15000 102898
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+15000 80700
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+15000 94799
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+16000 241416
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+16000 83682
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+16000 236048
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+16000 85785
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+16000 61903
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+16000 98676
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+16000 94927
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+16000 238730
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+16000 63499
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+16000 239397
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+17000 261263
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+17000 101371
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+17000 291695
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+17000 103603
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+17000 261226
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+17000 102646
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+17000 116038
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+17000 113935
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+17000 79995
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+17000 258834
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+18000 80449
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+18000 258753
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+18000 87199
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+18000 121918
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+18000 254263
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+18000 90661
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+18000 98136
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+18000 114878
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+18000 113212
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+18000 106046
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+19000 258818
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+19000 100701
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+19000 256181
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+19000 110017
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+19000 120109
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+19000 254700
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+19000 99019
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+19000 258998
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+19000 99969
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+19000 114941
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+20000 100414
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+20000 257537
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+20000 102750
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+20000 256024
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+20000 114479
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+20000 120965
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+20000 263418
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+20000 102088
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+20000 263540
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+20000 101808
+# begin test my copying GC (I=65536 B=65536 A=65536 cur=65536)
+# end test my copying GC (I=65536 B=65536 A=65536 cur=65536)

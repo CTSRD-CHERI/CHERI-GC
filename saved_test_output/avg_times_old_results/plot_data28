@@ -1,0 +1,18 @@
+# begin test Boehm GC (I=65536)
+0 3303
+# end test Boehm GC (I=65536)
+# begin test Boehm GC (I=65536)
+15 18231481
+# end test Boehm GC (I=2052096)
+# begin test Boehm GC (I=65536)
+16 38100551
+# end test Boehm GC (I=3657728)
+# begin test Boehm GC (I=65536)
+17 76695142
+# end test Boehm GC (I=8679424)
+# begin test Boehm GC (I=65536)
+18 161259409
+# end test Boehm GC (I=15437824)
+# begin test Boehm GC (I=65536)
+19 331064427
+# end test Boehm GC (I=35840000)

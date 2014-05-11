@@ -85,11 +85,28 @@ tf_func_t void
 tf_no_gc_free (tf_cap_t void * ptr);
 // --------------------End   GC_NONE-------------------
 
+#elif defined(GC_NOCAP)
+// --------------------Begin GC_NOCAP--------------------
+#define tf_cap_t            
+#define tf_malloc           malloc
+#define tf_free             free
+#define tf_collect()        do{}while(0)
+#define tf_store_cap(x,y)   ((x) = (y))
+#define tf_func_t
+#define tf_cheri_ptr(x,y)   ((x))
+#define tf_cheri_getbase(x) ((x))
+#define tf_cheri_getlen(x)  0
+#define tf_cheri_gettag(x)  1
+#define tf_invalid_ptr      NULL
+#define tf_ptr_valid(x)     ((x) != NULL)
+#define tf_gc_init()        0
+// --------------------End   GC_NOCAP-------------------
+
 #else
 
-#error "Define one of GC_CHERI, GC_BOEHM, GC_NONE."
+#error "Define one of GC_CHERI, GC_BOEHM, GC_NONE, GC_NOCAP."
 
-#endif // GC_CHERI, GC_BOEHM, GC_NONE
+#endif // GC_CHERI, GC_BOEHM, GC_NONE, GC_NOCAP
 
 #include <stdlib.h>
 

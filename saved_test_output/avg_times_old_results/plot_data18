@@ -1,0 +1,105 @@
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+0 8747
+# begin test my generational GC (yI=20000 yB=20000 yA=20000 ycur=20000 oI=200000 oB=200000 oA=200000 ocur=200000)
+# end test my generational GC (yI=20000 yB=20000 yA=20000 ycur=20000 oI=200000 oB=200000 oA=200000 ocur=200000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+1000 246462
+# begin test my generational GC (yI=20000 yB=20000 yA=20000 ycur=20000 oI=200000 oB=200000 oA=200000 ocur=200000)
+# end test my generational GC (yI=20000 yB=20000 yA=20000 ycur=20000 oI=200000 oB=200000 oA=200000 ocur=200000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+2000 683581
+# begin test my generational GC (yI=20000 yB=20000 yA=20000 ycur=20000 oI=200000 oB=200000 oA=200000 ocur=200000)
+# end test my generational GC (yI=20000 yB=20000 yA=20000 ycur=20000 oI=200000 oB=200000 oA=200000 ocur=200000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+3000 987671
+# begin test my generational GC (yI=20000 yB=20000 yA=20000 ycur=20000 oI=200000 oB=200000 oA=200000 ocur=200000)
+# end test my generational GC (yI=20000 yB=20000 yA=20000 ycur=20000 oI=200000 oB=200000 oA=200000 ocur=200000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+4000 1102380
+# begin test my generational GC (yI=20000 yB=20000 yA=20000 ycur=20000 oI=200000 oB=200000 oA=200000 ocur=200000)
+# end test my generational GC (yI=20000 yB=20000 yA=20000 ycur=20000 oI=200000 oB=200000 oA=200000 ocur=200000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+5000 1638999
+# begin test my generational GC (yI=20000 yB=20000 yA=20000 ycur=20000 oI=200000 oB=200000 oA=200000 ocur=200000)
+# end test my generational GC (yI=20000 yB=20000 yA=20000 ycur=20000 oI=200000 oB=200000 oA=200000 ocur=200000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+6000 1737008
+# begin test my generational GC (yI=20000 yB=20000 yA=20000 ycur=20000 oI=200000 oB=200000 oA=200000 ocur=200000)
+# end test my generational GC (yI=20000 yB=20000 yA=20000 ycur=20000 oI=200000 oB=200000 oA=200000 ocur=200000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+7000 2861577
+# begin test my generational GC (yI=20000 yB=20000 yA=20000 ycur=20000 oI=200000 oB=200000 oA=200000 ocur=200000)
+# end test my generational GC (yI=20000 yB=20000 yA=20000 ycur=20000 oI=200000 oB=200000 oA=200000 ocur=200000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+8000 3070430
+# begin test my generational GC (yI=20000 yB=20000 yA=20000 ycur=20000 oI=200000 oB=200000 oA=200000 ocur=200000)
+# end test my generational GC (yI=20000 yB=20000 yA=20000 ycur=20000 oI=200000 oB=200000 oA=200000 ocur=200000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+9000 3156190
+# begin test my generational GC (yI=20000 yB=20000 yA=20000 ycur=20000 oI=200000 oB=200000 oA=200000 ocur=200000)
+# end test my generational GC (yI=20000 yB=20000 yA=20000 ycur=20000 oI=200000 oB=200000 oA=200000 ocur=200000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+10000 6706056
+# begin test my generational GC (yI=20000 yB=20000 yA=20000 ycur=20000 oI=200000 oB=200000 oA=200000 ocur=200000)
+# end test my generational GC (yI=20000 yB=20000 yA=20000 ycur=20000 oI=200000 oB=200000 oA=200000 ocur=200000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+11000 6697192
+# begin test my generational GC (yI=20000 yB=20000 yA=20000 ycur=20000 oI=200000 oB=200000 oA=200000 ocur=200000)
+# end test my generational GC (yI=20000 yB=20000 yA=20000 ycur=20000 oI=200000 oB=200000 oA=200000 ocur=200000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+12000 6845130
+# begin test my generational GC (yI=20000 yB=20000 yA=20000 ycur=20000 oI=200000 oB=200000 oA=200000 ocur=200000)
+# end test my generational GC (yI=20000 yB=20000 yA=20000 ycur=20000 oI=200000 oB=200000 oA=200000 ocur=200000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+13000 7360108
+# begin test my generational GC (yI=20000 yB=20000 yA=20000 ycur=20000 oI=200000 oB=200000 oA=200000 ocur=200000)
+# end test my generational GC (yI=20000 yB=20000 yA=20000 ycur=20000 oI=200000 oB=200000 oA=200000 ocur=200000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+14000 7764104
+# begin test my generational GC (yI=20000 yB=20000 yA=20000 ycur=20000 oI=200000 oB=200000 oA=200000 ocur=200000)
+# end test my generational GC (yI=20000 yB=20000 yA=20000 ycur=20000 oI=200000 oB=200000 oA=200000 ocur=200000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+15000 7973487
+# begin test my generational GC (yI=20000 yB=20000 yA=20000 ycur=20000 oI=200000 oB=200000 oA=200000 ocur=200000)
+# end test my generational GC (yI=20000 yB=20000 yA=20000 ycur=20000 oI=200000 oB=200000 oA=200000 ocur=200000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+16000 8227079
+# begin test my generational GC (yI=20000 yB=20000 yA=20000 ycur=20000 oI=200000 oB=200000 oA=200000 ocur=200000)
+# end test my generational GC (yI=20000 yB=20000 yA=20000 ycur=20000 oI=200000 oB=200000 oA=200000 ocur=200000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+17000 8715003
+# begin test my generational GC (yI=20000 yB=20000 yA=20000 ycur=20000 oI=200000 oB=200000 oA=200000 ocur=200000)
+# end test my generational GC (yI=20000 yB=20000 yA=20000 ycur=20000 oI=200000 oB=200000 oA=200000 ocur=200000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+18000 9093245
+# begin test my generational GC (yI=20000 yB=20000 yA=20000 ycur=20000 oI=200000 oB=200000 oA=200000 ocur=200000)
+# end test my generational GC (yI=20000 yB=20000 yA=20000 ycur=20000 oI=200000 oB=200000 oA=200000 ocur=200000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+19000 9089667
+# begin test my generational GC (yI=20000 yB=20000 yA=20000 ycur=20000 oI=200000 oB=200000 oA=200000 ocur=200000)
+# end test my generational GC (yI=20000 yB=20000 yA=20000 ycur=20000 oI=200000 oB=200000 oA=200000 ocur=200000)
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+20000 9530800
+# begin test my generational GC (yI=20000 yB=20000 yA=20000 ycur=20000 oI=200000 oB=200000 oA=200000 ocur=200000)
+# end test my generational GC (yI=20000 yB=20000 yA=20000 ycur=20000 oI=200000 oB=200000 oA=200000 ocur=200000)

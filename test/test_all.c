@@ -190,9 +190,9 @@ bintree_create (int depth, int value);
   X_MACRO(malloc_time_test_with_collect, "Tests how long tf_malloc takes with collecting") \
   X_MACRO(allocate_loads, "Tests how long it takes to allocate a large amount of data") \
   X_MACRO(old_pause_time_test, "Measures pause time of GC_collect ONLY") \
-  X_MACRO(pause_time_test, "Measures collector pause time")*/ \
-  X_MACRO(pause_time_test2, "Measures collector pause time") \
-  /*X_MACRO(bintree_test, "Measures time taken to allocate a binary tree") \
+  X_MACRO(pause_time_test, "Measures collector pause time") \
+  X_MACRO(pause_time_test2, "Measures collector pause time")*/ \
+  X_MACRO(bintree_test, "Measures time taken to allocate a binary tree") \
   /*X_MACRO(experimental_test, "For experiments")*/
 
 #define DECLARE_TEST(test,descr) \
@@ -272,9 +272,11 @@ main (int argc, char **argv)
   "GC_BOEHM"
 #elif defined(GC_NONE)
   "GC_NONE"
+#elif defined(GC_NOCAP)
+  "GC_NOCAP"
 #else
-#error "Define one of GC_CHERI, GC_BOEHM, GC_NONE."
-#endif // GC_CHERI, GC_BOEHM, GC_NONE
+#error "Define one of GC_CHERI, GC_BOEHM, GC_NONE, GC_NOCAP."
+#endif // GC_CHERI, GC_BOEHM, GC_NONE, GC_NOCAP
   " at %s\n", __TIME__  " " __DATE__);
   
   int rc = tf_gc_init();
@@ -355,11 +357,12 @@ DEFINE_TEST(malloc_time_test_with_collect)
 
 DEFINE_TEST(allocate_loads)
 {
+
   // this many bytes are allocated in each element of the array
-  size_t objsz      = 16384;
+  size_t objsz      = flag_input_number*1000;
   
-  // this many bytes are allocated in each element
-  size_t nobj       = 50;
+  // number of objects
+  size_t nobj       = 1000;
   
   // number of allocations to do
   size_t nalloc     = 1000;
@@ -369,6 +372,50 @@ DEFINE_TEST(allocate_loads)
   
   // this many bytes are allocated in total
   size_t total_allocated = objsz * nalloc;
+
+#ifdef GC_CHERI
+  int init_heap_sz = 65536;
+  size_t ycur = GC_ALIGN_32(GC_THREAD_LOCAL_HEAP_SIZE, size_t);
+  size_t ocur = GC_ALIGN_32(GC_OLD_GENERATION_SEMISPACE_SIZE, size_t);
+  GC_state.thread_local_region.max_grow_size_before_collection =
+    GC_ALIGN_32(init_heap_sz, size_t); // young gen max before collect
+  GC_state.thread_local_region.max_grow_size_after_collection =
+    GC_ALIGN_32(4*total_stored, size_t); // young gen max after collect
+#ifdef GC_GENERATIONAL
+  GC_state.old_generation.max_grow_size_before_collection =
+    GC_ALIGN_32(10*init_heap_sz, size_t); // old gen max before collect
+  GC_state.old_generation.max_grow_size_after_collection =
+    GC_ALIGN_32(10*4*total_stored, size_t); // old gen max after collect
+#endif // GC_GENERATIONAL
+  // GC_region_rebase requires the stack and registers saved, which normally
+  // happens inside the collector. This hack allows us to use GC_grow outside of
+  // the collector...
+  char buf_unaligned[32];
+  void * buf_aligned = GC_ALIGN_32(buf_unaligned, void*);
+  GC_state.stack_top = buf_aligned;
+  GC_state.reg_bottom = buf_aligned;
+  GC_state.reg_top = buf_aligned;
+  
+  if (!GC_grow(&GC_state.thread_local_region,
+               GC_state.thread_local_region.max_grow_size_before_collection-ycur,
+               GC_state.thread_local_region.max_grow_size_before_collection))
+  {
+    tf_printf("error: GC_grow young generation failed\n");
+    exit(1);
+  }
+
+#ifdef GC_GENERATIONAL  
+  if (!GC_grow(&GC_state.old_generation,
+               GC_state.old_generation.max_grow_size_before_collection-ocur,
+               GC_state.old_generation.max_grow_size_before_collection))
+  {
+    tf_printf("error: GC_grow old generation failed\n");
+    exit(1);
+  }
+#endif // GC_GENERATIONAL
+  
+#endif // GC_CHERI
+
   
   tf_cap_t void * refs[nobj];
   
@@ -538,8 +585,10 @@ print_gc_stats2 (const char * msg)
     (int) GC_get_heap_size());
 #elif defined(GC_NONE)
   tf_printf("[plotdata] # %s no GC\n", msg);
+#elif defined(GC_NOCAP)
+  tf_printf("[plotdata] # %s GC_NOCAP\n", msg);
 #else
-  #error "Define one of GC_CHERI, GC_BOEHM, GC_NONE"
+  #error "Define one of GC_CHERI, GC_BOEHM, GC_NONE, GC_NOCAP"
 #endif // GC selector
 }
 
@@ -590,9 +639,9 @@ DEFINE_TEST(pause_time_test)
 volatile tf_cap_t void * p, * oldp;
 DEFINE_TEST(pause_time_test2)
 {
-#ifdef GC_NONE
+#if defined(GC_NONE) || defined(GC_NOCAP)
   oldp = tf_invalid_ptr;
-#endif // GC_NONE
+#endif // GC_NONE, GC_NOCAP
   int allocation_size = flag_input_number * 1000;
   int number_of_allocations = 1000;
   tf_printf("[plotdata] # %d allocations per iteration\n", number_of_allocations);
@@ -618,10 +667,10 @@ DEFINE_TEST(pause_time_test2)
   for (i=0; i<number_of_allocations; i++)
   {
     p = tf_malloc(allocation_size);
-#ifdef GC_NONE
+#if defined(GC_NONE) || defined(GC_NOCAP)
     if (tf_ptr_valid(oldp)) tf_free(oldp);
     oldp = p;
-#endif // GC_NONE
+#endif // GC_NONE, GC_NOCAP
     if (!tf_ptr_valid(p))
     {
       tf_printf("out of memory\n");
@@ -739,7 +788,7 @@ DEFINE_TEST(experimental_test)
 tf_func_t static int
 bintree_encode_value (int depth, int value)
 {
-  return ((depth&0xFFFF) << 16) | (value&0xFFFF);
+  return value;//((depth&0xFFFF) << 16) | (value&0xFFFF);
 }
 
 tf_func_t static tf_cap_t bintree *

@@ -1,0 +1,75 @@
+\documentclass{article}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.10}
+\begin{document}
+
+\begin{figure}
+\centering
+\caption{Time taken by \texttt{GC\_malloc()} for 1000 consecutive allocations averaged over 10 independent runs for every 1 kB.s}
+\begin{tikzpicture}
+\begin{axis}[
+  %title=
+  xlabel=Allocation size (kB),
+  ylabel=Total time (s),
+  xmin=0,
+  xmax=20,
+  scaled ticks=false,
+  axis lines=left,
+  legend entries={CopyGC64k-O2, Boehm-O2, GenGC64k/640k-O2, no GC(with free oldp)-O2, no GC(with free p)-O2},
+  legend style={legend pos=outer north east,},
+]
+\addplot+[error bars/.cd, y dir=both, y explicit] table[y error index=2] {octout32};%copyGC-O2
+\addplot+[error bars/.cd, y dir=both, y explicit] table[y error index=2] {octout33};%Boehm-O2
+\addplot+[error bars/.cd, y dir=both, y explicit] table[y error index=2] {octout34};%GenGC-O2
+\addplot+[error bars/.cd, y dir=both, y explicit] table[y error index=2] {octout36};%noGC-O2
+\addplot+[error bars/.cd, y dir=both, y explicit] table[y error index=2] {octout35};%noGC-O2
+\end{axis}
+\end{tikzpicture}
+\end{figure}
+
+
+\begin{figure}
+\centering
+\caption{Time taken by \texttt{GC\_malloc()} for 1000 consecutive allocations averaged over N independent runs for every 1 kB.}
+\begin{tikzpicture}
+\begin{axis}[
+  %title=,
+  xlabel=Allocation size (kB),
+  ylabel=Total time (s),
+  %xmin=0,
+  %xmax=20,
+  scaled ticks=false,
+  axis lines=left,
+  legend entries={CopyGC-O2 (2*30k-2*32MB) (N=1), BoehmGC-O2 (N=1), No GC (N=1)},
+  legend style={legend pos=outer north east,},
+]
+\addplot+[error bars/.cd, y dir=both, y explicit] table[y error index=2] {octout25};
+\addplot+[error bars/.cd, y dir=both, y explicit] table[y error index=2] {octout24};
+\addplot+[error bars/.cd, y dir=both, y explicit] table[y error index=2] {octout26};
+\end{axis}
+\end{tikzpicture}
+\end{figure}
+
+\begin{figure}
+\centering
+\caption{Time taken to binary trees of varying sizes, averaged over 3 runs. {\bf NOTE: $2^{20}$ left out in all cases for now...}}
+\begin{tikzpicture}
+\begin{axis}[
+  %title={},
+  xlabel=Tree depth,
+  ylabel=Total time (s),
+  xmin=15,
+  xmax=20,
+  scaled ticks=false,
+  axis lines=left,
+  legend entries={GenGC-O2 (heap=4*Boehm) - only 1 run, BoehmGC-O2 - only 1 run, NoGC-nofree-O2 - only 1 run},
+  legend style={legend pos=outer north east,},
+]
+\addplot+[error bars/.cd, y dir=both, y explicit] table[y error index=2] {octout29};
+\addplot+[error bars/.cd, y dir=both, y explicit] table[y error index=2] {octout28};
+\addplot+[error bars/.cd, y dir=both, y explicit] table[y error index=2] {octout27};
+\end{axis}
+\end{tikzpicture}
+\end{figure}
+
+\end{document}

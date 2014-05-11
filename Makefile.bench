@@ -1,0 +1,100 @@
+# This Makefile builds bench/GC_bench.c, a Boehm collector benchmark taken from
+# http://hboehm.info/gc/gc_bench/, against each collector.
+
+# These are system-dependent
+#CHERI=/home/munraj/projectscratch/ctsrd-svn/cherilibs-build/trunk/tools/sdk
+CHERI=/home/munraj/projectscratch/SDK
+#CHERI=/home/munraj/projectscratch/SDK_NEW_1/sdk
+SSH_PASSWD_FILE=/home/munraj/ssh_passwd
+SSH_PRIV_KEY=/home/munraj/.ssh/mbv21
+WENGER_USER=mbv21
+WENGER_ADDR=wenger
+WENGER_FILE_ZFS=/exports/users/mbv21/
+CLOUD2_ZFS_MOUNT=/mnt/mbv21zfs/
+
+
+# To test against the Boehm collector
+BOEHM_GC_DIR=../gc1/gc-7.2
+# BOEHM_GC_LIB_DIR should point to where gc.a is.
+BOEHM_GC_LIB_DIR=$(BOEHM_GC_DIR)
+BOEHM_GC_INC_DIR=$(BOEHM_GC_DIR)/include/
+
+# Location of memwatch, for debugging the non-gc ML test
+MEMWATCH_DIR=../memwatch
+# Comment these out to disable memwatch
+#MEMWATCH_FLAGS=-DMEMWATCH -I$(MEMWATCH_DIR)
+#MEMWATCH_SOURCES=$(MEMWATCH_DIR)/memwatch.c
+
+PATH:=$(CHERI):$(PATH)
+CC=PATH=$(PATH) $(CHERI)/bin/clang --sysroot $(CHERI) -integrated-as -msoft-float -O2
+CFLAGS=-I$(GC_PRIV_INCLUDE)
+CFLAGS_BOEHM_EXTRA=-I$(BOEHM_GC_DIR)/include -I$(AO_INSTALL_DIR)/include -DATOMIC_UNCOLLECTABLE -DNO_EXECUTE_PERMISSION
+
+
+GC_SOURCES=objects/gc_init.o objects/gc_malloc.o objects/gc_debug.o \
+           objects/gc_low.o objects/gc_collect.o objects/gc_time.o \
+           objects/gc_remset.o objects/gc_bitmap.o objects/gc_memcpy.o \
+           objects/sigemulate.o
+GC_PUBLIC_INCLUDE=src/inc/
+GC_PRIV_INCLUDE=src/inc/
+BENCH_SOURCES=bench/bench.c
+
+all: clean lib bench bench-boehm bench-no-gc bench-no-cap #push-bench #push-cherrybox
+
+objects/%.o : src/%.c
+	$(CC) $(CFLAGS) -c -o $@ $< && \
+	$(CC) $(CFLAGS) -S -o $@.s $< && \
+	$(CC) $(CFLAGS) -E -o $@.E $<
+
+clean:
+	rm -rf objects
+
+lib_init:
+	mkdir -p objects
+
+lib_final: $(GC_SOURCES)
+	ar rcs objects/gc.a objects/*.o
+
+lib: lib_init $(GC_SOURCES) lib_final
+
+loc:
+	cat src/*.c src/inc/*.h | wc -l
+
+bench:
+	echo "[i] building GC_bench for my GC" && \
+	PATH=$(PATH) $(CC) -DGC_CHERI -o objects/bench -I$(GC_PUBLIC_INCLUDE) $(BENCH_SOURCES) objects/gc.a && \
+	PATH=$(PATH) $(CC) -DGC_CHERI -S -o objects/bench.s -I$(GC_PUBLIC_INCLUDE) $(BENCH_SOURCES) && \
+	PATH=$(PATH) $(CC) -DGC_CHERI -E -o objects/bench.E -I$(GC_PUBLIC_INCLUDE) $(BENCH_SOURCES)
+
+bench-boehm:
+	echo "[i] building GC_bench for Boehm" && \
+	mkdir -p objects/boehm && \
+	cp $(BOEHM_GC_LIB_DIR)/gc.a objects/boehm/boehm.a && \
+	cd objects/boehm && ar -x boehm.a && cd ../.. && \
+	PATH=$(PATH) $(CC) $(CFLAGS_BOEHM_EXTRA) -DGC -o objects/bench-boehm -I$(BOEHM_GC_INC_DIR) $(BENCH_SOURCES) objects/boehm/boehm.a && \
+	PATH=$(PATH) $(CC) $(CFLAGS_BOEHM_EXTRA) -DGC -S -o objects/bench-boehm.S -I$(BOEHM_GC_INC_DIR) $(BENCH_SOURCES) && \
+	PATH=$(PATH) $(CC) $(CFLAGS_BOEHM_EXTRA) -DGC -E -o objects/bench-boehm.E -I$(BOEHM_GC_INC_DIR) $(BENCH_SOURCES)
+
+bench-no-gc:
+	echo "[i] building GC_bench for no GC" && \
+	PATH=$(PATH) $(CC) -DGC_NONE $(MEMWATCH_FLAGS) -o objects/bench-no-gc $(MEMWATCH_SOURCES) $(BENCH_SOURCES) && \
+	PATH=$(PATH) $(CC) -DGC_NONE $(MEMWATCH_FLAGS) -S -o objects/bench-no-gc.S $(BENCH_SOURCES) && \
+	PATH=$(PATH) $(CC) -DGC_NONE $(MEMWATCH_FLAGS) -E -o objects/bench-no-gc.E $(BENCH_SOURCES)
+
+bench-no-cap:
+	echo "[i] building GC_bench for GC_NOCAP" && \
+	PATH=$(PATH) $(CC) -DGC_NOCAP $(MEMWATCH_FLAGS) -o objects/bench-no-cap $(MEMWATCH_SOURCES) $(BENCH_SOURCES) && \
+	PATH=$(PATH) $(CC) -DGC_NOCAP $(MEMWATCH_FLAGS) -S -o objects/bench-no-cap.S $(BENCH_SOURCES) && \
+	PATH=$(PATH) $(CC) -DGC_NOCAP $(MEMWATCH_FLAGS) -E -o objects/bench-no-cap.E $(BENCH_SOURCES)
+
+PASSWORD=`cat $(SSH_PASSWD_FILE)`
+CMD=scp -i $(SSH_PRIV_KEY) objects/bench objects/bench-boehm objects/bench-no-gc objects/bench-no-cap $(WENGER_USER)@$(WENGER_ADDR):$(WENGER_FILE_ZFS)
+push-bench:
+	echo "[i] pushing files to wenger ZFS" && \
+	echo -e "set timeout 60\nspawn $(CMD)\nexpect \": \"\nsend \"$(PASSWORD)\\\\n\"\ninteract\n" > cloud4_push_helper.expect && \
+	expect -f cloud4_push_helper.expect && \
+	rm -f cloud4_push_helper.expect
+
+push-cherrybox:
+	echo "[i] pushing file to cherrybox" && \
+	scp objects/bench mbv21@cherrybox:~/

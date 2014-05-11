@@ -1,0 +1,183 @@
+# begin test Boehm GC (I=65536)
+0 1517
+# end test Boehm GC (I=65536)
+# begin test Boehm GC (I=65536)
+1 1527
+# end test Boehm GC (I=65536)
+# begin test Boehm GC (I=65536)
+1 1527
+# end test Boehm GC (I=65536)
+# begin test Boehm GC (I=65536)
+1 3400
+# end test Boehm GC (I=65536)
+# begin test Boehm GC (I=65536)
+2 4134
+# end test Boehm GC (I=65536)
+# begin test Boehm GC (I=65536)
+2 1594
+# end test Boehm GC (I=65536)
+# begin test Boehm GC (I=65536)
+2 3968
+# end test Boehm GC (I=65536)
+# begin test Boehm GC (I=65536)
+3 1654
+# end test Boehm GC (I=65536)
+# begin test Boehm GC (I=65536)
+3 2681
+# end test Boehm GC (I=65536)
+# begin test Boehm GC (I=65536)
+3 1618
+# end test Boehm GC (I=65536)
+# begin test Boehm GC (I=65536)
+4 3576
+# end test Boehm GC (I=65536)
+# begin test Boehm GC (I=65536)
+4 4212
+# end test Boehm GC (I=65536)
+# begin test Boehm GC (I=65536)
+4 1836
+# end test Boehm GC (I=65536)
+# begin test Boehm GC (I=65536)
+5 4494
+# end test Boehm GC (I=65536)
+# begin test Boehm GC (I=65536)
+5 4870
+# end test Boehm GC (I=65536)
+# begin test Boehm GC (I=65536)
+5 3917
+# end test Boehm GC (I=65536)
+# begin test Boehm GC (I=65536)
+6 6061
+# end test Boehm GC (I=65536)
+# begin test Boehm GC (I=65536)
+6 8230
+# end test Boehm GC (I=65536)
+# begin test Boehm GC (I=65536)
+6 9537
+# end test Boehm GC (I=65536)
+# begin test Boehm GC (I=65536)
+7 12001
+# end test Boehm GC (I=65536)
+# begin test Boehm GC (I=65536)
+7 17952
+# end test Boehm GC (I=65536)
+# begin test Boehm GC (I=65536)
+7 16395
+# end test Boehm GC (I=65536)
+# begin test Boehm GC (I=65536)
+8 60467
+# end test Boehm GC (I=65536)
+# begin test Boehm GC (I=65536)
+8 27366
+# end test Boehm GC (I=65536)
+# begin test Boehm GC (I=65536)
+8 77156
+# end test Boehm GC (I=65536)
+# begin test Boehm GC (I=65536)
+9 238306
+# end test Boehm GC (I=196608)
+# begin test Boehm GC (I=65536)
+9 104852
+# end test Boehm GC (I=196608)
+# begin test Boehm GC (I=65536)
+9 240023
+# end test Boehm GC (I=196608)
+# begin test Boehm GC (I=65536)
+10 367771
+# end test Boehm GC (I=196608)
+# begin test Boehm GC (I=65536)
+10 372092
+# end test Boehm GC (I=196608)
+# begin test Boehm GC (I=65536)
+10 393123
+# end test Boehm GC (I=196608)
+# begin test Boehm GC (I=65536)
+11 578028
+# end test Boehm GC (I=266240)
+# begin test Boehm GC (I=65536)
+11 422366
+# end test Boehm GC (I=266240)
+# begin test Boehm GC (I=65536)
+11 397858
+# end test Boehm GC (I=266240)
+# begin test Boehm GC (I=65536)
+12 813392
+# end test Boehm GC (I=356352)
+# begin test Boehm GC (I=65536)
+12 1047243
+# end test Boehm GC (I=356352)
+# begin test Boehm GC (I=65536)
+12 985417
+# end test Boehm GC (I=356352)
+# begin test Boehm GC (I=65536)
+13 1885099
+# end test Boehm GC (I=643072)
+# begin test Boehm GC (I=65536)
+13 1915686
+# end test Boehm GC (I=643072)
+# begin test Boehm GC (I=65536)
+13 1688892
+# end test Boehm GC (I=643072)
+# begin test Boehm GC (I=65536)
+14 3753884
+# end test Boehm GC (I=1150976)
+# begin test Boehm GC (I=65536)
+14 3664706
+# end test Boehm GC (I=1150976)
+# begin test Boehm GC (I=65536)
+14 3647380
+# end test Boehm GC (I=1150976)
+# begin test Boehm GC (I=65536)
+15 8631002
+# end test Boehm GC (I=2052096)
+# begin test Boehm GC (I=65536)
+15 8044448
+# end test Boehm GC (I=2052096)
+# begin test Boehm GC (I=65536)
+15 8027541
+# end test Boehm GC (I=2052096)
+# begin test Boehm GC (I=65536)
+16 16205095
+# end test Boehm GC (I=3657728)
+# begin test Boehm GC (I=65536)
+16 16454439
+# end test Boehm GC (I=3657728)
+# begin test Boehm GC (I=65536)
+16 19549315
+# end test Boehm GC (I=3657728)
+# begin test Boehm GC (I=65536)
+17 34185235
+# end test Boehm GC (I=8679424)
+# begin test Boehm GC (I=65536)
+17 36200788
+# end test Boehm GC (I=8679424)
+# begin test Boehm GC (I=65536)
+17 33880546
+# end test Boehm GC (I=8679424)
+# begin test Boehm GC (I=65536)
+18 70770812
+# end test Boehm GC (I=15437824)
+# begin test Boehm GC (I=65536)
+18 72167229
+# end test Boehm GC (I=15437824)
+# begin test Boehm GC (I=65536)
+18 71121259
+# end test Boehm GC (I=15437824)
+# begin test Boehm GC (I=65536)
+19 152093381
+# end test Boehm GC (I=27451392)
+# begin test Boehm GC (I=65536)
+19 150697194
+# end test Boehm GC (I=27451392)
+# begin test Boehm GC (I=65536)
+19 155294267
+# end test Boehm GC (I=27451392)
+# begin test Boehm GC (I=65536)
+20 309976651
+# end test Boehm GC (I=52617216)
+# begin test Boehm GC (I=65536)
+20 312435762
+# end test Boehm GC (I=52617216)
+# begin test Boehm GC (I=65536)
+20 309195390
+# end test Boehm GC (I=52617216)

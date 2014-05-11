@@ -1,0 +1,1005 @@
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+0 512338
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+1000 525377
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+1000 561769
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+1000 567313
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+1000 1200331
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+1000 1155657
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+1000 563488
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+1000 546836
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+1000 552512
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+1000 574942
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+1000 579942
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+2000 580940
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+2000 578495
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+2000 561015
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+2000 578033
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+2000 672868
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+2000 560446
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+2000 557241
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+2000 550301
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+2000 555173
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+2000 610599
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+3000 580901
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+3000 579624
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+3000 579692
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+3000 608166
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+3000 584869
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+3000 586732
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+3000 572698
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+3000 564188
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+3000 585456
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+3000 563795
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+4000 350674
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+4000 355203
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+4000 351569
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+4000 361047
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+4000 360407
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+4000 355149
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+4000 359033
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+4000 364521
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+4000 354722
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+4000 361739
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+5000 364553
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+5000 373110
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+5000 365575
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+5000 420047
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+5000 369714
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+5000 340363
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+5000 362843
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+5000 373263
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+5000 375352
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+5000 354784
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+6000 368270
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+6000 365067
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+6000 368379
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+6000 365695
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+6000 387538
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+6000 367423
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+6000 377955
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+6000 369986
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+6000 360589
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+6000 361013
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+7000 359278
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+7000 367669
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+7000 371607
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+7000 365744
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+7000 361282
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+7000 342994
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+7000 365728
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+7000 372891
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+7000 370285
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+7000 372527
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+8000 365096
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+8000 373141
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+8000 369072
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+8000 364920
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+8000 365205
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+8000 342344
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+8000 369418
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+8000 370136
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+8000 356803
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+8000 366379
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+9000 368748
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+9000 372583
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+9000 375497
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+9000 375116
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+9000 380618
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+9000 369392
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+9000 369018
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+9000 368238
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+9000 347623
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+9000 373803
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+10000 375819
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+10000 385612
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+10000 371471
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+10000 402660
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+10000 378029
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+10000 374515
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+10000 383652
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+10000 372011
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+10000 373121
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+10000 372796
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+11000 369583
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+11000 379898
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+11000 369086
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+11000 374895
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+11000 376920
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+11000 369465
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+11000 374965
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+11000 373909
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+11000 369097
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+11000 371905
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+12000 378726
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+12000 367159
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+12000 372162
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+12000 365893
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+12000 378286
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+12000 378198
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+12000 361541
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+12000 367081
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+12000 370208
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+12000 370031
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+13000 376038
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+13000 375716
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+13000 375331
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+13000 384719
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+13000 381110
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+13000 377992
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+13000 369617
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+13000 375671
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+13000 382489
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+13000 373707
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+14000 375928
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+14000 395080
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+14000 379203
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+14000 375534
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+14000 376571
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+14000 380332
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+14000 371510
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+14000 370115
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+14000 372109
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+14000 381694
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+15000 378319
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+15000 376375
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+15000 373348
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+15000 381737
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+15000 409255
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+15000 375596
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+15000 384503
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+15000 380492
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+15000 377259
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+15000 375841
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+16000 414157
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+16000 380352
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+16000 373639
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+16000 366305
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+16000 388144
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+16000 377187
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+16000 375133
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+16000 373889
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+16000 370877
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+16000 374545
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+17000 378617
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+17000 382477
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+17000 373371
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+17000 383253
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+17000 379383
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+17000 383220
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+17000 385419
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+17000 415770
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+17000 373841
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+17000 384158
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+18000 374898
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+18000 379402
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+18000 383849
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+18000 379917
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+18000 379097
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+18000 370182
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+18000 381463
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+18000 381850
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+18000 381912
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+18000 379753
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+19000 378669
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+19000 380409
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+19000 381354
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+19000 380535
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+19000 383912
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+19000 376941
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+19000 451969
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+19000 392177
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+19000 388204
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+19000 387182
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+20000 384971
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+20000 417199
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+20000 379624
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+20000 378226
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+20000 379260
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+20000 585297
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+20000 444062
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+20000 402974
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+20000 486207
+# begin test no GC
+# end test no GC
+# 1000 allocations per iteration
+# allocation size (B)        total time (us)
+20000 465878
+# begin test no GC
+# end test no GC

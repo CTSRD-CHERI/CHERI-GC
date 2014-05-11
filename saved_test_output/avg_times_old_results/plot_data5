@@ -1,0 +1,140 @@
+# begin test my copying GC (I=65536 B=65536 A=68000000 cur=65536)
+0 491
+# end test my copying GC (I=65536 B=65536 A=68000000 cur=65536)
+# begin test my copying GC (I=65536 B=65536 A=68000000 cur=65536)
+1 441
+# end test my copying GC (I=65536 B=65536 A=68000000 cur=65536)
+# begin test my copying GC (I=65536 B=65536 A=68000000 cur=65536)
+1 447
+# end test my copying GC (I=65536 B=65536 A=68000000 cur=65536)
+# begin test my copying GC (I=65536 B=65536 A=68000000 cur=65536)
+1 465
+# end test my copying GC (I=65536 B=65536 A=68000000 cur=65536)
+# begin test my copying GC (I=65536 B=65536 A=68000000 cur=65536)
+2 572
+# end test my copying GC (I=65536 B=65536 A=68000000 cur=65536)
+# begin test my copying GC (I=65536 B=65536 A=68000000 cur=65536)
+2 671
+# end test my copying GC (I=65536 B=65536 A=68000000 cur=65536)
+# begin test my copying GC (I=65536 B=65536 A=68000000 cur=65536)
+2 672
+# end test my copying GC (I=65536 B=65536 A=68000000 cur=65536)
+# begin test my copying GC (I=65536 B=65536 A=68000000 cur=65536)
+3 2590
+# end test my copying GC (I=65536 B=65536 A=68000000 cur=65536)
+# begin test my copying GC (I=65536 B=65536 A=68000000 cur=65536)
+3 827
+# end test my copying GC (I=65536 B=65536 A=68000000 cur=65536)
+# begin test my copying GC (I=65536 B=65536 A=68000000 cur=65536)
+3 3137
+# end test my copying GC (I=65536 B=65536 A=68000000 cur=65536)
+# begin test my copying GC (I=65536 B=65536 A=68000000 cur=65536)
+4 3451
+# end test my copying GC (I=65536 B=65536 A=68000000 cur=65536)
+# begin test my copying GC (I=65536 B=65536 A=68000000 cur=65536)
+4 4486
+# end test my copying GC (I=65536 B=65536 A=68000000 cur=65536)
+# begin test my copying GC (I=65536 B=65536 A=68000000 cur=65536)
+4 1726
+# end test my copying GC (I=65536 B=65536 A=68000000 cur=65536)
+# begin test my copying GC (I=65536 B=65536 A=68000000 cur=65536)
+5 5249
+# end test my copying GC (I=65536 B=65536 A=68000000 cur=65536)
+# begin test my copying GC (I=65536 B=65536 A=68000000 cur=65536)
+5 5854
+# end test my copying GC (I=65536 B=65536 A=68000000 cur=65536)
+# begin test my copying GC (I=65536 B=65536 A=68000000 cur=65536)
+5 5331
+# end test my copying GC (I=65536 B=65536 A=68000000 cur=65536)
+# begin test my copying GC (I=65536 B=65536 A=68000000 cur=65536)
+6 10222
+# end test my copying GC (I=65536 B=65536 A=68000000 cur=65536)
+# begin test my copying GC (I=65536 B=65536 A=68000000 cur=65536)
+6 10213
+# end test my copying GC (I=65536 B=65536 A=68000000 cur=65536)
+# begin test my copying GC (I=65536 B=65536 A=68000000 cur=65536)
+6 10354
+# end test my copying GC (I=65536 B=65536 A=68000000 cur=65536)
+# begin test my copying GC (I=65536 B=65536 A=68000000 cur=65536)
+7 22000
+# end test my copying GC (I=65536 B=65536 A=68000000 cur=65536)
+# begin test my copying GC (I=65536 B=65536 A=68000000 cur=65536)
+7 28281
+# end test my copying GC (I=65536 B=65536 A=68000000 cur=65536)
+# begin test my copying GC (I=65536 B=65536 A=68000000 cur=65536)
+7 23476
+# end test my copying GC (I=65536 B=65536 A=68000000 cur=65536)
+# begin test my copying GC (I=65536 B=65536 A=68000000 cur=65536)
+8 60852
+# end test my copying GC (I=65536 B=65536 A=68000000 cur=65536)
+# begin test my copying GC (I=65536 B=65536 A=68000000 cur=65536)
+8 234412
+# end test my copying GC (I=65536 B=65536 A=68000000 cur=65536)
+# begin test my copying GC (I=65536 B=65536 A=68000000 cur=65536)
+8 229779
+# end test my copying GC (I=65536 B=65536 A=68000000 cur=65536)
+# begin test my copying GC (I=65536 B=65536 A=68000000 cur=65536)
+9 349427
+# end test my copying GC (I=65536 B=65536 A=68000000 cur=65536)
+# begin test my copying GC (I=65536 B=65536 A=68000000 cur=65536)
+9 331868
+# end test my copying GC (I=65536 B=65536 A=68000000 cur=65536)
+# begin test my copying GC (I=65536 B=65536 A=68000000 cur=65536)
+9 343440
+# end test my copying GC (I=65536 B=65536 A=68000000 cur=65536)
+# begin test my copying GC (I=65536 B=65536 A=68000000 cur=65536)
+10 1048529
+# end test my copying GC (I=65536 B=65536 A=68000000 cur=131072)
+# begin test my copying GC (I=65536 B=65536 A=68000000 cur=65536)
+10 979198
+# end test my copying GC (I=65536 B=65536 A=68000000 cur=131072)
+# begin test my copying GC (I=65536 B=65536 A=68000000 cur=65536)
+10 953979
+# end test my copying GC (I=65536 B=65536 A=68000000 cur=131072)
+# begin test my copying GC (I=65536 B=65536 A=68000000 cur=65536)
+11 2253438
+# end test my copying GC (I=65536 B=65536 A=68000000 cur=262144)
+# begin test my copying GC (I=65536 B=65536 A=68000000 cur=65536)
+11 2149846
+# end test my copying GC (I=65536 B=65536 A=68000000 cur=262144)
+# begin test my copying GC (I=65536 B=65536 A=68000000 cur=65536)
+11 2168102
+# end test my copying GC (I=65536 B=65536 A=68000000 cur=262144)
+# begin test my copying GC (I=65536 B=65536 A=68000000 cur=65536)
+12 4607096
+# end test my copying GC (I=65536 B=65536 A=68000000 cur=524288)
+# begin test my copying GC (I=65536 B=65536 A=68000000 cur=65536)
+12 5334714
+# end test my copying GC (I=65536 B=65536 A=68000000 cur=524288)
+# begin test my copying GC (I=65536 B=65536 A=68000000 cur=65536)
+12 4725942
+# end test my copying GC (I=65536 B=65536 A=68000000 cur=524288)
+# begin test my copying GC (I=65536 B=65536 A=68000000 cur=65536)
+13 10208967
+# end test my copying GC (I=65536 B=65536 A=68000000 cur=1048576)
+# begin test my copying GC (I=65536 B=65536 A=68000000 cur=65536)
+13 10477772
+# end test my copying GC (I=65536 B=65536 A=68000000 cur=1048576)
+# begin test my copying GC (I=65536 B=65536 A=68000000 cur=65536)
+13 10277258
+# end test my copying GC (I=65536 B=65536 A=68000000 cur=1048576)
+# begin test my copying GC (I=65536 B=65536 A=68000000 cur=65536)
+14 23305501
+# end test my copying GC (I=65536 B=65536 A=68000000 cur=2097152)
+# begin test my copying GC (I=65536 B=65536 A=68000000 cur=65536)
+14 23444200
+# end test my copying GC (I=65536 B=65536 A=68000000 cur=2097152)
+# begin test my copying GC (I=65536 B=65536 A=68000000 cur=65536)
+14 25879311
+# end test my copying GC (I=65536 B=65536 A=68000000 cur=2097152)
+# begin test my copying GC (I=65536 B=65536 A=68000000 cur=65536)
+15 48434218
+# end test my copying GC (I=65536 B=65536 A=68000000 cur=4194304)
+# begin test my copying GC (I=65536 B=65536 A=68000000 cur=65536)
+15 51410344
+# end test my copying GC (I=65536 B=65536 A=68000000 cur=4194304)
+# begin test my copying GC (I=65536 B=65536 A=68000000 cur=65536)
+15 49125780
+# end test my copying GC (I=65536 B=65536 A=68000000 cur=4194304)
+# begin test my copying GC (I=65536 B=65536 A=68000000 cur=65536)
+16 106744775
