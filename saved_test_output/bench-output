@@ -1,3 +1,14 @@
+#define GC_THREAD_LOCAL_HEAP_SIZE                              (3200000)
+#define GC_OLD_GENERATION_SEMISPACE_SIZE                       (32000000)
+
+// Maximum sizes for when the heap does grow. Set to 0 to allow unlimited
+// growth.
+#define GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION        (3200000)
+#define GC_THREAD_LOCAL_HEAP_MAX_SIZE                          (8000000)
+#define GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION (32000000)
+#define GC_OLD_GENERATION_SEMISPACE_MAX_SIZE                   (80000000)
+
+
 spawn ssh -i /home/munraj/.ssh/mbv21 mbv21@cloud2 /mnt/mbv21zfs//bench
 Enter passphrase for key '/home/munraj/.ssh/mbv21': 
 Password for mbv21@cloud2:
