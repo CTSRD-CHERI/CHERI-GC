@@ -232,8 +232,11 @@ do { \
 #define tf_assert(cond) \
 do { \
   if (!(cond)) \
+  { \
     tf_printf("****FATAL: %s:%d: assertion failed: %s\n", \
       __FILE__, __LINE__, #cond); \
+    exit(1); \
+  } \
 } while (0)
 
 #define X_MACRO DECLARE_TEST

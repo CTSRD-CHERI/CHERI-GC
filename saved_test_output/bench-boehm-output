@@ -1,0 +1,35 @@
+spawn ssh -i /home/munraj/.ssh/mbv21 mbv21@cloud2 /mnt/mbv21zfs//bench-boehm
+Enter passphrase for key '/home/munraj/.ssh/mbv21': 
+Password for mbv21@cloud2:
+The `GC' macro is defined (i.e. Boehm)
+Garbage Collector Test
+ Live storage will peak at 10291408 bytes.
+
+ Stretching memory with a binary tree of depth 18
+ Creating a long-lived binary tree of depth 16
+ Creating a long-lived array of 500000 doubles
+Not populating array
+Creating 33824 trees of depth 4
+	Top down construction took 10170 msec
+	Bottom up construction took 10118 msec
+Creating 8256 trees of depth 6
+	Top down construction took 9756 msec
+	Bottom up construction took 10240 msec
+Creating 2052 trees of depth 8
+	Top down construction took 9717 msec
+	Bottom up construction took 10005 msec
+Creating 512 trees of depth 10
+	Top down construction took 9710 msec
+	Bottom up construction took 10105 msec
+Creating 128 trees of depth 12
+	Top down construction took 11855 msec
+	Bottom up construction took 10068 msec
+Creating 32 trees of depth 14
+	Top down construction took 9674 msec
+	Bottom up construction took 10435 msec
+Creating 8 trees of depth 16
+	Top down construction took 9831 msec
+	Bottom up construction took 11597 msec
+Completed in 155233 msec
+Completed 38 collections
+Heap size is 20586496

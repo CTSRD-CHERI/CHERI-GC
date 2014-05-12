@@ -1,0 +1,35 @@
+spawn ssh -i /home/munraj/.ssh/mbv21 mbv21@cloud2 /mnt/mbv21zfs//bench-no-cap
+Enter passphrase for key '/home/munraj/.ssh/mbv21': 
+Password for mbv21@cloud2:
+The `GC' macro is NOT defined
+GC_NOCAP is defined
+Garbage Collector Test
+ Live storage will peak at 10291408 bytes.
+
+ Stretching memory with a binary tree of depth 18
+ Creating a long-lived binary tree of depth 16
+ Creating a long-lived array of 500000 doubles
+Not actually doing that, either
+Not populating array
+Creating 33824 trees of depth 4
+	Top down construction took 137612 msec
+	Bottom up construction took 133938 msec
+Creating 8256 trees of depth 6
+		Top down construction took 136793 msec
+	Bottom up construction took 132731 msec
+Creating 2052 trees of depth 8
+	Top down construction took 141303 msec
+	Bottom up construction took 134570 msec
+Creating 512 trees of depth 10
+	Top down construction took 135930 msec
+	Bottom up construction took 136891 msec
+Creating 128 trees of depth 12
+	Top down construction took 135740 msec
+	Bottom up construction took 138990 msec
+Creating 32 trees of depth 14
+	Top down construction took 137104 msec
+	Bottom up construction took 136164 msec
+Creating 8 trees of depth 16
+	Top down construction took 137400 msec
+	Bottom up construction took 136232 msec
+Completed in 1993661 msec

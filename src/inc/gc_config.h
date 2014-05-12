@@ -8,15 +8,15 @@
 // convenience. test_all.c, for example, uses this.
 #define GC_BOEHM_MAX_HEAP_SIZE                0//1900000
 
-#define GC_THREAD_LOCAL_HEAP_SIZE                              (65536)
-#define GC_OLD_GENERATION_SEMISPACE_SIZE                       (655360)
+#define GC_THREAD_LOCAL_HEAP_SIZE                              (3200000)
+#define GC_OLD_GENERATION_SEMISPACE_SIZE                       (32000000)
 
 // Maximum sizes for when the heap does grow. Set to 0 to allow unlimited
 // growth.
-#define GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION        (65536)
-#define GC_THREAD_LOCAL_HEAP_MAX_SIZE                          (65536)
-#define GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION (655360)
-#define GC_OLD_GENERATION_SEMISPACE_MAX_SIZE                   (655360)
+#define GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION        (3200000)
+#define GC_THREAD_LOCAL_HEAP_MAX_SIZE                          (8000000)
+#define GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION (32000000)
+#define GC_OLD_GENERATION_SEMISPACE_MAX_SIZE                   (80000000)
 
 // Determines whether we use generational GC or not. If disabled, only
 // copying collection is implemented.
@@ -35,7 +35,7 @@
 #define GC_USE_BITMAP
 
 // Kind of temporary
-#define GC_MAX_STACK_TOP    (void*) 0x7ffff00000
+#define GC_MAX_STACK_TOP    (void*) 0x7fff000000
 
 // If this is defined, we manually clean the stack. Otherwise, we rely on
 // __attribute__((sensitive)) annotations to do it for us.
@@ -76,7 +76,7 @@
 #define GC_MAGIC_JUST_FREED                   0x4A      // 'J'
 
 // Used by GC_gen_promote to clear the young tospace
-#define GC_MAGIC_JUST_CLEARED_YOUNG_TOSPACE   0x4B      // 'H'
+#define GC_MAGIC_JUST_CLEARED_YOUNG_TOSPACE   0x4B      // 'K'
 
 // ----HEAP GROWING----
 // Current policies with GC_GENERATIONAL turned on:

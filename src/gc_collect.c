@@ -331,6 +331,7 @@ GC_copy_roots (struct GC_region * region,
     {
       size_t offset = -1;
       size_t polen = GC_cheri_getlen(*p);
+#ifdef GC_USE_BITMAP
       if (!GC_IS_IN_FROMSPACE_BITMAP(region, *p))
       {
         // This could be an internal pointer. GC_FROMSPACE_BITMAP_GET_CONTAINER
@@ -355,10 +356,10 @@ GC_copy_roots (struct GC_region * region,
         // i.e. *p -= offset
         *p = GC_setbaselen(*p, GC_cheri_getbase(*p)-offset, len);
       }
-      
       GC_assert(GC_IS_IN_FROMSPACE_BITMAP(region, *p));
+#endif // GC_USE_BITMAP      
       
-      GC_vdbgf("[root] [%d%%] location=0x%llx (%s?), b=0x%llx, l=0x%llx",
+      /*GC_vdbgf("[root] [%d%%] location=0x%llx (%s?), b=0x%llx, l=0x%llx",
       (int) (
         100.0*
           ((double) (((uintptr_t) p)-((uintptr_t) root_start)))/
@@ -367,7 +368,7 @@ GC_copy_roots (struct GC_region * region,
         (((GC_ULL) p) > 0x7F00000000) ? "stack/reg" :
         is_data_segment ? ".data" : "unk.",
         (GC_ULL) *p,
-        (GC_ULL) GC_cheri_getlen(*p));
+        (GC_ULL) GC_cheri_getlen(*p));*/
       *p = GC_copy_object(region, *p, p);
       
       GC_assert( GC_IN(GC_cheri_getbase(*p), region->tospace) );
@@ -406,6 +407,7 @@ GC_copy_child (struct GC_region * region,
   {
     size_t offset = -1;
     size_t polen = GC_cheri_getlen(*child_addr);
+#ifdef GC_USE_BITMAP
     if (!GC_IS_IN_FROMSPACE_BITMAP(region, *child_addr))
     {
       // See GC_copy_roots for explanation.
@@ -426,13 +428,13 @@ GC_copy_child (struct GC_region * region,
       *child_addr =
         GC_setbaselen(*child_addr, GC_cheri_getbase(*child_addr)-offset, len);
     }
-    
     GC_assert(GC_IS_IN_FROMSPACE_BITMAP(region, *child_addr));
+#endif // GC_USE_BITMAP
     
-    GC_vdbgf("[child] location=0x%llx, b=0x%llx, l=0x%llx",
+    /*GC_vdbgf("[child] location=0x%llx, b=0x%llx, l=0x%llx",
       (GC_ULL) child_addr,
       (GC_ULL) *child_addr, 
-      (GC_ULL) GC_cheri_getlen(*child_addr));
+      (GC_ULL) GC_cheri_getlen(*child_addr));*/
     *child_addr = GC_copy_object(region, *child_addr, child_addr);
 #ifdef GC_GENERATIONAL
     if (is_generational)

@@ -39,7 +39,7 @@ GC_PUBLIC_INCLUDE=src/inc/
 GC_PRIV_INCLUDE=src/inc/
 BENCH_SOURCES=bench/bench.c
 
-all: clean lib bench bench-boehm bench-no-gc bench-no-cap #push-bench #push-cherrybox
+all: clean lib bench-my-gc bench-boehm bench-no-gc bench-no-cap push-bench #push-cherrybox
 
 objects/%.o : src/%.c
 	$(CC) $(CFLAGS) -c -o $@ $< && \
@@ -60,7 +60,7 @@ lib: lib_init $(GC_SOURCES) lib_final
 loc:
 	cat src/*.c src/inc/*.h | wc -l
 
-bench:
+bench-my-gc:
 	echo "[i] building GC_bench for my GC" && \
 	PATH=$(PATH) $(CC) -DGC_CHERI -o objects/bench -I$(GC_PUBLIC_INCLUDE) $(BENCH_SOURCES) objects/gc.a && \
 	PATH=$(PATH) $(CC) -DGC_CHERI -S -o objects/bench.s -I$(GC_PUBLIC_INCLUDE) $(BENCH_SOURCES) && \
@@ -71,21 +71,21 @@ bench-boehm:
 	mkdir -p objects/boehm && \
 	cp $(BOEHM_GC_LIB_DIR)/gc.a objects/boehm/boehm.a && \
 	cd objects/boehm && ar -x boehm.a && cd ../.. && \
-	PATH=$(PATH) $(CC) $(CFLAGS_BOEHM_EXTRA) -DGC -o objects/bench-boehm -I$(BOEHM_GC_INC_DIR) $(BENCH_SOURCES) objects/boehm/boehm.a && \
-	PATH=$(PATH) $(CC) $(CFLAGS_BOEHM_EXTRA) -DGC -S -o objects/bench-boehm.S -I$(BOEHM_GC_INC_DIR) $(BENCH_SOURCES) && \
-	PATH=$(PATH) $(CC) $(CFLAGS_BOEHM_EXTRA) -DGC -E -o objects/bench-boehm.E -I$(BOEHM_GC_INC_DIR) $(BENCH_SOURCES)
+	$(CC) $(CFLAGS_BOEHM_EXTRA) -DGC -o objects/bench-boehm -I$(BOEHM_GC_INC_DIR) $(BENCH_SOURCES) objects/boehm/boehm.a && \
+	$(CC) $(CFLAGS_BOEHM_EXTRA) -DGC -S -o objects/bench-boehm.S -I$(BOEHM_GC_INC_DIR) $(BENCH_SOURCES) && \
+	$(CC) $(CFLAGS_BOEHM_EXTRA) -DGC -E -o objects/bench-boehm.E -I$(BOEHM_GC_INC_DIR) $(BENCH_SOURCES)
 
 bench-no-gc:
 	echo "[i] building GC_bench for no GC" && \
-	PATH=$(PATH) $(CC) -DGC_NONE $(MEMWATCH_FLAGS) -o objects/bench-no-gc $(MEMWATCH_SOURCES) $(BENCH_SOURCES) && \
-	PATH=$(PATH) $(CC) -DGC_NONE $(MEMWATCH_FLAGS) -S -o objects/bench-no-gc.S $(BENCH_SOURCES) && \
-	PATH=$(PATH) $(CC) -DGC_NONE $(MEMWATCH_FLAGS) -E -o objects/bench-no-gc.E $(BENCH_SOURCES)
+	$(CC) -DGC_NONE $(MEMWATCH_FLAGS) -o objects/bench-no-gc $(MEMWATCH_SOURCES) $(BENCH_SOURCES) && \
+	$(CC) -DGC_NONE $(MEMWATCH_FLAGS) -S -o objects/bench-no-gc.S $(BENCH_SOURCES) && \
+	$(CC) -DGC_NONE $(MEMWATCH_FLAGS) -E -o objects/bench-no-gc.E $(BENCH_SOURCES)
 
 bench-no-cap:
 	echo "[i] building GC_bench for GC_NOCAP" && \
-	PATH=$(PATH) $(CC) -DGC_NOCAP $(MEMWATCH_FLAGS) -o objects/bench-no-cap $(MEMWATCH_SOURCES) $(BENCH_SOURCES) && \
-	PATH=$(PATH) $(CC) -DGC_NOCAP $(MEMWATCH_FLAGS) -S -o objects/bench-no-cap.S $(BENCH_SOURCES) && \
-	PATH=$(PATH) $(CC) -DGC_NOCAP $(MEMWATCH_FLAGS) -E -o objects/bench-no-cap.E $(BENCH_SOURCES)
+	$(CC) -DGC_NOCAP $(MEMWATCH_FLAGS) -o objects/bench-no-cap $(MEMWATCH_SOURCES) $(BENCH_SOURCES) && \
+	$(CC) -DGC_NOCAP $(MEMWATCH_FLAGS) -S -o objects/bench-no-cap.S $(BENCH_SOURCES) && \
+	$(CC) -DGC_NOCAP $(MEMWATCH_FLAGS) -E -o objects/bench-no-cap.E $(BENCH_SOURCES)
 
 PASSWORD=`cat $(SSH_PASSWD_FILE)`
 CMD=scp -i $(SSH_PRIV_KEY) objects/bench objects/bench-boehm objects/bench-no-gc objects/bench-no-cap $(WENGER_USER)@$(WENGER_ADDR):$(WENGER_FILE_ZFS)
@@ -98,3 +98,39 @@ push-bench:
 push-cherrybox:
 	echo "[i] pushing file to cherrybox" && \
 	scp objects/bench mbv21@cherrybox:~/
+
+run:
+	ssh mbv21@cloud2 /mnt/mbv21zfs/bench | tee objects/bench-output && \
+	ssh mbv21@cloud2 /mnt/mbv21zfs/bench-boehm | tee objects/bench-boehm-output ; \
+	ssh mbv21@cloud2 /mnt/mbv21zfs/bench-no-gc | tee objects/bench-no-gc-output ; \
+	ssh mbv21@cloud2 /mnt/mbv21zfs/bench-no-cap | tee objects/bench-no-cap-output ;
+
+CLOUD2_PASSWORD=mbv21
+RUNCMD=ssh -i $(SSH_PRIV_KEY) mbv21@cloud2
+run-bench:
+	echo "[i] running tests on cloud2" && \
+	echo -e "set timeout 600\nspawn $(RUNCMD) $(CLOUD2_ZFS_MOUNT)/bench \nexpect \": \"\nsend \"$(PASSWORD)\\\\n\"\nexpect \":\"\nsend \"$(CLOUD2_PASSWORD)\\\\n\"\ninteract\n" > cloud4_push_helper.expect && \
+	expect -f cloud4_push_helper.expect | tee objects/bench-output && \
+	echo "[i] done running tests" && \
+	rm -f cloud4_push_helper.expect
+
+run-bench-boehm:
+	echo "[i] running tests on cloud2" && \
+	echo -e "set timeout 600\nspawn $(RUNCMD) $(CLOUD2_ZFS_MOUNT)/bench-boehm \nexpect \": \"\nsend \"$(PASSWORD)\\\\n\"\nexpect \":\"\nsend \"$(CLOUD2_PASSWORD)\\\\n\"\ninteract\n" > cloud4_push_helper.expect && \
+	expect -f cloud4_push_helper.expect | tee objects/bench-boehm-output && \
+	echo "[i] done running tests" && \
+	rm -f cloud4_push_helper.expect
+
+run-bench-no-gc:
+	echo "[i] running tests on cloud2" && \
+	echo -e "set timeout 600\nspawn $(RUNCMD) $(CLOUD2_ZFS_MOUNT)/bench-no-gc \nexpect \": \"\nsend \"$(PASSWORD)\\\\n\"\nexpect \":\"\nsend \"$(CLOUD2_PASSWORD)\\\\n\"\ninteract\n" > cloud4_push_helper.expect && \
+	expect -f cloud4_push_helper.expect | tee objects/bench-no-gc-output && \
+	echo "[i] done running tests" && \
+	rm -f cloud4_push_helper.expect
+
+run-bench-no-cap:
+	echo "[i] running tests on cloud2" && \
+	echo -e "set timeout 600\nspawn $(RUNCMD) $(CLOUD2_ZFS_MOUNT)/bench-no-cap \nexpect \": \"\nsend \"$(PASSWORD)\\\\n\"\nexpect \":\"\nsend \"$(CLOUD2_PASSWORD)\\\\n\"\ninteract\n" > cloud4_push_helper.expect && \
+	expect -f cloud4_push_helper.expect | tee objects/bench-no-cap-output && \
+	echo "[i] done running tests" && \
+	rm -f cloud4_push_helper.expect

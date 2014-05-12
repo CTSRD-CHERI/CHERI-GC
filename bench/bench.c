@@ -45,6 +45,9 @@
 #ifdef GC
 #  include "gc.h"
 #define tf_cap_t
+#define tf_ptr_valid(x) ((x)!=NULL)
+#define tf_invalid_ptr() 0
+#define tf_store_cap(x,y) ((x)=(y))
 
 void __LOCK_MALLOC ()
 {
@@ -59,6 +62,9 @@ void __UNLOCK_MALLOC ()
 #define GC_bench_calloc calloc
 #define GC_bench_free   free
 #define tf_cap_t
+#define tf_ptr_valid(x) ((x)!=NULL)
+#define tf_invalid_ptr() 0
+#define tf_store_cap(x,y) ((x)=(y))
 #endif // GC_NOCAP
 
 #ifdef GC_CHERI
@@ -67,7 +73,16 @@ void __UNLOCK_MALLOC ()
 #define GC_bench_calloc tf_cheri_calloc
 #define GC_bench_free   tf_cheri_free
 #define tf_cap_t __capability
-#define tf_invalid_ptr GC_INVALID_PTR()
+#define tf_invalid_ptr GC_INVALID_PTR
+#define tf_ptr_valid GC_PTR_VALID
+#define tf_store_cap GC_STORE_CAP
+
+/*void
+do_nothing_with (tf_cap_t void * p)
+{
+  volatile tf_cap_t * q = p;
+  printf("p is 0x%llx\n", (GC_ULL) GC_cheri_getbase(p));
+}*/
 
 tf_cap_t void *
 tf_cheri_calloc (size_t num, size_t sz)
@@ -77,17 +92,24 @@ tf_cheri_calloc (size_t num, size_t sz)
   return p;
 }
 
-void tf_cheri_free (void * ptr)
+void
+tf_cheri_free (tf_cap_t void * ptr)
 {
 }
 #endif // GC_CHERI
 
 #ifdef GC_NONE
+#include <machine/cheri.h>
+#include <machine/cheric.h>
+#define tf_cheri_ptr     cheri_ptr
+#define tf_cheri_getbase cheri_getbase
 #define GC_bench_malloc tf_no_gc_malloc
 #define GC_bench_calloc tf_no_gc_calloc
 #define GC_bench_free   tf_no_gc_free
 #define tf_cap_t __capability
-#define tf_invalid_ptr NULL
+#define tf_invalid_ptr() NULL
+#define tf_ptr_valid(x) ((x)!=NULL)
+#define tf_store_cap(x,y) ((x)=(y))
 
 #include <stdlib.h>
 tf_cap_t void *
@@ -97,7 +119,7 @@ tf_no_gc_malloc (size_t sz)
   if (p)
     return tf_cheri_ptr(p, sz);
   else
-    return tf_invalid_ptr;
+    return tf_invalid_ptr();
 }
 tf_cap_t void *
 tf_no_gc_calloc (size_t num, size_t sz)
@@ -106,7 +128,7 @@ tf_no_gc_calloc (size_t num, size_t sz)
   if (p)
     return tf_cheri_ptr(p, num*sz);
   else
-    return tf_invalid_ptr;
+    return tf_invalid_ptr();
 }
 void
 tf_no_gc_free (tf_cap_t void * ptr)
@@ -148,8 +170,8 @@ static const int kMinTreeDepth = 4;
 static const int kMaxTreeDepth = 16;
 
 typedef struct Node0_struct {
-        struct Node0_struct * left;
-        struct Node0_struct * right;
+        tf_cap_t struct Node0_struct * left;
+        tf_cap_t struct Node0_struct * right;
         int i, j;
 } Node0;
 
@@ -159,23 +181,27 @@ typedef struct Node0_struct {
 #   define HOLE()
 #endif
 
-typedef Node0 *Node;
+typedef tf_cap_t Node0 *Node;
 
 void init_Node(Node me, Node l, Node r) {
-    me -> left = l;
-    me -> right = r;
+    tf_store_cap(me -> left, l);
+    tf_store_cap(me -> right, r);
 }
 
 #ifndef GC
+#ifdef GC_CHERI
+  #define destroy_Node(x)
+#else
   void destroy_Node(Node me) {
-    if (me -> left) {
+    if (tf_ptr_valid(me -> left)) {
 	destroy_Node(me -> left);
     }
-    if (me -> right) {
+    if (tf_ptr_valid(me -> right)) {
 	destroy_Node(me -> right);
     }
     GC_bench_free(me);
   }
+#endif
 #endif
 
 // Nodes used by a tree of a given size
@@ -198,8 +224,8 @@ static void Populate(int iDepth, Node thisNode) {
                   thisNode->left  = GC_NEW(Node0); HOLE();
                   thisNode->right = GC_NEW(Node0); HOLE();
 #		else
-                  thisNode->left  = GC_bench_calloc(1, sizeof(Node0));
-                  thisNode->right = GC_bench_calloc(1, sizeof(Node0));
+                  tf_store_cap(thisNode->left, GC_bench_calloc(1, sizeof(Node0)));
+                  tf_store_cap(thisNode->right, GC_bench_calloc(1, sizeof(Node0)));
 #		endif
                 Populate (iDepth, thisNode->left);
                 Populate (iDepth, thisNode->right);
@@ -211,17 +237,19 @@ static Node MakeTree(int iDepth) {
 	Node result;
         if (iDepth<=0) {
 #	    ifndef GC
-		result = GC_bench_calloc(1, sizeof(Node0));
+		tf_store_cap(result, GC_bench_calloc(1, sizeof(Node0)));
 #	    else
 		result = GC_NEW(Node0); HOLE();
 #	    endif
 	    /* result is implicitly initialized in both cases. */
 	    return result;
         } else {
-	    Node left = MakeTree(iDepth-1);
-	    Node right = MakeTree(iDepth-1);
+	    Node left;
+      tf_store_cap(left, MakeTree(iDepth-1));
+	    Node right;
+      tf_store_cap(right, MakeTree(iDepth-1));
 #	    ifndef GC
-		result = GC_bench_malloc(sizeof(Node0));
+		tf_store_cap(result, GC_bench_malloc(sizeof(Node0)));
 #	    else
 		result = GC_NEW(Node0); HOLE();
 #	    endif
@@ -252,7 +280,7 @@ static void TimeConstruction(int depth) {
         tStart = currentTime();
         for (i = 0; i < iNumIters; ++i) {
 #		ifndef GC
-                  tempTree = GC_bench_calloc(1, sizeof(Node0));
+                  tf_store_cap(tempTree, GC_bench_calloc(1, sizeof(Node0)));
 #		else
                   tempTree = GC_NEW(Node0);
 #		endif
@@ -260,7 +288,7 @@ static void TimeConstruction(int depth) {
 #		ifndef GC
                   destroy_Node(tempTree);
 #		endif
-                tempTree = 0;
+                tempTree = tf_invalid_ptr();
         }
         tFinish = currentTime();
         printf("\tTop down construction took %d msec\n",
@@ -272,7 +300,7 @@ static void TimeConstruction(int depth) {
 #		ifndef GC
                   destroy_Node(tempTree);
 #		endif
-                tempTree = 0;
+                tempTree = tf_invalid_ptr();
         }
         tFinish = currentTime();
         printf("\tBottom up construction took %d msec\n",
@@ -287,7 +315,10 @@ int main() {
         long    tStart, tFinish;
         long    tElapsed;
   	int	i, d;
-	double 	*array;
+	tf_cap_t double 	*array;
+
+
+  setbuf(stdout, NULL);
 
 #ifdef GC
   printf("The `GC' macro is defined (i.e. Boehm)\n");
@@ -307,6 +338,10 @@ int main() {
   #error "Define one of GC, GC_NOCAP, GC_NONE, GC_CHERI"
 #endif
 #endif
+
+#ifdef GC_CHERI
+    GC_debug_dump();
+#endif
   
 	printf("Garbage Collector Test\n");
  	printf(" Live storage will peak at %d bytes.\n\n",
@@ -322,35 +357,43 @@ int main() {
         tStart = currentTime();
         
         // Stretch the memory space quickly
-        tempTree = MakeTree(kStretchTreeDepth);
+        tf_store_cap(tempTree, MakeTree(kStretchTreeDepth));
+        //printf("Not actually doing that\n");
+
 #	ifndef GC
           destroy_Node(tempTree);
 #	endif
-        tempTree = 0;
+        tempTree = tf_invalid_ptr();
 
         // Create a long lived object
         printf(" Creating a long-lived binary tree of depth %d\n",
                kLongLivedTreeDepth);
 #	ifndef GC
-          longLivedTree = GC_bench_calloc(1, sizeof(Node0));
+          tf_store_cap(longLivedTree, GC_bench_calloc(1, sizeof(Node0)));
 #	else 
           longLivedTree = GC_NEW(Node0);
 #	endif
         Populate(kLongLivedTreeDepth, longLivedTree);
 
+#ifdef GC_CHERI
+  GC_debug_dump();
+#endif // GC_CHERI
+
         // Create long-lived array, filling half of it
 	printf(" Creating a long-lived array of %d doubles\n", kArraySize);
 #	ifndef GC
-          array = GC_bench_malloc(kArraySize * sizeof(double));
+          //tf_store_cap(array, GC_bench_malloc(kArraySize * sizeof(double)));
+          printf("Not actually doing that, either\n");
 #	else
 #	  ifndef NO_PTRFREE
-            array = GC_MALLOC_ATOMIC(sizeof(double) * kArraySize);
+            //array = GC_MALLOC_ATOMIC(sizeof(double) * kArraySize);
 #	  else
-            array = GC_MALLOC(sizeof(double) * kArraySize);
+            //array = GC_MALLOC(sizeof(double) * kArraySize);
 #	  endif
 #	endif
+          printf("Not populating array\n");
         for (i = 0; i < kArraySize/2; ++i) {
-                array[i] = 1.0/i;
+                //array[i] = 1.0/i;
         }
         PrintDiagnostics();
 
@@ -358,7 +401,7 @@ int main() {
                 TimeConstruction(d);
         }
 
-        if (longLivedTree == 0 || array[1000] != 1.0/1000)
+        if (!tf_ptr_valid(longLivedTree) || array[1000] != 1.0/1000)
 		fprintf(stderr, "Failed\n");
                                 // fake reference to LongLivedTree
                                 // and array
@@ -375,5 +418,7 @@ int main() {
 #	ifdef PROFIL
 	  dump_profile();
 #	endif
+#ifdef GC_CHERI
+    GC_debug_dump();
+#endif
 }
-

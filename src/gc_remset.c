@@ -9,6 +9,14 @@ GC_remembered_set_init (struct GC_remembered_set * remset)
   remset->roots = NULL;
   remset->size = 0;
   remset->nroots = 0;
+  
+  remset->size = 1024;
+  remset->roots = GC_low_malloc(remset->size*sizeof(void*));
+  if (!remset->roots)
+  {
+    GC_fatalf("GC_remembered_set_init(): could not initialize remembered set");
+    remset->size = 0;
+  }
 }
 
 GC_FUNC int
@@ -43,6 +51,7 @@ GC_remembered_set_add (struct GC_remembered_set * remset,
     remset->roots = tmp;
     remset->size = new_size;
   }
+  GC_assert( remset->nroots+1 <= remset->size );
   remset->nroots++;
   remset->roots[remset->nroots-1] = address;
   return 0;
