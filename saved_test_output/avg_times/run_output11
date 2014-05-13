@@ -1,0 +1,343 @@
+spawn ssh -i /home/munraj/.ssh/mbv21 mbv21@cloud2 /mnt/mbv21zfs//testall.sh
+Enter passphrase for key '/home/munraj/.ssh/mbv21': 
+Password for mbv21@cloud2:
+Compiled for GC_NOCAP at 21:55:28 May 12 2014
+----------Begin test ll_test----------
+ll_test: Measures time taken to allocate a linked list
+ note: sizeof(node) is 16 (may not be used for this test)
+ note: node_size is 16
+ note: total size is 1600000 (2MB)
+ ==> creating linked list
+ ==> created linked list
+ ==> TIME: 5426855 (5427ms)
+[plotdata] 100000 5426855
+ ==> checking linked list
+ ==> checked linked list
+ ==> summing linked list
+ ==> summed linked list
+ ==> ok
+----------Finished test ll_test (took 5478ms)----------
+testall.sh: i=1 j=1
+Compiled for GC_NOCAP at 21:55:28 May 12 2014
+----------Begin test ll_test----------
+ll_test: Measures time taken to allocate a linked list
+ note: sizeof(node) is 16 (may not be used for this test)
+ note: node_size is 16
+ note: total size is 3200000 (3MB)
+ ==> creating linked list
+ ==> created linked list
+ ==> TIME: 13500374 (14s)
+[plotdata] 200000 13500374
+ ==> checking linked list
+ ==> checked linked list
+ ==> summing linked list
+ ==> summed linked list
+ ==> ok
+----------Finished test ll_test (took 14s)----------
+testall.sh: i=2 j=1
+Compiled for GC_NOCAP at 21:55:28 May 12 2014
+----------Begin test ll_test----------
+ll_test: Measures time taken to allocate a linked list
+ note: sizeof(node) is 16 (may not be used for this test)
+ note: node_size is 16
+ note: total size is 4800000 (5MB)
+ ==> creating linked list
+ ==> created linked list
+ ==> TIME: 16859351 (17s)
+[plotdata] 300000 16859351
+ ==> checking linked list
+ ==> checked linked list
+ ==> summing linked list
+ ==> summed linked list
+ ==> ok
+----------Finished test ll_test (took 17s)----------
+testall.sh: i=3 j=1
+Compiled for GC_NOCAP at 21:55:28 May 12 2014
+----------Begin test ll_test----------
+ll_test: Measures time taken to allocate a linked list
+ note: sizeof(node) is 16 (may not be used for this test)
+ note: node_size is 16
+ note: total size is 6400000 (6MB)
+ ==> creating linked list
+ ==> created linked list
+ ==> TIME: 22459810 (22s)
+[plotdata] 400000 22459810
+ ==> checking linked list
+ ==> checked linked list
+ ==> summing linked list
+ ==> summed linked list
+ ==> ok
+----------Finished test ll_test (took 23s)----------
+testall.sh: i=4 j=1
+Compiled for GC_NOCAP at 21:55:28 May 12 2014
+----------Begin test ll_test----------
+ll_test: Measures time taken to allocate a linked list
+ note: sizeof(node) is 16 (may not be used for this test)
+ note: node_size is 16
+ note: total size is 8000000 (8MB)
+ ==> creating linked list
+ ==> created linked list
+ ==> TIME: 27715636 (28s)
+[plotdata] 500000 27715636
+ ==> checking linked list
+ ==> checked linked list
+ ==> summing linked list
+ ==> summed linked list
+ ==> ok
+----------Finished test ll_test (took 28s)----------
+testall.sh: i=5 j=1
+Compiled for GC_NOCAP at 21:55:28 May 12 2014
+----------Begin test ll_test----------
+ll_test: Measures time taken to allocate a linked list
+ note: sizeof(node) is 16 (may not be used for this test)
+ note: node_size is 16
+ note: total size is 9600000 (10MB)
+ ==> creating linked list
+ ==> created linked list
+ ==> TIME: 33178416 (33s)
+[plotdata] 600000 33178416
+ ==> checking linked list
+ ==> checked linked list
+ ==> summing linked list
+ ==> summed linked list
+ ==> ok
+----------Finished test ll_test (took 34s)----------
+testall.sh: i=6 j=1
+Compiled for GC_NOCAP at 21:55:28 May 12 2014
+----------Begin test ll_test----------
+ll_test: Measures time taken to allocate a linked list
+ note: sizeof(node) is 16 (may not be used for this test)
+ note: node_size is 16
+ note: total size is 11200000 (11MB)
+ ==> creating linked list
+ ==> created linked list
+ ==> TIME: 42569914 (43s)
+[plotdata] 700000 42569914
+ ==> checking linked list
+ ==> checked linked list
+ ==> summing linked list
+ ==> summed linked list
+ ==> ok
+----------Finished test ll_test (took 43s)----------
+testall.sh: i=7 j=1
+Compiled for GC_NOCAP at 21:55:28 May 12 2014
+----------Begin test ll_test----------
+ll_test: Measures time taken to allocate a linked list
+ note: sizeof(node) is 16 (may not be used for this test)
+ note: node_size is 16
+ note: total size is 12800000 (13MB)
+ ==> creating linked list
+ ==> created linked list
+ ==> TIME: 43613313 (44s)
+[plotdata] 800000 43613313
+ ==> checking linked list
+ ==> checked linked list
+ ==> summing linked list
+ ==> summed linked list
+ ==> ok
+----------Finished test ll_test (took 44s)----------
+testall.sh: i=8 j=1
+Compiled for GC_NOCAP at 21:55:28 May 12 2014
+----------Begin test ll_test----------
+ll_test: Measures time taken to allocate a linked list
+ note: sizeof(node) is 16 (may not be used for this test)
+ note: node_size is 16
+ note: total size is 14400000 (14MB)
+ ==> creating linked list
+ ==> created linked list
+ ==> TIME: 50488444 (50s)
+[plotdata] 900000 50488444
+ ==> checking linked list
+ ==> checked linked list
+ ==> summing linked list
+ ==> summed linked list
+ ==> ok
+----------Finished test ll_test (took 51s)----------
+testall.sh: i=9 j=1
+Compiled for GC_NOCAP at 21:55:28 May 12 2014
+----------Begin test ll_test----------
+ll_test: Measures time taken to allocate a linked list
+ note: sizeof(node) is 16 (may not be used for this test)
+ note: node_size is 16
+ note: total size is 16000000 (16MB)
+ ==> creating linked list
+ ==> created linked list
+ ==> TIME: 55568944 (56s)
+[plotdata] 1000000 55568944
+ ==> checking linked list
+ ==> checked linked list
+ ==> summing linked list
+ ==> summed linked list
+ ==> ok
+----------Finished test ll_test (took 56s)----------
+testall.sh: i=10 j=1
+Compiled for GC_NOCAP at 21:55:28 May 12 2014
+----------Begin test ll_test----------
+ll_test: Measures time taken to allocate a linked list
+ note: sizeof(node) is 16 (may not be used for this test)
+ note: node_size is 16
+ note: total size is 17600000 (18MB)
+ ==> creating linked list
+ ==> created linked list
+ ==> TIME: 60476030 (60s)
+[plotdata] 1100000 60476030
+ ==> checking linked list
+ ==> checked linked list
+ ==> summing linked list
+ ==> summed linked list
+ ==> ok
+----------Finished test ll_test (took 61s)----------
+testall.sh: i=11 j=1
+Compiled for GC_NOCAP at 21:55:28 May 12 2014
+----------Begin test ll_test----------
+ll_test: Measures time taken to allocate a linked list
+ note: sizeof(node) is 16 (may not be used for this test)
+ note: node_size is 16
+ note: total size is 19200000 (19MB)
+ ==> creating linked list
+ ==> created linked list
+ ==> TIME: 68625474 (69s)
+[plotdata] 1200000 68625474
+ ==> checking linked list
+ ==> checked linked list
+ ==> summing linked list
+ ==> summed linked list
+ ==> ok
+----------Finished test ll_test (took 69s)----------
+testall.sh: i=12 j=1
+Compiled for GC_NOCAP at 21:55:28 May 12 2014
+----------Begin test ll_test----------
+ll_test: Measures time taken to allocate a linked list
+ note: sizeof(node) is 16 (may not be used for this test)
+ note: node_size is 16
+ note: total size is 20800000 (21MB)
+ ==> creating linked list
+ ==> created linked list
+ ==> TIME: 72119774 (72s)
+[plotdata] 1300000 72119774
+ ==> checking linked list
+ ==> checked linked list
+ ==> summing linked list
+ ==> summed linked list
+ ==> ok
+----------Finished test ll_test (took 73s)----------
+testall.sh: i=13 j=1
+Compiled for GC_NOCAP at 21:55:28 May 12 2014
+----------Begin test ll_test----------
+ll_test: Measures time taken to allocate a linked list
+ note: sizeof(node) is 16 (may not be used for this test)
+ note: node_size is 16
+ note: total size is 22400000 (22MB)
+ ==> creating linked list
+ ==> created linked list
+ ==> TIME: 78220481 (78s)
+[plotdata] 1400000 78220481
+ ==> checking linked list
+ ==> checked linked list
+ ==> summing linked list
+ ==> summed linked list
+ ==> ok
+----------Finished test ll_test (took 79s)----------
+testall.sh: i=14 j=1
+Compiled for GC_NOCAP at 21:55:28 May 12 2014
+----------Begin test ll_test----------
+ll_test: Measures time taken to allocate a linked list
+ note: sizeof(node) is 16 (may not be used for this test)
+ note: node_size is 16
+ note: total size is 24000000 (24MB)
+ ==> creating linked list
+ ==> created linked list
+ ==> TIME: 86311966 (86s)
+[plotdata] 1500000 86311966
+ ==> checking linked list
+ ==> checked linked list
+ ==> summing linked list
+ ==> summed linked list
+ ==> ok
+----------Finished test ll_test (took 87s)----------
+testall.sh: i=15 j=1
+Compiled for GC_NOCAP at 21:55:28 May 12 2014
+----------Begin test ll_test----------
+ll_test: Measures time taken to allocate a linked list
+ note: sizeof(node) is 16 (may not be used for this test)
+ note: node_size is 16
+ note: total size is 25600000 (26MB)
+ ==> creating linked list
+ ==> created linked list
+ ==> TIME: 90377522 (90s)
+[plotdata] 1600000 90377522
+ ==> checking linked list
+ ==> checked linked list
+ ==> summing linked list
+ ==> summed linked list
+ ==> ok
+----------Finished test ll_test (took 91s)----------
+testall.sh: i=16 j=1
+Compiled for GC_NOCAP at 21:55:28 May 12 2014
+----------Begin test ll_test----------
+ll_test: Measures time taken to allocate a linked list
+ note: sizeof(node) is 16 (may not be used for this test)
+ note: node_size is 16
+ note: total size is 27200000 (27MB)
+ ==> creating linked list
+ ==> created linked list
+ ==> TIME: 95046318 (95s)
+[plotdata] 1700000 95046318
+ ==> checking linked list
+ ==> checked linked list
+ ==> summing linked list
+ ==> summed linked list
+ ==> ok
+----------Finished test ll_test (took 96s)----------
+testall.sh: i=17 j=1
+Compiled for GC_NOCAP at 21:55:28 May 12 2014
+----------Begin test ll_test----------
+ll_test: Measures time taken to allocate a linked list
+ note: sizeof(node) is 16 (may not be used for this test)
+ note: node_size is 16
+ note: total size is 28800000 (29MB)
+ ==> creating linked list
+ ==> created linked list
+ ==> TIME: 99481361 (99s)
+[plotdata] 1800000 99481361
+ ==> checking linked list
+ ==> checked linked list
+ ==> summing linked list
+ ==> summed linked list
+ ==> ok
+----------Finished test ll_test (took 101s)----------
+testall.sh: i=18 j=1
+Compiled for GC_NOCAP at 21:55:28 May 12 2014
+----------Begin test ll_test----------
+ll_test: Measures time taken to allocate a linked list
+ note: sizeof(node) is 16 (may not be used for this test)
+ note: node_size is 16
+ note: total size is 30400000 (30MB)
+ ==> creating linked list
+ ==> created linked list
+ ==> TIME: 105954351 (106s)
+[plotdata] 1900000 105954351
+ ==> checking linked list
+ ==> checked linked list
+ ==> summing linked list
+ ==> summed linked list
+ ==> ok
+----------Finished test ll_test (took 107s)----------
+testall.sh: i=19 j=1
+Compiled for GC_NOCAP at 21:55:28 May 12 2014
+----------Begin test ll_test----------
+ll_test: Measures time taken to allocate a linked list
+ note: sizeof(node) is 16 (may not be used for this test)
+ note: node_size is 16
+ note: total size is 32000000 (32MB)
+ ==> creating linked list
+ ==> created linked list
+ ==> TIME: 111317717 (111s)
+[plotdata] 2000000 111317717
+ ==> checking linked list
+ ==> checked linked list
+ ==> summing linked list
+ ==> summed linked list
+ ==> ok
+----------Finished test ll_test (took 113s)----------
+testall.sh: i=20 j=1

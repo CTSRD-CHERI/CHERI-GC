@@ -131,11 +131,20 @@ GC_USER_FUNC int main (int argc, char ** argv)
   //const char str[] =
   //  "((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn a . (g g) a)))) (fn f . fn n . if n then n * f (n-1) else 1)) 6";
 
+  // for the benchmark:
+  if (argc < 2)
+  {
+    printf("Need a number argument\n");
+  }
   const char str[] =
-    "((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 60";
-
-  lex_read_string(GC_cheri_ptr((void *) str, sizeof(str)));
-  printf("program: %s\n\n", str);
+    "((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) ";
+  GC_CAP char * str2 = ml_malloc(sizeof(str)+strlen(argv[1]));
+  cmemcpy(str2+sizeof(str)-1, GC_cheri_ptr(argv[1], strlen(argv[1]+1)), strlen(argv[1]+1));
+  
+  
+  
+  lex_read_string(str2);
+  printf("program: %s\n\n", (void*)(str2));
   
   /*size_t i;
   for (i=0; i<lex_state.max; i++)

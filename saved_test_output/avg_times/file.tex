@@ -1,6 +1,11 @@
 \documentclass{article}
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.10}
+
+\usepgfplotslibrary{external}
+\tikzexternalize
+\tikzset{external/force remake}
+
 \begin{document}
 
 \begin{figure}
@@ -52,7 +57,7 @@
 
 \begin{figure}
 \centering
-\caption{Time taken to binary trees of varying sizes, averaged over 3 runs. {\bf NOTE: $2^{20}$ left out in all cases for now...}}
+\caption{Time taken to binary trees of varying sizes, averaged over 10 runs. {\bf NOTE: $2^{20}$ left out in all cases for now...}}
 \begin{tikzpicture}
 \begin{axis}[
   %title={},
@@ -62,13 +67,39 @@
   xmax=20,
   scaled ticks=false,
   axis lines=left,
-  legend entries={GenGC-O2 (heap=4*Boehm) - only 1 run, BoehmGC-O2, NoGC-nofree-O2 - WITH CAPS, NoGC-nofree-O2 - WITHOUT CAPS},
+  legend entries={CopyingGC-O2 (heap=4*Boehm), GenGC-O2 (heap=4*Boehm), BoehmGC-O2, NoGC-nofree-O2 - WITH CAPS, NoGC-nofree-O2 - WITHOUT CAPS},
   legend style={legend pos=outer north east,},
 ]
-\addplot+[error bars/.cd, y dir=both, y explicit] table[y error index=2] {octout1};
+\addplot+[error bars/.cd, y dir=both, y explicit] table[y error index=2] {octout16};
+\addplot+[error bars/.cd, y dir=both, y explicit] table[y error index=2] {octout15};
 \addplot+[error bars/.cd, y dir=both, y explicit] table[y error index=2] {octout6};
 \addplot+[error bars/.cd, y dir=both, y explicit] table[y error index=2] {octout7};
 \addplot+[error bars/.cd, y dir=both, y explicit] table[y error index=2] {octout8};
+\end{axis}
+\end{tikzpicture}
+\end{figure}
+
+\begin{figure}
+\centering
+\caption{Time taken to allocate linked lists of varying sizes, only 1 run}
+\begin{tikzpicture}
+\begin{axis}[
+  %title={},
+  xlabel=List length (100000s),
+  ylabel=Total time (s),
+  xmin=0,
+  xmax=20,
+  scaled ticks=false,
+  axis lines=left,
+  legend entries={CopyGC, BoehmGC(node\_size=16), GenGC (heap adjusted at runtime), GC\_NONE, GC\_NOCAP(node\_size=16), BoehmGC(node\_size=64)},
+  legend style={legend pos=outer north east,},
+]
+\addplot+[error bars/.cd, y dir=both, y explicit] table[y error index=2] {octout12};%CopyGC
+\addplot+[error bars/.cd, y dir=both, y explicit] table[y error index=2] {octout9};%BoehmGC(16)
+\addplot+[error bars/.cd, y dir=both, y explicit] table[y error index=2] {octout14};%GenGC
+\addplot+[error bars/.cd, y dir=both, y explicit] table[y error index=2] {octout10};%GC_NONE
+\addplot+[error bars/.cd, y dir=both, y explicit] table[y error index=2] {octout11};%GC_NOCAP
+\addplot+[error bars/.cd, y dir=both, y explicit] table[y error index=2] {octout13};%BoehmGC(64)
 \end{axis}
 \end{tikzpicture}
 \end{figure}

@@ -1,5 +1,5 @@
 # this script is pushed to and run on cloud2 by Makefile.testall
-prog=/mnt/mbv21zfs/testall-no-cap
+prog=/mnt/mbv21zfs/testall
 $prog 0
 i=1
 while [ $i -le 20 ]

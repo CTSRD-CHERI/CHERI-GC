@@ -1,4 +1,4 @@
-num_files=8;
+num_files=16;
 
 function [newX,avgY,errY] = readplotdata(file)
 
@@ -6,7 +6,9 @@ M = load("-ascii", file);
 X=M(:,1);
 Y=M(:,2);
 
-if (X(2)>=1000)
+if (X(2)>=100000)
+  X/=100000;
+elseif (X(2)>=1000)
   X/=1000;
 endif
 Y/=1000000;

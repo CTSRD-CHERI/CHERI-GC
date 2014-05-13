@@ -193,6 +193,7 @@ bintree_create (int depth, int value);
   X_MACRO(pause_time_test, "Measures collector pause time") \
   X_MACRO(pause_time_test2, "Measures collector pause time")*/ \
   X_MACRO(bintree_test, "Measures time taken to allocate a binary tree") \
+  /*X_MACRO(ll_test, "Measures time taken to allocate a linked list")*/ \
   /*X_MACRO(experimental_test, "For experiments")*/
 
 #define DECLARE_TEST(test,descr) \
@@ -696,9 +697,14 @@ DEFINE_TEST(bintree_test)
   int depth = flag_input_number;
 #define bintree_alloc_dummy_sz 640
   
+  printf("sizeof bintree: %d\n", (int) sizeof(bintree));
+  printf("sizeof int: %d\n", (int) sizeof(int));
 #ifdef GC_CHERI
   int shift = depth >= 15 ? (depth-15) : 0;
   int init_heap_sz = 200000;
+#ifndef GC_GENERATIONAL
+  init_heap_sz *= 10;
+#endif // GC_GENERATIONAL
   size_t ycur = GC_ALIGN_32(GC_THREAD_LOCAL_HEAP_SIZE, size_t);
   size_t ocur = GC_ALIGN_32(GC_OLD_GENERATION_SEMISPACE_SIZE, size_t);
   GC_state.thread_local_region.max_grow_size_before_collection =
@@ -923,4 +929,185 @@ bintree_print (tf_cap_t bintree * tree, int depth)
     tf_assert( !(void*)tree->right );
   }
   tf_printf("]");
+}
+
+tf_func_t tf_cap_t node *
+ll_create (int size, int node_size)
+{
+  tf_cap_t node * head = tf_invalid_ptr, * p = tf_invalid_ptr;
+  tf_store_cap(head, tf_malloc(node_size));
+  tf_assert( tf_ptr_valid(head) );
+  
+  tf_store_cap(p, head);
+  int i;
+  for (i=1; i<=size; i++)
+  {
+    p->value = i;
+    p->next = tf_invalid_ptr;
+    if (i!=size)
+    {
+      tf_store_cap(p->next, tf_malloc(node_size));
+    }
+    tf_store_cap(p, p->next);
+  }
+  
+  return head;
+}
+
+tf_func_t int
+ll_check (tf_cap_t node * head, int size)
+{
+  tf_cap_t node * p = tf_invalid_ptr;
+  tf_store_cap(p, head);
+  int i;
+  for (i=1; i<=size; i++)
+  {
+    if (!tf_ptr_valid(p))
+    {
+      tf_printf("ERROR: ll_check: element %d: NULL\n", i);
+      return 0;
+    }
+    if (p->value != i)
+    {
+      tf_printf("ERROR: ll_check: element %d: invalid value 0x%x\n", i, p->value);
+      return 0;
+    }
+    tf_store_cap(p, p->next);
+  }
+  
+  if (tf_ptr_valid(p))
+  {
+    tf_printf("ERROR: ll_check: last element not NULL\n");
+    return 0;
+  }
+  
+  return 1;
+}
+
+tf_func_t tf_ull_t
+ll_sum (tf_cap_t node * p)
+{
+  tf_ull_t sum = 0;
+  while (tf_ptr_valid(p))
+  {
+    volatile int val = p->value; // otherwise the compiler complains
+    sum += val;
+    tf_store_cap(p, p->next);
+  }
+  return sum;
+}
+
+DEFINE_TEST(ll_test)
+{
+  int linked_list_size = flag_input_number*100000;
+  tf_cap_t node * list = tf_invalid_ptr;
+  int node_size = 64;//(int) sizeof(node);
+  int total_size = linked_list_size*node_size;
+  
+  tf_assert( node_size >= (int) sizeof(node) );
+
+  /* Heap sizes for Boehm and my copying GC when run with max=0:
+    LL size     BoehmGC     CopyGC
+    100k        7MB         7MB
+    200k        15MB        14MB(+7)
+    300k        20MB        20MB(+6)
+    400k        27MB        27MB(+7)
+    500k        35MB        32MB(+5)
+    600k        44MB        38MB(+6)
+    700k        52MB        45MB(+7)
+    800k        52MB        51MB(+6)
+    900k        61MB        58MB(+7)
+    1M          72MB        64MB(+6)
+    1.1M        78MB        70MB(+6)
+    1.2M        78MB        77MB(+7)
+    1.3M        86MB        83MB(+6)
+    1.4M        95MB        90MB(+7)
+    1.5M        103MB       96MB(+6)
+    1.6M        103MB       102MB(+6)
+    1.7M        111MB       109MB(+7)
+    1.8M        120MB       115MB(+6)
+    1.9M        128MB       122MB(+7)
+    2M          128MB       128MB(+6)
+  */
+  
+  
+  
+#ifdef GC_CHERI
+  int init_heap_sz = 65536*flag_input_number*10;
+  size_t ycur = GC_ALIGN_32(GC_THREAD_LOCAL_HEAP_SIZE, size_t);
+  size_t ocur = GC_ALIGN_32(GC_OLD_GENERATION_SEMISPACE_SIZE, size_t);
+  GC_state.thread_local_region.max_grow_size_before_collection =
+    GC_ALIGN_32(init_heap_sz, size_t); // young gen max before collect
+  GC_state.thread_local_region.max_grow_size_after_collection =
+    GC_ALIGN_32(init_heap_sz, size_t); // young gen max after collect
+#ifdef GC_GENERATIONAL
+  GC_state.old_generation.max_grow_size_before_collection =
+    GC_ALIGN_32(10*init_heap_sz, size_t); // old gen max before collect
+  GC_state.old_generation.max_grow_size_after_collection =
+    GC_ALIGN_32(10*init_heap_sz, size_t); // old gen max after collect
+#endif // GC_GENERATIONAL
+  // GC_region_rebase requires the stack and registers saved, which normally
+  // happens inside the collector. This hack allows us to use GC_grow outside of
+  // the collector...
+  char buf_unaligned[32];
+  void * buf_aligned = GC_ALIGN_32(buf_unaligned, void*);
+  GC_state.stack_top = buf_aligned;
+  GC_state.reg_bottom = buf_aligned;
+  GC_state.reg_top = buf_aligned;
+  
+  if (!GC_grow(&GC_state.thread_local_region,
+               GC_state.thread_local_region.max_grow_size_before_collection-ycur,
+               GC_state.thread_local_region.max_grow_size_before_collection))
+  {
+    tf_printf("error: GC_grow young generation failed\n");
+    exit(1);
+  }
+
+#ifdef GC_GENERATIONAL  
+  if (!GC_grow(&GC_state.old_generation,
+               GC_state.old_generation.max_grow_size_before_collection-ocur,
+               GC_state.old_generation.max_grow_size_before_collection))
+  {
+    tf_printf("error: GC_grow old generation failed\n");
+    exit(1);
+  }
+#endif // GC_GENERATIONAL
+  
+#endif // GC_CHERI
+  
+  tf_printf(" note: sizeof(node) is %d (may not be used for this test)\n", (int) sizeof(node));
+  tf_printf(" note: node_size is %d\n", node_size);
+  tf_printf(" note: total size is %d (%llu%s)\n", (int) (total_size), tf_mem_pretty(total_size), tf_mem_pretty_unit(total_size));
+  
+  tf_printf(" ==> creating linked list\n");
+  tf_time_t before = tf_time();
+  tf_store_cap(list, ll_create(linked_list_size, node_size));
+  tf_time_t after = tf_time();
+  tf_time_t diff = after - before;
+  tf_printf(" ==> created linked list\n");
+  tf_printf(" ==> TIME: %llu (%llu%s)\n", (unsigned long long) diff, tf_time_pretty(diff), tf_time_pretty_unit(diff));
+  tf_printf("[plotdata] %d %llu\n", linked_list_size, (unsigned long long) diff);
+  
+  tf_printf(" ==> checking linked list\n");
+  if (!ll_check(list, linked_list_size))
+  {
+    tf_printf("ERROR: ll_test: ll_check failed\n");
+    return 1;
+  }
+  tf_printf(" ==> checked linked list\n");
+  
+  tf_printf(" ==> summing linked list\n");
+  tf_ull_t expected_sum = (((tf_ull_t) linked_list_size)*( ((tf_ull_t) linked_list_size)+1))/2;
+  tf_ull_t observed_sum = ll_sum(list);
+  if (expected_sum != observed_sum)
+  {
+    tf_printf("ERROR: ll_test: expected_sum=%llu, observed_sum=%llu\n",
+      expected_sum, observed_sum);
+    return 1;
+  }
+  tf_printf(" ==> summed linked list\n");
+  
+  tf_printf(" ==> ok\n");
+  
+  return 0;
 }

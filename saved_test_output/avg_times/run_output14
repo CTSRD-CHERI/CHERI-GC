@@ -1,0 +1,3743 @@
+spawn ssh -i /home/munraj/.ssh/mbv21 mbv21@cloud2 /mnt/mbv21zfs//testall.sh
+Enter passphrase for key '/home/munraj/.ssh/mbv21': 
+Password for mbv21@cloud2:
+GC_init2 called from (GC_init_constructor):0
+Compiled for GC_CHERI at 00:01:57 May 13 2014
+GC_init2 called from test/test_all.c:286 (initialized already)
+---------------BEGIN GC DEBUG DUMP---------------
+GC_DEBUG is off
+GC_VERBOSE_DEBUG is off
+GC_GENERATIONAL is on
+GC_USE_BITMAP is on
+GC_USE_STACK_CLEAN is off
+GC_GROW_YOUNG_HEAP is on
+GC_GROW_OLD_HEAP is on
+GC_TIME is off
+GC_DEBUG_TRACK_ALLOCATIONS is off
+Write barrier type is GC_WB_MANUAL
+GC_COLLECT_ON_ALLOCATION_FAILURE is 1
+GC_THREAD_LOCAL_HEAP_SIZE is 60
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 60
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 60
+GC_OLD_GENERATION_SEMISPACE_SIZE is 600
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 600
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 600
+GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
+GC_MAGIC_JUST_ALLOCATED is 0x41
+GC_MAGIC_JUST_REALLOCATED is 0x42
+GC_MAGIC_JUST_CLEARED is 0x43
+GC_MAGIC_DEALLOCATION_DETECTED is 0x44
+GC_MAGIC_JUST_COPIED is 0x45
+GC_MAGIC_JUST_CLEARED_STACK is 0x46
+GC_MAGIC_JUST_GC_ALLOCATED is 0x47
+GC_MAGIC_JUST_CLEARED_FROMSPACE is 0x48
+GC_WB_DEFAULT is 0
+GC_OY_STORE_DEFAULT is 0
+
+GC_state:
+GC_state.initialized is 1
+GC_state.stack_bottom is 0x7ffffff000
+GC_state.static_bottom is 0x12001d000
+GC_state.static_top is 0x12001f880
+GC_state.state_bottom is 0x12001d3e0
+GC_state.state_top is 0x12001d5c0
+GC_state.reg_bottom is 0x0
+GC_state.reg_top is 0x0
+Region statistics
+-----------------
+fromspace :      b=  0x0                 l=0x0               
+               end=  0x0               
+            bitmap=  0x0                 s=0xffffffffffffffff  u=0xffffffffffffffff
+tospace   :      b=  0x160811080         l=0x40              
+               end=  0x1608110c0       
+            bitmap=  0x16080f070         s=0x2                 u=0x0               
+free      :      b=  0x160811080         l=0x40              
+               end=  0x1608110c0       
+scan      :          0x0               
+old       :          0x12001d500       
+
+used size   : 0x0                bytes (0B)
+free size   : 0x40               bytes (64B)
+heap size   : 0x40               bytes (64B)
+
+stats:
+allocations : 0 (0)
+collections : 0 (0)
+copies      : 0 (0)
+This region stores YOUNG objects.
+Region statistics
+-----------------
+fromspace :      b=  0x160807300         l=0x260             
+               end=  0x160807560       
+            bitmap=  0x16080f058         s=0x13                u=0x0               
+tospace   :      b=  0x160807080         l=0x260             
+               end=  0x1608072e0       
+            bitmap=  0x16080f040         s=0x13                u=0x0               
+free      :      b=  0x160807080         l=0x260             
+               end=  0x1608072e0       
+scan      :          0x0               
+old       :          0x0               
+
+used size   : 0x0                bytes (0B)
+free size   : 0x260              bytes (608B)
+heap size   : 0x260              bytes (608B)
+
+stats:
+allocations : 0 (0)
+collections : 0 (0)
+copies      : 0 (0)
+This region stores OLD objects.
+---------------END GC DEBUG DUMP---------------
+----------Begin test ll_test----------
+ll_test: Measures time taken to allocate a linked list
+ note: sizeof(node) is 64 (may not be used for this test)
+ note: node_size is 64
+ note: total size is 6400000 (6MB)
+ ==> creating linked list
+ ==> created linked list
+ ==> TIME: 9644002 (9644ms)
+[plotdata] 100000 9644002
+ ==> checking linked list
+ ==> checked linked list
+ ==> summing linked list
+ ==> summed linked list
+ ==> ok
+----------Finished test ll_test (took 11s)----------
+---------------BEGIN GC DEBUG DUMP---------------
+GC_DEBUG is off
+GC_VERBOSE_DEBUG is off
+GC_GENERATIONAL is on
+GC_USE_BITMAP is on
+GC_USE_STACK_CLEAN is off
+GC_GROW_YOUNG_HEAP is on
+GC_GROW_OLD_HEAP is on
+GC_TIME is off
+GC_DEBUG_TRACK_ALLOCATIONS is off
+Write barrier type is GC_WB_MANUAL
+GC_COLLECT_ON_ALLOCATION_FAILURE is 1
+GC_THREAD_LOCAL_HEAP_SIZE is 60
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 60
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 60
+GC_OLD_GENERATION_SEMISPACE_SIZE is 600
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 600
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 600
+GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
+GC_MAGIC_JUST_ALLOCATED is 0x41
+GC_MAGIC_JUST_REALLOCATED is 0x42
+GC_MAGIC_JUST_CLEARED is 0x43
+GC_MAGIC_DEALLOCATION_DETECTED is 0x44
+GC_MAGIC_JUST_COPIED is 0x45
+GC_MAGIC_JUST_CLEARED_STACK is 0x46
+GC_MAGIC_JUST_GC_ALLOCATED is 0x47
+GC_MAGIC_JUST_CLEARED_FROMSPACE is 0x48
+GC_WB_DEFAULT is 0
+GC_OY_STORE_DEFAULT is 0
+
+GC_state:
+GC_state.initialized is 1
+GC_state.stack_bottom is 0x7ffffff000
+GC_state.static_bottom is 0x12001d000
+GC_state.static_top is 0x12001f880
+GC_state.state_bottom is 0x12001d3e0
+GC_state.state_top is 0x12001d5c0
+GC_state.reg_bottom is 0x7fffffd640
+GC_state.reg_top is 0x7fffffd7a0
+Region statistics
+-----------------
+fromspace :      b=  0x0                 l=0xa0000           
+               end=  0xa0000           
+            bitmap=  0x0                 s=0xffffffffffffffff  u=0xffffffffffffffff
+tospace   :      b=  0x160815000         l=0xa0000           
+               end=  0x1608b5000       
+            bitmap=  0x16080f070         s=0x5000              u=0x3d40            
+free      :      b=  0x16088f800         l=0x25800           
+               end=  0x1608b5000       
+scan      :          0x3f80            
+old       :          0x12001d500       
+
+used size   : 0x7a800            bytes (502kB)
+free size   : 0x25800            bytes (154kB)
+heap size   : 0xa0000            bytes (655kB)
+
+stats:
+allocations : 100000 (100k)
+collections : 9 (9)
+copies      : 0 (0)
+This region stores YOUNG objects.
+Region statistics
+-----------------
+fromspace :      b=  0x160c00000         l=0x640000          
+               end=  0x161240000       
+            bitmap=  0x16080f058         s=0x32000             u=0x2d000           
+tospace   :      b=  0x161400000         l=0x640000          
+               end=  0x161a40000       
+            bitmap=  0x16080f040         s=0x32000             u=0x2d000           
+free      :      b=  0x1619a0000         l=0xa0000           
+               end=  0x161a40000       
+scan      :          0x1619a0000       
+old       :          0x0               
+
+used size   : 0x5a0000           bytes (6MB)
+free size   : 0xa0000            bytes (655kB)
+heap size   : 0x640000           bytes (7MB)
+
+stats:
+allocations : 0 (0)
+collections : 4 (4)
+copies      : 399360 (399k)
+This region stores OLD objects.
+---------------END GC DEBUG DUMP---------------
+testall.sh: i=1 j=1
+GC_init2 called from (GC_init_constructor):0
+Compiled for GC_CHERI at 00:01:57 May 13 2014
+GC_init2 called from test/test_all.c:286 (initialized already)
+---------------BEGIN GC DEBUG DUMP---------------
+GC_DEBUG is off
+GC_VERBOSE_DEBUG is off
+GC_GENERATIONAL is on
+GC_USE_BITMAP is on
+GC_USE_STACK_CLEAN is off
+GC_GROW_YOUNG_HEAP is on
+GC_GROW_OLD_HEAP is on
+GC_TIME is off
+GC_DEBUG_TRACK_ALLOCATIONS is off
+Write barrier type is GC_WB_MANUAL
+GC_COLLECT_ON_ALLOCATION_FAILURE is 1
+GC_THREAD_LOCAL_HEAP_SIZE is 60
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 60
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 60
+GC_OLD_GENERATION_SEMISPACE_SIZE is 600
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 600
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 600
+GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
+GC_MAGIC_JUST_ALLOCATED is 0x41
+GC_MAGIC_JUST_REALLOCATED is 0x42
+GC_MAGIC_JUST_CLEARED is 0x43
+GC_MAGIC_DEALLOCATION_DETECTED is 0x44
+GC_MAGIC_JUST_COPIED is 0x45
+GC_MAGIC_JUST_CLEARED_STACK is 0x46
+GC_MAGIC_JUST_GC_ALLOCATED is 0x47
+GC_MAGIC_JUST_CLEARED_FROMSPACE is 0x48
+GC_WB_DEFAULT is 0
+GC_OY_STORE_DEFAULT is 0
+
+GC_state:
+GC_state.initialized is 1
+GC_state.stack_bottom is 0x7ffffff000
+GC_state.static_bottom is 0x12001d000
+GC_state.static_top is 0x12001f880
+GC_state.state_bottom is 0x12001d3e0
+GC_state.state_top is 0x12001d5c0
+GC_state.reg_bottom is 0x0
+GC_state.reg_top is 0x0
+Region statistics
+-----------------
+fromspace :      b=  0x0                 l=0x0               
+               end=  0x0               
+            bitmap=  0x0                 s=0xffffffffffffffff  u=0xffffffffffffffff
+tospace   :      b=  0x160811080         l=0x40              
+               end=  0x1608110c0       
+            bitmap=  0x16080f070         s=0x2                 u=0x0               
+free      :      b=  0x160811080         l=0x40              
+               end=  0x1608110c0       
+scan      :          0x0               
+old       :          0x12001d500       
+
+used size   : 0x0                bytes (0B)
+free size   : 0x40               bytes (64B)
+heap size   : 0x40               bytes (64B)
+
+stats:
+allocations : 0 (0)
+collections : 0 (0)
+copies      : 0 (0)
+This region stores YOUNG objects.
+Region statistics
+-----------------
+fromspace :      b=  0x160807300         l=0x260             
+               end=  0x160807560       
+            bitmap=  0x16080f058         s=0x13                u=0x0               
+tospace   :      b=  0x160807080         l=0x260             
+               end=  0x1608072e0       
+            bitmap=  0x16080f040         s=0x13                u=0x0               
+free      :      b=  0x160807080         l=0x260             
+               end=  0x1608072e0       
+scan      :          0x0               
+old       :          0x0               
+
+used size   : 0x0                bytes (0B)
+free size   : 0x260              bytes (608B)
+heap size   : 0x260              bytes (608B)
+
+stats:
+allocations : 0 (0)
+collections : 0 (0)
+copies      : 0 (0)
+This region stores OLD objects.
+---------------END GC DEBUG DUMP---------------
+----------Begin test ll_test----------
+ll_test: Measures time taken to allocate a linked list
+ note: sizeof(node) is 64 (may not be used for this test)
+ note: node_size is 64
+ note: total size is 12800000 (13MB)
+ ==> creating linked list
+ ==> created linked list
+ ==> TIME: 19835253 (20s)
+[plotdata] 200000 19835253
+ ==> checking linked list
+ ==> checked linked list
+ ==> summing linked list
+ ==> summed linked list
+ ==> ok
+----------Finished test ll_test (took 23s)----------
+---------------BEGIN GC DEBUG DUMP---------------
+GC_DEBUG is off
+GC_VERBOSE_DEBUG is off
+GC_GENERATIONAL is on
+GC_USE_BITMAP is on
+GC_USE_STACK_CLEAN is off
+GC_GROW_YOUNG_HEAP is on
+GC_GROW_OLD_HEAP is on
+GC_TIME is off
+GC_DEBUG_TRACK_ALLOCATIONS is off
+Write barrier type is GC_WB_MANUAL
+GC_COLLECT_ON_ALLOCATION_FAILURE is 1
+GC_THREAD_LOCAL_HEAP_SIZE is 60
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 60
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 60
+GC_OLD_GENERATION_SEMISPACE_SIZE is 600
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 600
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 600
+GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
+GC_MAGIC_JUST_ALLOCATED is 0x41
+GC_MAGIC_JUST_REALLOCATED is 0x42
+GC_MAGIC_JUST_CLEARED is 0x43
+GC_MAGIC_DEALLOCATION_DETECTED is 0x44
+GC_MAGIC_JUST_COPIED is 0x45
+GC_MAGIC_JUST_CLEARED_STACK is 0x46
+GC_MAGIC_JUST_GC_ALLOCATED is 0x47
+GC_MAGIC_JUST_CLEARED_FROMSPACE is 0x48
+GC_WB_DEFAULT is 0
+GC_OY_STORE_DEFAULT is 0
+
+GC_state:
+GC_state.initialized is 1
+GC_state.stack_bottom is 0x7ffffff000
+GC_state.static_bottom is 0x12001d000
+GC_state.static_top is 0x12001f880
+GC_state.state_bottom is 0x12001d3e0
+GC_state.state_top is 0x12001d5c0
+GC_state.reg_bottom is 0x7fffffd640
+GC_state.reg_top is 0x7fffffd7a0
+Region statistics
+-----------------
+fromspace :      b=  0x0                 l=0x140000          
+               end=  0x140000          
+            bitmap=  0x0                 s=0xffffffffffffffff  u=0xffffffffffffffff
+tospace   :      b=  0x160815000         l=0x140000          
+               end=  0x160955000       
+            bitmap=  0x16080f070         s=0xa000              u=0x7a80            
+free      :      b=  0x16090a000         l=0x4b000           
+               end=  0x160955000       
+scan      :          0x3f80            
+old       :          0x12001d500       
+
+used size   : 0xf5000            bytes (1MB)
+free size   : 0x4b000            bytes (307kB)
+heap size   : 0x140000           bytes (1MB)
+
+stats:
+allocations : 200000 (200k)
+collections : 9 (9)
+copies      : 0 (0)
+This region stores YOUNG objects.
+Region statistics
+-----------------
+fromspace :      b=  0x160c00000         l=0xc80000          
+               end=  0x161880000       
+            bitmap=  0x16080f058         s=0x64000             u=0x5a000           
+tospace   :      b=  0x161c00000         l=0xc80000          
+               end=  0x162880000       
+            bitmap=  0x16080f040         s=0x64000             u=0x5a000           
+free      :      b=  0x162740000         l=0x140000          
+               end=  0x162880000       
+scan      :          0x162740000       
+old       :          0x0               
+
+used size   : 0xb40000           bytes (12MB)
+free size   : 0x140000           bytes (1MB)
+heap size   : 0xc80000           bytes (13MB)
+
+stats:
+allocations : 0 (0)
+collections : 4 (4)
+copies      : 798720 (799k)
+This region stores OLD objects.
+---------------END GC DEBUG DUMP---------------
+testall.sh: i=2 j=1
+GC_init2 called from (GC_init_constructor):0
+Compiled for GC_CHERI at 00:01:57 May 13 2014
+GC_init2 called from test/test_all.c:286 (initialized already)
+---------------BEGIN GC DEBUG DUMP---------------
+GC_DEBUG is off
+GC_VERBOSE_DEBUG is off
+GC_GENERATIONAL is on
+GC_USE_BITMAP is on
+GC_USE_STACK_CLEAN is off
+GC_GROW_YOUNG_HEAP is on
+GC_GROW_OLD_HEAP is on
+GC_TIME is off
+GC_DEBUG_TRACK_ALLOCATIONS is off
+Write barrier type is GC_WB_MANUAL
+GC_COLLECT_ON_ALLOCATION_FAILURE is 1
+GC_THREAD_LOCAL_HEAP_SIZE is 60
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 60
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 60
+GC_OLD_GENERATION_SEMISPACE_SIZE is 600
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 600
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 600
+GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
+GC_MAGIC_JUST_ALLOCATED is 0x41
+GC_MAGIC_JUST_REALLOCATED is 0x42
+GC_MAGIC_JUST_CLEARED is 0x43
+GC_MAGIC_DEALLOCATION_DETECTED is 0x44
+GC_MAGIC_JUST_COPIED is 0x45
+GC_MAGIC_JUST_CLEARED_STACK is 0x46
+GC_MAGIC_JUST_GC_ALLOCATED is 0x47
+GC_MAGIC_JUST_CLEARED_FROMSPACE is 0x48
+GC_WB_DEFAULT is 0
+GC_OY_STORE_DEFAULT is 0
+
+GC_state:
+GC_state.initialized is 1
+GC_state.stack_bottom is 0x7ffffff000
+GC_state.static_bottom is 0x12001d000
+GC_state.static_top is 0x12001f880
+GC_state.state_bottom is 0x12001d3e0
+GC_state.state_top is 0x12001d5c0
+GC_state.reg_bottom is 0x0
+GC_state.reg_top is 0x0
+Region statistics
+-----------------
+fromspace :      b=  0x0                 l=0x0               
+               end=  0x0               
+            bitmap=  0x0                 s=0xffffffffffffffff  u=0xffffffffffffffff
+tospace   :      b=  0x160811080         l=0x40              
+               end=  0x1608110c0       
+            bitmap=  0x16080f070         s=0x2                 u=0x0               
+free      :      b=  0x160811080         l=0x40              
+               end=  0x1608110c0       
+scan      :          0x0               
+old       :          0x12001d500       
+
+used size   : 0x0                bytes (0B)
+free size   : 0x40               bytes (64B)
+heap size   : 0x40               bytes (64B)
+
+stats:
+allocations : 0 (0)
+collections : 0 (0)
+copies      : 0 (0)
+This region stores YOUNG objects.
+Region statistics
+-----------------
+fromspace :      b=  0x160807300         l=0x260             
+               end=  0x160807560       
+            bitmap=  0x16080f058         s=0x13                u=0x0               
+tospace   :      b=  0x160807080         l=0x260             
+               end=  0x1608072e0       
+            bitmap=  0x16080f040         s=0x13                u=0x0               
+free      :      b=  0x160807080         l=0x260             
+               end=  0x1608072e0       
+scan      :          0x0               
+old       :          0x0               
+
+used size   : 0x0                bytes (0B)
+free size   : 0x260              bytes (608B)
+heap size   : 0x260              bytes (608B)
+
+stats:
+allocations : 0 (0)
+collections : 0 (0)
+copies      : 0 (0)
+This region stores OLD objects.
+---------------END GC DEBUG DUMP---------------
+----------Begin test ll_test----------
+ll_test: Measures time taken to allocate a linked list
+ note: sizeof(node) is 64 (may not be used for this test)
+ note: node_size is 64
+ note: total size is 19200000 (19MB)
+ ==> creating linked list
+ ==> created linked list
+ ==> TIME: 31095510 (31s)
+[plotdata] 300000 31095510
+ ==> checking linked list
+ ==> checked linked list
+ ==> summing linked list
+ ==> summed linked list
+ ==> ok
+----------Finished test ll_test (took 35s)----------
+---------------BEGIN GC DEBUG DUMP---------------
+GC_DEBUG is off
+GC_VERBOSE_DEBUG is off
+GC_GENERATIONAL is on
+GC_USE_BITMAP is on
+GC_USE_STACK_CLEAN is off
+GC_GROW_YOUNG_HEAP is on
+GC_GROW_OLD_HEAP is on
+GC_TIME is off
+GC_DEBUG_TRACK_ALLOCATIONS is off
+Write barrier type is GC_WB_MANUAL
+GC_COLLECT_ON_ALLOCATION_FAILURE is 1
+GC_THREAD_LOCAL_HEAP_SIZE is 60
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 60
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 60
+GC_OLD_GENERATION_SEMISPACE_SIZE is 600
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 600
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 600
+GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
+GC_MAGIC_JUST_ALLOCATED is 0x41
+GC_MAGIC_JUST_REALLOCATED is 0x42
+GC_MAGIC_JUST_CLEARED is 0x43
+GC_MAGIC_DEALLOCATION_DETECTED is 0x44
+GC_MAGIC_JUST_COPIED is 0x45
+GC_MAGIC_JUST_CLEARED_STACK is 0x46
+GC_MAGIC_JUST_GC_ALLOCATED is 0x47
+GC_MAGIC_JUST_CLEARED_FROMSPACE is 0x48
+GC_WB_DEFAULT is 0
+GC_OY_STORE_DEFAULT is 0
+
+GC_state:
+GC_state.initialized is 1
+GC_state.stack_bottom is 0x7ffffff000
+GC_state.static_bottom is 0x12001d000
+GC_state.static_top is 0x12001f880
+GC_state.state_bottom is 0x12001d3e0
+GC_state.state_top is 0x12001d5c0
+GC_state.reg_bottom is 0x7fffffd640
+GC_state.reg_top is 0x7fffffd7a0
+Region statistics
+-----------------
+fromspace :      b=  0x0                 l=0x1e0000          
+               end=  0x1e0000          
+            bitmap=  0x0                 s=0xffffffffffffffff  u=0xffffffffffffffff
+tospace   :      b=  0x160815000         l=0x1e0000          
+               end=  0x1609f5000       
+            bitmap=  0x16080f070         s=0xf000              u=0xb7c0            
+free      :      b=  0x160984800         l=0x70800           
+               end=  0x1609f5000       
+scan      :          0x3f80            
+old       :          0x12001d500       
+
+used size   : 0x16f800           bytes (2MB)
+free size   : 0x70800            bytes (461kB)
+heap size   : 0x1e0000           bytes (2MB)
+
+stats:
+allocations : 300000 (300k)
+collections : 9 (9)
+copies      : 0 (0)
+This region stores YOUNG objects.
+Region statistics
+-----------------
+fromspace :      b=  0x160c00000         l=0x12c0000         
+               end=  0x161ec0000       
+            bitmap=  0x16080f058         s=0x96000             u=0x87000           
+tospace   :      b=  0x162000000         l=0x12c0000         
+               end=  0x1632c0000       
+            bitmap=  0x16080f040         s=0x96000             u=0x87000           
+free      :      b=  0x1630e0000         l=0x1e0000          
+               end=  0x1632c0000       
+scan      :          0x1630e0000       
+old       :          0x0               
+
+used size   : 0x10e0000          bytes (18MB)
+free size   : 0x1e0000           bytes (2MB)
+heap size   : 0x12c0000          bytes (20MB)
+
+stats:
+allocations : 0 (0)
+collections : 4 (4)
+copies      : 1198080 (1M)
+This region stores OLD objects.
+---------------END GC DEBUG DUMP---------------
+testall.sh: i=3 j=1
+GC_init2 called from (GC_init_constructor):0
+Compiled for GC_CHERI at 00:01:57 May 13 2014
+GC_init2 called from test/test_all.c:286 (initialized already)
+---------------BEGIN GC DEBUG DUMP---------------
+GC_DEBUG is off
+GC_VERBOSE_DEBUG is off
+GC_GENERATIONAL is on
+GC_USE_BITMAP is on
+GC_USE_STACK_CLEAN is off
+GC_GROW_YOUNG_HEAP is on
+GC_GROW_OLD_HEAP is on
+GC_TIME is off
+GC_DEBUG_TRACK_ALLOCATIONS is off
+Write barrier type is GC_WB_MANUAL
+GC_COLLECT_ON_ALLOCATION_FAILURE is 1
+GC_THREAD_LOCAL_HEAP_SIZE is 60
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 60
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 60
+GC_OLD_GENERATION_SEMISPACE_SIZE is 600
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 600
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 600
+GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
+GC_MAGIC_JUST_ALLOCATED is 0x41
+GC_MAGIC_JUST_REALLOCATED is 0x42
+GC_MAGIC_JUST_CLEARED is 0x43
+GC_MAGIC_DEALLOCATION_DETECTED is 0x44
+GC_MAGIC_JUST_COPIED is 0x45
+GC_MAGIC_JUST_CLEARED_STACK is 0x46
+GC_MAGIC_JUST_GC_ALLOCATED is 0x47
+GC_MAGIC_JUST_CLEARED_FROMSPACE is 0x48
+GC_WB_DEFAULT is 0
+GC_OY_STORE_DEFAULT is 0
+
+GC_state:
+GC_state.initialized is 1
+GC_state.stack_bottom is 0x7ffffff000
+GC_state.static_bottom is 0x12001d000
+GC_state.static_top is 0x12001f880
+GC_state.state_bottom is 0x12001d3e0
+GC_state.state_top is 0x12001d5c0
+GC_state.reg_bottom is 0x0
+GC_state.reg_top is 0x0
+Region statistics
+-----------------
+fromspace :      b=  0x0                 l=0x0               
+               end=  0x0               
+            bitmap=  0x0                 s=0xffffffffffffffff  u=0xffffffffffffffff
+tospace   :      b=  0x160811080         l=0x40              
+               end=  0x1608110c0       
+            bitmap=  0x16080f070         s=0x2                 u=0x0               
+free      :      b=  0x160811080         l=0x40              
+               end=  0x1608110c0       
+scan      :          0x0               
+old       :          0x12001d500       
+
+used size   : 0x0                bytes (0B)
+free size   : 0x40               bytes (64B)
+heap size   : 0x40               bytes (64B)
+
+stats:
+allocations : 0 (0)
+collections : 0 (0)
+copies      : 0 (0)
+This region stores YOUNG objects.
+Region statistics
+-----------------
+fromspace :      b=  0x160807300         l=0x260             
+               end=  0x160807560       
+            bitmap=  0x16080f058         s=0x13                u=0x0               
+tospace   :      b=  0x160807080         l=0x260             
+               end=  0x1608072e0       
+            bitmap=  0x16080f040         s=0x13                u=0x0               
+free      :      b=  0x160807080         l=0x260             
+               end=  0x1608072e0       
+scan      :          0x0               
+old       :          0x0               
+
+used size   : 0x0                bytes (0B)
+free size   : 0x260              bytes (608B)
+heap size   : 0x260              bytes (608B)
+
+stats:
+allocations : 0 (0)
+collections : 0 (0)
+copies      : 0 (0)
+This region stores OLD objects.
+---------------END GC DEBUG DUMP---------------
+----------Begin test ll_test----------
+ll_test: Measures time taken to allocate a linked list
+ note: sizeof(node) is 64 (may not be used for this test)
+ note: node_size is 64
+ note: total size is 25600000 (26MB)
+ ==> creating linked list
+ ==> created linked list
+ ==> TIME: 38768472 (39s)
+[plotdata] 400000 38768472
+ ==> checking linked list
+ ==> checked linked list
+ ==> summing linked list
+ ==> summed linked list
+ ==> ok
+----------Finished test ll_test (took 44s)----------
+---------------BEGIN GC DEBUG DUMP---------------
+GC_DEBUG is off
+GC_VERBOSE_DEBUG is off
+GC_GENERATIONAL is on
+GC_USE_BITMAP is on
+GC_USE_STACK_CLEAN is off
+GC_GROW_YOUNG_HEAP is on
+GC_GROW_OLD_HEAP is on
+GC_TIME is off
+GC_DEBUG_TRACK_ALLOCATIONS is off
+Write barrier type is GC_WB_MANUAL
+GC_COLLECT_ON_ALLOCATION_FAILURE is 1
+GC_THREAD_LOCAL_HEAP_SIZE is 60
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 60
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 60
+GC_OLD_GENERATION_SEMISPACE_SIZE is 600
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 600
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 600
+GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
+GC_MAGIC_JUST_ALLOCATED is 0x41
+GC_MAGIC_JUST_REALLOCATED is 0x42
+GC_MAGIC_JUST_CLEARED is 0x43
+GC_MAGIC_DEALLOCATION_DETECTED is 0x44
+GC_MAGIC_JUST_COPIED is 0x45
+GC_MAGIC_JUST_CLEARED_STACK is 0x46
+GC_MAGIC_JUST_GC_ALLOCATED is 0x47
+GC_MAGIC_JUST_CLEARED_FROMSPACE is 0x48
+GC_WB_DEFAULT is 0
+GC_OY_STORE_DEFAULT is 0
+
+GC_state:
+GC_state.initialized is 1
+GC_state.stack_bottom is 0x7ffffff000
+GC_state.static_bottom is 0x12001d000
+GC_state.static_top is 0x12001f880
+GC_state.state_bottom is 0x12001d3e0
+GC_state.state_top is 0x12001d5c0
+GC_state.reg_bottom is 0x7fffffd640
+GC_state.reg_top is 0x7fffffd7a0
+Region statistics
+-----------------
+fromspace :      b=  0x0                 l=0x280000          
+               end=  0x280000          
+            bitmap=  0x0                 s=0xffffffffffffffff  u=0xffffffffffffffff
+tospace   :      b=  0x160815000         l=0x280000          
+               end=  0x160a95000       
+            bitmap=  0x16080f070         s=0x14000             u=0xf500            
+free      :      b=  0x1609ff000         l=0x96000           
+               end=  0x160a95000       
+scan      :          0x3f80            
+old       :          0x12001d500       
+
+used size   : 0x1ea000           bytes (2MB)
+free size   : 0x96000            bytes (614kB)
+heap size   : 0x280000           bytes (3MB)
+
+stats:
+allocations : 400000 (400k)
+collections : 9 (9)
+copies      : 0 (0)
+This region stores YOUNG objects.
+Region statistics
+-----------------
+fromspace :      b=  0x160c00000         l=0x1900000         
+               end=  0x162500000       
+            bitmap=  0x16080f058         s=0xc8000             u=0xb4000           
+tospace   :      b=  0x162800000         l=0x1900000         
+               end=  0x164100000       
+            bitmap=  0x16080f040         s=0xc8000             u=0xb4000           
+free      :      b=  0x163e80000         l=0x280000          
+               end=  0x164100000       
+scan      :          0x163e80000       
+old       :          0x0               
+
+used size   : 0x1680000          bytes (24MB)
+free size   : 0x280000           bytes (3MB)
+heap size   : 0x1900000          bytes (26MB)
+
+stats:
+allocations : 0 (0)
+collections : 4 (4)
+copies      : 1597440 (2M)
+This region stores OLD objects.
+---------------END GC DEBUG DUMP---------------
+testall.sh: i=4 j=1
+GC_init2 called from (GC_init_constructor):0
+Compiled for GC_CHERI at 00:01:57 May 13 2014
+GC_init2 called from test/test_all.c:286 (initialized already)
+---------------BEGIN GC DEBUG DUMP---------------
+GC_DEBUG is off
+GC_VERBOSE_DEBUG is off
+GC_GENERATIONAL is on
+GC_USE_BITMAP is on
+GC_USE_STACK_CLEAN is off
+GC_GROW_YOUNG_HEAP is on
+GC_GROW_OLD_HEAP is on
+GC_TIME is off
+GC_DEBUG_TRACK_ALLOCATIONS is off
+Write barrier type is GC_WB_MANUAL
+GC_COLLECT_ON_ALLOCATION_FAILURE is 1
+GC_THREAD_LOCAL_HEAP_SIZE is 60
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 60
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 60
+GC_OLD_GENERATION_SEMISPACE_SIZE is 600
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 600
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 600
+GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
+GC_MAGIC_JUST_ALLOCATED is 0x41
+GC_MAGIC_JUST_REALLOCATED is 0x42
+GC_MAGIC_JUST_CLEARED is 0x43
+GC_MAGIC_DEALLOCATION_DETECTED is 0x44
+GC_MAGIC_JUST_COPIED is 0x45
+GC_MAGIC_JUST_CLEARED_STACK is 0x46
+GC_MAGIC_JUST_GC_ALLOCATED is 0x47
+GC_MAGIC_JUST_CLEARED_FROMSPACE is 0x48
+GC_WB_DEFAULT is 0
+GC_OY_STORE_DEFAULT is 0
+
+GC_state:
+GC_state.initialized is 1
+GC_state.stack_bottom is 0x7ffffff000
+GC_state.static_bottom is 0x12001d000
+GC_state.static_top is 0x12001f880
+GC_state.state_bottom is 0x12001d3e0
+GC_state.state_top is 0x12001d5c0
+GC_state.reg_bottom is 0x0
+GC_state.reg_top is 0x0
+Region statistics
+-----------------
+fromspace :      b=  0x0                 l=0x0               
+               end=  0x0               
+            bitmap=  0x0                 s=0xffffffffffffffff  u=0xffffffffffffffff
+tospace   :      b=  0x160811080         l=0x40              
+               end=  0x1608110c0       
+            bitmap=  0x16080f070         s=0x2                 u=0x0               
+free      :      b=  0x160811080         l=0x40              
+               end=  0x1608110c0       
+scan      :          0x0               
+old       :          0x12001d500       
+
+used size   : 0x0                bytes (0B)
+free size   : 0x40               bytes (64B)
+heap size   : 0x40               bytes (64B)
+
+stats:
+allocations : 0 (0)
+collections : 0 (0)
+copies      : 0 (0)
+This region stores YOUNG objects.
+Region statistics
+-----------------
+fromspace :      b=  0x160807300         l=0x260             
+               end=  0x160807560       
+            bitmap=  0x16080f058         s=0x13                u=0x0               
+tospace   :      b=  0x160807080         l=0x260             
+               end=  0x1608072e0       
+            bitmap=  0x16080f040         s=0x13                u=0x0               
+free      :      b=  0x160807080         l=0x260             
+               end=  0x1608072e0       
+scan      :          0x0               
+old       :          0x0               
+
+used size   : 0x0                bytes (0B)
+free size   : 0x260              bytes (608B)
+heap size   : 0x260              bytes (608B)
+
+stats:
+allocations : 0 (0)
+collections : 0 (0)
+copies      : 0 (0)
+This region stores OLD objects.
+---------------END GC DEBUG DUMP---------------
+----------Begin test ll_test----------
+ll_test: Measures time taken to allocate a linked list
+ note: sizeof(node) is 64 (may not be used for this test)
+ note: node_size is 64
+ note: total size is 32000000 (32MB)
+ ==> creating linked list
+ ==> created linked list
+ ==> TIME: 50566412 (51s)
+[plotdata] 500000 50566412
+ ==> checking linked list
+ ==> checked linked list
+ ==> summing linked list
+ ==> summed linked list
+ ==> ok
+----------Finished test ll_test (took 57s)----------
+---------------BEGIN GC DEBUG DUMP---------------
+GC_DEBUG is off
+GC_VERBOSE_DEBUG is off
+GC_GENERATIONAL is on
+GC_USE_BITMAP is on
+GC_USE_STACK_CLEAN is off
+GC_GROW_YOUNG_HEAP is on
+GC_GROW_OLD_HEAP is on
+GC_TIME is off
+GC_DEBUG_TRACK_ALLOCATIONS is off
+Write barrier type is GC_WB_MANUAL
+GC_COLLECT_ON_ALLOCATION_FAILURE is 1
+GC_THREAD_LOCAL_HEAP_SIZE is 60
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 60
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 60
+GC_OLD_GENERATION_SEMISPACE_SIZE is 600
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 600
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 600
+GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
+GC_MAGIC_JUST_ALLOCATED is 0x41
+GC_MAGIC_JUST_REALLOCATED is 0x42
+GC_MAGIC_JUST_CLEARED is 0x43
+GC_MAGIC_DEALLOCATION_DETECTED is 0x44
+GC_MAGIC_JUST_COPIED is 0x45
+GC_MAGIC_JUST_CLEARED_STACK is 0x46
+GC_MAGIC_JUST_GC_ALLOCATED is 0x47
+GC_MAGIC_JUST_CLEARED_FROMSPACE is 0x48
+GC_WB_DEFAULT is 0
+GC_OY_STORE_DEFAULT is 0
+
+GC_state:
+GC_state.initialized is 1
+GC_state.stack_bottom is 0x7ffffff000
+GC_state.static_bottom is 0x12001d000
+GC_state.static_top is 0x12001f880
+GC_state.state_bottom is 0x12001d3e0
+GC_state.state_top is 0x12001d5c0
+GC_state.reg_bottom is 0x7fffffd640
+GC_state.reg_top is 0x7fffffd7a0
+Region statistics
+-----------------
+fromspace :      b=  0x0                 l=0x320000          
+               end=  0x320000          
+            bitmap=  0x0                 s=0xffffffffffffffff  u=0xffffffffffffffff
+tospace   :      b=  0x160815000         l=0x320000          
+               end=  0x160b35000       
+            bitmap=  0x16080f070         s=0x19000             u=0x13240           
+free      :      b=  0x160a79800         l=0xbb800           
+               end=  0x160b35000       
+scan      :          0x3f80            
+old       :          0x12001d500       
+
+used size   : 0x264800           bytes (3MB)
+free size   : 0xbb800            bytes (768kB)
+heap size   : 0x320000           bytes (3MB)
+
+stats:
+allocations : 500000 (500k)
+collections : 9 (9)
+copies      : 0 (0)
+This region stores YOUNG objects.
+Region statistics
+-----------------
+fromspace :      b=  0x160c00000         l=0x1f40000         
+               end=  0x162b40000       
+            bitmap=  0x16080f058         s=0xfa000             u=0xe1000           
+tospace   :      b=  0x162c00000         l=0x1f40000         
+               end=  0x164b40000       
+            bitmap=  0x16080f040         s=0xfa000             u=0xe1000           
+free      :      b=  0x164820000         l=0x320000          
+               end=  0x164b40000       
+scan      :          0x164820000       
+old       :          0x0               
+
+used size   : 0x1c20000          bytes (29MB)
+free size   : 0x320000           bytes (3MB)
+heap size   : 0x1f40000          bytes (33MB)
+
+stats:
+allocations : 0 (0)
+collections : 4 (4)
+copies      : 1996800 (2M)
+This region stores OLD objects.
+---------------END GC DEBUG DUMP---------------
+testall.sh: i=5 j=1
+GC_init2 called from (GC_init_constructor):0
+Compiled for GC_CHERI at 00:01:57 May 13 2014
+GC_init2 called from test/test_all.c:286 (initialized already)
+---------------BEGIN GC DEBUG DUMP---------------
+GC_DEBUG is off
+GC_VERBOSE_DEBUG is off
+GC_GENERATIONAL is on
+GC_USE_BITMAP is on
+GC_USE_STACK_CLEAN is off
+GC_GROW_YOUNG_HEAP is on
+GC_GROW_OLD_HEAP is on
+GC_TIME is off
+GC_DEBUG_TRACK_ALLOCATIONS is off
+Write barrier type is GC_WB_MANUAL
+GC_COLLECT_ON_ALLOCATION_FAILURE is 1
+GC_THREAD_LOCAL_HEAP_SIZE is 60
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 60
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 60
+GC_OLD_GENERATION_SEMISPACE_SIZE is 600
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 600
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 600
+GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
+GC_MAGIC_JUST_ALLOCATED is 0x41
+GC_MAGIC_JUST_REALLOCATED is 0x42
+GC_MAGIC_JUST_CLEARED is 0x43
+GC_MAGIC_DEALLOCATION_DETECTED is 0x44
+GC_MAGIC_JUST_COPIED is 0x45
+GC_MAGIC_JUST_CLEARED_STACK is 0x46
+GC_MAGIC_JUST_GC_ALLOCATED is 0x47
+GC_MAGIC_JUST_CLEARED_FROMSPACE is 0x48
+GC_WB_DEFAULT is 0
+GC_OY_STORE_DEFAULT is 0
+
+GC_state:
+GC_state.initialized is 1
+GC_state.stack_bottom is 0x7ffffff000
+GC_state.static_bottom is 0x12001d000
+GC_state.static_top is 0x12001f880
+GC_state.state_bottom is 0x12001d3e0
+GC_state.state_top is 0x12001d5c0
+GC_state.reg_bottom is 0x0
+GC_state.reg_top is 0x0
+Region statistics
+-----------------
+fromspace :      b=  0x0                 l=0x0               
+               end=  0x0               
+            bitmap=  0x0                 s=0xffffffffffffffff  u=0xffffffffffffffff
+tospace   :      b=  0x160811080         l=0x40              
+               end=  0x1608110c0       
+            bitmap=  0x16080f070         s=0x2                 u=0x0               
+free      :      b=  0x160811080         l=0x40              
+               end=  0x1608110c0       
+scan      :          0x0               
+old       :          0x12001d500       
+
+used size   : 0x0                bytes (0B)
+free size   : 0x40               bytes (64B)
+heap size   : 0x40               bytes (64B)
+
+stats:
+allocations : 0 (0)
+collections : 0 (0)
+copies      : 0 (0)
+This region stores YOUNG objects.
+Region statistics
+-----------------
+fromspace :      b=  0x160807300         l=0x260             
+               end=  0x160807560       
+            bitmap=  0x16080f058         s=0x13                u=0x0               
+tospace   :      b=  0x160807080         l=0x260             
+               end=  0x1608072e0       
+            bitmap=  0x16080f040         s=0x13                u=0x0               
+free      :      b=  0x160807080         l=0x260             
+               end=  0x1608072e0       
+scan      :          0x0               
+old       :          0x0               
+
+used size   : 0x0                bytes (0B)
+free size   : 0x260              bytes (608B)
+heap size   : 0x260              bytes (608B)
+
+stats:
+allocations : 0 (0)
+collections : 0 (0)
+copies      : 0 (0)
+This region stores OLD objects.
+---------------END GC DEBUG DUMP---------------
+----------Begin test ll_test----------
+ll_test: Measures time taken to allocate a linked list
+ note: sizeof(node) is 64 (may not be used for this test)
+ note: node_size is 64
+ note: total size is 38400000 (38MB)
+ ==> creating linked list
+ ==> created linked list
+ ==> TIME: 58394955 (58s)
+[plotdata] 600000 58394955
+ ==> checking linked list
+ ==> checked linked list
+ ==> summing linked list
+ ==> summed linked list
+ ==> ok
+----------Finished test ll_test (took 66s)----------
+---------------BEGIN GC DEBUG DUMP---------------
+GC_DEBUG is off
+GC_VERBOSE_DEBUG is off
+GC_GENERATIONAL is on
+GC_USE_BITMAP is on
+GC_USE_STACK_CLEAN is off
+GC_GROW_YOUNG_HEAP is on
+GC_GROW_OLD_HEAP is on
+GC_TIME is off
+GC_DEBUG_TRACK_ALLOCATIONS is off
+Write barrier type is GC_WB_MANUAL
+GC_COLLECT_ON_ALLOCATION_FAILURE is 1
+GC_THREAD_LOCAL_HEAP_SIZE is 60
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 60
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 60
+GC_OLD_GENERATION_SEMISPACE_SIZE is 600
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 600
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 600
+GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
+GC_MAGIC_JUST_ALLOCATED is 0x41
+GC_MAGIC_JUST_REALLOCATED is 0x42
+GC_MAGIC_JUST_CLEARED is 0x43
+GC_MAGIC_DEALLOCATION_DETECTED is 0x44
+GC_MAGIC_JUST_COPIED is 0x45
+GC_MAGIC_JUST_CLEARED_STACK is 0x46
+GC_MAGIC_JUST_GC_ALLOCATED is 0x47
+GC_MAGIC_JUST_CLEARED_FROMSPACE is 0x48
+GC_WB_DEFAULT is 0
+GC_OY_STORE_DEFAULT is 0
+
+GC_state:
+GC_state.initialized is 1
+GC_state.stack_bottom is 0x7ffffff000
+GC_state.static_bottom is 0x12001d000
+GC_state.static_top is 0x12001f880
+GC_state.state_bottom is 0x12001d3e0
+GC_state.state_top is 0x12001d5c0
+GC_state.reg_bottom is 0x7fffffd640
+GC_state.reg_top is 0x7fffffd7a0
+Region statistics
+-----------------
+fromspace :      b=  0x0                 l=0x3c0000          
+               end=  0x3c0000          
+            bitmap=  0x0                 s=0xffffffffffffffff  u=0xffffffffffffffff
+tospace   :      b=  0x160815000         l=0x3c0000          
+               end=  0x160bd5000       
+            bitmap=  0x16080f070         s=0x1e000             u=0x16f80           
+free      :      b=  0x160af4000         l=0xe1000           
+               end=  0x160bd5000       
+scan      :          0x3f80            
+old       :          0x12001d500       
+
+used size   : 0x2df000           bytes (3MB)
+free size   : 0xe1000            bytes (922kB)
+heap size   : 0x3c0000           bytes (4MB)
+
+stats:
+allocations : 600000 (600k)
+collections : 9 (9)
+copies      : 0 (0)
+This region stores YOUNG objects.
+Region statistics
+-----------------
+fromspace :      b=  0x160c00000         l=0x2580000         
+               end=  0x163180000       
+            bitmap=  0x16080f058         s=0x12c000            u=0x10e000          
+tospace   :      b=  0x163400000         l=0x2580000         
+               end=  0x165980000       
+            bitmap=  0x16080f040         s=0x12c000            u=0x10e000          
+free      :      b=  0x1655c0000         l=0x3c0000          
+               end=  0x165980000       
+scan      :          0x1655c0000       
+old       :          0x0               
+
+used size   : 0x21c0000          bytes (35MB)
+free size   : 0x3c0000           bytes (4MB)
+heap size   : 0x2580000          bytes (39MB)
+
+stats:
+allocations : 0 (0)
+collections : 4 (4)
+copies      : 2396160 (2M)
+This region stores OLD objects.
+---------------END GC DEBUG DUMP---------------
+testall.sh: i=6 j=1
+GC_init2 called from (GC_init_constructor):0
+Compiled for GC_CHERI at 00:01:57 May 13 2014
+GC_init2 called from test/test_all.c:286 (initialized already)
+---------------BEGIN GC DEBUG DUMP---------------
+GC_DEBUG is off
+GC_VERBOSE_DEBUG is off
+GC_GENERATIONAL is on
+GC_USE_BITMAP is on
+GC_USE_STACK_CLEAN is off
+GC_GROW_YOUNG_HEAP is on
+GC_GROW_OLD_HEAP is on
+GC_TIME is off
+GC_DEBUG_TRACK_ALLOCATIONS is off
+Write barrier type is GC_WB_MANUAL
+GC_COLLECT_ON_ALLOCATION_FAILURE is 1
+GC_THREAD_LOCAL_HEAP_SIZE is 60
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 60
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 60
+GC_OLD_GENERATION_SEMISPACE_SIZE is 600
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 600
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 600
+GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
+GC_MAGIC_JUST_ALLOCATED is 0x41
+GC_MAGIC_JUST_REALLOCATED is 0x42
+GC_MAGIC_JUST_CLEARED is 0x43
+GC_MAGIC_DEALLOCATION_DETECTED is 0x44
+GC_MAGIC_JUST_COPIED is 0x45
+GC_MAGIC_JUST_CLEARED_STACK is 0x46
+GC_MAGIC_JUST_GC_ALLOCATED is 0x47
+GC_MAGIC_JUST_CLEARED_FROMSPACE is 0x48
+GC_WB_DEFAULT is 0
+GC_OY_STORE_DEFAULT is 0
+
+GC_state:
+GC_state.initialized is 1
+GC_state.stack_bottom is 0x7ffffff000
+GC_state.static_bottom is 0x12001d000
+GC_state.static_top is 0x12001f880
+GC_state.state_bottom is 0x12001d3e0
+GC_state.state_top is 0x12001d5c0
+GC_state.reg_bottom is 0x0
+GC_state.reg_top is 0x0
+Region statistics
+-----------------
+fromspace :      b=  0x0                 l=0x0               
+               end=  0x0               
+            bitmap=  0x0                 s=0xffffffffffffffff  u=0xffffffffffffffff
+tospace   :      b=  0x160811080         l=0x40              
+               end=  0x1608110c0       
+            bitmap=  0x16080f070         s=0x2                 u=0x0               
+free      :      b=  0x160811080         l=0x40              
+               end=  0x1608110c0       
+scan      :          0x0               
+old       :          0x12001d500       
+
+used size   : 0x0                bytes (0B)
+free size   : 0x40               bytes (64B)
+heap size   : 0x40               bytes (64B)
+
+stats:
+allocations : 0 (0)
+collections : 0 (0)
+copies      : 0 (0)
+This region stores YOUNG objects.
+Region statistics
+-----------------
+fromspace :      b=  0x160807300         l=0x260             
+               end=  0x160807560       
+            bitmap=  0x16080f058         s=0x13                u=0x0               
+tospace   :      b=  0x160807080         l=0x260             
+               end=  0x1608072e0       
+            bitmap=  0x16080f040         s=0x13                u=0x0               
+free      :      b=  0x160807080         l=0x260             
+               end=  0x1608072e0       
+scan      :          0x0               
+old       :          0x0               
+
+used size   : 0x0                bytes (0B)
+free size   : 0x260              bytes (608B)
+heap size   : 0x260              bytes (608B)
+
+stats:
+allocations : 0 (0)
+collections : 0 (0)
+copies      : 0 (0)
+This region stores OLD objects.
+---------------END GC DEBUG DUMP---------------
+----------Begin test ll_test----------
+ll_test: Measures time taken to allocate a linked list
+ note: sizeof(node) is 64 (may not be used for this test)
+ note: node_size is 64
+ note: total size is 44800000 (45MB)
+ ==> creating linked list
+ ==> created linked list
+ ==> TIME: 71658999 (72s)
+[plotdata] 700000 71658999
+ ==> checking linked list
+ ==> checked linked list
+ ==> summing linked list
+ ==> summed linked list
+ ==> ok
+----------Finished test ll_test (took 81s)----------
+---------------BEGIN GC DEBUG DUMP---------------
+GC_DEBUG is off
+GC_VERBOSE_DEBUG is off
+GC_GENERATIONAL is on
+GC_USE_BITMAP is on
+GC_USE_STACK_CLEAN is off
+GC_GROW_YOUNG_HEAP is on
+GC_GROW_OLD_HEAP is on
+GC_TIME is off
+GC_DEBUG_TRACK_ALLOCATIONS is off
+Write barrier type is GC_WB_MANUAL
+GC_COLLECT_ON_ALLOCATION_FAILURE is 1
+GC_THREAD_LOCAL_HEAP_SIZE is 60
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 60
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 60
+GC_OLD_GENERATION_SEMISPACE_SIZE is 600
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 600
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 600
+GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
+GC_MAGIC_JUST_ALLOCATED is 0x41
+GC_MAGIC_JUST_REALLOCATED is 0x42
+GC_MAGIC_JUST_CLEARED is 0x43
+GC_MAGIC_DEALLOCATION_DETECTED is 0x44
+GC_MAGIC_JUST_COPIED is 0x45
+GC_MAGIC_JUST_CLEARED_STACK is 0x46
+GC_MAGIC_JUST_GC_ALLOCATED is 0x47
+GC_MAGIC_JUST_CLEARED_FROMSPACE is 0x48
+GC_WB_DEFAULT is 0
+GC_OY_STORE_DEFAULT is 0
+
+GC_state:
+GC_state.initialized is 1
+GC_state.stack_bottom is 0x7ffffff000
+GC_state.static_bottom is 0x12001d000
+GC_state.static_top is 0x12001f880
+GC_state.state_bottom is 0x12001d3e0
+GC_state.state_top is 0x12001d5c0
+GC_state.reg_bottom is 0x7fffffd640
+GC_state.reg_top is 0x7fffffd7a0
+Region statistics
+-----------------
+fromspace :      b=  0x0                 l=0x460000          
+               end=  0x460000          
+            bitmap=  0x0                 s=0xffffffffffffffff  u=0xffffffffffffffff
+tospace   :      b=  0x160c00000         l=0x460000          
+               end=  0x161060000       
+            bitmap=  0x16080f070         s=0x23000             u=0x1acc0           
+free      :      b=  0x160f59800         l=0x106800          
+               end=  0x161060000       
+scan      :          0x3eef80          
+old       :          0x12001d500       
+
+used size   : 0x359800           bytes (4MB)
+free size   : 0x106800           bytes (1MB)
+heap size   : 0x460000           bytes (5MB)
+
+stats:
+allocations : 700000 (700k)
+collections : 9 (9)
+copies      : 0 (0)
+This region stores YOUNG objects.
+Region statistics
+-----------------
+fromspace :      b=  0x161400000         l=0x2bc0000         
+               end=  0x163fc0000       
+            bitmap=  0x16080f058         s=0x15e000            u=0x13b000          
+tospace   :      b=  0x164000000         l=0x2bc0000         
+               end=  0x166bc0000       
+            bitmap=  0x16080f040         s=0x15e000            u=0x13b000          
+free      :      b=  0x166760000         l=0x460000          
+               end=  0x166bc0000       
+scan      :          0x166760000       
+old       :          0x0               
+
+used size   : 0x2760000          bytes (41MB)
+free size   : 0x460000           bytes (5MB)
+heap size   : 0x2bc0000          bytes (46MB)
+
+stats:
+allocations : 0 (0)
+collections : 4 (4)
+copies      : 2795520 (3M)
+This region stores OLD objects.
+---------------END GC DEBUG DUMP---------------
+testall.sh: i=7 j=1
+GC_init2 called from (GC_init_constructor):0
+Compiled for GC_CHERI at 00:01:57 May 13 2014
+GC_init2 called from test/test_all.c:286 (initialized already)
+---------------BEGIN GC DEBUG DUMP---------------
+GC_DEBUG is off
+GC_VERBOSE_DEBUG is off
+GC_GENERATIONAL is on
+GC_USE_BITMAP is on
+GC_USE_STACK_CLEAN is off
+GC_GROW_YOUNG_HEAP is on
+GC_GROW_OLD_HEAP is on
+GC_TIME is off
+GC_DEBUG_TRACK_ALLOCATIONS is off
+Write barrier type is GC_WB_MANUAL
+GC_COLLECT_ON_ALLOCATION_FAILURE is 1
+GC_THREAD_LOCAL_HEAP_SIZE is 60
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 60
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 60
+GC_OLD_GENERATION_SEMISPACE_SIZE is 600
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 600
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 600
+GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
+GC_MAGIC_JUST_ALLOCATED is 0x41
+GC_MAGIC_JUST_REALLOCATED is 0x42
+GC_MAGIC_JUST_CLEARED is 0x43
+GC_MAGIC_DEALLOCATION_DETECTED is 0x44
+GC_MAGIC_JUST_COPIED is 0x45
+GC_MAGIC_JUST_CLEARED_STACK is 0x46
+GC_MAGIC_JUST_GC_ALLOCATED is 0x47
+GC_MAGIC_JUST_CLEARED_FROMSPACE is 0x48
+GC_WB_DEFAULT is 0
+GC_OY_STORE_DEFAULT is 0
+
+GC_state:
+GC_state.initialized is 1
+GC_state.stack_bottom is 0x7ffffff000
+GC_state.static_bottom is 0x12001d000
+GC_state.static_top is 0x12001f880
+GC_state.state_bottom is 0x12001d3e0
+GC_state.state_top is 0x12001d5c0
+GC_state.reg_bottom is 0x0
+GC_state.reg_top is 0x0
+Region statistics
+-----------------
+fromspace :      b=  0x0                 l=0x0               
+               end=  0x0               
+            bitmap=  0x0                 s=0xffffffffffffffff  u=0xffffffffffffffff
+tospace   :      b=  0x160811080         l=0x40              
+               end=  0x1608110c0       
+            bitmap=  0x16080f070         s=0x2                 u=0x0               
+free      :      b=  0x160811080         l=0x40              
+               end=  0x1608110c0       
+scan      :          0x0               
+old       :          0x12001d500       
+
+used size   : 0x0                bytes (0B)
+free size   : 0x40               bytes (64B)
+heap size   : 0x40               bytes (64B)
+
+stats:
+allocations : 0 (0)
+collections : 0 (0)
+copies      : 0 (0)
+This region stores YOUNG objects.
+Region statistics
+-----------------
+fromspace :      b=  0x160807300         l=0x260             
+               end=  0x160807560       
+            bitmap=  0x16080f058         s=0x13                u=0x0               
+tospace   :      b=  0x160807080         l=0x260             
+               end=  0x1608072e0       
+            bitmap=  0x16080f040         s=0x13                u=0x0               
+free      :      b=  0x160807080         l=0x260             
+               end=  0x1608072e0       
+scan      :          0x0               
+old       :          0x0               
+
+used size   : 0x0                bytes (0B)
+free size   : 0x260              bytes (608B)
+heap size   : 0x260              bytes (608B)
+
+stats:
+allocations : 0 (0)
+collections : 0 (0)
+copies      : 0 (0)
+This region stores OLD objects.
+---------------END GC DEBUG DUMP---------------
+----------Begin test ll_test----------
+ll_test: Measures time taken to allocate a linked list
+ note: sizeof(node) is 64 (may not be used for this test)
+ note: node_size is 64
+ note: total size is 51200000 (51MB)
+ ==> creating linked list
+ ==> created linked list
+ ==> TIME: 79846774 (80s)
+[plotdata] 800000 79846774
+ ==> checking linked list
+ ==> checked linked list
+ ==> summing linked list
+ ==> summed linked list
+ ==> ok
+----------Finished test ll_test (took 90s)----------
+---------------BEGIN GC DEBUG DUMP---------------
+GC_DEBUG is off
+GC_VERBOSE_DEBUG is off
+GC_GENERATIONAL is on
+GC_USE_BITMAP is on
+GC_USE_STACK_CLEAN is off
+GC_GROW_YOUNG_HEAP is on
+GC_GROW_OLD_HEAP is on
+GC_TIME is off
+GC_DEBUG_TRACK_ALLOCATIONS is off
+Write barrier type is GC_WB_MANUAL
+GC_COLLECT_ON_ALLOCATION_FAILURE is 1
+GC_THREAD_LOCAL_HEAP_SIZE is 60
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 60
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 60
+GC_OLD_GENERATION_SEMISPACE_SIZE is 600
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 600
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 600
+GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
+GC_MAGIC_JUST_ALLOCATED is 0x41
+GC_MAGIC_JUST_REALLOCATED is 0x42
+GC_MAGIC_JUST_CLEARED is 0x43
+GC_MAGIC_DEALLOCATION_DETECTED is 0x44
+GC_MAGIC_JUST_COPIED is 0x45
+GC_MAGIC_JUST_CLEARED_STACK is 0x46
+GC_MAGIC_JUST_GC_ALLOCATED is 0x47
+GC_MAGIC_JUST_CLEARED_FROMSPACE is 0x48
+GC_WB_DEFAULT is 0
+GC_OY_STORE_DEFAULT is 0
+
+GC_state:
+GC_state.initialized is 1
+GC_state.stack_bottom is 0x7ffffff000
+GC_state.static_bottom is 0x12001d000
+GC_state.static_top is 0x12001f880
+GC_state.state_bottom is 0x12001d3e0
+GC_state.state_top is 0x12001d5c0
+GC_state.reg_bottom is 0x7fffffd640
+GC_state.reg_top is 0x7fffffd7a0
+Region statistics
+-----------------
+fromspace :      b=  0x0                 l=0x500000          
+               end=  0x500000          
+            bitmap=  0x0                 s=0xffffffffffffffff  u=0xffffffffffffffff
+tospace   :      b=  0x160c00000         l=0x500000          
+               end=  0x161100000       
+            bitmap=  0x16080f070         s=0x28000             u=0x1ea00           
+free      :      b=  0x160fd4000         l=0x12c000          
+               end=  0x161100000       
+scan      :          0x3eef80          
+old       :          0x12001d500       
+
+used size   : 0x3d4000           bytes (4MB)
+free size   : 0x12c000           bytes (1MB)
+heap size   : 0x500000           bytes (5MB)
+
+stats:
+allocations : 800000 (800k)
+collections : 9 (9)
+copies      : 0 (0)
+This region stores YOUNG objects.
+Region statistics
+-----------------
+fromspace :      b=  0x161400000         l=0x3200000         
+               end=  0x164600000       
+            bitmap=  0x16080f058         s=0x190000            u=0x168000          
+tospace   :      b=  0x164800000         l=0x3200000         
+               end=  0x167a00000       
+            bitmap=  0x16080f040         s=0x190000            u=0x168000          
+free      :      b=  0x167500000         l=0x500000          
+               end=  0x167a00000       
+scan      :          0x167500000       
+old       :          0x0               
+
+used size   : 0x2d00000          bytes (47MB)
+free size   : 0x500000           bytes (5MB)
+heap size   : 0x3200000          bytes (52MB)
+
+stats:
+allocations : 0 (0)
+collections : 4 (4)
+copies      : 3194880 (3M)
+This region stores OLD objects.
+---------------END GC DEBUG DUMP---------------
+testall.sh: i=8 j=1
+GC_init2 called from (GC_init_constructor):0
+Compiled for GC_CHERI at 00:01:57 May 13 2014
+GC_init2 called from test/test_all.c:286 (initialized already)
+---------------BEGIN GC DEBUG DUMP---------------
+GC_DEBUG is off
+GC_VERBOSE_DEBUG is off
+GC_GENERATIONAL is on
+GC_USE_BITMAP is on
+GC_USE_STACK_CLEAN is off
+GC_GROW_YOUNG_HEAP is on
+GC_GROW_OLD_HEAP is on
+GC_TIME is off
+GC_DEBUG_TRACK_ALLOCATIONS is off
+Write barrier type is GC_WB_MANUAL
+GC_COLLECT_ON_ALLOCATION_FAILURE is 1
+GC_THREAD_LOCAL_HEAP_SIZE is 60
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 60
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 60
+GC_OLD_GENERATION_SEMISPACE_SIZE is 600
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 600
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 600
+GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
+GC_MAGIC_JUST_ALLOCATED is 0x41
+GC_MAGIC_JUST_REALLOCATED is 0x42
+GC_MAGIC_JUST_CLEARED is 0x43
+GC_MAGIC_DEALLOCATION_DETECTED is 0x44
+GC_MAGIC_JUST_COPIED is 0x45
+GC_MAGIC_JUST_CLEARED_STACK is 0x46
+GC_MAGIC_JUST_GC_ALLOCATED is 0x47
+GC_MAGIC_JUST_CLEARED_FROMSPACE is 0x48
+GC_WB_DEFAULT is 0
+GC_OY_STORE_DEFAULT is 0
+
+GC_state:
+GC_state.initialized is 1
+GC_state.stack_bottom is 0x7ffffff000
+GC_state.static_bottom is 0x12001d000
+GC_state.static_top is 0x12001f880
+GC_state.state_bottom is 0x12001d3e0
+GC_state.state_top is 0x12001d5c0
+GC_state.reg_bottom is 0x0
+GC_state.reg_top is 0x0
+Region statistics
+-----------------
+fromspace :      b=  0x0                 l=0x0               
+               end=  0x0               
+            bitmap=  0x0                 s=0xffffffffffffffff  u=0xffffffffffffffff
+tospace   :      b=  0x160811080         l=0x40              
+               end=  0x1608110c0       
+            bitmap=  0x16080f070         s=0x2                 u=0x0               
+free      :      b=  0x160811080         l=0x40              
+               end=  0x1608110c0       
+scan      :          0x0               
+old       :          0x12001d500       
+
+used size   : 0x0                bytes (0B)
+free size   : 0x40               bytes (64B)
+heap size   : 0x40               bytes (64B)
+
+stats:
+allocations : 0 (0)
+collections : 0 (0)
+copies      : 0 (0)
+This region stores YOUNG objects.
+Region statistics
+-----------------
+fromspace :      b=  0x160807300         l=0x260             
+               end=  0x160807560       
+            bitmap=  0x16080f058         s=0x13                u=0x0               
+tospace   :      b=  0x160807080         l=0x260             
+               end=  0x1608072e0       
+            bitmap=  0x16080f040         s=0x13                u=0x0               
+free      :      b=  0x160807080         l=0x260             
+               end=  0x1608072e0       
+scan      :          0x0               
+old       :          0x0               
+
+used size   : 0x0                bytes (0B)
+free size   : 0x260              bytes (608B)
+heap size   : 0x260              bytes (608B)
+
+stats:
+allocations : 0 (0)
+collections : 0 (0)
+copies      : 0 (0)
+This region stores OLD objects.
+---------------END GC DEBUG DUMP---------------
+----------Begin test ll_test----------
+ll_test: Measures time taken to allocate a linked list
+ note: sizeof(node) is 64 (may not be used for this test)
+ note: node_size is 64
+ note: total size is 57600000 (58MB)
+ ==> creating linked list
+ ==> created linked list
+ ==> TIME: 88230650 (88s)
+[plotdata] 900000 88230650
+ ==> checking linked list
+ ==> checked linked list
+ ==> summing linked list
+ ==> summed linked list
+ ==> ok
+----------Finished test ll_test (took 100s)----------
+---------------BEGIN GC DEBUG DUMP---------------
+GC_DEBUG is off
+GC_VERBOSE_DEBUG is off
+GC_GENERATIONAL is on
+GC_USE_BITMAP is on
+GC_USE_STACK_CLEAN is off
+GC_GROW_YOUNG_HEAP is on
+GC_GROW_OLD_HEAP is on
+GC_TIME is off
+GC_DEBUG_TRACK_ALLOCATIONS is off
+Write barrier type is GC_WB_MANUAL
+GC_COLLECT_ON_ALLOCATION_FAILURE is 1
+GC_THREAD_LOCAL_HEAP_SIZE is 60
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 60
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 60
+GC_OLD_GENERATION_SEMISPACE_SIZE is 600
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 600
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 600
+GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
+GC_MAGIC_JUST_ALLOCATED is 0x41
+GC_MAGIC_JUST_REALLOCATED is 0x42
+GC_MAGIC_JUST_CLEARED is 0x43
+GC_MAGIC_DEALLOCATION_DETECTED is 0x44
+GC_MAGIC_JUST_COPIED is 0x45
+GC_MAGIC_JUST_CLEARED_STACK is 0x46
+GC_MAGIC_JUST_GC_ALLOCATED is 0x47
+GC_MAGIC_JUST_CLEARED_FROMSPACE is 0x48
+GC_WB_DEFAULT is 0
+GC_OY_STORE_DEFAULT is 0
+
+GC_state:
+GC_state.initialized is 1
+GC_state.stack_bottom is 0x7ffffff000
+GC_state.static_bottom is 0x12001d000
+GC_state.static_top is 0x12001f880
+GC_state.state_bottom is 0x12001d3e0
+GC_state.state_top is 0x12001d5c0
+GC_state.reg_bottom is 0x7fffffd640
+GC_state.reg_top is 0x7fffffd7a0
+Region statistics
+-----------------
+fromspace :      b=  0x0                 l=0x5a0000          
+               end=  0x5a0000          
+            bitmap=  0x0                 s=0xffffffffffffffff  u=0xffffffffffffffff
+tospace   :      b=  0x160c00000         l=0x5a0000          
+               end=  0x1611a0000       
+            bitmap=  0x16080f070         s=0x2d000             u=0x22740           
+free      :      b=  0x16104e800         l=0x151800          
+               end=  0x1611a0000       
+scan      :          0x3eef80          
+old       :          0x12001d500       
+
+used size   : 0x44e800           bytes (5MB)
+free size   : 0x151800           bytes (1MB)
+heap size   : 0x5a0000           bytes (6MB)
+
+stats:
+allocations : 900000 (900k)
+collections : 9 (9)
+copies      : 0 (0)
+This region stores YOUNG objects.
+Region statistics
+-----------------
+fromspace :      b=  0x161400000         l=0x3840000         
+               end=  0x164c40000       
+            bitmap=  0x16080f058         s=0x1c2000            u=0x195000          
+tospace   :      b=  0x165000000         l=0x3840000         
+               end=  0x168840000       
+            bitmap=  0x16080f040         s=0x1c2000            u=0x195000          
+free      :      b=  0x1682a0000         l=0x5a0000          
+               end=  0x168840000       
+scan      :          0x1682a0000       
+old       :          0x0               
+
+used size   : 0x32a0000          bytes (53MB)
+free size   : 0x5a0000           bytes (6MB)
+heap size   : 0x3840000          bytes (59MB)
+
+stats:
+allocations : 0 (0)
+collections : 4 (4)
+copies      : 3594240 (4M)
+This region stores OLD objects.
+---------------END GC DEBUG DUMP---------------
+testall.sh: i=9 j=1
+GC_init2 called from (GC_init_constructor):0
+Compiled for GC_CHERI at 00:01:57 May 13 2014
+GC_init2 called from test/test_all.c:286 (initialized already)
+---------------BEGIN GC DEBUG DUMP---------------
+GC_DEBUG is off
+GC_VERBOSE_DEBUG is off
+GC_GENERATIONAL is on
+GC_USE_BITMAP is on
+GC_USE_STACK_CLEAN is off
+GC_GROW_YOUNG_HEAP is on
+GC_GROW_OLD_HEAP is on
+GC_TIME is off
+GC_DEBUG_TRACK_ALLOCATIONS is off
+Write barrier type is GC_WB_MANUAL
+GC_COLLECT_ON_ALLOCATION_FAILURE is 1
+GC_THREAD_LOCAL_HEAP_SIZE is 60
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 60
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 60
+GC_OLD_GENERATION_SEMISPACE_SIZE is 600
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 600
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 600
+GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
+GC_MAGIC_JUST_ALLOCATED is 0x41
+GC_MAGIC_JUST_REALLOCATED is 0x42
+GC_MAGIC_JUST_CLEARED is 0x43
+GC_MAGIC_DEALLOCATION_DETECTED is 0x44
+GC_MAGIC_JUST_COPIED is 0x45
+GC_MAGIC_JUST_CLEARED_STACK is 0x46
+GC_MAGIC_JUST_GC_ALLOCATED is 0x47
+GC_MAGIC_JUST_CLEARED_FROMSPACE is 0x48
+GC_WB_DEFAULT is 0
+GC_OY_STORE_DEFAULT is 0
+
+GC_state:
+GC_state.initialized is 1
+GC_state.stack_bottom is 0x7ffffff000
+GC_state.static_bottom is 0x12001d000
+GC_state.static_top is 0x12001f880
+GC_state.state_bottom is 0x12001d3e0
+GC_state.state_top is 0x12001d5c0
+GC_state.reg_bottom is 0x0
+GC_state.reg_top is 0x0
+Region statistics
+-----------------
+fromspace :      b=  0x0                 l=0x0               
+               end=  0x0               
+            bitmap=  0x0                 s=0xffffffffffffffff  u=0xffffffffffffffff
+tospace   :      b=  0x160811080         l=0x40              
+               end=  0x1608110c0       
+            bitmap=  0x16080f070         s=0x2                 u=0x0               
+free      :      b=  0x160811080         l=0x40              
+               end=  0x1608110c0       
+scan      :          0x0               
+old       :          0x12001d500       
+
+used size   : 0x0                bytes (0B)
+free size   : 0x40               bytes (64B)
+heap size   : 0x40               bytes (64B)
+
+stats:
+allocations : 0 (0)
+collections : 0 (0)
+copies      : 0 (0)
+This region stores YOUNG objects.
+Region statistics
+-----------------
+fromspace :      b=  0x160807300         l=0x260             
+               end=  0x160807560       
+            bitmap=  0x16080f058         s=0x13                u=0x0               
+tospace   :      b=  0x160807080         l=0x260             
+               end=  0x1608072e0       
+            bitmap=  0x16080f040         s=0x13                u=0x0               
+free      :      b=  0x160807080         l=0x260             
+               end=  0x1608072e0       
+scan      :          0x0               
+old       :          0x0               
+
+used size   : 0x0                bytes (0B)
+free size   : 0x260              bytes (608B)
+heap size   : 0x260              bytes (608B)
+
+stats:
+allocations : 0 (0)
+collections : 0 (0)
+copies      : 0 (0)
+This region stores OLD objects.
+---------------END GC DEBUG DUMP---------------
+----------Begin test ll_test----------
+ll_test: Measures time taken to allocate a linked list
+ note: sizeof(node) is 64 (may not be used for this test)
+ note: node_size is 64
+ note: total size is 64000000 (64MB)
+ ==> creating linked list
+ ==> created linked list
+ ==> TIME: 96665780 (97s)
+[plotdata] 1000000 96665780
+ ==> checking linked list
+ ==> checked linked list
+ ==> summing linked list
+ ==> summed linked list
+ ==> ok
+----------Finished test ll_test (took 109s)----------
+---------------BEGIN GC DEBUG DUMP---------------
+GC_DEBUG is off
+GC_VERBOSE_DEBUG is off
+GC_GENERATIONAL is on
+GC_USE_BITMAP is on
+GC_USE_STACK_CLEAN is off
+GC_GROW_YOUNG_HEAP is on
+GC_GROW_OLD_HEAP is on
+GC_TIME is off
+GC_DEBUG_TRACK_ALLOCATIONS is off
+Write barrier type is GC_WB_MANUAL
+GC_COLLECT_ON_ALLOCATION_FAILURE is 1
+GC_THREAD_LOCAL_HEAP_SIZE is 60
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 60
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 60
+GC_OLD_GENERATION_SEMISPACE_SIZE is 600
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 600
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 600
+GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
+GC_MAGIC_JUST_ALLOCATED is 0x41
+GC_MAGIC_JUST_REALLOCATED is 0x42
+GC_MAGIC_JUST_CLEARED is 0x43
+GC_MAGIC_DEALLOCATION_DETECTED is 0x44
+GC_MAGIC_JUST_COPIED is 0x45
+GC_MAGIC_JUST_CLEARED_STACK is 0x46
+GC_MAGIC_JUST_GC_ALLOCATED is 0x47
+GC_MAGIC_JUST_CLEARED_FROMSPACE is 0x48
+GC_WB_DEFAULT is 0
+GC_OY_STORE_DEFAULT is 0
+
+GC_state:
+GC_state.initialized is 1
+GC_state.stack_bottom is 0x7ffffff000
+GC_state.static_bottom is 0x12001d000
+GC_state.static_top is 0x12001f880
+GC_state.state_bottom is 0x12001d3e0
+GC_state.state_top is 0x12001d5c0
+GC_state.reg_bottom is 0x7fffffd640
+GC_state.reg_top is 0x7fffffd7a0
+Region statistics
+-----------------
+fromspace :      b=  0x0                 l=0x640000          
+               end=  0x640000          
+            bitmap=  0x0                 s=0xffffffffffffffff  u=0xffffffffffffffff
+tospace   :      b=  0x160c00000         l=0x640000          
+               end=  0x161240000       
+            bitmap=  0x16080f070         s=0x32000             u=0x26480           
+free      :      b=  0x1610c9000         l=0x177000          
+               end=  0x161240000       
+scan      :          0x3eef80          
+old       :          0x12001d500       
+
+used size   : 0x4c9000           bytes (5MB)
+free size   : 0x177000           bytes (2MB)
+heap size   : 0x640000           bytes (7MB)
+
+stats:
+allocations : 1000000 (1M)
+collections : 9 (9)
+copies      : 0 (0)
+This region stores YOUNG objects.
+Region statistics
+-----------------
+fromspace :      b=  0x161400000         l=0x3e80000         
+               end=  0x165280000       
+            bitmap=  0x16080f058         s=0x1f4000            u=0x1c2000          
+tospace   :      b=  0x165400000         l=0x3e80000         
+               end=  0x169280000       
+            bitmap=  0x16080f040         s=0x1f4000            u=0x1c2000          
+free      :      b=  0x168c40000         l=0x640000          
+               end=  0x169280000       
+scan      :          0x168c40000       
+old       :          0x0               
+
+used size   : 0x3840000          bytes (59MB)
+free size   : 0x640000           bytes (7MB)
+heap size   : 0x3e80000          bytes (66MB)
+
+stats:
+allocations : 0 (0)
+collections : 4 (4)
+copies      : 3993600 (4M)
+This region stores OLD objects.
+---------------END GC DEBUG DUMP---------------
+testall.sh: i=10 j=1
+GC_init2 called from (GC_init_constructor):0
+Compiled for GC_CHERI at 00:01:57 May 13 2014
+GC_init2 called from test/test_all.c:286 (initialized already)
+---------------BEGIN GC DEBUG DUMP---------------
+GC_DEBUG is off
+GC_VERBOSE_DEBUG is off
+GC_GENERATIONAL is on
+GC_USE_BITMAP is on
+GC_USE_STACK_CLEAN is off
+GC_GROW_YOUNG_HEAP is on
+GC_GROW_OLD_HEAP is on
+GC_TIME is off
+GC_DEBUG_TRACK_ALLOCATIONS is off
+Write barrier type is GC_WB_MANUAL
+GC_COLLECT_ON_ALLOCATION_FAILURE is 1
+GC_THREAD_LOCAL_HEAP_SIZE is 60
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 60
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 60
+GC_OLD_GENERATION_SEMISPACE_SIZE is 600
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 600
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 600
+GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
+GC_MAGIC_JUST_ALLOCATED is 0x41
+GC_MAGIC_JUST_REALLOCATED is 0x42
+GC_MAGIC_JUST_CLEARED is 0x43
+GC_MAGIC_DEALLOCATION_DETECTED is 0x44
+GC_MAGIC_JUST_COPIED is 0x45
+GC_MAGIC_JUST_CLEARED_STACK is 0x46
+GC_MAGIC_JUST_GC_ALLOCATED is 0x47
+GC_MAGIC_JUST_CLEARED_FROMSPACE is 0x48
+GC_WB_DEFAULT is 0
+GC_OY_STORE_DEFAULT is 0
+
+GC_state:
+GC_state.initialized is 1
+GC_state.stack_bottom is 0x7ffffff000
+GC_state.static_bottom is 0x12001d000
+GC_state.static_top is 0x12001f880
+GC_state.state_bottom is 0x12001d3e0
+GC_state.state_top is 0x12001d5c0
+GC_state.reg_bottom is 0x0
+GC_state.reg_top is 0x0
+Region statistics
+-----------------
+fromspace :      b=  0x0                 l=0x0               
+               end=  0x0               
+            bitmap=  0x0                 s=0xffffffffffffffff  u=0xffffffffffffffff
+tospace   :      b=  0x160811080         l=0x40              
+               end=  0x1608110c0       
+            bitmap=  0x16080f070         s=0x2                 u=0x0               
+free      :      b=  0x160811080         l=0x40              
+               end=  0x1608110c0       
+scan      :          0x0               
+old       :          0x12001d500       
+
+used size   : 0x0                bytes (0B)
+free size   : 0x40               bytes (64B)
+heap size   : 0x40               bytes (64B)
+
+stats:
+allocations : 0 (0)
+collections : 0 (0)
+copies      : 0 (0)
+This region stores YOUNG objects.
+Region statistics
+-----------------
+fromspace :      b=  0x160807300         l=0x260             
+               end=  0x160807560       
+            bitmap=  0x16080f058         s=0x13                u=0x0               
+tospace   :      b=  0x160807080         l=0x260             
+               end=  0x1608072e0       
+            bitmap=  0x16080f040         s=0x13                u=0x0               
+free      :      b=  0x160807080         l=0x260             
+               end=  0x1608072e0       
+scan      :          0x0               
+old       :          0x0               
+
+used size   : 0x0                bytes (0B)
+free size   : 0x260              bytes (608B)
+heap size   : 0x260              bytes (608B)
+
+stats:
+allocations : 0 (0)
+collections : 0 (0)
+copies      : 0 (0)
+This region stores OLD objects.
+---------------END GC DEBUG DUMP---------------
+----------Begin test ll_test----------
+ll_test: Measures time taken to allocate a linked list
+ note: sizeof(node) is 64 (may not be used for this test)
+ note: node_size is 64
+ note: total size is 70400000 (70MB)
+ ==> creating linked list
+ ==> created linked list
+ ==> TIME: 108706199 (109s)
+[plotdata] 1100000 108706199
+ ==> checking linked list
+ ==> checked linked list
+ ==> summing linked list
+ ==> summed linked list
+ ==> ok
+----------Finished test ll_test (took 122s)----------
+---------------BEGIN GC DEBUG DUMP---------------
+GC_DEBUG is off
+GC_VERBOSE_DEBUG is off
+GC_GENERATIONAL is on
+GC_USE_BITMAP is on
+GC_USE_STACK_CLEAN is off
+GC_GROW_YOUNG_HEAP is on
+GC_GROW_OLD_HEAP is on
+GC_TIME is off
+GC_DEBUG_TRACK_ALLOCATIONS is off
+Write barrier type is GC_WB_MANUAL
+GC_COLLECT_ON_ALLOCATION_FAILURE is 1
+GC_THREAD_LOCAL_HEAP_SIZE is 60
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 60
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 60
+GC_OLD_GENERATION_SEMISPACE_SIZE is 600
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 600
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 600
+GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
+GC_MAGIC_JUST_ALLOCATED is 0x41
+GC_MAGIC_JUST_REALLOCATED is 0x42
+GC_MAGIC_JUST_CLEARED is 0x43
+GC_MAGIC_DEALLOCATION_DETECTED is 0x44
+GC_MAGIC_JUST_COPIED is 0x45
+GC_MAGIC_JUST_CLEARED_STACK is 0x46
+GC_MAGIC_JUST_GC_ALLOCATED is 0x47
+GC_MAGIC_JUST_CLEARED_FROMSPACE is 0x48
+GC_WB_DEFAULT is 0
+GC_OY_STORE_DEFAULT is 0
+
+GC_state:
+GC_state.initialized is 1
+GC_state.stack_bottom is 0x7ffffff000
+GC_state.static_bottom is 0x12001d000
+GC_state.static_top is 0x12001f880
+GC_state.state_bottom is 0x12001d3e0
+GC_state.state_top is 0x12001d5c0
+GC_state.reg_bottom is 0x7fffffd640
+GC_state.reg_top is 0x7fffffd7a0
+Region statistics
+-----------------
+fromspace :      b=  0x0                 l=0x6e0000          
+               end=  0x6e0000          
+            bitmap=  0x0                 s=0xffffffffffffffff  u=0xffffffffffffffff
+tospace   :      b=  0x160c00000         l=0x6e0000          
+               end=  0x1612e0000       
+            bitmap=  0x16080f070         s=0x37000             u=0x2a1c0           
+free      :      b=  0x161143800         l=0x19c800          
+               end=  0x1612e0000       
+scan      :          0x3eef80          
+old       :          0x12001d500       
+
+used size   : 0x543800           bytes (6MB)
+free size   : 0x19c800           bytes (2MB)
+heap size   : 0x6e0000           bytes (7MB)
+
+stats:
+allocations : 1100000 (1M)
+collections : 9 (9)
+copies      : 0 (0)
+This region stores YOUNG objects.
+Region statistics
+-----------------
+fromspace :      b=  0x161400000         l=0x44c0000         
+               end=  0x1658c0000       
+            bitmap=  0x16080f058         s=0x226000            u=0x1ef000          
+tospace   :      b=  0x165c00000         l=0x44c0000         
+               end=  0x16a0c0000       
+            bitmap=  0x16080f040         s=0x226000            u=0x1ef000          
+free      :      b=  0x1699e0000         l=0x6e0000          
+               end=  0x16a0c0000       
+scan      :          0x1699e0000       
+old       :          0x0               
+
+used size   : 0x3de0000          bytes (65MB)
+free size   : 0x6e0000           bytes (7MB)
+heap size   : 0x44c0000          bytes (72MB)
+
+stats:
+allocations : 0 (0)
+collections : 4 (4)
+copies      : 4392960 (4M)
+This region stores OLD objects.
+---------------END GC DEBUG DUMP---------------
+testall.sh: i=11 j=1
+GC_init2 called from (GC_init_constructor):0
+Compiled for GC_CHERI at 00:01:57 May 13 2014
+GC_init2 called from test/test_all.c:286 (initialized already)
+---------------BEGIN GC DEBUG DUMP---------------
+GC_DEBUG is off
+GC_VERBOSE_DEBUG is off
+GC_GENERATIONAL is on
+GC_USE_BITMAP is on
+GC_USE_STACK_CLEAN is off
+GC_GROW_YOUNG_HEAP is on
+GC_GROW_OLD_HEAP is on
+GC_TIME is off
+GC_DEBUG_TRACK_ALLOCATIONS is off
+Write barrier type is GC_WB_MANUAL
+GC_COLLECT_ON_ALLOCATION_FAILURE is 1
+GC_THREAD_LOCAL_HEAP_SIZE is 60
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 60
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 60
+GC_OLD_GENERATION_SEMISPACE_SIZE is 600
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 600
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 600
+GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
+GC_MAGIC_JUST_ALLOCATED is 0x41
+GC_MAGIC_JUST_REALLOCATED is 0x42
+GC_MAGIC_JUST_CLEARED is 0x43
+GC_MAGIC_DEALLOCATION_DETECTED is 0x44
+GC_MAGIC_JUST_COPIED is 0x45
+GC_MAGIC_JUST_CLEARED_STACK is 0x46
+GC_MAGIC_JUST_GC_ALLOCATED is 0x47
+GC_MAGIC_JUST_CLEARED_FROMSPACE is 0x48
+GC_WB_DEFAULT is 0
+GC_OY_STORE_DEFAULT is 0
+
+GC_state:
+GC_state.initialized is 1
+GC_state.stack_bottom is 0x7ffffff000
+GC_state.static_bottom is 0x12001d000
+GC_state.static_top is 0x12001f880
+GC_state.state_bottom is 0x12001d3e0
+GC_state.state_top is 0x12001d5c0
+GC_state.reg_bottom is 0x0
+GC_state.reg_top is 0x0
+Region statistics
+-----------------
+fromspace :      b=  0x0                 l=0x0               
+               end=  0x0               
+            bitmap=  0x0                 s=0xffffffffffffffff  u=0xffffffffffffffff
+tospace   :      b=  0x160811080         l=0x40              
+               end=  0x1608110c0       
+            bitmap=  0x16080f070         s=0x2                 u=0x0               
+free      :      b=  0x160811080         l=0x40              
+               end=  0x1608110c0       
+scan      :          0x0               
+old       :          0x12001d500       
+
+used size   : 0x0                bytes (0B)
+free size   : 0x40               bytes (64B)
+heap size   : 0x40               bytes (64B)
+
+stats:
+allocations : 0 (0)
+collections : 0 (0)
+copies      : 0 (0)
+This region stores YOUNG objects.
+Region statistics
+-----------------
+fromspace :      b=  0x160807300         l=0x260             
+               end=  0x160807560       
+            bitmap=  0x16080f058         s=0x13                u=0x0               
+tospace   :      b=  0x160807080         l=0x260             
+               end=  0x1608072e0       
+            bitmap=  0x16080f040         s=0x13                u=0x0               
+free      :      b=  0x160807080         l=0x260             
+               end=  0x1608072e0       
+scan      :          0x0               
+old       :          0x0               
+
+used size   : 0x0                bytes (0B)
+free size   : 0x260              bytes (608B)
+heap size   : 0x260              bytes (608B)
+
+stats:
+allocations : 0 (0)
+collections : 0 (0)
+copies      : 0 (0)
+This region stores OLD objects.
+---------------END GC DEBUG DUMP---------------
+----------Begin test ll_test----------
+ll_test: Measures time taken to allocate a linked list
+ note: sizeof(node) is 64 (may not be used for this test)
+ note: node_size is 64
+ note: total size is 76800000 (77MB)
+ ==> creating linked list
+ ==> created linked list
+ ==> TIME: 116382731 (116s)
+[plotdata] 1200000 116382731
+ ==> checking linked list
+ ==> checked linked list
+ ==> summing linked list
+ ==> summed linked list
+ ==> ok
+----------Finished test ll_test (took 132s)----------
+---------------BEGIN GC DEBUG DUMP---------------
+GC_DEBUG is off
+GC_VERBOSE_DEBUG is off
+GC_GENERATIONAL is on
+GC_USE_BITMAP is on
+GC_USE_STACK_CLEAN is off
+GC_GROW_YOUNG_HEAP is on
+GC_GROW_OLD_HEAP is on
+GC_TIME is off
+GC_DEBUG_TRACK_ALLOCATIONS is off
+Write barrier type is GC_WB_MANUAL
+GC_COLLECT_ON_ALLOCATION_FAILURE is 1
+GC_THREAD_LOCAL_HEAP_SIZE is 60
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 60
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 60
+GC_OLD_GENERATION_SEMISPACE_SIZE is 600
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 600
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 600
+GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
+GC_MAGIC_JUST_ALLOCATED is 0x41
+GC_MAGIC_JUST_REALLOCATED is 0x42
+GC_MAGIC_JUST_CLEARED is 0x43
+GC_MAGIC_DEALLOCATION_DETECTED is 0x44
+GC_MAGIC_JUST_COPIED is 0x45
+GC_MAGIC_JUST_CLEARED_STACK is 0x46
+GC_MAGIC_JUST_GC_ALLOCATED is 0x47
+GC_MAGIC_JUST_CLEARED_FROMSPACE is 0x48
+GC_WB_DEFAULT is 0
+GC_OY_STORE_DEFAULT is 0
+
+GC_state:
+GC_state.initialized is 1
+GC_state.stack_bottom is 0x7ffffff000
+GC_state.static_bottom is 0x12001d000
+GC_state.static_top is 0x12001f880
+GC_state.state_bottom is 0x12001d3e0
+GC_state.state_top is 0x12001d5c0
+GC_state.reg_bottom is 0x7fffffd640
+GC_state.reg_top is 0x7fffffd7a0
+Region statistics
+-----------------
+fromspace :      b=  0x0                 l=0x780000          
+               end=  0x780000          
+            bitmap=  0x0                 s=0xffffffffffffffff  u=0xffffffffffffffff
+tospace   :      b=  0x160c00000         l=0x780000          
+               end=  0x161380000       
+            bitmap=  0x16080f070         s=0x3c000             u=0x2df00           
+free      :      b=  0x1611be000         l=0x1c2000          
+               end=  0x161380000       
+scan      :          0x3eef80          
+old       :          0x12001d500       
+
+used size   : 0x5be000           bytes (6MB)
+free size   : 0x1c2000           bytes (2MB)
+heap size   : 0x780000           bytes (8MB)
+
+stats:
+allocations : 1200000 (1M)
+collections : 9 (9)
+copies      : 0 (0)
+This region stores YOUNG objects.
+Region statistics
+-----------------
+fromspace :      b=  0x161400000         l=0x4b00000         
+               end=  0x165f00000       
+            bitmap=  0x16080f058         s=0x258000            u=0x21c000          
+tospace   :      b=  0x166000000         l=0x4b00000         
+               end=  0x16ab00000       
+            bitmap=  0x16080f040         s=0x258000            u=0x21c000          
+free      :      b=  0x16a380000         l=0x780000          
+               end=  0x16ab00000       
+scan      :          0x16a380000       
+old       :          0x0               
+
+used size   : 0x4380000          bytes (71MB)
+free size   : 0x780000           bytes (8MB)
+heap size   : 0x4b00000          bytes (79MB)
+
+stats:
+allocations : 0 (0)
+collections : 4 (4)
+copies      : 4792320 (5M)
+This region stores OLD objects.
+---------------END GC DEBUG DUMP---------------
+testall.sh: i=12 j=1
+GC_init2 called from (GC_init_constructor):0
+Compiled for GC_CHERI at 00:01:57 May 13 2014
+GC_init2 called from test/test_all.c:286 (initialized already)
+---------------BEGIN GC DEBUG DUMP---------------
+GC_DEBUG is off
+GC_VERBOSE_DEBUG is off
+GC_GENERATIONAL is on
+GC_USE_BITMAP is on
+GC_USE_STACK_CLEAN is off
+GC_GROW_YOUNG_HEAP is on
+GC_GROW_OLD_HEAP is on
+GC_TIME is off
+GC_DEBUG_TRACK_ALLOCATIONS is off
+Write barrier type is GC_WB_MANUAL
+GC_COLLECT_ON_ALLOCATION_FAILURE is 1
+GC_THREAD_LOCAL_HEAP_SIZE is 60
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 60
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 60
+GC_OLD_GENERATION_SEMISPACE_SIZE is 600
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 600
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 600
+GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
+GC_MAGIC_JUST_ALLOCATED is 0x41
+GC_MAGIC_JUST_REALLOCATED is 0x42
+GC_MAGIC_JUST_CLEARED is 0x43
+GC_MAGIC_DEALLOCATION_DETECTED is 0x44
+GC_MAGIC_JUST_COPIED is 0x45
+GC_MAGIC_JUST_CLEARED_STACK is 0x46
+GC_MAGIC_JUST_GC_ALLOCATED is 0x47
+GC_MAGIC_JUST_CLEARED_FROMSPACE is 0x48
+GC_WB_DEFAULT is 0
+GC_OY_STORE_DEFAULT is 0
+
+GC_state:
+GC_state.initialized is 1
+GC_state.stack_bottom is 0x7ffffff000
+GC_state.static_bottom is 0x12001d000
+GC_state.static_top is 0x12001f880
+GC_state.state_bottom is 0x12001d3e0
+GC_state.state_top is 0x12001d5c0
+GC_state.reg_bottom is 0x0
+GC_state.reg_top is 0x0
+Region statistics
+-----------------
+fromspace :      b=  0x0                 l=0x0               
+               end=  0x0               
+            bitmap=  0x0                 s=0xffffffffffffffff  u=0xffffffffffffffff
+tospace   :      b=  0x160811080         l=0x40              
+               end=  0x1608110c0       
+            bitmap=  0x16080f070         s=0x2                 u=0x0               
+free      :      b=  0x160811080         l=0x40              
+               end=  0x1608110c0       
+scan      :          0x0               
+old       :          0x12001d500       
+
+used size   : 0x0                bytes (0B)
+free size   : 0x40               bytes (64B)
+heap size   : 0x40               bytes (64B)
+
+stats:
+allocations : 0 (0)
+collections : 0 (0)
+copies      : 0 (0)
+This region stores YOUNG objects.
+Region statistics
+-----------------
+fromspace :      b=  0x160807300         l=0x260             
+               end=  0x160807560       
+            bitmap=  0x16080f058         s=0x13                u=0x0               
+tospace   :      b=  0x160807080         l=0x260             
+               end=  0x1608072e0       
+            bitmap=  0x16080f040         s=0x13                u=0x0               
+free      :      b=  0x160807080         l=0x260             
+               end=  0x1608072e0       
+scan      :          0x0               
+old       :          0x0               
+
+used size   : 0x0                bytes (0B)
+free size   : 0x260              bytes (608B)
+heap size   : 0x260              bytes (608B)
+
+stats:
+allocations : 0 (0)
+collections : 0 (0)
+copies      : 0 (0)
+This region stores OLD objects.
+---------------END GC DEBUG DUMP---------------
+----------Begin test ll_test----------
+ll_test: Measures time taken to allocate a linked list
+ note: sizeof(node) is 64 (may not be used for this test)
+ note: node_size is 64
+ note: total size is 83200000 (83MB)
+ ==> creating linked list
+ ==> created linked list
+ ==> TIME: 131452871 (131s)
+[plotdata] 1300000 131452871
+ ==> checking linked list
+ ==> checked linked list
+ ==> summing linked list
+ ==> summed linked list
+ ==> ok
+----------Finished test ll_test (took 148s)----------
+---------------BEGIN GC DEBUG DUMP---------------
+GC_DEBUG is off
+GC_VERBOSE_DEBUG is off
+GC_GENERATIONAL is on
+GC_USE_BITMAP is on
+GC_USE_STACK_CLEAN is off
+GC_GROW_YOUNG_HEAP is on
+GC_GROW_OLD_HEAP is on
+GC_TIME is off
+GC_DEBUG_TRACK_ALLOCATIONS is off
+Write barrier type is GC_WB_MANUAL
+GC_COLLECT_ON_ALLOCATION_FAILURE is 1
+GC_THREAD_LOCAL_HEAP_SIZE is 60
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 60
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 60
+GC_OLD_GENERATION_SEMISPACE_SIZE is 600
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 600
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 600
+GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
+GC_MAGIC_JUST_ALLOCATED is 0x41
+GC_MAGIC_JUST_REALLOCATED is 0x42
+GC_MAGIC_JUST_CLEARED is 0x43
+GC_MAGIC_DEALLOCATION_DETECTED is 0x44
+GC_MAGIC_JUST_COPIED is 0x45
+GC_MAGIC_JUST_CLEARED_STACK is 0x46
+GC_MAGIC_JUST_GC_ALLOCATED is 0x47
+GC_MAGIC_JUST_CLEARED_FROMSPACE is 0x48
+GC_WB_DEFAULT is 0
+GC_OY_STORE_DEFAULT is 0
+
+GC_state:
+GC_state.initialized is 1
+GC_state.stack_bottom is 0x7ffffff000
+GC_state.static_bottom is 0x12001d000
+GC_state.static_top is 0x12001f880
+GC_state.state_bottom is 0x12001d3e0
+GC_state.state_top is 0x12001d5c0
+GC_state.reg_bottom is 0x7fffffd640
+GC_state.reg_top is 0x7fffffd7a0
+Region statistics
+-----------------
+fromspace :      b=  0x0                 l=0x820000          
+               end=  0x820000          
+            bitmap=  0x0                 s=0xffffffffffffffff  u=0xffffffffffffffff
+tospace   :      b=  0x160c00000         l=0x820000          
+               end=  0x161420000       
+            bitmap=  0x16080f070         s=0x41000             u=0x31c40           
+free      :      b=  0x161238800         l=0x1e7800          
+               end=  0x161420000       
+scan      :          0x3eef80          
+old       :          0x12001d500       
+
+used size   : 0x638800           bytes (7MB)
+free size   : 0x1e7800           bytes (2MB)
+heap size   : 0x820000           bytes (9MB)
+
+stats:
+allocations : 1300000 (1M)
+collections : 9 (9)
+copies      : 0 (0)
+This region stores YOUNG objects.
+Region statistics
+-----------------
+fromspace :      b=  0x161800000         l=0x5140000         
+               end=  0x166940000       
+            bitmap=  0x16080f058         s=0x28a000            u=0x249000          
+tospace   :      b=  0x166c00000         l=0x5140000         
+               end=  0x16bd40000       
+            bitmap=  0x16080f040         s=0x28a000            u=0x249000          
+free      :      b=  0x16b520000         l=0x820000          
+               end=  0x16bd40000       
+scan      :          0x16b520000       
+old       :          0x0               
+
+used size   : 0x4920000          bytes (77MB)
+free size   : 0x820000           bytes (9MB)
+heap size   : 0x5140000          bytes (85MB)
+
+stats:
+allocations : 0 (0)
+collections : 4 (4)
+copies      : 5191680 (5M)
+This region stores OLD objects.
+---------------END GC DEBUG DUMP---------------
+testall.sh: i=13 j=1
+GC_init2 called from (GC_init_constructor):0
+Compiled for GC_CHERI at 00:01:57 May 13 2014
+GC_init2 called from test/test_all.c:286 (initialized already)
+---------------BEGIN GC DEBUG DUMP---------------
+GC_DEBUG is off
+GC_VERBOSE_DEBUG is off
+GC_GENERATIONAL is on
+GC_USE_BITMAP is on
+GC_USE_STACK_CLEAN is off
+GC_GROW_YOUNG_HEAP is on
+GC_GROW_OLD_HEAP is on
+GC_TIME is off
+GC_DEBUG_TRACK_ALLOCATIONS is off
+Write barrier type is GC_WB_MANUAL
+GC_COLLECT_ON_ALLOCATION_FAILURE is 1
+GC_THREAD_LOCAL_HEAP_SIZE is 60
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 60
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 60
+GC_OLD_GENERATION_SEMISPACE_SIZE is 600
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 600
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 600
+GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
+GC_MAGIC_JUST_ALLOCATED is 0x41
+GC_MAGIC_JUST_REALLOCATED is 0x42
+GC_MAGIC_JUST_CLEARED is 0x43
+GC_MAGIC_DEALLOCATION_DETECTED is 0x44
+GC_MAGIC_JUST_COPIED is 0x45
+GC_MAGIC_JUST_CLEARED_STACK is 0x46
+GC_MAGIC_JUST_GC_ALLOCATED is 0x47
+GC_MAGIC_JUST_CLEARED_FROMSPACE is 0x48
+GC_WB_DEFAULT is 0
+GC_OY_STORE_DEFAULT is 0
+
+GC_state:
+GC_state.initialized is 1
+GC_state.stack_bottom is 0x7ffffff000
+GC_state.static_bottom is 0x12001d000
+GC_state.static_top is 0x12001f880
+GC_state.state_bottom is 0x12001d3e0
+GC_state.state_top is 0x12001d5c0
+GC_state.reg_bottom is 0x0
+GC_state.reg_top is 0x0
+Region statistics
+-----------------
+fromspace :      b=  0x0                 l=0x0               
+               end=  0x0               
+            bitmap=  0x0                 s=0xffffffffffffffff  u=0xffffffffffffffff
+tospace   :      b=  0x160811080         l=0x40              
+               end=  0x1608110c0       
+            bitmap=  0x16080f070         s=0x2                 u=0x0               
+free      :      b=  0x160811080         l=0x40              
+               end=  0x1608110c0       
+scan      :          0x0               
+old       :          0x12001d500       
+
+used size   : 0x0                bytes (0B)
+free size   : 0x40               bytes (64B)
+heap size   : 0x40               bytes (64B)
+
+stats:
+allocations : 0 (0)
+collections : 0 (0)
+copies      : 0 (0)
+This region stores YOUNG objects.
+Region statistics
+-----------------
+fromspace :      b=  0x160807300         l=0x260             
+               end=  0x160807560       
+            bitmap=  0x16080f058         s=0x13                u=0x0               
+tospace   :      b=  0x160807080         l=0x260             
+               end=  0x1608072e0       
+            bitmap=  0x16080f040         s=0x13                u=0x0               
+free      :      b=  0x160807080         l=0x260             
+               end=  0x1608072e0       
+scan      :          0x0               
+old       :          0x0               
+
+used size   : 0x0                bytes (0B)
+free size   : 0x260              bytes (608B)
+heap size   : 0x260              bytes (608B)
+
+stats:
+allocations : 0 (0)
+collections : 0 (0)
+copies      : 0 (0)
+This region stores OLD objects.
+---------------END GC DEBUG DUMP---------------
+----------Begin test ll_test----------
+ll_test: Measures time taken to allocate a linked list
+ note: sizeof(node) is 64 (may not be used for this test)
+ note: node_size is 64
+ note: total size is 89600000 (90MB)
+ ==> creating linked list
+ ==> created linked list
+ ==> TIME: 137028932 (137s)
+[plotdata] 1400000 137028932
+ ==> checking linked list
+ ==> checked linked list
+ ==> summing linked list
+ ==> summed linked list
+ ==> ok
+----------Finished test ll_test (took 155s)----------
+---------------BEGIN GC DEBUG DUMP---------------
+GC_DEBUG is off
+GC_VERBOSE_DEBUG is off
+GC_GENERATIONAL is on
+GC_USE_BITMAP is on
+GC_USE_STACK_CLEAN is off
+GC_GROW_YOUNG_HEAP is on
+GC_GROW_OLD_HEAP is on
+GC_TIME is off
+GC_DEBUG_TRACK_ALLOCATIONS is off
+Write barrier type is GC_WB_MANUAL
+GC_COLLECT_ON_ALLOCATION_FAILURE is 1
+GC_THREAD_LOCAL_HEAP_SIZE is 60
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 60
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 60
+GC_OLD_GENERATION_SEMISPACE_SIZE is 600
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 600
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 600
+GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
+GC_MAGIC_JUST_ALLOCATED is 0x41
+GC_MAGIC_JUST_REALLOCATED is 0x42
+GC_MAGIC_JUST_CLEARED is 0x43
+GC_MAGIC_DEALLOCATION_DETECTED is 0x44
+GC_MAGIC_JUST_COPIED is 0x45
+GC_MAGIC_JUST_CLEARED_STACK is 0x46
+GC_MAGIC_JUST_GC_ALLOCATED is 0x47
+GC_MAGIC_JUST_CLEARED_FROMSPACE is 0x48
+GC_WB_DEFAULT is 0
+GC_OY_STORE_DEFAULT is 0
+
+GC_state:
+GC_state.initialized is 1
+GC_state.stack_bottom is 0x7ffffff000
+GC_state.static_bottom is 0x12001d000
+GC_state.static_top is 0x12001f880
+GC_state.state_bottom is 0x12001d3e0
+GC_state.state_top is 0x12001d5c0
+GC_state.reg_bottom is 0x7fffffd640
+GC_state.reg_top is 0x7fffffd7a0
+Region statistics
+-----------------
+fromspace :      b=  0x0                 l=0x8c0000          
+               end=  0x8c0000          
+            bitmap=  0x0                 s=0xffffffffffffffff  u=0xffffffffffffffff
+tospace   :      b=  0x160c00000         l=0x8c0000          
+               end=  0x1614c0000       
+            bitmap=  0x16080f070         s=0x46000             u=0x35980           
+free      :      b=  0x1612b3000         l=0x20d000          
+               end=  0x1614c0000       
+scan      :          0x3eef80          
+old       :          0x12001d500       
+
+used size   : 0x6b3000           bytes (7MB)
+free size   : 0x20d000           bytes (2MB)
+heap size   : 0x8c0000           bytes (9MB)
+
+stats:
+allocations : 1400000 (1M)
+collections : 9 (9)
+copies      : 0 (0)
+This region stores YOUNG objects.
+Region statistics
+-----------------
+fromspace :      b=  0x161800000         l=0x5780000         
+               end=  0x166f80000       
+            bitmap=  0x16080f058         s=0x2bc000            u=0x276000          
+tospace   :      b=  0x167000000         l=0x5780000         
+               end=  0x16c780000       
+            bitmap=  0x16080f040         s=0x2bc000            u=0x276000          
+free      :      b=  0x16bec0000         l=0x8c0000          
+               end=  0x16c780000       
+scan      :          0x16bec0000       
+old       :          0x0               
+
+used size   : 0x4ec0000          bytes (83MB)
+free size   : 0x8c0000           bytes (9MB)
+heap size   : 0x5780000          bytes (92MB)
+
+stats:
+allocations : 0 (0)
+collections : 4 (4)
+copies      : 5591040 (6M)
+This region stores OLD objects.
+---------------END GC DEBUG DUMP---------------
+testall.sh: i=14 j=1
+GC_init2 called from (GC_init_constructor):0
+Compiled for GC_CHERI at 00:01:57 May 13 2014
+GC_init2 called from test/test_all.c:286 (initialized already)
+---------------BEGIN GC DEBUG DUMP---------------
+GC_DEBUG is off
+GC_VERBOSE_DEBUG is off
+GC_GENERATIONAL is on
+GC_USE_BITMAP is on
+GC_USE_STACK_CLEAN is off
+GC_GROW_YOUNG_HEAP is on
+GC_GROW_OLD_HEAP is on
+GC_TIME is off
+GC_DEBUG_TRACK_ALLOCATIONS is off
+Write barrier type is GC_WB_MANUAL
+GC_COLLECT_ON_ALLOCATION_FAILURE is 1
+GC_THREAD_LOCAL_HEAP_SIZE is 60
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 60
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 60
+GC_OLD_GENERATION_SEMISPACE_SIZE is 600
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 600
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 600
+GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
+GC_MAGIC_JUST_ALLOCATED is 0x41
+GC_MAGIC_JUST_REALLOCATED is 0x42
+GC_MAGIC_JUST_CLEARED is 0x43
+GC_MAGIC_DEALLOCATION_DETECTED is 0x44
+GC_MAGIC_JUST_COPIED is 0x45
+GC_MAGIC_JUST_CLEARED_STACK is 0x46
+GC_MAGIC_JUST_GC_ALLOCATED is 0x47
+GC_MAGIC_JUST_CLEARED_FROMSPACE is 0x48
+GC_WB_DEFAULT is 0
+GC_OY_STORE_DEFAULT is 0
+
+GC_state:
+GC_state.initialized is 1
+GC_state.stack_bottom is 0x7ffffff000
+GC_state.static_bottom is 0x12001d000
+GC_state.static_top is 0x12001f880
+GC_state.state_bottom is 0x12001d3e0
+GC_state.state_top is 0x12001d5c0
+GC_state.reg_bottom is 0x0
+GC_state.reg_top is 0x0
+Region statistics
+-----------------
+fromspace :      b=  0x0                 l=0x0               
+               end=  0x0               
+            bitmap=  0x0                 s=0xffffffffffffffff  u=0xffffffffffffffff
+tospace   :      b=  0x160811080         l=0x40              
+               end=  0x1608110c0       
+            bitmap=  0x16080f070         s=0x2                 u=0x0               
+free      :      b=  0x160811080         l=0x40              
+               end=  0x1608110c0       
+scan      :          0x0               
+old       :          0x12001d500       
+
+used size   : 0x0                bytes (0B)
+free size   : 0x40               bytes (64B)
+heap size   : 0x40               bytes (64B)
+
+stats:
+allocations : 0 (0)
+collections : 0 (0)
+copies      : 0 (0)
+This region stores YOUNG objects.
+Region statistics
+-----------------
+fromspace :      b=  0x160807300         l=0x260             
+               end=  0x160807560       
+            bitmap=  0x16080f058         s=0x13                u=0x0               
+tospace   :      b=  0x160807080         l=0x260             
+               end=  0x1608072e0       
+            bitmap=  0x16080f040         s=0x13                u=0x0               
+free      :      b=  0x160807080         l=0x260             
+               end=  0x1608072e0       
+scan      :          0x0               
+old       :          0x0               
+
+used size   : 0x0                bytes (0B)
+free size   : 0x260              bytes (608B)
+heap size   : 0x260              bytes (608B)
+
+stats:
+allocations : 0 (0)
+collections : 0 (0)
+copies      : 0 (0)
+This region stores OLD objects.
+---------------END GC DEBUG DUMP---------------
+----------Begin test ll_test----------
+ll_test: Measures time taken to allocate a linked list
+ note: sizeof(node) is 64 (may not be used for this test)
+ note: node_size is 64
+ note: total size is 96000000 (96MB)
+ ==> creating linked list
+ ==> created linked list
+ ==> TIME: 147255824 (147s)
+[plotdata] 1500000 147255824
+ ==> checking linked list
+ ==> checked linked list
+ ==> summing linked list
+ ==> summed linked list
+ ==> ok
+----------Finished test ll_test (took 166s)----------
+---------------BEGIN GC DEBUG DUMP---------------
+GC_DEBUG is off
+GC_VERBOSE_DEBUG is off
+GC_GENERATIONAL is on
+GC_USE_BITMAP is on
+GC_USE_STACK_CLEAN is off
+GC_GROW_YOUNG_HEAP is on
+GC_GROW_OLD_HEAP is on
+GC_TIME is off
+GC_DEBUG_TRACK_ALLOCATIONS is off
+Write barrier type is GC_WB_MANUAL
+GC_COLLECT_ON_ALLOCATION_FAILURE is 1
+GC_THREAD_LOCAL_HEAP_SIZE is 60
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 60
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 60
+GC_OLD_GENERATION_SEMISPACE_SIZE is 600
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 600
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 600
+GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
+GC_MAGIC_JUST_ALLOCATED is 0x41
+GC_MAGIC_JUST_REALLOCATED is 0x42
+GC_MAGIC_JUST_CLEARED is 0x43
+GC_MAGIC_DEALLOCATION_DETECTED is 0x44
+GC_MAGIC_JUST_COPIED is 0x45
+GC_MAGIC_JUST_CLEARED_STACK is 0x46
+GC_MAGIC_JUST_GC_ALLOCATED is 0x47
+GC_MAGIC_JUST_CLEARED_FROMSPACE is 0x48
+GC_WB_DEFAULT is 0
+GC_OY_STORE_DEFAULT is 0
+
+GC_state:
+GC_state.initialized is 1
+GC_state.stack_bottom is 0x7ffffff000
+GC_state.static_bottom is 0x12001d000
+GC_state.static_top is 0x12001f880
+GC_state.state_bottom is 0x12001d3e0
+GC_state.state_top is 0x12001d5c0
+GC_state.reg_bottom is 0x7fffffd640
+GC_state.reg_top is 0x7fffffd7a0
+Region statistics
+-----------------
+fromspace :      b=  0x0                 l=0x960000          
+               end=  0x960000          
+            bitmap=  0x0                 s=0xffffffffffffffff  u=0xffffffffffffffff
+tospace   :      b=  0x160c00000         l=0x960000          
+               end=  0x161560000       
+            bitmap=  0x16080f070         s=0x4b000             u=0x396c0           
+free      :      b=  0x16132d800         l=0x232800          
+               end=  0x161560000       
+scan      :          0x3eef80          
+old       :          0x12001d500       
+
+used size   : 0x72d800           bytes (8MB)
+free size   : 0x232800           bytes (2MB)
+heap size   : 0x960000           bytes (10MB)
+
+stats:
+allocations : 1500000 (2M)
+collections : 9 (9)
+copies      : 0 (0)
+This region stores YOUNG objects.
+Region statistics
+-----------------
+fromspace :      b=  0x161800000         l=0x5dc0000         
+               end=  0x1675c0000       
+            bitmap=  0x16080f058         s=0x2ee000            u=0x2a3000          
+tospace   :      b=  0x167800000         l=0x5dc0000         
+               end=  0x16d5c0000       
+            bitmap=  0x16080f040         s=0x2ee000            u=0x2a3000          
+free      :      b=  0x16cc60000         l=0x960000          
+               end=  0x16d5c0000       
+scan      :          0x16cc60000       
+old       :          0x0               
+
+used size   : 0x5460000          bytes (88MB)
+free size   : 0x960000           bytes (10MB)
+heap size   : 0x5dc0000          bytes (98MB)
+
+stats:
+allocations : 0 (0)
+collections : 4 (4)
+copies      : 5990400 (6M)
+This region stores OLD objects.
+---------------END GC DEBUG DUMP---------------
+testall.sh: i=15 j=1
+GC_init2 called from (GC_init_constructor):0
+Compiled for GC_CHERI at 00:01:57 May 13 2014
+GC_init2 called from test/test_all.c:286 (initialized already)
+---------------BEGIN GC DEBUG DUMP---------------
+GC_DEBUG is off
+GC_VERBOSE_DEBUG is off
+GC_GENERATIONAL is on
+GC_USE_BITMAP is on
+GC_USE_STACK_CLEAN is off
+GC_GROW_YOUNG_HEAP is on
+GC_GROW_OLD_HEAP is on
+GC_TIME is off
+GC_DEBUG_TRACK_ALLOCATIONS is off
+Write barrier type is GC_WB_MANUAL
+GC_COLLECT_ON_ALLOCATION_FAILURE is 1
+GC_THREAD_LOCAL_HEAP_SIZE is 60
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 60
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 60
+GC_OLD_GENERATION_SEMISPACE_SIZE is 600
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 600
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 600
+GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
+GC_MAGIC_JUST_ALLOCATED is 0x41
+GC_MAGIC_JUST_REALLOCATED is 0x42
+GC_MAGIC_JUST_CLEARED is 0x43
+GC_MAGIC_DEALLOCATION_DETECTED is 0x44
+GC_MAGIC_JUST_COPIED is 0x45
+GC_MAGIC_JUST_CLEARED_STACK is 0x46
+GC_MAGIC_JUST_GC_ALLOCATED is 0x47
+GC_MAGIC_JUST_CLEARED_FROMSPACE is 0x48
+GC_WB_DEFAULT is 0
+GC_OY_STORE_DEFAULT is 0
+
+GC_state:
+GC_state.initialized is 1
+GC_state.stack_bottom is 0x7ffffff000
+GC_state.static_bottom is 0x12001d000
+GC_state.static_top is 0x12001f880
+GC_state.state_bottom is 0x12001d3e0
+GC_state.state_top is 0x12001d5c0
+GC_state.reg_bottom is 0x0
+GC_state.reg_top is 0x0
+Region statistics
+-----------------
+fromspace :      b=  0x0                 l=0x0               
+               end=  0x0               
+            bitmap=  0x0                 s=0xffffffffffffffff  u=0xffffffffffffffff
+tospace   :      b=  0x160811080         l=0x40              
+               end=  0x1608110c0       
+            bitmap=  0x16080f070         s=0x2                 u=0x0               
+free      :      b=  0x160811080         l=0x40              
+               end=  0x1608110c0       
+scan      :          0x0               
+old       :          0x12001d500       
+
+used size   : 0x0                bytes (0B)
+free size   : 0x40               bytes (64B)
+heap size   : 0x40               bytes (64B)
+
+stats:
+allocations : 0 (0)
+collections : 0 (0)
+copies      : 0 (0)
+This region stores YOUNG objects.
+Region statistics
+-----------------
+fromspace :      b=  0x160807300         l=0x260             
+               end=  0x160807560       
+            bitmap=  0x16080f058         s=0x13                u=0x0               
+tospace   :      b=  0x160807080         l=0x260             
+               end=  0x1608072e0       
+            bitmap=  0x16080f040         s=0x13                u=0x0               
+free      :      b=  0x160807080         l=0x260             
+               end=  0x1608072e0       
+scan      :          0x0               
+old       :          0x0               
+
+used size   : 0x0                bytes (0B)
+free size   : 0x260              bytes (608B)
+heap size   : 0x260              bytes (608B)
+
+stats:
+allocations : 0 (0)
+collections : 0 (0)
+copies      : 0 (0)
+This region stores OLD objects.
+---------------END GC DEBUG DUMP---------------
+----------Begin test ll_test----------
+ll_test: Measures time taken to allocate a linked list
+ note: sizeof(node) is 64 (may not be used for this test)
+ note: node_size is 64
+ note: total size is 102400000 (102MB)
+ ==> creating linked list
+ ==> created linked list
+ ==> TIME: 155910245 (156s)
+[plotdata] 1600000 155910245
+ ==> checking linked list
+ ==> checked linked list
+ ==> summing linked list
+ ==> summed linked list
+ ==> ok
+----------Finished test ll_test (took 176s)----------
+---------------BEGIN GC DEBUG DUMP---------------
+GC_DEBUG is off
+GC_VERBOSE_DEBUG is off
+GC_GENERATIONAL is on
+GC_USE_BITMAP is on
+GC_USE_STACK_CLEAN is off
+GC_GROW_YOUNG_HEAP is on
+GC_GROW_OLD_HEAP is on
+GC_TIME is off
+GC_DEBUG_TRACK_ALLOCATIONS is off
+Write barrier type is GC_WB_MANUAL
+GC_COLLECT_ON_ALLOCATION_FAILURE is 1
+GC_THREAD_LOCAL_HEAP_SIZE is 60
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 60
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 60
+GC_OLD_GENERATION_SEMISPACE_SIZE is 600
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 600
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 600
+GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
+GC_MAGIC_JUST_ALLOCATED is 0x41
+GC_MAGIC_JUST_REALLOCATED is 0x42
+GC_MAGIC_JUST_CLEARED is 0x43
+GC_MAGIC_DEALLOCATION_DETECTED is 0x44
+GC_MAGIC_JUST_COPIED is 0x45
+GC_MAGIC_JUST_CLEARED_STACK is 0x46
+GC_MAGIC_JUST_GC_ALLOCATED is 0x47
+GC_MAGIC_JUST_CLEARED_FROMSPACE is 0x48
+GC_WB_DEFAULT is 0
+GC_OY_STORE_DEFAULT is 0
+
+GC_state:
+GC_state.initialized is 1
+GC_state.stack_bottom is 0x7ffffff000
+GC_state.static_bottom is 0x12001d000
+GC_state.static_top is 0x12001f880
+GC_state.state_bottom is 0x12001d3e0
+GC_state.state_top is 0x12001d5c0
+GC_state.reg_bottom is 0x7fffffd640
+GC_state.reg_top is 0x7fffffd7a0
+Region statistics
+-----------------
+fromspace :      b=  0x0                 l=0xa00000          
+               end=  0xa00000          
+            bitmap=  0x0                 s=0xffffffffffffffff  u=0xffffffffffffffff
+tospace   :      b=  0x160c00000         l=0xa00000          
+               end=  0x161600000       
+            bitmap=  0x16080f070         s=0x50000             u=0x3d400           
+free      :      b=  0x1613a8000         l=0x258000          
+               end=  0x161600000       
+scan      :          0x3eef80          
+old       :          0x12001d500       
+
+used size   : 0x7a8000           bytes (8MB)
+free size   : 0x258000           bytes (2MB)
+heap size   : 0xa00000           bytes (10MB)
+
+stats:
+allocations : 1600000 (2M)
+collections : 9 (9)
+copies      : 0 (0)
+This region stores YOUNG objects.
+Region statistics
+-----------------
+fromspace :      b=  0x161800000         l=0x6400000         
+               end=  0x167c00000       
+            bitmap=  0x16080f058         s=0x320000            u=0x2d0000          
+tospace   :      b=  0x168000000         l=0x6400000         
+               end=  0x16e400000       
+            bitmap=  0x16080f040         s=0x320000            u=0x2d0000          
+free      :      b=  0x16da00000         l=0xa00000          
+               end=  0x16e400000       
+scan      :          0x16da00000       
+old       :          0x0               
+
+used size   : 0x5a00000          bytes (94MB)
+free size   : 0xa00000           bytes (10MB)
+heap size   : 0x6400000          bytes (105MB)
+
+stats:
+allocations : 0 (0)
+collections : 4 (4)
+copies      : 6389760 (6M)
+This region stores OLD objects.
+---------------END GC DEBUG DUMP---------------
+testall.sh: i=16 j=1
+GC_init2 called from (GC_init_constructor):0
+Compiled for GC_CHERI at 00:01:57 May 13 2014
+GC_init2 called from test/test_all.c:286 (initialized already)
+---------------BEGIN GC DEBUG DUMP---------------
+GC_DEBUG is off
+GC_VERBOSE_DEBUG is off
+GC_GENERATIONAL is on
+GC_USE_BITMAP is on
+GC_USE_STACK_CLEAN is off
+GC_GROW_YOUNG_HEAP is on
+GC_GROW_OLD_HEAP is on
+GC_TIME is off
+GC_DEBUG_TRACK_ALLOCATIONS is off
+Write barrier type is GC_WB_MANUAL
+GC_COLLECT_ON_ALLOCATION_FAILURE is 1
+GC_THREAD_LOCAL_HEAP_SIZE is 60
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 60
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 60
+GC_OLD_GENERATION_SEMISPACE_SIZE is 600
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 600
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 600
+GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
+GC_MAGIC_JUST_ALLOCATED is 0x41
+GC_MAGIC_JUST_REALLOCATED is 0x42
+GC_MAGIC_JUST_CLEARED is 0x43
+GC_MAGIC_DEALLOCATION_DETECTED is 0x44
+GC_MAGIC_JUST_COPIED is 0x45
+GC_MAGIC_JUST_CLEARED_STACK is 0x46
+GC_MAGIC_JUST_GC_ALLOCATED is 0x47
+GC_MAGIC_JUST_CLEARED_FROMSPACE is 0x48
+GC_WB_DEFAULT is 0
+GC_OY_STORE_DEFAULT is 0
+
+GC_state:
+GC_state.initialized is 1
+GC_state.stack_bottom is 0x7ffffff000
+GC_state.static_bottom is 0x12001d000
+GC_state.static_top is 0x12001f880
+GC_state.state_bottom is 0x12001d3e0
+GC_state.state_top is 0x12001d5c0
+GC_state.reg_bottom is 0x0
+GC_state.reg_top is 0x0
+Region statistics
+-----------------
+fromspace :      b=  0x0                 l=0x0               
+               end=  0x0               
+            bitmap=  0x0                 s=0xffffffffffffffff  u=0xffffffffffffffff
+tospace   :      b=  0x160811080         l=0x40              
+               end=  0x1608110c0       
+            bitmap=  0x16080f070         s=0x2                 u=0x0               
+free      :      b=  0x160811080         l=0x40              
+               end=  0x1608110c0       
+scan      :          0x0               
+old       :          0x12001d500       
+
+used size   : 0x0                bytes (0B)
+free size   : 0x40               bytes (64B)
+heap size   : 0x40               bytes (64B)
+
+stats:
+allocations : 0 (0)
+collections : 0 (0)
+copies      : 0 (0)
+This region stores YOUNG objects.
+Region statistics
+-----------------
+fromspace :      b=  0x160807300         l=0x260             
+               end=  0x160807560       
+            bitmap=  0x16080f058         s=0x13                u=0x0               
+tospace   :      b=  0x160807080         l=0x260             
+               end=  0x1608072e0       
+            bitmap=  0x16080f040         s=0x13                u=0x0               
+free      :      b=  0x160807080         l=0x260             
+               end=  0x1608072e0       
+scan      :          0x0               
+old       :          0x0               
+
+used size   : 0x0                bytes (0B)
+free size   : 0x260              bytes (608B)
+heap size   : 0x260              bytes (608B)
+
+stats:
+allocations : 0 (0)
+collections : 0 (0)
+copies      : 0 (0)
+This region stores OLD objects.
+---------------END GC DEBUG DUMP---------------
+----------Begin test ll_test----------
+ll_test: Measures time taken to allocate a linked list
+ note: sizeof(node) is 64 (may not be used for this test)
+ note: node_size is 64
+ note: total size is 108800000 (109MB)
+ ==> creating linked list
+ ==> created linked list
+ ==> TIME: 168742774 (169s)
+[plotdata] 1700000 168742774
+ ==> checking linked list
+ ==> checked linked list
+ ==> summing linked list
+ ==> summed linked list
+ ==> ok
+----------Finished test ll_test (took 192s)----------
+---------------BEGIN GC DEBUG DUMP---------------
+GC_DEBUG is off
+GC_VERBOSE_DEBUG is off
+GC_GENERATIONAL is on
+GC_USE_BITMAP is on
+GC_USE_STACK_CLEAN is off
+GC_GROW_YOUNG_HEAP is on
+GC_GROW_OLD_HEAP is on
+GC_TIME is off
+GC_DEBUG_TRACK_ALLOCATIONS is off
+Write barrier type is GC_WB_MANUAL
+GC_COLLECT_ON_ALLOCATION_FAILURE is 1
+GC_THREAD_LOCAL_HEAP_SIZE is 60
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 60
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 60
+GC_OLD_GENERATION_SEMISPACE_SIZE is 600
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 600
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 600
+GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
+GC_MAGIC_JUST_ALLOCATED is 0x41
+GC_MAGIC_JUST_REALLOCATED is 0x42
+GC_MAGIC_JUST_CLEARED is 0x43
+GC_MAGIC_DEALLOCATION_DETECTED is 0x44
+GC_MAGIC_JUST_COPIED is 0x45
+GC_MAGIC_JUST_CLEARED_STACK is 0x46
+GC_MAGIC_JUST_GC_ALLOCATED is 0x47
+GC_MAGIC_JUST_CLEARED_FROMSPACE is 0x48
+GC_WB_DEFAULT is 0
+GC_OY_STORE_DEFAULT is 0
+
+GC_state:
+GC_state.initialized is 1
+GC_state.stack_bottom is 0x7ffffff000
+GC_state.static_bottom is 0x12001d000
+GC_state.static_top is 0x12001f880
+GC_state.state_bottom is 0x12001d3e0
+GC_state.state_top is 0x12001d5c0
+GC_state.reg_bottom is 0x7fffffd640
+GC_state.reg_top is 0x7fffffd7a0
+Region statistics
+-----------------
+fromspace :      b=  0x0                 l=0xaa0000          
+               end=  0xaa0000          
+            bitmap=  0x0                 s=0xffffffffffffffff  u=0xffffffffffffffff
+tospace   :      b=  0x160c00000         l=0xaa0000          
+               end=  0x1616a0000       
+            bitmap=  0x16080f070         s=0x55000             u=0x41140           
+free      :      b=  0x161422800         l=0x27d800          
+               end=  0x1616a0000       
+scan      :          0x3eef80          
+old       :          0x12001d500       
+
+used size   : 0x822800           bytes (9MB)
+free size   : 0x27d800           bytes (3MB)
+heap size   : 0xaa0000           bytes (11MB)
+
+stats:
+allocations : 1700000 (2M)
+collections : 9 (9)
+copies      : 0 (0)
+This region stores YOUNG objects.
+Region statistics
+-----------------
+fromspace :      b=  0x161800000         l=0x6a40000         
+               end=  0x168240000       
+            bitmap=  0x16080f058         s=0x352000            u=0x2fd000          
+tospace   :      b=  0x168400000         l=0x6a40000         
+               end=  0x16ee40000       
+            bitmap=  0x16080f040         s=0x352000            u=0x2fd000          
+free      :      b=  0x16e3a0000         l=0xaa0000          
+               end=  0x16ee40000       
+scan      :          0x16e3a0000       
+old       :          0x0               
+
+used size   : 0x5fa0000          bytes (100MB)
+free size   : 0xaa0000           bytes (11MB)
+heap size   : 0x6a40000          bytes (111MB)
+
+stats:
+allocations : 0 (0)
+collections : 4 (4)
+copies      : 6789120 (7M)
+This region stores OLD objects.
+---------------END GC DEBUG DUMP---------------
+testall.sh: i=17 j=1
+^[[AGC_init2 called from (GC_init_constructor):0
+Compiled for GC_CHERI at 00:01:57 May 13 2014
+GC_init2 called from test/test_all.c:286 (initialized already)
+---------------BEGIN GC DEBUG DUMP---------------
+GC_DEBUG is off
+GC_VERBOSE_DEBUG is off
+GC_GENERATIONAL is on
+GC_USE_BITMAP is on
+GC_USE_STACK_CLEAN is off
+GC_GROW_YOUNG_HEAP is on
+GC_GROW_OLD_HEAP is on
+GC_TIME is off
+GC_DEBUG_TRACK_ALLOCATIONS is off
+Write barrier type is GC_WB_MANUAL
+GC_COLLECT_ON_ALLOCATION_FAILURE is 1
+GC_THREAD_LOCAL_HEAP_SIZE is 60
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 60
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 60
+GC_OLD_GENERATION_SEMISPACE_SIZE is 600
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 600
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 600
+GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
+GC_MAGIC_JUST_ALLOCATED is 0x41
+GC_MAGIC_JUST_REALLOCATED is 0x42
+GC_MAGIC_JUST_CLEARED is 0x43
+GC_MAGIC_DEALLOCATION_DETECTED is 0x44
+GC_MAGIC_JUST_COPIED is 0x45
+GC_MAGIC_JUST_CLEARED_STACK is 0x46
+GC_MAGIC_JUST_GC_ALLOCATED is 0x47
+GC_MAGIC_JUST_CLEARED_FROMSPACE is 0x48
+GC_WB_DEFAULT is 0
+GC_OY_STORE_DEFAULT is 0
+
+GC_state:
+GC_state.initialized is 1
+GC_state.stack_bottom is 0x7ffffff000
+GC_state.static_bottom is 0x12001d000
+GC_state.static_top is 0x12001f880
+GC_state.state_bottom is 0x12001d3e0
+GC_state.state_top is 0x12001d5c0
+GC_state.reg_bottom is 0x0
+GC_state.reg_top is 0x0
+Region statistics
+-----------------
+fromspace :      b=  0x0                 l=0x0               
+               end=  0x0               
+            bitmap=  0x0                 s=0xffffffffffffffff  u=0xffffffffffffffff
+tospace   :      b=  0x160811080         l=0x40              
+               end=  0x1608110c0       
+            bitmap=  0x16080f070         s=0x2                 u=0x0               
+free      :      b=  0x160811080         l=0x40              
+               end=  0x1608110c0       
+scan      :          0x0               
+old       :          0x12001d500       
+
+used size   : 0x0                bytes (0B)
+free size   : 0x40               bytes (64B)
+heap size   : 0x40               bytes (64B)
+
+stats:
+allocations : 0 (0)
+collections : 0 (0)
+copies      : 0 (0)
+This region stores YOUNG objects.
+Region statistics
+-----------------
+fromspace :      b=  0x160807300         l=0x260             
+               end=  0x160807560       
+            bitmap=  0x16080f058         s=0x13                u=0x0               
+tospace   :      b=  0x160807080         l=0x260             
+               end=  0x1608072e0       
+            bitmap=  0x16080f040         s=0x13                u=0x0               
+free      :      b=  0x160807080         l=0x260             
+               end=  0x1608072e0       
+scan      :          0x0               
+old       :          0x0               
+
+used size   : 0x0                bytes (0B)
+free size   : 0x260              bytes (608B)
+heap size   : 0x260              bytes (608B)
+
+stats:
+allocations : 0 (0)
+collections : 0 (0)
+copies      : 0 (0)
+This region stores OLD objects.
+---------------END GC DEBUG DUMP---------------
+----------Begin test ll_test----------
+ll_test: Measures time taken to allocate a linked list
+ note: sizeof(node) is 64 (may not be used for this test)
+ note: node_size is 64
+ note: total size is 115200000 (115MB)
+ ==> creating linked list
+ ==> created linked list
+ ==> TIME: 176529076 (177s)
+[plotdata] 1800000 176529076
+ ==> checking linked list
+ ==> checked linked list
+ ==> summing linked list
+ ==> summed linked list
+ ==> ok
+----------Finished test ll_test (took 199s)----------
+---------------BEGIN GC DEBUG DUMP---------------
+GC_DEBUG is off
+GC_VERBOSE_DEBUG is off
+GC_GENERATIONAL is on
+GC_USE_BITMAP is on
+GC_USE_STACK_CLEAN is off
+GC_GROW_YOUNG_HEAP is on
+GC_GROW_OLD_HEAP is on
+GC_TIME is off
+GC_DEBUG_TRACK_ALLOCATIONS is off
+Write barrier type is GC_WB_MANUAL
+GC_COLLECT_ON_ALLOCATION_FAILURE is 1
+GC_THREAD_LOCAL_HEAP_SIZE is 60
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 60
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 60
+GC_OLD_GENERATION_SEMISPACE_SIZE is 600
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 600
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 600
+GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
+GC_MAGIC_JUST_ALLOCATED is 0x41
+GC_MAGIC_JUST_REALLOCATED is 0x42
+GC_MAGIC_JUST_CLEARED is 0x43
+GC_MAGIC_DEALLOCATION_DETECTED is 0x44
+GC_MAGIC_JUST_COPIED is 0x45
+GC_MAGIC_JUST_CLEARED_STACK is 0x46
+GC_MAGIC_JUST_GC_ALLOCATED is 0x47
+GC_MAGIC_JUST_CLEARED_FROMSPACE is 0x48
+GC_WB_DEFAULT is 0
+GC_OY_STORE_DEFAULT is 0
+
+GC_state:
+GC_state.initialized is 1
+GC_state.stack_bottom is 0x7ffffff000
+GC_state.static_bottom is 0x12001d000
+GC_state.static_top is 0x12001f880
+GC_state.state_bottom is 0x12001d3e0
+GC_state.state_top is 0x12001d5c0
+GC_state.reg_bottom is 0x7fffffd640
+GC_state.reg_top is 0x7fffffd7a0
+Region statistics
+-----------------
+fromspace :      b=  0x0                 l=0xb40000          
+               end=  0xb40000          
+            bitmap=  0x0                 s=0xffffffffffffffff  u=0xffffffffffffffff
+tospace   :      b=  0x160c00000         l=0xb40000          
+               end=  0x161740000       
+            bitmap=  0x16080f070         s=0x5a000             u=0x44e80           
+free      :      b=  0x16149d000         l=0x2a3000          
+               end=  0x161740000       
+scan      :          0x3eef80          
+old       :          0x12001d500       
+
+used size   : 0x89d000           bytes (9MB)
+free size   : 0x2a3000           bytes (3MB)
+heap size   : 0xb40000           bytes (12MB)
+
+stats:
+allocations : 1800000 (2M)
+collections : 9 (9)
+copies      : 0 (0)
+This region stores YOUNG objects.
+Region statistics
+-----------------
+fromspace :      b=  0x161800000         l=0x7080000         
+               end=  0x168880000       
+            bitmap=  0x16080f058         s=0x384000            u=0x32a000          
+tospace   :      b=  0x168c00000         l=0x7080000         
+               end=  0x16fc80000       
+            bitmap=  0x16080f040         s=0x384000            u=0x32a000          
+free      :      b=  0x16f140000         l=0xb40000          
+               end=  0x16fc80000       
+scan      :          0x16f140000       
+old       :          0x0               
+
+used size   : 0x6540000          bytes (106MB)
+free size   : 0xb40000           bytes (12MB)
+heap size   : 0x7080000          bytes (118MB)
+
+stats:
+allocations : 0 (0)
+collections : 4 (4)
+copies      : 7188480 (7M)
+This region stores OLD objects.
+---------------END GC DEBUG DUMP---------------
+testall.sh: i=18 j=1
+GC_init2 called from (GC_init_constructor):0
+Compiled for GC_CHERI at 00:01:57 May 13 2014
+GC_init2 called from test/test_all.c:286 (initialized already)
+---------------BEGIN GC DEBUG DUMP---------------
+GC_DEBUG is off
+GC_VERBOSE_DEBUG is off
+GC_GENERATIONAL is on
+GC_USE_BITMAP is on
+GC_USE_STACK_CLEAN is off
+GC_GROW_YOUNG_HEAP is on
+GC_GROW_OLD_HEAP is on
+GC_TIME is off
+GC_DEBUG_TRACK_ALLOCATIONS is off
+Write barrier type is GC_WB_MANUAL
+GC_COLLECT_ON_ALLOCATION_FAILURE is 1
+GC_THREAD_LOCAL_HEAP_SIZE is 60
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 60
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 60
+GC_OLD_GENERATION_SEMISPACE_SIZE is 600
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 600
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 600
+GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
+GC_MAGIC_JUST_ALLOCATED is 0x41
+GC_MAGIC_JUST_REALLOCATED is 0x42
+GC_MAGIC_JUST_CLEARED is 0x43
+GC_MAGIC_DEALLOCATION_DETECTED is 0x44
+GC_MAGIC_JUST_COPIED is 0x45
+GC_MAGIC_JUST_CLEARED_STACK is 0x46
+GC_MAGIC_JUST_GC_ALLOCATED is 0x47
+GC_MAGIC_JUST_CLEARED_FROMSPACE is 0x48
+GC_WB_DEFAULT is 0
+GC_OY_STORE_DEFAULT is 0
+
+GC_state:
+GC_state.initialized is 1
+GC_state.stack_bottom is 0x7ffffff000
+GC_state.static_bottom is 0x12001d000
+GC_state.static_top is 0x12001f880
+GC_state.state_bottom is 0x12001d3e0
+GC_state.state_top is 0x12001d5c0
+GC_state.reg_bottom is 0x0
+GC_state.reg_top is 0x0
+Region statistics
+-----------------
+fromspace :      b=  0x0                 l=0x0               
+               end=  0x0               
+            bitmap=  0x0                 s=0xffffffffffffffff  u=0xffffffffffffffff
+tospace   :      b=  0x160811080         l=0x40              
+               end=  0x1608110c0       
+            bitmap=  0x16080f070         s=0x2                 u=0x0               
+free      :      b=  0x160811080         l=0x40              
+               end=  0x1608110c0       
+scan      :          0x0               
+old       :          0x12001d500       
+
+used size   : 0x0                bytes (0B)
+free size   : 0x40               bytes (64B)
+heap size   : 0x40               bytes (64B)
+
+stats:
+allocations : 0 (0)
+collections : 0 (0)
+copies      : 0 (0)
+This region stores YOUNG objects.
+Region statistics
+-----------------
+fromspace :      b=  0x160807300         l=0x260             
+               end=  0x160807560       
+            bitmap=  0x16080f058         s=0x13                u=0x0               
+tospace   :      b=  0x160807080         l=0x260             
+               end=  0x1608072e0       
+            bitmap=  0x16080f040         s=0x13                u=0x0               
+free      :      b=  0x160807080         l=0x260             
+               end=  0x1608072e0       
+scan      :          0x0               
+old       :          0x0               
+
+used size   : 0x0                bytes (0B)
+free size   : 0x260              bytes (608B)
+heap size   : 0x260              bytes (608B)
+
+stats:
+allocations : 0 (0)
+collections : 0 (0)
+copies      : 0 (0)
+This region stores OLD objects.
+---------------END GC DEBUG DUMP---------------
+----------Begin test ll_test----------
+ll_test: Measures time taken to allocate a linked list
+ note: sizeof(node) is 64 (may not be used for this test)
+ note: node_size is 64
+ note: total size is 121600000 (122MB)
+ ==> creating linked list
+ ==> created linked list
+ ==> TIME: 185257744 (185s)
+[plotdata] 1900000 185257744
+ ==> checking linked list
+ ==> checked linked list
+ ==> summing linked list
+ ==> summed linked list
+ ==> ok
+----------Finished test ll_test (took 210s)----------
+---------------BEGIN GC DEBUG DUMP---------------
+GC_DEBUG is off
+GC_VERBOSE_DEBUG is off
+GC_GENERATIONAL is on
+GC_USE_BITMAP is on
+GC_USE_STACK_CLEAN is off
+GC_GROW_YOUNG_HEAP is on
+GC_GROW_OLD_HEAP is on
+GC_TIME is off
+GC_DEBUG_TRACK_ALLOCATIONS is off
+Write barrier type is GC_WB_MANUAL
+GC_COLLECT_ON_ALLOCATION_FAILURE is 1
+GC_THREAD_LOCAL_HEAP_SIZE is 60
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 60
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 60
+GC_OLD_GENERATION_SEMISPACE_SIZE is 600
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 600
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 600
+GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
+GC_MAGIC_JUST_ALLOCATED is 0x41
+GC_MAGIC_JUST_REALLOCATED is 0x42
+GC_MAGIC_JUST_CLEARED is 0x43
+GC_MAGIC_DEALLOCATION_DETECTED is 0x44
+GC_MAGIC_JUST_COPIED is 0x45
+GC_MAGIC_JUST_CLEARED_STACK is 0x46
+GC_MAGIC_JUST_GC_ALLOCATED is 0x47
+GC_MAGIC_JUST_CLEARED_FROMSPACE is 0x48
+GC_WB_DEFAULT is 0
+GC_OY_STORE_DEFAULT is 0
+
+GC_state:
+GC_state.initialized is 1
+GC_state.stack_bottom is 0x7ffffff000
+GC_state.static_bottom is 0x12001d000
+GC_state.static_top is 0x12001f880
+GC_state.state_bottom is 0x12001d3e0
+GC_state.state_top is 0x12001d5c0
+GC_state.reg_bottom is 0x7fffffd640
+GC_state.reg_top is 0x7fffffd7a0
+Region statistics
+-----------------
+fromspace :      b=  0x0                 l=0xbe0000          
+               end=  0xbe0000          
+            bitmap=  0x0                 s=0xffffffffffffffff  u=0xffffffffffffffff
+tospace   :      b=  0x160c00000         l=0xbe0000          
+               end=  0x1617e0000       
+            bitmap=  0x16080f070         s=0x5f000             u=0x48bc0           
+free      :      b=  0x161517800         l=0x2c8800          
+               end=  0x1617e0000       
+scan      :          0x3eef80          
+old       :          0x12001d500       
+
+used size   : 0x917800           bytes (10MB)
+free size   : 0x2c8800           bytes (3MB)
+heap size   : 0xbe0000           bytes (12MB)
+
+stats:
+allocations : 1900000 (2M)
+collections : 9 (9)
+copies      : 0 (0)
+This region stores YOUNG objects.
+Region statistics
+-----------------
+fromspace :      b=  0x161800000         l=0x76c0000         
+               end=  0x168ec0000       
+            bitmap=  0x16080f058         s=0x3b6000            u=0x357000          
+tospace   :      b=  0x169000000         l=0x76c0000         
+               end=  0x1706c0000       
+            bitmap=  0x16080f040         s=0x3b6000            u=0x357000          
+free      :      b=  0x16fae0000         l=0xbe0000          
+               end=  0x1706c0000       
+scan      :          0x16fae0000       
+old       :          0x0               
+
+used size   : 0x6ae0000          bytes (112MB)
+free size   : 0xbe0000           bytes (12MB)
+heap size   : 0x76c0000          bytes (125MB)
+
+stats:
+allocations : 0 (0)
+collections : 4 (4)
+copies      : 7587840 (8M)
+This region stores OLD objects.
+---------------END GC DEBUG DUMP---------------
+testall.sh: i=19 j=1
+GC_init2 called from (GC_init_constructor):0
+Compiled for GC_CHERI at 00:01:57 May 13 2014
+GC_init2 called from test/test_all.c:286 (initialized already)
+---------------BEGIN GC DEBUG DUMP---------------
+GC_DEBUG is off
+GC_VERBOSE_DEBUG is off
+GC_GENERATIONAL is on
+GC_USE_BITMAP is on
+GC_USE_STACK_CLEAN is off
+GC_GROW_YOUNG_HEAP is on
+GC_GROW_OLD_HEAP is on
+GC_TIME is off
+GC_DEBUG_TRACK_ALLOCATIONS is off
+Write barrier type is GC_WB_MANUAL
+GC_COLLECT_ON_ALLOCATION_FAILURE is 1
+GC_THREAD_LOCAL_HEAP_SIZE is 60
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 60
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 60
+GC_OLD_GENERATION_SEMISPACE_SIZE is 600
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 600
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 600
+GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
+GC_MAGIC_JUST_ALLOCATED is 0x41
+GC_MAGIC_JUST_REALLOCATED is 0x42
+GC_MAGIC_JUST_CLEARED is 0x43
+GC_MAGIC_DEALLOCATION_DETECTED is 0x44
+GC_MAGIC_JUST_COPIED is 0x45
+GC_MAGIC_JUST_CLEARED_STACK is 0x46
+GC_MAGIC_JUST_GC_ALLOCATED is 0x47
+GC_MAGIC_JUST_CLEARED_FROMSPACE is 0x48
+GC_WB_DEFAULT is 0
+GC_OY_STORE_DEFAULT is 0
+
+GC_state:
+GC_state.initialized is 1
+GC_state.stack_bottom is 0x7ffffff000
+GC_state.static_bottom is 0x12001d000
+GC_state.static_top is 0x12001f880
+GC_state.state_bottom is 0x12001d3e0
+GC_state.state_top is 0x12001d5c0
+GC_state.reg_bottom is 0x0
+GC_state.reg_top is 0x0
+Region statistics
+-----------------
+fromspace :      b=  0x0                 l=0x0               
+               end=  0x0               
+            bitmap=  0x0                 s=0xffffffffffffffff  u=0xffffffffffffffff
+tospace   :      b=  0x160811080         l=0x40              
+               end=  0x1608110c0       
+            bitmap=  0x16080f070         s=0x2                 u=0x0               
+free      :      b=  0x160811080         l=0x40              
+               end=  0x1608110c0       
+scan      :          0x0               
+old       :          0x12001d500       
+
+used size   : 0x0                bytes (0B)
+free size   : 0x40               bytes (64B)
+heap size   : 0x40               bytes (64B)
+
+stats:
+allocations : 0 (0)
+collections : 0 (0)
+copies      : 0 (0)
+This region stores YOUNG objects.
+Region statistics
+-----------------
+fromspace :      b=  0x160807300         l=0x260             
+               end=  0x160807560       
+            bitmap=  0x16080f058         s=0x13                u=0x0               
+tospace   :      b=  0x160807080         l=0x260             
+               end=  0x1608072e0       
+            bitmap=  0x16080f040         s=0x13                u=0x0               
+free      :      b=  0x160807080         l=0x260             
+               end=  0x1608072e0       
+scan      :          0x0               
+old       :          0x0               
+
+used size   : 0x0                bytes (0B)
+free size   : 0x260              bytes (608B)
+heap size   : 0x260              bytes (608B)
+
+stats:
+allocations : 0 (0)
+collections : 0 (0)
+copies      : 0 (0)
+This region stores OLD objects.
+---------------END GC DEBUG DUMP---------------
+----------Begin test ll_test----------
+ll_test: Measures time taken to allocate a linked list
+ note: sizeof(node) is 64 (may not be used for this test)
+ note: node_size is 64
+ note: total size is 128000000 (128MB)
+ ==> creating linked list
+ ==> created linked list
+ ==> TIME: 198285724 (198s)
+[plotdata] 2000000 198285724
+ ==> checking linked list
+ ==> checked linked list
+ ==> summing linked list
+ ==> summed linked list
+ ==> ok
+----------Finished test ll_test (took 223s)----------
+---------------BEGIN GC DEBUG DUMP---------------
+GC_DEBUG is off
+GC_VERBOSE_DEBUG is off
+GC_GENERATIONAL is on
+GC_USE_BITMAP is on
+GC_USE_STACK_CLEAN is off
+GC_GROW_YOUNG_HEAP is on
+GC_GROW_OLD_HEAP is on
+GC_TIME is off
+GC_DEBUG_TRACK_ALLOCATIONS is off
+Write barrier type is GC_WB_MANUAL
+GC_COLLECT_ON_ALLOCATION_FAILURE is 1
+GC_THREAD_LOCAL_HEAP_SIZE is 60
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 60
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 60
+GC_OLD_GENERATION_SEMISPACE_SIZE is 600
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 600
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 600
+GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
+GC_MAGIC_JUST_ALLOCATED is 0x41
+GC_MAGIC_JUST_REALLOCATED is 0x42
+GC_MAGIC_JUST_CLEARED is 0x43
+GC_MAGIC_DEALLOCATION_DETECTED is 0x44
+GC_MAGIC_JUST_COPIED is 0x45
+GC_MAGIC_JUST_CLEARED_STACK is 0x46
+GC_MAGIC_JUST_GC_ALLOCATED is 0x47
+GC_MAGIC_JUST_CLEARED_FROMSPACE is 0x48
+GC_WB_DEFAULT is 0
+GC_OY_STORE_DEFAULT is 0
+
+GC_state:
+GC_state.initialized is 1
+GC_state.stack_bottom is 0x7ffffff000
+GC_state.static_bottom is 0x12001d000
+GC_state.static_top is 0x12001f880
+GC_state.state_bottom is 0x12001d3e0
+GC_state.state_top is 0x12001d5c0
+GC_state.reg_bottom is 0x7fffffd640
+GC_state.reg_top is 0x7fffffd7a0
+Region statistics
+-----------------
+fromspace :      b=  0x0                 l=0xc80000          
+               end=  0xc80000          
+            bitmap=  0x0                 s=0xffffffffffffffff  u=0xffffffffffffffff
+tospace   :      b=  0x160c00000         l=0xc80000          
+               end=  0x161880000       
+            bitmap=  0x16080f070         s=0x64000             u=0x4c900           
+free      :      b=  0x161592000         l=0x2ee000          
+               end=  0x161880000       
+scan      :          0x3eef80          
+old       :          0x12001d500       
+
+used size   : 0x992000           bytes (10MB)
+free size   : 0x2ee000           bytes (3MB)
+heap size   : 0xc80000           bytes (13MB)
+
+stats:
+allocations : 2000000 (2M)
+collections : 9 (9)
+copies      : 0 (0)
+This region stores YOUNG objects.
+Region statistics
+-----------------
+fromspace :      b=  0x161c00000         l=0x7d00000         
+               end=  0x169900000       
+            bitmap=  0x16080f058         s=0x3e8000            u=0x384000          
+tospace   :      b=  0x169c00000         l=0x7d00000         
+               end=  0x171900000       
+            bitmap=  0x16080f040         s=0x3e8000            u=0x384000          
+free      :      b=  0x170c80000         l=0xc80000          
+               end=  0x171900000       
+scan      :          0x170c80000       
+old       :          0x0               
+
+used size   : 0x7080000          bytes (118MB)
+free size   : 0xc80000           bytes (13MB)
+heap size   : 0x7d00000          bytes (131MB)
+
+stats:
+allocations : 0 (0)
+collections : 4 (4)
+copies      : 7987200 (8M)
+This region stores OLD objects.
+---------------END GC DEBUG DUMP---------------
+testall.sh: i=20 j=1

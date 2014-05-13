@@ -1,0 +1,383 @@
+spawn ssh -i /home/munraj/.ssh/mbv21 mbv21@cloud2 /mnt/mbv21zfs//testall.sh
+Enter passphrase for key '/home/munraj/.ssh/mbv21': 
+Password for mbv21@cloud2:
+Compiled for GC_BOEHM at 21:15:37 May 12 2014
+Boehm heap size: 65536
+----------Begin test ll_test----------
+ll_test: Measures time taken to allocate a linked list
+ note: sizeof(node) is 16 (may not be used for this test)
+ note: node_size is 16
+ note: total size is 1600000 (2MB)
+ ==> creating linked list
+ ==> created linked list
+ ==> TIME: 1347314 (1347ms)
+[plotdata] 100000 1347314
+ ==> checking linked list
+ ==> checked linked list
+ ==> summing linked list
+ ==> summed linked list
+ ==> ok
+----------Finished test ll_test (took 1480ms)----------
+Boehm heap size: 2052096
+testall.sh: i=1 j=1
+Compiled for GC_BOEHM at 21:15:37 May 12 2014
+Boehm heap size: 65536
+----------Begin test ll_test----------
+ll_test: Measures time taken to allocate a linked list
+ note: sizeof(node) is 16 (may not be used for this test)
+ note: node_size is 16
+ note: total size is 3200000 (3MB)
+ ==> creating linked list
+ ==> created linked list
+ ==> TIME: 2483271 (2483ms)
+[plotdata] 200000 2483271
+ ==> checking linked list
+ ==> checked linked list
+ ==> summing linked list
+ ==> summed linked list
+ ==> ok
+----------Finished test ll_test (took 2769ms)----------
+Boehm heap size: 3657728
+testall.sh: i=2 j=1
+Compiled for GC_BOEHM at 21:15:37 May 12 2014
+Boehm heap size: 65536
+----------Begin test ll_test----------
+ll_test: Measures time taken to allocate a linked list
+ note: sizeof(node) is 16 (may not be used for this test)
+ note: node_size is 16
+ note: total size is 4800000 (5MB)
+ ==> creating linked list
+ ==> created linked list
+ ==> TIME: 4121983 (4122ms)
+[plotdata] 300000 4121983
+ ==> checking linked list
+ ==> checked linked list
+ ==> summing linked list
+ ==> summed linked list
+ ==> ok
+----------Finished test ll_test (took 4517ms)----------
+Boehm heap size: 4878336
+testall.sh: i=3 j=1
+Compiled for GC_BOEHM at 21:15:37 May 12 2014
+Boehm heap size: 65536
+----------Begin test ll_test----------
+ll_test: Measures time taken to allocate a linked list
+ note: sizeof(node) is 16 (may not be used for this test)
+ note: node_size is 16
+ note: total size is 6400000 (6MB)
+ ==> creating linked list
+ ==> created linked list
+ ==> TIME: 4726166 (4726ms)
+[plotdata] 400000 4726166
+ ==> checking linked list
+ ==> checked linked list
+ ==> summing linked list
+ ==> summed linked list
+ ==> ok
+----------Finished test ll_test (took 5253ms)----------
+Boehm heap size: 6508544
+testall.sh: i=4 j=1
+Compiled for GC_BOEHM at 21:15:37 May 12 2014
+Boehm heap size: 65536
+----------Begin test ll_test----------
+ll_test: Measures time taken to allocate a linked list
+ note: sizeof(node) is 16 (may not be used for this test)
+ note: node_size is 16
+ note: total size is 8000000 (8MB)
+ ==> creating linked list
+ ==> created linked list
+ ==> TIME: 7873633 (7874ms)
+[plotdata] 500000 7873633
+ ==> checking linked list
+ ==> checked linked list
+ ==> summing linked list
+ ==> summed linked list
+ ==> ok
+----------Finished test ll_test (took 8528ms)----------
+Boehm heap size: 8679424
+testall.sh: i=5 j=1
+Compiled for GC_BOEHM at 21:15:37 May 12 2014
+Boehm heap size: 65536
+----------Begin test ll_test----------
+ll_test: Measures time taken to allocate a linked list
+ note: sizeof(node) is 16 (may not be used for this test)
+ note: node_size is 16
+ note: total size is 9600000 (10MB)
+ ==> creating linked list
+ ==> created linked list
+ ==> TIME: 7994116 (7994ms)
+[plotdata] 600000 7994116
+ ==> checking linked list
+ ==> checked linked list
+ ==> summing linked list
+ ==> summed linked list
+ ==> ok
+----------Finished test ll_test (took 8800ms)----------
+Boehm heap size: 11575296
+testall.sh: i=6 j=1
+Compiled for GC_BOEHM at 21:15:37 May 12 2014
+Boehm heap size: 65536
+----------Begin test ll_test----------
+ll_test: Measures time taken to allocate a linked list
+ note: sizeof(node) is 16 (may not be used for this test)
+ note: node_size is 16
+ note: total size is 11200000 (11MB)
+ ==> creating linked list
+ ==> created linked list
+ ==> TIME: 8325143 (8325ms)
+[plotdata] 700000 8325143
+ ==> checking linked list
+ ==> checked linked list
+ ==> summing linked list
+ ==> summed linked list
+ ==> ok
+----------Finished test ll_test (took 9265ms)----------
+Boehm heap size: 11575296
+testall.sh: i=7 j=1
+Compiled for GC_BOEHM at 21:15:37 May 12 2014
+Boehm heap size: 65536
+----------Begin test ll_test----------
+ll_test: Measures time taken to allocate a linked list
+ note: sizeof(node) is 16 (may not be used for this test)
+ note: node_size is 16
+ note: total size is 12800000 (13MB)
+ ==> creating linked list
+ ==> created linked list
+ ==> TIME: 12867999 (13s)
+[plotdata] 800000 12867999
+ ==> checking linked list
+ ==> checked linked list
+ ==> summing linked list
+ ==> summed linked list
+ ==> ok
+----------Finished test ll_test (took 14s)----------
+Boehm heap size: 15437824
+testall.sh: i=8 j=1
+Compiled for GC_BOEHM at 21:15:37 May 12 2014
+Boehm heap size: 65536
+----------Begin test ll_test----------
+ll_test: Measures time taken to allocate a linked list
+ note: sizeof(node) is 16 (may not be used for this test)
+ note: node_size is 16
+ note: total size is 14400000 (14MB)
+ ==> creating linked list
+ ==> created linked list
+ ==> TIME: 13272615 (13s)
+[plotdata] 900000 13272615
+ ==> checking linked list
+ ==> checked linked list
+ ==> summing linked list
+ ==> summed linked list
+ ==> ok
+----------Finished test ll_test (took 14s)----------
+Boehm heap size: 15437824
+testall.sh: i=9 j=1
+Compiled for GC_BOEHM at 21:15:37 May 12 2014
+Boehm heap size: 65536
+----------Begin test ll_test----------
+ll_test: Measures time taken to allocate a linked list
+ note: sizeof(node) is 16 (may not be used for this test)
+ note: node_size is 16
+ note: total size is 16000000 (16MB)
+ ==> creating linked list
+ ==> created linked list
+ ==> TIME: 13837443 (14s)
+[plotdata] 1000000 13837443
+ ==> checking linked list
+ ==> checked linked list
+ ==> summing linked list
+ ==> summed linked list
+ ==> ok
+----------Finished test ll_test (took 15s)----------
+Boehm heap size: 20586496
+testall.sh: i=10 j=1
+Compiled for GC_BOEHM at 21:15:37 May 12 2014
+Boehm heap size: 65536
+----------Begin test ll_test----------
+ll_test: Measures time taken to allocate a linked list
+ note: sizeof(node) is 16 (may not be used for this test)
+ note: node_size is 16
+ note: total size is 17600000 (18MB)
+ ==> creating linked list
+ ==> created linked list
+ ==> TIME: 14104673 (14s)
+[plotdata] 1100000 14104673
+ ==> checking linked list
+ ==> checked linked list
+ ==> summing linked list
+ ==> summed linked list
+ ==> ok
+----------Finished test ll_test (took 16s)----------
+Boehm heap size: 20586496
+testall.sh: i=11 j=1
+Compiled for GC_BOEHM at 21:15:37 May 12 2014
+Boehm heap size: 65536
+----------Begin test ll_test----------
+ll_test: Measures time taken to allocate a linked list
+ note: sizeof(node) is 16 (may not be used for this test)
+ note: node_size is 16
+ note: total size is 19200000 (19MB)
+ ==> creating linked list
+ ==> created linked list
+ ==> TIME: 19937064 (20s)
+[plotdata] 1200000 19937064
+ ==> checking linked list
+ ==> checked linked list
+ ==> summing linked list
+ ==> summed linked list
+ ==> ok
+----------Finished test ll_test (took 22s)----------
+Boehm heap size: 20586496
+testall.sh: i=12 j=1
+Compiled for GC_BOEHM at 21:15:37 May 12 2014
+Boehm heap size: 65536
+----------Begin test ll_test----------
+ll_test: Measures time taken to allocate a linked list
+ note: sizeof(node) is 16 (may not be used for this test)
+ note: node_size is 16
+ note: total size is 20800000 (21MB)
+ ==> creating linked list
+ ==> created linked list
+ ==> TIME: 22492283 (22s)
+[plotdata] 1300000 22492283
+ ==> checking linked list
+ ==> checked linked list
+ ==> summing linked list
+ ==> summed linked list
+ ==> ok
+----------Finished test ll_test (took 24s)----------
+Boehm heap size: 27451392
+testall.sh: i=13 j=1
+Compiled for GC_BOEHM at 21:15:37 May 12 2014
+Boehm heap size: 65536
+----------Begin test ll_test----------
+ll_test: Measures time taken to allocate a linked list
+ note: sizeof(node) is 16 (may not be used for this test)
+ note: node_size is 16
+ note: total size is 22400000 (22MB)
+ ==> creating linked list
+ ==> created linked list
+ ==> TIME: 22661693 (23s)
+[plotdata] 1400000 22661693
+ ==> checking linked list
+ ==> checked linked list
+ ==> summing linked list
+ ==> summed linked list
+ ==> ok
+----------Finished test ll_test (took 25s)----------
+Boehm heap size: 27451392
+testall.sh: i=14 j=1
+Compiled for GC_BOEHM at 21:15:37 May 12 2014
+Boehm heap size: 65536
+----------Begin test ll_test----------
+ll_test: Measures time taken to allocate a linked list
+ note: sizeof(node) is 16 (may not be used for this test)
+ note: node_size is 16
+ note: total size is 24000000 (24MB)
+ ==> creating linked list
+ ==> created linked list
+ ==> TIME: 23145932 (23s)
+[plotdata] 1500000 23145932
+ ==> checking linked list
+ ==> checked linked list
+ ==> summing linked list
+ ==> summed linked list
+ ==> ok
+----------Finished test ll_test (took 25s)----------
+Boehm heap size: 27451392
+testall.sh: i=15 j=1
+Compiled for GC_BOEHM at 21:15:37 May 12 2014
+Boehm heap size: 65536
+----------Begin test ll_test----------
+ll_test: Measures time taken to allocate a linked list
+ note: sizeof(node) is 16 (may not be used for this test)
+ note: node_size is 16
+ note: total size is 25600000 (26MB)
+ ==> creating linked list
+ ==> created linked list
+ ==> TIME: 23533864 (24s)
+[plotdata] 1600000 23533864
+ ==> checking linked list
+ ==> checked linked list
+ ==> summing linked list
+ ==> summed linked list
+ ==> ok
+----------Finished test ll_test (took 26s)----------
+Boehm heap size: 27451392
+testall.sh: i=16 j=1
+Compiled for GC_BOEHM at 21:15:37 May 12 2014
+Boehm heap size: 65536
+----------Begin test ll_test----------
+ll_test: Measures time taken to allocate a linked list
+ note: sizeof(node) is 16 (may not be used for this test)
+ note: node_size is 16
+ note: total size is 27200000 (27MB)
+ ==> creating linked list
+ ==> created linked list
+ ==> TIME: 24918282 (25s)
+[plotdata] 1700000 24918282
+ ==> checking linked list
+ ==> checked linked list
+ ==> summing linked list
+ ==> summed linked list
+ ==> ok
+----------Finished test ll_test (took 27s)----------
+Boehm heap size: 27451392
+testall.sh: i=17 j=1
+Compiled for GC_BOEHM at 21:15:37 May 12 2014
+Boehm heap size: 65536
+----------Begin test ll_test----------
+ll_test: Measures time taken to allocate a linked list
+ note: sizeof(node) is 16 (may not be used for this test)
+ note: node_size is 16
+ note: total size is 28800000 (29MB)
+ ==> creating linked list
+ ==> created linked list
+ ==> TIME: 24635069 (25s)
+[plotdata] 1800000 24635069
+ ==> checking linked list
+ ==> checked linked list
+ ==> summing linked list
+ ==> summed linked list
+ ==> ok
+----------Finished test ll_test (took 27s)----------
+Boehm heap size: 35840000
+testall.sh: i=18 j=1
+Compiled for GC_BOEHM at 21:15:37 May 12 2014
+Boehm heap size: 65536
+----------Begin test ll_test----------
+ll_test: Measures time taken to allocate a linked list
+ note: sizeof(node) is 16 (may not be used for this test)
+ note: node_size is 16
+ note: total size is 30400000 (30MB)
+ ==> creating linked list
+ ==> created linked list
+ ==> TIME: 24947821 (25s)
+[plotdata] 1900000 24947821
+ ==> checking linked list
+ ==> checked linked list
+ ==> summing linked list
+ ==> summed linked list
+ ==> ok
+----------Finished test ll_test (took 28s)----------
+Boehm heap size: 35840000
+testall.sh: i=19 j=1
+Compiled for GC_BOEHM at 21:15:37 May 12 2014
+Boehm heap size: 65536
+----------Begin test ll_test----------
+ll_test: Measures time taken to allocate a linked list
+ note: sizeof(node) is 16 (may not be used for this test)
+ note: node_size is 16
+ note: total size is 32000000 (32MB)
+ ==> creating linked list
+ ==> created linked list
+ ==> TIME: 25329978 (25s)
+[plotdata] 2000000 25329978
+ ==> checking linked list
+ ==> checked linked list
+ ==> summing linked list
+ ==> summed linked list
+ ==> ok
+----------Finished test ll_test (took 28s)----------
+Boehm heap size: 35840000
+testall.sh: i=20 j=1

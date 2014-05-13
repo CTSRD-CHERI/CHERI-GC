@@ -74,6 +74,15 @@ loc:
 	echo Tests: `cat test/*.c test/*.h | wc -l` lines && \
 	echo Total: `cat ml/*.c ml/*.h src/*.c src/inc/*.h test/*.c test/*.h | wc -l` lines
 
+stats:
+	echo GC_CHERI: Static library size: `du -h objects/gc.a` && \
+	echo GC_CHERI: Number of capability instructions used: `$(CHERI)/objdump -d objects/gc.a | grep "c[sl]c\|cgetbase\|cgetlen\|ctoptr\|cfromptr\|cgettag\|cgetunsealed\|cgetperm\|cgettype\|cincbase\|cmove\|csetlen\|ccleartag\|candperm\|cchecktype\|ccheckperm\|cbtu\|cbts\|c[sl][bhwd]\|cl[bhwd]u\|clld\|cscd\|cjr\|cjalr\|csealcode\|csealdata\|cunseal\|ccall\|creturn\|cgetpcc\|cgetcause\|csetcause" | wc -l` && \
+	echo GC_CHERI: Total instructions: `$(CHERI)/objdump -d objects/gc.a | grep "[0123456789abcdef]:" | wc -l` && \
+	echo BOEHM: Static library size: `du -h objects/boehm/boehm.a` && \
+	echo BOEHM: Number of capability instructions used: `$(CHERI)/objdump -d objects/boehm/boehm.a | grep "c[sl]c\|cgetbase\|cgetlen\|ctoptr\|cfromptr\|cgettag\|cgetunsealed\|cgetperm\|cgettype\|cincbase\|cmove\|csetlen\|ccleartag\|candperm\|cchecktype\|ccheckperm\|cbtu\|cbts\|c[sl][bhwd]\|cl[bhwd]u\|clld\|cscd\|cjr\|cjalr\|csealcode\|csealdata\|cunseal\|ccall\|creturn\|cgetpcc\|cgetcause\|csetcause" | wc -l` && \
+	echo BOEHM: Total instructions: `$(CHERI)/objdump -d objects/boehm/boehm.a | grep "[0123456789abcdef]:" | wc -l` && \
+  
+
 gctest:
 	PATH=$(PATH) $(CC) -DGC_CHERI -S -o objects/gctest.o.s -I$(GC_PUBLIC_INCLUDE) $(TEST_SOURCES) && \
 	PATH=$(PATH) $(CC) -DGC_CHERI -c -o objects/gctest.o -I$(GC_PUBLIC_INCLUDE) $(TEST_SOURCES) && \

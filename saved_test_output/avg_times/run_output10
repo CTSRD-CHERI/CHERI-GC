@@ -1,0 +1,343 @@
+spawn ssh -i /home/munraj/.ssh/mbv21 mbv21@cloud2 /mnt/mbv21zfs//testall.sh
+Enter passphrase for key '/home/munraj/.ssh/mbv21': 
+Password for mbv21@cloud2:
+Compiled for GC_NONE at 21:23:53 May 12 2014
+----------Begin test ll_test----------
+ll_test: Measures time taken to allocate a linked list
+ note: sizeof(node) is 64 (may not be used for this test)
+ note: node_size is 64
+ note: total size is 6400000 (6MB)
+ ==> creating linked list
+ ==> created linked list
+ ==> TIME: 6449627 (6450ms)
+[plotdata] 100000 6449627
+ ==> checking linked list
+ ==> checked linked list
+ ==> summing linked list
+ ==> summed linked list
+ ==> ok
+----------Finished test ll_test (took 6599ms)----------
+testall.sh: i=1 j=1
+Compiled for GC_NONE at 21:23:53 May 12 2014
+----------Begin test ll_test----------
+ll_test: Measures time taken to allocate a linked list
+ note: sizeof(node) is 64 (may not be used for this test)
+ note: node_size is 64
+ note: total size is 12800000 (13MB)
+ ==> creating linked list
+ ==> created linked list
+ ==> TIME: 12588069 (13s)
+[plotdata] 200000 12588069
+ ==> checking linked list
+ ==> checked linked list
+ ==> summing linked list
+ ==> summed linked list
+ ==> ok
+----------Finished test ll_test (took 13s)----------
+testall.sh: i=2 j=1
+Compiled for GC_NONE at 21:23:53 May 12 2014
+----------Begin test ll_test----------
+ll_test: Measures time taken to allocate a linked list
+ note: sizeof(node) is 64 (may not be used for this test)
+ note: node_size is 64
+ note: total size is 19200000 (19MB)
+ ==> creating linked list
+ ==> created linked list
+ ==> TIME: 19416260 (19s)
+[plotdata] 300000 19416260
+ ==> checking linked list
+ ==> checked linked list
+ ==> summing linked list
+ ==> summed linked list
+ ==> ok
+----------Finished test ll_test (took 20s)----------
+testall.sh: i=3 j=1
+Compiled for GC_NONE at 21:23:53 May 12 2014
+----------Begin test ll_test----------
+ll_test: Measures time taken to allocate a linked list
+ note: sizeof(node) is 64 (may not be used for this test)
+ note: node_size is 64
+ note: total size is 25600000 (26MB)
+ ==> creating linked list
+ ==> created linked list
+ ==> TIME: 25894830 (26s)
+[plotdata] 400000 25894830
+ ==> checking linked list
+ ==> checked linked list
+ ==> summing linked list
+ ==> summed linked list
+ ==> ok
+----------Finished test ll_test (took 27s)----------
+testall.sh: i=4 j=1
+Compiled for GC_NONE at 21:23:53 May 12 2014
+----------Begin test ll_test----------
+ll_test: Measures time taken to allocate a linked list
+ note: sizeof(node) is 64 (may not be used for this test)
+ note: node_size is 64
+ note: total size is 32000000 (32MB)
+ ==> creating linked list
+ ==> created linked list
+ ==> TIME: 31739006 (32s)
+[plotdata] 500000 31739006
+ ==> checking linked list
+ ==> checked linked list
+ ==> summing linked list
+ ==> summed linked list
+ ==> ok
+----------Finished test ll_test (took 32s)----------
+testall.sh: i=5 j=1
+Compiled for GC_NONE at 21:23:53 May 12 2014
+----------Begin test ll_test----------
+ll_test: Measures time taken to allocate a linked list
+ note: sizeof(node) is 64 (may not be used for this test)
+ note: node_size is 64
+ note: total size is 38400000 (38MB)
+ ==> creating linked list
+ ==> created linked list
+ ==> TIME: 37905761 (38s)
+[plotdata] 600000 37905761
+ ==> checking linked list
+ ==> checked linked list
+ ==> summing linked list
+ ==> summed linked list
+ ==> ok
+----------Finished test ll_test (took 39s)----------
+testall.sh: i=6 j=1
+Compiled for GC_NONE at 21:23:53 May 12 2014
+----------Begin test ll_test----------
+ll_test: Measures time taken to allocate a linked list
+ note: sizeof(node) is 64 (may not be used for this test)
+ note: node_size is 64
+ note: total size is 44800000 (45MB)
+ ==> creating linked list
+ ==> created linked list
+ ==> TIME: 44227034 (44s)
+[plotdata] 700000 44227034
+ ==> checking linked list
+ ==> checked linked list
+ ==> summing linked list
+ ==> summed linked list
+ ==> ok
+----------Finished test ll_test (took 45s)----------
+testall.sh: i=7 j=1
+Compiled for GC_NONE at 21:23:53 May 12 2014
+----------Begin test ll_test----------
+ll_test: Measures time taken to allocate a linked list
+ note: sizeof(node) is 64 (may not be used for this test)
+ note: node_size is 64
+ note: total size is 51200000 (51MB)
+ ==> creating linked list
+ ==> created linked list
+ ==> TIME: 52812502 (53s)
+[plotdata] 800000 52812502
+ ==> checking linked list
+ ==> checked linked list
+ ==> summing linked list
+ ==> summed linked list
+ ==> ok
+----------Finished test ll_test (took 54s)----------
+testall.sh: i=8 j=1
+Compiled for GC_NONE at 21:23:53 May 12 2014
+----------Begin test ll_test----------
+ll_test: Measures time taken to allocate a linked list
+ note: sizeof(node) is 64 (may not be used for this test)
+ note: node_size is 64
+ note: total size is 57600000 (58MB)
+ ==> creating linked list
+ ==> created linked list
+ ==> TIME: 67010601 (67s)
+[plotdata] 900000 67010601
+ ==> checking linked list
+ ==> checked linked list
+ ==> summing linked list
+ ==> summed linked list
+ ==> ok
+----------Finished test ll_test (took 68s)----------
+testall.sh: i=9 j=1
+Compiled for GC_NONE at 21:23:53 May 12 2014
+----------Begin test ll_test----------
+ll_test: Measures time taken to allocate a linked list
+ note: sizeof(node) is 64 (may not be used for this test)
+ note: node_size is 64
+ note: total size is 64000000 (64MB)
+ ==> creating linked list
+ ==> created linked list
+ ==> TIME: 65364364 (65s)
+[plotdata] 1000000 65364364
+ ==> checking linked list
+ ==> checked linked list
+ ==> summing linked list
+ ==> summed linked list
+ ==> ok
+----------Finished test ll_test (took 67s)----------
+testall.sh: i=10 j=1
+Compiled for GC_NONE at 21:23:53 May 12 2014
+----------Begin test ll_test----------
+ll_test: Measures time taken to allocate a linked list
+ note: sizeof(node) is 64 (may not be used for this test)
+ note: node_size is 64
+ note: total size is 70400000 (70MB)
+ ==> creating linked list
+ ==> created linked list
+ ==> TIME: 71750827 (72s)
+[plotdata] 1100000 71750827
+ ==> checking linked list
+ ==> checked linked list
+ ==> summing linked list
+ ==> summed linked list
+ ==> ok
+----------Finished test ll_test (took 73s)----------
+testall.sh: i=11 j=1
+Compiled for GC_NONE at 21:23:53 May 12 2014
+----------Begin test ll_test----------
+ll_test: Measures time taken to allocate a linked list
+ note: sizeof(node) is 64 (may not be used for this test)
+ note: node_size is 64
+ note: total size is 76800000 (77MB)
+ ==> creating linked list
+ ==> created linked list
+ ==> TIME: 79297554 (79s)
+[plotdata] 1200000 79297554
+ ==> checking linked list
+ ==> checked linked list
+ ==> summing linked list
+ ==> summed linked list
+ ==> ok
+----------Finished test ll_test (took 81s)----------
+testall.sh: i=12 j=1
+Compiled for GC_NONE at 21:23:53 May 12 2014
+----------Begin test ll_test----------
+ll_test: Measures time taken to allocate a linked list
+ note: sizeof(node) is 64 (may not be used for this test)
+ note: node_size is 64
+ note: total size is 83200000 (83MB)
+ ==> creating linked list
+ ==> created linked list
+ ==> TIME: 82312380 (82s)
+[plotdata] 1300000 82312380
+ ==> checking linked list
+ ==> checked linked list
+ ==> summing linked list
+ ==> summed linked list
+ ==> ok
+----------Finished test ll_test (took 84s)----------
+testall.sh: i=13 j=1
+Compiled for GC_NONE at 21:23:53 May 12 2014
+----------Begin test ll_test----------
+ll_test: Measures time taken to allocate a linked list
+ note: sizeof(node) is 64 (may not be used for this test)
+ note: node_size is 64
+ note: total size is 89600000 (90MB)
+ ==> creating linked list
+ ==> created linked list
+ ==> TIME: 89332589 (89s)
+[plotdata] 1400000 89332589
+ ==> checking linked list
+ ==> checked linked list
+ ==> summing linked list
+ ==> summed linked list
+ ==> ok
+----------Finished test ll_test (took 91s)----------
+testall.sh: i=14 j=1
+Compiled for GC_NONE at 21:23:53 May 12 2014
+----------Begin test ll_test----------
+ll_test: Measures time taken to allocate a linked list
+ note: sizeof(node) is 64 (may not be used for this test)
+ note: node_size is 64
+ note: total size is 96000000 (96MB)
+ ==> creating linked list
+ ==> created linked list
+ ==> TIME: 94696088 (95s)
+[plotdata] 1500000 94696088
+ ==> checking linked list
+ ==> checked linked list
+ ==> summing linked list
+ ==> summed linked list
+ ==> ok
+----------Finished test ll_test (took 97s)----------
+testall.sh: i=15 j=1
+Compiled for GC_NONE at 21:23:53 May 12 2014
+----------Begin test ll_test----------
+ll_test: Measures time taken to allocate a linked list
+ note: sizeof(node) is 64 (may not be used for this test)
+ note: node_size is 64
+ note: total size is 102400000 (102MB)
+ ==> creating linked list
+ ==> created linked list
+ ==> TIME: 103411220 (103s)
+[plotdata] 1600000 103411220
+ ==> checking linked list
+ ==> checked linked list
+ ==> summing linked list
+ ==> summed linked list
+ ==> ok
+----------Finished test ll_test (took 106s)----------
+testall.sh: i=16 j=1
+Compiled for GC_NONE at 21:23:53 May 12 2014
+----------Begin test ll_test----------
+ll_test: Measures time taken to allocate a linked list
+ note: sizeof(node) is 64 (may not be used for this test)
+ note: node_size is 64
+ note: total size is 108800000 (109MB)
+ ==> creating linked list
+ ==> created linked list
+ ==> TIME: 111313874 (111s)
+[plotdata] 1700000 111313874
+ ==> checking linked list
+ ==> checked linked list
+ ==> summing linked list
+ ==> summed linked list
+ ==> ok
+----------Finished test ll_test (took 114s)----------
+testall.sh: i=17 j=1
+Compiled for GC_NONE at 21:23:53 May 12 2014
+----------Begin test ll_test----------
+ll_test: Measures time taken to allocate a linked list
+ note: sizeof(node) is 64 (may not be used for this test)
+ note: node_size is 64
+ note: total size is 115200000 (115MB)
+ ==> creating linked list
+ ==> created linked list
+ ==> TIME: 118139662 (118s)
+[plotdata] 1800000 118139662
+ ==> checking linked list
+ ==> checked linked list
+ ==> summing linked list
+ ==> summed linked list
+ ==> ok
+----------Finished test ll_test (took 121s)----------
+testall.sh: i=18 j=1
+Compiled for GC_NONE at 21:23:53 May 12 2014
+----------Begin test ll_test----------
+ll_test: Measures time taken to allocate a linked list
+ note: sizeof(node) is 64 (may not be used for this test)
+ note: node_size is 64
+ note: total size is 121600000 (122MB)
+ ==> creating linked list
+ ==> created linked list
+ ==> TIME: 149760095 (150s)
+[plotdata] 1900000 149760095
+ ==> checking linked list
+ ==> checked linked list
+ ==> summing linked list
+ ==> summed linked list
+ ==> ok
+----------Finished test ll_test (took 153s)----------
+testall.sh: i=19 j=1
+Compiled for GC_NONE at 21:23:53 May 12 2014
+----------Begin test ll_test----------
+ll_test: Measures time taken to allocate a linked list
+ note: sizeof(node) is 64 (may not be used for this test)
+ note: node_size is 64
+ note: total size is 128000000 (128MB)
+ ==> creating linked list
+ ==> created linked list
+ ==> TIME: 115502587 (116s)
+[plotdata] 2000000 115502587
+ ==> checking linked list
+ ==> checked linked list
+ ==> summing linked list
+ ==> summed linked list
+ ==> ok
+----------Finished test ll_test (took 119s)----------
+testall.sh: i=20 j=1

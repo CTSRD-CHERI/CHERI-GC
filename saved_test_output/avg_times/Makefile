@@ -6,9 +6,9 @@ octave:
 	octave plotall.octave
 
 pdf:
-	TEXINPUTS=$(PGFPLOTSDIR) pdflatex file.tex && \
-	TEXINPUTS=$(PGFPLOTSDIR) pdflatex file.tex && \
-	TEXINPUTS=$(PGFPLOTSDIR) pdflatex file.tex
+	TEXINPUTS=$(PGFPLOTSDIR) pdflatex -shell-escape file.tex && \
+	TEXINPUTS=$(PGFPLOTSDIR) pdflatex -shell-escape file.tex && \
+	TEXINPUTS=$(PGFPLOTSDIR) pdflatex -shell-escape file.tex
 
 clean:
 	rm -f file.aux file.log file.pdf plot_data* octout* plotall.png plotall.ps octave.core
