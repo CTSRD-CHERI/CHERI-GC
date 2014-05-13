@@ -1,4 +1,4 @@
-num_files=16;
+num_files=17;
 
 function [newX,avgY,errY] = readplotdata(file)
 

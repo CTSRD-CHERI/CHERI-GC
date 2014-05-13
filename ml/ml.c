@@ -134,14 +134,22 @@ GC_USER_FUNC int main (int argc, char ** argv)
   // for the benchmark:
   if (argc < 2)
   {
-    printf("Need a number argument\n");
+    printf("Need a program argument\n");
+    return 1;
   }
-  const char str[] =
+  if (argc < 3)
+  {
+    printf("Need a number argument\n");
+    return 1;
+  }
+  printf("Program should be evaluating something to do with the number %d\n", argv[2]);
+  /*const char str[] =
     "((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) ";
   GC_CAP char * str2 = ml_malloc(sizeof(str)+strlen(argv[1]));
+  cmemcpy(str2, GC_cheri_ptr(str, sizeof(str)), sizeof(str));
   cmemcpy(str2+sizeof(str)-1, GC_cheri_ptr(argv[1], strlen(argv[1]+1)), strlen(argv[1]+1));
-  
-  
+  */
+  GC_CAP const char * str2 = GC_cheri_ptr(argv[1], strlen(argv[1])+1);
   
   lex_read_string(str2);
   printf("program: %s\n\n", (void*)(str2));

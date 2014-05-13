@@ -191,8 +191,8 @@ bintree_create (int depth, int value);
   X_MACRO(allocate_loads, "Tests how long it takes to allocate a large amount of data") \
   X_MACRO(old_pause_time_test, "Measures pause time of GC_collect ONLY") \
   X_MACRO(pause_time_test, "Measures collector pause time") \
-  X_MACRO(pause_time_test2, "Measures collector pause time")*/ \
-  X_MACRO(bintree_test, "Measures time taken to allocate a binary tree") \
+  */X_MACRO(pause_time_test2, "Measures collector pause time") \
+  /*X_MACRO(bintree_test, "Measures time taken to allocate a binary tree")*/ \
   /*X_MACRO(ll_test, "Measures time taken to allocate a linked list")*/ \
   /*X_MACRO(experimental_test, "For experiments")*/
 
@@ -672,8 +672,9 @@ DEFINE_TEST(pause_time_test2)
   {
     p = tf_malloc(allocation_size);
 #if defined(GC_NONE) || defined(GC_NOCAP)
-    if (tf_ptr_valid(oldp)) tf_free(oldp);
-    oldp = p;
+    //if (tf_ptr_valid(oldp)) tf_free(oldp);
+    //oldp = p;
+    tf_free(p);
 #endif // GC_NONE, GC_NOCAP
     if (!tf_ptr_valid(p))
     {

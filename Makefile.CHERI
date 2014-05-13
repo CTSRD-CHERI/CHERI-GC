@@ -148,8 +148,8 @@ runml:
 
 
 pushml-cherrybox:
-	echo "[i] pushing file to cherrybox" && \
-	scp objects/mltest mbv21@cherrybox:~/mltest
+	#echo "[i] pushing file to cherrybox" && \
+	#scp objects/mltest mbv21@cherrybox:~/mltest
 
 everything: clean lib gctest push run loc
 almost_everything: clean lib gctest push push-cherrybox loc
