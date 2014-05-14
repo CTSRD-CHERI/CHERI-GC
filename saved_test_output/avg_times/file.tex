@@ -46,7 +46,7 @@
   %xmax=20,
   scaled ticks=false,
   axis lines=left,
-  legend entries={CopyGC(64k-32MB): N=3, BoehmGC: N=3, GC\_NONE: N=3, GC\_NOCAP: N=3, CopyGC with 10x less copies: N=3, BoehmGC with increased heap size: N=1},
+  legend entries={CopyGC(64k-32MB): N=3, BoehmGC: N=3, GC\_NONE: N=3, GC\_NOCAP: N=3, CopyGC with 10x less copies: N=3, BoehmGC with increased heap size: N=3},
   legend style={legend pos=outer north east,},
 ]
 \addplot+[error bars/.cd, y dir=both, y explicit] table[y error index=2] {octout19};%CopyGC
@@ -71,7 +71,7 @@
   %xmax=20,
   scaled ticks=false,
   axis lines=left,
-  legend entries={CopyGC(64k-32MB): N=3, BoehmGC: N=3, CopyGC with reduced copies: N=1, BoehmGC with increase heap: N=1},
+  legend entries={CopyGC(64k-32MB): N=3, BoehmGC: N=3, CopyGC with reduced copies: N=3, BoehmGC with increase heap: N=3},
   legend style={legend pos=outer north east,},
 ]
 \addplot+[error bars/.cd, y dir=both, y explicit] table[y error index=2] {octout23};%CopyGC, linked to run_output19
