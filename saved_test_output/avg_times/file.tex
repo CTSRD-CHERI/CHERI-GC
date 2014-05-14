@@ -36,22 +36,48 @@
 
 \begin{figure}
 \centering
-\caption{Time taken by \texttt{GC\_malloc()} for 1000 consecutive allocations averaged over N independent runs for every 1 kB.}
+\caption{Time taken by \texttt{GC\_malloc()} for 1000 consecutive allocations averaged over N independent runs for every 1 kB. Can say {\bf evidence to support intelligent resizing of the heap.}}
 \begin{tikzpicture}
 \begin{axis}[
   %title=,
-  xlabel=Allocation size (kB),
+  xlabel=Allocation size (100000 kBs),
   ylabel=Total time (s),
   %xmin=0,
   %xmax=20,
   scaled ticks=false,
   axis lines=left,
-  legend entries={CopyGC-O2 (2*30k-2*32MB) (N=1), BoehmGC-O2 (N=1), No GC (N=1)},
+  legend entries={CopyGC(64k-32MB): N=3, BoehmGC: N=3, GC\_NONE: N=3, GC\_NOCAP: N=3, CopyGC with 10x less copies: N=3, BoehmGC with increased heap size: N=1},
   legend style={legend pos=outer north east,},
 ]
-\addplot+[error bars/.cd, y dir=both, y explicit] table[y error index=2] {octout1};
-\addplot+[error bars/.cd, y dir=both, y explicit] table[y error index=2] {octout1};
-\addplot+[error bars/.cd, y dir=both, y explicit] table[y error index=2] {octout1};
+\addplot+[error bars/.cd, y dir=both, y explicit] table[y error index=2] {octout19};%CopyGC
+\addplot+[error bars/.cd, y dir=both, y explicit] table[y error index=2] {octout20};%BoehmGC
+\addplot+[error bars/.cd, y dir=both, y explicit] table[y error index=2] {octout21};%GC_NONE
+\addplot+[error bars/.cd, y dir=both, y explicit] table[y error index=2] {octout18};%GC_NOCAP
+\addplot+[error bars/.cd, y dir=both, y explicit] table[y error index=2] {octout22};%CopyGC1
+\addplot+[error bars/.cd, y dir=both, y explicit] table[y error index=2] {octout26};%BoehmGC1
+\end{axis}
+\end{tikzpicture}
+\end{figure}
+
+\begin{figure}
+\centering
+\caption{Time taken by \texttt{GC\_malloc()} for 1000 consecutive allocations averaged over N independent runs for every 1 kB.}
+\begin{tikzpicture}
+\begin{axis}[
+  %title=,
+  xlabel=Allocation size (100000 kBs),
+  ylabel=Heap size (100000 kBs),
+  %xmin=0,
+  %xmax=20,
+  scaled ticks=false,
+  axis lines=left,
+  legend entries={CopyGC(64k-32MB): N=3, BoehmGC: N=3, CopyGC with reduced copies: N=1, BoehmGC with increase heap: N=1},
+  legend style={legend pos=outer north east,},
+]
+\addplot+[error bars/.cd, y dir=both, y explicit] table[y error index=2] {octout23};%CopyGC, linked to run_output19
+\addplot+[error bars/.cd, y dir=both, y explicit] table[y error index=2] {octout24};%BoehmGC, linked to run_output20
+\addplot+[error bars/.cd, y dir=both, y explicit] table[y error index=2] {octout25};%CopyGC1, linked to run_output22
+\addplot+[error bars/.cd, y dir=both, y explicit] table[y error index=2] {octout27};%BoehmGC1, linked to run_output26
 \end{axis}
 \end{tikzpicture}
 \end{figure}

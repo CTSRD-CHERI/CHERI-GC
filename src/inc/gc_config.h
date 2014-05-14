@@ -8,19 +8,19 @@
 // convenience. test_all.c, for example, uses this.
 #define GC_BOEHM_MAX_HEAP_SIZE                0//1900000
 
-#define GC_THREAD_LOCAL_HEAP_SIZE                              (60)
-#define GC_OLD_GENERATION_SEMISPACE_SIZE                       (600)
+#define GC_THREAD_LOCAL_HEAP_SIZE                              (6553600)
+#define GC_OLD_GENERATION_SEMISPACE_SIZE                       (65536000)
 
 // Maximum sizes for when the heap does grow. Set to 0 to allow unlimited
 // growth.
-#define GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION        (7000)
-#define GC_THREAD_LOCAL_HEAP_MAX_SIZE                          (70000)
-#define GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION (600)
-#define GC_OLD_GENERATION_SEMISPACE_MAX_SIZE                   (600)
+#define GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION        (6553600)
+#define GC_THREAD_LOCAL_HEAP_MAX_SIZE                          (6553600)
+#define GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION (65536000)
+#define GC_OLD_GENERATION_SEMISPACE_MAX_SIZE                   (65536000)
 
 // Determines whether we use generational GC or not. If disabled, only
 // copying collection is implemented.
-//#define GC_GENERATIONAL
+#define GC_GENERATIONAL
 
 // Enables support for trapping ephemeral stores. Required for GC_WB_EPHEMERAL.
 //#define GC_EPHEMERAL_TRAP_SUPPORT

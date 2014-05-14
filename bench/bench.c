@@ -173,6 +173,7 @@ typedef struct Node0_struct {
         tf_cap_t struct Node0_struct * left;
         tf_cap_t struct Node0_struct * right;
         int i, j;
+  //int pad0,pad1,pad2,pad3,pad4,pad5,pad6,pad7,pad8,pad9;
 } Node0;
 
 #ifdef HOLES
@@ -342,6 +343,8 @@ int main() {
 #ifdef GC_CHERI
     GC_debug_dump();
 #endif
+
+  printf("sizeof Node0: %d\n", (int) sizeof(Node0));
   
 	printf("Garbage Collector Test\n");
  	printf(" Live storage will peak at %d bytes.\n\n",

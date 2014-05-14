@@ -1,14 +1,3 @@
-#define GC_THREAD_LOCAL_HEAP_SIZE                              (3200000)
-#define GC_OLD_GENERATION_SEMISPACE_SIZE                       (32000000)
-
-// Maximum sizes for when the heap does grow. Set to 0 to allow unlimited
-// growth.
-#define GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION        (3200000)
-#define GC_THREAD_LOCAL_HEAP_MAX_SIZE                          (8000000)
-#define GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION (32000000)
-#define GC_OLD_GENERATION_SEMISPACE_MAX_SIZE                   (80000000)
-
-
 spawn ssh -i /home/munraj/.ssh/mbv21 mbv21@cloud2 /mnt/mbv21zfs//bench
 Enter passphrase for key '/home/munraj/.ssh/mbv21': 
 Password for mbv21@cloud2:
@@ -27,12 +16,12 @@ GC_TIME is off
 GC_DEBUG_TRACK_ALLOCATIONS is off
 Write barrier type is GC_WB_MANUAL
 GC_COLLECT_ON_ALLOCATION_FAILURE is 1
-GC_THREAD_LOCAL_HEAP_SIZE is 3200000
-GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 3200000
-GC_THREAD_LOCAL_HEAP_MAX_SIZE is 8000000
-GC_OLD_GENERATION_SEMISPACE_SIZE is 32000000
-GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 32000000
-GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 80000000
+GC_THREAD_LOCAL_HEAP_SIZE is 6553600
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 6553600
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 6553600
+GC_OLD_GENERATION_SEMISPACE_SIZE is 65536000
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 65536000
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 65536000
 GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
 GC_MAGIC_JUST_ALLOCATED is 0x41
 GC_MAGIC_JUST_REALLOCATED is 0x42
@@ -59,17 +48,17 @@ Region statistics
 fromspace :      b=  0x0                 l=0x0               
                end=  0x0               
             bitmap=  0x0                 s=0xffffffffffffffff  u=0xffffffffffffffff
-tospace   :      b=  0x160846000         l=0x30d400          
-               end=  0x160b53400       
-            bitmap=  0x160807070         s=0x186a0             u=0x0               
-free      :      b=  0x160846000         l=0x30d400          
-               end=  0x160b53400       
+tospace   :      b=  0x168c00000         l=0x640000          
+               end=  0x169240000       
+            bitmap=  0x160807070         s=0x32000             u=0x0               
+free      :      b=  0x168c00000         l=0x640000          
+               end=  0x169240000       
 scan      :          0x0               
 old       :          0x1200194e0       
 
 used size   : 0x0                bytes (0B)
-free size   : 0x30d400           bytes (3MB)
-heap size   : 0x30d400           bytes (3MB)
+free size   : 0x640000           bytes (7MB)
+heap size   : 0x640000           bytes (7MB)
 
 stats:
 allocations : 0 (0)
@@ -78,20 +67,20 @@ copies      : 0 (0)
 This region stores YOUNG objects.
 Region statistics
 -----------------
-fromspace :      b=  0x162c00000         l=0x1e84800         
-               end=  0x164a84800       
-            bitmap=  0x160807058         s=0xf4240             u=0x0               
-tospace   :      b=  0x160c00000         l=0x1e84800         
-               end=  0x162a84800       
-            bitmap=  0x160807040         s=0xf4240             u=0x0               
-free      :      b=  0x160c00000         l=0x1e84800         
-               end=  0x162a84800       
+fromspace :      b=  0x164c00000         l=0x3e80000         
+               end=  0x168a80000       
+            bitmap=  0x160807058         s=0x1f4000            u=0x0               
+tospace   :      b=  0x160c00000         l=0x3e80000         
+               end=  0x164a80000       
+            bitmap=  0x160807040         s=0x1f4000            u=0x0               
+free      :      b=  0x160c00000         l=0x3e80000         
+               end=  0x164a80000       
 scan      :          0x0               
 old       :          0x0               
 
 used size   : 0x0                bytes (0B)
-free size   : 0x1e84800          bytes (32MB)
-heap size   : 0x1e84800          bytes (32MB)
+free size   : 0x3e80000          bytes (66MB)
+heap size   : 0x3e80000          bytes (66MB)
 
 stats:
 allocations : 0 (0)
@@ -99,6 +88,7 @@ collections : 0 (0)
 copies      : 0 (0)
 This region stores OLD objects.
 ---------------END GC DEBUG DUMP---------------
+sizeof Node0: 96
 Garbage Collector Test
  Live storage will peak at 29165632 bytes.
 
@@ -116,12 +106,12 @@ GC_TIME is off
 GC_DEBUG_TRACK_ALLOCATIONS is off
 Write barrier type is GC_WB_MANUAL
 GC_COLLECT_ON_ALLOCATION_FAILURE is 1
-GC_THREAD_LOCAL_HEAP_SIZE is 3200000
-GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 3200000
-GC_THREAD_LOCAL_HEAP_MAX_SIZE is 8000000
-GC_OLD_GENERATION_SEMISPACE_SIZE is 32000000
-GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 32000000
-GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 80000000
+GC_THREAD_LOCAL_HEAP_SIZE is 6553600
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 6553600
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 6553600
+GC_OLD_GENERATION_SEMISPACE_SIZE is 65536000
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 65536000
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 65536000
 GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
 GC_MAGIC_JUST_ALLOCATED is 0x41
 GC_MAGIC_JUST_REALLOCATED is 0x42
@@ -148,71 +138,71 @@ Region statistics
 fromspace :      b=  0x0                 l=0x0               
                end=  0x0               
             bitmap=  0x0                 s=0xffffffffffffffff  u=0xffffffffffffffff
-tospace   :      b=  0x160846000         l=0x30d400          
-               end=  0x160b53400       
-            bitmap=  0x160807070         s=0x186a0             u=0x1022d           
-free      :      b=  0x160a4a5a0         l=0x108e60          
-               end=  0x160b53400       
+tospace   :      b=  0x168c00000         l=0x640000          
+               end=  0x169240000       
+            bitmap=  0x160807070         s=0x32000             u=0x1e00c           
+free      :      b=  0x168fc0180         l=0x27fe80          
+               end=  0x169240000       
 scan      :          0x0               
 old       :          0x1200194e0       
 
-used size   : 0x2045a0           bytes (2MB)
-free size   : 0x108e60           bytes (1MB)
-heap size   : 0x30d400           bytes (3MB)
+used size   : 0x3c0180           bytes (4MB)
+free size   : 0x27fe80           bytes (3MB)
+heap size   : 0x640000           bytes (7MB)
 
 stats:
 allocations : 655358 (655k)
-collections : 19 (19)
+collections : 9 (9)
 copies      : 0 (0)
 This region stores YOUNG objects.
 Region statistics
 -----------------
-fromspace :      b=  0x16cc00000         l=0x4c4b400         
-               end=  0x17184b400       
-            bitmap=  0x160807058         s=0x2625a0            u=0x174d44          
-tospace   :      b=  0x171c00000         l=0x4c4b400         
-               end=  0x17684b400       
-            bitmap=  0x160807040         s=0x2625a0            u=0x4fdd0           
-free      :      b=  0x1725fba00         l=0x424fa00         
-               end=  0x17684b400       
-scan      :          0x1725fba00       
+fromspace :      b=  0x160c00000         l=0x3e80000         
+               end=  0x164a80000       
+            bitmap=  0x160807040         s=0x1f4000            u=0x16dfe5          
+tospace   :      b=  0x164c00000         l=0x3e80000         
+               end=  0x168a80000       
+            bitmap=  0x160807058         s=0x1f4000            u=0x41ff1           
+free      :      b=  0x16543fe20         l=0x36401e0         
+               end=  0x168a80000       
+scan      :          0x16543fe20       
 old       :          0x0               
 
-used size   : 0x9fba00           bytes (10MB)
-free size   : 0x424fa00          bytes (70MB)
-heap size   : 0x4c4b400          bytes (80MB)
+used size   : 0x83fe20           bytes (9MB)
+free size   : 0x36401e0          bytes (57MB)
+heap size   : 0x3e80000          bytes (66MB)
 
 stats:
 allocations : 0 (0)
-collections : 6 (6)
-copies      : 2584723 (3M)
+collections : 3 (3)
+copies      : 1477268 (1M)
 This region stores OLD objects.
 ---------------END GC DEBUG DUMP---------------
  Creating a long-lived array of 500000 doubles
 Not actually doing that, either
 Not populating array
 Creating 33824 trees of depth 4
-	Top down construction took 18720 msec
-	Bottom up construction took 18647 msec
+	Top down construction took 19284 msec
+	Bottom up construction took 18811 msec
 Creating 8256 trees of depth 6
-	Top down construction took 20247 msec
-	Bottom up construction took 18692 msec
+	Top down construction took 18564 msec
+	Bottom up construction took 18378 msec
 Creating 2052 trees of depth 8
-	Top down construction took 18833 msec
-	Bottom up construction took 18090 msec
+	Top down construction took 18961 msec
+	Bottom up construction took 20126 msec
 Creating 512 trees of depth 10
-	Top down construction took 20368 msec
-	Bottom up construction took 19709 msec
+	Top down construction took 20083 msec
+	Bottom up construction took 19225 msec
 Creating 128 trees of depth 12
-	Top down construction took 30250 msec
-	Bottom up construction took 35966 msec
+	Top down construction took 25996 msec
+	Bottom up construction took 28764 msec
 Creating 32 trees of depth 14
-	Top down construction took 58785 msec
-	Bottom up construction took 78136 msec
+	Top down construction took 40995 msec
+	Bottom up construction took 61238 msec
 Creating 8 trees of depth 16
-	Top down construction took 68996 msec
-	Bottom up construction took 403288 msec
-Completed in 967420 msec
+	Top down construction took 99004 msec
+	Bottom up construction took 222893 msec
+Completed in 696254 msec
 ---------------BEGIN GC DEBUG DUMP---------------
 GC_DEBUG is off
 GC_VERBOSE_DEBUG is off
@@ -225,12 +215,12 @@ GC_TIME is off
 GC_DEBUG_TRACK_ALLOCATIONS is off
 Write barrier type is GC_WB_MANUAL
 GC_COLLECT_ON_ALLOCATION_FAILURE is 1
-GC_THREAD_LOCAL_HEAP_SIZE is 3200000
-GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 3200000
-GC_THREAD_LOCAL_HEAP_MAX_SIZE is 8000000
-GC_OLD_GENERATION_SEMISPACE_SIZE is 32000000
-GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 32000000
-GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 80000000
+GC_THREAD_LOCAL_HEAP_SIZE is 6553600
+GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION is 6553600
+GC_THREAD_LOCAL_HEAP_MAX_SIZE is 6553600
+GC_OLD_GENERATION_SEMISPACE_SIZE is 65536000
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION is 65536000
+GC_OLD_GENERATION_SEMISPACE_MAX_SIZE is 65536000
 GC_OLD_GENERATION_HIGH_WATERMARK is 0.500000
 GC_MAGIC_JUST_ALLOCATED is 0x41
 GC_MAGIC_JUST_REALLOCATED is 0x42
@@ -257,43 +247,43 @@ Region statistics
 fromspace :      b=  0x0                 l=0x0               
                end=  0x0               
             bitmap=  0x0                 s=0xffffffffffffffff  u=0xffffffffffffffff
-tospace   :      b=  0x160846000         l=0x30d400          
-               end=  0x160b53400       
-            bitmap=  0x160807070         s=0x186a0             u=0x7fe             
-free      :      b=  0x160855fc0         l=0x2fd440          
-               end=  0x160b53400       
+tospace   :      b=  0x168c00000         l=0x640000          
+               end=  0x169240000       
+            bitmap=  0x160807070         s=0x32000             u=0x1ef72           
+free      :      b=  0x168fdee40         l=0x2611c0          
+               end=  0x169240000       
 scan      :          0x0               
 old       :          0x1200194e0       
 
-used size   : 0xffc0             bytes (65kB)
-free size   : 0x2fd440           bytes (3MB)
-heap size   : 0x30d400           bytes (3MB)
+used size   : 0x3dee40           bytes (4MB)
+free size   : 0x2611c0           bytes (2MB)
+heap size   : 0x640000           bytes (7MB)
 
 stats:
 allocations : 15333862 (15M)
-collections : 460 (460)
+collections : 224 (224)
 copies      : 0 (0)
 This region stores YOUNG objects.
 Region statistics
 -----------------
-fromspace :      b=  0x171c00000         l=0x4c4b400         
-               end=  0x17684b400       
-            bitmap=  0x160807040         s=0x2625a0            u=0x17f7f6          
-tospace   :      b=  0x16cc00000         l=0x4c4b400         
-               end=  0x17184b400       
-            bitmap=  0x160807058         s=0x2625a0            u=0x17f7f6          
-free      :      b=  0x16fbefec0         l=0x1c5b540         
-               end=  0x17184b400       
-scan      :          0x16fbefec0       
+fromspace :      b=  0x160c00000         l=0x3e80000         
+               end=  0x164a80000       
+            bitmap=  0x160807040         s=0x1f4000            u=0x161082          
+tospace   :      b=  0x164c00000         l=0x3e80000         
+               end=  0x168a80000       
+            bitmap=  0x160807058         s=0x1f4000            u=0x161082          
+free      :      b=  0x167821040         l=0x125efc0         
+               end=  0x168a80000       
+scan      :          0x167821040       
 old       :          0x0               
 
-used size   : 0x2fefec0          bytes (50MB)
-free size   : 0x1c5b540          bytes (30MB)
-heap size   : 0x4c4b400          bytes (80MB)
+used size   : 0x2c21040          bytes (46MB)
+free size   : 0x125efc0          bytes (19MB)
+heap size   : 0x3e80000          bytes (66MB)
 
 stats:
 allocations : 0 (0)
-collections : 49 (49)
-copies      : 23326881 (23M)
+collections : 33 (33)
+copies      : 14769502 (15M)
 This region stores OLD objects.
 ---------------END GC DEBUG DUMP---------------

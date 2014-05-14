@@ -646,10 +646,60 @@ DEFINE_TEST(pause_time_test2)
 #if defined(GC_NONE) || defined(GC_NOCAP)
   oldp = tf_invalid_ptr;
 #endif // GC_NONE, GC_NOCAP
-  int allocation_size = flag_input_number * 1000;
+  int allocation_size = flag_input_number * 100000;
   int number_of_allocations = 1000;
   tf_printf("[plotdata] # %d allocations per iteration\n", number_of_allocations);
   tf_printf("[plotdata] # allocation size (B)        total time (us)\n");
+
+#ifdef GC_CHERI
+  int init_heap_sz = allocation_size;
+#ifndef GC_GENERATIONAL
+  init_heap_sz *= 10;
+#endif // GC_GENERATIONAL
+  size_t ycur = GC_ALIGN_32(GC_THREAD_LOCAL_HEAP_SIZE, size_t);
+  size_t ocur = GC_ALIGN_32(GC_OLD_GENERATION_SEMISPACE_SIZE, size_t);
+  GC_state.thread_local_region.max_grow_size_before_collection =
+    GC_ALIGN_32(init_heap_sz, size_t); // young gen max before collect
+  GC_state.thread_local_region.max_grow_size_after_collection =
+    GC_ALIGN_32(init_heap_sz, size_t); // young gen max after collect
+#ifdef GC_GENERATIONAL
+  GC_state.old_generation.max_grow_size_before_collection =
+    GC_ALIGN_32(10*init_heap_sz, size_t); // old gen max before collect
+  GC_state.old_generation.max_grow_size_after_collection =
+    GC_ALIGN_32(10*init_heap_sz, size_t); // old gen max after collect
+#endif // GC_GENERATIONAL
+  // GC_region_rebase requires the stack and registers saved, which normally
+  // happens inside the collector. This hack allows us to use GC_grow outside of
+  // the collector...
+  char buf_unaligned[32];
+  void * buf_aligned = GC_ALIGN_32(buf_unaligned, void*);
+  GC_state.stack_top = buf_aligned;
+  GC_state.reg_bottom = buf_aligned;
+  GC_state.reg_top = buf_aligned;
+  
+  if (!GC_grow(&GC_state.thread_local_region,
+               GC_state.thread_local_region.max_grow_size_before_collection-ycur,
+               GC_state.thread_local_region.max_grow_size_before_collection))
+  {
+    tf_printf("error: GC_grow young generation failed\n");
+    exit(1);
+  }
+
+#ifdef GC_GENERATIONAL  
+  if (!GC_grow(&GC_state.old_generation,
+               GC_state.old_generation.max_grow_size_before_collection-ocur,
+               GC_state.old_generation.max_grow_size_before_collection))
+  {
+    tf_printf("error: GC_grow old generation failed\n");
+    exit(1);
+  }
+#endif // GC_GENERATIONAL
+  
+#endif // GC_CHERI
+  
+#ifdef GC_BOEHM
+  GC_expand_hp(allocation_size*10);
+#endif // GC_BOEHM
   
   if (!flag_data_only)
   {
@@ -687,6 +737,13 @@ DEFINE_TEST(pause_time_test2)
   tf_time_t diff = after - before;
   
   tf_printf("[plotdata] %d %llu\n", allocation_size, (unsigned long long) diff);  
+
+#ifdef GC_CHERI
+  tf_printf("[altplotdata] %d %llu\n", allocation_size, (unsigned long long) GC_cheri_getlen(GC_state.thread_local_region.tospace));
+#endif // GC_CHERI
+#ifdef GC_BOEHM
+  tf_printf("[altplotdata] %d %llu\n", allocation_size, (unsigned long long) GC_get_heap_size());
+#endif // GC_BOEHM
   
   print_gc_stats2("begin test");
   print_gc_stats2("end test");

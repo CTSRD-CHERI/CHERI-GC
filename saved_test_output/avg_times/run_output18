@@ -1,0 +1,622 @@
+spawn ssh -i /home/munraj/.ssh/mbv21 mbv21@cloud2 /mnt/mbv21zfs//testall.sh
+Enter passphrase for key '/home/munraj/.ssh/mbv21': 
+Password for mbv21@cloud2:
+Compiled for GC_NOCAP at 11:12:37 May 14 2014
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotscript] set terminal png
+[plotscript] set output "objects/plot.png"
+[plotscript] set title "Time taken by GC_malloc() for 1000 allocations"
+[plotscript] set xlabel "Allocation size (B)"
+[plotscript] set ylabel "Pause time (us)"
+[plotscript] #set xrange [-2:2]
+[plotscript] #set yrange [-10:10]
+[plotscript] set zeroaxis
+[plotscript] #plot 'objects/plot_data' with yerrorbars
+[plotscript] plot 'objects/plot_data' with linespoints
+[plotdata] 0 514804
+[plotdata] # begin test GC_NOCAP
+[plotdata] # end test GC_NOCAP
+----------Finished test pause_time_test2 (took 515ms)----------
+Compiled for GC_NOCAP at 11:12:37 May 14 2014
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 100000 463735
+[plotdata] # begin test GC_NOCAP
+[plotdata] # end test GC_NOCAP
+----------Finished test pause_time_test2 (took 466ms)----------
+testall.sh: i=1 j=1
+Compiled for GC_NOCAP at 11:12:37 May 14 2014
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 100000 471283
+[plotdata] # begin test GC_NOCAP
+[plotdata] # end test GC_NOCAP
+----------Finished test pause_time_test2 (took 472ms)----------
+testall.sh: i=1 j=2
+Compiled for GC_NOCAP at 11:12:37 May 14 2014
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 100000 478514
+[plotdata] # begin test GC_NOCAP
+[plotdata] # end test GC_NOCAP
+----------Finished test pause_time_test2 (took 479ms)----------
+testall.sh: i=1 j=3
+Compiled for GC_NOCAP at 11:12:37 May 14 2014
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 200000 611667
+[plotdata] # begin test GC_NOCAP
+[plotdata] # end test GC_NOCAP
+----------Finished test pause_time_test2 (took 612ms)----------
+testall.sh: i=2 j=1
+Compiled for GC_NOCAP at 11:12:37 May 14 2014
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 200000 602713
+[plotdata] # begin test GC_NOCAP
+[plotdata] # end test GC_NOCAP
+----------Finished test pause_time_test2 (took 604ms)----------
+testall.sh: i=2 j=2
+Compiled for GC_NOCAP at 11:12:37 May 14 2014
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 200000 612111
+[plotdata] # begin test GC_NOCAP
+[plotdata] # end test GC_NOCAP
+----------Finished test pause_time_test2 (took 614ms)----------
+testall.sh: i=2 j=3
+Compiled for GC_NOCAP at 11:12:37 May 14 2014
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 300000 727556
+[plotdata] # begin test GC_NOCAP
+[plotdata] # end test GC_NOCAP
+----------Finished test pause_time_test2 (took 728ms)----------
+testall.sh: i=3 j=1
+Compiled for GC_NOCAP at 11:12:37 May 14 2014
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 300000 729764
+[plotdata] # begin test GC_NOCAP
+[plotdata] # end test GC_NOCAP
+----------Finished test pause_time_test2 (took 730ms)----------
+testall.sh: i=3 j=2
+Compiled for GC_NOCAP at 11:12:37 May 14 2014
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 300000 728280
+[plotdata] # begin test GC_NOCAP
+[plotdata] # end test GC_NOCAP
+----------Finished test pause_time_test2 (took 730ms)----------
+testall.sh: i=3 j=3
+Compiled for GC_NOCAP at 11:12:37 May 14 2014
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 400000 838271
+[plotdata] # begin test GC_NOCAP
+[plotdata] # end test GC_NOCAP
+----------Finished test pause_time_test2 (took 839ms)----------
+testall.sh: i=4 j=1
+Compiled for GC_NOCAP at 11:12:37 May 14 2014
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 400000 837486
+[plotdata] # begin test GC_NOCAP
+[plotdata] # end test GC_NOCAP
+----------Finished test pause_time_test2 (took 864ms)----------
+testall.sh: i=4 j=2
+Compiled for GC_NOCAP at 11:12:37 May 14 2014
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 400000 885336
+[plotdata] # begin test GC_NOCAP
+[plotdata] # end test GC_NOCAP
+----------Finished test pause_time_test2 (took 886ms)----------
+testall.sh: i=4 j=3
+Compiled for GC_NOCAP at 11:12:37 May 14 2014
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 500000 996862
+[plotdata] # begin test GC_NOCAP
+[plotdata] # end test GC_NOCAP
+----------Finished test pause_time_test2 (took 997ms)----------
+testall.sh: i=5 j=1
+Compiled for GC_NOCAP at 11:12:37 May 14 2014
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 500000 985812
+[plotdata] # begin test GC_NOCAP
+[plotdata] # end test GC_NOCAP
+----------Finished test pause_time_test2 (took 986ms)----------
+testall.sh: i=5 j=2
+Compiled for GC_NOCAP at 11:12:37 May 14 2014
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 500000 984867
+[plotdata] # begin test GC_NOCAP
+[plotdata] # end test GC_NOCAP
+----------Finished test pause_time_test2 (took 985ms)----------
+testall.sh: i=5 j=3
+Compiled for GC_NOCAP at 11:12:37 May 14 2014
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 600000 1511826
+[plotdata] # begin test GC_NOCAP
+[plotdata] # end test GC_NOCAP
+----------Finished test pause_time_test2 (took 1512ms)----------
+testall.sh: i=6 j=1
+Compiled for GC_NOCAP at 11:12:37 May 14 2014
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 600000 1784715
+[plotdata] # begin test GC_NOCAP
+[plotdata] # end test GC_NOCAP
+----------Finished test pause_time_test2 (took 1785ms)----------
+testall.sh: i=6 j=2
+Compiled for GC_NOCAP at 11:12:37 May 14 2014
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 600000 1544488
+[plotdata] # begin test GC_NOCAP
+[plotdata] # end test GC_NOCAP
+----------Finished test pause_time_test2 (took 1545ms)----------
+testall.sh: i=6 j=3
+Compiled for GC_NOCAP at 11:12:37 May 14 2014
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 700000 1253948
+[plotdata] # begin test GC_NOCAP
+[plotdata] # end test GC_NOCAP
+----------Finished test pause_time_test2 (took 1254ms)----------
+testall.sh: i=7 j=1
+Compiled for GC_NOCAP at 11:12:37 May 14 2014
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 700000 1234140
+[plotdata] # begin test GC_NOCAP
+[plotdata] # end test GC_NOCAP
+----------Finished test pause_time_test2 (took 1234ms)----------
+testall.sh: i=7 j=2
+Compiled for GC_NOCAP at 11:12:37 May 14 2014
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 700000 1257997
+[plotdata] # begin test GC_NOCAP
+[plotdata] # end test GC_NOCAP
+----------Finished test pause_time_test2 (took 1258ms)----------
+testall.sh: i=7 j=3
+Compiled for GC_NOCAP at 11:12:37 May 14 2014
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 800000 1408990
+[plotdata] # begin test GC_NOCAP
+[plotdata] # end test GC_NOCAP
+----------Finished test pause_time_test2 (took 1409ms)----------
+testall.sh: i=8 j=1
+Compiled for GC_NOCAP at 11:12:37 May 14 2014
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 800000 1377962
+[plotdata] # begin test GC_NOCAP
+[plotdata] # end test GC_NOCAP
+----------Finished test pause_time_test2 (took 1378ms)----------
+testall.sh: i=8 j=2
+Compiled for GC_NOCAP at 11:12:37 May 14 2014
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 800000 1370699
+[plotdata] # begin test GC_NOCAP
+[plotdata] # end test GC_NOCAP
+----------Finished test pause_time_test2 (took 1371ms)----------
+testall.sh: i=8 j=3
+Compiled for GC_NOCAP at 11:12:37 May 14 2014
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 900000 1519050
+[plotdata] # begin test GC_NOCAP
+[plotdata] # end test GC_NOCAP
+----------Finished test pause_time_test2 (took 1521ms)----------
+testall.sh: i=9 j=1
+Compiled for GC_NOCAP at 11:12:37 May 14 2014
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 900000 1500381
+[plotdata] # begin test GC_NOCAP
+[plotdata] # end test GC_NOCAP
+----------Finished test pause_time_test2 (took 1501ms)----------
+testall.sh: i=9 j=2
+Compiled for GC_NOCAP at 11:12:37 May 14 2014
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 900000 1533126
+[plotdata] # begin test GC_NOCAP
+[plotdata] # end test GC_NOCAP
+----------Finished test pause_time_test2 (took 1535ms)----------
+testall.sh: i=9 j=3
+Compiled for GC_NOCAP at 11:12:37 May 14 2014
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 1000000 1637266
+[plotdata] # begin test GC_NOCAP
+[plotdata] # end test GC_NOCAP
+----------Finished test pause_time_test2 (took 1638ms)----------
+testall.sh: i=10 j=1
+Compiled for GC_NOCAP at 11:12:37 May 14 2014
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 1000000 1755491
+[plotdata] # begin test GC_NOCAP
+[plotdata] # end test GC_NOCAP
+----------Finished test pause_time_test2 (took 1756ms)----------
+testall.sh: i=10 j=2
+Compiled for GC_NOCAP at 11:12:37 May 14 2014
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 1000000 1664544
+[plotdata] # begin test GC_NOCAP
+[plotdata] # end test GC_NOCAP
+----------Finished test pause_time_test2 (took 1665ms)----------
+testall.sh: i=10 j=3
+Compiled for GC_NOCAP at 11:12:37 May 14 2014
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 1100000 1813055
+[plotdata] # begin test GC_NOCAP
+[plotdata] # end test GC_NOCAP
+----------Finished test pause_time_test2 (took 1813ms)----------
+testall.sh: i=11 j=1
+Compiled for GC_NOCAP at 11:12:37 May 14 2014
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 1100000 1750313
+[plotdata] # begin test GC_NOCAP
+[plotdata] # end test GC_NOCAP
+----------Finished test pause_time_test2 (took 1751ms)----------
+testall.sh: i=11 j=2
+Compiled for GC_NOCAP at 11:12:37 May 14 2014
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 1100000 1769240
+[plotdata] # begin test GC_NOCAP
+[plotdata] # end test GC_NOCAP
+----------Finished test pause_time_test2 (took 1770ms)----------
+testall.sh: i=11 j=3
+Compiled for GC_NOCAP at 11:12:37 May 14 2014
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 1200000 1861090
+[plotdata] # begin test GC_NOCAP
+[plotdata] # end test GC_NOCAP
+----------Finished test pause_time_test2 (took 1861ms)----------
+testall.sh: i=12 j=1
+Compiled for GC_NOCAP at 11:12:37 May 14 2014
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 1200000 1883773
+[plotdata] # begin test GC_NOCAP
+[plotdata] # end test GC_NOCAP
+----------Finished test pause_time_test2 (took 1884ms)----------
+testall.sh: i=12 j=2
+Compiled for GC_NOCAP at 11:12:37 May 14 2014
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 1200000 1874689
+[plotdata] # begin test GC_NOCAP
+[plotdata] # end test GC_NOCAP
+----------Finished test pause_time_test2 (took 1875ms)----------
+testall.sh: i=12 j=3
+Compiled for GC_NOCAP at 11:12:37 May 14 2014
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 1300000 2005626
+[plotdata] # begin test GC_NOCAP
+[plotdata] # end test GC_NOCAP
+----------Finished test pause_time_test2 (took 2006ms)----------
+testall.sh: i=13 j=1
+Compiled for GC_NOCAP at 11:12:37 May 14 2014
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 1300000 1992924
+[plotdata] # begin test GC_NOCAP
+[plotdata] # end test GC_NOCAP
+----------Finished test pause_time_test2 (took 1993ms)----------
+testall.sh: i=13 j=2
+Compiled for GC_NOCAP at 11:12:37 May 14 2014
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 1300000 2070770
+[plotdata] # begin test GC_NOCAP
+[plotdata] # end test GC_NOCAP
+----------Finished test pause_time_test2 (took 2071ms)----------
+testall.sh: i=13 j=3
+Compiled for GC_NOCAP at 11:12:37 May 14 2014
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 1400000 2108111
+[plotdata] # begin test GC_NOCAP
+[plotdata] # end test GC_NOCAP
+----------Finished test pause_time_test2 (took 2110ms)----------
+testall.sh: i=14 j=1
+Compiled for GC_NOCAP at 11:12:37 May 14 2014
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 1400000 2179756
+[plotdata] # begin test GC_NOCAP
+[plotdata] # end test GC_NOCAP
+----------Finished test pause_time_test2 (took 2180ms)----------
+testall.sh: i=14 j=2
+Compiled for GC_NOCAP at 11:12:37 May 14 2014
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 1400000 2098325
+[plotdata] # begin test GC_NOCAP
+[plotdata] # end test GC_NOCAP
+----------Finished test pause_time_test2 (took 2099ms)----------
+testall.sh: i=14 j=3
+Compiled for GC_NOCAP at 11:12:37 May 14 2014
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 1500000 2237132
+[plotdata] # begin test GC_NOCAP
+[plotdata] # end test GC_NOCAP
+----------Finished test pause_time_test2 (took 2238ms)----------
+testall.sh: i=15 j=1
+Compiled for GC_NOCAP at 11:12:37 May 14 2014
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 1500000 2193628
+[plotdata] # begin test GC_NOCAP
+[plotdata] # end test GC_NOCAP
+----------Finished test pause_time_test2 (took 2194ms)----------
+testall.sh: i=15 j=2
+Compiled for GC_NOCAP at 11:12:37 May 14 2014
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 1500000 2197179
+[plotdata] # begin test GC_NOCAP
+[plotdata] # end test GC_NOCAP
+----------Finished test pause_time_test2 (took 2198ms)----------
+testall.sh: i=15 j=3
+Compiled for GC_NOCAP at 11:12:37 May 14 2014
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 1600000 2391794
+[plotdata] # begin test GC_NOCAP
+[plotdata] # end test GC_NOCAP
+----------Finished test pause_time_test2 (took 2393ms)----------
+testall.sh: i=16 j=1
+Compiled for GC_NOCAP at 11:12:37 May 14 2014
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 1600000 2330574
+[plotdata] # begin test GC_NOCAP
+[plotdata] # end test GC_NOCAP
+----------Finished test pause_time_test2 (took 2331ms)----------
+testall.sh: i=16 j=2
+Compiled for GC_NOCAP at 11:12:37 May 14 2014
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 1600000 2353406
+[plotdata] # begin test GC_NOCAP
+[plotdata] # end test GC_NOCAP
+----------Finished test pause_time_test2 (took 2354ms)----------
+testall.sh: i=16 j=3
+Compiled for GC_NOCAP at 11:12:37 May 14 2014
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 1700000 2489250
+[plotdata] # begin test GC_NOCAP
+[plotdata] # end test GC_NOCAP
+----------Finished test pause_time_test2 (took 2490ms)----------
+testall.sh: i=17 j=1
+Compiled for GC_NOCAP at 11:12:37 May 14 2014
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 1700000 2462244
+[plotdata] # begin test GC_NOCAP
+[plotdata] # end test GC_NOCAP
+----------Finished test pause_time_test2 (took 2463ms)----------
+testall.sh: i=17 j=2
+Compiled for GC_NOCAP at 11:12:37 May 14 2014
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 1700000 2552092
+[plotdata] # begin test GC_NOCAP
+[plotdata] # end test GC_NOCAP
+----------Finished test pause_time_test2 (took 2552ms)----------
+testall.sh: i=17 j=3
+Compiled for GC_NOCAP at 11:12:37 May 14 2014
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 1800000 2646088
+[plotdata] # begin test GC_NOCAP
+[plotdata] # end test GC_NOCAP
+----------Finished test pause_time_test2 (took 2646ms)----------
+testall.sh: i=18 j=1
+Compiled for GC_NOCAP at 11:12:37 May 14 2014
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 1800000 2587637
+[plotdata] # begin test GC_NOCAP
+[plotdata] # end test GC_NOCAP
+----------Finished test pause_time_test2 (took 2588ms)----------
+testall.sh: i=18 j=2
+Compiled for GC_NOCAP at 11:12:37 May 14 2014
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 1800000 2590836
+[plotdata] # begin test GC_NOCAP
+[plotdata] # end test GC_NOCAP
+----------Finished test pause_time_test2 (took 2593ms)----------
+testall.sh: i=18 j=3
+Compiled for GC_NOCAP at 11:12:37 May 14 2014
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 1900000 2693877
+[plotdata] # begin test GC_NOCAP
+[plotdata] # end test GC_NOCAP
+----------Finished test pause_time_test2 (took 2694ms)----------
+testall.sh: i=19 j=1
+Compiled for GC_NOCAP at 11:12:37 May 14 2014
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 1900000 2696622
+[plotdata] # begin test GC_NOCAP
+[plotdata] # end test GC_NOCAP
+----------Finished test pause_time_test2 (took 2697ms)----------
+testall.sh: i=19 j=2
+Compiled for GC_NOCAP at 11:12:37 May 14 2014
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 1900000 3397284
+[plotdata] # begin test GC_NOCAP
+[plotdata] # end test GC_NOCAP
+----------Finished test pause_time_test2 (took 3398ms)----------
+testall.sh: i=19 j=3
+Compiled for GC_NOCAP at 11:12:37 May 14 2014
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 2000000 2833751
+[plotdata] # begin test GC_NOCAP
+[plotdata] # end test GC_NOCAP
+----------Finished test pause_time_test2 (took 2834ms)----------
+testall.sh: i=20 j=1
+Compiled for GC_NOCAP at 11:12:37 May 14 2014
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 2000000 2808766
+[plotdata] # begin test GC_NOCAP
+[plotdata] # end test GC_NOCAP
+----------Finished test pause_time_test2 (took 2809ms)----------
+testall.sh: i=20 j=2
+Compiled for GC_NOCAP at 11:12:37 May 14 2014
+----------Begin test pause_time_test2----------
+pause_time_test2: Measures collector pause time
+[plotdata] # 1000 allocations per iteration
+[plotdata] # allocation size (B)        total time (us)
+[plotdata] 2000000 2853159
+[plotdata] # begin test GC_NOCAP
+[plotdata] # end test GC_NOCAP
+----------Finished test pause_time_test2 (took 2854ms)----------
+testall.sh: i=20 j=3
