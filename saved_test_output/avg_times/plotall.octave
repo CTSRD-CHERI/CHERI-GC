@@ -1,4 +1,4 @@
-num_files=27;
+num_files=34;
 
 function [newX,avgY,errY] = readplotdata(file)
 
@@ -70,11 +70,13 @@ errY=newX;
 #axis([0 20]);
 
 for i=1:num_files
-  [newX{i},avgY{i},errY{i}] = readplotdata(["plot_data" int2str(i)]);
-  #errorbar(newX{i},avgY{i},errY{i},symbols{i});
-  M=[newX{i} avgY{i} errY{i}];
-  save('-ascii', ['octout' int2str(i)], 'M');
-  [int2str(i) " of " int2str(num_files)]
+  if ((i!=28)&&(i!=29)&&(i!=30))
+    [newX{i},avgY{i},errY{i}] = readplotdata(["plot_data" int2str(i)]);
+    #errorbar(newX{i},avgY{i},errY{i},symbols{i});
+    M=[newX{i} avgY{i} errY{i}];
+    save('-ascii', ['octout' int2str(i)], 'M');
+    [int2str(i) " of " int2str(num_files)]
+  endif
 endfor
 
 #legend(

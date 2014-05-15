@@ -187,11 +187,11 @@ bintree_create (int depth, int value);
 
 #define TESTS \
   /*X_MACRO(malloc_time_test, "Tests how long tf_malloc takes without collecting") \
-  X_MACRO(malloc_time_test_with_collect, "Tests how long tf_malloc takes with collecting") \
+  X_MACRO(malloc_time_test_with_collect, "Tests how long tf_malloc takes with collecting")*/ \
   X_MACRO(allocate_loads, "Tests how long it takes to allocate a large amount of data") \
-  X_MACRO(old_pause_time_test, "Measures pause time of GC_collect ONLY") \
+  /*X_MACRO(old_pause_time_test, "Measures pause time of GC_collect ONLY") \
   X_MACRO(pause_time_test, "Measures collector pause time") \
-  */X_MACRO(pause_time_test2, "Measures collector pause time") \
+  /*X_MACRO(pause_time_test2, "Measures collector pause time") \
   /*X_MACRO(bintree_test, "Measures time taken to allocate a binary tree")*/ \
   /*X_MACRO(ll_test, "Measures time taken to allocate a linked list")*/ \
   /*X_MACRO(experimental_test, "For experiments")*/
@@ -359,17 +359,20 @@ DEFINE_TEST(malloc_time_test_with_collect)
   return 0;
 }
 
+
+volatile tf_cap_t void * tf_cap_t * refs;
 DEFINE_TEST(allocate_loads)
 {
-
-  // this many bytes are allocated in each element of the array
-  size_t objsz      = flag_input_number*1000;
+  if (flag_input_number == 0) return 0;
   
+  // this many bytes are allocated in each element of the array
+  size_t objsz      = 1000;
+
   // number of objects
-  size_t nobj       = 1000;
+  size_t nobj       = 1000*flag_input_number;
   
   // number of allocations to do
-  size_t nalloc     = 1000;
+  size_t nalloc     = 100000;
   
   // this many bytes are stored at any one time
   size_t total_stored = objsz * nobj;
@@ -421,20 +424,22 @@ DEFINE_TEST(allocate_loads)
 #endif // GC_CHERI
 
   
-  tf_cap_t void * refs[nobj];
-  
   tf_printf(
     "Object size............%llu%s (%llu bytes)\n"
     "Number of objects......%llu%s (%llu)\n"
     "Number of allocations..%llu%s (%llu)\n"
     "Total stored...........%llu%s (%llu bytes)\n"
-    "Total allocated........%llu%s (%llu bytes)\n",
+    "Total allocated........%llu%s (%llu bytes)\n"
+    "sizeof(*refs)..........%llu\n",
     tf_mem_pretty(objsz), tf_mem_pretty_unit(objsz), (tf_ull_t) objsz,
     tf_num_pretty(nobj), tf_num_pretty_unit(nobj), (tf_ull_t) nobj,
     tf_num_pretty(nalloc), tf_num_pretty_unit(nalloc), (tf_ull_t) nalloc,
     tf_mem_pretty(total_stored), tf_mem_pretty_unit(total_stored), (tf_ull_t) total_stored,
-    tf_mem_pretty(total_allocated), tf_mem_pretty_unit(total_allocated), (tf_ull_t) total_allocated);
+    tf_mem_pretty(total_allocated), tf_mem_pretty_unit(total_allocated), (tf_ull_t) total_allocated,
+    (tf_ull_t) sizeof(*refs));
   
+  
+  refs = tf_malloc(nobj*sizeof(*refs));
   
   tf_time_t before = tf_time();
   
@@ -449,6 +454,9 @@ DEFINE_TEST(allocate_loads)
       tf_printf("i=%d: out of memory?\n", (int)i);
       exit(1);
     }
+    int j;
+    for (j=0; j<objsz; j++)
+      ((tf_cap_t char * )refs[index])[j] = 0;
     // TODO: check integrity of stored data...
   }
   

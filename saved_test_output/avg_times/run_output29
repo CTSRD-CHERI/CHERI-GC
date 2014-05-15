@@ -1,0 +1,149 @@
+spawn ssh -i /home/munraj/.ssh/mbv21 mbv21@cloud2 /mnt/mbv21zfs//testall.sh
+Enter passphrase for key '/home/munraj/.ssh/mbv21': 
+Password for mbv21@cloud2:
+Compiled for GC_BOEHM at 21:54:51 May 14 2014
+Boehm heap size: 65536
+----------Begin test allocate_loads----------
+allocate_loads: Tests how long it takes to allocate a large amount of data
+----------Finished test allocate_loads (took 42us)----------
+Boehm heap size: 65536
+Compiled for GC_BOEHM at 21:54:51 May 14 2014
+Boehm heap size: 65536
+----------Begin test allocate_loads----------
+allocate_loads: Tests how long it takes to allocate a large amount of data
+Object size............1kB (1000 bytes)
+Number of objects......1k (1000)
+Number of allocations..100k (100000)
+Total stored...........1MB (1000000 bytes)
+Total allocated........100MB (100000000 bytes)
+sizeof(*refs)..........8
+Took 69s (diff=68729735)
+----------Finished test allocate_loads (took 69s)----------
+Boehm heap size: 2052096
+testall.sh: i=1 j=1
+Compiled for GC_BOEHM at 21:54:51 May 14 2014
+Boehm heap size: 65536
+----------Begin test allocate_loads----------
+allocate_loads: Tests how long it takes to allocate a large amount of data
+Object size............1kB (1000 bytes)
+Number of objects......2k (2000)
+Number of allocations..100k (100000)
+Total stored...........2MB (2000000 bytes)
+Total allocated........100MB (100000000 bytes)
+sizeof(*refs)..........8
+Took 65s (diff=65087316)
+----------Finished test allocate_loads (took 65s)----------
+Boehm heap size: 3657728
+testall.sh: i=2 j=1
+Compiled for GC_BOEHM at 21:54:51 May 14 2014
+Boehm heap size: 65536
+----------Begin test allocate_loads----------
+allocate_loads: Tests how long it takes to allocate a large amount of data
+Object size............1kB (1000 bytes)
+Number of objects......3k (3000)
+Number of allocations..100k (100000)
+Total stored...........3MB (3000000 bytes)
+Total allocated........100MB (100000000 bytes)
+sizeof(*refs)..........8
+Took 62s (diff=62211184)
+----------Finished test allocate_loads (took 62s)----------
+Boehm heap size: 6508544
+testall.sh: i=3 j=1
+Compiled for GC_BOEHM at 21:54:51 May 14 2014
+Boehm heap size: 65536
+----------Begin test allocate_loads----------
+allocate_loads: Tests how long it takes to allocate a large amount of data
+Object size............1kB (1000 bytes)
+Number of objects......4k (4000)
+Number of allocations..100k (100000)
+Total stored...........4MB (4000000 bytes)
+Total allocated........100MB (100000000 bytes)
+sizeof(*refs)..........8
+Took 63s (diff=62539462)
+----------Finished test allocate_loads (took 63s)----------
+Boehm heap size: 8679424
+testall.sh: i=4 j=1
+Compiled for GC_BOEHM at 21:54:51 May 14 2014
+Boehm heap size: 65536
+----------Begin test allocate_loads----------
+allocate_loads: Tests how long it takes to allocate a large amount of data
+Object size............1kB (1000 bytes)
+Number of objects......5k (5000)
+Number of allocations..100k (100000)
+Total stored...........5MB (5000000 bytes)
+Total allocated........100MB (100000000 bytes)
+sizeof(*refs)..........8
+Took 62s (diff=61707233)
+----------Finished test allocate_loads (took 62s)----------
+Boehm heap size: 11575296
+testall.sh: i=5 j=1
+Compiled for GC_BOEHM at 21:54:51 May 14 2014
+Boehm heap size: 65536
+----------Begin test allocate_loads----------
+allocate_loads: Tests how long it takes to allocate a large amount of data
+Object size............1kB (1000 bytes)
+Number of objects......6k (6000)
+Number of allocations..100k (100000)
+Total stored...........6MB (6000000 bytes)
+Total allocated........100MB (100000000 bytes)
+sizeof(*refs)..........8
+Took 86s (diff=85954710)
+----------Finished test allocate_loads (took 86s)----------
+Boehm heap size: 11575296
+testall.sh: i=6 j=1
+Compiled for GC_BOEHM at 21:54:51 May 14 2014
+Boehm heap size: 65536
+----------Begin test allocate_loads----------
+allocate_loads: Tests how long it takes to allocate a large amount of data
+Object size............1kB (1000 bytes)
+Number of objects......7k (7000)
+Number of allocations..100k (100000)
+Total stored...........7MB (7000000 bytes)
+Total allocated........100MB (100000000 bytes)
+sizeof(*refs)..........8
+Took 64s (diff=63694380)
+----------Finished test allocate_loads (took 64s)----------
+Boehm heap size: 15437824
+testall.sh: i=7 j=1
+Compiled for GC_BOEHM at 21:54:51 May 14 2014
+Boehm heap size: 65536
+----------Begin test allocate_loads----------
+allocate_loads: Tests how long it takes to allocate a large amount of data
+Object size............1kB (1000 bytes)
+Number of objects......8k (8000)
+Number of allocations..100k (100000)
+Total stored...........8MB (8000000 bytes)
+Total allocated........100MB (100000000 bytes)
+sizeof(*refs)..........8
+Took 65s (diff=65038775)
+----------Finished test allocate_loads (took 65s)----------
+Boehm heap size: 15437824
+testall.sh: i=8 j=1
+Compiled for GC_BOEHM at 21:54:51 May 14 2014
+Boehm heap size: 65536
+----------Begin test allocate_loads----------
+allocate_loads: Tests how long it takes to allocate a large amount of data
+Object size............1kB (1000 bytes)
+Number of objects......9k (9000)
+Number of allocations..100k (100000)
+Total stored...........9MB (9000000 bytes)
+Total allocated........100MB (100000000 bytes)
+sizeof(*refs)..........8
+Took 65s (diff=64938181)
+----------Finished test allocate_loads (took 65s)----------
+Boehm heap size: 17461248
+testall.sh: i=9 j=1
+Compiled for GC_BOEHM at 21:54:51 May 14 2014
+Boehm heap size: 65536
+----------Begin test allocate_loads----------
+allocate_loads: Tests how long it takes to allocate a large amount of data
+Object size............1kB (1000 bytes)
+Number of objects......10k (10000)
+Number of allocations..100k (100000)
+Total stored...........10MB (10000000 bytes)
+Total allocated........100MB (100000000 bytes)
+sizeof(*refs)..........8
+Took 70s (diff=70232461)
+----------Finished test allocate_loads (took 70s)----------
+Boehm heap size: 18128896
+testall.sh: i=10 j=1

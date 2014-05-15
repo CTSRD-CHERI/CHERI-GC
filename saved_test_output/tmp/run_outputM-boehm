@@ -1,0 +1,618 @@
+spawn ssh -i /home/munraj/.ssh/mbv21 mbv21@cloud2 /mnt/mbv21zfs//testall.sh
+Enter passphrase for key '/home/munraj/.ssh/mbv21': 
+Password for mbv21@cloud2:
+Compiled for GC_BOEHM at 08:29:04 May 15 2014
+Program should be evaluating something to do with the number 1
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 1
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(1))
+Done printing AST
+eval: num(2)
+
+[plotdata] 1 18933
+[altplotdata] 1 65536
+[ML time] main() took 729ms (avg 729ms)
+Boehm heap size: 65536
+[plotdata] # Boehm heap size: 65536
+testall.sh: i=1 j=1
+Compiled for GC_BOEHM at 08:29:04 May 15 2014
+Program should be evaluating something to do with the number 1
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 1
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(1))
+Done printing AST
+eval: num(2)
+
+[plotdata] 1 13496
+[altplotdata] 1 65536
+[ML time] main() took 89ms (avg 89ms)
+Boehm heap size: 65536
+[plotdata] # Boehm heap size: 65536
+testall.sh: i=1 j=2
+Compiled for GC_BOEHM at 08:29:04 May 15 2014
+Program should be evaluating something to do with the number 1
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 1
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(1))
+Done printing AST
+eval: num(2)
+
+[plotdata] 1 19038
+[altplotdata] 1 65536
+[ML time] main() took 247ms (avg 247ms)
+Boehm heap size: 65536
+[plotdata] # Boehm heap size: 65536
+testall.sh: i=1 j=3
+Compiled for GC_BOEHM at 08:29:04 May 15 2014
+Program should be evaluating something to do with the number 2
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 2
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(2))
+Done printing AST
+eval: num(4)
+
+[plotdata] 2 16295
+[altplotdata] 2 65536
+[ML time] main() took 71ms (avg 71ms)
+Boehm heap size: 65536
+[plotdata] # Boehm heap size: 65536
+testall.sh: i=2 j=1
+Compiled for GC_BOEHM at 08:29:04 May 15 2014
+Program should be evaluating something to do with the number 2
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 2
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(2))
+Done printing AST
+eval: num(4)
+
+[plotdata] 2 23387
+[altplotdata] 2 65536
+[ML time] main() took 249ms (avg 249ms)
+Boehm heap size: 65536
+[plotdata] # Boehm heap size: 65536
+testall.sh: i=2 j=2
+Compiled for GC_BOEHM at 08:29:04 May 15 2014
+Program should be evaluating something to do with the number 2
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 2
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(2))
+Done printing AST
+eval: num(4)
+
+[plotdata] 2 16766
+[altplotdata] 2 65536
+[ML time] main() took 72ms (avg 72ms)
+Boehm heap size: 65536
+[plotdata] # Boehm heap size: 65536
+testall.sh: i=2 j=3
+Compiled for GC_BOEHM at 08:29:04 May 15 2014
+Program should be evaluating something to do with the number 4
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 4
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(4))
+Done printing AST
+eval: num(11)
+
+[plotdata] 4 25412
+[altplotdata] 4 65536
+[ML time] main() took 255ms (avg 255ms)
+Boehm heap size: 65536
+[plotdata] # Boehm heap size: 65536
+testall.sh: i=4 j=1
+Compiled for GC_BOEHM at 08:29:04 May 15 2014
+Program should be evaluating something to do with the number 4
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 4
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(4))
+Done printing AST
+eval: num(11)
+
+[plotdata] 4 42234
+[altplotdata] 4 65536
+[ML time] main() took 99ms (avg 99ms)
+Boehm heap size: 65536
+[plotdata] # Boehm heap size: 65536
+testall.sh: i=4 j=2
+Compiled for GC_BOEHM at 08:29:04 May 15 2014
+Program should be evaluating something to do with the number 4
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 4
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(4))
+Done printing AST
+eval: num(11)
+
+[plotdata] 4 194384
+[altplotdata] 4 65536
+[ML time] main() took 249ms (avg 249ms)
+Boehm heap size: 65536
+[plotdata] # Boehm heap size: 65536
+testall.sh: i=4 j=3
+Compiled for GC_BOEHM at 08:29:04 May 15 2014
+Program should be evaluating something to do with the number 8
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 8
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(8))
+Done printing AST
+eval: num(37)
+
+[plotdata] 8 25246
+[altplotdata] 8 65536
+[ML time] main() took 101ms (avg 101ms)
+Boehm heap size: 65536
+[plotdata] # Boehm heap size: 65536
+testall.sh: i=8 j=1
+Compiled for GC_BOEHM at 08:29:04 May 15 2014
+Program should be evaluating something to do with the number 8
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 8
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(8))
+Done printing AST
+eval: num(37)
+
+[plotdata] 8 31657
+[altplotdata] 8 65536
+[ML time] main() took 263ms (avg 263ms)
+Boehm heap size: 65536
+[plotdata] # Boehm heap size: 65536
+testall.sh: i=8 j=2
+Compiled for GC_BOEHM at 08:29:04 May 15 2014
+Program should be evaluating something to do with the number 8
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 8
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(8))
+Done printing AST
+eval: num(37)
+
+[plotdata] 8 25636
+[altplotdata] 8 65536
+[ML time] main() took 102ms (avg 102ms)
+Boehm heap size: 65536
+[plotdata] # Boehm heap size: 65536
+testall.sh: i=8 j=3
+GC Warning: Out of Memory! Heap size: 0 MiB. Returning NULL!
+eval: out of memory allocating fn_val_t
+Compiled for GC_BOEHM at 08:29:04 May 15 2014
+Program should be evaluating something to do with the number 16
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 16
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(16))
+Done printing AST
+testall.sh: i=16 j=1
+GC Warning: Out of Memory! Heap size: 0 MiB. Returning NULL!
+eval: out of memory allocating fn_val_t
+Compiled for GC_BOEHM at 08:29:04 May 15 2014
+Program should be evaluating something to do with the number 16
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 16
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(16))
+Done printing AST
+testall.sh: i=16 j=2
+GC Warning: Out of Memory! Heap size: 0 MiB. Returning NULL!
+eval: out of memory allocating fn_val_t
+Compiled for GC_BOEHM at 08:29:04 May 15 2014
+Program should be evaluating something to do with the number 16
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 16
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(16))
+Done printing AST
+testall.sh: i=16 j=3
+GC Warning: Out of Memory! Heap size: 0 MiB. Returning NULL!
+eval: out of memory allocating fn_val_t
+Compiled for GC_BOEHM at 08:29:04 May 15 2014
+Program should be evaluating something to do with the number 32
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 32
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(32))
+Done printing AST
+testall.sh: i=32 j=1
+GC Warning: Out of Memory! Heap size: 0 MiB. Returning NULL!
+eval: out of memory allocating fn_val_t
+Compiled for GC_BOEHM at 08:29:04 May 15 2014
+Program should be evaluating something to do with the number 32
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 32
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(32))
+Done printing AST
+testall.sh: i=32 j=2
+GC Warning: Out of Memory! Heap size: 0 MiB. Returning NULL!
+eval: out of memory allocating fn_val_t
+Compiled for GC_BOEHM at 08:29:04 May 15 2014
+Program should be evaluating something to do with the number 32
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 32
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(32))
+Done printing AST
+testall.sh: i=32 j=3
+GC Warning: Out of Memory! Heap size: 0 MiB. Returning NULL!
+eval: out of memory allocating fn_val_t
+Compiled for GC_BOEHM at 08:29:04 May 15 2014
+Program should be evaluating something to do with the number 64
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 64
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(64))
+Done printing AST
+testall.sh: i=64 j=1
+GC Warning: Out of Memory! Heap size: 0 MiB. Returning NULL!
+eval: out of memory allocating fn_val_t
+Compiled for GC_BOEHM at 08:29:04 May 15 2014
+Program should be evaluating something to do with the number 64
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 64
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(64))
+Done printing AST
+testall.sh: i=64 j=2
+GC Warning: Out of Memory! Heap size: 0 MiB. Returning NULL!
+eval: out of memory allocating fn_val_t
+Compiled for GC_BOEHM at 08:29:04 May 15 2014
+Program should be evaluating something to do with the number 64
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 64
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(64))
+Done printing AST
+testall.sh: i=64 j=3
+GC Warning: Out of Memory! Heap size: 0 MiB. Returning NULL!
+eval: out of memory allocating fn_val_t
+Compiled for GC_BOEHM at 08:29:04 May 15 2014
+Program should be evaluating something to do with the number 128
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 128
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(128))
+Done printing AST
+testall.sh: i=128 j=1
+GC Warning: Out of Memory! Heap size: 0 MiB. Returning NULL!
+eval: out of memory allocating fn_val_t
+Compiled for GC_BOEHM at 08:29:04 May 15 2014
+Program should be evaluating something to do with the number 128
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 128
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(128))
+Done printing AST
+testall.sh: i=128 j=2
+GC Warning: Out of Memory! Heap size: 0 MiB. Returning NULL!
+eval: out of memory allocating fn_val_t
+Compiled for GC_BOEHM at 08:29:04 May 15 2014
+Program should be evaluating something to do with the number 128
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 128
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(128))
+Done printing AST
+testall.sh: i=128 j=3
+Compiled for GC_BOEHM at 08:29:04 May 15 2014
+Program should be evaluating something to do with the number 256
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 256
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(256))
+Done printing AST
+eval: num(32897)
+
+[plotdata] 256 743082
+[altplotdata] 256 196608
+[ML time] main() took 799ms (avg 799ms)
+Boehm heap size: 196608
+[plotdata] # Boehm heap size: 196608
+testall.sh: i=256 j=1
+Compiled for GC_BOEHM at 08:29:04 May 15 2014
+Program should be evaluating something to do with the number 256
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 256
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(256))
+Done printing AST
+eval: num(32897)
+
+[plotdata] 256 808133
+[altplotdata] 256 196608
+[ML time] main() took 863ms (avg 863ms)
+Boehm heap size: 196608
+[plotdata] # Boehm heap size: 196608
+testall.sh: i=256 j=2
+Compiled for GC_BOEHM at 08:29:04 May 15 2014
+Program should be evaluating something to do with the number 256
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 256
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(256))
+Done printing AST
+eval: num(32897)
+
+[plotdata] 256 749923
+[altplotdata] 256 196608
+[ML time] main() took 827ms (avg 827ms)
+Boehm heap size: 196608
+[plotdata] # Boehm heap size: 196608
+testall.sh: i=256 j=3
+Compiled for GC_BOEHM at 08:29:04 May 15 2014
+Program should be evaluating something to do with the number 512
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 512
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(512))
+Done printing AST
+eval: num(131329)
+
+[plotdata] 512 1494631
+[altplotdata] 512 196608
+[ML time] main() took 1550ms (avg 1550ms)
+Boehm heap size: 196608
+[plotdata] # Boehm heap size: 196608
+testall.sh: i=512 j=1
+Compiled for GC_BOEHM at 08:29:04 May 15 2014
+Program should be evaluating something to do with the number 512
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 512
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(512))
+Done printing AST
+eval: num(131329)
+
+[plotdata] 512 1432277
+[altplotdata] 512 196608
+[ML time] main() took 1520ms (avg 1520ms)
+Boehm heap size: 196608
+[plotdata] # Boehm heap size: 196608
+testall.sh: i=512 j=2
+Compiled for GC_BOEHM at 08:29:04 May 15 2014
+Program should be evaluating something to do with the number 512
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 512
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(512))
+Done printing AST
+eval: num(131329)
+
+[plotdata] 512 1190084
+[altplotdata] 512 196608
+[ML time] main() took 1413ms (avg 1413ms)
+Boehm heap size: 196608
+[plotdata] # Boehm heap size: 196608
+testall.sh: i=512 j=3
+GC Warning: Out of Memory! Heap size: 0 MiB. Returning NULL!
+eval: out of memory allocating fn_val_t
+Compiled for GC_BOEHM at 08:29:04 May 15 2014
+Program should be evaluating something to do with the number 1024
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 1024
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(1024))
+Done printing AST
+testall.sh: i=1024 j=1
+GC Warning: Out of Memory! Heap size: 0 MiB. Returning NULL!
+eval: out of memory allocating fn_val_t
+Compiled for GC_BOEHM at 08:29:04 May 15 2014
+Program should be evaluating something to do with the number 1024
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 1024
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(1024))
+Done printing AST
+testall.sh: i=1024 j=2
+GC Warning: Out of Memory! Heap size: 0 MiB. Returning NULL!
+eval: out of memory allocating fn_val_t
+Compiled for GC_BOEHM at 08:29:04 May 15 2014
+Program should be evaluating something to do with the number 1024
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 1024
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(1024))
+Done printing AST
+testall.sh: i=1024 j=3
+GC Warning: Out of Memory! Heap size: 0 MiB. Returning NULL!
+eval: out of memory allocating val_t
+Compiled for GC_BOEHM at 08:29:04 May 15 2014
+Program should be evaluating something to do with the number 2048
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 2048
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(2048))
+Done printing AST
+testall.sh: i=2048 j=1
+GC Warning: Out of Memory! Heap size: 0 MiB. Returning NULL!
+eval: out of memory allocating val_t
+Compiled for GC_BOEHM at 08:29:04 May 15 2014
+Program should be evaluating something to do with the number 2048
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 2048
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(2048))
+Done printing AST
+testall.sh: i=2048 j=2
+GC Warning: Out of Memory! Heap size: 0 MiB. Returning NULL!
+eval: out of memory allocating val_t
+Compiled for GC_BOEHM at 08:29:04 May 15 2014
+Program should be evaluating something to do with the number 2048
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 2048
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(2048))
+Done printing AST
+testall.sh: i=2048 j=3
+GC Warning: Out of Memory! Heap size: 1 MiB. Returning NULL!
+eval: out of memory allocating env_t
+Compiled for GC_BOEHM at 08:29:04 May 15 2014
+Program should be evaluating something to do with the number 4096
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 4096
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(4096))
+Done printing AST
+testall.sh: i=4096 j=1
+GC Warning: Out of Memory! Heap size: 1 MiB. Returning NULL!
+eval: out of memory allocating env_t
+Compiled for GC_BOEHM at 08:29:04 May 15 2014
+Program should be evaluating something to do with the number 4096
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 4096
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(4096))
+Done printing AST
+testall.sh: i=4096 j=2
+GC Warning: Out of Memory! Heap size: 1 MiB. Returning NULL!
+eval: out of memory allocating env_t
+Compiled for GC_BOEHM at 08:29:04 May 15 2014
+Program should be evaluating something to do with the number 4096
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 4096
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(4096))
+Done printing AST
+testall.sh: i=4096 j=3
+Compiled for GC_BOEHM at 08:29:04 May 15 2014
+Program should be evaluating something to do with the number 8192
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 8192
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(8192))
+Done printing AST
+eval: num(33558529)
+
+[plotdata] 8192 17558513
+[altplotdata] 8192 2772992
+[ML time] main() took 18s (avg 18s)
+Boehm heap size: 2772992
+[plotdata] # Boehm heap size: 2772992
+testall.sh: i=8192 j=1
+Compiled for GC_BOEHM at 08:29:04 May 15 2014
+Program should be evaluating something to do with the number 8192
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 8192
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(8192))
+Done printing AST
+eval: num(33558529)
+
+[plotdata] 8192 18156287
+[altplotdata] 8192 2772992
+[ML time] main() took 18s (avg 18s)
+Boehm heap size: 2772992
+[plotdata] # Boehm heap size: 2772992
+testall.sh: i=8192 j=2
+Compiled for GC_BOEHM at 08:29:04 May 15 2014
+Program should be evaluating something to do with the number 8192
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 8192
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(8192))
+Done printing AST
+eval: num(33558529)
+
+[plotdata] 8192 18960582
+[altplotdata] 8192 2772992
+[ML time] main() took 19s (avg 19s)
+Boehm heap size: 2772992
+[plotdata] # Boehm heap size: 2772992
+testall.sh: i=8192 j=3
+Compiled for GC_BOEHM at 08:29:04 May 15 2014
+Program should be evaluating something to do with the number 16384
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 16384
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(16384))
+Done printing AST
+eval: num(134225921)
+
+[plotdata] 16384 36116724
+[altplotdata] 16384 5304320
+[ML time] main() took 36s (avg 36s)
+Boehm heap size: 5304320
+[plotdata] # Boehm heap size: 5304320
+testall.sh: i=16384 j=1
+Compiled for GC_BOEHM at 08:29:04 May 15 2014
+Program should be evaluating something to do with the number 16384
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 16384
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(16384))
+Done printing AST
+eval: num(134225921)
+
+[plotdata] 16384 35995157
+[altplotdata] 16384 5304320
+[ML time] main() took 36s (avg 36s)
+Boehm heap size: 5304320
+[plotdata] # Boehm heap size: 5304320
+testall.sh: i=16384 j=2
+Compiled for GC_BOEHM at 08:29:04 May 15 2014
+Program should be evaluating something to do with the number 16384
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 16384
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(16384))
+Done printing AST
+eval: num(134225921)
+
+[plotdata] 16384 35806030
+[altplotdata] 16384 5304320
+[ML time] main() took 36s (avg 36s)
+Boehm heap size: 5304320
+[plotdata] # Boehm heap size: 5304320
+testall.sh: i=16384 j=3
+Compiled for GC_BOEHM at 08:29:04 May 15 2014
+Program should be evaluating something to do with the number 32768
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 32768
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(32768))
+Done printing AST
+eval: num(536887297)
+
+[plotdata] 32768 80354613
+[altplotdata] 32768 9904128
+[ML time] main() took 80s (avg 80s)
+Boehm heap size: 9904128
+[plotdata] # Boehm heap size: 9904128
+testall.sh: i=32768 j=1
+Compiled for GC_BOEHM at 08:29:04 May 15 2014
+Program should be evaluating something to do with the number 32768
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 32768
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(32768))
+Done printing AST
+eval: num(536887297)
+
+[plotdata] 32768 76689539
+[altplotdata] 32768 9904128
+[ML time] main() took 77s (avg 77s)
+Boehm heap size: 9904128
+[plotdata] # Boehm heap size: 9904128
+testall.sh: i=32768 j=2
+Compiled for GC_BOEHM at 08:29:04 May 15 2014
+Program should be evaluating something to do with the number 32768
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 32768
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(32768))
+Done printing AST
+eval: num(536887297)
+
+[plotdata] 32768 79899115
+[altplotdata] 32768 9904128
+[ML time] main() took 80s (avg 80s)
+Boehm heap size: 9904128
+[plotdata] # Boehm heap size: 9904128
+testall.sh: i=32768 j=3

@@ -10,6 +10,7 @@ WENGER_FILE_ZFS=/exports/users/mbv21/cloud2gc2test
 WENGER_FILE_ZFS_MLTEST=/exports/users/mbv21/cloud2mltest
 WENGER_FILE_ZFS_MLTEST_BOEHM=/exports/users/mbv21/cloud2mltest-boehm
 WENGER_FILE_ZFS_MLTEST_NO_GC=/exports/users/mbv21/cloud2mltest-no-gc
+WENGER_FILE_ZFS_MLTEST_NO_CAP=/exports/users/mbv21/cloud2mltest-no-cap
 CLOUD2_USER=mbv21
 CLOUD2_PASSWORD=mbv21
 CLOUD2_ADDR=cloud2
@@ -103,6 +104,9 @@ mltest-boehm:
 mltest-no-gc:
 	PATH=$(PATH) $(CC) -DGC_NONE $(MEMWATCH_FLAGS) -o objects/mltest-no-gc $(MEMWATCH_SOURCES) $(MLTEST_SOURCES)
 
+mltest-no-cap:
+	PATH=$(PATH) $(CC) -DGC_NOCAP $(MEMWATCH_FLAGS) -o objects/mltest-no-cap $(MEMWATCH_SOURCES) $(MLTEST_SOURCES)
+
 
 PASSWORD=`cat $(SSH_PASSWD_FILE)`
 CMD1=scp -i $(SSH_PRIV_KEY) objects/gctest $(WENGER_USER)@$(WENGER_ADDR):$(WENGER_FILE_ZFS)
@@ -125,6 +129,7 @@ CMD3=scp -i $(SSH_PRIV_KEY) objects/mltest $(WENGER_USER)@$(WENGER_ADDR):$(WENGE
 CMD4=scp -i $(SSH_PRIV_KEY) objects/mltest-boehm $(WENGER_USER)@$(WENGER_ADDR):$(WENGER_FILE_ZFS_MLTEST_BOEHM)
 CMD5=scp -i $(SSH_PRIV_KEY) objects/mltest-no-gc $(WENGER_USER)@$(WENGER_ADDR):$(WENGER_FILE_ZFS_MLTEST_NO_GC)
 CMD6=ssh $(CLOUD2_USER)@$(CLOUD2_ADDR) $(CLOUD2_FILE_ZFS_MLTEST)
+CMD7=scp -i $(SSH_PRIV_KEY) objects/mltest-no-cap $(WENGER_USER)@$(WENGER_ADDR):$(WENGER_FILE_ZFS_MLTEST_NO_CAP)
 pushml:
 	echo "[i] pushing file to wenger ZFS" && \
 	echo -e "set timeout 60\nspawn $(CMD3)\nexpect \": \"\nsend \"$(PASSWORD)\\\\n\"\ninteract\n" > cloud4_push_helper.expect && \
@@ -138,6 +143,11 @@ pushml-boehm:
 pushml-no-gc:
 	echo "[i] pushing file to wenger ZFS" && \
 	echo -e "set timeout 60\nspawn $(CMD5)\nexpect \": \"\nsend \"$(PASSWORD)\\\\n\"\ninteract\n" > cloud4_push_helper.expect && \
+	expect -f cloud4_push_helper.expect && \
+	rm -f cloud4_push_helper.expect
+pushml-no-cap:
+	echo "[i] pushing file to wenger ZFS" && \
+	echo -e "set timeout 60\nspawn $(CMD7)\nexpect \": \"\nsend \"$(PASSWORD)\\\\n\"\ninteract\n" > cloud4_push_helper.expect && \
 	expect -f cloud4_push_helper.expect && \
 	rm -f cloud4_push_helper.expect
 runml:
@@ -154,4 +164,4 @@ pushml-cherrybox:
 everything: clean lib gctest push run loc
 almost_everything: clean lib gctest push push-cherrybox loc
 ml: clean lib mltest pushml
-ml-all: clean lib mltest mltest-boehm mltest-no-gc pushml pushml-boehm pushml-no-gc pushml-cherrybox
+ml-all: clean lib mltest mltest-boehm mltest-no-gc mltest-no-cap pushml pushml-boehm pushml-no-gc pushml-no-cap pushml-cherrybox

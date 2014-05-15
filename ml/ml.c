@@ -18,6 +18,58 @@ __UNLOCK_MALLOC (void)
 }
 #endif // GC_BOEHM
 
+#ifdef GC_CHERI
+GC_USER_FUNC void
+gc_cheri_grow_heap (int num)
+{
+  int init_heap_sz = num >= 1024 ? 350000*(num/1024) : 
+                     num >= 256 ? 200000 : 65536;
+  init_heap_sz *= 4;
+  
+#ifdef GC_GENERATIONAL
+  init_heap_sz /= 10;
+#endif // GC_GENERATIONAL
+  size_t ycur = GC_ALIGN_32(GC_THREAD_LOCAL_HEAP_SIZE, size_t);
+  size_t ocur = GC_ALIGN_32(GC_OLD_GENERATION_SEMISPACE_SIZE, size_t);
+  GC_state.thread_local_region.max_grow_size_before_collection =
+    GC_ALIGN_32(init_heap_sz, size_t); // young gen max before collect
+  GC_state.thread_local_region.max_grow_size_after_collection =
+    GC_ALIGN_32(init_heap_sz, size_t); // young gen max after collect
+#ifdef GC_GENERATIONAL
+  GC_state.old_generation.max_grow_size_before_collection =
+    GC_ALIGN_32(10*init_heap_sz, size_t); // old gen max before collect
+  GC_state.old_generation.max_grow_size_after_collection =
+    GC_ALIGN_32(10*init_heap_sz, size_t); // old gen max after collect
+#endif // GC_GENERATIONAL
+  // GC_region_rebase requires the stack and registers saved, which normally
+  // happens inside the collector. This hack allows us to use GC_grow outside of
+  // the collector...
+  char buf_unaligned[32];
+  void * buf_aligned = GC_ALIGN_32(buf_unaligned, void*);
+  GC_state.stack_top = buf_aligned;
+  GC_state.reg_bottom = buf_aligned;
+  GC_state.reg_top = buf_aligned;
+  
+  if (!GC_grow(&GC_state.thread_local_region,
+               GC_state.thread_local_region.max_grow_size_before_collection-ycur,
+               GC_state.thread_local_region.max_grow_size_before_collection))
+  {
+    fprintf(stderr, "error: GC_grow young generation failed\n");
+    exit(1);
+  }
+
+#ifdef GC_GENERATIONAL  
+  if (!GC_grow(&GC_state.old_generation,
+               GC_state.old_generation.max_grow_size_before_collection-ocur,
+               GC_state.old_generation.max_grow_size_before_collection))
+  {
+    fprintf(stderr, "error: GC_grow old generation failed\n");
+    exit(1);
+  }
+#endif // GC_GENERATIONAL
+}
+#endif // GC_CHERI
+
 #ifdef GC_NONE
 #include <stdlib.h>
 GC_USER_FUNC GC_CAP void *
@@ -112,6 +164,8 @@ GC_USER_FUNC int main (int argc, char ** argv)
   "GC_BOEHM"
 #elif defined(GC_NONE)
   "GC_NONE"
+#elif defined(GC_NOCAP)
+  "GC_NOCAP"
 #else
 #error "Define one of GC_CHERI, GC_BOEHM, GC_NONE."
 #endif // GC_CHERI, GC_BOEHM, GC_NONE
@@ -142,7 +196,17 @@ GC_USER_FUNC int main (int argc, char ** argv)
     printf("Need a number argument\n");
     return 1;
   }
-  printf("Program should be evaluating something to do with the number %d\n", argv[2]);
+  printf("Program should be evaluating something to do with the number %s\n", argv[2]);
+  
+  int num = atoi(argv[2]);
+#ifdef GC_CHERI
+  gc_cheri_grow_heap(num);
+#endif
+  
+#ifdef GC_BOEHM
+  GC_set_max_heap_size(num >= 1024 ? 350000*(num/1024) : num >= 256 ? 200000 : 65536);
+#endif
+  
   /*const char str[] =
     "((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) ";
   GC_CAP char * str2 = ml_malloc(sizeof(str)+strlen(argv[1]));
@@ -150,6 +214,8 @@ GC_USER_FUNC int main (int argc, char ** argv)
   cmemcpy(str2+sizeof(str)-1, GC_cheri_ptr(argv[1], strlen(argv[1]+1)), strlen(argv[1]+1));
   */
   GC_CAP const char * str2 = GC_cheri_ptr(argv[1], strlen(argv[1])+1);
+  
+  unsigned long long before = ml_time();
   
   lex_read_string(str2);
   printf("program: %s\n\n", (void*)(str2));
@@ -200,7 +266,15 @@ GC_USER_FUNC int main (int argc, char ** argv)
   GC_debug_print_region_stats(&GC_state.thread_local_region);*/
   
   GC_CAP val_t * val = GC_INVALID_PTR();
-  GC_STORE_CAP(val, eval(expr, GC_INVALID_PTR()));
+  
+  int i;
+  for (i=0; i<10; i++)
+  {
+    GC_STORE_CAP(val, eval(expr, GC_INVALID_PTR()));
+  }
+  
+  unsigned long long after = ml_time();
+  unsigned long long diff = after - before;
   
   printf("eval: ");
   if (!PTR_VALID(val))
@@ -208,6 +282,20 @@ GC_USER_FUNC int main (int argc, char ** argv)
   else
     print_val(val);
   printf("\n\n");
+  
+  printf("[plotdata] %s %llu\n", argv[2], (unsigned long long) diff);
+#ifdef GC_CHERI
+  printf("(young) heap size:\n");
+  printf("[altplotdata] %s %llu\n", argv[2], (unsigned long long) (GC_cheri_getlen(GC_state.thread_local_region.tospace)));
+#ifdef GC_GENERATIONAL
+  printf("old heap size:\n");
+  printf("[altplotdataold] %s %llu\n", argv[2], (unsigned long long) (GC_cheri_getlen(GC_state.old_generation.tospace)));
+#endif // GC_GENERATIONAL
+#endif // GC_CHERI
+#ifdef GC_BOEHM
+    printf("[altplotdata] %s %llu\n", argv[2],
+    (unsigned long long) GC_get_heap_size());
+#endif // GC_BOEHM
 
   ML_STOP_TIMING(main_time, "main()");
   

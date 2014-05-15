@@ -131,4 +131,28 @@
 \end{tikzpicture}
 \end{figure}
 
+\begin{figure}
+\centering
+\caption{ML test series sum.}
+\begin{tikzpicture}
+\begin{axis}[
+  %title={},
+  xlabel=Number,
+  ylabel=Total time (s),
+  %xmin=0,
+  %xmax=20,
+  scaled ticks=false,
+  axis lines=left,
+  legend entries={CopyGC(1024+), Boehm, No GC, No Cap},
+  legend style={legend pos=outer north east,},
+]
+\addplot+[error bars/.cd, y dir=both, y explicit] table[y error index=2] {octout34};%CopyGC
+%\addplot+[error bars/.cd, y dir=both, y explicit] table[y error index=2] {octout15};%GenGC
+\addplot+[error bars/.cd, y dir=both, y explicit] table[y error index=2] {octout31};%BoehmGC
+\addplot+[error bars/.cd, y dir=both, y explicit] table[y error index=2] {octout33};%NoGC(caps)
+\addplot+[error bars/.cd, y dir=both, y explicit] table[y error index=2] {octout32};%NoGC(nocaps)
+\end{axis}
+\end{tikzpicture}
+\end{figure}
+
 \end{document}

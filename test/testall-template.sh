@@ -1,5 +1,5 @@
 # this script is pushed to and run on cloud2 by Makefile.testall
-prog=/mnt/mbv21zfs/cloud2mltest
+prog=PROG
 i=32768
 while [ $i -le 64000 ]
 do

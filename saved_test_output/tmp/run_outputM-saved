@@ -1,0 +1,1779 @@
+spawn ssh -i /home/munraj/.ssh/mbv21 mbv21@cloud2 /mnt/mbv21zfs//testall.sh
+Enter passphrase for key '/home/munraj/.ssh/mbv21': 
+Password for mbv21@cloud2:
+GC_init2 called from (GC_init_constructor):0
+GC_init2 called from ml/ml.c:156 (initialized already)
+Compiled for GC_CHERI at 08:37:42 May 15 2014
+Program should be evaluating something to do with the number 1
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 1
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(1))
+Done printing AST
+eval: num(2)
+
+[plotdata] 1 16333
+(young) heap size:
+[altplotdata] 1 262144
+[ML time] main() took 354ms (avg 354ms)
+Region statistics
+-----------------
+fromspace :      b=  0x16082e000         l=0x40000           
+               end=  0x16086e000       
+            bitmap=  0x160829058         s=0x2000              u=0x0               
+tospace   :      b=  0x16086f000         l=0x40000           
+               end=  0x1608af000       
+            bitmap=  0x160829040         s=0x2000              u=0x862             
+free      :      b=  0x16087fc40         l=0x2f3c0           
+               end=  0x1608af000       
+scan      :          0x68000           
+
+used size   : 0x10c40            bytes (69kB)
+free size   : 0x2f3c0            bytes (193kB)
+heap size   : 0x40000            bytes (262kB)
+
+stats:
+allocations : 1010 (1k)
+collections : 0 (0)
+copies      : 0 (0)
+[plotdata] # heap size: (young generation) I=65536 B=262144 A=262144 F=262144
+testall.sh: i=1 j=1
+GC_init2 called from (GC_init_constructor):0
+GC_init2 called from ml/ml.c:156 (initialized already)
+Compiled for GC_CHERI at 08:37:42 May 15 2014
+Program should be evaluating something to do with the number 1
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 1
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(1))
+Done printing AST
+eval: num(2)
+
+[plotdata] 1 44365
+(young) heap size:
+[altplotdata] 1 262144
+[ML time] main() took 106ms (avg 106ms)
+Region statistics
+-----------------
+fromspace :      b=  0x16082e000         l=0x40000           
+               end=  0x16086e000       
+            bitmap=  0x160829058         s=0x2000              u=0x0               
+tospace   :      b=  0x16086f000         l=0x40000           
+               end=  0x1608af000       
+            bitmap=  0x160829040         s=0x2000              u=0x862             
+free      :      b=  0x16087fc40         l=0x2f3c0           
+               end=  0x1608af000       
+scan      :          0x68000           
+
+used size   : 0x10c40            bytes (69kB)
+free size   : 0x2f3c0            bytes (193kB)
+heap size   : 0x40000            bytes (262kB)
+
+stats:
+allocations : 1010 (1k)
+collections : 0 (0)
+copies      : 0 (0)
+[plotdata] # heap size: (young generation) I=65536 B=262144 A=262144 F=262144
+testall.sh: i=1 j=2
+GC_init2 called from (GC_init_constructor):0
+GC_init2 called from ml/ml.c:156 (initialized already)
+Compiled for GC_CHERI at 08:37:42 May 15 2014
+Program should be evaluating something to do with the number 1
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 1
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(1))
+Done printing AST
+eval: num(2)
+
+[plotdata] 1 16758
+(young) heap size:
+[altplotdata] 1 262144
+[ML time] main() took 250ms (avg 250ms)
+Region statistics
+-----------------
+fromspace :      b=  0x16082e000         l=0x40000           
+               end=  0x16086e000       
+            bitmap=  0x160829058         s=0x2000              u=0x0               
+tospace   :      b=  0x16086f000         l=0x40000           
+               end=  0x1608af000       
+            bitmap=  0x160829040         s=0x2000              u=0x862             
+free      :      b=  0x16087fc40         l=0x2f3c0           
+               end=  0x1608af000       
+scan      :          0x68000           
+
+used size   : 0x10c40            bytes (69kB)
+free size   : 0x2f3c0            bytes (193kB)
+heap size   : 0x40000            bytes (262kB)
+
+stats:
+allocations : 1010 (1k)
+collections : 0 (0)
+copies      : 0 (0)
+[plotdata] # heap size: (young generation) I=65536 B=262144 A=262144 F=262144
+testall.sh: i=1 j=3
+GC_init2 called from (GC_init_constructor):0
+GC_init2 called from ml/ml.c:156 (initialized already)
+Compiled for GC_CHERI at 08:37:42 May 15 2014
+Program should be evaluating something to do with the number 2
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 2
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(2))
+Done printing AST
+eval: num(4)
+
+[plotdata] 2 45598
+(young) heap size:
+[altplotdata] 2 262144
+[ML time] main() took 111ms (avg 111ms)
+Region statistics
+-----------------
+fromspace :      b=  0x16082e000         l=0x40000           
+               end=  0x16086e000       
+            bitmap=  0x160829058         s=0x2000              u=0x0               
+tospace   :      b=  0x16086f000         l=0x40000           
+               end=  0x1608af000       
+            bitmap=  0x160829040         s=0x2000              u=0x998             
+free      :      b=  0x160882300         l=0x2cd00           
+               end=  0x1608af000       
+scan      :          0x68000           
+
+used size   : 0x13300            bytes (79kB)
+free size   : 0x2cd00            bytes (184kB)
+heap size   : 0x40000            bytes (262kB)
+
+stats:
+allocations : 1150 (1k)
+collections : 0 (0)
+copies      : 0 (0)
+[plotdata] # heap size: (young generation) I=65536 B=262144 A=262144 F=262144
+testall.sh: i=2 j=1
+GC_init2 called from (GC_init_constructor):0
+GC_init2 called from ml/ml.c:156 (initialized already)
+Compiled for GC_CHERI at 08:37:42 May 15 2014
+Program should be evaluating something to do with the number 2
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 2
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(2))
+Done printing AST
+eval: num(4)
+
+[plotdata] 2 166341
+(young) heap size:
+[altplotdata] 2 262144
+[ML time] main() took 237ms (avg 237ms)
+Region statistics
+-----------------
+fromspace :      b=  0x16082e000         l=0x40000           
+               end=  0x16086e000       
+            bitmap=  0x160829058         s=0x2000              u=0x0               
+tospace   :      b=  0x16086f000         l=0x40000           
+               end=  0x1608af000       
+            bitmap=  0x160829040         s=0x2000              u=0x998             
+free      :      b=  0x160882300         l=0x2cd00           
+               end=  0x1608af000       
+scan      :          0x68000           
+
+used size   : 0x13300            bytes (79kB)
+free size   : 0x2cd00            bytes (184kB)
+heap size   : 0x40000            bytes (262kB)
+
+stats:
+allocations : 1150 (1k)
+collections : 0 (0)
+copies      : 0 (0)
+[plotdata] # heap size: (young generation) I=65536 B=262144 A=262144 F=262144
+testall.sh: i=2 j=2
+GC_init2 called from (GC_init_constructor):0
+GC_init2 called from ml/ml.c:156 (initialized already)
+Compiled for GC_CHERI at 08:37:42 May 15 2014
+Program should be evaluating something to do with the number 2
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 2
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(2))
+Done printing AST
+eval: num(4)
+
+[plotdata] 2 168547
+(young) heap size:
+[altplotdata] 2 262144
+[ML time] main() took 260ms (avg 260ms)
+Region statistics
+-----------------
+fromspace :      b=  0x16082e000         l=0x40000           
+               end=  0x16086e000       
+            bitmap=  0x160829058         s=0x2000              u=0x0               
+tospace   :      b=  0x16086f000         l=0x40000           
+               end=  0x1608af000       
+            bitmap=  0x160829040         s=0x2000              u=0x998             
+free      :      b=  0x160882300         l=0x2cd00           
+               end=  0x1608af000       
+scan      :          0x68000           
+
+used size   : 0x13300            bytes (79kB)
+free size   : 0x2cd00            bytes (184kB)
+heap size   : 0x40000            bytes (262kB)
+
+stats:
+allocations : 1150 (1k)
+collections : 0 (0)
+copies      : 0 (0)
+[plotdata] # heap size: (young generation) I=65536 B=262144 A=262144 F=262144
+testall.sh: i=2 j=3
+GC_init2 called from (GC_init_constructor):0
+GC_init2 called from ml/ml.c:156 (initialized already)
+Compiled for GC_CHERI at 08:37:42 May 15 2014
+Program should be evaluating something to do with the number 4
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 4
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(4))
+Done printing AST
+eval: num(11)
+
+[plotdata] 4 24269
+(young) heap size:
+[altplotdata] 4 262144
+[ML time] main() took 244ms (avg 244ms)
+Region statistics
+-----------------
+fromspace :      b=  0x16082e000         l=0x40000           
+               end=  0x16086e000       
+            bitmap=  0x160829058         s=0x2000              u=0x0               
+tospace   :      b=  0x16086f000         l=0x40000           
+               end=  0x1608af000       
+            bitmap=  0x160829040         s=0x2000              u=0xc04             
+free      :      b=  0x160887080         l=0x27f80           
+               end=  0x1608af000       
+scan      :          0x68000           
+
+used size   : 0x18080            bytes (98kB)
+free size   : 0x27f80            bytes (164kB)
+heap size   : 0x40000            bytes (262kB)
+
+stats:
+allocations : 1430 (1k)
+collections : 0 (0)
+copies      : 0 (0)
+[plotdata] # heap size: (young generation) I=65536 B=262144 A=262144 F=262144
+testall.sh: i=4 j=1
+GC_init2 called from (GC_init_constructor):0
+GC_init2 called from ml/ml.c:156 (initialized already)
+Compiled for GC_CHERI at 08:37:42 May 15 2014
+Program should be evaluating something to do with the number 4
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 4
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(4))
+Done printing AST
+eval: num(11)
+
+[plotdata] 4 24103
+(young) heap size:
+[altplotdata] 4 262144
+[ML time] main() took 105ms (avg 105ms)
+Region statistics
+-----------------
+fromspace :      b=  0x16082e000         l=0x40000           
+               end=  0x16086e000       
+            bitmap=  0x160829058         s=0x2000              u=0x0               
+tospace   :      b=  0x16086f000         l=0x40000           
+               end=  0x1608af000       
+            bitmap=  0x160829040         s=0x2000              u=0xc04             
+free      :      b=  0x160887080         l=0x27f80           
+               end=  0x1608af000       
+scan      :          0x68000           
+
+used size   : 0x18080            bytes (98kB)
+free size   : 0x27f80            bytes (164kB)
+heap size   : 0x40000            bytes (262kB)
+
+stats:
+allocations : 1430 (1k)
+collections : 0 (0)
+copies      : 0 (0)
+[plotdata] # heap size: (young generation) I=65536 B=262144 A=262144 F=262144
+testall.sh: i=4 j=2
+GC_init2 called from (GC_init_constructor):0
+GC_init2 called from ml/ml.c:156 (initialized already)
+Compiled for GC_CHERI at 08:37:42 May 15 2014
+Program should be evaluating something to do with the number 4
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 4
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(4))
+Done printing AST
+eval: num(11)
+
+[plotdata] 4 44305
+(young) heap size:
+[altplotdata] 4 262144
+[ML time] main() took 184ms (avg 184ms)
+Region statistics
+-----------------
+fromspace :      b=  0x16082e000         l=0x40000           
+               end=  0x16086e000       
+            bitmap=  0x160829058         s=0x2000              u=0x0               
+tospace   :      b=  0x16086f000         l=0x40000           
+               end=  0x1608af000       
+            bitmap=  0x160829040         s=0x2000              u=0xc04             
+free      :      b=  0x160887080         l=0x27f80           
+               end=  0x1608af000       
+scan      :          0x68000           
+
+used size   : 0x18080            bytes (98kB)
+free size   : 0x27f80            bytes (164kB)
+heap size   : 0x40000            bytes (262kB)
+
+stats:
+allocations : 1430 (1k)
+collections : 0 (0)
+copies      : 0 (0)
+[plotdata] # heap size: (young generation) I=65536 B=262144 A=262144 F=262144
+testall.sh: i=4 j=3
+GC_init2 called from (GC_init_constructor):0
+GC_init2 called from ml/ml.c:156 (initialized already)
+Compiled for GC_CHERI at 08:37:42 May 15 2014
+Program should be evaluating something to do with the number 8
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 8
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(8))
+Done printing AST
+eval: num(37)
+
+[plotdata] 8 27652
+(young) heap size:
+[altplotdata] 8 262144
+[ML time] main() took 76ms (avg 76ms)
+Region statistics
+-----------------
+fromspace :      b=  0x16082e000         l=0x40000           
+               end=  0x16086e000       
+            bitmap=  0x160829058         s=0x2000              u=0x0               
+tospace   :      b=  0x16086f000         l=0x40000           
+               end=  0x1608af000       
+            bitmap=  0x160829040         s=0x2000              u=0x10dc            
+free      :      b=  0x160890b80         l=0x1e480           
+               end=  0x1608af000       
+scan      :          0x68000           
+
+used size   : 0x21b80            bytes (138kB)
+free size   : 0x1e480            bytes (124kB)
+heap size   : 0x40000            bytes (262kB)
+
+stats:
+allocations : 1990 (2k)
+collections : 0 (0)
+copies      : 0 (0)
+[plotdata] # heap size: (young generation) I=65536 B=262144 A=262144 F=262144
+testall.sh: i=8 j=1
+GC_init2 called from (GC_init_constructor):0
+GC_init2 called from ml/ml.c:156 (initialized already)
+Compiled for GC_CHERI at 08:37:42 May 15 2014
+Program should be evaluating something to do with the number 8
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 8
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(8))
+Done printing AST
+eval: num(37)
+
+[plotdata] 8 289956
+(young) heap size:
+[altplotdata] 8 262144
+[ML time] main() took 362ms (avg 362ms)
+Region statistics
+-----------------
+fromspace :      b=  0x16082e000         l=0x40000           
+               end=  0x16086e000       
+            bitmap=  0x160829058         s=0x2000              u=0x0               
+tospace   :      b=  0x16086f000         l=0x40000           
+               end=  0x1608af000       
+            bitmap=  0x160829040         s=0x2000              u=0x10dc            
+free      :      b=  0x160890b80         l=0x1e480           
+               end=  0x1608af000       
+scan      :          0x68000           
+
+used size   : 0x21b80            bytes (138kB)
+free size   : 0x1e480            bytes (124kB)
+heap size   : 0x40000            bytes (262kB)
+
+stats:
+allocations : 1990 (2k)
+collections : 0 (0)
+copies      : 0 (0)
+[plotdata] # heap size: (young generation) I=65536 B=262144 A=262144 F=262144
+testall.sh: i=8 j=2
+GC_init2 called from (GC_init_constructor):0
+GC_init2 called from ml/ml.c:156 (initialized already)
+Compiled for GC_CHERI at 08:37:42 May 15 2014
+Program should be evaluating something to do with the number 8
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 8
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(8))
+Done printing AST
+eval: num(37)
+
+[plotdata] 8 199900
+(young) heap size:
+[altplotdata] 8 262144
+[ML time] main() took 250ms (avg 250ms)
+Region statistics
+-----------------
+fromspace :      b=  0x16082e000         l=0x40000           
+               end=  0x16086e000       
+            bitmap=  0x160829058         s=0x2000              u=0x0               
+tospace   :      b=  0x16086f000         l=0x40000           
+               end=  0x1608af000       
+            bitmap=  0x160829040         s=0x2000              u=0x10dc            
+free      :      b=  0x160890b80         l=0x1e480           
+               end=  0x1608af000       
+scan      :          0x68000           
+
+used size   : 0x21b80            bytes (138kB)
+free size   : 0x1e480            bytes (124kB)
+heap size   : 0x40000            bytes (262kB)
+
+stats:
+allocations : 1990 (2k)
+collections : 0 (0)
+copies      : 0 (0)
+[plotdata] # heap size: (young generation) I=65536 B=262144 A=262144 F=262144
+testall.sh: i=8 j=3
+GC_init2 called from (GC_init_constructor):0
+GC_init2 called from ml/ml.c:156 (initialized already)
+Compiled for GC_CHERI at 08:37:42 May 15 2014
+Program should be evaluating something to do with the number 16
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 16
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(16))
+Done printing AST
+eval: num(137)
+
+[plotdata] 16 179275
+(young) heap size:
+[altplotdata] 16 262144
+[ML time] main() took 412ms (avg 412ms)
+Region statistics
+-----------------
+fromspace :      b=  0x16082e000         l=0x40000           
+               end=  0x16086e000       
+            bitmap=  0x160829058         s=0x2000              u=0x0               
+tospace   :      b=  0x16086f000         l=0x40000           
+               end=  0x1608af000       
+            bitmap=  0x160829040         s=0x2000              u=0x1a8d            
+free      :      b=  0x1608a41a0         l=0xae60            
+               end=  0x1608af000       
+scan      :          0x68000           
+
+used size   : 0x351a0            bytes (218kB)
+free size   : 0xae60             bytes (45kB)
+heap size   : 0x40000            bytes (262kB)
+
+stats:
+allocations : 3111 (3k)
+collections : 0 (0)
+copies      : 0 (0)
+[plotdata] # heap size: (young generation) I=65536 B=262144 A=262144 F=262144
+testall.sh: i=16 j=1
+GC_init2 called from (GC_init_constructor):0
+GC_init2 called from ml/ml.c:156 (initialized already)
+Compiled for GC_CHERI at 08:37:42 May 15 2014
+Program should be evaluating something to do with the number 16
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 16
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(16))
+Done printing AST
+eval: num(137)
+
+[plotdata] 16 79114
+(young) heap size:
+[altplotdata] 16 262144
+[ML time] main() took 446ms (avg 446ms)
+Region statistics
+-----------------
+fromspace :      b=  0x16082e000         l=0x40000           
+               end=  0x16086e000       
+            bitmap=  0x160829058         s=0x2000              u=0x0               
+tospace   :      b=  0x16086f000         l=0x40000           
+               end=  0x1608af000       
+            bitmap=  0x160829040         s=0x2000              u=0x1a8d            
+free      :      b=  0x1608a41a0         l=0xae60            
+               end=  0x1608af000       
+scan      :          0x68000           
+
+used size   : 0x351a0            bytes (218kB)
+free size   : 0xae60             bytes (45kB)
+heap size   : 0x40000            bytes (262kB)
+
+stats:
+allocations : 3111 (3k)
+collections : 0 (0)
+copies      : 0 (0)
+[plotdata] # heap size: (young generation) I=65536 B=262144 A=262144 F=262144
+testall.sh: i=16 j=2
+GC_init2 called from (GC_init_constructor):0
+GC_init2 called from ml/ml.c:156 (initialized already)
+Compiled for GC_CHERI at 08:37:42 May 15 2014
+Program should be evaluating something to do with the number 16
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 16
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(16))
+Done printing AST
+eval: num(137)
+
+[plotdata] 16 54040
+(young) heap size:
+[altplotdata] 16 262144
+[ML time] main() took 443ms (avg 443ms)
+Region statistics
+-----------------
+fromspace :      b=  0x16082e000         l=0x40000           
+               end=  0x16086e000       
+            bitmap=  0x160829058         s=0x2000              u=0x0               
+tospace   :      b=  0x16086f000         l=0x40000           
+               end=  0x1608af000       
+            bitmap=  0x160829040         s=0x2000              u=0x1a8d            
+free      :      b=  0x1608a41a0         l=0xae60            
+               end=  0x1608af000       
+scan      :          0x68000           
+
+used size   : 0x351a0            bytes (218kB)
+free size   : 0xae60             bytes (45kB)
+heap size   : 0x40000            bytes (262kB)
+
+stats:
+allocations : 3111 (3k)
+collections : 0 (0)
+copies      : 0 (0)
+[plotdata] # heap size: (young generation) I=65536 B=262144 A=262144 F=262144
+testall.sh: i=16 j=3
+GC_init2 called from (GC_init_constructor):0
+GC_init2 called from ml/ml.c:156 (initialized already)
+Compiled for GC_CHERI at 08:37:42 May 15 2014
+Program should be evaluating something to do with the number 32
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 32
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(32))
+Done printing AST
+eval: num(529)
+
+[plotdata] 32 379944
+(young) heap size:
+[altplotdata] 32 262144
+[ML time] main() took 430ms (avg 430ms)
+Region statistics
+-----------------
+fromspace :      b=  0x16086f000         l=0x40000           
+               end=  0x1608af000       
+            bitmap=  0x160829040         s=0x2000              u=0x1fff            
+tospace   :      b=  0x16082e000         l=0x40000           
+               end=  0x16086e000       
+            bitmap=  0x160829058         s=0x2000              u=0x100c            
+free      :      b=  0x16084e180         l=0x1fe80           
+               end=  0x16086e000       
+scan      :          0x1608323c0       
+
+used size   : 0x20180            bytes (131kB)
+free size   : 0x1fe80            bytes (131kB)
+heap size   : 0x40000            bytes (262kB)
+
+stats:
+allocations : 5351 (5k)
+collections : 1 (1)
+copies      : 254 (254)
+[plotdata] # heap size: (young generation) I=65536 B=262144 A=262144 F=262144
+testall.sh: i=32 j=1
+GC_init2 called from (GC_init_constructor):0
+GC_init2 called from ml/ml.c:156 (initialized already)
+Compiled for GC_CHERI at 08:37:42 May 15 2014
+Program should be evaluating something to do with the number 32
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 32
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(32))
+Done printing AST
+eval: num(529)
+
+[plotdata] 32 333431
+(young) heap size:
+[altplotdata] 32 262144
+[ML time] main() took 381ms (avg 381ms)
+Region statistics
+-----------------
+fromspace :      b=  0x16086f000         l=0x40000           
+               end=  0x1608af000       
+            bitmap=  0x160829040         s=0x2000              u=0x1fff            
+tospace   :      b=  0x16082e000         l=0x40000           
+               end=  0x16086e000       
+            bitmap=  0x160829058         s=0x2000              u=0x100c            
+free      :      b=  0x16084e180         l=0x1fe80           
+               end=  0x16086e000       
+scan      :          0x1608323c0       
+
+used size   : 0x20180            bytes (131kB)
+free size   : 0x1fe80            bytes (131kB)
+heap size   : 0x40000            bytes (262kB)
+
+stats:
+allocations : 5351 (5k)
+collections : 1 (1)
+copies      : 254 (254)
+[plotdata] # heap size: (young generation) I=65536 B=262144 A=262144 F=262144
+testall.sh: i=32 j=2
+GC_init2 called from (GC_init_constructor):0
+GC_init2 called from ml/ml.c:156 (initialized already)
+Compiled for GC_CHERI at 08:37:42 May 15 2014
+Program should be evaluating something to do with the number 32
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 32
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(32))
+Done printing AST
+eval: num(529)
+
+[plotdata] 32 199938
+(young) heap size:
+[altplotdata] 32 262144
+[ML time] main() took 425ms (avg 425ms)
+Region statistics
+-----------------
+fromspace :      b=  0x16086f000         l=0x40000           
+               end=  0x1608af000       
+            bitmap=  0x160829040         s=0x2000              u=0x1fff            
+tospace   :      b=  0x16082e000         l=0x40000           
+               end=  0x16086e000       
+            bitmap=  0x160829058         s=0x2000              u=0x100c            
+free      :      b=  0x16084e180         l=0x1fe80           
+               end=  0x16086e000       
+scan      :          0x1608323c0       
+
+used size   : 0x20180            bytes (131kB)
+free size   : 0x1fe80            bytes (131kB)
+heap size   : 0x40000            bytes (262kB)
+
+stats:
+allocations : 5351 (5k)
+collections : 1 (1)
+copies      : 254 (254)
+[plotdata] # heap size: (young generation) I=65536 B=262144 A=262144 F=262144
+testall.sh: i=32 j=3
+GC_init2 called from (GC_init_constructor):0
+GC_init2 called from ml/ml.c:156 (initialized already)
+Compiled for GC_CHERI at 08:37:42 May 15 2014
+Program should be evaluating something to do with the number 64
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 64
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(64))
+Done printing AST
+eval: num(2081)
+
+[plotdata] 64 559666
+(young) heap size:
+[altplotdata] 64 262144
+[ML time] main() took 630ms (avg 630ms)
+Region statistics
+-----------------
+fromspace :      b=  0x16082e000         l=0x40000           
+               end=  0x16086e000       
+            bitmap=  0x160829058         s=0x2000              u=0x2000            
+tospace   :      b=  0x16086f000         l=0x40000           
+               end=  0x1608af000       
+            bitmap=  0x160829040         s=0x2000              u=0x1841            
+free      :      b=  0x16089f820         l=0xf7e0            
+               end=  0x1608af000       
+scan      :          0x160871380       
+
+used size   : 0x30820            bytes (199kB)
+free size   : 0xf7e0             bytes (63kB)
+heap size   : 0x40000            bytes (262kB)
+
+stats:
+allocations : 9831 (10k)
+collections : 2 (2)
+copies      : 439 (439)
+[plotdata] # heap size: (young generation) I=65536 B=262144 A=262144 F=262144
+testall.sh: i=64 j=1
+GC_init2 called from (GC_init_constructor):0
+GC_init2 called from ml/ml.c:156 (initialized already)
+Compiled for GC_CHERI at 08:37:42 May 15 2014
+Program should be evaluating something to do with the number 64
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 64
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(64))
+Done printing AST
+eval: num(2081)
+
+[plotdata] 64 718773
+(young) heap size:
+[altplotdata] 64 262144
+[ML time] main() took 767ms (avg 767ms)
+Region statistics
+-----------------
+fromspace :      b=  0x16082e000         l=0x40000           
+               end=  0x16086e000       
+            bitmap=  0x160829058         s=0x2000              u=0x2000            
+tospace   :      b=  0x16086f000         l=0x40000           
+               end=  0x1608af000       
+            bitmap=  0x160829040         s=0x2000              u=0x1841            
+free      :      b=  0x16089f820         l=0xf7e0            
+               end=  0x1608af000       
+scan      :          0x160871380       
+
+used size   : 0x30820            bytes (199kB)
+free size   : 0xf7e0             bytes (63kB)
+heap size   : 0x40000            bytes (262kB)
+
+stats:
+allocations : 9831 (10k)
+collections : 2 (2)
+copies      : 439 (439)
+[plotdata] # heap size: (young generation) I=65536 B=262144 A=262144 F=262144
+testall.sh: i=64 j=2
+GC_init2 called from (GC_init_constructor):0
+GC_init2 called from ml/ml.c:156 (initialized already)
+Compiled for GC_CHERI at 08:37:42 May 15 2014
+Program should be evaluating something to do with the number 64
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 64
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(64))
+Done printing AST
+eval: num(2081)
+
+[plotdata] 64 462909
+(young) heap size:
+[altplotdata] 64 262144
+[ML time] main() took 553ms (avg 553ms)
+Region statistics
+-----------------
+fromspace :      b=  0x16082e000         l=0x40000           
+               end=  0x16086e000       
+            bitmap=  0x160829058         s=0x2000              u=0x2000            
+tospace   :      b=  0x16086f000         l=0x40000           
+               end=  0x1608af000       
+            bitmap=  0x160829040         s=0x2000              u=0x1841            
+free      :      b=  0x16089f820         l=0xf7e0            
+               end=  0x1608af000       
+scan      :          0x160871380       
+
+used size   : 0x30820            bytes (199kB)
+free size   : 0xf7e0             bytes (63kB)
+heap size   : 0x40000            bytes (262kB)
+
+stats:
+allocations : 9831 (10k)
+collections : 2 (2)
+copies      : 439 (439)
+[plotdata] # heap size: (young generation) I=65536 B=262144 A=262144 F=262144
+testall.sh: i=64 j=3
+GC_init2 called from (GC_init_constructor):0
+GC_init2 called from ml/ml.c:156 (initialized already)
+Compiled for GC_CHERI at 08:37:42 May 15 2014
+Program should be evaluating something to do with the number 128
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 128
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(128))
+Done printing AST
+eval: num(8257)
+
+[plotdata] 128 989318
+(young) heap size:
+[altplotdata] 128 262144
+[ML time] main() took 1062ms (avg 1062ms)
+Region statistics
+-----------------
+fromspace :      b=  0x16086f000         l=0x40000           
+               end=  0x1608af000       
+            bitmap=  0x160829040         s=0x2000              u=0x2000            
+tospace   :      b=  0x16082e000         l=0x40000           
+               end=  0x16086e000       
+            bitmap=  0x160829058         s=0x2000              u=0x1055            
+free      :      b=  0x16084eaa0         l=0x1f560           
+               end=  0x16086e000       
+scan      :          0x16082f920       
+
+used size   : 0x20aa0            bytes (134kB)
+free size   : 0x1f560            bytes (128kB)
+heap size   : 0x40000            bytes (262kB)
+
+stats:
+allocations : 18792 (19k)
+collections : 5 (5)
+copies      : 1644 (2k)
+[plotdata] # heap size: (young generation) I=65536 B=262144 A=262144 F=262144
+testall.sh: i=128 j=1
+GC_init2 called from (GC_init_constructor):0
+GC_init2 called from ml/ml.c:156 (initialized already)
+Compiled for GC_CHERI at 08:37:42 May 15 2014
+Program should be evaluating something to do with the number 128
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 128
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(128))
+Done printing AST
+eval: num(8257)
+
+[plotdata] 128 562697
+(young) heap size:
+[altplotdata] 128 262144
+[ML time] main() took 648ms (avg 648ms)
+Region statistics
+-----------------
+fromspace :      b=  0x16086f000         l=0x40000           
+               end=  0x1608af000       
+            bitmap=  0x160829040         s=0x2000              u=0x2000            
+tospace   :      b=  0x16082e000         l=0x40000           
+               end=  0x16086e000       
+            bitmap=  0x160829058         s=0x2000              u=0x1055            
+free      :      b=  0x16084eaa0         l=0x1f560           
+               end=  0x16086e000       
+scan      :          0x16082f920       
+
+used size   : 0x20aa0            bytes (134kB)
+free size   : 0x1f560            bytes (128kB)
+heap size   : 0x40000            bytes (262kB)
+
+stats:
+allocations : 18792 (19k)
+collections : 5 (5)
+copies      : 1644 (2k)
+[plotdata] # heap size: (young generation) I=65536 B=262144 A=262144 F=262144
+testall.sh: i=128 j=2
+GC_init2 called from (GC_init_constructor):0
+GC_init2 called from ml/ml.c:156 (initialized already)
+Compiled for GC_CHERI at 08:37:42 May 15 2014
+Program should be evaluating something to do with the number 128
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 128
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(128))
+Done printing AST
+eval: num(8257)
+
+[plotdata] 128 639732
+(young) heap size:
+[altplotdata] 128 262144
+[ML time] main() took 729ms (avg 729ms)
+Region statistics
+-----------------
+fromspace :      b=  0x16086f000         l=0x40000           
+               end=  0x1608af000       
+            bitmap=  0x160829040         s=0x2000              u=0x2000            
+tospace   :      b=  0x16082e000         l=0x40000           
+               end=  0x16086e000       
+            bitmap=  0x160829058         s=0x2000              u=0x1055            
+free      :      b=  0x16084eaa0         l=0x1f560           
+               end=  0x16086e000       
+scan      :          0x16082f920       
+
+used size   : 0x20aa0            bytes (134kB)
+free size   : 0x1f560            bytes (128kB)
+heap size   : 0x40000            bytes (262kB)
+
+stats:
+allocations : 18792 (19k)
+collections : 5 (5)
+copies      : 1644 (2k)
+[plotdata] # heap size: (young generation) I=65536 B=262144 A=262144 F=262144
+testall.sh: i=128 j=3
+GC_init2 called from (GC_init_constructor):0
+GC_init2 called from ml/ml.c:156 (initialized already)
+Compiled for GC_CHERI at 08:37:42 May 15 2014
+Program should be evaluating something to do with the number 256
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 256
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(256))
+Done printing AST
+eval: num(32897)
+
+[plotdata] 256 1454205
+(young) heap size:
+[altplotdata] 256 800000
+[ML time] main() took 1851ms (avg 1851ms)
+Region statistics
+-----------------
+fromspace :      b=  0x1608f2000         l=0xc3500           
+               end=  0x1609b5500       
+            bitmap=  0x160829040         s=0x61a8              u=0x61a8            
+tospace   :      b=  0x16082e000         l=0xc3500           
+               end=  0x1608f1500       
+            bitmap=  0x160829058         s=0x61a8              u=0x39a9            
+free      :      b=  0x1608a1520         l=0x4ffe0           
+               end=  0x1608f1500       
+scan      :          0x160840120       
+
+used size   : 0x73520            bytes (472kB)
+free size   : 0x4ffe0            bytes (328kB)
+heap size   : 0xc3500            bytes (800kB)
+
+stats:
+allocations : 36712 (37k)
+collections : 3 (3)
+copies      : 3617 (4k)
+[plotdata] # heap size: (young generation) I=65536 B=800000 A=800000 F=800000
+testall.sh: i=256 j=1
+GC_init2 called from (GC_init_constructor):0
+GC_init2 called from ml/ml.c:156 (initialized already)
+Compiled for GC_CHERI at 08:37:42 May 15 2014
+Program should be evaluating something to do with the number 256
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 256
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(256))
+Done printing AST
+eval: num(32897)
+
+[plotdata] 256 1594740
+(young) heap size:
+[altplotdata] 256 800000
+[ML time] main() took 1980ms (avg 1980ms)
+Region statistics
+-----------------
+fromspace :      b=  0x1608f2000         l=0xc3500           
+               end=  0x1609b5500       
+            bitmap=  0x160829040         s=0x61a8              u=0x61a8            
+tospace   :      b=  0x16082e000         l=0xc3500           
+               end=  0x1608f1500       
+            bitmap=  0x160829058         s=0x61a8              u=0x39a9            
+free      :      b=  0x1608a1520         l=0x4ffe0           
+               end=  0x1608f1500       
+scan      :          0x160840120       
+
+used size   : 0x73520            bytes (472kB)
+free size   : 0x4ffe0            bytes (328kB)
+heap size   : 0xc3500            bytes (800kB)
+
+stats:
+allocations : 36712 (37k)
+collections : 3 (3)
+copies      : 3617 (4k)
+[plotdata] # heap size: (young generation) I=65536 B=800000 A=800000 F=800000
+testall.sh: i=256 j=2
+GC_init2 called from (GC_init_constructor):0
+GC_init2 called from ml/ml.c:156 (initialized already)
+Compiled for GC_CHERI at 08:37:42 May 15 2014
+Program should be evaluating something to do with the number 256
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 256
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(256))
+Done printing AST
+eval: num(32897)
+
+[plotdata] 256 1532673
+(young) heap size:
+[altplotdata] 256 800000
+[ML time] main() took 1834ms (avg 1834ms)
+Region statistics
+-----------------
+fromspace :      b=  0x1608f2000         l=0xc3500           
+               end=  0x1609b5500       
+            bitmap=  0x160829040         s=0x61a8              u=0x61a8            
+tospace   :      b=  0x16082e000         l=0xc3500           
+               end=  0x1608f1500       
+            bitmap=  0x160829058         s=0x61a8              u=0x39a9            
+free      :      b=  0x1608a1520         l=0x4ffe0           
+               end=  0x1608f1500       
+scan      :          0x160840120       
+
+used size   : 0x73520            bytes (472kB)
+free size   : 0x4ffe0            bytes (328kB)
+heap size   : 0xc3500            bytes (800kB)
+
+stats:
+allocations : 36712 (37k)
+collections : 3 (3)
+copies      : 3617 (4k)
+[plotdata] # heap size: (young generation) I=65536 B=800000 A=800000 F=800000
+testall.sh: i=256 j=3
+GC_init2 called from (GC_init_constructor):0
+GC_init2 called from ml/ml.c:156 (initialized already)
+Compiled for GC_CHERI at 08:37:42 May 15 2014
+Program should be evaluating something to do with the number 512
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 512
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(512))
+Done printing AST
+eval: num(131329)
+
+[plotdata] 512 3975408
+(young) heap size:
+[altplotdata] 512 800000
+[ML time] main() took 4461ms (avg 4461ms)
+Region statistics
+-----------------
+fromspace :      b=  0x16082e000         l=0xc3500           
+               end=  0x1608f1500       
+            bitmap=  0x160829058         s=0x61a8              u=0x61a8            
+tospace   :      b=  0x1608f2000         l=0xc3500           
+               end=  0x1609b5500       
+            bitmap=  0x160829040         s=0x61a8              u=0x2e79            
+free      :      b=  0x16094ef20         l=0x665e0           
+               end=  0x1609b5500       
+scan      :          0x1609261e0       
+
+used size   : 0x5cf20            bytes (381kB)
+free size   : 0x665e0            bytes (419kB)
+heap size   : 0xc3500            bytes (800kB)
+
+stats:
+allocations : 72552 (73k)
+collections : 8 (8)
+copies      : 21384 (21k)
+[plotdata] # heap size: (young generation) I=65536 B=800000 A=800000 F=800000
+testall.sh: i=512 j=1
+GC_init2 called from (GC_init_constructor):0
+GC_init2 called from ml/ml.c:156 (initialized already)
+Compiled for GC_CHERI at 08:37:42 May 15 2014
+Program should be evaluating something to do with the number 512
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 512
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(512))
+Done printing AST
+eval: num(131329)
+
+[plotdata] 512 3947596
+(young) heap size:
+[altplotdata] 512 800000
+[ML time] main() took 4215ms (avg 4215ms)
+Region statistics
+-----------------
+fromspace :      b=  0x16082e000         l=0xc3500           
+               end=  0x1608f1500       
+            bitmap=  0x160829058         s=0x61a8              u=0x61a8            
+tospace   :      b=  0x1608f2000         l=0xc3500           
+               end=  0x1609b5500       
+            bitmap=  0x160829040         s=0x61a8              u=0x2e79            
+free      :      b=  0x16094ef20         l=0x665e0           
+               end=  0x1609b5500       
+scan      :          0x1609261e0       
+
+used size   : 0x5cf20            bytes (381kB)
+free size   : 0x665e0            bytes (419kB)
+heap size   : 0xc3500            bytes (800kB)
+
+stats:
+allocations : 72552 (73k)
+collections : 8 (8)
+copies      : 21384 (21k)
+[plotdata] # heap size: (young generation) I=65536 B=800000 A=800000 F=800000
+testall.sh: i=512 j=2
+GC_init2 called from (GC_init_constructor):0
+GC_init2 called from ml/ml.c:156 (initialized already)
+Compiled for GC_CHERI at 08:37:42 May 15 2014
+Program should be evaluating something to do with the number 512
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 512
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(512))
+Done printing AST
+eval: num(131329)
+
+[plotdata] 512 3865673
+(young) heap size:
+[altplotdata] 512 800000
+[ML time] main() took 4019ms (avg 4019ms)
+Region statistics
+-----------------
+fromspace :      b=  0x16082e000         l=0xc3500           
+               end=  0x1608f1500       
+            bitmap=  0x160829058         s=0x61a8              u=0x61a8            
+tospace   :      b=  0x1608f2000         l=0xc3500           
+               end=  0x1609b5500       
+            bitmap=  0x160829040         s=0x61a8              u=0x2e79            
+free      :      b=  0x16094ef20         l=0x665e0           
+               end=  0x1609b5500       
+scan      :          0x1609261e0       
+
+used size   : 0x5cf20            bytes (381kB)
+free size   : 0x665e0            bytes (419kB)
+heap size   : 0xc3500            bytes (800kB)
+
+stats:
+allocations : 72552 (73k)
+collections : 8 (8)
+copies      : 21384 (21k)
+[plotdata] # heap size: (young generation) I=65536 B=800000 A=800000 F=800000
+testall.sh: i=512 j=3
+GC_init2 called from (GC_init_constructor):0
+GC_init2 called from ml/ml.c:156 (initialized already)
+Compiled for GC_CHERI at 08:37:42 May 15 2014
+Program should be evaluating something to do with the number 1024
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 1024
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(1024))
+Done printing AST
+eval: num(524801)
+
+[plotdata] 1024 7777250
+(young) heap size:
+[altplotdata] 1024 1400000
+[ML time] main() took 8344ms (avg 8344ms)
+Region statistics
+-----------------
+fromspace :      b=  0x160984000         l=0x155cc0          
+               end=  0x160ad9cc0       
+            bitmap=  0x160829040         s=0xaae6              u=0xaae5            
+tospace   :      b=  0x16082e000         l=0x155cc0          
+               end=  0x160983cc0       
+            bitmap=  0x160829058         s=0xaae6              u=0x5f27            
+free      :      b=  0x1608ec4e0         l=0x977e0           
+               end=  0x160983cc0       
+scan      :          0x16088b6a0       
+
+used size   : 0xbe4e0            bytes (779kB)
+free size   : 0x977e0            bytes (621kB)
+heap size   : 0x155cc0           bytes (1MB)
+
+stats:
+allocations : 144233 (144k)
+collections : 9 (9)
+copies      : 40968 (41k)
+[plotdata] # heap size: (young generation) I=65536 B=1400000 A=1400000 F=1400000
+testall.sh: i=1024 j=1
+GC_init2 called from (GC_init_constructor):0
+GC_init2 called from ml/ml.c:156 (initialized already)
+Compiled for GC_CHERI at 08:37:42 May 15 2014
+Program should be evaluating something to do with the number 1024
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 1024
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(1024))
+Done printing AST
+eval: num(524801)
+
+[plotdata] 1024 7639110
+(young) heap size:
+[altplotdata] 1024 1400000
+[ML time] main() took 8259ms (avg 8259ms)
+Region statistics
+-----------------
+fromspace :      b=  0x160984000         l=0x155cc0          
+               end=  0x160ad9cc0       
+            bitmap=  0x160829040         s=0xaae6              u=0xaae5            
+tospace   :      b=  0x16082e000         l=0x155cc0          
+               end=  0x160983cc0       
+            bitmap=  0x160829058         s=0xaae6              u=0x5f27            
+free      :      b=  0x1608ec4e0         l=0x977e0           
+               end=  0x160983cc0       
+scan      :          0x16088b6a0       
+
+used size   : 0xbe4e0            bytes (779kB)
+free size   : 0x977e0            bytes (621kB)
+heap size   : 0x155cc0           bytes (1MB)
+
+stats:
+allocations : 144233 (144k)
+collections : 9 (9)
+copies      : 40968 (41k)
+[plotdata] # heap size: (young generation) I=65536 B=1400000 A=1400000 F=1400000
+testall.sh: i=1024 j=2
+GC_init2 called from (GC_init_constructor):0
+GC_init2 called from ml/ml.c:156 (initialized already)
+Compiled for GC_CHERI at 08:37:42 May 15 2014
+Program should be evaluating something to do with the number 1024
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 1024
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(1024))
+Done printing AST
+eval: num(524801)
+
+[plotdata] 1024 7401902
+(young) heap size:
+[altplotdata] 1024 1400000
+[ML time] main() took 7952ms (avg 7952ms)
+Region statistics
+-----------------
+fromspace :      b=  0x160984000         l=0x155cc0          
+               end=  0x160ad9cc0       
+            bitmap=  0x160829040         s=0xaae6              u=0xaae5            
+tospace   :      b=  0x16082e000         l=0x155cc0          
+               end=  0x160983cc0       
+            bitmap=  0x160829058         s=0xaae6              u=0x5f27            
+free      :      b=  0x1608ec4e0         l=0x977e0           
+               end=  0x160983cc0       
+scan      :          0x16088b6a0       
+
+used size   : 0xbe4e0            bytes (779kB)
+free size   : 0x977e0            bytes (621kB)
+heap size   : 0x155cc0           bytes (1MB)
+
+stats:
+allocations : 144233 (144k)
+collections : 9 (9)
+copies      : 40968 (41k)
+[plotdata] # heap size: (young generation) I=65536 B=1400000 A=1400000 F=1400000
+testall.sh: i=1024 j=3
+GC_init2 called from (GC_init_constructor):0
+GC_init2 called from ml/ml.c:156 (initialized already)
+Compiled for GC_CHERI at 08:37:42 May 15 2014
+Program should be evaluating something to do with the number 2048
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 2048
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(2048))
+Done printing AST
+eval: num(2098177)
+
+[plotdata] 2048 15655635
+(young) heap size:
+[altplotdata] 2048 2800000
+[ML time] main() took 16s (avg 16s)
+Region statistics
+-----------------
+fromspace :      b=  0x160c06000         l=0x2ab980          
+               end=  0x160eb1980       
+            bitmap=  0x160829040         s=0x155cc             u=0x155cc           
+tospace   :      b=  0x16082e000         l=0x2ab980          
+               end=  0x160ad9980       
+            bitmap=  0x160829058         s=0x155cc             u=0xbcc9            
+free      :      b=  0x1609a7920         l=0x132060          
+               end=  0x160ad9980       
+scan      :          0x1608e9280       
+
+used size   : 0x179920           bytes (2MB)
+free size   : 0x132060           bytes (1MB)
+heap size   : 0x2ab980           bytes (3MB)
+
+stats:
+allocations : 287593 (288k)
+collections : 9 (9)
+copies      : 82261 (82k)
+[plotdata] # heap size: (young generation) I=65536 B=2800000 A=2800000 F=2800000
+testall.sh: i=2048 j=1
+GC_init2 called from (GC_init_constructor):0
+GC_init2 called from ml/ml.c:156 (initialized already)
+Compiled for GC_CHERI at 08:37:42 May 15 2014
+Program should be evaluating something to do with the number 2048
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 2048
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(2048))
+Done printing AST
+eval: num(2098177)
+
+[plotdata] 2048 14961769
+(young) heap size:
+[altplotdata] 2048 2800000
+[ML time] main() took 16s (avg 16s)
+Region statistics
+-----------------
+fromspace :      b=  0x160c06000         l=0x2ab980          
+               end=  0x160eb1980       
+            bitmap=  0x160829040         s=0x155cc             u=0x155cc           
+tospace   :      b=  0x16082e000         l=0x2ab980          
+               end=  0x160ad9980       
+            bitmap=  0x160829058         s=0x155cc             u=0xbcc9            
+free      :      b=  0x1609a7920         l=0x132060          
+               end=  0x160ad9980       
+scan      :          0x1608e9280       
+
+used size   : 0x179920           bytes (2MB)
+free size   : 0x132060           bytes (1MB)
+heap size   : 0x2ab980           bytes (3MB)
+
+stats:
+allocations : 287593 (288k)
+collections : 9 (9)
+copies      : 82261 (82k)
+[plotdata] # heap size: (young generation) I=65536 B=2800000 A=2800000 F=2800000
+testall.sh: i=2048 j=2
+GC_init2 called from (GC_init_constructor):0
+GC_init2 called from ml/ml.c:156 (initialized already)
+Compiled for GC_CHERI at 08:37:42 May 15 2014
+Program should be evaluating something to do with the number 2048
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 2048
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(2048))
+Done printing AST
+eval: num(2098177)
+
+[plotdata] 2048 15287528
+(young) heap size:
+[altplotdata] 2048 2800000
+[ML time] main() took 16s (avg 16s)
+Region statistics
+-----------------
+fromspace :      b=  0x160c06000         l=0x2ab980          
+               end=  0x160eb1980       
+            bitmap=  0x160829040         s=0x155cc             u=0x155cc           
+tospace   :      b=  0x16082e000         l=0x2ab980          
+               end=  0x160ad9980       
+            bitmap=  0x160829058         s=0x155cc             u=0xbcc9            
+free      :      b=  0x1609a7920         l=0x132060          
+               end=  0x160ad9980       
+scan      :          0x1608e9280       
+
+used size   : 0x179920           bytes (2MB)
+free size   : 0x132060           bytes (1MB)
+heap size   : 0x2ab980           bytes (3MB)
+
+stats:
+allocations : 287593 (288k)
+collections : 9 (9)
+copies      : 82261 (82k)
+[plotdata] # heap size: (young generation) I=65536 B=2800000 A=2800000 F=2800000
+testall.sh: i=2048 j=3
+GC_init2 called from (GC_init_constructor):0
+GC_init2 called from ml/ml.c:156 (initialized already)
+Compiled for GC_CHERI at 08:37:42 May 15 2014
+Program should be evaluating something to do with the number 4096
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 4096
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(4096))
+Done printing AST
+eval: num(8390657)
+
+[plotdata] 4096 33833241
+(young) heap size:
+[altplotdata] 4096 5600000
+[ML time] main() took 35s (avg 35s)
+Region statistics
+-----------------
+fromspace :      b=  0x161400000         l=0x557300          
+               end=  0x161957300       
+            bitmap=  0x160829040         s=0x2ab98             u=0x2ab97           
+tospace   :      b=  0x160c00000         l=0x557300          
+               end=  0x161157300       
+            bitmap=  0x160829058         s=0x2ab98             u=0x1781a           
+free      :      b=  0x160ef0340         l=0x266fc0          
+               end=  0x161157300       
+scan      :          0x160d76b80       
+
+used size   : 0x2f0340           bytes (3MB)
+free size   : 0x266fc0           bytes (3MB)
+heap size   : 0x557300           bytes (6MB)
+
+stats:
+allocations : 574313 (574k)
+collections : 9 (9)
+copies      : 164850 (165k)
+[plotdata] # heap size: (young generation) I=65536 B=5600000 A=5600000 F=5600000
+testall.sh: i=4096 j=1
+GC_init2 called from (GC_init_constructor):0
+GC_init2 called from ml/ml.c:156 (initialized already)
+Compiled for GC_CHERI at 08:37:42 May 15 2014
+Program should be evaluating something to do with the number 4096
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 4096
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(4096))
+Done printing AST
+eval: num(8390657)
+
+[plotdata] 4096 31452512
+(young) heap size:
+[altplotdata] 4096 5600000
+[ML time] main() took 33s (avg 33s)
+Region statistics
+-----------------
+fromspace :      b=  0x161400000         l=0x557300          
+               end=  0x161957300       
+            bitmap=  0x160829040         s=0x2ab98             u=0x2ab97           
+tospace   :      b=  0x160c00000         l=0x557300          
+               end=  0x161157300       
+            bitmap=  0x160829058         s=0x2ab98             u=0x1781a           
+free      :      b=  0x160ef0340         l=0x266fc0          
+               end=  0x161157300       
+scan      :          0x160d76b80       
+
+used size   : 0x2f0340           bytes (3MB)
+free size   : 0x266fc0           bytes (3MB)
+heap size   : 0x557300           bytes (6MB)
+
+stats:
+allocations : 574313 (574k)
+collections : 9 (9)
+copies      : 164850 (165k)
+[plotdata] # heap size: (young generation) I=65536 B=5600000 A=5600000 F=5600000
+testall.sh: i=4096 j=2
+GC_init2 called from (GC_init_constructor):0
+GC_init2 called from ml/ml.c:156 (initialized already)
+Compiled for GC_CHERI at 08:37:42 May 15 2014
+Program should be evaluating something to do with the number 4096
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 4096
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(4096))
+Done printing AST
+eval: num(8390657)
+
+[plotdata] 4096 18579298
+(young) heap size:
+[altplotdata] 4096 5600000
+[ML time] main() took 20s (avg 20s)
+Region statistics
+-----------------
+fromspace :      b=  0x161400000         l=0x557300          
+               end=  0x161957300       
+            bitmap=  0x160829040         s=0x2ab98             u=0x2ab97           
+tospace   :      b=  0x160c00000         l=0x557300          
+               end=  0x161157300       
+            bitmap=  0x160829058         s=0x2ab98             u=0x1781a           
+free      :      b=  0x160ef0340         l=0x266fc0          
+               end=  0x161157300       
+scan      :          0x160d76b80       
+
+used size   : 0x2f0340           bytes (3MB)
+free size   : 0x266fc0           bytes (3MB)
+heap size   : 0x557300           bytes (6MB)
+
+stats:
+allocations : 574313 (574k)
+collections : 9 (9)
+copies      : 164850 (165k)
+[plotdata] # heap size: (young generation) I=65536 B=5600000 A=5600000 F=5600000
+testall.sh: i=4096 j=3
+GC_init2 called from (GC_init_constructor):0
+GC_init2 called from ml/ml.c:156 (initialized already)
+Compiled for GC_CHERI at 08:37:42 May 15 2014
+Program should be evaluating something to do with the number 8192
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 8192
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(8192))
+Done printing AST
+eval: num(33558529)
+
+[plotdata] 8192 30956887
+(young) heap size:
+[altplotdata] 8192 11200000
+[ML time] main() took 33s (avg 33s)
+Region statistics
+-----------------
+fromspace :      b=  0x161800000         l=0xaae600          
+               end=  0x1622ae600       
+            bitmap=  0x160829040         s=0x55730             u=0x5572f           
+tospace   :      b=  0x160c00000         l=0xaae600          
+               end=  0x1616ae600       
+            bitmap=  0x160829058         s=0x55730             u=0x2eec2           
+free      :      b=  0x1611dd840         l=0x4d0dc0          
+               end=  0x1616ae600       
+scan      :          0x160eedd20       
+
+used size   : 0x5dd840           bytes (6MB)
+free size   : 0x4d0dc0           bytes (5MB)
+heap size   : 0xaae600           bytes (11MB)
+
+stats:
+allocations : 1147753 (1M)
+collections : 9 (9)
+copies      : 330031 (330k)
+[plotdata] # heap size: (young generation) I=65536 B=11200000 A=11200000 F=11200000
+testall.sh: i=8192 j=1
+GC_init2 called from (GC_init_constructor):0
+GC_init2 called from ml/ml.c:156 (initialized already)
+Compiled for GC_CHERI at 08:37:42 May 15 2014
+Program should be evaluating something to do with the number 8192
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 8192
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(8192))
+Done printing AST
+eval: num(33558529)
+
+[plotdata] 8192 30770381
+(young) heap size:
+[altplotdata] 8192 11200000
+[ML time] main() took 32s (avg 32s)
+Region statistics
+-----------------
+fromspace :      b=  0x161800000         l=0xaae600          
+               end=  0x1622ae600       
+            bitmap=  0x160829040         s=0x55730             u=0x5572f           
+tospace   :      b=  0x160c00000         l=0xaae600          
+               end=  0x1616ae600       
+            bitmap=  0x160829058         s=0x55730             u=0x2eec2           
+free      :      b=  0x1611dd840         l=0x4d0dc0          
+               end=  0x1616ae600       
+scan      :          0x160eedd20       
+
+used size   : 0x5dd840           bytes (6MB)
+free size   : 0x4d0dc0           bytes (5MB)
+heap size   : 0xaae600           bytes (11MB)
+
+stats:
+allocations : 1147753 (1M)
+collections : 9 (9)
+copies      : 330031 (330k)
+[plotdata] # heap size: (young generation) I=65536 B=11200000 A=11200000 F=11200000
+testall.sh: i=8192 j=2
+GC_init2 called from (GC_init_constructor):0
+GC_init2 called from ml/ml.c:156 (initialized already)
+Compiled for GC_CHERI at 08:37:42 May 15 2014
+Program should be evaluating something to do with the number 8192
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 8192
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(8192))
+Done printing AST
+eval: num(33558529)
+
+[plotdata] 8192 30768954
+(young) heap size:
+[altplotdata] 8192 11200000
+[ML time] main() took 32s (avg 32s)
+Region statistics
+-----------------
+fromspace :      b=  0x161800000         l=0xaae600          
+               end=  0x1622ae600       
+            bitmap=  0x160829040         s=0x55730             u=0x5572f           
+tospace   :      b=  0x160c00000         l=0xaae600          
+               end=  0x1616ae600       
+            bitmap=  0x160829058         s=0x55730             u=0x2eec2           
+free      :      b=  0x1611dd840         l=0x4d0dc0          
+               end=  0x1616ae600       
+scan      :          0x160eedd20       
+
+used size   : 0x5dd840           bytes (6MB)
+free size   : 0x4d0dc0           bytes (5MB)
+heap size   : 0xaae600           bytes (11MB)
+
+stats:
+allocations : 1147753 (1M)
+collections : 9 (9)
+copies      : 330031 (330k)
+[plotdata] # heap size: (young generation) I=65536 B=11200000 A=11200000 F=11200000
+testall.sh: i=8192 j=3
+GC_init2 called from (GC_init_constructor):0
+GC_init2 called from ml/ml.c:156 (initialized already)
+Compiled for GC_CHERI at 08:37:42 May 15 2014
+Program should be evaluating something to do with the number 16384
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 16384
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(16384))
+Done printing AST
+eval: num(134225921)
+
+[plotdata] 16384 61516023
+(young) heap size:
+[altplotdata] 16384 22400000
+[ML time] main() took 64s (avg 64s)
+Region statistics
+-----------------
+fromspace :      b=  0x162400000         l=0x155cc00         
+               end=  0x16395cc00       
+            bitmap=  0x160829040         s=0xaae60             u=0xaae5e           
+tospace   :      b=  0x160c00000         l=0x155cc00         
+               end=  0x16215cc00       
+            bitmap=  0x160829058         s=0xaae60             u=0x5dc07           
+free      :      b=  0x1617b80e0         l=0x9a4b20          
+               end=  0x16215cc00       
+scan      :          0x1611dc040       
+
+used size   : 0xbb80e0           bytes (12MB)
+free size   : 0x9a4b20           bytes (10MB)
+heap size   : 0x155cc00          bytes (22MB)
+
+stats:
+allocations : 2294634 (2M)
+collections : 9 (9)
+copies      : 660387 (660k)
+[plotdata] # heap size: (young generation) I=65536 B=22400000 A=22400000 F=22400000
+testall.sh: i=16384 j=1
+GC_init2 called from (GC_init_constructor):0
+GC_init2 called from ml/ml.c:156 (initialized already)
+Compiled for GC_CHERI at 08:37:42 May 15 2014
+Program should be evaluating something to do with the number 16384
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 16384
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(16384))
+Done printing AST
+eval: num(134225921)
+
+[plotdata] 16384 68032548
+(young) heap size:
+[altplotdata] 16384 22400000
+[ML time] main() took 71s (avg 71s)
+Region statistics
+-----------------
+fromspace :      b=  0x162400000         l=0x155cc00         
+               end=  0x16395cc00       
+            bitmap=  0x160829040         s=0xaae60             u=0xaae5e           
+tospace   :      b=  0x160c00000         l=0x155cc00         
+               end=  0x16215cc00       
+            bitmap=  0x160829058         s=0xaae60             u=0x5dc07           
+free      :      b=  0x1617b80e0         l=0x9a4b20          
+               end=  0x16215cc00       
+scan      :          0x1611dc040       
+
+used size   : 0xbb80e0           bytes (12MB)
+free size   : 0x9a4b20           bytes (10MB)
+heap size   : 0x155cc00          bytes (22MB)
+
+stats:
+allocations : 2294634 (2M)
+collections : 9 (9)
+copies      : 660387 (660k)
+[plotdata] # heap size: (young generation) I=65536 B=22400000 A=22400000 F=22400000
+testall.sh: i=16384 j=2
+GC_init2 called from (GC_init_constructor):0
+GC_init2 called from ml/ml.c:156 (initialized already)
+Compiled for GC_CHERI at 08:37:42 May 15 2014
+Program should be evaluating something to do with the number 16384
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 16384
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(16384))
+Done printing AST
+eval: num(134225921)
+
+[plotdata] 16384 61526536
+(young) heap size:
+[altplotdata] 16384 22400000
+[ML time] main() took 64s (avg 64s)
+Region statistics
+-----------------
+fromspace :      b=  0x162400000         l=0x155cc00         
+               end=  0x16395cc00       
+            bitmap=  0x160829040         s=0xaae60             u=0xaae5e           
+tospace   :      b=  0x160c00000         l=0x155cc00         
+               end=  0x16215cc00       
+            bitmap=  0x160829058         s=0xaae60             u=0x5dc07           
+free      :      b=  0x1617b80e0         l=0x9a4b20          
+               end=  0x16215cc00       
+scan      :          0x1611dc040       
+
+used size   : 0xbb80e0           bytes (12MB)
+free size   : 0x9a4b20           bytes (10MB)
+heap size   : 0x155cc00          bytes (22MB)
+
+stats:
+allocations : 2294634 (2M)
+collections : 9 (9)
+copies      : 660387 (660k)
+[plotdata] # heap size: (young generation) I=65536 B=22400000 A=22400000 F=22400000
+testall.sh: i=16384 j=3
+GC_init2 called from (GC_init_constructor):0
+GC_init2 called from ml/ml.c:156 (initialized already)
+Compiled for GC_CHERI at 08:37:42 May 15 2014
+Program should be evaluating something to do with the number 32768
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 32768
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(32768))
+Done printing AST
+eval: num(536887297)
+
+[plotdata] 32768 122467777
+(young) heap size:
+[altplotdata] 32768 44800000
+[ML time] main() took 128s (avg 128s)
+Region statistics
+-----------------
+fromspace :      b=  0x163800000         l=0x2ab9800         
+               end=  0x1662b9800       
+            bitmap=  0x160829040         s=0x155cc0            u=0x155cbe          
+tospace   :      b=  0x160c00000         l=0x2ab9800         
+               end=  0x1636b9800       
+            bitmap=  0x160829058         s=0x155cc0            u=0xbb69c           
+free      :      b=  0x16236d380         l=0x134c480         
+               end=  0x1636b9800       
+scan      :          0x1617b86c0       
+
+used size   : 0x176d380          bytes (25MB)
+free size   : 0x134c480          bytes (20MB)
+heap size   : 0x2ab9800          bytes (45MB)
+
+stats:
+allocations : 4588394 (5M)
+collections : 9 (9)
+copies      : 1321102 (1M)
+[plotdata] # heap size: (young generation) I=65536 B=44800000 A=44800000 F=44800000
+testall.sh: i=32768 j=1
+GC_init2 called from (GC_init_constructor):0
+GC_init2 called from ml/ml.c:156 (initialized already)
+Compiled for GC_CHERI at 08:37:42 May 15 2014
+Program should be evaluating something to do with the number 32768
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 32768
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(32768))
+Done printing AST
+eval: num(536887297)
+
+[plotdata] 32768 125484227
+(young) heap size:
+[altplotdata] 32768 44800000
+[ML time] main() took 131s (avg 131s)
+Region statistics
+-----------------
+fromspace :      b=  0x163800000         l=0x2ab9800         
+               end=  0x1662b9800       
+            bitmap=  0x160829040         s=0x155cc0            u=0x155cbe          
+tospace   :      b=  0x160c00000         l=0x2ab9800         
+               end=  0x1636b9800       
+            bitmap=  0x160829058         s=0x155cc0            u=0xbb69c           
+free      :      b=  0x16236d380         l=0x134c480         
+               end=  0x1636b9800       
+scan      :          0x1617b86c0       
+
+used size   : 0x176d380          bytes (25MB)
+free size   : 0x134c480          bytes (20MB)
+heap size   : 0x2ab9800          bytes (45MB)
+
+stats:
+allocations : 4588394 (5M)
+collections : 9 (9)
+copies      : 1321102 (1M)
+[plotdata] # heap size: (young generation) I=65536 B=44800000 A=44800000 F=44800000
+testall.sh: i=32768 j=2
+GC_init2 called from (GC_init_constructor):0
+GC_init2 called from ml/ml.c:156 (initialized already)
+Compiled for GC_CHERI at 08:37:42 May 15 2014
+Program should be evaluating something to do with the number 32768
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 32768
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(32768))
+Done printing AST
+eval: num(536887297)
+
+[plotdata] 32768 122145301
+(young) heap size:
+[altplotdata] 32768 44800000
+[ML time] main() took 128s (avg 128s)
+Region statistics
+-----------------
+fromspace :      b=  0x163800000         l=0x2ab9800         
+               end=  0x1662b9800       
+            bitmap=  0x160829040         s=0x155cc0            u=0x155cbe          
+tospace   :      b=  0x160c00000         l=0x2ab9800         
+               end=  0x1636b9800       
+            bitmap=  0x160829058         s=0x155cc0            u=0xbb69c           
+free      :      b=  0x16236d380         l=0x134c480         
+               end=  0x1636b9800       
+scan      :          0x1617b86c0       
+
+used size   : 0x176d380          bytes (25MB)
+free size   : 0x134c480          bytes (20MB)
+heap size   : 0x2ab9800          bytes (45MB)
+
+stats:
+allocations : 4588394 (5M)
+collections : 9 (9)
+copies      : 1321102 (1M)
+[plotdata] # heap size: (young generation) I=65536 B=44800000 A=44800000 F=44800000
+testall.sh: i=32768 j=3

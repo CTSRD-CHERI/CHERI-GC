@@ -8,15 +8,15 @@
 // convenience. test_all.c, for example, uses this.
 #define GC_BOEHM_MAX_HEAP_SIZE                0//1900000
 
-#define GC_THREAD_LOCAL_HEAP_SIZE                              (22768000)
-#define GC_OLD_GENERATION_SEMISPACE_SIZE                       (22768000*2)
+#define GC_THREAD_LOCAL_HEAP_SIZE                              (65536)
+#define GC_OLD_GENERATION_SEMISPACE_SIZE                       (10)
 
 // Maximum sizes for when the heap does grow. Set to 0 to allow unlimited
 // growth.
-#define GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION        (22768000)
-#define GC_THREAD_LOCAL_HEAP_MAX_SIZE                          (22768000)
-#define GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION (22768000*2)
-#define GC_OLD_GENERATION_SEMISPACE_MAX_SIZE                   (22768000*2)
+#define GC_THREAD_LOCAL_HEAP_MAX_SIZE_BEFORE_COLLECTION        (65536)
+#define GC_THREAD_LOCAL_HEAP_MAX_SIZE                          (0)
+#define GC_OLD_GENERATION_SEMISPACE_MAX_SIZE_BEFORE_COLLECTION (10)
+#define GC_OLD_GENERATION_SEMISPACE_MAX_SIZE                   (10)
 
 // Determines whether we use generational GC or not. If disabled, only
 // copying collection is implemented.

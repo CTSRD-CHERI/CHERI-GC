@@ -68,9 +68,18 @@ ml_no_gc_malloc (size_t sz);
 #define ML_ALIGN_32(p) \
   ( (void *) ( (((uintptr_t) (p)) + (uintptr_t) 31) & ~(uintptr_t) 0x1F ) )
 // --------------------End   GC_NONE-------------------
+#elif defined(GC_NOCAP)
+// --------------------Begin GC_NOCAP--------------------
+#define GC_CAP
+#define GC_cheri_ptr(x,y) (x)
+#define ml_malloc         malloc
+#define GC_init()
+#define GC_PTR_VALID(x)   (x)
+#define GC_INVALID_PTR()  NULL
+// --------------------End   GC_NOCAP-------------------
 #elif defined(GC_CHERI)
 #else
-#error "Define one of GC_CHERI, GC_BOEHM, GC_NONE."
+#error "Define one of GC_CHERI, GC_BOEHM, GC_NONE, GC_NOCAP."
 #endif // GC_CHERI, GC_BOEHM, GC_NONE
 
 #include <stdlib.h>

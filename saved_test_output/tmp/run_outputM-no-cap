@@ -1,0 +1,567 @@
+spawn ssh -i /home/munraj/.ssh/mbv21 mbv21@cloud2 /mnt/mbv21zfs//testall.sh
+Enter passphrase for key '/home/munraj/.ssh/mbv21': 
+Password for mbv21@cloud2:
+Compiled for GC_NOCAP at 08:54:44 May 15 2014
+Program should be evaluating something to do with the number 1
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 1
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(1))
+Done printing AST
+eval: num(2)
+
+[plotdata] 1 55542
+[ML time] main() took 58ms (avg 58ms)
+testall.sh: i=1 j=1
+Compiled for GC_NOCAP at 08:54:44 May 15 2014
+Program should be evaluating something to do with the number 1
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 1
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(1))
+Done printing AST
+eval: num(2)
+
+[plotdata] 1 79550
+[ML time] main() took 82ms (avg 82ms)
+testall.sh: i=1 j=2
+Compiled for GC_NOCAP at 08:54:44 May 15 2014
+Program should be evaluating something to do with the number 1
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 1
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(1))
+Done printing AST
+eval: num(2)
+
+[plotdata] 1 74950
+[ML time] main() took 77ms (avg 77ms)
+testall.sh: i=1 j=3
+Compiled for GC_NOCAP at 08:54:44 May 15 2014
+Program should be evaluating something to do with the number 2
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 2
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(2))
+Done printing AST
+eval: num(4)
+
+[plotdata] 2 84598
+[ML time] main() took 87ms (avg 87ms)
+testall.sh: i=2 j=1
+Compiled for GC_NOCAP at 08:54:44 May 15 2014
+Program should be evaluating something to do with the number 2
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 2
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(2))
+Done printing AST
+eval: num(4)
+
+[plotdata] 2 85584
+[ML time] main() took 88ms (avg 88ms)
+testall.sh: i=2 j=2
+Compiled for GC_NOCAP at 08:54:44 May 15 2014
+Program should be evaluating something to do with the number 2
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 2
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(2))
+Done printing AST
+eval: num(4)
+
+[plotdata] 2 83671
+[ML time] main() took 86ms (avg 86ms)
+testall.sh: i=2 j=3
+Compiled for GC_NOCAP at 08:54:44 May 15 2014
+Program should be evaluating something to do with the number 4
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 4
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(4))
+Done printing AST
+eval: num(11)
+
+[plotdata] 4 100757
+[ML time] main() took 105ms (avg 105ms)
+testall.sh: i=4 j=1
+Compiled for GC_NOCAP at 08:54:44 May 15 2014
+Program should be evaluating something to do with the number 4
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 4
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(4))
+Done printing AST
+eval: num(11)
+
+[plotdata] 4 100051
+[ML time] main() took 102ms (avg 102ms)
+testall.sh: i=4 j=2
+Compiled for GC_NOCAP at 08:54:44 May 15 2014
+Program should be evaluating something to do with the number 4
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 4
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(4))
+Done printing AST
+eval: num(11)
+
+[plotdata] 4 106683
+[ML time] main() took 109ms (avg 109ms)
+testall.sh: i=4 j=3
+Compiled for GC_NOCAP at 08:54:44 May 15 2014
+Program should be evaluating something to do with the number 8
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 8
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(8))
+Done printing AST
+eval: num(37)
+
+[plotdata] 8 154021
+[ML time] main() took 156ms (avg 156ms)
+testall.sh: i=8 j=1
+Compiled for GC_NOCAP at 08:54:44 May 15 2014
+Program should be evaluating something to do with the number 8
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 8
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(8))
+Done printing AST
+eval: num(37)
+
+[plotdata] 8 130970
+[ML time] main() took 133ms (avg 133ms)
+testall.sh: i=8 j=2
+Compiled for GC_NOCAP at 08:54:44 May 15 2014
+Program should be evaluating something to do with the number 8
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 8
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(8))
+Done printing AST
+eval: num(37)
+
+[plotdata] 8 129568
+[ML time] main() took 131ms (avg 131ms)
+testall.sh: i=8 j=3
+Compiled for GC_NOCAP at 08:54:44 May 15 2014
+Program should be evaluating something to do with the number 16
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 16
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(16))
+Done printing AST
+eval: num(137)
+
+[plotdata] 16 214826
+[ML time] main() took 219ms (avg 219ms)
+testall.sh: i=16 j=1
+Compiled for GC_NOCAP at 08:54:44 May 15 2014
+Program should be evaluating something to do with the number 16
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 16
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(16))
+Done printing AST
+eval: num(137)
+
+[plotdata] 16 217517
+[ML time] main() took 219ms (avg 219ms)
+testall.sh: i=16 j=2
+Compiled for GC_NOCAP at 08:54:44 May 15 2014
+Program should be evaluating something to do with the number 16
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 16
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(16))
+Done printing AST
+eval: num(137)
+
+[plotdata] 16 219839
+[ML time] main() took 224ms (avg 224ms)
+testall.sh: i=16 j=3
+Compiled for GC_NOCAP at 08:54:44 May 15 2014
+Program should be evaluating something to do with the number 32
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 32
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(32))
+Done printing AST
+eval: num(529)
+
+[plotdata] 32 364506
+[ML time] main() took 368ms (avg 368ms)
+testall.sh: i=32 j=1
+Compiled for GC_NOCAP at 08:54:44 May 15 2014
+Program should be evaluating something to do with the number 32
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 32
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(32))
+Done printing AST
+eval: num(529)
+
+[plotdata] 32 362187
+[ML time] main() took 364ms (avg 364ms)
+testall.sh: i=32 j=2
+Compiled for GC_NOCAP at 08:54:44 May 15 2014
+Program should be evaluating something to do with the number 32
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 32
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(32))
+Done printing AST
+eval: num(529)
+
+[plotdata] 32 341822
+[ML time] main() took 346ms (avg 346ms)
+testall.sh: i=32 j=3
+Compiled for GC_NOCAP at 08:54:44 May 15 2014
+Program should be evaluating something to do with the number 64
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 64
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(64))
+Done printing AST
+eval: num(2081)
+
+[plotdata] 64 675860
+[ML time] main() took 679ms (avg 679ms)
+testall.sh: i=64 j=1
+Compiled for GC_NOCAP at 08:54:44 May 15 2014
+Program should be evaluating something to do with the number 64
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 64
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(64))
+Done printing AST
+eval: num(2081)
+
+[plotdata] 64 659631
+[ML time] main() took 664ms (avg 664ms)
+testall.sh: i=64 j=2
+Compiled for GC_NOCAP at 08:54:44 May 15 2014
+Program should be evaluating something to do with the number 64
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 64
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(64))
+Done printing AST
+eval: num(2081)
+
+[plotdata] 64 655594
+[ML time] main() took 658ms (avg 658ms)
+testall.sh: i=64 j=3
+Compiled for GC_NOCAP at 08:54:44 May 15 2014
+Program should be evaluating something to do with the number 128
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 128
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(128))
+Done printing AST
+eval: num(8257)
+
+[plotdata] 128 1283366
+[ML time] main() took 1287ms (avg 1287ms)
+testall.sh: i=128 j=1
+Compiled for GC_NOCAP at 08:54:44 May 15 2014
+Program should be evaluating something to do with the number 128
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 128
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(128))
+Done printing AST
+eval: num(8257)
+
+[plotdata] 128 1290131
+[ML time] main() took 1294ms (avg 1294ms)
+testall.sh: i=128 j=2
+Compiled for GC_NOCAP at 08:54:44 May 15 2014
+Program should be evaluating something to do with the number 128
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 128
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(128))
+Done printing AST
+eval: num(8257)
+
+[plotdata] 128 1242876
+[ML time] main() took 1245ms (avg 1245ms)
+testall.sh: i=128 j=3
+Compiled for GC_NOCAP at 08:54:44 May 15 2014
+Program should be evaluating something to do with the number 256
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 256
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(256))
+Done printing AST
+eval: num(32897)
+
+[plotdata] 256 2519612
+[ML time] main() took 2522ms (avg 2522ms)
+testall.sh: i=256 j=1
+Compiled for GC_NOCAP at 08:54:44 May 15 2014
+Program should be evaluating something to do with the number 256
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 256
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(256))
+Done printing AST
+eval: num(32897)
+
+[plotdata] 256 2480862
+[ML time] main() took 2483ms (avg 2483ms)
+testall.sh: i=256 j=2
+Compiled for GC_NOCAP at 08:54:44 May 15 2014
+Program should be evaluating something to do with the number 256
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 256
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(256))
+Done printing AST
+eval: num(32897)
+
+[plotdata] 256 2519755
+[ML time] main() took 2522ms (avg 2522ms)
+testall.sh: i=256 j=3
+Compiled for GC_NOCAP at 08:54:44 May 15 2014
+Program should be evaluating something to do with the number 512
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 512
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(512))
+Done printing AST
+eval: num(131329)
+
+[plotdata] 512 4915220
+[ML time] main() took 4918ms (avg 4918ms)
+testall.sh: i=512 j=1
+Compiled for GC_NOCAP at 08:54:44 May 15 2014
+Program should be evaluating something to do with the number 512
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 512
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(512))
+Done printing AST
+eval: num(131329)
+
+[plotdata] 512 4944985
+[ML time] main() took 4948ms (avg 4948ms)
+testall.sh: i=512 j=2
+Compiled for GC_NOCAP at 08:54:44 May 15 2014
+Program should be evaluating something to do with the number 512
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 512
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(512))
+Done printing AST
+eval: num(131329)
+
+[plotdata] 512 4935764
+[ML time] main() took 4940ms (avg 4940ms)
+testall.sh: i=512 j=3
+Compiled for GC_NOCAP at 08:54:44 May 15 2014
+Program should be evaluating something to do with the number 1024
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 1024
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(1024))
+Done printing AST
+eval: num(524801)
+
+[plotdata] 1024 15735459
+[ML time] main() took 16s (avg 16s)
+testall.sh: i=1024 j=1
+Compiled for GC_NOCAP at 08:54:44 May 15 2014
+Program should be evaluating something to do with the number 1024
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 1024
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(1024))
+Done printing AST
+eval: num(524801)
+
+[plotdata] 1024 10186101
+[ML time] main() took 10s (avg 10s)
+testall.sh: i=1024 j=2
+Compiled for GC_NOCAP at 08:54:44 May 15 2014
+Program should be evaluating something to do with the number 1024
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 1024
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(1024))
+Done printing AST
+eval: num(524801)
+
+[plotdata] 1024 10667885
+[ML time] main() took 11s (avg 11s)
+testall.sh: i=1024 j=3
+Compiled for GC_NOCAP at 08:54:44 May 15 2014
+Program should be evaluating something to do with the number 2048
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 2048
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(2048))
+Done printing AST
+eval: num(2098177)
+
+[plotdata] 2048 20393614
+[ML time] main() took 20s (avg 20s)
+testall.sh: i=2048 j=1
+Compiled for GC_NOCAP at 08:54:44 May 15 2014
+Program should be evaluating something to do with the number 2048
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 2048
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(2048))
+Done printing AST
+eval: num(2098177)
+
+[plotdata] 2048 20482493
+[ML time] main() took 20s (avg 20s)
+testall.sh: i=2048 j=2
+Compiled for GC_NOCAP at 08:54:44 May 15 2014
+Program should be evaluating something to do with the number 2048
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 2048
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(2048))
+Done printing AST
+eval: num(2098177)
+
+[plotdata] 2048 20356825
+[ML time] main() took 20s (avg 20s)
+testall.sh: i=2048 j=3
+Compiled for GC_NOCAP at 08:54:44 May 15 2014
+Program should be evaluating something to do with the number 4096
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 4096
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(4096))
+Done printing AST
+eval: num(8390657)
+
+[plotdata] 4096 40849474
+[ML time] main() took 41s (avg 41s)
+testall.sh: i=4096 j=1
+Compiled for GC_NOCAP at 08:54:44 May 15 2014
+Program should be evaluating something to do with the number 4096
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 4096
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(4096))
+Done printing AST
+eval: num(8390657)
+
+[plotdata] 4096 40693895
+[ML time] main() took 41s (avg 41s)
+testall.sh: i=4096 j=2
+Compiled for GC_NOCAP at 08:54:44 May 15 2014
+Program should be evaluating something to do with the number 4096
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 4096
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(4096))
+Done printing AST
+eval: num(8390657)
+
+[plotdata] 4096 40976592
+[ML time] main() took 41s (avg 41s)
+testall.sh: i=4096 j=3
+Compiled for GC_NOCAP at 08:54:44 May 15 2014
+Program should be evaluating something to do with the number 8192
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 8192
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(8192))
+Done printing AST
+eval: num(33558529)
+
+[plotdata] 8192 88620123
+[ML time] main() took 89s (avg 89s)
+testall.sh: i=8192 j=1
+Compiled for GC_NOCAP at 08:54:44 May 15 2014
+Program should be evaluating something to do with the number 8192
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 8192
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(8192))
+Done printing AST
+eval: num(33558529)
+
+[plotdata] 8192 121194111
+[ML time] main() took 121s (avg 121s)
+testall.sh: i=8192 j=2
+Compiled for GC_NOCAP at 08:54:44 May 15 2014
+Program should be evaluating something to do with the number 8192
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 8192
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(8192))
+Done printing AST
+eval: num(33558529)
+
+[plotdata] 8192 80964433
+[ML time] main() took 81s (avg 81s)
+testall.sh: i=8192 j=3
+Compiled for GC_NOCAP at 08:54:44 May 15 2014
+Program should be evaluating something to do with the number 16384
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 16384
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(16384))
+Done printing AST
+eval: num(134225921)
+
+[plotdata] 16384 165818596
+[ML time] main() took 166s (avg 166s)
+testall.sh: i=16384 j=1
+Compiled for GC_NOCAP at 08:54:44 May 15 2014
+Program should be evaluating something to do with the number 16384
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 16384
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(16384))
+Done printing AST
+eval: num(134225921)
+
+[plotdata] 16384 162590823
+[ML time] main() took 163s (avg 163s)
+testall.sh: i=16384 j=2
+Compiled for GC_NOCAP at 08:54:44 May 15 2014
+Program should be evaluating something to do with the number 16384
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 16384
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(16384))
+Done printing AST
+eval: num(134225921)
+
+[plotdata] 16384 169618371
+[ML time] main() took 170s (avg 170s)
+testall.sh: i=16384 j=3
+Compiled for GC_NOCAP at 08:54:44 May 15 2014
+Program should be evaluating something to do with the number 32768
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 32768
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(32768))
+Done printing AST
+eval: num(536887297)
+
+[plotdata] 32768 326235221
+[ML time] main() took 326s (avg 326s)
+testall.sh: i=32768 j=1
+Compiled for GC_NOCAP at 08:54:44 May 15 2014
+Program should be evaluating something to do with the number 32768
+program: ((fn f . (fn g. (f (fn a . (g g) a))) (fn g. (f (fn f . (g g) f)))) (fn f . fn n . if n then n + f (n-1) else 1)) 32768
+
+AST:
+app(app(fn(f,app(fn(g,app(name(f),fn(a,app(app(name(g),name(g)),name(a))))),fn(g,app(name(f),fn(f,app(app(name(g),name(g)),name(f))))))),fn(f,fn(n,if(name(n),op(+,name(n),app(name(f),op(-,name(n),num(1)))),num(1))))),num(32768))
+Done printing AST
+eval: num(536887297)
+
+[plotdata] 32768 330580555
+[ML time] main() took 331s (avg 331s)
+testall.sh: i=32768 j=2
